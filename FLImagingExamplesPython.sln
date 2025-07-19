@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36310.24 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GainOffset", "GainOffset\GainOffset.pyproj", "{222BC7C0-0AF7-4A3F-92A7-8AA36A8F216C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[Document]", "[Document]", "{C8D5274F-AC00-46C7-1F8D-E88E81087A52}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Image Processing", "Image Processing", "{43A26D99-88FF-4496-9A97-A4BDFD9C96E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adjustment", "Adjustment", "{26DDAD82-9E4F-4BEB-AC67-DE8C7978F005}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gain Offset", "Gain Offset", "{C2E7B9F5-D463-4F2A-9812-B4F4E54A6E37}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{222BC7C0-0AF7-4A3F-92A7-8AA36A8F216C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{222BC7C0-0AF7-4A3F-92A7-8AA36A8F216C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{222BC7C0-0AF7-4A3F-92A7-8AA36A8F216C} = {C2E7B9F5-D463-4F2A-9812-B4F4E54A6E37}
+		{26DDAD82-9E4F-4BEB-AC67-DE8C7978F005} = {43A26D99-88FF-4496-9A97-A4BDFD9C96E2}
+		{C2E7B9F5-D463-4F2A-9812-B4F4E54A6E37} = {26DDAD82-9E4F-4BEB-AC67-DE8C7978F005}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
+	EndGlobalSection
+EndGlobal
