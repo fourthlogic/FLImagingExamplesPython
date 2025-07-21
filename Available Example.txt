@@ -42,6 +42,9 @@
     - ChannelStdev
       - The example of an algorithm that extracts standard deviation value of each pixel from a multichannel image.
       - 다채널 이미지에서 각 픽셀의 표준편차값을 추출하여 이미지화 하는 알고리즘 예제.
+    - ChannelSwap
+      - The example of an algorithm that swaps two channels selected from a multichannel image.
+      - 다채널 이미지에서 두개의 채널을 교환하여 이미지화하는 알고리즘 예제.
     - ChannelVariance
       - The example of an algorithm that extracts variance value of each pixel from a multichannel image.
       - 다채널 이미지에서 각 픽셀의 분산값을 추출하여 이미지화 하는 알고리즘 예제.
@@ -50,6 +53,9 @@
   
     - OperationComplexMultiply
       - The algorithm that performs Complex Multiply operation on the source image.
+    - OperationScaledDivide
+      - The algorithm that performs a Scaled Divide operation with an image or scalar value.
+      - 이미지를 스칼라 또는 다른 이미지와 스케일 나눗셈 연산을 수행하는 알고리즘.
     - OperationSignedSquareDifference
       - The algorithm that perform Signed Square Difference operation an image with scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 부호 정보가 보존된 차이의 제곱 연산을 수행하는 알고리즘.

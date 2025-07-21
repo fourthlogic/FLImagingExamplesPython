@@ -110,6 +110,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationComplexMultiply_Im
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationTrailingOnes", "OperationTrailingOnes\OperationTrailingOnes.pyproj", "{E6D3C40B-F099-4EB4-A13D-CD9EC2F415AE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Channel Swap", "Channel Swap", "{F16712FA-649D-4876-ADAC-358B0C713779}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ChannelSwap", "ChannelSwap\ChannelSwap.pyproj", "{07BAA9BD-6C80-45C6-874D-8E0BF2A7BE47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -156,6 +160,8 @@ Global
 		{31EC9756-40A8-4CC4-84FF-9E1EEADA5BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6D3C40B-F099-4EB4-A13D-CD9EC2F415AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E6D3C40B-F099-4EB4-A13D-CD9EC2F415AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07BAA9BD-6C80-45C6-874D-8E0BF2A7BE47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07BAA9BD-6C80-45C6-874D-8E0BF2A7BE47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -209,6 +215,8 @@ Global
 		{8927A24F-9EA4-412F-8DAF-B31EAA644E09} = {2D442968-6549-4129-BF90-FD5AD12D95C2}
 		{31EC9756-40A8-4CC4-84FF-9E1EEADA5BA1} = {2D442968-6549-4129-BF90-FD5AD12D95C2}
 		{E6D3C40B-F099-4EB4-A13D-CD9EC2F415AE} = {49D82E96-9AA1-43AD-ADF8-9A19B25F85B5}
+		{F16712FA-649D-4876-ADAC-358B0C713779} = {C7AE84F4-0805-49E9-8363-FD23EEC762CC}
+		{07BAA9BD-6C80-45C6-874D-8E0BF2A7BE47} = {F16712FA-649D-4876-ADAC-358B0C713779}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
