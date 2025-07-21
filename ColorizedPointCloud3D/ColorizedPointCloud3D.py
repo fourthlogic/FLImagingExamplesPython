@@ -1,0 +1,284 @@
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
+from FLImagingClrPy import *
+
+
+# 메인 함수 # Main function
+def main():
+
+	# 이미지 객체 선언 # Declare the image object
+	fliCaliSrcXYZVImage = CFLImage()
+	fliCaliSrcRGBImage = CFLImage()
+	fliExecSrcXYZVImage = CFLImage()
+	fliExecSrcRGBImage = CFLImage()
+	fliExecDstRGBImage = CFLImage()
+
+	# 이미지 뷰 선언 # Declare the image view
+	viewImageCaliSrcXYZV = CGUIViewImage()
+	viewImageCaliSrcRGB = CGUIViewImage()
+	viewImageExecSrcXYZV = CGUIViewImage()
+	viewImageExecSrcRGB = CGUIViewImage()
+	viewImageExecDstRGB = CGUIViewImage()
+	view3DDst = CGUIView3D()
+
+	while True:
+		
+		# Calibrate XYZV 이미지 로드 # Load the calibrate XYZV image
+		res = fliCaliSrcXYZVImage.Load('../../ExampleImages/ColorizedPointCloudGenerator3D/CalibXYZV.flif')
+
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to load the image file.')
+			break
+		
+		# Calibrate XYZV 이미지 뷰 생성 # Create calibrate XYZV image view
+		res = viewImageCaliSrcXYZV.Create(100, 0, 400, 300)
+
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to create the image view.')
+			break
+		
+		# Calibrate XYZV 이미지 뷰에 이미지를 디스플레이 # Display the image in the calibrate XYZV image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		res = viewImageCaliSrcXYZV.SetImagePtr(fliCaliSrcXYZVImage)
+
+		if res[0].IsFail():
+			ErrorPrint(res[0], 'Failed to set image object on the image view.')
+			break
+		
+		# Calibrate RGB 이미지 로드 # Load the calibrate RGB image
+		res = fliCaliSrcRGBImage.Load('C:/Users/junhy/source/repos/fourthlogic/ExampleImages/ColorizedPointCloudGenerator3D/CalibRGB.flif')
+
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to load the image file.')
+			break
+		
+		# Calibrate RGB 이미지 뷰 생성 # Create calibrate RGB image view
+		res = viewImageCaliSrcRGB.Create(100, 300, 400, 600)
+
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to create the image view.')
+			break
+		
+		# Calibrate RGB 이미지 뷰에 이미지를 디스플레이 # Display the image in the calibrate RGB image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		res = viewImageCaliSrcRGB.SetImagePtr(fliCaliSrcRGBImage)
+
+		if res[0].IsFail():
+			ErrorPrint(res[0], 'Failed to set image object on the image view.')
+			break
+		
+		# Execute XYZV 이미지 로드 # Load the execute XYZV image
+		res = fliExecSrcXYZVImage.Load('C:/Users/junhy/source/repos/fourthlogic/ExampleImages/ColorizedPointCloudGenerator3D/ExecXYZV.flif')
+
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to load the image file.')
+			break
+		
+		# Execute XYZV 이미지 뷰 생성 # Create execute XYZV image view
+		res = viewImageExecSrcXYZV.Create(400, 0, 700, 300)
+
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to create the image view.')
+			break
+		
+		# Execute XYZV 이미지 뷰에 이미지를 디스플레이 # Display the image in the execute XYZV image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		res = viewImageExecSrcXYZV.SetImagePtr(fliExecSrcXYZVImage)
+
+		if res[0].IsFail():
+			ErrorPrint(res[0], 'Failed to set image object on the image view.')
+			break
+		
+		# Execute RGB 이미지 로드 # Load the execute RGB image
+		res = fliExecSrcRGBImage.Load('C:/Users/junhy/source/repos/fourthlogic/ExampleImages/ColorizedPointCloudGenerator3D/ExecRGB.flif')
+
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to load the image file.')
+			break
+		
+		# Execute RGB 이미지 뷰 생성 # Create execute RGB image view
+		res = viewImageExecSrcRGB.Create(400, 300, 700, 600)
+
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to create the image view.')
+			break
+		
+		# Execute RGB 이미지 뷰에 이미지를 디스플레이 # Display the image in the execute RGB image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		res = viewImageExecSrcRGB.SetImagePtr(fliExecSrcRGBImage)
+
+		if res[0].IsFail():
+			ErrorPrint(res[0], 'Failed to set image object on the image view.')
+			break
+		
+		# Destination 이미지 뷰 생성 # Create destination image view
+		res = viewImageExecDstRGB.Create(700, 0, 1000, 300)
+
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to create the image view.')
+			break
+		
+		# Destination 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		res = viewImageExecDstRGB.SetImagePtr(fliExecDstRGBImage)
+
+		if res[0].IsFail():
+			ErrorPrint(res[0], 'Failed to set image object on the image view.')
+			break
+		
+		# Destination 3D 이미지 뷰 생성 # Create destination 3D image view
+		res = view3DDst.Create(700, 300, 1300, 900)
+
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to create the 3D view.')
+			break
+		
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		res = viewImageCaliSrcXYZV.SynchronizeWindow(viewImageCaliSrcRGB)
+
+		if res[0].IsFail():
+			ErrorPrint(res[0], 'Failed to synchronize window.')
+			break
+		
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		res = viewImageCaliSrcXYZV.SynchronizeWindow(viewImageExecSrcRGB)
+
+		if res[0].IsFail():
+			ErrorPrint(res[0], 'Failed to synchronize window.')
+			break
+
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		res = viewImageCaliSrcXYZV.SynchronizeWindow(viewImageExecSrcXYZV)
+
+		if res[0].IsFail():
+			ErrorPrint(res[0], 'Failed to synchronize window.')
+			break
+
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		res = viewImageCaliSrcXYZV.SynchronizeWindow(viewImageExecDstRGB)
+
+		if res[0].IsFail():
+			ErrorPrint(res[0], 'Failed to synchronize window.')
+			break
+		
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		res = viewImageCaliSrcXYZV.SynchronizeWindow(view3DDst)
+
+		if res[0].IsFail():
+			ErrorPrint(res[0], 'Failed to synchronize window.')
+			break
+		
+		# 두 이미지 뷰의 페이지를 동기화 한다. # Synchronize the page of the two image views. 
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		res = viewImageCaliSrcXYZV.SynchronizePageIndex(viewImageCaliSrcRGB)
+
+		if res[0].IsFail():
+			ErrorPrint(res[0], 'Failed to synchronize window.')
+			break
+
+		# Stereo Calibrator 3D 객체 생성 # Create Stereo Calibrator 3D object
+		colorizedPointCloudGenerator = CColorizedPointCloudGenerator3D()
+		
+		# Calibration XYZV 이미지 설정 # Set calibration XYZV image
+		colorizedPointCloudGenerator.SetCalibrationImageXYZV(fliCaliSrcXYZVImage)
+		
+		# Calibration RGB 이미지 설정 # Set calibration RGB image
+		colorizedPointCloudGenerator.SetCalibrationImageRGB(fliCaliSrcRGBImage)
+		
+		# Calibration의 Grid Type 설정 # Set the grid type of the calibration
+		colorizedPointCloudGenerator.SetGridType(CCameraCalibrator.EGridType.ChessBoard)
+		
+		# Calibration의 최적해 정확도 값 설정 # Set the optimal solution accuracy of the calibration
+		colorizedPointCloudGenerator.SetOptimalSolutionAccuracy(0.00001)
+		
+		# Coordinate Adjustment 자동 설정 # Coordinate Adjustment Auto Set Flag
+		colorizedPointCloudGenerator.EnableAutoCoordinateAdjustment(True)
+		
+		# 앞서 설정된 파라미터 대로 알고리즘 Calibrate # Calibrate algorithm according to previously set parameters
+		res = colorizedPointCloudGenerator.Calibrate()
+		
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to calibrate Colorized Point Cloud Generator 3D.')
+			break
+		
+		# 출력에 사용되는 3D 객채 생성 # Create 3D object used as output
+		fli3DDstObj = CFL3DObject();
+
+		# Execution XYZV 이미지 설정 # Set execution XYZV image
+		colorizedPointCloudGenerator.SetSourceImageXYZV(fliExecSrcXYZVImage)
+		
+		# Execution RGB 이미지 설정 # Set execution RGB image
+		colorizedPointCloudGenerator.SetSourceImageRGB(fliExecSrcRGBImage)
+		
+		# Destination 이미지 설정 # Set destination image
+		colorizedPointCloudGenerator.SetDestinationImageRGB(fliExecDstRGBImage)
+		
+		# Destination 3D Object 설정 // Set the destination 3D object
+		colorizedPointCloudGenerator.SetDestination3DObject(fli3DDstObj)
+
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
+		res = colorizedPointCloudGenerator.Execute()
+		
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to execute Colorized Point Cloud Generator 3D.')
+			break
+		
+		# 결과 3D 객체 출력 # Print 3D Object
+		res = view3DDst.PushObject(fli3DDstObj)
+		
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to display the 3D object')
+			break
+		
+		# 3D View 카메라 설정 # Set 3D view camera
+		fli3DCam = CFL3DCamera()
+
+		flP3Dir = CFLPoint3[Single](0, 0, 1)
+		flP3DirUp = CFLPoint3[Single](0, -1, 0)
+		flP3Pos = CFLPoint3[Single](0, 0, -1000)
+		
+		fli3DCam.SetDirection(flP3Dir)
+		fli3DCam.SetDirectionUp(flP3DirUp)
+		fli3DCam.SetPosition(flP3Pos)
+
+		view3DDst.SetCamera(fli3DCam)
+
+		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
+		res = viewImageExecDstRGB.ZoomFit()
+
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to Zoom Fit.')
+			break
+		
+		# 이미지 뷰를 갱신 # Update image view
+		viewImageCaliSrcXYZV.Invalidate(True)
+		viewImageCaliSrcRGB.Invalidate(True)
+		viewImageExecSrcXYZV.Invalidate(True)
+		viewImageExecSrcRGB.Invalidate(True)
+		viewImageExecDstRGB.Invalidate(True)
+		view3DDst.Invalidate(True)
+
+		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
+		while viewImageCaliSrcXYZV.IsAvailable() and viewImageCaliSrcRGB.IsAvailable() and viewImageExecSrcXYZV.IsAvailable() and viewImageExecSrcRGB.IsAvailable() and viewImageExecDstRGB.IsAvailable() and view3DDst.IsAvailable():
+			CThreadUtilities.Sleep(1)
+
+		break
+	
+	# End of main function
+
+
+
+# 에러 출력 함수 # Error printing function
+def ErrorPrint(res, str):
+	if len(str) > 1:
+		print(str)
+
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
+
+
+if __name__ == '__main__':
+    main()
