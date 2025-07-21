@@ -91,7 +91,7 @@ def main():
 			break
 		
 		# View Binary 표시 옵션 설정 # Set view binary option
-		viewImageSrc.SetPixelNumberMode(EPixelNumberMode.Binary);
+		viewImageSrc.SetPixelNumberMode(EPixelNumberMode.Hexadecimal);
 
 		# 이미지 뷰를 갱신 # Update image view
 		viewImageSrc.Invalidate(True)
