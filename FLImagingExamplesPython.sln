@@ -148,6 +148,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationLesser_Image", "Op
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationLesser_Scalar", "OperationLesser_Scalar\OperationLesser_Scalar.pyproj", "{A2860205-CB07-4EE4-8AF3-B3D1152EAC02}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Multi Focus MAP Based 3D", "Multi Focus MAP Based 3D", "{59FFC05E-61CB-4F6A-8939-F5E20761E87D}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MultiFocusMAPBased3D", "MultiFocusMAPBased3D\MultiFocusMAPBased3D.pyproj", "{C68A6328-7AAB-4C8F-B076-9BF0E243BB61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -214,6 +218,8 @@ Global
 		{3E32270A-75A0-4187-BB35-3C7D453C90D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2860205-CB07-4EE4-8AF3-B3D1152EAC02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A2860205-CB07-4EE4-8AF3-B3D1152EAC02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C68A6328-7AAB-4C8F-B076-9BF0E243BB61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C68A6328-7AAB-4C8F-B076-9BF0E243BB61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -287,6 +293,8 @@ Global
 		{78CEEAD6-8CA7-47F8-BDE5-6521D59B926A} = {253F87A5-956A-4BFD-B997-FFDA64F76BB5}
 		{3E32270A-75A0-4187-BB35-3C7D453C90D2} = {8E550A3E-1735-4425-BEF7-F6D3B256EBDB}
 		{A2860205-CB07-4EE4-8AF3-B3D1152EAC02} = {8E550A3E-1735-4425-BEF7-F6D3B256EBDB}
+		{59FFC05E-61CB-4F6A-8939-F5E20761E87D} = {ECFF483A-9E41-42AD-94A1-09F2D3E62F83}
+		{C68A6328-7AAB-4C8F-B076-9BF0E243BB61} = {59FFC05E-61CB-4F6A-8939-F5E20761E87D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
