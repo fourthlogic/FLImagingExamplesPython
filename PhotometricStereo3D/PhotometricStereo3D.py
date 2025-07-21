@@ -18,9 +18,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 # Load the learn image
-		res = fliSourceImage.Load('../../ExampleImages/PhotometricStereo3D/Source.flif')
-
-		if res.IsFail():
+		if (res := fliSourceImage.Load('../../ExampleImages/PhotometricStereo3D/Source.flif').IsFail()):
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
@@ -28,42 +26,32 @@ def main():
 		fliSourceImage.SelectPage(0);
 		
 		# Source 이미지 뷰 생성 # Create source image view
-		res = viewImageSource.Create(100, 0, 548, 448)
-
-		if res.IsFail():
+		if (res := viewImageSource.Create(100, 0, 548, 448)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
-		
+
 		# Source 이미지 뷰에 이미지를 디스플레이 # Display the image in the source image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageSource.SetImagePtr(fliSourceImage)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to set image object on the image view.')
+		if (res := viewImageSource.SetImagePtr(fliSourceImage))[0].IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 		
 		# Destination 이미지 뷰 생성 # Create destination image view
-		res = viewImageDestination.Create(100, 448, 548, 896)
-
-		if res.IsFail():
+		if (res := viewImageDestination.Create(100, 448, 548, 896)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
-		
+
 		# Destination 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageDestination.SetImagePtr(fliDestinationImage)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to set image object on the image view.')
+		if (res := viewImageDestination.SetImagePtr(fliDestinationImage))[0].IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 		
 		# Destination 3D 이미지 뷰 생성 # Create destination 3D image view
-		res = viewImage3D.Create(548, 448, 996, 896)
-
-		if res.IsFail():
+		if (res := viewImage3D.Create(548, 448, 996, 896)).IsFail():
 			ErrorPrint(res, 'Failed to create the 3D view.')
 			break
-		
+
 		# Stereo Calibrator 3D 객체 생성 # Create Stereo Calibrator 3D object
 		photometric = CPhotometricStereo3D()
 		
@@ -134,19 +122,15 @@ def main():
 
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		res = photometric.Execute()
-		
-		if res.IsFail():
+		if (res := photometric.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Photometric Stereo 3D.')
 			break
-		
-		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
-		res = viewImageDestination.ZoomFit()
 
-		if res.IsFail():
+		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
+		if (res := viewImageDestination.ZoomFit()).IsFail():
 			ErrorPrint(res, 'Failed to Zoom Fit.')
 			break
-		
+
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
 		layerSource = viewImageSource.GetLayer(0)
@@ -159,15 +143,11 @@ def main():
 		# 이미지 뷰 정보 표시 # Display image view information
 		flpPoint = CFLPoint[Double](0, 0)
 
-		res = layerSource.DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 20)
-
-		if res.IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 18)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
-
-		res = layerDestination.DrawTextCanvas(flpPoint, 'Destination Height Map Image', EColor.YELLOW, EColor.BLACK, 18)
-
-		if res.IsFail():
+		
+		if (res := layerDestination.DrawTextCanvas(flpPoint, 'Destination Height Map Image', EColor.YELLOW, EColor.BLACK, 18)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 		
@@ -178,12 +158,10 @@ def main():
 		viewImage3D.PushObject(fl3DObject)
 		
 		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
-		res = viewImage3D.ZoomFit();
-		
-		if res.IsFail():
+		if (res := viewImage3D.ZoomFit()).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
-
+		
 		# 이미지 뷰를 갱신 # Update image view
 		viewImageSource.Invalidate(True)
 		viewImageDestination.Invalidate(True)
