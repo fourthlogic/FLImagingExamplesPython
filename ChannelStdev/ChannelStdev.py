@@ -1,125 +1,100 @@
-# FLImagingClrPy ¼±¾ğ // Declare FLImagingClrPy
+ï»¿# FLImagingClrPy ì„ ì–¸ // Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 
-# ¸ŞÀÎ ÇÔ¼ö // Main function
+# ë©”ì¸ í•¨ìˆ˜ // Main function
 def main():
 
-	# ÀÌ¹ÌÁö °´Ã¼ ¼±¾ğ // Declare the image object
+	# ì´ë¯¸ì§€ ê°ì²´ ì„ ì–¸ // Declare the image object
 	fliSourceImage = CFLImage()
 	fliDestinationImage = CFLImage()
 
-	# ÀÌ¹ÌÁö ºä ¼±¾ğ // Declare the image view
+	# ì´ë¯¸ì§€ ë·° ì„ ì–¸ // Declare the image view
 	viewImageSrc = CGUIViewImage()
 	viewImageDst = CGUIViewImage()
 
 	while True:
 		
-		# Source ÀÌ¹ÌÁö ·Îµå // Load the source image
-		res = fliSourceImage.Load('../../ExampleImages/ChannelStdev/Color.flif')
-
-		if res.IsFail():
+		# Source ì´ë¯¸ì§€ ë¡œë“œ // Load the source image
+		if (res := fliSourceImage.Load('../../ExampleImages/ChannelStdev/Color.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Destination ÀÌ¹ÌÁö¸¦ Source ÀÌ¹ÌÁö¿Í µ¿ÀÏÇÑ ÀÌ¹ÌÁö·Î »ı¼º // Create destination image as same as source image
-		res = fliDestinationImage.Assign(fliSourceImage)
-
-		if res.IsFail():
+			# Destination ì´ë¯¸ì§€ë¥¼ Source ì´ë¯¸ì§€ì™€ ë™ì¼í•œ ì´ë¯¸ì§€ë¡œ ìƒì„± // Create destination image as same as source image
+		if (res := fliDestinationImage.Assign(fliSourceImage)).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Source ÀÌ¹ÌÁö ºä »ı¼º // Create source image view
-		res = viewImageSrc.Create(100, 0, 612, 512)
-
-		if res.IsFail():
+		# Source ì´ë¯¸ì§€ ë·° ìƒì„± // Create source image view
+		if (res := viewImageSrc.Create(100, 0, 612, 512)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# Destination ÀÌ¹ÌÁö ºä »ı¼º // Create the destination image view
-		res = viewImageDst.Create(612, 0, 1124, 512)
-
-		if res.IsFail():
+		# Destination ì´ë¯¸ì§€ ë·° ìƒì„± // Create the destination image view
+		if (res := viewImageDst.Create(612, 0, 1124, 512)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# µÎ ÀÌ¹ÌÁö ºäÀÇ ½ÃÁ¡À» µ¿±âÈ­ ÇÑ´Ù // Synchronize the viewpoints of the two image views
-		# ref ÆÄ¶ó¹ÌÅÍ¸¦ ÀÔ·Â ¹Ş´Â ÇÔ¼ö´Â ¸®ÅÏÀÌ tuple·Î »ı¼ºµÇ¸ç [return], [ref 0], ... [ref n-1] ÇüÅÂ·Î tuple À» ¹İÈ¯ÇÑ´Ù. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageSrc.SynchronizePointOfView(viewImageDst)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to synchronize view.')
+		# ë‘ ì´ë¯¸ì§€ ë·°ì˜ ì‹œì ì„ ë™ê¸°í™” í•œë‹¤ // Synchronize the viewpoints of the two image views
+		# ref íŒŒë¼ë¯¸í„°ë¥¼ ì…ë ¥ ë°›ëŠ” í•¨ìˆ˜ëŠ” ë¦¬í„´ì´ tupleë¡œ ìƒì„±ë˜ë©° [return], [ref 0], ... [ref n-1] í˜•íƒœë¡œ tuple ì„ ë°˜í™˜í•œë‹¤. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageSrc.SynchronizePointOfView(viewImageDst)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 
-		# Source ÀÌ¹ÌÁö ºä¿¡ ÀÌ¹ÌÁö¸¦ µğ½ºÇÃ·¹ÀÌ // Display the image in the source image view
-		# ref ÆÄ¶ó¹ÌÅÍ¸¦ ÀÔ·Â ¹Ş´Â ÇÔ¼ö´Â ¸®ÅÏÀÌ tuple·Î »ı¼ºµÇ¸ç [return], [ref 0], ... [ref n-1] ÇüÅÂ·Î tuple À» ¹İÈ¯ÇÑ´Ù. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageSrc.SetImagePtr(fliSourceImage)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to set image object on the image view.')
+		# Source ì´ë¯¸ì§€ ë·°ì— ì´ë¯¸ì§€ë¥¼ ë””ìŠ¤í”Œë ˆì´ // Display the image in the source image view
+		# ref íŒŒë¼ë¯¸í„°ë¥¼ ì…ë ¥ ë°›ëŠ” í•¨ìˆ˜ëŠ” ë¦¬í„´ì´ tupleë¡œ ìƒì„±ë˜ë©° [return], [ref 0], ... [ref n-1] í˜•íƒœë¡œ tuple ì„ ë°˜í™˜í•œë‹¤. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageSrc.SetImagePtr(fliSourceImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# Destination ÀÌ¹ÌÁö ºä¿¡ ÀÌ¹ÌÁö¸¦ µğ½ºÇÃ·¹ÀÌ // Display the image in the destination image view
-		# ref ÆÄ¶ó¹ÌÅÍ¸¦ ÀÔ·Â ¹Ş´Â ÇÔ¼ö´Â ¸®ÅÏÀÌ tuple·Î »ı¼ºµÇ¸ç [return], [ref 0], ... [ref n-1] ÇüÅÂ·Î tuple À» ¹İÈ¯ÇÑ´Ù. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageDst.SetImagePtr(fliDestinationImage)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to set image object on the image view.')
+		# Destination ì´ë¯¸ì§€ ë·°ì— ì´ë¯¸ì§€ë¥¼ ë””ìŠ¤í”Œë ˆì´ // Display the image in the destination image view
+		# ref íŒŒë¼ë¯¸í„°ë¥¼ ì…ë ¥ ë°›ëŠ” í•¨ìˆ˜ëŠ” ë¦¬í„´ì´ tupleë¡œ ìƒì„±ë˜ë©° [return], [ref 0], ... [ref n-1] í˜•íƒœë¡œ tuple ì„ ë°˜í™˜í•œë‹¤. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageDst.SetImagePtr(fliDestinationImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# µÎ ÀÌ¹ÌÁö ºä À©µµ¿ìÀÇ À§Ä¡¸¦ ¸ÂÃã // Synchronize the positions of the two image view windows
-		# ref ÆÄ¶ó¹ÌÅÍ¸¦ ÀÔ·Â ¹Ş´Â ÇÔ¼ö´Â ¸®ÅÏÀÌ tuple·Î »ı¼ºµÇ¸ç [return], [ref 0], ... [ref n-1] ÇüÅÂ·Î tuple À» ¹İÈ¯ÇÑ´Ù. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageSrc.SynchronizeWindow(viewImageDst)
-
-		if res[0].IsFail():
+		# ë‘ ì´ë¯¸ì§€ ë·° ìœˆë„ìš°ì˜ ìœ„ì¹˜ë¥¼ ë§ì¶¤ // Synchronize the positions of the two image view windows
+		# ref íŒŒë¼ë¯¸í„°ë¥¼ ì…ë ¥ ë°›ëŠ” í•¨ìˆ˜ëŠ” ë¦¬í„´ì´ tupleë¡œ ìƒì„±ë˜ë©° [return], [ref 0], ... [ref n-1] í˜•íƒœë¡œ tuple ì„ ë°˜í™˜í•œë‹¤. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageSrc.SynchronizeWindow(viewImageDst)[0]).IsFail():
 			ErrorPrint(res[0], 'Failed to synchronize window.')
 			break
 
-		# Channel Stdev °´Ã¼ »ı¼º // Create Channel Stdev object
+		# Channel Stdev ê°ì²´ ìƒì„± // Create Channel Stdev object
 		channelStdev = CChannelStdev()
 
-		# Source ÀÌ¹ÌÁö ¼³Á¤ // Set the source image
+		# Source ì´ë¯¸ì§€ ì„¤ì • // Set the source image
 		channelStdev.SetSourceImage(fliDestinationImage)
 
-		# Destination ÀÌ¹ÌÁö ¼³Á¤ // Set the destination image
+		# Destination ì´ë¯¸ì§€ ì„¤ì • // Set the destination image
 		channelStdev.SetDestinationImage(fliDestinationImage)
 
-		# ¾Õ¼­ ¼³Á¤µÈ ÆÄ¶ó¹ÌÅÍ ´ë·Î ¾Ë°í¸®Áò ¼öÇà // Execute algorithm according to previously set parameters
-		res = channelStdev.Execute()
-
-		if res.IsFail():
+		# ì•ì„œ ì„¤ì •ëœ íŒŒë¼ë¯¸í„° ëŒ€ë¡œ ì•Œê³ ë¦¬ì¦˜ ìˆ˜í–‰ // Execute algorithm according to previously set parameters
+		if (res := channelStdev.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Channel Stdev.')
 			break
 
-		# È­¸é¿¡ Ãâ·ÂÇÏ±â À§ÇØ Image View¿¡¼­ ·¹ÀÌ¾î 0¹øÀ» ¾ò¾î¿È // Obtain layer 0 number from image view for display
-		# ÀÌ °´Ã¼´Â ÀÌ¹ÌÁö ºä¿¡ ¼ÓÇØÀÖ±â ¶§¹®¿¡ µû·Î ÇØÁ¦ÇÒ ÇÊ¿ä°¡ ¾øÀ½ // This object belongs to an image view and does not need to be released separately
+		# í™”ë©´ì— ì¶œë ¥í•˜ê¸° ìœ„í•´ Image Viewì—ì„œ ë ˆì´ì–´ 0ë²ˆì„ ì–»ì–´ì˜´ // Obtain layer 0 number from image view for display
+		# ì´ ê°ì²´ëŠ” ì´ë¯¸ì§€ ë·°ì— ì†í•´ìˆê¸° ë•Œë¬¸ì— ë”°ë¡œ í•´ì œí•  í•„ìš”ê°€ ì—†ìŒ // This object belongs to an image view and does not need to be released separately
 		layerSource = viewImageSrc.GetLayer(0)
 		layerDestination = viewImageDst.GetLayer(0)
 
-		# ±âÁ¸¿¡ Layer¿¡ ±×·ÁÁø µµÇüµéÀ» »èÁ¦ // Clear the figures drawn on the existing layer
+		# ê¸°ì¡´ì— Layerì— ê·¸ë ¤ì§„ ë„í˜•ë“¤ì„ ì‚­ì œ // Clear the figures drawn on the existing layer
 		layerSource.Clear()
 		layerDestination.Clear()
 
-		# ÀÌ¹ÌÁö ºä Á¤º¸ Ç¥½Ã // Display image view information
+		# ì´ë¯¸ì§€ ë·° ì •ë³´ í‘œì‹œ // Display image view information
 		flpPoint = CFLPoint[Double](0, 0)
 
-		res = layerSource.DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 30)
-
-		if res.IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail() or \
+			(res := layerDestination.DrawTextCanvas(flpPoint, 'Destination Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		res = layerDestination.DrawTextCanvas(flpPoint, 'Destination Image', EColor.YELLOW, EColor.BLACK, 30)
-
-		if res.IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
-			break
-
-		# ÀÌ¹ÌÁö ºä¸¦ °»½Å // Update image view
+		# ì´ë¯¸ì§€ ë·°ë¥¼ ê°±ì‹  // Update image view
 		viewImageSrc.Invalidate(True)
 		viewImageDst.Invalidate(True)
 
-		# # ÀÌ¹ÌÁö ºä°¡ ´İÈ÷±â Àü±îÁö Á¾·áÇÏÁö ¾Ê°í ´ë±â // Wait until the image view is closed before exiting
+		# # ì´ë¯¸ì§€ ë·°ê°€ ë‹«íˆê¸° ì „ê¹Œì§€ ì¢…ë£Œí•˜ì§€ ì•Šê³  ëŒ€ê¸° // Wait until the image view is closed before exiting
 		while viewImageSrc.IsAvailable() and viewImageDst.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
@@ -129,7 +104,7 @@ def main():
 
 
 
-# ¿¡·¯ Ãâ·Â ÇÔ¼ö // Error printing function
+# ì—ëŸ¬ ì¶œë ¥ í•¨ìˆ˜ // Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
