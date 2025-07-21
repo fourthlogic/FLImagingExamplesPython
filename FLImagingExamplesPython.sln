@@ -200,6 +200,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kirsch Filter", "Kirsch Fil
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "KirschFilter", "KirschFilter\KirschFilter.pyproj", "{6E3B3F82-F18D-4429-861B-9B4AFDE50B94}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Channel Insertion", "Channel Insertion", "{B05ECEF4-213D-4F73-BCC8-93F22BE16CEB}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ChannelInsertion", "ChannelInsertion\ChannelInsertion.pyproj", "{EDA3BD4D-F258-443A-8360-56022FD7861D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -292,6 +296,8 @@ Global
 		{DCA58CF0-520C-4D58-898F-F1B1C433D4C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E3B3F82-F18D-4429-861B-9B4AFDE50B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6E3B3F82-F18D-4429-861B-9B4AFDE50B94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDA3BD4D-F258-443A-8360-56022FD7861D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDA3BD4D-F258-443A-8360-56022FD7861D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -390,6 +396,8 @@ Global
 		{9410ECD0-99BA-4459-8382-3C8F70D23677} = {E1209B33-CDD0-4D6D-8E76-A4302ED2F494}
 		{C9B62718-2D36-4827-868D-7F969CE4FF82} = {9410ECD0-99BA-4459-8382-3C8F70D23677}
 		{6E3B3F82-F18D-4429-861B-9B4AFDE50B94} = {C9B62718-2D36-4827-868D-7F969CE4FF82}
+		{B05ECEF4-213D-4F73-BCC8-93F22BE16CEB} = {C7AE84F4-0805-49E9-8363-FD23EEC762CC}
+		{EDA3BD4D-F258-443A-8360-56022FD7861D} = {B05ECEF4-213D-4F73-BCC8-93F22BE16CEB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
