@@ -18,6 +18,83 @@
 
 - [GUI, Figures]
 
+  - [Figure]
+  
+    - ArrayOperation
+      - The example of figure array operation.
+      - Figure array Operation 에 관한 예제.
+    - ConvertImageFiguresToFigureArrayWithExpression
+      - The example of the function to get figures in an image into FigureArray using a conditional expression.
+      - Image에 있는 Figure들을 조건식으로 FigureArray에 받아오는 기능에 관한 예제.
+    - Figure_Close
+      - The example of Close operation in Figure Morphology.
+      - Figure Morphology 중 Close 동작에 관한 예제.
+    - Figure_Dilate
+      - The example of Dilate operation in Figure Morphology.
+      - Figure Morphology 중 Dilate 동작에 관한 예제.
+    - Figure_Erode
+      - The example of Erode operation in Figure Morphology.
+      - Figure Morphology 중 Erode 동작에 관한 예제.
+    - Figure_FLQuadrilateralSolid3
+      - The example of creating an FLQuadrilateralSolid3 object.
+      - Figure FLQuadrilateralSolid3 객체 생성에 관한 예제.
+    - Figure_FLTriangularSolid3
+      - The example of creating an FLTriangularSolid3 object.
+      - Figure FLTriangularSolid3 객체 생성에 관한 예제.
+    - Figure_Open
+      - The example of Open operation in Figure Morphology.
+      - Figure Morphology 중 Open 동작에 관한 예제.
+    - FigureSaveLoad
+      - The example of saving and loading figure files(.fig).
+      - Figure File(.fig) 저장, 불러오기에 관한 예제.
+    - FigureSort
+      - The example of Sort, a function that allows you to sort by setting the sort order up to 3 ranks based on features such as Area and Perimeter of FigureArray.
+      - FigureArray의 Area, Perimeter 등의 feature를 기준으로 3순위까지 정렬 순서를 설정하여 정렬할 수 있는 기능인 Sort에 관한 예제.
+    - FigureSort2DClusterMode
+      - The example of Sort2DClusterMode, a function that sorts by forming clusters based on the sort coefficient of FigureArray.
+      - FigureArray의 정렬계수를 바탕으로 군집을 형성하여 정렬해주는 기능인 Sort2DClusterMode에 관한 예제.
+    - FigureWarp
+      - The example of Warp, a function that warps a figure with perspective or bilinear transformation.
+      - Figure를 Perspective나 Bilinear 변환으로 휘게 만드는 기능인 Warp에 관한 예제.
+    - Fit_Circle
+      - The example of Fit, a function that set the closest circle to a set of points.
+      - 점들의 집합으로 가장 가까운 원을 설정하는 기능인 Fit에 관한 예제.
+    - Fit_Ellipse
+      - The example of Fit, a function that set the closest ellipse to a set of points.
+      - 점들의 집합으로 가장 가까운 타원을 설정하는 기능인 Fit에 관한 예제.
+    - Fit_Line
+      - The example of Fit, a function that set the closest line to a set of points.
+      - 점들의 집합으로 가장 가까운 선을 설정하는 기능인 Fit에 관한 예제.
+    - GetFigure
+      - The example of GetFigure, a function that obtains figures that satisfies the conditions.
+      - 조건에 맞는 Figure를 얻어오는 기능인 GetFigure에 관한 예제.
+    - GetFigureWithinRegion
+      - The example of GetFigureWithinRegion, a function that obtains figures within the interference region with the parameter figure as a result.
+      - 매개변수 Figure와의 간섭영역 내의 객체를 결과로 추출하는 기능인 GetFigureWithinRegion에 관한 예제.
+    - GetIndexOfMaximumDistance
+      - The example of GetIndexOfMaximumDistance, a function that returns the index where the distance between two figures is maximum.
+      - 두 Figure 사이 거리가 최대가 되는 인덱스를 반환하는 기능인 GetIndexOfMaximumDistance에 관한 예제.
+    - GetIndexOfMinimumDistance
+      - The example of GetIndexOfMinimumDistance, a function that returns the index where the distance between two figures is minimum.
+      - 두 Figure 사이 거리가 최소가 되는 인덱스를 반환하는 기능인 GetIndexOfMinimumDistance에 관한 예제.
+    - GetMinMaxFigureThickness
+      - The example of GetMinimumThickness/GetPointsOfMinimumThickness/GetMaximumThickness/GetPointsOfMaximumThickness, which are functions that return the point and distance where the figure's thickness is minimum or maximum.
+      - Figure의 두께가 최소 혹은 최대가 되는 점과 거리를 반환하는 기능인 GetMinimumThickness/GetPointsOfMinimumThickness/GetMaximumThickness/GetPointsOfMaximumThickness에 관한 예제.
+    - GetPointsOfMaximumDistance
+      - The example of GetPointsOfMaximumDistance, a function that returns the point at which the distance between two figures is maximal.
+      - 두 Figure 사이 거리가 최대가 되는 점을 반환하는 기능인 GetPointsOfMaximumDistance에 관한 예제.
+    - GetPointsOfMinimumDistance
+      - The example of GetPointsOfMinimumDistance, a function that returns the point at which the distance between two figures is minimal.
+      - 두 Figure 사이 거리가 최소가 되는 점을 반환하는 기능인 GetPointsOfMinimumDistance에 관한 예제.
+    - Reduce
+      - The example of Reduce, a function that smoothly reduces the number of vertices.
+      - 정점의 수를 부드럽게 축소하는 기능인 Reduce에 관한 예제.
+    - RemoveFigure
+      - The example of GetFigure, a function that removes figures that satisfies the conditions.
+      - 조건에 맞는 Figure를 제거하는 기능인 RemoveFigure에 관한 예제.
+    - RemoveFigureWithinRegion
+      - The example of RemoveFigureWithinRegion, a function that removes objects within the interference region with the parameter figure from FigureArray.
+      - 매개변수 Figure와의 간섭영역 내의 객체를 FigureArray에서 제거하는 기능인 RemoveFigureWithinRegion에 관한 예제.
 
 
 - [ImageProcessing]
