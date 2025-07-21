@@ -17,7 +17,7 @@ def main():
 		
 		# Source 이미지 로드 // Load the source image
 		if (res := floSrc.Load("../../ExampleImages/ConvexHull3D/RandomPointsOnSphere.ply")).IsFail():
-			ErrorPrint(res, "Failed to load the 3D Object.\n")
+			ErrorPrint(res, "Failed to load the 3D object.\n")
 			break
 
 		# Source 이미지 뷰 생성 // Create source image view
