@@ -320,6 +320,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contraharmonic Mean Filter"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ContraharmonicMeanFilter", "ContraharmonicMeanFilter\ContraharmonicMeanFilter.pyproj", "{49C502C2-F6BF-4255-BA4B-8CD52BFE3D90}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Active Contour", "Active Contour", "{66DEDCA5-23CB-4314-A9E0-977DDF25843D}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ActiveContour", "ActiveContour\ActiveContour.pyproj", "{46EB0A68-0FFC-4906-A9A6-D2CEB38AFB93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -500,6 +504,8 @@ Global
 		{491A042C-A64A-48DB-B0AC-EC256DF6E8B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49C502C2-F6BF-4255-BA4B-8CD52BFE3D90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{49C502C2-F6BF-4255-BA4B-8CD52BFE3D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46EB0A68-0FFC-4906-A9A6-D2CEB38AFB93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46EB0A68-0FFC-4906-A9A6-D2CEB38AFB93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -656,6 +662,8 @@ Global
 		{491A042C-A64A-48DB-B0AC-EC256DF6E8B2} = {7A31CDFD-C15C-4E3B-A093-49BBEBB2ECF3}
 		{7C0508FB-1995-4BFC-AFDF-F798581C2F77} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
 		{49C502C2-F6BF-4255-BA4B-8CD52BFE3D90} = {7C0508FB-1995-4BFC-AFDF-F798581C2F77}
+		{66DEDCA5-23CB-4314-A9E0-977DDF25843D} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
+		{46EB0A68-0FFC-4906-A9A6-D2CEB38AFB93} = {66DEDCA5-23CB-4314-A9E0-977DDF25843D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
