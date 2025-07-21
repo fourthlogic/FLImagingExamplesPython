@@ -109,6 +109,12 @@
       - The algorithm that performs the calculation of trailing zeros from the source image.
       - 이미지에 Trailing Zeros 연산을 수행하는 알고리즘
 
+  - [Threshold]
+
+    - AdaptiveThresholdMedian
+      - Algorithm that binarizes images through regional thresholds using Median Filter.
+      - 중앙 값 필터를 사용한 지역 임계값을 통해 이미지를 이진화하는 알고리즘.
+
 - [Mapping]
 
 
