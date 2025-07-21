@@ -20,16 +20,12 @@ def main():
 	while True:
 		
 		# Learn 이미지 로드 # Load the learn image
-		res = fliLearnImage.Load('../../ExampleImages/StereoCalibrator3D/Left.flif')
-
-		if res.IsFail():
+		if (res := fliLearnImage.Load('../../ExampleImages/StereoCalibrator3D/Left.flif').IsFail()):
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
 		# Learn 2 이미지 로드 # Load the learn 2 image
-		res = fliLearnImage2.Load('../../ExampleImages/StereoCalibrator3D/Right.flif')
-
-		if res.IsFail():
+		if (res := fliLearnImage2.Load('../../ExampleImages/StereoCalibrator3D/Right.flif').IsFail()):
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
@@ -38,137 +34,103 @@ def main():
 		fliLearnImage2.SelectPage(0);
 		
 		# Learn 이미지 뷰 생성 # Create learn image view
-		res = viewImageLearn.Create(300, 0, 300 + 480 * 1, 360)
-
-		if res.IsFail():
+		if (res := viewImageLearn.Create(300, 0, 300 + 480 * 1, 360)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
-		
-		# Learn 2 이미지 뷰 생성 # Create learn 2 image view
-		res = viewImageLearn2.Create(300 + 480, 0, 300 + 480 * 2, 360)
 
-		if res.IsFail():
+		# Learn 2 이미지 뷰 생성 # Create learn 2 image view
+		if (res := viewImageLearn2.Create(300 + 480, 0, 300 + 480 * 2, 360)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
 		# Learn 이미지 뷰에 이미지를 디스플레이 # Display the image in the learn image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageLearn.SetImagePtr(fliLearnImage)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to set image object on the image view.')
+		if (res := viewImageLearn.SetImagePtr(fliLearnImage))[0].IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 		
 		# Learn 2 이미지 뷰에 이미지를 디스플레이 # Display the image in the learn 2 image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageLearn2.SetImagePtr(fliLearnImage2)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to set image object on the image view.')
+		if (res := viewImageLearn2.SetImagePtr(fliLearnImage2))[0].IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 		
 		# Destination 이미지 뷰 생성 # Create destination image view
-		res = viewImageDestination.Create(300, 360, 300 + 480 * 1, 720)
-
-		if res.IsFail():
+		if (res := viewImageDestination.Create(300, 360, 300 + 480 * 1, 720)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
-		
-		# Destination 2 이미지 뷰 생성 # Create destination 2 image view
-		res = viewImageDestination2.Create(300 + 480, 360, 300 + 480 * 2, 720)
 
-		if res.IsFail():
+		# Destination 2 이미지 뷰 생성 # Create destination 2 image view
+		if (res := viewImageDestination2.Create(300 + 480, 360, 300 + 480 * 2, 720)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
 		# Destination 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageDestination.SetImagePtr(fliDestinationImage)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to set image object on the image view.')
+		if (res := viewImageDestination.SetImagePtr(fliDestinationImage))[0].IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 		
 		# Destination 2 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination 2 image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageDestination2.SetImagePtr(fliDestinationImage2)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to set image object on the image view.')
+		if (res := viewImageDestination2.SetImagePtr(fliDestinationImage2))[0].IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 		
 		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageLearn.SynchronizePointOfView(viewImageLearn2)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to synchronize view.')
+		if (res := viewImageLearn.SynchronizePointOfView(viewImageLearn2))[0].IsFail():
+			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 		
 		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageLearn.SynchronizePointOfView(viewImageDestination)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to synchronize view.')
+		if (res := viewImageLearn.SynchronizePointOfView(viewImageDestination))[0].IsFail():
+			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 		
 		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageLearn.SynchronizePointOfView(viewImageDestination2)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to synchronize view.')
+		if (res := viewImageLearn.SynchronizePointOfView(viewImageDestination2))[0].IsFail():
+			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 		
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageLearn.SynchronizeWindow(viewImageLearn2)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to synchronize window.')
+		if (res := viewImageLearn.SynchronizeWindow(viewImageLearn2))[0].IsFail():
+			ErrorPrint(res, 'Failed to synchronize view.')
 			break
-
+		
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageLearn.SynchronizeWindow(viewImageDestination)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to synchronize window.')
+		if (res := viewImageLearn.SynchronizeWindow(viewImageDestination))[0].IsFail():
+			ErrorPrint(res, 'Failed to synchronize view.')
 			break
-
+		
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageLearn.SynchronizeWindow(viewImageDestination2)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to synchronize window.')
+		if (res := viewImageLearn.SynchronizeWindow(viewImageDestination2))[0].IsFail():
+			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 		
 		# 두 이미지 뷰의 페이지를 동기화 한다. # Synchronize the page of the two image views. 
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageLearn.SynchronizePageIndex(viewImageLearn2)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to synchronize window.')
+		if (res := viewImageLearn.SynchronizePageIndex(viewImageLearn2))[0].IsFail():
+			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 		
 		# 두 이미지 뷰의 페이지를 동기화 한다. # Synchronize the page of the two image views. 
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageLearn.SynchronizePageIndex(viewImageDestination)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to synchronize window.')
+		if (res := viewImageLearn.SynchronizePageIndex(viewImageDestination))[0].IsFail():
+			ErrorPrint(res, 'Failed to synchronize window.')
 			break
-
+		
 		# 두 이미지 뷰의 페이지를 동기화 한다. # Synchronize the page of the two image views. 
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		res = viewImageLearn.SynchronizePageIndex(viewImageDestination2)
-
-		if res[0].IsFail():
-			ErrorPrint(res[0], 'Failed to synchronize window.')
+		if (res := viewImageLearn.SynchronizePageIndex(viewImageDestination2))[0].IsFail():
+			ErrorPrint(res, 'Failed to synchronize window.')
 			break
-
+		
 		# Stereo Calibrator 3D 객체 생성 # Create Stereo Calibrator 3D object
 		stereoCalibrator = CStereoCalibrator3D()
 		
@@ -197,30 +159,22 @@ def main():
 		stereoCalibrator.SetGridType(CStereoCalibrator3D.EGridType.ChessBoard)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 Calibration 수행 # Calibration algorithm according to previously set parameters
-		res = stereoCalibrator.Calibrate()
-		
-		if res.IsFail():
+		if (res := stereoCalibrator.Calibrate()).IsFail():
 			ErrorPrint(res, 'Failed to calibrate Stereo Calibrator 3D.')
 			break
-
+		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		res = stereoCalibrator.Execute()
-
-		if res.IsFail():
+		if (res := stereoCalibrator.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Stereo Calibrator 3D.')
 			break
 		
 		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
-		res = viewImageDestination.ZoomFit()
-
-		if res.IsFail():
+		if (res := viewImageDestination.ZoomFit()).IsFail():
 			ErrorPrint(res, 'Failed to Zoom Fit.')
 			break
 		
 		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
-		res = viewImageDestination2.ZoomFit()
-
-		if res.IsFail():
+		if (res := viewImageDestination2.ZoomFit()).IsFail():
 			ErrorPrint(res, 'Failed to Zoom Fit.')
 			break
 		
