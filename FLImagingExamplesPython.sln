@@ -454,6 +454,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ThinPlateSplineMapping", "T
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "SwitchAxes3D", "SwitchAxes3D\SwitchAxes3D.pyproj", "{DE87AE45-7A9D-4186-93A3-FF4896B127D4}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ConvexHull3D", "ConvexHull3D\ConvexHull3D.pyproj", "{D4555740-6BD1-4B79-814E-F6E678E1CA10}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -704,6 +706,8 @@ Global
 		{143C3078-13E5-4DD0-A4A6-5E3A6E0FF307}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE87AE45-7A9D-4186-93A3-FF4896B127D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DE87AE45-7A9D-4186-93A3-FF4896B127D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4555740-6BD1-4B79-814E-F6E678E1CA10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4555740-6BD1-4B79-814E-F6E678E1CA10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -926,6 +930,7 @@ Global
 		{E7C58EFE-C733-46DC-8BDD-B9FAF808CEF0} = {915CF987-C386-4323-A916-E83D119CC97B}
 		{143C3078-13E5-4DD0-A4A6-5E3A6E0FF307} = {915CF987-C386-4323-A916-E83D119CC97B}
 		{DE87AE45-7A9D-4186-93A3-FF4896B127D4} = {8C1B856A-E1FA-490B-A88E-092CA27F4F51}
+		{D4555740-6BD1-4B79-814E-F6E678E1CA10} = {6A8EBDEC-1656-4BD2-B077-70083281C5D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
