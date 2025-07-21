@@ -18,14 +18,14 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 # Load the source image
-		res = fliSourceImage.Load('C:/Users/junhy/source/repos/fourthlogic/ExampleImages/OperationComplexMultiply/ExampleSource.flif')
+		res = fliSourceImage.Load('../../ExampleImages/OperationComplexMultiply/ExampleSource.flif')
 
 		if res.IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
 		# Operand 이미지 로드 # Load the operand image
-		res = fliOperandImage.Load('C:/Users/junhy/source/repos/fourthlogic/ExampleImages/OperationComplexMultiply/ExampleOperand.flif')
+		res = fliOperandImage.Load('../../ExampleImages/OperationComplexMultiply/ExampleOperand.flif')
 
 		if res.IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')

@@ -16,7 +16,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 # Load the source image
-		res = fliSourceImage.Load('C:/Users/junhy/source/repos/fourthlogic/ExampleImages/OperationTrailingOnes/Src.flif')
+		res = fliSourceImage.Load('../../ExampleImages/OperationTrailingOnes/Src.flif')
 
 		if res.IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
