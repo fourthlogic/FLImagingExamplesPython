@@ -374,6 +374,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationBitRollingLeft_Sca
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DistanceTransform3D", "DistanceTransform3D\DistanceTransform3D.pyproj", "{D9FDA055-FE7E-4408-B686-8D4F3B9BD54F}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PerspectiveMerge3D", "PerspectiveMerge3D\PerspectiveMerge3D.pyproj", "{DE7E51B4-8C88-4C9C-8C5C-5A9B9657A0A7}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PerspectiveTransform3D", "PerspectiveTransform3D\PerspectiveTransform3D.pyproj", "{C6573CEF-B510-439C-9440-7D3EBF47DC2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -584,6 +588,10 @@ Global
 		{3348CE72-F404-4764-BC08-062234E48F5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9FDA055-FE7E-4408-B686-8D4F3B9BD54F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D9FDA055-FE7E-4408-B686-8D4F3B9BD54F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE7E51B4-8C88-4C9C-8C5C-5A9B9657A0A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE7E51B4-8C88-4C9C-8C5C-5A9B9657A0A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6573CEF-B510-439C-9440-7D3EBF47DC2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6573CEF-B510-439C-9440-7D3EBF47DC2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -766,6 +774,8 @@ Global
 		{5E50E08A-AF64-4BDA-8232-5DE7ADC04F84} = {319A1112-CD98-4D89-B895-2E5848830E8D}
 		{3348CE72-F404-4764-BC08-062234E48F5B} = {319A1112-CD98-4D89-B895-2E5848830E8D}
 		{D9FDA055-FE7E-4408-B686-8D4F3B9BD54F} = {8C1B856A-E1FA-490B-A88E-092CA27F4F51}
+		{DE7E51B4-8C88-4C9C-8C5C-5A9B9657A0A7} = {8C1B856A-E1FA-490B-A88E-092CA27F4F51}
+		{C6573CEF-B510-439C-9440-7D3EBF47DC2D} = {8C1B856A-E1FA-490B-A88E-092CA27F4F51}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
