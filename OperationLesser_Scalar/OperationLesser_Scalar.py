@@ -64,7 +64,7 @@ def main():
 		lesser = COperationLesser()
 
 		# Source 이미지 설정 // Set the source image
-		lesser.SetSourceImage(fliDestinationImage)
+		lesser.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
 		lesser.SetDestinationImage(fliDestinationImage)

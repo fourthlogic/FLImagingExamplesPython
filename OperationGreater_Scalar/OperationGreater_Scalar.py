@@ -64,7 +64,7 @@ def main():
 		greater = COperationGreater()
 
 		# Source 이미지 설정 // Set the source image
-		greater.SetSourceImage(fliDestinationImage)
+		greater.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
 		greater.SetDestinationImage(fliDestinationImage)
