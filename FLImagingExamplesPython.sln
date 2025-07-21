@@ -466,6 +466,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bilateral Filter Grid", "Bi
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BilateralFilterGrid", "BilateralFilterGrid\BilateralFilterGrid.pyproj", "{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Complex Divide", "Complex Divide", "{314D3CDC-DDDE-4BDF-B4E2-FB9B12CC06D5}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationComplexDivide_Scalar", "OperationComplexDivide_Scalar\OperationComplexDivide_Scalar.pyproj", "{D51CAF12-3545-42B5-9BA3-8208889FE20F}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationComplexDivide_Image", "OperationComplexDivide_Image\OperationComplexDivide_Image.pyproj", "{BC1A264A-EBB0-4BAE-80DE-5E7B76008418}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -724,6 +730,10 @@ Global
 		{F86A824D-069E-4191-9EAB-B8E96FECCEDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D51CAF12-3545-42B5-9BA3-8208889FE20F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D51CAF12-3545-42B5-9BA3-8208889FE20F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1A264A-EBB0-4BAE-80DE-5E7B76008418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1A264A-EBB0-4BAE-80DE-5E7B76008418}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -952,6 +962,9 @@ Global
 		{D1DD33C0-C6DA-4CA1-BDEE-E7BDD1C2996A} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
 		{31919BFD-E2E7-499D-8B33-F3E01851D8B4} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F4} = {31919BFD-E2E7-499D-8B33-F3E01851D8B4}
+		{314D3CDC-DDDE-4BDF-B4E2-FB9B12CC06D5} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{D51CAF12-3545-42B5-9BA3-8208889FE20F} = {314D3CDC-DDDE-4BDF-B4E2-FB9B12CC06D5}
+		{BC1A264A-EBB0-4BAE-80DE-5E7B76008418} = {314D3CDC-DDDE-4BDF-B4E2-FB9B12CC06D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
