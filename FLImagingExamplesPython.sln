@@ -328,6 +328,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Smoothing", "Smoothing", "{
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GeometricMeanFilter", "GeometricMeanFilter\GeometricMeanFilter.pyproj", "{8462C9DA-C1BD-4465-BB54-D7CA2CAC247F}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "KuwaharaFilter", "KuwaharaFilter\KuwaharaFilter.pyproj", "{F39F233C-2F05-4A60-B0D5-F2FBBE02FE7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kuwahara Filter", "Kuwahara Filter", "{E76936EC-8A68-46FB-923A-2CB5EBC7F1D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -512,6 +516,8 @@ Global
 		{49C502C2-F6BF-4255-BA4B-8CD52BFE3D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8462C9DA-C1BD-4465-BB54-D7CA2CAC247F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8462C9DA-C1BD-4465-BB54-D7CA2CAC247F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F39F233C-2F05-4A60-B0D5-F2FBBE02FE7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F39F233C-2F05-4A60-B0D5-F2FBBE02FE7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -671,6 +677,8 @@ Global
 		{49C502C2-F6BF-4255-BA4B-8CD52BFE3D90} = {7C0508FB-1995-4BFC-AFDF-F798581C2F77}
 		{AF6CC719-AE95-4FC0-8337-14149EB41DED} = {9AC20B8F-05EA-4C0C-A4E0-6E685E789696}
 		{8462C9DA-C1BD-4465-BB54-D7CA2CAC247F} = {AF6CC719-AE95-4FC0-8337-14149EB41DED}
+		{F39F233C-2F05-4A60-B0D5-F2FBBE02FE7F} = {E76936EC-8A68-46FB-923A-2CB5EBC7F1D3}
+		{E76936EC-8A68-46FB-923A-2CB5EBC7F1D3} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
