@@ -462,6 +462,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AnisotropicDiffusion", "Ani
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Anisotropic Diffusion", "Anisotropic Diffusion", "{D1DD33C0-C6DA-4CA1-BDEE-E7BDD1C2996A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bilateral Filter Grid", "Bilateral Filter Grid", "{31919BFD-E2E7-499D-8B33-F3E01851D8B4}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BilateralFilterGrid", "BilateralFilterGrid\BilateralFilterGrid.pyproj", "{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -718,6 +722,8 @@ Global
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F86A824D-069E-4191-9EAB-B8E96FECCEDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F86A824D-069E-4191-9EAB-B8E96FECCEDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -944,6 +950,8 @@ Global
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F3} = {43CE39D7-9A3E-4CFD-91A3-80CFC149B240}
 		{F86A824D-069E-4191-9EAB-B8E96FECCEDA} = {D1DD33C0-C6DA-4CA1-BDEE-E7BDD1C2996A}
 		{D1DD33C0-C6DA-4CA1-BDEE-E7BDD1C2996A} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
+		{31919BFD-E2E7-499D-8B33-F3E01851D8B4} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
+		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F4} = {31919BFD-E2E7-499D-8B33-F3E01851D8B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
