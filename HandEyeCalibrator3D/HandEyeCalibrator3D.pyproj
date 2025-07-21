@@ -9,8 +9,8 @@
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>GainOffset</Name>
-    <RootNamespace>GainOffset</RootNamespace>
+    <Name>HandEyeCalibrator3D</Name>
+    <RootNamespace>HandEyeCalibrator3D</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
