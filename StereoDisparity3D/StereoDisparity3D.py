@@ -20,12 +20,12 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 # Load the source image
-		if (res := fliSourceImage.Load('../../ExampleImages/StereoDisparity3D/Left.flif').IsFail()):
+		if (res := fliSourceImage.Load('../../ExampleImages/StereoDisparity3D/Left.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
 		# Source 2 이미지 로드 # Load the source 2 image
-		if (res := fliSourceImage2.Load('../../ExampleImages/StereoDisparity3D/Right.flif').IsFail()):
+		if (res := fliSourceImage2.Load('../../ExampleImages/StereoDisparity3D/Right.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
