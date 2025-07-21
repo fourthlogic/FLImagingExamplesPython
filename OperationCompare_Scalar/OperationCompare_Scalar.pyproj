@@ -11,7 +11,7 @@
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>OperationCompare_Scalar</Name>
-    <RootNamespace>OperationCompare_Scalar.</RootNamespace>
+    <RootNamespace>OperationCompare_Scalar</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
