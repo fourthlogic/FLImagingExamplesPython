@@ -3,13 +3,14 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>491a042c-a64a-48db-b0ac-ec256df6e8b2</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
-    <StartupFile>BitRollingLeft_Image.py</StartupFile>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>OperationBitRollingLeft_Image.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>BitRollingLeft_Image</Name>
+    <Name>OperationBitRollingLeft_Image</Name>
     <RootNamespace>BitRollingLeft_Image</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -21,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BitRollingLeft_Image.py" />
+    <Compile Include="OperationBitRollingLeft_Image.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
