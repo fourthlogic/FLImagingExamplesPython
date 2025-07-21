@@ -46,6 +46,12 @@
       - The example of an algorithm that extracts variance value of each pixel from a multichannel image.
       - 다채널 이미지에서 각 픽셀의 분산값을 추출하여 이미지화 하는 알고리즘 예제.
 
+  - [Image Operation]
+
+    - OperationSignedSquareDifference
+      - The algorithm that perform Signed Square Difference operation an image with scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 부호 정보가 보존된 차이의 제곱 연산을 수행하는 알고리즘.
+
 - [Mapping]
 
 
