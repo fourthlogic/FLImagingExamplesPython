@@ -334,7 +334,7 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ActiveContour", "ActiveCont
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ContraharmonicMeanFilter", "ContraharmonicMeanFilter\ContraharmonicMeanFilter.pyproj", "{49C502C2-F6BF-4255-BA4B-8CD52BFE3D90}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Smoothing", "Smoothing", "{AF6CC719-AE95-4FC0-8337-14149EB41DED}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Smoothing (2)", "Smoothing (2)", "{AF6CC719-AE95-4FC0-8337-14149EB41DED}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GeometricMeanFilter", "GeometricMeanFilter\GeometricMeanFilter.pyproj", "{8462C9DA-C1BD-4465-BB54-D7CA2CAC247F}"
 EndProject
@@ -453,6 +453,8 @@ EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LanczosSplineMapping", "LanczosSplineMapping\LanczosSplineMapping.pyproj", "{E7C58EFE-C733-46DC-8BDD-B9FAF808CEF0}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ThinPlateSplineMapping", "ThinPlateSplineMapping\ThinPlateSplineMapping.pyproj", "{143C3078-13E5-4DD0-A4A6-5E3A6E0FF307}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "SwitchAxes3D", "SwitchAxes3D\SwitchAxes3D.pyproj", "{DE87AE45-7A9D-4186-93A3-FF4896B127D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -688,8 +690,6 @@ Global
 		{B925A633-60C6-4EEE-AEC2-A06ED8FBBEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18985CFB-90A6-4206-93DE-F02481797124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{18985CFB-90A6-4206-93DE-F02481797124}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18985CFB-90A6-4206-93DE-F02481797124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18985CFB-90A6-4206-93DE-F02481797124}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB338984-F077-48A5-A4DE-0C471CCE5783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -706,6 +706,8 @@ Global
 		{E7C58EFE-C733-46DC-8BDD-B9FAF808CEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{143C3078-13E5-4DD0-A4A6-5E3A6E0FF307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{143C3078-13E5-4DD0-A4A6-5E3A6E0FF307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE87AE45-7A9D-4186-93A3-FF4896B127D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE87AE45-7A9D-4186-93A3-FF4896B127D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -928,6 +930,7 @@ Global
 		{15F5E5C4-96D2-43A7-8C45-F4C810AE5351} = {915CF987-C386-4323-A916-E83D119CC97B}
 		{E7C58EFE-C733-46DC-8BDD-B9FAF808CEF0} = {915CF987-C386-4323-A916-E83D119CC97B}
 		{143C3078-13E5-4DD0-A4A6-5E3A6E0FF307} = {915CF987-C386-4323-A916-E83D119CC97B}
+		{DE87AE45-7A9D-4186-93A3-FF4896B127D4} = {8C1B856A-E1FA-490B-A88E-092CA27F4F51}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
