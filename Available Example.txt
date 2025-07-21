@@ -203,6 +203,11 @@
           - The example of an algorithm that detects image edges
           - Kirsch Operator를 사용하여 이미지 경계를 검출하는 알고리즘 예제
 
+      - [Enhancement]
+        - IlluminateFilter
+          - The example of an algorithm that enhance contrast by applying Illuminate filtering to image
+          - 이미지에 Illuminate 필터링을 적용하여 이미지의 명암 대비를 강화하는 알고리즘 예제
+
       - [Smoothing]
         - GeometricMeanFilter
           - The example of an algorithm that processes a geometric mean filter to an image.
