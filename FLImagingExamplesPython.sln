@@ -476,6 +476,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationComplexDivide_Scal
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationComplexDivide_Image", "OperationComplexDivide_Image\OperationComplexDivide_Image.pyproj", "{BC1A264A-EBB0-4BAE-80DE-5E7B76008418}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Image Enhancement", "Image Enhancement", "{AE1C4922-5CA0-42BD-A8CF-36C376B702CF}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ContrastEnhancement", "ContrastEnhancement\ContrastEnhancement.pyproj", "{854AE000-0B01-4AB0-9FEF-25F894121212}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -732,8 +736,6 @@ Global
 		{D4555740-6BD1-4B79-814E-F6E678E1CA10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF9890E7-926E-476D-8B8C-18E5DC05AEC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DF9890E7-926E-476D-8B8C-18E5DC05AEC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F86A824D-069E-4191-9EAB-B8E96FECCEDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F86A824D-069E-4191-9EAB-B8E96FECCEDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -742,6 +744,8 @@ Global
 		{D51CAF12-3545-42B5-9BA3-8208889FE20F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC1A264A-EBB0-4BAE-80DE-5E7B76008418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BC1A264A-EBB0-4BAE-80DE-5E7B76008418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{854AE000-0B01-4AB0-9FEF-25F894121212}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{854AE000-0B01-4AB0-9FEF-25F894121212}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -974,6 +978,8 @@ Global
 		{314D3CDC-DDDE-4BDF-B4E2-FB9B12CC06D5} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{D51CAF12-3545-42B5-9BA3-8208889FE20F} = {314D3CDC-DDDE-4BDF-B4E2-FB9B12CC06D5}
 		{BC1A264A-EBB0-4BAE-80DE-5E7B76008418} = {314D3CDC-DDDE-4BDF-B4E2-FB9B12CC06D5}
+		{AE1C4922-5CA0-42BD-A8CF-36C376B702CF} = {43A26D99-88FF-4496-9A97-A4BDFD9C96E2}
+		{854AE000-0B01-4AB0-9FEF-25F894121212} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
