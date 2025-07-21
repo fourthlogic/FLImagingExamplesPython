@@ -82,8 +82,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generator", "Generator", "{
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "NoiseGenerator_Gaussian", "NoiseGenerator_Gaussian\NoiseGenerator_Gaussian.pyproj", "{5C0DFDAB-ACAE-4F36-972A-E3857D9CE7CB}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ConvecHull3D", "Convex Hull 3D\ConvecHull3D.pyproj", "{D4555740-6BD1-4B79-814E-F6E678E1CA10}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Image Operation", "Image Operation", "{DF146A85-CD97-4DBB-B9EB-71F83BA2B7EB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Signed Square Difference", "Signed Square Difference", "{840A9ECF-900E-4349-B853-1EA1C854A04D}"
@@ -212,6 +210,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Moire3D", "Moire3D\Moire3D.
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PointCloudBasedHandEyeCalibrator3D", "PointCloudBasedHandEyeCalibrator3D\PointCloudBasedHandEyeCalibrator3D.pyproj", "{9A76C3C0-D054-4343-8145-D46736EBA961}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Convex Hull 3D", "Convex Hull 3D", "{CE9B628B-37C7-4B65-8B54-B84F5C69864D}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ConvexHull3D", "ConvexHull3D\ConvexHull3D.pyproj", "{D4555740-6BD1-4B79-814E-F6E678E1CA10}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -244,8 +246,6 @@ Global
 		{B4C5A2D2-1F5D-4DED-95EC-F08E67CCD726}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C0DFDAB-ACAE-4F36-972A-E3857D9CE7CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5C0DFDAB-ACAE-4F36-972A-E3857D9CE7CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D4555740-6BD1-4B79-814E-F6E678E1CA10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D4555740-6BD1-4B79-814E-F6E678E1CA10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F37225DA-2418-4231-BC75-5D229AB0595D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F37225DA-2418-4231-BC75-5D229AB0595D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{984043C0-5138-4826-8BC9-9FF5DE89EB59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -312,6 +312,8 @@ Global
 		{EC0FFAE5-E2EB-405B-A614-B6D0A6E66133}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A76C3C0-D054-4343-8145-D46736EBA961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9A76C3C0-D054-4343-8145-D46736EBA961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4555740-6BD1-4B79-814E-F6E678E1CA10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4555740-6BD1-4B79-814E-F6E678E1CA10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -414,6 +416,8 @@ Global
 		{9886B8D1-7270-4D7B-82B4-57EAF03233C5} = {ECFF483A-9E41-42AD-94A1-09F2D3E62F83}
 		{EC0FFAE5-E2EB-405B-A614-B6D0A6E66133} = {9886B8D1-7270-4D7B-82B4-57EAF03233C5}
 		{9A76C3C0-D054-4343-8145-D46736EBA961} = {E4D28A35-EC11-40E4-A025-1AE8E09527A2}
+		{CE9B628B-37C7-4B65-8B54-B84F5C69864D} = {185B9BAD-D8C3-481B-BE2A-1F170F876A39}
+		{D4555740-6BD1-4B79-814E-F6E678E1CA10} = {CE9B628B-37C7-4B65-8B54-B84F5C69864D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
