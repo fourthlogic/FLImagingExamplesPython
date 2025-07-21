@@ -382,6 +382,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Illuminate Filter", "Illumi
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "IlluminateFilter", "IlluminateFilter\IlluminateFilter.pyproj", "{8C79E90B-3B4A-4927-B19D-95BE111EFF0C}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ConvexHull3D", "ConvexHull3D\ConvexHull3D.pyproj", "{D4555740-6BD1-4B79-814E-F6E678E1CA10}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -596,6 +598,8 @@ Global
 		{C6573CEF-B510-439C-9440-7D3EBF47DC2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C79E90B-3B4A-4927-B19D-95BE111EFF0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8C79E90B-3B4A-4927-B19D-95BE111EFF0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4555740-6BD1-4B79-814E-F6E678E1CA10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4555740-6BD1-4B79-814E-F6E678E1CA10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -783,6 +787,7 @@ Global
 		{6CBBF795-4533-4B7D-B631-121591A38E26} = {9AC20B8F-05EA-4C0C-A4E0-6E685E789696}
 		{58053DD3-F515-4B9D-8ADB-16A768079655} = {6CBBF795-4533-4B7D-B631-121591A38E26}
 		{8C79E90B-3B4A-4927-B19D-95BE111EFF0C} = {58053DD3-F515-4B9D-8ADB-16A768079655}
+		{D4555740-6BD1-4B79-814E-F6E678E1CA10} = {6A8EBDEC-1656-4BD2-B077-70083281C5D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
