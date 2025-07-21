@@ -208,8 +208,6 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "KirschFilter", "KirschFilte
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Edge Detection", "Edge Detection", "{9410ECD0-99BA-4459-8382-3C8F70D23677}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kirsch Filter", "Kirsch Filter", "{C9B62718-2D36-4827-868D-7F969CE4FF82}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Channel Insertion", "Channel Insertion", "{B05ECEF4-213D-4F73-BCC8-93F22BE16CEB}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ChannelInsertion", "ChannelInsertion\ChannelInsertion.pyproj", "{EDA3BD4D-F258-443A-8360-56022FD7861D}"
