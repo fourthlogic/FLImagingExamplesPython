@@ -446,6 +446,14 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "HysteresisThreshold", "Hyst
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AdaptiveThresholdGaussian", "AdaptiveThresholdGaussian\AdaptiveThresholdGaussian.pyproj", "{84B14C2B-541F-459D-ABD7-91B747EC56AA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mapping", "Mapping", "{915CF987-C386-4323-A916-E83D119CC97B}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BicubicSplineMapping", "BicubicSplineMapping\BicubicSplineMapping.pyproj", "{15F5E5C4-96D2-43A7-8C45-F4C810AE5351}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LanczosSplineMapping", "LanczosSplineMapping\LanczosSplineMapping.pyproj", "{E7C58EFE-C733-46DC-8BDD-B9FAF808CEF0}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ThinPlateSplineMapping", "ThinPlateSplineMapping\ThinPlateSplineMapping.pyproj", "{143C3078-13E5-4DD0-A4A6-5E3A6E0FF307}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -680,6 +688,8 @@ Global
 		{B925A633-60C6-4EEE-AEC2-A06ED8FBBEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18985CFB-90A6-4206-93DE-F02481797124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{18985CFB-90A6-4206-93DE-F02481797124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18985CFB-90A6-4206-93DE-F02481797124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18985CFB-90A6-4206-93DE-F02481797124}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB338984-F077-48A5-A4DE-0C471CCE5783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -690,6 +700,12 @@ Global
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84B14C2B-541F-459D-ABD7-91B747EC56AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{84B14C2B-541F-459D-ABD7-91B747EC56AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15F5E5C4-96D2-43A7-8C45-F4C810AE5351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15F5E5C4-96D2-43A7-8C45-F4C810AE5351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7C58EFE-C733-46DC-8BDD-B9FAF808CEF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7C58EFE-C733-46DC-8BDD-B9FAF808CEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{143C3078-13E5-4DD0-A4A6-5E3A6E0FF307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{143C3078-13E5-4DD0-A4A6-5E3A6E0FF307}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -909,6 +925,9 @@ Global
 		{12C01D0B-C746-404B-8ECA-900533494235} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F1} = {12C01D0B-C746-404B-8ECA-900533494235}
 		{84B14C2B-541F-459D-ABD7-91B747EC56AA} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
+		{15F5E5C4-96D2-43A7-8C45-F4C810AE5351} = {915CF987-C386-4323-A916-E83D119CC97B}
+		{E7C58EFE-C733-46DC-8BDD-B9FAF808CEF0} = {915CF987-C386-4323-A916-E83D119CC97B}
+		{143C3078-13E5-4DD0-A4A6-5E3A6E0FF307} = {915CF987-C386-4323-A916-E83D119CC97B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
