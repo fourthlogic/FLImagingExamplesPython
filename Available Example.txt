@@ -80,10 +80,23 @@
           - The example of an algorithm that processes a guided filter to an image.
           - 이미지에서 guided 필터를 처리하는 알고리즘 예제.
 
+      - [Edge Detection]
+
+        - KirschFilter
+          - The example of an algorithm that detects image edges
+          - Kirsch Operator를 사용하여 이미지 경계를 검출하는 알고리즘 예제
+
+
   - [Image Operation]
   
     - OperationComplexMultiply
       - The algorithm that performs Complex Multiply operation on the source image.
+    - OperationGreater
+      - The algorithm that performs Greater operations on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 Greater 연산을 수행하는 알고리즘.
+    - OperationLesser
+      - The algorithm that performs Lesser operations on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 Lesser 연산을 수행하는 알고리즘.
     - OperationScaledDivide
       - The algorithm that performs a Scaled Divide operation with an image or scalar value.
       - 이미지를 스칼라 또는 다른 이미지와 스케일 나눗셈 연산을 수행하는 알고리즘.
