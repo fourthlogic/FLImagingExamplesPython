@@ -114,6 +114,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Channel Swap", "Channel Swa
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ChannelSwap", "ChannelSwap\ChannelSwap.pyproj", "{07BAA9BD-6C80-45C6-874D-8E0BF2A7BE47}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "StationaryConeBeamTranslateCT3D", "StationaryConeBeamTranslateCT3D\StationaryConeBeamTranslateCT3D.pyproj", "{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -162,6 +164,8 @@ Global
 		{E6D3C40B-F099-4EB4-A13D-CD9EC2F415AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07BAA9BD-6C80-45C6-874D-8E0BF2A7BE47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{07BAA9BD-6C80-45C6-874D-8E0BF2A7BE47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -217,6 +221,7 @@ Global
 		{E6D3C40B-F099-4EB4-A13D-CD9EC2F415AE} = {49D82E96-9AA1-43AD-ADF8-9A19B25F85B5}
 		{F16712FA-649D-4876-ADAC-358B0C713779} = {C7AE84F4-0805-49E9-8363-FD23EEC762CC}
 		{07BAA9BD-6C80-45C6-874D-8E0BF2A7BE47} = {F16712FA-649D-4876-ADAC-358B0C713779}
+		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F0} = {ECFF483A-9E41-42AD-94A1-09F2D3E62F83}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
