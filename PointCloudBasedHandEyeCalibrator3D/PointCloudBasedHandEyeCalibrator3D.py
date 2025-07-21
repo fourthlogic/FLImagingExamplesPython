@@ -1,8 +1,6 @@
 ﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
 from FLImagingClrPy import *
-import System
 from System.Collections.Generic import List
-
 
 # 메인 함수 // Main function
 def main():
