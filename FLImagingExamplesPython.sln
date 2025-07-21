@@ -68,6 +68,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generator", "Generator", "{
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "NoiseGenerator_Gaussian", "NoiseGenerator_Gaussian\NoiseGenerator_Gaussian.pyproj", "{5C0DFDAB-ACAE-4F36-972A-E3857D9CE7CB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3D", "3D", "{65B97001-13FF-46CC-9CA8-4BA85BB8F5EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feature Extraction", "Feature Extraction", "{34B8117B-8220-468B-918F-1C62DD0114CB}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ConvecHull3D", "Convex Hull 3D\ConvecHull3D.pyproj", "{D4555740-6BD1-4B79-814E-F6E678E1CA10}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +96,8 @@ Global
 		{5D4CA815-C314-438B-9C04-1877EDA8BF93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C0DFDAB-ACAE-4F36-972A-E3857D9CE7CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5C0DFDAB-ACAE-4F36-972A-E3857D9CE7CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4555740-6BD1-4B79-814E-F6E678E1CA10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4555740-6BD1-4B79-814E-F6E678E1CA10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -122,6 +130,8 @@ Global
 		{048F9706-5594-4B8D-95DB-AAE867AC04D0} = {43A26D99-88FF-4496-9A97-A4BDFD9C96E2}
 		{949FFFA4-06D4-47FD-BC12-85CDA35AEF70} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 		{5C0DFDAB-ACAE-4F36-972A-E3857D9CE7CB} = {949FFFA4-06D4-47FD-BC12-85CDA35AEF70}
+		{34B8117B-8220-468B-918F-1C62DD0114CB} = {65B97001-13FF-46CC-9CA8-4BA85BB8F5EA}
+		{D4555740-6BD1-4B79-814E-F6E678E1CA10} = {34B8117B-8220-468B-918F-1C62DD0114CB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
