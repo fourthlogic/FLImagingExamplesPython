@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{e6d3c40b-f099-4eb4-a13d-cd9ec2f415ae}</ProjectGuid>
+    <ProjectGuid>{ae0b8ba9-7a3b-431c-a86e-31285650021d}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>OperationTrailingOnes.py</StartupFile>
+    <StartupFile>CensusTransform.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>OperationTrailingOnes.</Name>
-    <RootNamespace>OperationTrailingOnes.</RootNamespace>
+    <Name>CensusTransform</Name>
+    <RootNamespace>CensusTransform</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="OperationTrailingOnes.py" />
+    <Compile Include="CensusTransform.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

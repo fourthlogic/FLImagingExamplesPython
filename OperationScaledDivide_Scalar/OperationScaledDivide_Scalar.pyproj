@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>222bc7c0-0af7-4a3f-92a7-8aa36a8f216c</ProjectGuid>
+    <ProjectGuid>{4b151b46-a6c8-4854-80e5-3471dcb71b77}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>OperationScaledDivide_Scalar.py</StartupFile>
     <SearchPath>
