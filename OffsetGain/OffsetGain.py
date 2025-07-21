@@ -16,7 +16,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 // Load the source image
-		if (res := fliSourceImage.Load('../../ExampleImages/GainOffset/Color.flif')).IsFail():
+		if (res := fliSourceImage.Load('../../ExampleImages/OffsetGain/Color.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
@@ -59,26 +59,26 @@ def main():
 			ErrorPrint(res[0], 'Failed to synchronize window.')
 			break
 
-		# Gain Offset 객체 생성 // Create Gain Offset object
-		gainOffset = CGainOffset()
+		# Offset Gain 객체 생성 // Create Offset Gain object
+		offsetGain = COffsetGain()
 
 		# Source 이미지 설정 // Set the source image
-		gainOffset.SetSourceImage(fliSourceImage)
+		offsetGain.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		gainOffset.SetDestinationImage(fliDestinationImage)
+		offsetGain.SetDestinationImage(fliDestinationImage)
+
+		# Offset 값 지정 // Set the Offset value
+		mvOffset = CMultiVar[Double](10, 10, 10)
+		offsetGain.SetOffset(mvOffset)
 
 		# Gain 값 지정 // Set the Gain value
 		mvGain = CMultiVar[Double](2, 2, 2)
-		gainOffset.SetGain(mvGain)
-
-		# Offset 값 지정 // Set the Offset value
-		mvOffset = CMultiVar[Double](50, 50, 50)
-		gainOffset.SetOffset(mvOffset)
+		offsetGain.SetGain(mvGain)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := gainOffset.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Gain Offset.')
+		if (res := offsetGain.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute Offset Gain.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
