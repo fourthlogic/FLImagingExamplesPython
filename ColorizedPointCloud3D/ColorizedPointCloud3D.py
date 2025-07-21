@@ -45,7 +45,7 @@ def main():
 			break
 		
 		# Calibrate RGB 이미지 로드 # Load the calibrate RGB image
-		res = fliCaliSrcRGBImage.Load('C:/Users/junhy/source/repos/fourthlogic/ExampleImages/ColorizedPointCloudGenerator3D/CalibRGB.flif')
+		res = fliCaliSrcRGBImage.Load('../../ExampleImages/ColorizedPointCloudGenerator3D/CalibRGB.flif')
 
 		if res.IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
@@ -67,7 +67,7 @@ def main():
 			break
 		
 		# Execute XYZV 이미지 로드 # Load the execute XYZV image
-		res = fliExecSrcXYZVImage.Load('C:/Users/junhy/source/repos/fourthlogic/ExampleImages/ColorizedPointCloudGenerator3D/ExecXYZV.flif')
+		res = fliExecSrcXYZVImage.Load('../../ExampleImages/ColorizedPointCloudGenerator3D/ExecXYZV.flif')
 
 		if res.IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
@@ -89,7 +89,7 @@ def main():
 			break
 		
 		# Execute RGB 이미지 로드 # Load the execute RGB image
-		res = fliExecSrcRGBImage.Load('C:/Users/junhy/source/repos/fourthlogic/ExampleImages/ColorizedPointCloudGenerator3D/ExecRGB.flif')
+		res = fliExecSrcRGBImage.Load('../../ExampleImages/ColorizedPointCloudGenerator3D/ExecRGB.flif')
 
 		if res.IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
@@ -205,6 +205,69 @@ def main():
 			ErrorPrint(res, 'Failed to calibrate Colorized Point Cloud Generator 3D.')
 			break
 		
+		
+		# Calibration 결과 출력 # Print calibration results
+		print(f' < Calibration Result >\n');
+
+		# RGB 카메라의 Intrinsic Parameter 출력 # Print the intrinsic parameters of the RGB camera
+		cCalibIntrinsic = colorizedPointCloudGenerator.GetIntrinsicParameters();
+
+		print(f' < Intrinsic Parameters >\n');
+
+		print(f'Focal Length X ->\t{cCalibIntrinsic.f64FocalLengthX:.7}');
+		print(f'Focal Length Y ->\t{cCalibIntrinsic.f64FocalLengthY:.7}');
+		print(f'Principal Point X ->\t{cCalibIntrinsic.f64PrincipalPointX:.7}');
+		print(f'Principal Point Y ->\t{cCalibIntrinsic.f64PrincipalPointY:.7}');
+		print(f'Skew ->\t{cCalibIntrinsic.f64Skew:.7}');
+
+		print()
+
+		# RGB 카메라의 Distortion Coefficient 출력 # Print the distortion coefficients of the RGB camera
+		cCalibDistortion = colorizedPointCloudGenerator.GetDistortionCoefficients();
+
+		print(f' < Distortion Coefficients >\n');
+
+		print(f'K1 ->\t{cCalibDistortion.f64K1:.7}');
+		print(f'K2 ->\t{cCalibDistortion.f64K2:.7}');
+		print(f'P1 ->\t{cCalibDistortion.f64P1:.7}');
+		print(f'P2 ->\t{cCalibDistortion.f64P2:.7}');
+		print(f'K3 ->\t{cCalibDistortion.f64K3:.7}');
+		
+		print()
+
+		# 두 카메라 간의 회전 행렬 출력 # Print the relative rotation matrix between both cameras
+		cMatRotation = CMatrix[Double]()
+
+		colorizedPointCloudGenerator.GetRelativeRotation(cMatRotation)
+
+		print(f' < Relative Rotation >\n');
+
+		print(f'R00 ->\t%{cMatRotation.GetValue(0, 0):.7}');
+		print(f'R01 ->\t%{cMatRotation.GetValue(0, 1):.7}');
+		print(f'R02 ->\t%{cMatRotation.GetValue(0, 2):.7}');
+		print(f'R10 ->\t%{cMatRotation.GetValue(1, 0):.7}');
+		print(f'R11 ->\t%{cMatRotation.GetValue(1, 1):.7}');
+		print(f'R12 ->\t%{cMatRotation.GetValue(1, 2):.7}');
+		print(f'R20 ->\t%{cMatRotation.GetValue(2, 0):.7}');
+		print(f'R21 ->\t%{cMatRotation.GetValue(2, 1):.7}');
+		print(f'R22 ->\t%{cMatRotation.GetValue(2, 2):.7}');
+		
+		print()
+
+		# 두 카메라 간의 변환 행렬 출력 # Print the relative translation matrix between both cameras
+		cMatTranslation = CMatrix[Double]()
+
+		colorizedPointCloudGenerator.GetRelativeTranslation(cMatTranslation)
+
+		print(f' < Relative Translation >\n');
+
+		print(f'TX ->\t{cMatTranslation.GetValue(0, 0):.7}', );
+		print(f'TY ->\t{cMatTranslation.GetValue(1, 0):.7}', );
+		print(f'TZ ->\t{cMatTranslation.GetValue(2, 0):.7}', );
+		
+		print()
+
+
 		# 출력에 사용되는 3D 객채 생성 # Create 3D object used as output
 		fli3DDstObj = CFL3DObject();
 
