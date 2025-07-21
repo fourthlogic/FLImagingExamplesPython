@@ -15,12 +15,12 @@ def main():
 
 	while True:
 		
-		# Source 이미지 로드 // Load the source image
+		# Source 3d 객체 로드 // Load the source 3d object
 		if (res := floSrc.Load("../../ExampleImages/ConvexHull3D/RandomPointsOnSphere.ply")).IsFail():
 			ErrorPrint(res, "Failed to load the 3D object.\n")
 			break
 
-		# Source 이미지 뷰 생성 // Create source image view
+		# 3D 뷰 생성 // Create 3D view
 		if (res := view3DSrc.Create(100, 0, 612, 512)).IsFail() or \
 			(res := view3DDst.Create(612, 0, 1124, 512)).IsFail():
 			ErrorPrint(res, "Failed to create 3D views")
@@ -55,7 +55,6 @@ def main():
 
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		
 		if (res := convexhull3D.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Convex Hull.')
 			break

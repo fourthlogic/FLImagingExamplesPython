@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{d4555740-6bd1-4b79-814e-f6e678e1ca10}</ProjectGuid>
+    <ProjectGuid>{5f43d041-8cf3-4004-9462-ba35bfe8a83b}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>ConvexHull3D.py</StartupFile>
+    <StartupFile>CoordinateFrameUnification3D.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>ConvexHull3D</Name>
-    <RootNamespace>ConvexHull3D</RootNamespace>
+    <Name>CoordinateFrameUnification3D</Name>
+    <RootNamespace>CoordinateFrameUnification3D</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ConvexHull3D.py" />
+    <Compile Include="CoordinateFrameUnification3D.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
