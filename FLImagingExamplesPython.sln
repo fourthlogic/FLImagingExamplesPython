@@ -418,6 +418,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Difference of Gaussian Filt
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DifferenceOfGaussianFilter", "DifferenceOfGaussianFilter\DifferenceOfGaussianFilter.pyproj", "{41F8F800-5A8E-49D3-9A4D-A6256C5754C2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hysteresis Threshold", "Hysteresis Threshold", "{12C01D0B-C746-404B-8ECA-900533494235}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "HysteresisThreshold", "HysteresisThreshold\HysteresisThreshold.pyproj", "{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -650,6 +654,8 @@ Global
 		{EB338984-F077-48A5-A4DE-0C471CCE5783}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41F8F800-5A8E-49D3-9A4D-A6256C5754C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{41F8F800-5A8E-49D3-9A4D-A6256C5754C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -856,6 +862,8 @@ Global
 		{EB338984-F077-48A5-A4DE-0C471CCE5783} = {FC57D656-BD7B-4EC0-9C1E-87621776D689}
 		{B7F49B8B-F89C-4146-AFF9-8506081BBFF2} = {9410ECD0-99BA-4459-8382-3C8F70D23677}
 		{41F8F800-5A8E-49D3-9A4D-A6256C5754C2} = {B7F49B8B-F89C-4146-AFF9-8506081BBFF2}
+		{12C01D0B-C746-404B-8ECA-900533494235} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
+		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F1} = {12C01D0B-C746-404B-8ECA-900533494235}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
