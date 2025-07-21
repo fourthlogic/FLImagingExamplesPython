@@ -646,6 +646,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Mura_Region", "Mura_Region\
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Mura_Spot", "Mura_Spot\Mura_Spot.pyproj", "{E9C540CD-29C2-4980-A177-FC240B42E95D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reduce Dimension GeoMean 2D to 1D", "Reduce Dimension GeoMean 2D to 1D", "{26226CD0-17FF-41D0-BECA-06AF8545CEDA}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ReduceDimensionGeoMean2Dto1D", "ReduceDimensionGeoMean2Dto1D\ReduceDimensionGeoMean2Dto1D.pyproj", "{FD290DC3-019E-4437-A1C0-D5911C7324C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -990,6 +994,8 @@ Global
 		{4C486507-0D23-4040-8E72-023CD5C96CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9C540CD-29C2-4980-A177-FC240B42E95D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E9C540CD-29C2-4980-A177-FC240B42E95D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD290DC3-019E-4437-A1C0-D5911C7324C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD290DC3-019E-4437-A1C0-D5911C7324C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1306,6 +1312,8 @@ Global
 		{4C947F44-9D26-45E1-B7E8-2E4DC053D99F} = {F88DFD36-1123-416E-B930-D5B7AAC0A481}
 		{4C486507-0D23-4040-8E72-023CD5C96CB0} = {F88DFD36-1123-416E-B930-D5B7AAC0A481}
 		{E9C540CD-29C2-4980-A177-FC240B42E95D} = {F88DFD36-1123-416E-B930-D5B7AAC0A481}
+		{26226CD0-17FF-41D0-BECA-06AF8545CEDA} = {F4BE4CD2-3EC4-41F8-AEA0-C17FFBFE0EAE}
+		{FD290DC3-019E-4437-A1C0-D5911C7324C9} = {26226CD0-17FF-41D0-BECA-06AF8545CEDA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
