@@ -15,10 +15,10 @@ def main():
 			ErrorPrint(res, "Failed to create 3D views")
 			break
 
-		# Gain Offset 객체 생성 // Create Gain Offset object
+		#알고리즘 객체 생성 // declare algorithm instance
 		alg = CPointCloudGenerator3D()
 		
-		# 뷰와 연결이 유지된 // Declare the 3D object
+		# 3D 뷰와 연결이 유지된 객체 생성 // Declare the object connected to 3D view
 		view3DDst.PushObject(CFL3DObject());
 		viewObject = view3DDst.GetView3DObject(0);
 		floDst = viewObject.Get3DObject();
