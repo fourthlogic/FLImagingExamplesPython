@@ -28,7 +28,23 @@
       - The algorithm that transforms image by applying gain and offset.
       - Gain, Offset을 적용하여 이미지 변환을 수행하는 알고리즘.
 
+  - [Channel]
 
+    - ChannelMax
+      - The example of an algorithm that extracts maximum value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 최대값을 추출하여 이미지화 하는 알고리즘 예제.
+    - ChannelMean
+      - The example of an algorithm that extracts mean value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 평균값을 추출하여 이미지화 하는 알고리즘 예제.
+    - ChannelMin
+      - The example of an algorithm that extracts minimum value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 최소값을 추출하여 이미지화 하는 알고리즘 예제.
+    - ChannelStdev
+      - The example of an algorithm that extracts standard deviation value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 표준편차값을 추출하여 이미지화 하는 알고리즘 예제.
+    - ChannelVariance
+      - The example of an algorithm that extracts variance value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 분산값을 추출하여 이미지화 하는 알고리즘 예제.
 
 - [Mapping]
 
