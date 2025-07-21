@@ -63,7 +63,7 @@ def main():
 		gainOffset = CGainOffset()
 
 		# Source 이미지 설정 // Set the source image
-		gainOffset.SetSourceImage(fliDestinationImage)
+		gainOffset.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
 		gainOffset.SetDestinationImage(fliDestinationImage)
