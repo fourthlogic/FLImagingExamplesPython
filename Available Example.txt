@@ -305,6 +305,12 @@
       - The algorithm that transforms image by applying offset and gain.
       - Offset, Gain을 적용하여 이미지 변환을 수행하는 알고리즘.
 
+  - [Analysis]
+
+    - Histograms of Oriented Gradients(HOG)
+      - The example of an algorithm for calculating a Histograms of Oriented Gradients(HOG) of an image. Supports Peak Vector and Prediction Image for result visualization.
+      - 이미지에서 Histograms of Oriented Gradients(HOG)을 계산하는 알고리즘 예제. 비주얼화 출력으로 Peak Vector와 Prediction Image를 지원.
+
   - [Channel]
 
     - ChannelInsertion
