@@ -16,7 +16,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 // Load the source image
-		res = fliSourceImage.Load('../../ExampleImages/ChannelStdev/Color.flif')
+		res = fliSourceImage.Load('../../ExampleImages/NoiseGenerator/Plate.flif')
 
 		if res.IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
@@ -75,20 +75,32 @@ def main():
 			ErrorPrint(res[0], 'Failed to synchronize window.')
 			break
 
-		# Channel Stdev 객체 생성 // Create Channel Stdev object
-		channelStdev = CChannelStdev()
+		# Channel Variance 객체 생성 // Create Channel Variance object
+		noisegenerator = CNoiseGenerator()
 
 		# Source 이미지 설정 // Set the source image
-		channelStdev.SetSourceImage(fliDestinationImage)
+		noisegenerator.SetSourceImage(fliDestinationImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		channelStdev.SetDestinationImage(fliDestinationImage)
+		noisegenerator.SetDestinationImage(fliDestinationImage)
+
+		# ROI 객체 생성 및 범위 설정 // Create ROI object and set range
+		rectROI = CFLRect[int](61,63,583,376)
+
+		# 처리할 ROI 설정 // Set the ROI to be processed
+		noisegenerator.SetSourceROI(rectROI)
+		noisegenerator.SetDestinationROI(rectROI)
+		
+		# 생성할 노이즈 타입 설정 // Set the noise type to generate
+		noisegenerator.SetNoiseType(CNoiseGenerator.ENoiseType.GaussianNoise)
+		# 가우시안 분포의 평균과 표준편차 설정 // Set the mean and standard deviation of the Gaussian distribution
+		noisegenerator.SetGaussianDistNoise(0.0, 0.05)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		res = channelStdev.Execute()
+		res = noisegenerator.Execute()
 
 		if res.IsFail():
-			ErrorPrint(res, 'Failed to execute Channel Stdev.')
+			ErrorPrint(res, 'Failed to execute Channel Variance.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
@@ -100,6 +112,19 @@ def main():
 		layerSource.Clear()
 		layerDestination.Clear()
 
+		# ROI 영역을 Destination Image View에 출력 // Display the ROI area to Destination Image View
+		res = layerSource.DrawFigureImage(rectROI, EColor.LIME)
+
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to draw Source ROI.')
+			break
+
+		res = layerDestination.DrawFigureImage(rectROI, EColor.LIME)
+
+		if res.IsFail():
+			ErrorPrint(res, 'Failed to draw Destination ROI.')
+			break	
+		
 		# 이미지 뷰 정보 표시 // Display image view information
 		flpPoint = CFLPoint[Double](0, 0)
 
