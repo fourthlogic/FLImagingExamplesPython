@@ -109,12 +109,13 @@ def DrawResult(pView3D: CGUIView3D, pFlaPlyData: List[TPoint3[Single]] , arrResu
 	arr2F32DataRange = [[math.inf, -math.inf ],[ math.inf, -math.inf],[math.inf, -math.inf]]
 
 	for i in range(arrResult.Count):
-		arr2F32DataRange[0][0] = min(arr2F32DataRange[0][0], arrResult[i].x)
-		arr2F32DataRange[0][1] = max(arr2F32DataRange[0][1], arrResult[i].x)
-		arr2F32DataRange[1][0] = min(arr2F32DataRange[1][0], arrResult[i].y)
-		arr2F32DataRange[1][1] = max(arr2F32DataRange[1][1], arrResult[i].y)
-		arr2F32DataRange[2][0] = min(arr2F32DataRange[2][0], arrResult[i].z)
-		arr2F32DataRange[2][1] = max(arr2F32DataRange[2][1], arrResult[i].z)
+		tp = arrResult[i]
+		arr2F32DataRange[0][0] = min(arr2F32DataRange[0][0], tp.x)
+		arr2F32DataRange[0][1] = max(arr2F32DataRange[0][1], tp.x)
+		arr2F32DataRange[1][0] = min(arr2F32DataRange[1][0], tp.y)
+		arr2F32DataRange[1][1] = max(arr2F32DataRange[1][1], tp.y)
+		arr2F32DataRange[2][0] = min(arr2F32DataRange[2][0], tp.z)
+		arr2F32DataRange[2][1] = max(arr2F32DataRange[2][1], tp.z)
 
 	strRangeX = f"X : [{arr2F32DataRange[0][0]}, {arr2F32DataRange[0][1]}]"
 	strRangeY = f"Y : [{arr2F32DataRange[1][0]}, {arr2F32DataRange[1][1]}]"
@@ -168,14 +169,13 @@ def DrawResult(pView3D: CGUIView3D, pFlaPlyData: List[TPoint3[Single]] , arrResu
 		fl3DO.Assign(pFlaPlyData, flaColors)
 		pView3D.UpdateObject(i32ReturnIndex)
 
-
+	
 # 에러 출력 함수 // Error printing function
 def ErrorPrint(res: CResult, string: str):
 	if len(string) > 1:
 		print(string)
 
 	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
-
 
 if __name__ == '__main__':
     main()
