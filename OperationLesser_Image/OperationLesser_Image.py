@@ -88,7 +88,7 @@ def main():
 			ErrorPrint(res[0], 'Failed to synchronize window.')
 			break
 
-		# Gain Offset 객체 생성 // Create Gain Offset object
+		# OperationLesser 객체 생성 // Create OperationLesser object
 		lesser = COperationLesser()
 
 		# Source 이미지 설정 // Set the source image

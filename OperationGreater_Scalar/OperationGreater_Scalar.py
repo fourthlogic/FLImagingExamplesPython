@@ -60,7 +60,7 @@ def main():
 			ErrorPrint(res[0], 'Failed to synchronize window.')
 			break
 
-		# Gain Offset 객체 생성 // Create Gain Offset object
+		# OperationGreatert 객체 생성 // Create OperationGreater object
 		greater = COperationGreater()
 
 		# Source 이미지 설정 // Set the source image
