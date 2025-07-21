@@ -63,7 +63,7 @@ def main():
 		channelVariance = CChannelVariance()
 
 		# Source 이미지 설정 // Set the source image
-		channelVariance.SetSourceImage(fliDestinationImage)
+		channelVariance.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
 		channelVariance.SetDestinationImage(fliDestinationImage)

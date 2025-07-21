@@ -63,7 +63,7 @@ def main():
 		channelMax = CChannelMax()
 
 		# Source 이미지 설정 // Set the source image
-		channelMax.SetSourceImage(fliDestinationImage)
+		channelMax.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
 		channelMax.SetDestinationImage(fliDestinationImage)

@@ -63,7 +63,7 @@ def main():
 		channelMean = CChannelMean()
 
 		# Source 이미지 설정 // Set the source image
-		channelMean.SetSourceImage(fliDestinationImage)
+		channelMean.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
 		channelMean.SetDestinationImage(fliDestinationImage)

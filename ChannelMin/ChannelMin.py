@@ -63,7 +63,7 @@ def main():
 		channelMin = CChannelMin()
 
 		# Source 이미지 설정 // Set the source image
-		channelMin.SetSourceImage(fliDestinationImage)
+		channelMin.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
 		channelMin.SetDestinationImage(fliDestinationImage)

@@ -63,7 +63,7 @@ def main():
 		noisegenerator = CNoiseGenerator()
 
 		# Source 이미지 설정 // Set the source image
-		noisegenerator.SetSourceImage(fliDestinationImage)
+		noisegenerator.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
 		noisegenerator.SetDestinationImage(fliDestinationImage)

@@ -63,7 +63,7 @@ def main():
 		channelStdev = CChannelStdev()
 
 		# Source 이미지 설정 // Set the source image
-		channelStdev.SetSourceImage(fliDestinationImage)
+		channelStdev.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
 		channelStdev.SetDestinationImage(fliDestinationImage)
