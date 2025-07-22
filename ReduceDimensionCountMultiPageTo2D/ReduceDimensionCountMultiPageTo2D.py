@@ -20,11 +20,6 @@ def main():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
-		if (res := fliDestinationImage.Assign(fliSourceImage)).IsFail():
-			ErrorPrint(res, 'Failed to load the image file.')
-			break
-
 		# Source 이미지 뷰 생성 // Create source image view
 		if (res := viewImageSrc.Create(100, 0, 612, 512)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
