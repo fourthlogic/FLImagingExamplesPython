@@ -86,7 +86,7 @@ def main():
         layerDestination.Clear()
 
         # View 정보를 디스플레이 합니다. // Display view information (text)
-        flpPoint = CFLPoint[float](0, 0)
+        flpPoint = CFLPoint[Double](0, 0)
 
         res = layerSource.DrawTextCanvas(flpPoint, "Source Image", EColor.YELLOW, EColor.BLACK, 30)
         if res.IsFail():

@@ -70,8 +70,8 @@ def main():
             break
 
         # CMultiVar<double> 생성 // Create CMultiVar objects for scalar values
-        mvScalar1 = CMultiVar[float](100, 100, 100)
-        mvScalar2 = CMultiVar[float](200, 200, 200)
+        mvScalar1 = CMultiVar[Double](100, 100, 100)
+        mvScalar2 = CMultiVar[Double](200, 200, 200)
 
         # COperationMinimum 객체 생성 // Create COperationMinimum object
         minimum = COperationMinimum()
@@ -113,7 +113,7 @@ def main():
             layer.Clear()
 
         # 텍스트 위치 // Text position
-        tpPosition = TPoint[float](0, 0)
+        tpPosition = TPoint[Double](0, 0)
 
         # 텍스트 출력 // Draw text on layers
         if (res := arrLayer[0].DrawTextCanvas(tpPosition, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():

@@ -90,7 +90,7 @@ def main():
             break
 
         # 이미지 뷰 정보 표시 // Display image view information 
-        flpPoint = CFLPoint[float](0, 0)
+        flpPoint = CFLPoint[Double](0, 0)
 
         # Text 출력 // Display Text
         if (res := layer1.DrawTextImage(flpPoint, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():

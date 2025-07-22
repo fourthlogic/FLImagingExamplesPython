@@ -91,7 +91,7 @@ def main():
             layer.Clear()
 
         # 텍스트 위치 // Text position
-        tpPosition = TPoint[float](0, 0)
+        tpPosition = TPoint[Double](0, 0)
 
         # 텍스트 출력 // Draw text on layers
         if (res := arrLayer[0].DrawTextCanvas(tpPosition, "Source Image", EColor.YELLOW, EColor.BLACK, 30)).IsFail():

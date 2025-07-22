@@ -101,7 +101,7 @@ def main():
             arrLayer[i].Clear()
 
         # 텍스트 출력 좌표 설정 // Text output coordinate
-        tpPosition = TPoint[float](0, 0)
+        tpPosition = TPoint[Double](0, 0)
 
         # 텍스트 출력 // Draw text on each view
         if (res := arrLayer[0].DrawTextCanvas(tpPosition, "Source Image", EColor.YELLOW, EColor.BLACK, 30)).IsFail():

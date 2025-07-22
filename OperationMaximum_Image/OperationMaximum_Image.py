@@ -71,8 +71,8 @@ def main():
             break
 
         # Scalar 값 생성 // Create scalar values
-        mvScalar = CMultiVar[float](100, 100, 100)
-        mvScalar2 = CMultiVar[float](200, 200, 200)
+        mvScalar = CMultiVar[Double](100, 100, 100)
+        mvScalar2 = CMultiVar[Double](200, 200, 200)
 
         # Operation Maximum 객체 생성 // Create Operation Maximum object
         maximum = COperationMaximum()
@@ -100,7 +100,7 @@ def main():
             layer.Clear()
 
         # 텍스트 위치 // Text position
-        tpPosition = TPoint[float](0, 0)
+        tpPosition = TPoint[Double](0, 0)
 
         # 텍스트 출력 // Draw text on layers
         if (res := arrLayer[0].DrawTextCanvas(tpPosition, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():

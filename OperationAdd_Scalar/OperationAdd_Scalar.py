@@ -70,8 +70,8 @@ def main():
             break
 
         # CMultiVar<double> 생성 // Create CMultiVar objects for scalar values
-        mvScalar = CMultiVar[float](30, 0, 0)
-        mvScalar2 = CMultiVar[float](0, 30, 0)
+        mvScalar = CMultiVar[Double](30, 0, 0)
+        mvScalar2 = CMultiVar[Double](0, 30, 0)
 
         # COperationAdd 객체 생성 // Create COperationAdd object
         add = COperationAdd()
@@ -99,7 +99,7 @@ def main():
             layer.Clear()
 
         # 텍스트 위치 // Text position
-        tpPosition = TPoint[float](0, 0)
+        tpPosition = TPoint[Double](0, 0)
 
         # 텍스트 출력 // Draw text on layers
         if (res := arrLayer[0].DrawTextCanvas(tpPosition, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():

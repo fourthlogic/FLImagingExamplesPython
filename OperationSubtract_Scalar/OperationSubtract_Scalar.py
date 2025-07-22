@@ -70,8 +70,8 @@ def main():
             break
 
         # Scalar 값 생성 // Create Scalar values
-        mvScalr = CMultiVar[float](30, 0, 0)
-        mvScalr2 = CMultiVar[float](0, 0, 30)
+        mvScalr = CMultiVar[Double](30, 0, 0)
+        mvScalr2 = CMultiVar[Double](0, 0, 30)
 
         # Operation Subtract 객체 생성 // Create Operation Subtract object
         subtract = COperationSubtract()
@@ -107,7 +107,7 @@ def main():
             layer.Clear()
 
         # 텍스트 위치 지정 // Text position
-        tpPosition = TPoint[float](0, 0)
+        tpPosition = TPoint[Double](0, 0)
 
         # 텍스트 출력 // Draw text on layers
         if (res := arrLayer[0].DrawTextCanvas(tpPosition, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():

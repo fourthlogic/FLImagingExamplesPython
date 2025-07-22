@@ -74,14 +74,14 @@ def main():
         # 레이어 가져오기 // Get image layers
         layer1 = viewImage[0].GetLayer(0)
         layer2 = viewImage[1].GetLayer(0)
-        flpTemp = CFLPoint[float](0, 0)
+        flpPrint = CFLPoint[Double](0, 0)
 
         # Text 출력 // Display text
-        if (res := layer1.DrawTextImage(flpTemp, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+        if (res := layer1.DrawTextImage(flpPrint, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
             ErrorPrint(res, "Failed to draw text.")
             break
 
-        if (res := layer2.DrawTextImage(flpTemp, f"Destination Image( {int(mvThreshold.GetAt(0))} < threshold)", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+        if (res := layer2.DrawTextImage(flpPrint, f"Destination Image( {int(mvThreshold.GetAt(0))} < threshold)", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
             ErrorPrint(res, "Failed to draw text.")
             break
 

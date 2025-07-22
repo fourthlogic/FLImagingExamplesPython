@@ -82,7 +82,7 @@ def main():
             break
 
         # Text 출력 // Display text
-        flpPoint = CFLPoint[float](0, 0)
+        flpPoint = CFLPoint[Double](0, 0)
         if (res := layer1.DrawTextImage(flpPoint, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
             ErrorPrint(res, "Failed to draw text on source layer.")
             break

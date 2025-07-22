@@ -63,7 +63,7 @@ def main():
         isoDataThreshold.SetLogicalCondition(ELogicalCondition.Greater)
 
         # MultiVar 객체 생성 // Create MultiVar object
-        mvThreshold = CMultiVar[float]()
+        mvThreshold = CMultiVar[Double]()
 
         # 계산된 Threshold 값을 추출 // Get result threshold value
         mvThreshold = isoDataThreshold.GetResultThreshold()
@@ -80,7 +80,7 @@ def main():
         # The layer is released together when View is released without releasing it separately.
         layer1 = viewImage[0].GetLayer(0)
         layer2 = viewImage[1].GetLayer(0)
-        flpTemp = CFLPoint[float](0, 0)
+        flpTemp = CFLPoint[Double](0, 0)
 
         # Text 출력 // Display Text
         if (res := layer1.DrawTextImage(flpTemp, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
