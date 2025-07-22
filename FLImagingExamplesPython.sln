@@ -920,9 +920,9 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationBinaryComplement_S
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationBinaryComplement_Image", "OperationBinaryComplement_Image\OperationBinaryComplement_Image.pyproj", "{AED83DF7-9255-4A2B-B334-6ADC673ACC4A}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ColorFilterArrayConverter", "ColorFilterArrayConverter\ColorFilterArrayConverter.pyproj", "{4845D788-73B5-4291-BC9C-5BC883E69033}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Binary Complement", "Binary Complement", "{4F15BA3C-E90F-406E-A182-EF2F06CFD633}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ColorFilterArrayConverter", "ColorFilterArrayConverter\ColorFilterArrayConverter.pyproj", "{4845D788-73B5-4291-BC9C-5BC883E69033}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mathematics", "Mathematics", "{6013EDBD-12D0-4E6A-A427-3BA98FFED02A}"
 EndProject
@@ -955,6 +955,8 @@ EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationSquareRoot", "OperationSquareRoot\OperationSquareRoot.pyproj", "{AA86BC3E-2BA9-4507-8C2B-D162A0337640}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Quilting", "Quilting\Quilting.pyproj", "{633F7B63-E229-4FAB-B686-226C4C8928B0}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Projection3D", "Projection3D\Projection3D.pyproj", "{52E4F05F-3FA0-4282-AB5F-56D96B304CAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1516,6 +1518,8 @@ Global
 		{AA86BC3E-2BA9-4507-8C2B-D162A0337640}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{633F7B63-E229-4FAB-B686-226C4C8928B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{633F7B63-E229-4FAB-B686-226C4C8928B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52E4F05F-3FA0-4282-AB5F-56D96B304CAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52E4F05F-3FA0-4282-AB5F-56D96B304CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1986,6 +1990,7 @@ Global
 		{70D9B7AC-6D13-4451-BDF0-8061D141D614} = {DF146A85-CD97-4DBB-B9EB-71F83BA2B7EB}
 		{AA86BC3E-2BA9-4507-8C2B-D162A0337640} = {70D9B7AC-6D13-4451-BDF0-8061D141D614}
 		{633F7B63-E229-4FAB-B686-226C4C8928B0} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
+		{52E4F05F-3FA0-4282-AB5F-56D96B304CAC} = {185B9BAD-D8C3-481B-BE2A-1F170F876A39}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}

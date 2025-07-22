@@ -1,0 +1,120 @@
+﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+from FLImagingClrPy import *
+
+
+# 메인 함수 // Main function
+def main():
+
+	floSrc = CFL3DObject()
+	fliDst = CFLImage()
+	# 3D 뷰 선언 // Declare 3D view	
+
+	view3DSrc = CGUIView3D()
+	viewImgDst = CGUIViewImage()
+
+	while True:
+		# Source Object 로드 // Load the Source object
+		if (res := floSrc.Load("../../ExampleImages/Projection3D/icosahedron.ply")).IsFail():
+			ErrorPrint(res, "Failed to load the object file.\n");
+			break;
+	    
+		# Source 3D 뷰 생성 // Create the Source 3D view
+		if (res := view3DSrc.Create(612, 0, 1124, 512)).IsFail():
+			ErrorPrint(res, "Failed to create the Source 3D view.\n");
+			break;
+
+		# Destination 이미지 뷰 생성 // Create the destination image view
+		if (res := viewImgDst.Create(1124, 0, 1636, 512)).IsFail():
+			ErrorPrint(res, "Failed to create the Destination 3D view.\n")
+			break
+
+		# Source 객체를 3D 뷰에 추가 // push source object to 3D view
+		if (res := view3DSrc.PushObject(floSrc)).IsFail():
+			ErrorPrint(res, "Failed to display the 3D object.\n")
+			break
+
+		viewImgDst.SynchronizeWindow(view3DSrc)
+
+		#Projection3D 객체 생성 // Create Projection3D object
+		projection3D = CProjection3D();
+
+		# 알고리즘 대상 설정 // set algorithm target
+		projection3D.SetDestinationImage(fliDst);
+		projection3D.SetSourceObject(floSrc);
+
+		# 3D View의 카메라 파라미터 값을 설정하기 위하여 먼저 호출
+		# call for 3D View camera parameter setting
+		view3DSrc.ZoomFit();
+
+		cam = view3DSrc.GetCamera();
+
+		def ToTPoint3(pt: CFLPoint[Single]) -> TPoint3[Single]:
+			return TPoint3[Single](pt.x, pt.y, pt.z);
+
+		ptCamPos = ToTPoint3(cam.GetPosition());
+		ptCamDir = ToTPoint3(cam.GetDirection());
+		ptCamDirUp = ToTPoint3(cam.GetDirectionUp());
+		f32AovX = cam.GetAngleOfViewX();
+		f32AovY = cam.GetAngleOfViewY();
+		f32TargetDistance = cam.GetDistanceFromTarget();
+				
+		# 알고리즘 파라미터 설정 // set algorithm parameters
+		projection3D.SetCameraPosition(ptCamPos);
+		projection3D.SetCameraDirection(ptCamDir);
+		projection3D.SetDirectionUp(ptCamDirUp);
+		projection3D.SetAngleOfView(f32AovX, f32AovY, EAngleUnit.Degree);
+		projection3D.SetWorkingDistance(100);
+		projection3D.SetImageSize(512, 512);
+
+		# 앞서 설정된 파라미터대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		if (res := projection3D.Execute()).IsFail():
+			ErrorPrint(res, "Failed to execute Projection 3D.")
+			break
+		
+
+		# 결과 이미지를 뷰에 연결 // Map the result image to the destination view
+		if (res := viewImgDst.SetImagePtr(fliDst)[0]).IsFail():
+			ErrorPrint(res, "Failed to set object on the 3d view.\n")
+			break
+		#Source View와 동일한 시점을 유지하기 위해, 이미지의 정중앙을 뷰의 중앙에 맞추고 배율을 1로 설정
+		#Set view's center to the center of image and scale to 1, to match the viewpoint of the source view
+		viewImgDst.SetViewCenterAndScale(CFLPoint[float](256, 256), 1.0);
+		
+		# 화면에 출력하기 위해 View에서 레이어 0번을 얻어옴 // Obtain layer number 0 from view for display
+		layer3DSrc = view3DSrc.GetLayer(0);
+		layer3DDst = viewImgDst.GetLayer(0);
+		
+		# View 정보를 디스플레이한다. // Display view information
+		# 함수 DrawTextCanvas는 Screen 좌표를 기준으로 하는 문자열을 드로잉한다. // The function DrawTextCanvas below draws a String based on the screen coordinates.
+		flpTopLeft = CFLPoint[float](0, 0);
+
+		if (res := layer3DSrc.DrawTextCanvas(flpTopLeft, "Source Object", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or \
+			(res := layer3DDst.DrawTextCanvas(flpTopLeft, "Destination Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+			ErrorPrint(res, "Failed to draw text.\n")
+			break
+		
+		
+		# 이미지 뷰를 갱신 합니다. // Update image view
+		view3DSrc.Invalidate(True);
+		viewImgDst.Invalidate(True);
+		
+		# 이미지 뷰, 3D 뷰가 종료될 때 까지 기다림
+		while view3DSrc.IsAvailable() and viewImgDst.IsAvailable():
+			CThreadUtilities.Sleep(1);
+		
+		break
+	
+	# End of main function
+
+
+
+# 에러 출력 함수 // Error printing function
+def ErrorPrint(res: CResult, string: str):
+	if len(string) > 1:
+		print(string)
+
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
+
+
+if __name__ == '__main__':
+    main()
