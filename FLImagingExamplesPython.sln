@@ -986,6 +986,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Conditional Replacer", "Con
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ConditionalReplacer_Scalar", "ConditionalReplacer_Scalar\ConditionalReplacer_Scalar.pyproj", "{494D88FF-6496-45EE-BF6A-8D5672B367FE}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Blob_Area", "Blob_Area\Blob_Area.pyproj", "{90F22C45-5849-460A-BB95-221150473646}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1566,6 +1568,8 @@ Global
 		{AB1D4A6F-8FFE-4CBF-A2D3-DDAD748033E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{494D88FF-6496-45EE-BF6A-8D5672B367FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{494D88FF-6496-45EE-BF6A-8D5672B367FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90F22C45-5849-460A-BB95-221150473646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90F22C45-5849-460A-BB95-221150473646}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2051,6 +2055,7 @@ Global
 		{AB1D4A6F-8FFE-4CBF-A2D3-DDAD748033E7} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 		{1660950F-C54E-40D4-BA5E-8D698FDFD247} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 		{494D88FF-6496-45EE-BF6A-8D5672B367FE} = {1660950F-C54E-40D4-BA5E-8D698FDFD247}
+		{90F22C45-5849-460A-BB95-221150473646} = {6B9D0368-75C3-4B52-A258-834FCF7B77A8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
