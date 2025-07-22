@@ -329,6 +329,9 @@
       
   - [GraphView]
   
+    - GraphView 
+      - The example of using graph view.
+      - 그래프 뷰 사용에 관한 예제.
     - GraphViewIntoDialog 
       - The example of inserting an graph view into a dialog and using it.
       - 그래프 뷰를 다이얼로그에 삽입해서 사용하는 예제.
