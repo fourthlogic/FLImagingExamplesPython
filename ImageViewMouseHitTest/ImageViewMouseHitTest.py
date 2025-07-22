@@ -8,7 +8,7 @@ import threading
 class CMessageReceiver(CFLBase):
     def __init__(self):
         super().__init__()
-        CBroadcastManager.Subscribe(self)
+        CBroadcastManager.Subscribe(self, CBroadcastManager.Delegate_OnReceiveBroadcast(self.OnReceiveBroadcast))
 
     def __del__(self):
         CBroadcastManager.Unsubscribe(self)
@@ -17,7 +17,7 @@ class CMessageReceiver(CFLBase):
         if pMessage is None:
             return
 
-        if pMessage.GetChannel() == EGUIBroadcast.ViewImage_PostMouseMove:
+        if pMessage.GetChannel() == Convert.ToInt64(EGUIBroadcast.ViewImage_PostMouseMove):
             msgMouseEvent = pMessage if isinstance(pMessage, CBroadcastMessage_GUI_ViewImage_MouseEvent) else None
             if msgMouseEvent is None:
                 return
