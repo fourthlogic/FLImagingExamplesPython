@@ -46,19 +46,19 @@ def main():
 			break
 		
         # 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
-        # ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... 형태를 반환한다.
+        # ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... 형태를 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewSrcImage[0].SynchronizePointOfView(viewSrcImage[1])[0]).IsFail():
 			ErrorPrint(res, "Failed to synchronize view")
 			break
 		
         # 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
-        # ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... 형태를 반환한다.
+        # ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... 형태를 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewSrcImage[1].SynchronizePointOfView(viewSrcImage[2])[0]).IsFail():
 			ErrorPrint(res, "Failed to synchronize view")
 			break
 		
         # 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
-        # ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... 형태를 반환한다.
+        # ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... 형태를 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewSrcImage[2].SynchronizePointOfView(viewDstImage)[0]).IsFail():
 			ErrorPrint(res, "Failed to synchronize view")
 			break
@@ -82,6 +82,7 @@ def main():
 			break
 		
 		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewSrcImage[0].SetImagePtr(fliImage[0])[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
