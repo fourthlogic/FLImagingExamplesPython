@@ -9,27 +9,6 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
 
 from ErrorPrint import *
 
-
-class CClrResult:
-    def __init__(self, res):
-        if isinstance(res, tuple):
-            self.res = res[0]
-
-            if len(res) > 1:
-                self.ref_val = res[1:]
-            else:
-                self.ref_val = None
-        else:
-            self.res = res
-            self.ref_val = None
-
-    def IsOK(self):
-        return self.res.IsOK()
-
-    def IsFail(self):
-        return self.res.IsFail()
-
-
 # 메인 함수 // Main function
 def main():
     # 이미지 객체 선언 // Declare the image object
@@ -97,17 +76,6 @@ def main():
     # Blob 결과들 중 Contours 을 얻어옴
     if (res := blob.GetResultContours(flfaContours)[0]).IsFail():
         ErrorPrint(res, "Failed to get contours from the Blob object.")
-        return
-
-    if (res1 := CClrResult(blob.GetResultContours(flfaContours))).IsFail():
-        return
-
-    res1.res
-    res1.ref_val
-
-    res11, *ref_val2 = blob.GetResultContours(flfaContours)
-
-    if res11.IsFail():
         return
 
     # Blob 결과들 중 Area 을 얻어옴
