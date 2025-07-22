@@ -24,9 +24,7 @@ def main():
 
 		# 우선 빈 CGUIView3DObject 객체를 뷰에 추가한 후 해당 객체의 인덱스를 i32ReturnIndex 에 얻어 오기
 		# First, add an empty CGUIView3DObject object to the view, then retrieve the index of that object into i32ReturnIndex.
-		i32ReturnIndex = -1
-
-		res, i32ReturnIndex = view3DSrc.PushObject(CGUIView3DObject(), i32ReturnIndex)
+		res, i32ReturnIndex = view3DSrc.PushObject(CGUIView3DObject(), -1)
 		
 		if res.IsFail():
 			ErrorPrint(res, "Failed to display 3D object.\n")
@@ -161,8 +159,8 @@ def DrawResult(pView3D: CGUIView3D, pFlaPlyData: List[TPoint3[Single]] , arrResu
 
 		flaColors.Add(tpColor)
 
-	i32ReturnIndex = -1
-	res, i32ReturnIndex = pView3D.PushObject(CGUIView3DObject(), i32ReturnIndex)
+	res, i32ReturnIndex = pView3D.PushObject(CGUIView3DObject(), -1)
+
 	if res.IsOK():
 		objView3D = pView3D.GetView3DObject(i32ReturnIndex)
 		fl3DO = objView3D.Get3DObject()

@@ -22,8 +22,7 @@ def main():
         view3D[0].SetTopologyType(ETopologyType3D.Wireframe)
         view3D[1].SetTopologyType(ETopologyType3D.Wireframe)
 
-        i32ReturnIndex = -1
-        res, i32ReturnIndex = view3D[0].PushObject(CGUIView3DObject(), i32ReturnIndex)
+        res, i32ReturnIndex = view3D[0].PushObject(CGUIView3DObject(), -1)
         if res.IsFail():
             ErrorPrint(res, "Failed to display 3D object.\n")
             break
@@ -52,8 +51,9 @@ def main():
         sr = CStepReader()
         f64ChordalDeviation = 0.00001
 
-        i32ReturnIndex = -1        
-        if (res := view3D[1].PushObject(CGUIView3DObject(), i32ReturnIndex)[0]).IsFail():
+        res, i32ReturnIndex = view3D[1].PushObject(CGUIView3DObject(), -1)
+
+        if res.IsFail():
             ErrorPrint(res, "Failed to display 3D object.\n")
             break
 
