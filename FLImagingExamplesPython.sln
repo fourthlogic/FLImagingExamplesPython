@@ -856,6 +856,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationDivide_Scalar", "O
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationDivide_Image", "OperationDivide_Image\OperationDivide_Image.pyproj", "{EA89A38B-A030-4812-AE73-A44EE3DC3164}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "WignerVilleDistribution", "WignerVilleDistribution\WignerVilleDistribution.pyproj", "{61D08925-F309-4BAA-BB03-19754CA06FB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1340,6 +1342,8 @@ Global
 		{64247468-4F45-4862-AC1B-230979FAD5E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA89A38B-A030-4812-AE73-A44EE3DC3164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EA89A38B-A030-4812-AE73-A44EE3DC3164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61D08925-F309-4BAA-BB03-19754CA06FB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D08925-F309-4BAA-BB03-19754CA06FB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1762,6 +1766,7 @@ Global
 		{092216B4-28E5-4690-8C81-037AD47C4004} = {DF146A85-CD97-4DBB-B9EB-71F83BA2B7EB}
 		{64247468-4F45-4862-AC1B-230979FAD5E0} = {092216B4-28E5-4690-8C81-037AD47C4004}
 		{EA89A38B-A030-4812-AE73-A44EE3DC3164} = {092216B4-28E5-4690-8C81-037AD47C4004}
+		{61D08925-F309-4BAA-BB03-19754CA06FB5} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
