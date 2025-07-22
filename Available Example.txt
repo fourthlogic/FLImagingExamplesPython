@@ -176,22 +176,46 @@
 
 - [Advanced Functions]
   
-  - [Object]
-      - Blob_Area
-        - The example of a Blob algorithm that outputs area results.
-        - 면적 크기 결과를 출력하는 Blob 알고리즘의 예제. 
-      - Blob_BoundaryRect
-        - The example of Blob algorithm that output in the form of a boundary box.
-        - 연결 요소 검출 알고리즘의 사각 경계 박스 형태로 출력하는 예제.
-      - Blob_BoundaryRect_ResultInfo
-        - The example of Blob algorithm that output in the form of a boundary box and result information.
-        - 연결 요소 검출 알고리즘의 사각 경계 박스 형태로 출력하고 결과 정보를 출력하는 예제.
-      - Blob_Circularity
-        - The example of a Blob algorithm that outputs circularity results.
-        - circularity 결과를 출력하는 Blob 알고리즘의 예제. 
-      - Blob_Contour
-        - The example of Blob algorithm that output in the form of a contour.
-        - 연결 요소 검출 알고리즘의 윤곽선 형태로 출력하는 예제.
+  - [Object]      
+    - Blob_Area
+      - The example of a Blob algorithm that outputs area results.
+      - 면적 크기 결과를 출력하는 Blob 알고리즘의 예제. 
+    - Blob_BoundaryRect
+      - The example of Blob algorithm that output in the form of a boundary box.
+      - 연결 요소 검출 알고리즘의 사각 경계 박스 형태로 출력하는 예제.
+    - Blob_BoundaryRect_ResultInfo
+      - The example of Blob algorithm that output in the form of a boundary box and result information.
+      - 연결 요소 검출 알고리즘의 사각 경계 박스 형태로 출력하고 결과 정보를 출력하는 예제.
+    - Blob_Circularity
+      - The example of a Blob algorithm that outputs circularity results.
+      - circularity 결과를 출력하는 Blob 알고리즘의 예제. 
+    - Blob_Contour
+      - The example of Blob algorithm that output in the form of a contour.
+      - 연결 요소 검출 알고리즘의 윤곽선 형태로 출력하는 예제.
+    - Blob_Contour_Perforated
+      - The example of Blob algorithm that output in the form of a perforated contour.
+      - 연결 요소 검출 알고리즘의 구멍 뚫린 윤곽선 형태로 출력하는 예제.
+    - Blob_ContourLength
+      - The example of a Blob algorithm that outputs contour length results.
+      - 윤곽선 길이 결과를 출력하는 Blob 알고리즘의 예제. 
+    - Blob_GravityCenter
+      - The example of a Blob algorithm that outputs gravity center results.
+      - 무게중심 결과를 출력하는 Blob 알고리즘의 예제. 
+    - Blob_Mean_Variance_StandardDeviation
+      - The example of a Blob algorithm that outputs mean, variance, standard deviation results.
+      - 평균, 분산, 표준 편차 결과를 출력하는 Blob 알고리즘의 예제
+    - Blob_Median_Quartile
+      - The example of a Blob algorithm that outputs median, 25 quartile and 75 quartile results.
+      - 중간값, 25사분위수, 75사분위수 결과를 출력하는 Blob 알고리즘의 예제
+    - Blob_Min_Max
+      - The example of a Blob algorithm that outputs min, max results.
+      - 최소값, 최대값 결과를 출력하는 Blob 알고리즘의 예제
+    - Blob_Sort
+      - The example of Blob algorithm that sorts and output the results.
+      - 연결 요소 검출 알고리즘의 결과를 정렬하여 출력하는 예제.
+    - Blob_SortClusterMode
+      - The example of outputting the result of the connection element detection algorithm as an alignment state ased on human judgment in a twodimensional plane.
+      - 연결 요소 검출 알고리즘의 결과를 2차원 평면에서 인간의 판단기준에서의 정렬 상태로 출력하는 예제.
 
 
 - [AI]
