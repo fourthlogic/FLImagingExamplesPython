@@ -100,7 +100,7 @@ def main():
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := gcd.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute.')
+			ErrorPrint(res, 'Failed to execute operation GCD.')
 			break
 		
 		arrLayer = [CGUIViewImageLayer() for i in range(EType.ETypeCount)]
