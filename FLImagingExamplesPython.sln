@@ -1002,6 +1002,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Channel Combination", "Chan
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ChannelCombination", "ChannelCombination\ChannelCombination.pyproj", "{32AE8AD2-77B0-4B66-A0A5-4F39E37EA86D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Conditional Extractor", "Conditional Extractor", "{8B82C2E5-8851-4351-A924-CEEBE3A4F7E6}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ConditionalExtractor_Scalar_Single", "ConditionalExtractor_Scalar_Single\ConditionalExtractor_Scalar_Single.pyproj", "{1D63E99E-A699-4DFD-AE41-3B2AB681061C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1592,6 +1596,8 @@ Global
 		{7A2EBC09-1BEA-460F-B74A-DC6F8C5AB6EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32AE8AD2-77B0-4B66-A0A5-4F39E37EA86D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{32AE8AD2-77B0-4B66-A0A5-4F39E37EA86D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D63E99E-A699-4DFD-AE41-3B2AB681061C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D63E99E-A699-4DFD-AE41-3B2AB681061C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2086,6 +2092,8 @@ Global
 		{7A2EBC09-1BEA-460F-B74A-DC6F8C5AB6EB} = {1FAB5DFC-5F7A-44E8-B551-0CFD6DCE03B3}
 		{42D812FD-D2FD-4828-BD65-E690121665FA} = {C7AE84F4-0805-49E9-8363-FD23EEC762CC}
 		{32AE8AD2-77B0-4B66-A0A5-4F39E37EA86D} = {42D812FD-D2FD-4828-BD65-E690121665FA}
+		{8B82C2E5-8851-4351-A924-CEEBE3A4F7E6} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
+		{1D63E99E-A699-4DFD-AE41-3B2AB681061C} = {8B82C2E5-8851-4351-A924-CEEBE3A4F7E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
