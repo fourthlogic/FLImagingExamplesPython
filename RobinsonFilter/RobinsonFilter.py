@@ -7,28 +7,23 @@ def main():
 
 	# 이미지 객체 선언 // Declare the image object
 	fliSourceImage = CFLImage()
-	fliDestinationImageX = CFLImage()
-	fliDestinationImageY = CFLImage()
+	fliDestinationImage1 = CFLImage()
+	fliDestinationImage2 = CFLImage()
 
 	# 이미지 뷰 선언 // Declare the image view
 	viewImageSrc = CGUIViewImage()
-	viewImageDstX = CGUIViewImage()
-	viewImageDstY = CGUIViewImage()
+	viewImageDst1 = CGUIViewImage()
+	viewImageDst2 = CGUIViewImage()
 
 	while True:
 		
 		# Source 이미지 로드 // Load the source image
-		if (res := fliSourceImage.Load('../../ExampleImages/ReduceDimensionMax2Dto1D/Source.flif')).IsFail():
+		if (res := fliSourceImage.Load('../../ExampleImages/EdgeDetection/Alphabat.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
 		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
-		if (res := fliDestinationImageX.Assign(fliSourceImage)).IsFail():
-			ErrorPrint(res, 'Failed to load the image file.')
-			break
-
-		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
-		if (res := fliDestinationImageY.Assign(fliSourceImage)).IsFail():
+		if (res := fliDestinationImage1.Assign(fliSourceImage)).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
@@ -38,13 +33,25 @@ def main():
 			break
 
 		# Destination 이미지 뷰 생성 // Create the destination image view
-		if (res := viewImageDstX.Create(612, 0, 1124, 512)).IsFail():
+		if (res := viewImageDst1.Create(612, 0, 1124, 512)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
 		# Destination 이미지 뷰 생성 // Create the destination image view
-		if (res := viewImageDstY.Create(1124, 0, 1636, 512)).IsFail():
+		if (res := viewImageDst2.Create(1124, 0, 1636, 512)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
+			break
+
+		# 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageSrc.SynchronizePointOfView(viewImageDst1)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize view.')
+			break
+
+		# 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageSrc.SynchronizePointOfView(viewImageDst2)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 
 		# Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the source image view
@@ -55,92 +62,83 @@ def main():
 
 		# Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageDstX.SetImagePtr(fliDestinationImageX)[0]).IsFail():
+		if (res := viewImageDst1.SetImagePtr(fliDestinationImage1)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
 		# Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageDstY.SetImagePtr(fliDestinationImageY)[0]).IsFail():
+		if (res := viewImageDst2.SetImagePtr(fliDestinationImage2)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SynchronizeWindow(viewImageDstX)[0]).IsFail():
+		if (res := viewImageSrc.SynchronizeWindow(viewImageDst1)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SynchronizeWindow(viewImageDstY)[0]).IsFail():
+		if (res := viewImageSrc.SynchronizeWindow(viewImageDst2)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
-		# Reduce Dimension Max 2D to 1D 객체 생성 // Create Reduce Dimension Max 2D to 1D object
-		reduceDimensionMax2Dto1D = CReduceDimensionMax2Dto1D()
+		# Robinson Filter 객체 생성 // Create Robinson Filter object
+		robinsonFilter = CRobinsonFilter()
 
 		# Source 이미지 설정 // Set the source image
-		reduceDimensionMax2Dto1D.SetSourceImage(fliSourceImage)
+		robinsonFilter.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		reduceDimensionMax2Dto1D.SetDestinationImage(fliDestinationImageX)
+		robinsonFilter.SetDestinationImage(fliDestinationImage1)
 
-		# 축소 차원 설정 // Set reduction dimension
-		reduceDimensionMax2Dto1D.SetReductionDimension(CReduceDimensionMax2Dto1D.EReductionDimension.X)
+		# 연산 모드 설정 // Set calculating mode
+		robinsonFilter.SetRobinsonMode(CRobinsonFilter.ERobinsonMode.AMP)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := reduceDimensionMax2Dto1D.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Reduce Dimension Max 2D to 1D.')
+		if (res := robinsonFilter.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute Robinson Filter.')
 			break
 
 		# Destination 이미지 설정 // Set the destination image
-		reduceDimensionMax2Dto1D.SetDestinationImage(fliDestinationImageY)
+		robinsonFilter.SetDestinationImage(fliDestinationImage2)
 
-		# 축소 차원 설정 // Set reduction dimension
-		reduceDimensionMax2Dto1D.SetReductionDimension(CReduceDimensionMax2Dto1D.EReductionDimension.Y)
+		# 연산 모드 설정 // Set calculating mode
+		robinsonFilter.SetRobinsonMode(CRobinsonFilter.ERobinsonMode.DIR)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := reduceDimensionMax2Dto1D.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Reduce Dimension Max 2D to 1D.')
+		if (res := robinsonFilter.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute Robinson Filter.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
 		layerSource = viewImageSrc.GetLayer(0)
-		layerDestinationX = viewImageDstX.GetLayer(0)
-		layerDestinationY = viewImageDstY.GetLayer(0)
+		layerDestination1 = viewImageDst1.GetLayer(0)
+		layerDestination2 = viewImageDst2.GetLayer(0)
 
 		# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
 		layerSource.Clear()
-		layerDestinationX.Clear()
-		layerDestinationY.Clear()
+		layerDestination1.Clear()
+		layerDestination2.Clear()
 
 		# 이미지 뷰 정보 표시 // Display image view information
 		flpPoint = CFLPoint[Double](0, 0)
 
 		if (res := layerSource.DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail() or \
-			(res := layerDestinationX.DrawTextCanvas(flpPoint, 'Destination Image(X Dimension)', EColor.YELLOW, EColor.BLACK, 30)).IsFail() or \
-			(res := layerDestinationY.DrawTextCanvas(flpPoint, 'Destination Image(Y Dimension)', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+			(res := layerDestination1.DrawTextCanvas(flpPoint, 'Destination Image(AMP)', EColor.YELLOW, EColor.BLACK, 30)).IsFail() or \
+			(res := layerDestination2.DrawTextCanvas(flpPoint, 'Destination Image(DIR)', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
 		# 이미지 뷰를 갱신 // Update image view
 		viewImageSrc.Invalidate(True)
-		viewImageDstX.Invalidate(True)
-		viewImageDstY.Invalidate(True)
-
-		# Image 크기에 맞게 view의 크기를 조정 // Zoom the view to fit the image size
-		if((res := (viewImageDstX.ZoomFit())).IsFail()):
-			ErrorPrint(res, 'Failed to zoom fit.')
-			break
-
-		if((res := (viewImageDstY.ZoomFit())).IsFail()):
-			ErrorPrint(res, 'Failed to zoom fit.')
-			break
+		viewImageDst1.Invalidate(True)
+		viewImageDst2.Invalidate(True)
 
 		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 // Wait until the image view is closed before exiting
-		while viewImageSrc.IsAvailable() and viewImageDstX.IsAvailable() and viewImageDstY.IsAvailable():
+		while viewImageSrc.IsAvailable() and viewImageDst1.IsAvailable() and viewImageDst2.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
 		break

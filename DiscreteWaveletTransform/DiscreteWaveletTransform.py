@@ -63,10 +63,10 @@ def main():
 		discreteWaveletTransform.SetDestinationImage(fliDestinationImage)
 
 		# Basis Function 설정 // Set Basis Function
-		discreteWaveletTransform.SetBasisFunction(CDiscreteWaveletTransform.EBasisFunction.Haar);
+		discreteWaveletTransform.SetBasisFunction(CDiscreteWaveletTransform.EBasisFunction.Haar)
 		
 		# 분해 단계 설정 // Set Decomposition Level
-		discreteWaveletTransform.SetDecompositionLevel(1);
+		discreteWaveletTransform.SetDecompositionLevel(1)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := discreteWaveletTransform.Execute()).IsFail():
@@ -96,8 +96,8 @@ def main():
 
 		# Image 크기에 맞게 view의 크기를 조정 // Zoom the view to fit the image size
 		if((res := (viewImageDst.ZoomFit())).IsFail()):
-			ErrorPrint(res, 'Failed to zoom fit.');
-			break;
+			ErrorPrint(res, 'Failed to zoom fit.')
+			break
 
 		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 // Wait until the image view is closed before exiting
 		while viewImageSrc.IsAvailable() and viewImageDst.IsAvailable():

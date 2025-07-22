@@ -69,7 +69,7 @@ def main():
 		channelRemoval.SetDestinationImage(fliDestinationImage)
 
 		# 삭제할 채널 설정 // Set channels to remove
-		channelRemoval.SetRemovalChannels(EChannelSelection.Channel_0);
+		channelRemoval.SetRemovalChannels(EChannelSelection.Channel_0)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := channelRemoval.Execute()).IsFail():

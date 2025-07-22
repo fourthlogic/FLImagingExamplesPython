@@ -91,8 +91,8 @@ def main():
 
 		# Image 크기에 맞게 view의 크기를 조정 // Zoom the view to fit the image size
 		if((res := (viewImageDst.ZoomFit())).IsFail()):
-			ErrorPrint(res, 'Failed to zoom fit.');
-			break;
+			ErrorPrint(res, 'Failed to zoom fit.')
+			break
 
 		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 // Wait until the image view is closed before exiting
 		while viewImageSrc.IsAvailable() and viewImageDst.IsAvailable():

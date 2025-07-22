@@ -69,13 +69,13 @@ def main():
 		meanCurvatureFlowWeighted.SetDestinationImage(fliDestinationImage)
 
 		# Algorithm 반복 수행 횟수 설정 // Set the number of iterations of an algorithm
-		meanCurvatureFlowWeighted.SetIteration(5);
+		meanCurvatureFlowWeighted.SetIteration(5)
 
 		# Time Step 설정 // Set the time step value
-		meanCurvatureFlowWeighted.SetTimeStep(1);
+		meanCurvatureFlowWeighted.SetTimeStep(1)
 
 		# Sigma 설정 // Set the sigma value
-		meanCurvatureFlowWeighted.SetSigma(0);
+		meanCurvatureFlowWeighted.SetSigma(0)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := meanCurvatureFlowWeighted.Execute()).IsFail():

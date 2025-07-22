@@ -603,6 +603,9 @@
       - RangeFilter
         - The example of an algorithm that detects image edges through difference between maximum and minimum value.
         - 최댓값과 최솟값의 차를 통해 이미지 경계를 검출하는 알고리즘 예제
+      - RobinsonFilter
+        - The example of an algorithm that detects image edges
+        - Robinson Operator를 사용하여 이미지 경계를 검출하는 알고리즘 예제
       - ScharrFilter
         - The example of an algorithm that processes a scharr differential filter to an image.
         - 이미지에서 scharr 미분 필터를 처리하는 알고리즘 예제.
