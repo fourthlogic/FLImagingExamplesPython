@@ -57,14 +57,14 @@ def main():
                 continue
 
             # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
-            if (res := arrViewImage[EType.Source.value].SynchronizePointOfView(arrViewImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to synchronize view\n")
+            if (res := arrViewImage[EType.Source.value].SynchronizePointOfView(arrViewImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to synchronize view\n")
                 bError = True
                 break
 
             # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
-            if (res := arrViewImage[EType.Source.value].SynchronizeWindow(arrViewImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to synchronize window.\n")
+            if (res := arrViewImage[EType.Source.value].SynchronizeWindow(arrViewImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to synchronize window.\n")
                 bError = True
                 break
         
@@ -80,8 +80,8 @@ def main():
         sBlob = CBlob()
 
         # 처리할 이미지 설정 // Set the image to process
-        if (res := sBlob.SetSourceImage(arrFliImage[EType.Source.value]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to set source image.\n")
+        if (res := sBlob.SetSourceImage(arrFliImage[EType.Source.value])[0]).IsFail():
+            ErrorPrint(res, "Failed to set source image.\n")
             break
 
         # Threshold 모드 설정. 여기서는 2중 Threshold에 두개의 조건의 And 조건을 참으로 설정한다.
@@ -112,10 +112,9 @@ def main():
 
         # Blob 결과들 중 Contour를 얻어옴 // Get Contour from Blob results
         # res는 (CResult, 변경된 flfaContours) 튜플을 반환 // res returns a (CResult, modified flfaContours) tuple
-        if (res := sBlob.GetResultContours(flfaContours))[0].IsFail():
-            ErrorPrint(res[0], "Failed to get boundary rects from the Blob object.")
+        if (res := sBlob.GetResultContours(flfaContours)[0]).IsFail():
+            ErrorPrint(res, "Failed to get boundary rects from the Blob object.")
             break
-        flfaContours = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # Paste 객체 생성 // Create Paste object
         sPaste = CPaste()
@@ -189,7 +188,7 @@ def main():
         for i in range(flfaContours.GetCount()):
             pFlrg = CFLRegion(flfaContours.GetAt(i))
 
-            # 폴리곤의 정점 정보를 콘솔에 출력 // Print polygon vertex information to the console
+            # Region의 정점 정보를 콘솔에 출력 // Print Region vertex information to the console
             print(f"Blob Result No. {i} : [")
 
             for j in range(pFlrg.GetCount()):
@@ -204,11 +203,9 @@ def main():
 
             flr = CFLRect[Double]()
 
-            # res는 (CResult, 변경된 flr) 튜플을 반환 // res returns a (CResult, modified flr) tuple
-            if (res := pFlrg.GetBoundaryRect(flr))[0].IsFail():
-                ErrorPrint(res[0], "Failed to get boundary rect.")
+            if (res := pFlrg.GetBoundaryRect(flr)[0]).IsFail():
+                ErrorPrint(res, "Failed to get boundary rect.")
                 break
-            flr = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
             flpDraw = CFLPoint[Double](flr.left, (flr.top + flr.bottom) * 0.5)
 
@@ -217,7 +214,7 @@ def main():
             arrLayer[EType.Source.value].DrawTextImage(flpDraw, strNumber, EColor.BLACK, EColor.YELLOW, 12, False, 0, EGUIViewImageTextAlignment.CENTER, None, 1.0, 1.0, EGUIViewImageFontWeight.BOLD, False)
         
         # 이전 루프에서 break가 발생했는지 다시 확인 (GetBoundaryRect 에러 시)
-        if 'res' in locals() and res[0].IsFail():
+        if 'res' in locals() and res.IsFail():
             break
 
         # 이미지 뷰를 갱신 합니다. // Update image view

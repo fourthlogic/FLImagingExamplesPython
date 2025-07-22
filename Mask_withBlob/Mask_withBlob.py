@@ -30,8 +30,8 @@ def main():
             break
 
         # Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the source image view
-        if (res := viewImageSrc.SetImagePtr(fliSrcImage))[0].IsFail():
-            ErrorPrint(res[0], "Failed to set image object on the image view.")
+        if (res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail():
+            ErrorPrint(res, "Failed to set image object on the image view.")
             break
 
         # Mask 이미지 뷰 생성 // Create mask image view
@@ -40,18 +40,18 @@ def main():
             break
 
         # Mask 이미지 뷰에 이미지를 디스플레이 // Display the image in the Mask image view
-        if (res := viewImageMask.SetImagePtr(fliMaskImage))[0].IsFail():
-            ErrorPrint(res[0], "Failed to set image object on the image view.\n")
+        if (res := viewImageMask.SetImagePtr(fliMaskImage)[0]).IsFail():
+            ErrorPrint(res, "Failed to set image object on the image view.\n")
             break
 
         # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
-        if (res := viewImageSrc.SynchronizePointOfView(viewImageMask))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view\n")
+        if (res := viewImageSrc.SynchronizePointOfView(viewImageMask)[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view\n")
             break
 
         # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
-        if (res := viewImageSrc.SynchronizeWindow(viewImageMask))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.\n")
+        if (res := viewImageSrc.SynchronizeWindow(viewImageMask)[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.\n")
             break
 
         # Image 크기에 맞게 view의 크기를 조정 // Zoom the view to fit the image size
@@ -63,8 +63,8 @@ def main():
         sBlob = CBlob()
 
         # 처리할 이미지 설정 // Set the image to process
-        if (res := sBlob.SetSourceImage(fliSrcImage))[0].IsFail():
-            ErrorPrint(res[0], "Failed to set source image.\n")
+        if (res := sBlob.SetSourceImage(fliSrcImage)[0]).IsFail():
+            ErrorPrint(res, "Failed to set source image.\n")
             break
 
         # Threshold 모드 설정. 여기서는 2중 Threshold에 두개의 조건의 And 조건을 참으로 설정한다.
@@ -97,10 +97,9 @@ def main():
 
         # Blob 결과들 중 Contour를 얻어옴 // Get Contour from Blob results
         # res는 (CResult, 변경된 flfaContours) 튜플을 반환 // res returns a (CResult, modified flfaContours) tuple
-        if (res := sBlob.GetResultContours(flfaContours))[0].IsFail():
-            ErrorPrint(res[0], "Failed to get boundary rects from the Blob object.")
+        if (res := sBlob.GetResultContours(flfaContours)[0]).IsFail():
+            ErrorPrint(res, "Failed to get boundary rects from the Blob object.")
             break
-        flfaContours = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # Mask 객체 생성 // Create Mask object
         sMask = CMask()
@@ -168,10 +167,9 @@ def main():
             flr = CFLRect[Double]()
 
             # res는 (CResult, 변경된 flr) 튜플을 반환 // res returns a (CResult, modified flr) tuple
-            if (res := pFlrg.GetBoundaryRect(flr))[0].IsFail():
-                ErrorPrint(res[0], "Failed to get boundary rect.")
+            if (res := pFlrg.GetBoundaryRect(flr)[0]).IsFail():
+                ErrorPrint(res, "Failed to get boundary rect.")
                 break
-            flr = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
             flpDraw = CFLPoint[Double](flr.left, (flr.top + flr.bottom) * 0.5)
 
@@ -180,7 +178,7 @@ def main():
             layerSrc.DrawTextImage(flpDraw, strNumber, EColor.BLACK, EColor.YELLOW, 12, False, 0, EGUIViewImageTextAlignment.CENTER, None, 1.0, 1.0, EGUIViewImageFontWeight.BOLD, False)
         
         # 이전 루프에서 break가 발생했는지 다시 확인 (GetBoundaryRect 에러 시)
-        if 'res' in locals() and res[0].IsFail():
+        if 'res' in locals() and res.IsFail():
             break
 
 
