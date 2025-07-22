@@ -84,7 +84,7 @@ def main():
 		topographicThreshold.SetDestinationImage(arrFliImage[EType.Destination1])
 
 		# 커널 크기 설정 // Set the Kernel Size
-		topographicThreshold.SetKernel(5);
+		topographicThreshold.SetKernel(5)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := topographicThreshold.Execute()).IsFail():
@@ -95,7 +95,7 @@ def main():
 		topographicThreshold.SetDestinationImage(arrFliImage[EType.Destination2])
 
 		# 커널 크기 설정 // Set the Kernel Size
-		topographicThreshold.SetKernel(7);
+		topographicThreshold.SetKernel(7)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := topographicThreshold.Execute()).IsFail():
@@ -106,7 +106,7 @@ def main():
 		topographicThreshold.SetDestinationImage(arrFliImage[EType.Destination3])
 
 		# 커널 크기 설정 // Set the Kernel Size
-		topographicThreshold.SetKernel(9);
+		topographicThreshold.SetKernel(9)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := topographicThreshold.Execute()).IsFail():

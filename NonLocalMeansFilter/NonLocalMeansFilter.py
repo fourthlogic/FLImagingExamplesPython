@@ -69,16 +69,16 @@ def main():
 		nonLocalMeansFilter.SetDestinationImage(fliDestinationImage)
 
 		# 처리할 Filter의 패치 커널 크기 설정 // Set the patch kernel size of the filter
-		nonLocalMeansFilter.SetPatchKernel(3);
+		nonLocalMeansFilter.SetPatchKernel(3)
 
 		# 처리할 Filter의 윈도우 커널 크기 설정 // Set the window kernel size of the filter
-		nonLocalMeansFilter.SetWindowKernel(7);
+		nonLocalMeansFilter.SetWindowKernel(7)
 
 		# Sigma (노이즈의 표준편차) 설정 // Set the sigma (standard deviation of the noise)
-		nonLocalMeansFilter.SetSigma(0.3);
+		nonLocalMeansFilter.SetSigma(0.3)
 
 		# H (필터링 파라미터) 설정 // Set the H (filtering parameter)
-		nonLocalMeansFilter.SetH(0.3);
+		nonLocalMeansFilter.SetH(0.3)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := nonLocalMeansFilter.Execute()).IsFail():

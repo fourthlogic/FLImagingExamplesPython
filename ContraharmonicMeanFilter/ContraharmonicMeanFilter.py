@@ -69,7 +69,7 @@ def main():
 		contraharmonicMeanFilter.SetDestinationImage(fliDestinationImage)
 
 		# 처리할 Filter의 커널 크기 설정 // Set the kernel size of the filter
-		contraharmonicMeanFilter.SetKernel(5);
+		contraharmonicMeanFilter.SetKernel(5)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := contraharmonicMeanFilter.Execute()).IsFail():
