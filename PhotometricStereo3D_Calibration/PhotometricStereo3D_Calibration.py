@@ -34,12 +34,12 @@ def main():
 
 		# Source 이미지 뷰에 이미지를 디스플레이 # Display the image in the source image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSource.SetImagePtr(fliSourceImage)[0].IsFail():
+		if (res := viewImageSource.SetImagePtr(fliSourceImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 		
 		# Calibration 이미지 로드 # Load the calibration image
-		if (res := fliCalibrationImage.Load('../../ExampleImages/PhotometricStereo3D/Calibrate.flif')).IsFail():
+		if (res := fliCalibrationImage.Load('C:/Users/junhy/source/repos/fourthlogic/ExampleImages/PhotometricStereo3D/Calibrate.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
@@ -53,7 +53,7 @@ def main():
 
 		# Calibration 이미지 뷰에 이미지를 디스플레이 # Display the image in the calibration image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCalibration.SetImagePtr(fliCalibrationImage)[0].IsFail():
+		if (res := viewImageCalibration.SetImagePtr(fliCalibrationImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 		
@@ -64,7 +64,7 @@ def main():
 
 		# Texture 이미지 뷰에 이미지를 디스플레이 # Display the image in the texture image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageTexture.SetImagePtr(fliTextureImage)[0].IsFail():
+		if (res := viewImageTexture.SetImagePtr(fliTextureImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 		
@@ -75,25 +75,25 @@ def main():
 		
 		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSource.SynchronizePointOfView(viewImageTexture)[0].IsFail():
+		if (res := viewImageSource.SynchronizePointOfView(viewImageTexture)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 		
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSource.SynchronizeWindow(viewImageCalibration)[0].IsFail():
+		if (res := viewImageSource.SynchronizeWindow(viewImageCalibration)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 		
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSource.SynchronizeWindow(viewImageTexture)[0].IsFail():
+		if (res := viewImageSource.SynchronizeWindow(viewImageTexture)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSource.SynchronizeWindow(viewImage3D)[0].IsFail():
+		if (res := viewImageSource.SynchronizeWindow(viewImage3D)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 
