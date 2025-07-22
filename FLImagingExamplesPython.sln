@@ -1374,6 +1374,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gabor Filter", "Gabor Filte
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GaborFilter", "GaborFilter\GaborFilter.pyproj", "{8EDD30D6-C8FC-41B6-BBBD-90F5D8C8CF67}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MeanCurvatureFlow", "MeanCurvatureFlow\MeanCurvatureFlow.pyproj", "{64203A37-CBBD-47F2-A72E-651B023C9DD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mean Curvature Flow", "Mean Curvature Flow", "{8064707A-6E3C-467F-8D0F-84730EF2DDF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2244,6 +2248,8 @@ Global
 		{CEFF7157-2A6D-4A4E-93B5-20D91E3BFD2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EDD30D6-C8FC-41B6-BBBD-90F5D8C8CF67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8EDD30D6-C8FC-41B6-BBBD-90F5D8C8CF67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64203A37-CBBD-47F2-A72E-651B023C9DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64203A37-CBBD-47F2-A72E-651B023C9DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2923,6 +2929,8 @@ Global
 		{CEFF7157-2A6D-4A4E-93B5-20D91E3BFD2A} = {125E573C-0D9E-4ACD-8079-42E00C43475E}
 		{5EBB8BCB-CCC9-4BFB-8EF6-28281CF897A3} = {14E1333E-9C9E-49C6-BF0E-E62298B662FD}
 		{8EDD30D6-C8FC-41B6-BBBD-90F5D8C8CF67} = {5EBB8BCB-CCC9-4BFB-8EF6-28281CF897A3}
+		{64203A37-CBBD-47F2-A72E-651B023C9DD1} = {8064707A-6E3C-467F-8D0F-84730EF2DDF6}
+		{8064707A-6E3C-467F-8D0F-84730EF2DDF6} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}

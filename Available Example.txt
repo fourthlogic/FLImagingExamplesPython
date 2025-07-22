@@ -586,6 +586,9 @@
       - HybridMedianFilter
         - The example of an algorithm that processes a hybrid median filter to an image.
         - 이미지에서 하이브리드 중앙값 필터를 처리하는 알고리즘 예제.
+      - MeanCurvatureFlow
+        - The example of an algorithm that applies mean curvature flow to an image.
+        - 이미지에 Mean Curvature Flow(평균 곡률 흐름)를 적용하는 알고리즘 예제.
       - NonLocalMeansFilter
         - The example of an algorithm that processes a non local means filter to an image.
         - 이미지에서 Non Local Means 필터를 처리하는 알고리즘 예제.
