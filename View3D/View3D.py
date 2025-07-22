@@ -17,43 +17,37 @@ def main():
     arr_view_image = [CGUIViewImage() for _ in range(EType.Count)]
     view3d = CGUIView3D()
 
-    res = None
+    res = CResult()
 
     while True:
-        # Load Model image
-        res = arr_image[EType.Model].Load("../../ExampleImages/View3D/mountain.flif")
-        if res.IsFail():
+        # Load Model image        
+        if (res := arr_image[EType.Model].Load("../../ExampleImages/View3D/mountain.flif")).IsFail():
             ErrorPrint(res, "Failed to load the image file.\n")
             break
 
-        # Load Texture image
-        res = arr_image[EType.Texture].Load("../../ExampleImages/View3D/mountain_texture.flif")
-        if res.IsFail():
-            ErrorPrint(res, "Failed to load the image file.\n")
+        # Load Texture image        
+        if (res := arr_image[EType.Texture].Load("../../ExampleImages/View3D/mountain_texture.flif")).IsFail():
+            ErrorPrint(res, "Failed to load the texture image file.\n")
             break
 
-        # Create model view
-        res = arr_view_image[EType.Model].Create(100, 0, 612, 512)
-        if res.IsFail():
+        # Create model view        
+        if (res := arr_view_image[EType.Model].Create(100, 0, 612, 512)).IsFail():
             ErrorPrint(res, "Failed to create the image view.\n")
             break
 
-        # Create texture view
-        res = arr_view_image[EType.Texture].Create(612, 0, 1124, 512)
-        if res.IsFail():
+        # Create texture view        
+        if (res := arr_view_image[EType.Texture].Create(612, 0, 1124, 512)).IsFail():
             ErrorPrint(res, "Failed to create the image view.\n")
             break
 
-        # Create 3D view
-        res = view3d.Create(1124, 0, 1636, 512)
-        if res.IsFail():
+        # Create 3D view        
+        if (res := view3d.Create(1124, 0, 1636, 512)).IsFail():
             ErrorPrint(res, "Failed to create the 3D view.\n")
             break
 
         b_error = False
-        for i in range(EType.Count):
-            res = arr_view_image[i].SetImagePtr(arr_image[i])
-            if res[0].IsFail():
+        for i in range(EType.Count):            
+            if (res := arr_view_image[i].SetImagePtr(arr_image[i])[0]).IsFail():
                 ErrorPrint(res, "Failed to set image object on the image view.\n")
                 b_error = True
                 break
@@ -61,26 +55,22 @@ def main():
         if b_error:
             break
 
-        # Synchronize views
-        res = arr_view_image[EType.Model].SynchronizePointOfView(arr_view_image[EType.Texture])
-        if res[0].IsFail():
+        # Synchronize views        
+        if (res := arr_view_image[EType.Model].SynchronizePointOfView(arr_view_image[EType.Texture])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize view\n")
             break
 
-        res = arr_view_image[EType.Model].SynchronizeWindow(arr_view_image[EType.Texture])
-        if res[0].IsFail():
+        if (res := arr_view_image[EType.Model].SynchronizeWindow(arr_view_image[EType.Texture])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize window.\n")
             break
 
-        res = arr_view_image[EType.Model].SynchronizeWindow(view3d)
-        if res[0].IsFail():
+        if (res := arr_view_image[EType.Model].SynchronizeWindow(view3d)[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize window.\n")
             break
 
         # Create height map object
-        fl3d_ohm = CFL3DObjectHeightMap(arr_image[EType.Model], arr_image[EType.Texture])
-        res = view3d.PushObject(fl3d_ohm)
-        if res.IsFail():
+        fl3d_ohm = CFL3DObjectHeightMap(arr_image[EType.Model], arr_image[EType.Texture])        
+        if (res := view3d.PushObject(fl3d_ohm)).IsFail():
             ErrorPrint(res, "Failed to set image object on the 3D view.\n")
             break
 
@@ -92,19 +82,16 @@ def main():
             layer.Clear()
         view3d.GetLayer(0).Clear()
 
-        position = CFLPoint[Double](0, 0)
-        res = arr_layer[EType.Model].DrawTextCanvas(position, "Model Image", EColor.YELLOW, EColor.BLACK, 30)
-        if res.IsFail():
+        position = CFLPoint[Double](0, 0)        
+        if (res := arr_layer[EType.Model].DrawTextCanvas(position, "Model Image", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
             ErrorPrint(res, "Failed to draw text.\n")
             break
 
-        res = arr_layer[EType.Texture].DrawTextCanvas(position, "Texture Image", EColor.YELLOW, EColor.BLACK, 30)
-        if res.IsFail():
+        if (res := arr_layer[EType.Texture].DrawTextCanvas(position, "Texture Image", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
             ErrorPrint(res, "Failed to draw text.\n")
             break
 
-        res = view3d.GetLayer(0).DrawTextCanvas(position, "3D View", EColor.YELLOW, EColor.BLACK, 30)
-        if res.IsFail():
+        if (res := view3d.GetLayer(0).DrawTextCanvas(position, "3D View", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
             ErrorPrint(res, "Failed to draw text.\n")
             break
         
