@@ -346,8 +346,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hole Filling", "Hole Fillin
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "HoleFilling", "HoleFilling\HoleFilling.pyproj", "{585A66B7-647D-492D-8681-55F5BC2CEF40}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Edge Detection", "Edge Detection", "{83860916-8689-4C90-B4B0-C545CA8430F7}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{A98B7AD3-ADF4-427D-9C96-A72383460893}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Mask_withBlob", "Mask_withBlob\Mask_withBlob.pyproj", "{CE405FCB-09E4-41AD-A36E-8AEDECB28185}"
