@@ -768,6 +768,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationModulo_Image", "Op
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ImageThreshold", "ImageThreshold\ImageThreshold.pyproj", "{86084F83-39DE-4AE8-808E-07695A8F1A41}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationPopcount", "OperationPopcount\OperationPopcount.pyproj", "{398A772F-C215-41E4-95BB-4FEA9DA42D37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1190,6 +1192,8 @@ Global
 		{83E3F31D-A064-4A3F-84D0-D7CA95AAC4BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86084F83-39DE-4AE8-808E-07695A8F1A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{86084F83-39DE-4AE8-808E-07695A8F1A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{398A772F-C215-41E4-95BB-4FEA9DA42D37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{398A772F-C215-41E4-95BB-4FEA9DA42D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1568,6 +1572,7 @@ Global
 		{874508D2-44DC-4DA0-BC85-39082108C422} = {62B7CCFF-16D7-46D7-B375-DAF139F4C433}
 		{83E3F31D-A064-4A3F-84D0-D7CA95AAC4BA} = {62B7CCFF-16D7-46D7-B375-DAF139F4C433}
 		{86084F83-39DE-4AE8-808E-07695A8F1A41} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
+		{398A772F-C215-41E4-95BB-4FEA9DA42D37} = {A2A1365F-5A7F-4E4C-9E67-149059D0EDC5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
