@@ -1,6 +1,13 @@
 ﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# Error 출력 함수 import // Import Error Output Function
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
+
+from ErrorPrint import *
 
 # 메인 함수 // Main function
 def main():
@@ -26,7 +33,7 @@ def main():
 		# Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the source image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SetImagePtr(fliSourceImage)[0]).IsFail():
-			ErrorPrint(res[0], 'Failed to set image object on the image view.')
+			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
@@ -82,16 +89,6 @@ def main():
 		break
 	
 	# End of main function
-
-
-
-# 에러 출력 함수 // Error printing function
-def ErrorPrint(res, str):
-	if len(str) > 1:
-		print(str)
-
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
-
 
 if __name__ == '__main__':
     main()
