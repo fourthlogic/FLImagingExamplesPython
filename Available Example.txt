@@ -589,6 +589,9 @@
       - MeanCurvatureFlow
         - The example of an algorithm that applies mean curvature flow to an image.
         - 이미지에 Mean Curvature Flow(평균 곡률 흐름)를 적용하는 알고리즘 예제.
+      - MeanCurvatureFlowWeighted
+        - The example of an algorithm that applies mean curvature flow to an image. (Edge preservation method of mean curvature flow algorithm)
+        - 이미지에 Mean Curvature Flow Weighted(평균 곡률 흐름)를 적용하는 알고리즘 예제. (Mean Curvature Flow의 엣지 보존 방식)
       - NonLocalMeansFilter
         - The example of an algorithm that processes a non local means filter to an image.
         - 이미지에서 Non Local Means 필터를 처리하는 알고리즘 예제.

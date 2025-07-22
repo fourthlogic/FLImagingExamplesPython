@@ -1384,6 +1384,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MeanCurvatureFlow", "MeanCu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mean Curvature Flow", "Mean Curvature Flow", "{8064707A-6E3C-467F-8D0F-84730EF2DDF6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mean Curvature Flow Weighted", "Mean Curvature Flow Weighted", "{7843F0BA-6241-4EE1-9F45-9DEFC39CDA06}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MeanCurvatureFlowWeighted", "MeanCurvatureFlowWeighted\MeanCurvatureFlowWeighted.pyproj", "{0B385163-6431-488B-957E-AF3E96480FE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2260,6 +2264,8 @@ Global
 		{8EDD30D6-C8FC-41B6-BBBD-90F5D8C8CF67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64203A37-CBBD-47F2-A72E-651B023C9DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{64203A37-CBBD-47F2-A72E-651B023C9DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B385163-6431-488B-957E-AF3E96480FE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B385163-6431-488B-957E-AF3E96480FE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2944,6 +2950,8 @@ Global
 		{8EDD30D6-C8FC-41B6-BBBD-90F5D8C8CF67} = {5EBB8BCB-CCC9-4BFB-8EF6-28281CF897A3}
 		{64203A37-CBBD-47F2-A72E-651B023C9DD1} = {8064707A-6E3C-467F-8D0F-84730EF2DDF6}
 		{8064707A-6E3C-467F-8D0F-84730EF2DDF6} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
+		{7843F0BA-6241-4EE1-9F45-9DEFC39CDA06} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
+		{0B385163-6431-488B-957E-AF3E96480FE3} = {7843F0BA-6241-4EE1-9F45-9DEFC39CDA06}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
