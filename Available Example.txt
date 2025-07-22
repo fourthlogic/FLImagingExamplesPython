@@ -482,6 +482,9 @@
     - AdaptiveThresholdMedian
       - Algorithm that binarizes images through regional thresholds using Median Filter.
       - 중앙 값 필터를 사용한 지역 임계값을 통해 이미지를 이진화하는 알고리즘.
+    - ImageThreshold
+      - An algorithm that binarizes an image using operand image as thresholds.
+      - Operand Image로 임계값 연산을 통해 이미지를 이진화하는 알고리즘.
 
   - [Utilities]
 
