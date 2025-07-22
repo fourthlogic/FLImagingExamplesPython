@@ -1,7 +1,5 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
-import tkinter as tk
-from tkinter import messagebox
 from ctypes import windll
 import clr
 import sys
