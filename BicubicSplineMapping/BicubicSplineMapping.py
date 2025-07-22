@@ -25,19 +25,19 @@ def main():
             break
 
         # 각 이미지 뷰의 시점을 동기화 한다. // Synchronize the viewpoint of each image view.
-        if (res := viewImage[0].SynchronizePointOfView(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view\n")
+        if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view\n")
             break
-        if (res := viewImage[1].SynchronizePointOfView(viewImage[2]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view\n")
+        if (res := viewImage[1].SynchronizePointOfView(viewImage[2])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view\n")
             break
 
         # 각 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the position of each image view window
-        if (res := viewImage[0].SynchronizeWindow(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.\n")
+        if (res := viewImage[0].SynchronizeWindow(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.\n")
             break
-        if (res := viewImage[1].SynchronizeWindow(viewImage[2]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.\n")
+        if (res := viewImage[1].SynchronizeWindow(viewImage[2])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.\n")
             break
 
         # 화면상에 잘 보이도록 좌표 90배율을 적용 // Apply 90 magnification to the coordinates so that they can be seen clearly on the screen

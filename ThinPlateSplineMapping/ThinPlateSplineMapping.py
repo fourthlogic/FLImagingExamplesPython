@@ -25,19 +25,19 @@ def main():
             break
 
         # 각 이미지 뷰의 시점을 동기화 한다. // Synchronize the viewpoint of each image view.
-        if (res := viewImage[0].SynchronizePointOfView(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view\n")
+        if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view\n")
             break
-        if (res := viewImage[1].SynchronizePointOfView(viewImage[2]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view\n")
+        if (res := viewImage[1].SynchronizePointOfView(viewImage[2])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view\n")
             break
 
         # 각 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the position of each image view window
-        if (res := viewImage[0].SynchronizeWindow(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.\n")
+        if (res := viewImage[0].SynchronizeWindow(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.\n")
             break
-        if (res := viewImage[1].SynchronizeWindow(viewImage[2]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.\n")
+        if (res := viewImage[1].SynchronizeWindow(viewImage[2])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.\n")
             break
 
         # 화면상에 잘 보이도록 좌표 90배율을 적용 // Apply 90 magnification to the coordinates so that they can be seen clearly on the screen
@@ -114,12 +114,9 @@ def main():
             flpSource = CFLPoint[Double]()
             flpDestination = CFLPoint[Double]()
 
-            # res는 (CResult, 변경된 flpSource, 변경된 flpDestination) 튜플을 반환 // res returns a (CResult, modified flpSource, modified flpDestination) tuple
-            if (res_get_cp := tps.GetControlPoint(k, flpSource, flpDestination))[0].IsFail():
-                ErrorPrint(res_get_cp[0], "Failed to get control point.")
+            if (res := tps.GetControlPoint(k, flpSource, flpDestination)[0]).IsFail():
+                ErrorPrint(res, "Failed to get control point.")
                 break
-            flpSource = res_get_cp[1] # ref 파라미터 결과 할당 // Assign ref parameter result
-            flpDestination = res_get_cp[2] # ref 파라미터 결과 할당 // Assign ref parameter result
 
             for i in range(3):
                 # Destination Vertex를 각 View Layer에 Drawing // Drawing the destination vertex to each view layer
