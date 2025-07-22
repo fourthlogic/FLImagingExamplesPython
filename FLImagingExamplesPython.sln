@@ -934,6 +934,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Permutation", "Permutation\
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TopographicThreshold", "TopographicThreshold\TopographicThreshold.pyproj", "{BA2A7247-6FF6-40CB-AA58-091D833CE868}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Square", "Square", "{B5B7DAEF-101E-4DE3-8C26-B1BB8CDFE679}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationSquare", "OperationSquare\OperationSquare.pyproj", "{720A83CD-079E-4D0B-89AB-EAFCA38255AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1476,6 +1480,8 @@ Global
 		{BA074331-D27C-4133-9C02-43E0E41D8B28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA2A7247-6FF6-40CB-AA58-091D833CE868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BA2A7247-6FF6-40CB-AA58-091D833CE868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{720A83CD-079E-4D0B-89AB-EAFCA38255AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{720A83CD-079E-4D0B-89AB-EAFCA38255AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1935,6 +1941,8 @@ Global
 		{18ECEB7F-AC04-4FD0-A6CF-50D03DB78F2F} = {6013EDBD-12D0-4E6A-A427-3BA98FFED02A}
 		{BA074331-D27C-4133-9C02-43E0E41D8B28} = {6013EDBD-12D0-4E6A-A427-3BA98FFED02A}
 		{BA2A7247-6FF6-40CB-AA58-091D833CE868} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
+		{B5B7DAEF-101E-4DE3-8C26-B1BB8CDFE679} = {DF146A85-CD97-4DBB-B9EB-71F83BA2B7EB}
+		{720A83CD-079E-4D0B-89AB-EAFCA38255AF} = {B5B7DAEF-101E-4DE3-8C26-B1BB8CDFE679}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
