@@ -1,44 +1,43 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+
 class CMessageReceiver(CFLBase):
 	
 	def __init__(self, viewImage: 'CGUIViewImage'):
+		super().__init__()
 		self.m_viewImage = viewImage
 
-		# 메세지를 전달 받기 위해 CBroadcastManager 에 구독 등록 // Subscribe to CBroadcastManager to receive messages
-		CBroadcastManager.Subscribe(self)
-		
+		# 메세지를 전달 받기 위해 CBroadcastManager 에 구독 등록 # Subscribe to CBroadcastManager to receive messages
+		CBroadcastManager.Subscribe(self, BroadcastCallback(self.OnReceiveBroadcast))
+
 		self.m_fliFirstPageAlignment = CFLQuad[float]()
 		self.m_fliLastPageAlignment = CFLQuad[float]()
 		
 	def __del__(self):
-		"""
-		CMessageReceiver destructor
-		Unsubscribe to stop receiving messages when the object is deleted
-		"""
+		# CMessageReceiver destructor
+		# Unsubscribe to stop receiving messages when the object is deleted
 		print("CMessageReceiver is deleted")
 		CBroadcastManager.Unsubscribe(self)
 	
 	def OnReceiveBroadcast(self, message: 'CBroadcastMessage'):
 		while True:
-			print("CMessageReceiver got message")
-			# message 가 null 인지 확인 // Verify message is null
+			# message 가 null 인지 확인 # Verify message is null
 			if message is None:
 				break
 
-			# GetCaller() 가 등록한 이미지뷰인지 확인 // Verify that GetCaller() is a registered image view
+			# GetCaller() 가 등록한 이미지뷰인지 확인 # Verify that GetCaller() is a registered image view
 			if message.GetCaller() != self.m_viewImage:
 				break
 
-			# 메세지의 채널을 확인 // Check the channel of the message
+			# 메세지의 채널을 확인 # Check the channel of the message
 			if message.GetChannel() == EGUIBroadcast.ViewImage_PostPageChange:
 				
 				print("CMessageReceiver page changed")
-				# 메세지를 호출한 객체를 CGUIViewImage 로 캐스팅 // Casting the object that called the message as CGUIViewImage
+				# 메세지를 호출한 객체를 CGUIViewImage 로 캐스팅 # Casting the object that called the message as CGUIViewImage
 				viewImage = message.GetCaller()
 				
-				# viewImage 가 null 인지 확인 // Verify viewImage is null
+				# viewImage 가 null 인지 확인 # Verify viewImage is null
 				if viewImage is None:
 					break
 
@@ -50,7 +49,7 @@ class CMessageReceiver(CFLBase):
 				i64CurPage = fliSrc.GetSelectedPageIndex()
 
 				if i64CurPage == 0:
-					# 이미지뷰의 3번 레이어 가져오기 // Get layer 3rd of image view
+					# 이미지뷰의 3번 레이어 가져오기 # Get layer 3rd of image view
 					wrapImageLayer = viewImage.GetLayer(3)
 					wrapImageLayer.DrawFigureImage(self.m_fliFirstPageAlignment, EColor.LIME, 1)
 
@@ -60,7 +59,7 @@ class CMessageReceiver(CFLBase):
 					wrapImageLayer.DrawTextImage(tpPoint, "First Page Alignment", EColor.CYAN)
 
 				elif i64CurPage == fliSrc.GetPageCount() - 1:
-					# 이미지뷰의 4번 레이어 가져오기 // Get layer 4th of image view
+					# 이미지뷰의 4번 레이어 가져오기 # Get layer 4th of image view
 					wrapImageLayer = viewImage.GetLayer(4)
 					wrapImageLayer.DrawFigureImage(self.m_fliLastPageAlignment, EColor.LIME, 1)
 
@@ -69,10 +68,11 @@ class CMessageReceiver(CFLBase):
 
 					wrapImageLayer.DrawTextImage(tpPoint, "Last Page Alignment", EColor.CYAN)
 
-				# 이미지뷰를 갱신 // Update the image view.
+				# 이미지뷰를 갱신 # Update the image view.
 				viewImage.Invalidate()
 
 			break
+
 
 # 메인 함수 # Main function
 def main():
@@ -121,25 +121,25 @@ def main():
 			break
 		
 		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SynchronizePointOfView(viewImageDst)[0]).IsFail():
 			ErrorPrint(res, "Failed to synchronize view.\n")
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SynchronizeWindow(viewImageDst)[0]).IsFail():
 			ErrorPrint(res, "Failed to synchronize window\n")
 			break
 		
 		# 이미지 뷰에 이미지를 디스플레이 # Display an image in an image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail():
 			ErrorPrint(res, "Failed to set image object on the image view.\n")
 			break
 
 		# Destination 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageDst.SetImagePtr(fliDstImage)[0]).IsFail():
 			ErrorPrint(res, "Failed to set image object on the image view.\n")
 			break
