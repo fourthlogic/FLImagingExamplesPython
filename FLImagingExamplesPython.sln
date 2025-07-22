@@ -1152,6 +1152,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Moment", "Moment", "{5E75A0
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Moment_Invariant", "Moment_Invariant\Moment_Invariant.pyproj", "{67E4F9C3-FE8E-433E-A570-A60E50EA4BEA}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Blob_ContourLength", "Blob_ContourLength\Blob_ContourLength.pyproj", "{8182BF6A-665D-45EB-846A-D6AD6466DD8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1852,6 +1854,8 @@ Global
 		{BA478C63-2F97-4D68-8B89-5F6338398636}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67E4F9C3-FE8E-433E-A570-A60E50EA4BEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{67E4F9C3-FE8E-433E-A570-A60E50EA4BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8182BF6A-665D-45EB-846A-D6AD6466DD8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8182BF6A-665D-45EB-846A-D6AD6466DD8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2421,6 +2425,7 @@ Global
 		{BA478C63-2F97-4D68-8B89-5F6338398636} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
 		{5E75A04A-37A8-4704-B6E1-09AFE6AAD2DC} = {9269FEB9-9F08-40B0-87AC-6EB222A916D5}
 		{67E4F9C3-FE8E-433E-A570-A60E50EA4BEA} = {5E75A04A-37A8-4704-B6E1-09AFE6AAD2DC}
+		{8182BF6A-665D-45EB-846A-D6AD6466DD8B} = {6B9D0368-75C3-4B52-A258-834FCF7B77A8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
