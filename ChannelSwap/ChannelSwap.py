@@ -74,7 +74,7 @@ def main():
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := ChannelSwap.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Census Transform.')
+			ErrorPrint(res, 'Failed to execute Channel Swap.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
