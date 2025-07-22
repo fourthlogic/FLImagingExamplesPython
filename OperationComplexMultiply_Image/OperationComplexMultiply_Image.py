@@ -89,7 +89,10 @@ def main():
 
 		# Source 이미지 설정 # Set the source image
 		complexMultiply.SetSourceImage(fliSourceImage)
-
+		
+		# Operand 이미지 설정 # Set the operand image
+		complexMultiply.SetOperandImage(fliOperandImage)
+		
 		# Destination 이미지 설정 # Set the destination image
 		complexMultiply.SetDestinationImage(fliDestinationImage)
 		

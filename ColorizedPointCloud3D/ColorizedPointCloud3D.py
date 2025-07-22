@@ -156,7 +156,7 @@ def main():
 		# Coordinate Adjustment 자동 설정 # Coordinate Adjustment Auto Set Flag
 		colorizedPointCloudGenerator.EnableAutoCoordinateAdjustment(True)
 		
-		# 앞서 설정된 파라미터 대로 알고리즘 Calibrate # Calibrate algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 Calibration 동작 # Calibrate algorithm according to previously set parameters
 		if (res := colorizedPointCloudGenerator.Calibrate()).IsFail():
 			ErrorPrint(res, 'Failed to execute Colorized Point Cloud Generator 3D.')
 			break
