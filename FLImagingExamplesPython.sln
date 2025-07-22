@@ -1350,6 +1350,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlobSubsampled_Sort", "Blob
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlobSubsampled_SortClusterMode", "BlobSubsampled_SortClusterMode\BlobSubsampled_SortClusterMode.pyproj", "{23DDB673-8C0F-4296-9204-B8B501592486}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ModulationTransferFunction", "ModulationTransferFunction\ModulationTransferFunction.pyproj", "{06C71D15-B039-4F58-9558-1D0B097C5065}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PeripheralLuminance", "PeripheralLuminance\PeripheralLuminance.pyproj", "{F46885EB-F3EE-44FF-B598-E7CD30DB27D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2202,6 +2206,10 @@ Global
 		{4539CBE0-3BDA-473A-8B43-145E91C39CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23DDB673-8C0F-4296-9204-B8B501592486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{23DDB673-8C0F-4296-9204-B8B501592486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06C71D15-B039-4F58-9558-1D0B097C5065}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06C71D15-B039-4F58-9558-1D0B097C5065}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F46885EB-F3EE-44FF-B598-E7CD30DB27D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F46885EB-F3EE-44FF-B598-E7CD30DB27D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2869,6 +2877,8 @@ Global
 		{80012D4A-EBE5-427E-9E8B-406AF17FB3BE} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
 		{4539CBE0-3BDA-473A-8B43-145E91C39CA6} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
 		{23DDB673-8C0F-4296-9204-B8B501592486} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
+		{06C71D15-B039-4F58-9558-1D0B097C5065} = {FE9AB51E-471D-4403-B008-F5379CE06885}
+		{F46885EB-F3EE-44FF-B598-E7CD30DB27D7} = {FE9AB51E-471D-4403-B008-F5379CE06885}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
