@@ -76,9 +76,9 @@ def main():
 		noiseGenerator.SetDestinationROI(rectROI)
 		
 		# 생성할 노이즈 타입 설정 // Set the noise type to generate
-		noiseGenerator.SetNoiseType(CNoiseGenerator.ENoiseType.GaussianNoise)
-		# 가우시안 분포의 평균과 표준편차 설정 // Set the mean and standard deviation of the Gaussian distribution
-		noiseGenerator.SetGaussianDistNoise(0.0, 0.05)
+		noiseGenerator.SetNoiseType(CNoiseGenerator.ENoiseType.SpeckleNoise)
+		# 간섭 잡음의 비율 설정 // Set the ratio of speckle noise
+		noiseGenerator.SetSpeckleNoise(0.05);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := noiseGenerator.Execute()).IsFail():

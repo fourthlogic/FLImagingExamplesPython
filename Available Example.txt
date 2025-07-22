@@ -378,6 +378,9 @@
         - GuidedFilter
           - The example of an algorithm that processes a guided filter to an image.
           - 이미지에서 guided 필터를 처리하는 알고리즘 예제.
+        - HybridMedianFilter
+          - The example of an algorithm that processes a hybrid median filter to an image.
+          - 이미지에서 하이브리드 중앙값 필터를 처리하는 알고리즘 예제.
 
       - [Edge Detection]
         - KirschFilter
@@ -396,6 +399,12 @@
         - GeometricMeanFilter
           - The example of an algorithm that processes a geometric mean filter to an image.
           - 이미지에서 기하 평균 필터를 처리하는 알고리즘 예제.
+        - HarmonicMeanFilter
+          - The example of an algorithm that processes a harmonic mean filter to an image.
+          - 이미지에서 조화 평균 필터를 처리하는 알고리즘 예제.
+        - MidpointFilter
+          - The example of an algorithm that processes midpoint filtering to an image.
+          - 이미지에서 midpoint 필터링을 처리하는 알고리즘 예제
         - SigmaFilter
           - The example of an algorithm that executes non-linear image smoothing.
           - 비선형 이미지를 스무딩해주는 알고리즘 예제.
@@ -411,23 +420,44 @@
 
   - [Image Operation]
   
+    - OperationAbsolute 
+      - The algorithm that performs absolute operation on the source image.
+      - 이미지에 절댓값 연산을 수행하는 알고리즘
     - OperationCompare
       - The algorithm that performs compare operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 비교 연산을 수행하는 알고리즘.
     - OperationComplexMultiply
       - The algorithm that performs Complex Multiply operation on the source image.
+    - OperationCubeRoot
+      - The algorithm that performs Cube Root operation on the source image.
+      - 이미지에 세제곱근 연산을 수행하는 알고리즘.
+    - OperationFourthRoot
+      - The algorithm that performs Fourth Root operation on the source image.
+      - 이미지에 제곱근 연산을 수행하는 알고리즘.
     - OperationGreater
       - The algorithm that performs Greater operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 Greater 연산을 수행하는 알고리즘.
     - OperationGreatestCommonDivisor
       - The algorithm that performs GCD operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 GCD 연산을 수행하는 알고리즘.
+    - OperationLeadingZeros
+      - The algorithm that performs calculation of leading zeros from the source image.
+      - 이미지에 Leading Zeros 연산을 수행하는 알고리즘    
     - OperationLesser
       - The algorithm that performs Lesser operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 Lesser 연산을 수행하는 알고리즘.
+    - OperationLogicalXnor
+      - Algorithm for performing Logical Xnor operations on an image.
+      - 이미지를 Logical Xnor 연산을 수행하는 알고리즘 예제.
     - OperationScaledDivide
       - The algorithm that performs a Scaled Divide operation with an image or scalar value.
       - 이미지를 스칼라 또는 다른 이미지와 스케일 나눗셈 연산을 수행하는 알고리즘.
+    - OperationScaledMultiply
+      - The algorithm that perform Scaled Multiply operation an image with scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 스케일 곱셈 연산을 수행하는 알고리즘.
+    - OperationScaledSubtract
+      - The algorithm that perform Scaled Subtract operation an image with scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 스케일 뺄셈 연산을 수행하는 알고리즘.
     - OperationSignedSquareDifference
       - The algorithm that perform Signed Square Difference operation an image with scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 부호 정보가 보존된 차이의 제곱 연산을 수행하는 알고리즘.
@@ -446,6 +476,28 @@
     - AdaptiveThresholdMedian
       - Algorithm that binarizes images through regional thresholds using Median Filter.
       - 중앙 값 필터를 사용한 지역 임계값을 통해 이미지를 이진화하는 알고리즘.
+
+  - [Utilities]
+
+   - [Generator]
+
+     - [NoiseGenerator]
+      
+       - NoiseGenerator_Gaussian
+         - The algorithm example for generating Gaussian noise within image region of interest.
+         - 이미지의 관심영역 내에서 가우시안 잡음을 생성하는 알고리즘 예제.
+       - NoiseGenerator_Photon
+         - The algorithm example for generating Photon noise within image region of interest.
+         - 이미지의 관심영역 내에서 광자양 잡음을 생성하는 알고리즘 예제.
+       - NoiseGenerator_SaltPepper
+         - The algorithm example for generating Salt And Pepper noise within image region of interest.
+         - 이미지의 관심영역 내에서 소금 후추잡음을 생성하는 알고리즘 예제.
+       - NoiseGenerator_Speckle
+         - The algorithm example for generating Speckle noise within image region of interest.
+         - 이미지의 관심영역 내에서 간섭 잡음을 생성하는 알고리즘 예제.
+       - NoiseGenerator_Uniform
+         - The algorithm example for generating Uniform noise within image region of interest.
+         - 이미지의 관심영역 내에서 균등 잡음을 생성하는 알고리즘 예제.
 
 - [Mapping]
 

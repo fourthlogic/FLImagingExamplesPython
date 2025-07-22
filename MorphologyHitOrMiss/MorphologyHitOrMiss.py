@@ -16,7 +16,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 // Load the source image
-		if (res := fliSourceImage.Load('../../ExampleImages/NoiseGenerator/Plate.flif')).IsFail():
+		if (res := fliSourceImage.Load('../../ExampleImages/Morphology/Monkey.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
@@ -59,30 +59,94 @@ def main():
 			ErrorPrint(res[0], 'Failed to synchronize window.')
 			break
 
-		# Noise Generator 객체 생성 // Create Noise Generator object
-		noiseGenerator = CNoiseGenerator()
+		# Hit or Miss 객체 생성 // Create Hit or Miss object
+		morphologyHitOrMiss = CMorphologyHitOrMiss()
 
 		# Source 이미지 설정 // Set the source image
-		noiseGenerator.SetSourceImage(fliSourceImage)
+		morphologyHitOrMiss.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		noiseGenerator.SetDestinationImage(fliDestinationImage)
+		morphologyHitOrMiss.SetDestinationImage(fliDestinationImage)
+				
+		# 커널 생성 // Set Kernel
+		# 1,  1,  0,  0,  0,  1, 1
+		# 1,  0, -1, -1, -1,  0, 1
+		# 0, -1, -1, -1, -1, -1, 0
+		# 0, -1, -1, -1, -1, -1, 0
+		# 0, -1, -1, -1,  1, -1, 0
+		# 1,  0, -1, -1, -1,  0, 1
+		# 1,  1,  0,  0,  0,  1, 1
 
-		# ROI 객체 생성 및 범위 설정 // Create ROI object and set range
-		rectROI = CFLRect[Int64](61,63,583,376)
+		list2Kernel = List[List[Single]]()
 
-		# 처리할 ROI 설정 // Set the ROI to be processed
-		noiseGenerator.SetSourceROI(rectROI)
-		noiseGenerator.SetDestinationROI(rectROI)
+		list2Kernel.Add(List[Single]())
+		list2Kernel[0].Add(1);
+		list2Kernel[0].Add(1);
+		list2Kernel[0].Add(0);
+		list2Kernel[0].Add(0);
+		list2Kernel[0].Add(0);
+		list2Kernel[0].Add(1);
+		list2Kernel[0].Add(1);
+
+		list2Kernel.Add(List[Single]())
+		list2Kernel[1].Add(1);
+		list2Kernel[1].Add(-1);
+		list2Kernel[1].Add(0);
+		list2Kernel[1].Add(0);
+		list2Kernel[1].Add(0);
+		list2Kernel[1].Add(-1);
+		list2Kernel[1].Add(1);
+
+		list2Kernel.Add(List[Single]())
+		list2Kernel[2].Add(0);
+		list2Kernel[2].Add(-1);
+		list2Kernel[2].Add(-1);
+		list2Kernel[2].Add(-1);
+		list2Kernel[2].Add(-1);
+		list2Kernel[2].Add(-1);
+		list2Kernel[2].Add(0);
 		
-		# 생성할 노이즈 타입 설정 // Set the noise type to generate
-		noiseGenerator.SetNoiseType(CNoiseGenerator.ENoiseType.GaussianNoise)
-		# 가우시안 분포의 평균과 표준편차 설정 // Set the mean and standard deviation of the Gaussian distribution
-		noiseGenerator.SetGaussianDistNoise(0.0, 0.05)
+		list2Kernel.Add(List[Single]())
+		list2Kernel[3].Add(0);
+		list2Kernel[3].Add(-1);
+		list2Kernel[3].Add(-1);
+		list2Kernel[3].Add(-1);
+		list2Kernel[3].Add(-1);
+		list2Kernel[3].Add(-1);
+		list2Kernel[3].Add(0);
+		
+		list2Kernel.Add(List[Single]())
+		list2Kernel[4].Add(0);
+		list2Kernel[4].Add(-1);
+		list2Kernel[4].Add(-1);
+		list2Kernel[4].Add(-1);
+		list2Kernel[4].Add(-1);
+		list2Kernel[4].Add(-1);
+		list2Kernel[4].Add(0);
+		
+		list2Kernel.Add(List[Single]())
+		list2Kernel[5].Add(1);
+		list2Kernel[5].Add(-1);
+		list2Kernel[5].Add(0);
+		list2Kernel[5].Add(0);
+		list2Kernel[5].Add(0);
+		list2Kernel[5].Add(-1);
+		list2Kernel[5].Add(1);
+		
+		list2Kernel.Add(List[Single]())
+		list2Kernel[6].Add(1);
+		list2Kernel[6].Add(1);
+		list2Kernel[6].Add(0);
+		list2Kernel[6].Add(0);
+		list2Kernel[6].Add(0);
+		list2Kernel[6].Add(1);
+		list2Kernel[6].Add(1);
+
+		morphologyHitOrMiss.SetKernel(list2Kernel)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := noiseGenerator.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Noise Generator.')
+		if (res := morphologyHitOrMiss.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute Hit or Miss.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
@@ -94,19 +158,9 @@ def main():
 		layerSource.Clear()
 		layerDestination.Clear()
 
-		# ROI 영역을 Source Image View에 출력 // Display the ROI area to Source Image View
-		if (res := layerSource.DrawFigureImage(rectROI, EColor.LIME)).IsFail():
-			ErrorPrint(res, 'Failed to draw Source ROI.')
-			break
-
-		# ROI 영역을 Destination Image View에 출력 // Display the ROI area to Destination Image View
-		if (res := layerDestination.DrawFigureImage(rectROI, EColor.LIME)).IsFail():
-			ErrorPrint(res, 'Failed to draw Destination ROI.')
-			break	
-		
 		# 이미지 뷰 정보 표시 // Display image view information
 		flpPoint = CFLPoint[Double](0, 0)
-
+		
 		if (res := layerSource.DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail() or \
 			(res := layerDestination.DrawTextCanvas(flpPoint, 'Destination Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
@@ -127,9 +181,9 @@ def main():
 
 
 # 에러 출력 함수 // Error printing function
-def ErrorPrint(res, str):
-	if len(str) > 1:
-		print(str)
+def ErrorPrint(res: CResult, string: str):
+	if len(string) > 1:
+		print(string)
 
 	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
