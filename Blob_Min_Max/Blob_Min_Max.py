@@ -43,15 +43,15 @@ def main():
 
     # 처리할 이미지 설정 // Set the image to process
     blob.SetSourceImage(fliImage)
-
+    
     # 논리 조건 설정
     blob.SetLogicalCondition(ELogicalCondition.Less)
 
     # 임계값 설정,  위의 조건과 아래의 조건이 합쳐지면 50보다 작은 객체를 검출
     blob.SetThreshold(50)
-
-    # Blob Result Type mask 생성 (Contour, Area)
-    resultTypeMask = Enum.ToObject(CBlob.EBlobResultType, int(CBlob.EBlobResultType.Contour) | int(CBlob.EBlobResultType.Area))
+        
+    # Blob Result Type mask 생성 (Contour, GravityCenter)
+    resultTypeMask = Enum.ToObject(CBlob.EBlobResultType, int(CBlob.EBlobResultType.Contour) | int(CBlob.EBlobResultType.GravityCenter))
 
     # Result Type 설정
     blob.SetResultType(resultTypeMask)
@@ -60,52 +60,77 @@ def main():
     if (res := blob.Execute()).IsFail():
         ErrorPrint(res, "Failed to execute Blob.")
         return
-
-    # 면적이 100보다 작은 객체들을 제거
-    if (res := blob.Filter(CBlob.EFilterItem.Area, 50, ELogicalCondition.Less)).IsFail():
+    
+    # BoundaryRect의 20보다 작은 너비를 가진 객체들을 제거
+    if (res := blob.Filter(CBlob.EFilterItem.BoundaryRectWidth, 20, ELogicalCondition.Less)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
-
-    # Blob 결과를 얻어오기 위해 FigureArray 선언
-    flfaContours = CFLFigureArray()
-
-    # Blob 결과들 중 Contours 을 얻어옴
-    if (res := blob.GetResultContours(flfaContours)[0]).IsFail():
-        ErrorPrint(res, "Failed to get contours from the Blob object.")
+    
+    # circularity 가 0.9보다 작은 객체들을 제거
+    if (res := blob.Filter(CBlob.EFilterItem.Circularity, 0.9, ELogicalCondition.Less)).IsFail():
+        ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
-
+    
     # 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
     # 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
     layer = viewImage.GetLayer(0)
 
     # 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
     layer.Clear()
+    
+    # Blob 결과를 얻어오기 위해 FigureArray 선언
+    flfaContours = CFLFigureArray()
+    
+    flaItem = List[Int32]();
+    flaOrder = List[Int32]();
 
+    # Blob 결과들 중 Contours 을 얻어옴
+    if (res := blob.GetResultContours(flfaContours)[0]).IsFail():
+        ErrorPrint(res, "Failed to get contours from the Blob object.")
+        return
+    
+    imgStatistics = CImageStatistics()
+    
+    # 처리할 이미지 설정 // Set the image to process
+    imgStatistics.SetSourceImage(fliImage)
+    
     # flfaContours 는 Figure들의 배열이기 때문에 Layer에 넣기만 해도 모두 드로윙이 가능하다.
     # 아래 함수 DrawFigureImage는 Image좌표를 기준으로 하는 Figure를 Drawing 한다는 것을 의미하며 // The function DrawFigureImage below means drawing a picture based on the image coordinates
     # 맨 마지막 두개의 파라미터는 불투명도 값이고 1일경우 불투명, 0일경우 완전 투명을 의미한다. // The last two parameters are opacity values, which mean opacity for 1 day and complete transparency for 0 day.
     # 여기서 0.25이므로 옅은 반투명 상태라고 볼 수 있다.
     # 파라미터 순서 : 레이어 -> Figure 객체 -> 선 색 -> 선 두께 -> 면 색 -> 펜 스타일 -> 선 알파값(불투명도) -> 면 알파값 (불투명도) // Parameter order: Layer -> Figure object -> Line color -> Line thickness -> Face color -> Pen style -> Line alpha value (opacity) -> Area alpha value (opacity)
-    if (res := layer.DrawFigureImage(flfaContours, EColor.RED, 1, EColor.RED, EGUIViewImagePenStyle.Solid, 1.0, 0.25)).IsFail():
+    if (res := layer.DrawFigureImage(flfaContours, EColor.RED, 1, EColor.RED, EGUIViewImagePenStyle.Solid, 1.0, .25)).IsFail():
         ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
         return
 
-    # Image View 객체에 Index 출력, Contour Length 출력
-    strResult = ""
-    flsTextResult = ""
-
+    # Image View 객체에 Index 출력
     for i in range(flfaContours.GetCount()):
-        strResult = f"[{i}]\n"
-        flsTextResult = f"\nContour Length {flfaContours.GetAt(i).GetPerimeter():.2f}"
+        imgStatistics.SetSourceROI(flfaContours.GetAt(i));
+                
+        mvMin = CMultiVar[Double]()
+        mvMax = CMultiVar[Double]()
 
-        flpCenter = CFLPoint[Double](flfaContours.GetAt(i))
+        if (res := imgStatistics.GetMin(mvMin)[0]).IsFail():
+            ErrorPrint(res, "Failed to get Min Value from the Blob object.")
+            break
 
-        # Image View 결과 출력
-        layer.DrawTextImage(flpCenter, strResult, EColor.LIME, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
-        layer.DrawTextImage(flpCenter, flsTextResult, EColor.YELLOW, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
+        strMin = "Min : {:.3f}".format(mvMin.GetAt(0))
+        print("No. {} ".format(i) + strMin)
+        
+        if (res := imgStatistics.GetMax(mvMax)[0]).IsFail():
+            ErrorPrint(res, "Failed to get Max Value from the Blob object.")
+            break
+        
+        strMax = "Max : {:.3f}".format(mvMax.GetAt(0))
+        print("No. {} ".format(i) + strMax)
+        
+        flpContoursCenter = CFLPoint[Double](flfaContours.GetAt(i));        
+        strIndex = "[{}]\n\n\n".format(i)
+        strResult = "\n" + strMin + "\n" + strMax + "\n"
 
-        # 콘솔 결과 출력
-        print(f"[{i}] Contour Length {flfaContours.GetAt(i).GetPerimeter():.2f}\n")
+        layer.DrawTextImage(flpContoursCenter, strIndex, EColor.LIME, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
+        layer.DrawTextImage(flpContoursCenter, strResult, EColor.YELLOW, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
+        
 
     # 이미지 뷰를 갱신 합니다. // Update image view
     viewImage.Invalidate()

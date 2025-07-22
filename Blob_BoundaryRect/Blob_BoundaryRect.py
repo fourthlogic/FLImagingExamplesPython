@@ -24,7 +24,7 @@ def main():
         return
 
     # 이미지 뷰 생성 // Create image view
-    if res := viewImage.Create(200, 0, 968, 576).IsFail():
+    if (res := viewImage.Create(200, 0, 968, 576)).IsFail():
         ErrorPrint(res, "Failed to create the image view.\n")
         return
 
@@ -34,7 +34,7 @@ def main():
         return
 
     # Image 크기에 맞게 view의 크기를 조정 // Zoom the view to fit the image size
-    if res := viewImage.ZoomFit().IsFail():
+    if (res := viewImage.ZoomFit()).IsFail():
         ErrorPrint(res, "Failed to zoom fit\n")
         return
 
@@ -57,17 +57,17 @@ def main():
     blob.SetThreshold(100)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-    if res := blob.Execute().IsFail():
+    if (res := blob.Execute()).IsFail():
         ErrorPrint(res, "Failed to execute Blob.")
         return
     
 	# 50보다 같거나 큰 장변 길이를 가진 객체들을 제거
-    if res := blob.Filter(CBlob.EFilterItem.BoundaryRectWidth, 50, ELogicalCondition.GreaterEqual).IsFail():
+    if (res := blob.Filter(CBlob.EFilterItem.BoundaryRectWidth, 50, ELogicalCondition.GreaterEqual)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
     
 	# 50보다 같거나 큰 단변 길이를 가진 객체들을 제거
-    if res := blob.Filter(CBlob.EFilterItem.BoundaryRectHeight, 50, ELogicalCondition.GreaterEqual).IsFail():
+    if (res := blob.Filter(CBlob.EFilterItem.BoundaryRectHeight, 50, ELogicalCondition.GreaterEqual)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
 

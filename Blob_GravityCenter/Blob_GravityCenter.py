@@ -43,15 +43,15 @@ def main():
 
     # 처리할 이미지 설정 // Set the image to process
     blob.SetSourceImage(fliImage)
-
+    
     # 논리 조건 설정
     blob.SetLogicalCondition(ELogicalCondition.Less)
 
     # 임계값 설정,  위의 조건과 아래의 조건이 합쳐지면 50보다 작은 객체를 검출
     blob.SetThreshold(50)
-
-    # Blob Result Type mask 생성 (Contour, Area)
-    resultTypeMask = Enum.ToObject(CBlob.EBlobResultType, int(CBlob.EBlobResultType.Contour) | int(CBlob.EBlobResultType.Area))
+        
+    # Blob Result Type mask 생성 (Contour, GravityCenter)
+    resultTypeMask = Enum.ToObject(CBlob.EBlobResultType, int(CBlob.EBlobResultType.Contour) | int(CBlob.EBlobResultType.GravityCenter))
 
     # Result Type 설정
     blob.SetResultType(resultTypeMask)
@@ -60,17 +60,28 @@ def main():
     if (res := blob.Execute()).IsFail():
         ErrorPrint(res, "Failed to execute Blob.")
         return
-
-    # 면적이 100보다 작은 객체들을 제거
-    if (res := blob.Filter(CBlob.EFilterItem.Area, 50, ELogicalCondition.Less)).IsFail():
+    
+    # BoundaryRect의 20보다 작은 너비를 가진 객체들을 제거
+    if (res := blob.Filter(CBlob.EFilterItem.BoundaryRectWidth, 20, ELogicalCondition.Less)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
-
+    
+    # BoundaryRect의 20보다 작은 높이를 가진 객체들을 제거
+    if (res := blob.Filter(CBlob.EFilterItem.BoundaryRectHeight, 20, ELogicalCondition.Less)).IsFail():
+        ErrorPrint(res, "Blob filtering algorithm error occurred.")
+        return
+    
     # Blob 결과를 얻어오기 위해 FigureArray 선언
     flfaContours = CFLFigureArray()
+    flfGravityCenter = CFLFigureArray()
 
-    # Blob 결과들 중 Contours 을 얻어옴
+    # Blob 결과들 중 Contours를 얻어옴
     if (res := blob.GetResultContours(flfaContours)[0]).IsFail():
+        ErrorPrint(res, "Failed to get contours from the Blob object.")
+        return
+    
+    # Blob 결과들 중 Gravity Center 를 얻어옴
+    if (res := blob.GetResultGravityCenters(flfGravityCenter)[0]).IsFail():
         ErrorPrint(res, "Failed to get contours from the Blob object.")
         return
 
@@ -86,26 +97,29 @@ def main():
     # 맨 마지막 두개의 파라미터는 불투명도 값이고 1일경우 불투명, 0일경우 완전 투명을 의미한다. // The last two parameters are opacity values, which mean opacity for 1 day and complete transparency for 0 day.
     # 여기서 0.25이므로 옅은 반투명 상태라고 볼 수 있다.
     # 파라미터 순서 : 레이어 -> Figure 객체 -> 선 색 -> 선 두께 -> 면 색 -> 펜 스타일 -> 선 알파값(불투명도) -> 면 알파값 (불투명도) // Parameter order: Layer -> Figure object -> Line color -> Line thickness -> Face color -> Pen style -> Line alpha value (opacity) -> Area alpha value (opacity)
-    if (res := layer.DrawFigureImage(flfaContours, EColor.RED, 1, EColor.RED, EGUIViewImagePenStyle.Solid, 1.0, 0.25)).IsFail():
+    if (res := layer.DrawFigureImage(flfaContours, EColor.RED, 1, EColor.RED, EGUIViewImagePenStyle.Solid, 1.0, .25)).IsFail():
         ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
         return
 
-    # Image View 객체에 Index 출력, Contour Length 출력
-    strResult = ""
-    flsTextResult = ""
-
+    # Image View 객체에 Index 출력
     for i in range(flfaContours.GetCount()):
-        strResult = f"[{i}]\n"
-        flsTextResult = f"\nContour Length {flfaContours.GetAt(i).GetPerimeter():.2f}"
+        flpContoursCenter = CFLPoint[Double](flfaContours.GetAt(i));
+        flpfGravityCenter = CFLPoint[Double](flfGravityCenter.GetAt(i));
+        flfCrossHair = CFLFigureArray();
 
-        flpCenter = CFLPoint[Double](flfaContours.GetAt(i))
+        flfCrossHair = flpfGravityCenter.MakeCrossHair(10, True);
 
-        # Image View 결과 출력
-        layer.DrawTextImage(flpCenter, strResult, EColor.LIME, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
-        layer.DrawTextImage(flpCenter, flsTextResult, EColor.YELLOW, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
+        # Image View 출력
+        strIndex = "[{}]\n\n\n\n".format(i)
+        strTextResult = "\n\n\n\n\n\nGravity Center\nX : {:.2f} Y : {:.2f}".format(flpfGravityCenter.x, flpfGravityCenter.y)
 
-        # 콘솔 결과 출력
-        print(f"[{i}] Contour Length {flfaContours.GetAt(i).GetPerimeter():.2f}\n")
+        layer.DrawTextImage(flpContoursCenter, strIndex, EColor.LIME, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
+        layer.DrawTextImage(flpContoursCenter, strTextResult, EColor.YELLOW, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
+        layer.DrawFigureImage(flfCrossHair, EColor.ORANGERED, 1, EColor.ORANGERED, EGUIViewImagePenStyle.Solid, 1, 0.25)
+
+        # 콘솔에 출력
+        print("[{}] Gravity Center x : {:.2f}\ty : {:.2f} \n".format(i, flpfGravityCenter.x, flpfGravityCenter.y))
+        
 
     # 이미지 뷰를 갱신 합니다. // Update image view
     viewImage.Invalidate()

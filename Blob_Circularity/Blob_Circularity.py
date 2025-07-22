@@ -24,7 +24,7 @@ def main():
         return
 
     # 이미지 뷰 생성 // Create image view
-    if res := viewImage.Create(200, 0, 968, 576).IsFail():
+    if (res := viewImage.Create(200, 0, 968, 576)).IsFail():
         ErrorPrint(res, "Failed to create the image view.\n")
         return
 
@@ -34,7 +34,7 @@ def main():
         return
 
     # Image 크기에 맞게 view의 크기를 조정 // Zoom the view to fit the image size
-    if res := viewImage.ZoomFit().IsFail():
+    if (res := viewImage.ZoomFit()).IsFail():
         ErrorPrint(res, "Failed to zoom fit\n")
         return
 
@@ -57,12 +57,12 @@ def main():
     blob.SetResultType(resultTypeMask)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-    if res := blob.Execute().IsFail():
+    if (res := blob.Execute()).IsFail():
         ErrorPrint(res, "Failed to execute Blob.")
         return
     
     # Circularity가 0.85 보다 작은 객체들을 제거(원형에 가깝지 않은 객체 제거, 최대값 : 1.0)
-    if res := blob.Filter(CBlob.EFilterItem.Circularity, 0.85, ELogicalCondition.Less).IsFail():
+    if (res := blob.Filter(CBlob.EFilterItem.Circularity, 0.85, ELogicalCondition.Less)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
     
