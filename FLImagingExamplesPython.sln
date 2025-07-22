@@ -762,6 +762,12 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationMultiply_Scalar", 
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationMultiply_Image", "OperationMultiply_Image\OperationMultiply_Image.pyproj", "{8A70272E-0F66-4B94-8755-C03AAE0123D6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modulo", "Modulo", "{62B7CCFF-16D7-46D7-B375-DAF139F4C433}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationModulo_Scalar", "OperationModulo_Scalar\OperationModulo_Scalar.pyproj", "{874508D2-44DC-4DA0-BC85-39082108C422}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationModulo_Image", "OperationModulo_Image\OperationModulo_Image.pyproj", "{83E3F31D-A064-4A3F-84D0-D7CA95AAC4BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1178,6 +1184,10 @@ Global
 		{0E6A449B-90D2-470D-AC10-9694C5E70AFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A70272E-0F66-4B94-8755-C03AAE0123D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8A70272E-0F66-4B94-8755-C03AAE0123D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{874508D2-44DC-4DA0-BC85-39082108C422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{874508D2-44DC-4DA0-BC85-39082108C422}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83E3F31D-A064-4A3F-84D0-D7CA95AAC4BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83E3F31D-A064-4A3F-84D0-D7CA95AAC4BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1552,6 +1562,9 @@ Global
 		{DFE4E894-9B0C-4943-B77D-B7CB6BE1EB42} = {DF146A85-CD97-4DBB-B9EB-71F83BA2B7EB}
 		{0E6A449B-90D2-470D-AC10-9694C5E70AFC} = {DFE4E894-9B0C-4943-B77D-B7CB6BE1EB42}
 		{8A70272E-0F66-4B94-8755-C03AAE0123D6} = {DFE4E894-9B0C-4943-B77D-B7CB6BE1EB42}
+		{62B7CCFF-16D7-46D7-B375-DAF139F4C433} = {DF146A85-CD97-4DBB-B9EB-71F83BA2B7EB}
+		{874508D2-44DC-4DA0-BC85-39082108C422} = {62B7CCFF-16D7-46D7-B375-DAF139F4C433}
+		{83E3F31D-A064-4A3F-84D0-D7CA95AAC4BA} = {62B7CCFF-16D7-46D7-B375-DAF139F4C433}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
