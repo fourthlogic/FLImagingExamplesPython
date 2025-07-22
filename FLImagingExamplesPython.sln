@@ -1064,6 +1064,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ScharrFilter", "ScharrFilte
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Projection", "Projection\Projection.pyproj", "{12FBBE00-6A09-4B59-9BEB-392051D30A7C}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Flip", "Flip\Flip.pyproj", "{D5AE536B-2A0E-4E46-B60B-6977C64AFB3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1696,6 +1698,8 @@ Global
 		{C5E2511C-1029-4746-B002-7BC29C0DF1C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12FBBE00-6A09-4B59-9BEB-392051D30A7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{12FBBE00-6A09-4B59-9BEB-392051D30A7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5AE536B-2A0E-4E46-B60B-6977C64AFB3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5AE536B-2A0E-4E46-B60B-6977C64AFB3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2221,6 +2225,7 @@ Global
 		{B5C6DC47-F6C5-4F04-BE19-D78E1745A394} = {9410ECD0-99BA-4459-8382-3C8F70D23677}
 		{C5E2511C-1029-4746-B002-7BC29C0DF1C2} = {B5C6DC47-F6C5-4F04-BE19-D78E1745A394}
 		{12FBBE00-6A09-4B59-9BEB-392051D30A7C} = {9269FEB9-9F08-40B0-87AC-6EB222A916D5}
+		{D5AE536B-2A0E-4E46-B60B-6977C64AFB3E} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
