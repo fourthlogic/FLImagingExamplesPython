@@ -5,105 +5,111 @@ from FLImagingClrPy import *
 # 메인 함수 # Main function
 def main():
 	# 이미지 객체 선언 # Declare the image object
-	fliSourceImage = CFLImage()
-	fliDestinationImage = CFLImage()
+	fliSrcImage = CFLImage()
+	fliDstImage = CFLImage()
 
 	# 이미지 뷰 선언 # Declare the image view
-	viewImageSource = CGUIViewImage()
-	viewImageDestination = CGUIViewImage()
+	viewImageSrc = CGUIViewImage()
+	viewImageDst = CGUIViewImage()
 
 	res = CResult()
 
 	while True:
 		# Source 이미지 로드 # Load the source image
-		if ((res := fliSourceImage.Load("../../ExampleImages/NoiseImage/NoiseImage1.flif")).IsFail()):
+		if (res := fliSrcImage.Load("../../ExampleImages/NoiseImage/NoiseImage1.flif")).IsFail():
 			ErrorPrint(res, "Failed to load the image file. \n")
 			break
 
 		# Destination 이미지 로드 # Load the destination image
-		if (res := fliDestinationImage.Load("../../ExampleImages/NoiseImage/NoiseImage1.flif")).IsFail():
+		if (res := fliDstImage.Load("../../ExampleImages/NoiseImage/NoiseImage1.flif")).IsFail():
 			ErrorPrint(res, "Failed to load the image file. \n")
 			break
 
 		# Source 이미지 뷰 생성 # Create source image view
-		if ((res := viewImageSource.Create(100, 0, 550, 480)).IsFail()):
+		if (res := viewImageSrc.Create(100, 0, 550, 480)).IsFail():
 			ErrorPrint(res, "Failed to create the image view. \n")
 			break
 
 		# Destination 이미지 뷰 생성 # Create destination image view
-		if ((res := viewImageDestination.Create(550, 0, 1000, 480)).IsFail()):
+		if (res := viewImageDst.Create(550, 0, 1000, 480)).IsFail():
 			ErrorPrint(res, "Failed to create the image view. \n")
 			break
 
 		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
-		if ((res := viewImageSource.SynchronizePointOfView(viewImageDestination))[0].IsFail()):
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageSrc.SynchronizePointOfView(viewImageDst)[0]).IsFail():
 			ErrorPrint(res, "Failed to synchronize view. \n")
 			break
 
 		# Source 이미지 뷰에 이미지를 디스플레이 # Display the image in the source image view
-		if ((res := viewImageSource.SetImagePtr(fliSourceImage))[0].IsFail()):
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail():
 			ErrorPrint(res, "Failed to set image object on the image view. \n")
 			break
 
 		# Destination 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination image view
-		if ((res := viewImageDestination.SetImagePtr(fliDestinationImage))[0].IsFail()):
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageDst.SetImagePtr(fliDstImage)[0]).IsFail():
 			ErrorPrint(res, "Failed to set image object on the image view. \n")
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the positions of the two image view windows
-		if ((res := viewImageSource.SynchronizeWindow(viewImageDestination))[0].IsFail()):
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageSrc.SynchronizeWindow(viewImageDst)[0]).IsFail():
 			ErrorPrint(res, "Failed to synchronize window. \n")
 			break
 
-		# BilateralFilterGrid 객체 생성 # Create BilateralFilterGrid object
-		bilateralFilterGrid = CBilateralFilterGrid()
+		
+		# 알고리즘 객체 생성 # Create algorithm object
+		bfg = CBilateralFilterGrid()
 
 		# Source 이미지 설정 # Set the source image
-		bilateralFilterGrid.SetSourceImage(fliSourceImage)
-
+		if (res := bfg.SetSourceImage(fliSrcImage)[0]).IsFail():
+			break
 		# Destination 이미지 설정 # Set the destination image
-		bilateralFilterGrid.SetDestinationImage(fliDestinationImage)
-
-		# Sampling Rate Spatial 설정 # Set the Sampling Rate Spatial
-		bilateralFilterGrid.SetSamplingRateSpatial(2)
-
-		# Sampling Rate Range 설정 # Set the Sampling Rate Range
-		bilateralFilterGrid.SetSamplingRateRange(0.5)
-
-		bilateralFilterGrid.SetPaddingMethod(EPaddingMethod.DecreasingKernel)
-
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if ((res := bilateralFilterGrid.Execute()).IsFail()):
-			ErrorPrint(res, "Failed to execute Bilateral Filter Grid. \n")
+		if (res := bfg.SetDestinationImage(fliDstImage)[0]).IsFail():
+			break
+		# Sampling Rate Spatial 설정 # Set the sampling rate spatial
+		if (res := bfg.SetSamplingRateSpatial(2)).IsFail():
+			break
+		# Sampling Rate Range 설정 # Set the sampling rate range
+		if (res := bfg.SetSamplingRateRange(0.5)).IsFail():
+			break
+		# Padding Method 설정 # Set the padding method
+		if (res := bfg.SetPaddingMethod(EPaddingMethod.DecreasingKernel)).IsFail():
+			break
+		
+		# 알고리즘 수행 # Execute the algorithm
+		if (res := bfg.Execute()).IsFail():
+			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 
-
+		
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
-		layerSource = viewImageSource.GetLayer(0)
-		layerDestination = viewImageDestination.GetLayer(0)
+		layerSrc = viewImageSrc.GetLayer(0)
+		layerDst = viewImageDst.GetLayer(0)
 
 		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
-		layerSource.Clear()
-		layerDestination.Clear()
-
-		# 이미지 뷰 정보 표시 # Display image view information
-		flpPoint = CFLPoint[Double](0, 0)
-
-		if ((res := layerSource.DrawTextCanvas(flpPoint, "Source Image", EColor.YELLOW, EColor.BLACK, 30)).IsFail()):
-			ErrorPrint(res, "Failed to draw text. \n")
+		layerSrc.Clear()
+		layerDst.Clear()
+		
+		# View 정보를 디스플레이 합니다. # Display View information.
+		flpTemp = CFLPoint[Double](0, 0)
+		if (res := layerSrc.DrawTextImage(flpTemp, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+			ErrorPrint(res, "Failed to draw text.\n")
 			break
 
-		if ((res := layerDestination.DrawTextCanvas(flpPoint, "Destination Image", EColor.YELLOW, EColor.BLACK, 30)).IsFail()):
-			ErrorPrint(res, "Failed to draw text. \n")
+		if (res := layerDst.DrawTextImage(flpTemp, "Destination Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+			ErrorPrint(res, "Failed to draw text.\n")
 			break
 
 		# 이미지 뷰를 갱신 # Update image view
-		viewImageSource.Invalidate(True)
-		viewImageDestination.Invalidate(True)
+		viewImageSrc.Invalidate(True)
+		viewImageDst.Invalidate(True)
 
 		# 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close
-		while viewImageSource.IsAvailable() and viewImageDestination.IsAvailable():			
+		while viewImageSrc.IsAvailable() and viewImageDst.IsAvailable():			
 			CThreadUtilities.Sleep(1)
 
 		break

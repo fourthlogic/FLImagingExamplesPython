@@ -100,9 +100,11 @@ def main():
 		flpTemp = CFLPoint[Double](0, 0)
 		if (res := layerSrc.DrawTextImage(flpTemp, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, "Failed to draw text.\n")
+			break
 
 		if (res := layerDst.DrawTextImage(flpTemp, "Destination Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, "Failed to draw text.\n")
+			break
 						
 		# 이미지 뷰를 Zoom fit # Zoom fit image view
 		viewImageSrc.ZoomFit()

@@ -54,7 +54,7 @@ def main():
 			break
 
 
-		# 알고리즘 객체 생성 # Create Algorithm object
+		# 알고리즘 객체 생성 # Create algorithm object
 		alg = CHoleFilling()
 
 		# Source 이미지 설정 # Set the source image
@@ -104,10 +104,10 @@ def main():
 		mvThresholdValue2U64 = CMultiVar[UInt64](200, 240, 255)
 		if (res := alg.SetThresholdValue(EThresholdIndex.Second, mvThresholdValue2U64)).IsFail():
 			break
-
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
+		
+		# 알고리즘 수행 # Execute the algorithm
 		if (res := (alg.Execute())).IsFail():
-			ErrorPrint(res, "Failed to execute HoleFilling.")
+			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 		
 
@@ -124,9 +124,11 @@ def main():
 		flpTemp = CFLPoint[Double](0, 0)
 		if (res := layerSrc.DrawTextImage(flpTemp, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, "Failed to draw text.\n")
+			break
 
 		if (res := layerDst.DrawTextImage(flpTemp, "Destination Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, "Failed to draw text.\n")
+			break
 		
 		flfHoleContour = alg.GetSelectedPageFigureObject()
 		if (res := layerSrc.DrawFigureImage(flfHoleContour, EColor.CYAN)).IsFail():

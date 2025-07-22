@@ -42,17 +42,19 @@ def main():
 			break
 
 		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail():
 			ErrorPrint(res, "Failed to set image object on the image view.\n")
 			break
 
 		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageDst.SetImagePtr(fliDstImage)[0]).IsFail():
 			ErrorPrint(res, "Failed to set image object on the image view.\n")
 			break
 
 
-		# Active Contour 객체 생성 # Create Active Contour object
+		# 알고리즘 객체 생성 # Create algorithm object
 		ac = CActiveContour()
 
 		# Source 이미지 설정 # Set source image 
@@ -83,7 +85,7 @@ def main():
 
 		# 알고리즘 수행 # Execute the algorithm
 		if (res := (ac.Execute())).IsFail():
-			ErrorPrint(res, "Failed to execute Active Contour.")
+			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 
 
@@ -115,7 +117,6 @@ def main():
 
 			CThreadUtilities.Sleep(50)
 
-
 		viewImageSrc.PushBackFigureObject(ac.GetSourceROI())
 		
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
@@ -131,9 +132,11 @@ def main():
 		flpTemp = CFLPoint[Double](0, 0)
 		if (res := layerSrc.DrawTextImage(flpTemp, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, "Failed to draw text.\n")
+			break
 
 		if (res := layerDst.DrawTextImage(flpTemp, "Destination Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, "Failed to draw text.\n")
+			break
 			
 		# 이미지 뷰를 Zoom fit # Zoom fit image view
 		viewImageSrc.ZoomFit()
