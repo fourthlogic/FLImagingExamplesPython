@@ -12,11 +12,12 @@ def main():
 	# 이미지 뷰 선언 // Declare the image view
 	viewImageSrc = CGUIViewImage()
 	viewImageDst = CGUIViewImage()
+	viewImageRegion = CGUIViewImage()
 
 	while True:
 		
 		# Source 이미지 로드 // Load the source image
-		if (res := fliSourceImage.Load('../../ExampleImages/gainOffset/Color.flif')).IsFail():
+		if (res := fliSourceImage.Load('../../ExampleImages/NoiseImage/NoiseImage1.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
@@ -29,84 +30,113 @@ def main():
 		if (res := viewImageSrc.Create(100, 0, 612, 512)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
-
+		
 		# Destination 이미지 뷰 생성 // Create the destination image view
 		if (res := viewImageDst.Create(612, 0, 1124, 512)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
+		# Region 이미지 뷰 생성 // Create the region image view
+		if (res := viewImageRegion.Create(100, 512, 300, 712)).IsFail():
+			ErrorPrint(res, 'Failed to create the image view.')
+			break
+
 		# 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SynchronizePointOfView(viewImageDst)).IsFail():
-			ErrorPrint(res, 'Failed to synchronize view.')
+		if (res := viewImageSrc.SynchronizePointOfView(viewImageDst))[0].IsFail():
+			ErrorPrint(res[0], 'Failed to synchronize view.')
 			break
 
 		# Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the source image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SetImagePtr(fliSourceImage)).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
+		if (res := viewImageSrc.SetImagePtr(fliSourceImage))[0].IsFail():
+			ErrorPrint(res[0], 'Failed to set image object on the image view.')
 			break
-
+		
 		# Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageDst.SetImagePtr(fliDestinationImage)).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
+		if (res := viewImageDst.SetImagePtr(fliDestinationImage))[0].IsFail():
+			ErrorPrint(res[0], 'Failed to set image object on the image view.')
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SynchronizeWindow(viewImageDst)).IsFail():
-			ErrorPrint(res, 'Failed to synchronize window.')
+		if (res := viewImageSrc.SynchronizeWindow(viewImageDst))[0].IsFail():
+			ErrorPrint(res[0], 'Failed to synchronize window.')
 			break
 
-		# Gain Offset 객체 생성 // Create Gain Offset object
-		gainOffset = CGainOffset()
+		# Morphology Dilate 객체 생성 // Create Morphology Dilate object
+		medianWeighted = CMedianWeightedFilter()
 
 		# Source 이미지 설정 // Set the source image
-		gainOffset.SetSourceImage(fliDestinationImage)
+		medianWeighted.SetSourceImage(fliDestinationImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		gainOffset.SetDestinationImage(fliDestinationImage)
+		medianWeighted.SetDestinationImage(fliDestinationImage)
+		
+		# ROI 설정을 위한 CFLRect 객체 생성 // Create a CFLRect object for setting ROI
+		flrROI = CFLRect[int](100, 190, 500, 590);
 
-		# Gain 값 지정 // Set the Gain value
-		mvGain = CMultiVar[Double](2, 2, 2)
-		gainOffset.SetGain(mvGain)
-
-		# Offset 값 지정 // Set the Offset value
-		mvOffset = CMultiVar[Double](50, 50, 50)
-		gainOffset.SetOffset(mvOffset)
+		# Source ROI 설정 // Set the source roi
+		medianWeighted.SetSourceROI(flrROI)
+		
+		# 처리할 Morphology Kernel 의 (95, 75, 100, 80, 45.000000) 설정 // Set Morphology Kernel to L(95, 75, 100, 80, 45.000000)
+		flrRegion = CFLRect[int](95, 75, 100, 80, 45.000000);
+		medianWeighted.SetKernel(flrRegion);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := gainOffset.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Gain Offset.')
+		if (res := medianWeighted.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute Morphology Dilate.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
 		layerSource = viewImageSrc.GetLayer(0)
 		layerDestination = viewImageDst.GetLayer(0)
+		layerRegion = viewImageRegion.GetLayer(0)
 
 		# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
 		layerSource.Clear()
 		layerDestination.Clear()
+		layerRegion.Clear()
+		
+		# ROI영역이 어디인지 알기 위해 디스플레이 한다 // Display to find out where ROI is
+		# FLImaging의 Figure 객체들은 어떤 도형모양이든 상관없이 하나의 함수로 디스플레이가 가능 // FLimaging's Figure objects can be displayed as a function regardless of the shape
+		# 아래 함수 DrawFigureImage는 Image좌표를 기준으로 하는 Figure를 Drawing 한다는 것을 의미하며 // The function DrawFigureImage below means drawing a picture based on the image coordinates
+		# 맨 마지막 두개의 파라미터는 불투명도 값이고 1일경우 불투명, 0일경우 완전 투명을 의미한다. // The last two parameters are opacity values, which mean opacity for 1 day and complete transparency for 0 day.
+		# 파라미터 순서 : 레이어 -> Figure 객체 -> 선 색 -> 선 두께 -> 면 색 -> 펜 스타일 -> 선 알파값(불투명도) -> 면 알파값 (불투명도) // Parameter order: Layer -> Figure object -> Line color -> Line thickness -> Face color -> Pen style -> Line alpha value (opacity) -> Area alpha value (opacity)
+		if((res := (layerSource.DrawFigureImage(flrROI, EColor.LIME))).IsFail()):
+			ErrorPrint(res, "Failed to draw figure.\n");
+		
+		if((res := (layerDestination.DrawFigureImage(flrROI, EColor.LIME))).IsFail()):
+			ErrorPrint(res, "Failed to draw figure.\n");
 
-		# 이미지 뷰 정보 표시 // Display image view information
+        #Region 을 출력하는 부분 // Display Region ROI
+		if((res := (layerRegion.DrawFigureImage(flrRegion, EColor.LIME))).IsFail()):
+			ErrorPrint(res, "Failed to draw figure.\n");
+
+		# 이미지 뷰 정보 오후 9:51 2025-07-19표시 // Display image view information
 		flpPoint = CFLPoint[Double](0, 0)
-
+		
 		if (res := layerSource.DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
-
+		
 		if (res := layerDestination.DrawTextCanvas(flpPoint, 'Destination Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+			ErrorPrint(res, 'Failed to draw text.')
+			break
+
+		if (res := layerRegion.DrawTextCanvas(flpPoint, 'Region', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
 		# 이미지 뷰를 갱신 // Update image view
 		viewImageSrc.Invalidate(True)
 		viewImageDst.Invalidate(True)
+		viewImageRegion.Invalidate(True)
 
 		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 // Wait until the image view is closed before exiting
-		while viewImageSrc.IsAvailable() and viewImageDst.IsAvailable():
+		while viewImageSrc.IsAvailable() and viewImageDst.IsAvailable() and viewImageRegion.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
 		break
