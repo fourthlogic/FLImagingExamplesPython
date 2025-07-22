@@ -1190,6 +1190,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OCV_Regex", "OCV_Regex\OCV_
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "HoughTransformCircle", "HoughTransformCircle\HoughTransformCircle.pyproj", "{37B6AD59-272F-4928-A091-8A1482729C2B}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GrayLevelCooccurrenceMatrix", "GrayLevelCooccurrenceMatrix\GrayLevelCooccurrenceMatrix.pyproj", "{62C8F377-792C-49C6-8D69-058562BA69B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1922,6 +1924,8 @@ Global
 		{5FCB0BA4-8B2D-4FAC-8A7A-4F55BF917B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37B6AD59-272F-4928-A091-8A1482729C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{37B6AD59-272F-4928-A091-8A1482729C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C8F377-792C-49C6-8D69-058562BA69B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C8F377-792C-49C6-8D69-058562BA69B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2510,6 +2514,7 @@ Global
 		{F868EEBA-7583-4572-B53D-12B7FC9E2640} = {A9469B73-BC67-428A-8108-09A5DBACAF71}
 		{5FCB0BA4-8B2D-4FAC-8A7A-4F55BF917B34} = {A9469B73-BC67-428A-8108-09A5DBACAF71}
 		{37B6AD59-272F-4928-A091-8A1482729C2B} = {3503E896-1CF8-4055-93AF-CF1CBFC1BB0C}
+		{62C8F377-792C-49C6-8D69-058562BA69B7} = {9269FEB9-9F08-40B0-87AC-6EB222A916D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
