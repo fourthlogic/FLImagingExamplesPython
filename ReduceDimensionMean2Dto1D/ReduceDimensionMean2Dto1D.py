@@ -130,7 +130,7 @@ def main():
 		viewImageDstX.Invalidate(True)
 		viewImageDstY.Invalidate(True)
 
-		# 이미지와 이미지 뷰의 Sync 를 동일하게 맞춥니다.
+		# Image 크기에 맞게 view의 크기를 조정 // Zoom the view to fit the image size
 		if((res := (viewImageDstX.ZoomFit())).IsFail()):
 			ErrorPrint(res, 'Failed to zoom fit.');
 			break;

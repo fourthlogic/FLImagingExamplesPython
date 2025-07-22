@@ -16,7 +16,12 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 // Load the source image
-		if (res := fliSourceImage.Load('../../ExampleImages/ReduceDimensionCountMultiPageTo2D/Source.flif')).IsFail():
+		if (res := fliSourceImage.Load('../../ExampleImages/DiscreteWaveletTransform/Alphabat.flif')).IsFail():
+			ErrorPrint(res, 'Failed to load the image file.')
+			break
+
+		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
+		if (res := fliDestinationImage.Assign(fliSourceImage)).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
@@ -48,24 +53,24 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
-		# 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SynchronizePointOfView(viewImageDst)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize view.')
-			break
-
-		# Reduce Dimension Count Multi Page To 2D 객체 생성 // Create Reduce Dimension Count Multi Page To 2D object
-		reduceDimensionCountMultiPageTo2D = CReduceDimensionCountMultiPageTo2D()
+		# Discrete Wavelet Transform 객체 생성 // Create Discrete Wavelet Transform object
+		discreteWaveletTransform = CDiscreteWaveletTransform()
 
 		# Source 이미지 설정 // Set the source image
-		reduceDimensionCountMultiPageTo2D.SetSourceImage(fliSourceImage)
+		discreteWaveletTransform.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		reduceDimensionCountMultiPageTo2D.SetDestinationImage(fliDestinationImage)
+		discreteWaveletTransform.SetDestinationImage(fliDestinationImage)
+
+		# Basis Function 설정 // Set Basis Function
+		discreteWaveletTransform.SetBasisFunction(CDiscreteWaveletTransform.EBasisFunction.Haar);
+		
+		# 분해 단계 설정 // Set Decomposition Level
+		discreteWaveletTransform.SetDecompositionLevel(1);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := reduceDimensionCountMultiPageTo2D.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Reduce Dimension Count Multi Page To 2D.')
+		if (res := discreteWaveletTransform.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute Discrete Wavelet Transform.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display

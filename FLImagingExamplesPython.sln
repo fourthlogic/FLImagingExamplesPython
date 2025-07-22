@@ -1364,6 +1364,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DiscreteCosineTransform", "
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DiscreteSineTransform", "DiscreteSineTransform\DiscreteSineTransform.pyproj", "{1F746CA4-8195-4BAF-A746-192335591C2C}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DiscreteWaveletTransform", "DiscreteWaveletTransform\DiscreteWaveletTransform.pyproj", "{2ACB85CC-F7E5-441B-993F-BA00B6899137}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2228,6 +2230,8 @@ Global
 		{F461F3B0-A0EC-4ABF-9D8E-BAA60C99849D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F746CA4-8195-4BAF-A746-192335591C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F746CA4-8195-4BAF-A746-192335591C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ACB85CC-F7E5-441B-993F-BA00B6899137}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ACB85CC-F7E5-441B-993F-BA00B6899137}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2902,6 +2906,7 @@ Global
 		{96267A46-7637-4039-924C-028DA749E776} = {B22C988E-A9D4-499A-A3DF-4BA648CC97E3}
 		{F461F3B0-A0EC-4ABF-9D8E-BAA60C99849D} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
 		{1F746CA4-8195-4BAF-A746-192335591C2C} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
+		{2ACB85CC-F7E5-441B-993F-BA00B6899137} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
