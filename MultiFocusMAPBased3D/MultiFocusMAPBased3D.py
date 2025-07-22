@@ -114,8 +114,8 @@ def main():
 			break
 		
 
-		floDstObject.SetTextureImage(fliTxtImage)
-		floDstObject.ActivateVertexColorTexture(True)
+		# floDstObject.SetTextureImage(fliTxtImage)
+		# floDstObject.ActivateVertexColorTexture(True)
 
 		# 3D 이미지 뷰에 Height Map (Destination Image) 이미지를 디스플레이 # Display the Height Map (Destination Image) on the 3D image view
 		if view3DDst.PushObject(floDstObject).IsFail():

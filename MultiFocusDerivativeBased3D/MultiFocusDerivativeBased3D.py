@@ -71,22 +71,25 @@ def main():
 		if (res := algObject.SetDepthPitch(0.2)).IsFail():
 			break
 		# Filter 설정 # Set filter
-		if (res := algObject.SetFilter(CMultiFocusDerivativeBased3D.EFilter.Guided)).IsFail():
+		if (res := algObject.SetFilter(CMultiFocusDerivativeBased3D.EFilter.FLDenoisingType1)).IsFail():
 			break
-		# Set the sigma range value
-		if (res := algObject.SetSigmaSpatial(5)).IsFail():
+		if (res := algObject.SetFLDenoisingKernel(7)).IsFail():
 			break
-		# Set the sigma spatial value
-		if (res := algObject.SetSigmaRange(5)).IsFail():
+		if (res := algObject.SetFLDenoisingSigma(15.00)).IsFail():
+			break
+		if (res := algObject.SetFLDenoisingAmplitude(15.00)).IsFail():
+			break
+		if (res := algObject.EnableGaussianInterpolation(True)).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
 		if (res := algObject.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
+
 		
-		floDstObject.SetTextureImage(fliTxtImage)
-		floDstObject.ActivateVertexColorTexture(True)
+		# floDstObject.SetTextureImage(fliTxtImage)
+		# floDstObject.ActivateVertexColorTexture(True)
 		
 		# 3D 이미지 뷰에 Height Map (Destination Image) 이미지를 디스플레이 # Display the Height Map (Destination Image) on the 3D image view
 		if view3DDst.PushObject(floDstObject).IsFail():
