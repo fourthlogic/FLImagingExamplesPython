@@ -629,6 +629,15 @@
       - Bicubic facet model을 통해 추정된 이미지에서 일차, 이차 방향도함수를 계산하여 픽셀별 11가지 카테고리 분류를 하는 알고리즘.
 
   - [Transform]
+  
+    - [Affine]
+
+      - Move
+        - The example of image move transforms.
+        - 이미지 이동 변환의 예제.
+      - Scale
+        - The example of image scale transforms.
+        - 이미지 스케일 변환의 예제.
 
     - Census Transform
       - The example of an algorithm that performs the census transformation of images.
