@@ -42,20 +42,21 @@ def main():
         Dst2Layer0.DrawTextCanvas(CFLPoint[Double](0, 20), "Minimum Distance", EColor.CYAN, EColor.BLACK)
 
         # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
-        if (res := viewImage[0].SynchronizePointOfView(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
-        if (res := viewImage[2].SynchronizePointOfView(viewImage[3]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImage[2].SynchronizePointOfView(viewImage[3])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
         # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
         for i in range(1, 4):
-            if (res := viewImage[0].SynchronizeWindow(viewImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to synchronize window.")
+            if (res := viewImage[0].SynchronizeWindow(viewImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to synchronize window.")
                 break
-        if res[0].IsFail(): # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
+
+        if res.IsFail(): # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
             break
 
         # Figure 생성 // Create figure
@@ -85,40 +86,38 @@ def main():
         # Figure 사이의 최소 거리를 나타내는 점을 추출 // Get the point representing the minimum distance between figures
         flpaResult1 = CFLPointArray()
 
-        # res은 (CResult, 변경된 flpaResult1) 튜플을 반환 // res returns a (CResult, modified flpaResult1) tuple
-        if (res := flcSource1.GetPointsOfMinimumDistance(flqOperand1, flpaResult1))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
+        res, flpaResult1 = flcSource1.GetPointsOfMinimumDistance(flqOperand1, flpaResult1)
+        
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
             break
-
-        flpaResult1 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         flpaResult2 = CFLPointArray()
 
-        # res은 (CResult, 변경된 flpaResult2) 튜플을 반환 // res returns a (CResult, modified flpaResult2) tuple
-        if (res := flfaSource2.GetPointsOfMinimumDistance(flfaOperand2, flpaResult2))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
-            break
 
-        flpaResult2 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
+        res, flpaResult2 = flfaSource2.GetPointsOfMinimumDistance(flfaOperand2, flpaResult2)
+        
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
+            break
 
         # Figure 사이의 최소 거리를 계산 // Calculate the minimum distance between figures
         f64MinimumDistance1 = 0.0
 
-        # res은 (CResult, 변경된 f64MinimumDistance1) 튜플을 반환 // res returns a (CResult, modified f64MinimumDistance1) tuple
-        if (res := flcSource1.GetMinimumDistance(flqOperand1, f64MinimumDistance1))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
+        res, f64MinimumDistance1 = flcSource1.GetMinimumDistance(flqOperand1, f64MinimumDistance1)
+
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
             break
 
-        f64MinimumDistance1 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         f64MinimumDistance2 = 0.0
+        
+        res, f64MinimumDistance2 = flfaSource2.GetMinimumDistance(flfaOperand2, f64MinimumDistance2)
 
-        # res은 (CResult, 변경된 f64MinimumDistance2) 튜플을 반환 // res returns a (CResult, modified f64MinimumDistance2) tuple
-        if (res := flfaSource2.GetMinimumDistance(flfaOperand2, f64MinimumDistance2))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
             break
-
-        f64MinimumDistance2 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # 두 Point를 잇는 Line을 생성 // Create a line connecting two points
         fllMin1 = CFLLine[Double](flpaResult1.GetAt(0), flpaResult1.GetAt(1))

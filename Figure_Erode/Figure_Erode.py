@@ -28,27 +28,27 @@ def main():
         if (res := viewImage[3].Create(700, 500, 1200, 1000)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
-
+        
         # 각 이미지 뷰의 시점을 동기화 한다. // Synchronize the viewpoint of each image view.
-        if (res := viewImage[0].SynchronizePointOfView(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
-        if (res := viewImage[0].SynchronizePointOfView(viewImage[2]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImage[0].SynchronizePointOfView(viewImage[2])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
-        if (res := viewImage[0].SynchronizePointOfView(viewImage[3]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImage[0].SynchronizePointOfView(viewImage[3])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
         # 각 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the position of each image view window
-        if (res := viewImage[0].SynchronizeWindow(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.")
+        if (res := viewImage[0].SynchronizeWindow(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.")
             break
-        if (res := viewImage[0].SynchronizeWindow(viewImage[2]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.")
+        if (res := viewImage[0].SynchronizeWindow(viewImage[2])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.")
             break
-        if (res := viewImage[0].SynchronizeWindow(viewImage[3]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.")
+        if (res := viewImage[0].SynchronizeWindow(viewImage[3])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.")
             break
 
         # 화면에 출력하기 위해 Image View 에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
@@ -80,22 +80,22 @@ def main():
         # Erode function execution (KernelSize : 21, default kernel : Rectangle)
         flfaResult1 = CFLFigureArray()
         i64KernelSize = 21
+        
+        res, flfaResult1 = flrgSourceFig.Erode(i64KernelSize, i64KernelSize, flfaResult1)
 
-        # res는 (CResult, 변경된 flfaResult1) 튜플을 반환 // res returns a (CResult, modified flfaResult1) tuple
-        if (res := flrgSourceFig.Erode(i64KernelSize, i64KernelSize, flfaResult1))[0].IsFail():
-            ErrorPrint(res[0], "Failed to calculate.")
+        if res.IsFail():
+            ErrorPrint(res, "Failed to calculate.")
             break
-        flfaResult1 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # Erode 함수 실행 (KernelSize : 21, kernel shape : Circle)
         # Erode function execution (KernelSize : 21, kernel shape : Circle)
         flfaResult2 = CFLFigureArray()
-
-        # res는 (CResult, 변경된 flfaResult2) 튜플을 반환 // res returns a (CResult, modified flfaResult2) tuple
-        if (res := flrgSourceFig.Erode(i64KernelSize, i64KernelSize, flfaResult2, EKernelShape.Circle))[0].IsFail():
-            ErrorPrint(res[0], "Failed to calculate.")
+        
+        res, flfaResult2 = flrgSourceFig.Erode(i64KernelSize, i64KernelSize, flfaResult2, EKernelShape.Circle)
+        
+        if res.IsFail():
+            ErrorPrint(res, "Failed to calculate.")
             break
-        flfaResult2 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # Erode 함수 실행 (Figure Kernel : 반지름이 10인 원)
         # Erode function execution (Figure Kernel : Circle with radius 10)
@@ -110,12 +110,12 @@ def main():
         flpOffset.y -= fleForDrawing.GetCenter().y
 
         fleForDrawing.Offset(flpOffset)
-
-        # res는 (CResult, 변경된 flfaResult3) 튜플을 반환 // res returns a (CResult, modified flfaResult3) tuple
-        if (res := flrgSourceFig.Erode(fleKernel, flfaResult3))[0].IsFail():
-            ErrorPrint(res[0], "Failed to calculate.")
+        
+        res, flfaResult3 = flrgSourceFig.Erode(fleKernel, flfaResult3)
+        
+        if res.IsFail():
+            ErrorPrint(res, "Failed to calculate.")
             break
-        flfaResult3 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # View 에 결과 FigureArray 그리기 // Draw the resulting FigureArray in the View
         layer[1].DrawFigureImage(flfaResult1, EColor.BLACK, 5)

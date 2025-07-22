@@ -28,13 +28,13 @@ def main():
             break
 
         # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
-        if (res := viewImageNormalSort2D.SynchronizePointOfView(viewImageSort2DClusterMode))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImageNormalSort2D.SynchronizePointOfView(viewImageSort2DClusterMode)[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
         # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
-        if (res := viewImageNormalSort2D.SynchronizeWindow(viewImageSort2DClusterMode))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.")
+        if (res := viewImageNormalSort2D.SynchronizeWindow(viewImageSort2DClusterMode)[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.")
             break
 
         flfaNormalSort2D = CFLFigureArray(flfaSource)
@@ -101,12 +101,12 @@ def main():
 
             flrBoundary = CFLRect[Double]()
 
-            if (res := flfaCluster.GetBoundaryRect(flrBoundary))[0].IsFail():
-                ErrorPrint(res[0], "Failed to get boundary rect.")
+            res, flrBoundary = flfaCluster.GetBoundaryRect(flrBoundary)
+
+            if res.IsFail():
+                ErrorPrint(res, "Failed to get boundary rect.")
                 break
-
-            flrBoundary = res[1]
-
+            
             print(f"Sort2DClusterMode Cluster No. {i}")
 
             for j in range(flfaCluster.GetCount()):
@@ -119,7 +119,7 @@ def main():
                 layerSort2DClusterMode.DrawTextImage(flpCenter, f"{i},{j}", EColor.CYAN, EColor.BLACK, 12, False, 0.0, EGUIViewImageTextAlignment.CENTER_CENTER)
         
         # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
-        if 'res' in locals() and res[0].IsFail():
+        if 'res' in locals() and res.IsFail():
             break
 
         # 이미지 뷰를 갱신 합니다. // Update image view

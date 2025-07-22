@@ -44,20 +44,20 @@ def main():
 
         # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
         for i in range(1, 4):
-            if (res := viewImage[0].SynchronizePointOfView(viewImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to synchronize view")
+            if (res := viewImage[0].SynchronizePointOfView(viewImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to synchronize view")
                 break
 
-        if (res := viewImage[0].SynchronizePointOfView(viewImage[3]))[0].IsFail(): # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
+        if (res := viewImage[0].SynchronizePointOfView(viewImage[3])[0]).IsFail(): # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
             break
 
         # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
         for i in range(1, 4):
-            if (res := viewImage[0].SynchronizeWindow(viewImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to synchronize window.")
+            if (res := viewImage[0].SynchronizeWindow(viewImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to synchronize window.")
                 break
 
-        if (res := viewImage[0].SynchronizeWindow(viewImage[3]))[0].IsFail(): # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
+        if (res := viewImage[0].SynchronizeWindow(viewImage[3])[0]).IsFail(): # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
             break
 
         # 화면상에 잘 보이도록 좌표 0.5배율을 적용 // Apply 0.5 magnification to the coordinates so that they can be seen clearly on the screen
@@ -73,42 +73,38 @@ def main():
         # 도형의 최소 두께를 나타내는 점을 얻어옴 // Get a point representing the minimum thickness of the figure
         flpaResultMinPoints1 = CFLPointArray()
 
-        # res는 (CResult, 변경된 flpaResultMinPoints1) 튜플을 반환 // res returns a (CResult, modified flpaResultMinPoints1) tuple
-        if (res := flfSource.GetPointsOfMinimumThickness(flpaResultMinPoints1))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
-            break
+        res, flpaResultMinPoints1 = flfSource.GetPointsOfMinimumThickness(flpaResultMinPoints1)
 
-        flpaResultMinPoints1 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
+            break
 
         # 두께를 측정한 값들에 대해 Trimming 파라미터 적용하여 계산 // Calculated by applying trimming parameters to the measured thickness values
         flpaResultMinPoints2 = CFLPointArray()
 
-        # res는 (CResult, 변경된 flpaResultMinPoints2) 튜플을 반환 // res returns a (CResult, modified flpaResultMinPoints2) tuple
-        if (res := flfSource.GetPointsOfMinimumThickness(flpaResultMinPoints2, 0.01))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
-            break
+        res, flpaResultMinPoints2  = flfSource.GetPointsOfMinimumThickness(flpaResultMinPoints2, 0.01)
 
-        flpaResultMinPoints2 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
+            break
 
         # 도형의 최대 두께를 나타내는 점을 얻어옴 // Get a point representing the maximum thickness of the figure
         flpaResultMaxPoints1 = CFLPointArray()
 
-        # res는 (CResult, 변경된 flpaResultMaxPoints1) 튜플을 반환 // res returns a (CResult, modified flpaResultMaxPoints1) tuple
-        if (res := flfSource.GetPointsOfMaximumThickness(flpaResultMaxPoints1))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
-            break
+        res, flpaResultMaxPoints1 = flfSource.GetPointsOfMaximumThickness(flpaResultMaxPoints1)
 
-        flpaResultMaxPoints1 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
+            break
 
         # 두께를 측정한 값들에 대해 Trimming 파라미터 적용하여 계산 // Calculated by applying trimming parameters to the measured thickness values
         flpaResultMaxPoints2 = CFLPointArray()
 
-        # res는 (CResult, 변경된 flpaResultMaxPoints2) 튜플을 반환 // res returns a (CResult, modified flpaResultMaxPoints2) tuple
-        if (res := flfSource.GetPointsOfMaximumThickness(flpaResultMaxPoints2, 0.05))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
-            break
+        res, flpaResultMaxPoints2 = flfSource.GetPointsOfMaximumThickness(flpaResultMaxPoints2, 0.05)
 
-        flpaResultMaxPoints2 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
+            break
 
         # 도형의 최소 두께를 얻어옴 // Get the minimum thickness of the figure
         f64MinimumThickness1 = flfSource.GetMinimumThickness()

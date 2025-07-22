@@ -27,20 +27,20 @@ def main():
 
         # 각 이미지 뷰의 시점을 동기화 한다. // Synchronize the viewpoint of each image view.
         if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
         if (res := viewImage[1].SynchronizePointOfView(viewImage[2])[0]).IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
         # 각 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the position of each image view window
         if (res := viewImage[0].SynchronizeWindow(viewImage[1])[0]).IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.")
+            ErrorPrint(res, "Failed to synchronize window.")
             break
 
         if (res := viewImage[1].SynchronizeWindow(viewImage[2])[0]).IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.")
+            ErrorPrint(res, "Failed to synchronize window.")
             break
 
         # 화면에 출력하기 위해 Image View 에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
@@ -72,23 +72,21 @@ def main():
         flrgResult1 = CFLRegion()
         f64Epsilon1 = 10.0
 
-        # ref 파라미터 처리: 반환 튜플의 첫 번째 요소가 CResult, 두 번째 요소가 ref 파라미터의 변경된 값
-        if (res := flrgSourceFig.Reduce(f64Epsilon1, True, flrgResult1))[0].IsFail():
-            ErrorPrint(res[0], "Failed to calculate.")
-            break
+        res, flrgResult1 = flrgSourceFig.Reduce(f64Epsilon1, True, flrgResult1)
 
-        flrgResult1 = res[1] # Reduce 함수의 ref 파라미터 결과를 할당
+        if res.IsFail():
+            ErrorPrint(res, "Failed to calculate.")
+            break
 
         # Reduce 함수 실행 (Epsilon : 15.0) // Reduce function execution (Epsilon : 15.0)
         flrgResult2 = CFLRegion()
         f64Epsilon2 = 15.0
 
-        # ref 파라미터 처리
-        if (res := flrgSourceFig.Reduce(f64Epsilon2, True, flrgResult2))[0].IsFail():
-            ErrorPrint(res[0], "Failed to calculate.")
-            break
+        res, flrgResult2 = flrgSourceFig.Reduce(f64Epsilon2, True, flrgResult2)
 
-        flrgResult2 = res[1] # Reduce 함수의 ref 파라미터 결과를 할당
+        if res.IsFail():
+            ErrorPrint(res, "Failed to calculate.")
+            break
 
         # View 에 결과 Region 과 정점 그리기 // Draw the resulting Region and vertices in the View
         layer[1].DrawFigureImage(flrgResult1, EColor.CYAN, 3)

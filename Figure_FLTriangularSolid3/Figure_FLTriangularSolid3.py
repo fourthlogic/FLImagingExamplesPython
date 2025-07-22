@@ -24,13 +24,13 @@ def main():
             break
 
         # 각 3D 뷰의 시점을 동기화 한다. // Synchronize the viewpoint of each 3D view.
-        if (res := view3D[0].SynchronizePointOfView(view3D[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := view3D[0].SynchronizePointOfView(view3D[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
         # 각 3D 뷰 윈도우의 위치를 동기화 한다 // Synchronize the position of each 3D view window
-        if (res := view3D[0].SynchronizeWindow(view3D[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.")
+        if (res := view3D[0].SynchronizeWindow(view3D[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.")
             break
 
         # 각각의 3D View 에서 0번 레이어 가져오기 // Get Layer 0 from each 3D view

@@ -20,13 +20,13 @@ def main():
             break
 
         # 각 이미지 뷰의 시점을 동기화 한다. // Synchronize the viewpoint of each image view.
-        if (res := viewImage[0].SynchronizePointOfView(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
         # 각 이미지 뷰 윈도우의 위치를 동기화 한다. // Synchronize the position of each image view window.
-        if (res := viewImage[0].SynchronizeWindow(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.")
+        if (res := viewImage[0].SynchronizeWindow(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.")
             break
 
         # 화면상에 잘 보이도록 좌표 0.5배율을 적용 // Apply 0.5 magnification to the coordinates so that they can be seen clearly on the screen
@@ -70,13 +70,11 @@ def main():
 
         # Perspective Type으로 Warp 함수 동작 (Perspective, Bilinear 두 타입으로 함수 동작 가능)
         # Warp function works with perspective type (function can be operated with two types, perspective and bilinear)
-        # res는 (CResult, 변경된 flfaResult) 튜플을 반환 // res returns a (CResult, modified flfaResult) tuple
-        if (res := flfaSource.Warp(flqSourceRegion, flqTargetRegion, flfaResult, EWarpingType.Perspective))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
+        res, flfaResult = flfaSource.Warp(flqSourceRegion, flqTargetRegion, flfaResult, EWarpingType.Perspective)
+
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
             break
-
-        flfaResult = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
-
 
         # Source Figure 그리기 // Draw the Source Figure
         if (res := layer[0].DrawFigureImage(flfaSource, EColor.YELLOW, 3)).IsFail():

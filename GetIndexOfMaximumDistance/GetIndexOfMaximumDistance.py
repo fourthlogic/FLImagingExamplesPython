@@ -42,21 +42,21 @@ def main():
         Dst2Layer0.DrawTextCanvas(CFLPoint[Double](0, 20), "Index of Maximum Distance", EColor.CYAN, EColor.BLACK)
 
         # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
-        if (res := viewImage[0].SynchronizePointOfView(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
-        if (res := viewImage[2].SynchronizePointOfView(viewImage[3]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImage[2].SynchronizePointOfView(viewImage[3])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
         # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
         for i in range(1, 4):
-            if (res := viewImage[0].SynchronizeWindow(viewImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to synchronize window.")
+            if (res := viewImage[0].SynchronizeWindow(viewImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to synchronize window.")
                 break
 
-        if (res := viewImage[0].SynchronizeWindow(viewImage[3]))[0].IsFail():
+        if (res := viewImage[0].SynchronizeWindow(viewImage[3])[0]).IsFail():
             break
 
         # Figure 생성 // Create figure
@@ -86,23 +86,24 @@ def main():
         # Figure 사이의 최소 거리를 나타내는 인덱스를 추출 // Get the index of representing the minimum distance between figures
         flfaResultSrc1 = CFLFigureArray()
 
-        # res는 (CResult, 변경된 flfaResultSrc1) 튜플을 반환 // res returns a (CResult, modified flfaResultSrc1) tuple
-        if (res := flpaSource1.GetIndexOfMaximumDistance(flcDestination1, flfaResultSrc1))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
+        res, flfaResultSrc1 = flpaSource1.GetIndexOfMaximumDistance(flcDestination1, flfaResultSrc1)
+        
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
             break
-
-        flfaResultSrc1 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         flfaResultSrc2 = CFLFigureArray()
         flfaResultDst2 = CFLFigureArray()
-
-        # res는 (CResult, 변경된 flfaResultSrc2, 변경된 flfaResultDst2) 튜플을 반환 // res returns a (CResult, modified flfaResultSrc2, modified flfaResultDst2) tuple
-        if (res := flfaSource2.GetIndexOfMaximumDistance(flfaDestination2, flfaResultSrc2, True, True, flfaResultDst2))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
+        
+        # refVal은 (변경된 flfaResultSrc2, 변경된 flfaResultDst2) 튜플을 반환 // refVal returns a (modified flfaResultSrc2, modified flfaResultDst2) tuple
+        res, *refVal = flfaSource2.GetIndexOfMaximumDistance(flfaDestination2, flfaResultSrc2, True, True, flfaResultDst2)
+        
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
             break
 
-        flfaResultSrc2 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
-        flfaResultDst2 = res[2] # 두 번째 ref 파라미터 결과 할당 // Assign second ref parameter result
+        flfaResultSrc2 = refVal[0] # ref 파라미터 결과 할당 // Assign ref parameter result
+        flfaResultDst2 = refVal[1] # 두 번째 ref 파라미터 결과 할당 // Assign second ref parameter result
 
 
         # SourceView1의 0번 레이어에 Source, Destination Figure 그리기 // Draw Source and Destination Figure on Layer 0 of SourceView1
@@ -135,12 +136,11 @@ def main():
             flfaArrayDepth1 = CFLFigureArray(flfaSource2.GetAt(i))
             flrBoundary = CFLRect[Double]()
             
-            # res는 (CResult, 변경된 flrBoundary) 튜플을 반환 // res returns a (CResult, modified flrBoundary) tuple
-            if (res := flfaArrayDepth1.GetBoundaryRect(flrBoundary))[0].IsFail():
-                ErrorPrint(res[0], "Failed to get boundary rect.")
+            res, flrBoundary = flfaArrayDepth1.GetBoundaryRect(flrBoundary)
+            
+            if res.IsFail():
+                ErrorPrint(res, "Failed to get boundary rect.")
                 break
-
-            flrBoundary = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
             Src2Layer0.DrawFigureImage(flrBoundary, EColor.LIGHTBLUE, 1)
             Src2Layer0.DrawTextImage(flfaArrayDepth1.GetCenter(), f"{i}", EColor.LIGHTBLUE, EColor.BLACK, 12, False, 0.0, EGUIViewImageTextAlignment.CENTER_CENTER)
@@ -149,7 +149,7 @@ def main():
                 Src2Layer0.DrawTextImage(flfaArrayDepth1.GetAt(j).GetCenter(), f"{j}", EColor.CYAN, EColor.BLACK, 12, False, 0.0, EGUIViewImageTextAlignment.CENTER_CENTER)
         
         # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
-        if 'res' in locals() and res[0].IsFail():
+        if 'res' in locals() and res.IsFail():
             break
 
         for i in range(flfaDestination2.GetCount()):
@@ -171,12 +171,11 @@ def main():
         flfaArraySrcDepth1 = CFLFigureArray(flfaSource2.GetAt(flvSrcDepth1.v))
         flrBoundary2 = CFLRect[Double]()
         
-        # res는 (CResult, 변경된 flrBoundary2) 튜플을 반환 // res returns a (CResult, modified flrBoundary2) tuple
-        if (res := flfaArraySrcDepth1.GetBoundaryRect(flrBoundary2))[0].IsFail():
-            ErrorPrint(res[0], "Failed to get boundary rect for flrBoundary2.")
+        res, flrBoundary2 = flfaArraySrcDepth1.GetBoundaryRect(flrBoundary2)
+        
+        if res.IsFail():
+            ErrorPrint(res, "Failed to get boundary rect for flrBoundary2.")
             break
-
-        flrBoundary2 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
 
         Dst2Layer0.DrawFigureImage(flrBoundary2, EColor.LIGHTORANGE, 1)

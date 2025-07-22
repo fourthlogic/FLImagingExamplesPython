@@ -30,16 +30,16 @@ def main():
 
         for i in range(1, i32ViewCount):
             # 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoint of the image view
-            if (res := viewImage[0].SynchronizePointOfView(viewImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to synchronize view")
+            if (res := viewImage[0].SynchronizePointOfView(viewImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to synchronize view")
                 break
 
             # 이미지 뷰 윈도우의 위치를 맞춤 // Align the position of the image view window
-            if (res := viewImage[0].SynchronizeWindow(viewImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to synchronize window.")
+            if (res := viewImage[0].SynchronizeWindow(viewImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to synchronize window.")
                 break
         
-        if (res := viewImage[0].SynchronizeWindow(viewImage[i32ViewCount - 1]))[0].IsFail():
+        if (res := viewImage[0].SynchronizeWindow(viewImage[i32ViewCount - 1])[0]).IsFail():
             break
 
         # SourceView, DstView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, DstView
@@ -75,11 +75,11 @@ def main():
         flfaCenter = CFLFigureArray()
 
         # Figure Array 각 요소의 중심점 계산 // Calculate the center point of each element of Figure Array
-        # res는 (CResult, 변경된 flfaCenter) 튜플을 반환 // res returns a (CResult, modified flfaCenter) tuple
-        if (res := flfa.GetCenterElementwise(flfaCenter))[0].IsFail():
-            ErrorPrint(res[0], "Failed to calculate center elementwise.")
+        res, flfaCenter = flfa.GetCenterElementwise(flfaCenter)
+
+        if res.IsFail():
+            ErrorPrint(res, "Failed to calculate center elementwise.")
             break
-        flfaCenter = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # 중심들을 View0의 0번 레이어에 그리기 // Draw the centers on layer 0 of View0
         ViewLayer[0].DrawFigureImage(flfaCenter, EColor.RED)
@@ -100,16 +100,17 @@ def main():
         flfaPerimeter = CFLFigureArray()
 
         # Figure Array 각 요소의 둘레 계산 // Calculate the perimeter of each element of the Figure Array
-        # res는 (CResult, 변경된 flfaPerimeter) 튜플을 반환 // res returns a (CResult, modified flfaPerimeter) tuple
-        if (res := flfa.GetPerimeterElementwise(flfaPerimeter))[0].IsFail():
-            ErrorPrint(res[0], "Failed to calculate perimeter elementwise.")
+        res, flfaPerimeter = flfa.GetPerimeterElementwise(flfaPerimeter)
+
+        if res.IsFail():
+            ErrorPrint(res, "Failed to calculate perimeter elementwise.")
             break
-        flfaPerimeter = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # Figure Array 각 요소의 둘레 표시 // Display perimeter of each element of Figure Array
         for i in range(flfaPerimeter.GetCount()):
             strPerimeter = f"{CFLScalar[Double](flfaPerimeter.GetAt(i)).v}"
             ViewLayer[1].DrawTextImage(flfaCenter.GetAt(i), strPerimeter, EColor.BLACK)
+
         ViewLayer[1].DrawTextCanvas(CFLPoint[Double](0, 0), "GetPerimeterElementwise() Result", EColor.YELLOW, EColor.BLACK, 15)
 
         # 콘솔에 길이 표시 // Display the length in the console
@@ -127,11 +128,11 @@ def main():
         flfaCenterOfGravity = CFLFigureArray()
 
         # Figure Array 각 요소의 무게중심점 계산 // Calculate the center of gravity of each element of the Figure Array
-        # res는 (CResult, 변경된 flfaCenterOfGravity) 튜플을 반환 // res returns a (CResult, modified flfaCenterOfGravity) tuple
-        if (res := flfa.GetCenterOfGravityElementwise(flfaCenterOfGravity))[0].IsFail():
-            ErrorPrint(res[0], "Failed to calculate center of gravity elementwise.")
+        res, flfaCenterOfGravity = flfa.GetCenterOfGravityElementwise(flfaCenterOfGravity)
+
+        if res.IsFail():
+            ErrorPrint(res, "Failed to calculate center of gravity elementwise.")
             break
-        flfaCenterOfGravity = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # 무게중심들을 View0의 0번 레이어에 그리기 // Draw the centers of gravity on Layer 0 of View0
         ViewLayer[2].DrawFigureImage(flfaCenterOfGravity, EColor.CYAN)
@@ -152,11 +153,11 @@ def main():
         flfaMER = CFLFigureArray()
 
         # Figure Array 각 요소의 최소둘레 직사각형을 계산 // Calculate the minimum enclosing rectangle of each element of the Figure Array
-        # res는 (CResult, 변경된 flfaMER) 튜플을 반환 // res returns a (CResult, modified flfaMER) tuple
-        if (res := flfa.GetMinimumEnclosingRectangleElementwise(flfaMER))[0].IsFail():
-            ErrorPrint(res[0], "Failed to calculate minimum enclosing rectangle elementwise.")
+        res, flfaMER = flfa.GetMinimumEnclosingRectangleElementwise(flfaMER)
+
+        if res.IsFail():
+            ErrorPrint(res, "Failed to calculate minimum enclosing rectangle elementwise.")
             break
-        flfaMER = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # 최소둘레 직사각형들을 View0의 0번 레이어에 그리기 // Draw the minimum enclosing rectangle on Layer 0 of View0
         ViewLayer[3].DrawFigureImage(flfaMER, EColor.BLUE)

@@ -39,26 +39,23 @@ def main():
         Dst2Layer0.DrawTextCanvas(CFLPoint[Double](0, 0), "Result Figure 2", EColor.YELLOW, EColor.BLACK, 15)
 
         # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
-        # res는 반환된 튜플 전체를 가리킵니다. // res refers to the entire returned tuple.
-        if (res := viewImage[0].SynchronizePointOfView(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
         # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
-        # res는 반환된 튜플 전체를 가리킵니다. // res refers to the entire returned tuple.
-        if (res := viewImage[2].SynchronizePointOfView(viewImage[3]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImage[2].SynchronizePointOfView(viewImage[3])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
         # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
         for i in range(1, 4):
-            # res는 반환된 튜플 전체를 가리킵니다. // res refers to the entire returned tuple.
-            if (res := viewImage[0].SynchronizeWindow(viewImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to synchronize window.")
+            if (res := viewImage[0].SynchronizeWindow(viewImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to synchronize window.")
                 break
 
         # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
-        if (res := viewImage[0].SynchronizeWindow(viewImage[3]))[0].IsFail():
+        if (res := viewImage[0].SynchronizeWindow(viewImage[3])[0]).IsFail():
             break
 
         flfaSource1 = CFLFigureArray()

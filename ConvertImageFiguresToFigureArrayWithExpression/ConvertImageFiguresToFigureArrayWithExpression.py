@@ -38,17 +38,17 @@ def main():
         fliCopy.ClearFigures()
 
         # 이미지 뷰에 이미지를 디스플레이 // Display an image in an image view
-        if (res := viewImage[0].SetImagePtr(fliSource))[0].IsFail():
-            ErrorPrint(res[0], "Failed to set image object on the image view.")
+        if (res := viewImage[0].SetImagePtr(fliSource)[0]).IsFail():
+            ErrorPrint(res, "Failed to set image object on the image view.")
             break
 
         for i in range(1, 4):
             # 이미지 뷰에 이미지를 디스플레이 // Display an image in an image view
-            if (res := viewImage[i].SetImagePtr(fliCopy))[0].IsFail():
-                ErrorPrint(res[0], "Failed to set image object on the image view.")
+            if (res := viewImage[i].SetImagePtr(fliCopy)[0]).IsFail():
+                ErrorPrint(res, "Failed to set image object on the image view.")
                 break
         
-        if (res := viewImage[3].SetImagePtr(fliCopy))[0].IsFail():
+        if (res := viewImage[3].SetImagePtr(fliCopy)[0]).IsFail():
             break
 
         # SourceView, ResultView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, ResultView
@@ -64,21 +64,21 @@ def main():
 
         for i in range(1, 4):
             # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
-            if (res := viewImage[0].SynchronizePointOfView(viewImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to synchronize view")
+            if (res := viewImage[0].SynchronizePointOfView(viewImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to synchronize view")
                 break
         
-        if (res := viewImage[0].SynchronizePointOfView(viewImage[3]))[0].IsFail():
+        if (res := viewImage[0].SynchronizePointOfView(viewImage[3])[0]).IsFail():
             break
 
 
         # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
         for i in range(1, 4):
-            if (res := viewImage[0].SynchronizeWindow(viewImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to synchronize window.")
+            if (res := viewImage[0].SynchronizeWindow(viewImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to synchronize window.")
                 break
         
-        if (res := viewImage[0].SynchronizeWindow(viewImage[3]))[0].IsFail():
+        if (res := viewImage[0].SynchronizeWindow(viewImage[3])[0]).IsFail():
             break
 
         # 지원되는 연산자 : [, ] , { , }, (, ), +, -, *, / , ^, <, >, <= , =<, >= , =>, != , =!, =, == , &, &&, and, | , || , or
@@ -231,15 +231,13 @@ def main():
         # 조건식을 View에 표기 // Draw the conditional expression in the View
         layerResult1.DrawTextCanvas(CFLPoint[Double](0, 20), strExpression1, EColor.YELLOW, EColor.BLACK, 13)
 
-        # 조건식을 만족하는 Figure를 flfaResult1에 추출 // Extract the figure that satisfies the conditional expression to flfaResult1
         flfaResult1 = CFLFigureArray()
-
-        # res는 (CResult, 변경된 flfaResult1) 튜플을 반환 // res returns a (CResult, modified flfaResult1) tuple
-        if (res := CFigureUtilities.ConvertImageFiguresToFigureArrayWithExpression(strExpression1, fliSource, flfaResult1))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
+        # 조건식을 만족하는 Figure를 flfaResult1에 추출 // Extract the figure that satisfies the conditional expression to flfaResult1
+        res, flfaResult1 = CFigureUtilities.ConvertImageFiguresToFigureArrayWithExpression(strExpression1, fliSource, flfaResult1)
+        
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
             break
-
-        flfaResult1 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # 조건식 문자열 // Condition string
         strExpression2 = "Name == '2 Rubber' && Width > 90"
@@ -247,15 +245,13 @@ def main():
         # 조건식을 View에 표기 // Draw the conditional expression in the View
         layerResult2.DrawTextCanvas(CFLPoint[Double](0, 20), strExpression2, EColor.YELLOW, EColor.BLACK, 13)
 
-        # 조건식을 만족하는 Figure를 flfaResult2에 추출 // Get the figure that satisfies the conditional expression to flfaResult2
         flfaResult2 = CFLFigureArray()
+        # 조건식을 만족하는 Figure를 flfaResult2에 추출 // Get the figure that satisfies the conditional expression to flfaResult2
+        res, flfaResult2 = CFigureUtilities.ConvertImageFiguresToFigureArrayWithExpression(strExpression2, fliSource, flfaResult2)
 
-        # res는 (CResult, 변경된 flfaResult2) 튜플을 반환 // res returns a (CResult, modified flfaResult2) tuple
-        if (res := CFigureUtilities.ConvertImageFiguresToFigureArrayWithExpression(strExpression2, fliSource, flfaResult2))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
             break
-
-        flfaResult2 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # 조건식 문자열 // Condition string
         strExpression3 = "Center.x > mean('Center.x')"
@@ -263,15 +259,14 @@ def main():
         # 조건식을 View에 표기 // Draw the conditional expression in the View
         layerResult3.DrawTextCanvas(CFLPoint[Double](0, 20), strExpression3, EColor.YELLOW, EColor.BLACK, 13)
 
-        # 조건식을 만족하는 Figure를 flfaResult3에 추출 // Get the figure that satisfies the conditional expression to flfaResult3
         flfaResult3 = CFLFigureArray()
+        # 조건식을 만족하는 Figure를 flfaResult3에 추출 // Get the figure that satisfies the conditional expression to flfaResult3
+        res, flfaResult3 = CFigureUtilities.ConvertImageFiguresToFigureArrayWithExpression(strExpression3, fliSource, flfaResult3)
 
         # res는 (CResult, 변경된 flfaResult3) 튜플을 반환 // res returns a (CResult, modified flfaResult3) tuple
-        if (res := CFigureUtilities.ConvertImageFiguresToFigureArrayWithExpression(strExpression3, fliSource, flfaResult3))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
             break
-
-        flfaResult3 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # ResultView의 0번 레이어에 Result Figure 그리기 // Draw the Result Figure on Layer 0 of the ResultView
         layerResult1.DrawFigureImage(flfaResult1, EColor.BLACK, 3)

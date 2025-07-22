@@ -28,13 +28,13 @@ def main():
             break
 
         # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
-        if (res := viewImageCenterFirst.SynchronizePointOfView(viewImageAreaFirst))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImageCenterFirst.SynchronizePointOfView(viewImageAreaFirst)[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
         # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
-        if (res := viewImageCenterFirst.SynchronizeWindow(viewImageAreaFirst))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.")
+        if (res := viewImageCenterFirst.SynchronizeWindow(viewImageAreaFirst)[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.")
             break
 
         # 화면상에 잘 보이도록 좌표 1.5배율을 적용 // Apply 1.5 magnification to the coordinates so that they can be seen clearly on the screen

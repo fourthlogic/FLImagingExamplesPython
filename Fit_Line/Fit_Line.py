@@ -27,19 +27,19 @@ def main():
             break
 
         # 각 이미지 뷰의 시점을 동기화 한다. // Synchronize the viewpoint of each image view.
-        if (res := viewImage[0].SynchronizePointOfView(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
-        if (res := viewImage[1].SynchronizePointOfView(viewImage[2]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImage[1].SynchronizePointOfView(viewImage[2])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
         # 각 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the position of each image view window
-        if (res := viewImage[0].SynchronizeWindow(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.")
+        if (res := viewImage[0].SynchronizeWindow(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.")
             break
-        if (res := viewImage[1].SynchronizeWindow(viewImage[2]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.")
+        if (res := viewImage[1].SynchronizeWindow(viewImage[2])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.")
             break
 
         # 화면에 출력하기 위해 Image View 에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
@@ -58,12 +58,12 @@ def main():
 
         # 선 위의 점들을 추출 // Sample points on a line
         flfaSrc = CFLFigureArray()
-        # res는 (CResult, 변경된 flfaSrc) 튜플을 반환 // res returns a (CResult, modified flfaSrc) tuple
-        if (res := fll.GetSamplingPointsOnSegment(10, flfaSrc))[0].IsFail():
-            ErrorPrint(res[0], "Failed to calculate.")
-            break
 
-        flfaSrc = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
+        res, flfaSrc = fll.GetSamplingPointsOnSegment(10, flfaSrc)
+
+        if res.IsFail():
+            ErrorPrint(res, "Failed to calculate.")
+            break
 
         # Noise 가 추가된 PointArray 생성 // Create a PointArray with noise added
         flpaNoise = CFLPointArray()
@@ -98,12 +98,11 @@ def main():
         flpaOutlier2 = CFLPointArray()
 
         # Fit 함수 실행 (Parameter1) // Fit function execution (Parameter1)
-        # res는 (CResult, 변경된 listOutlierIndices2) 튜플을 반환 // res returns a (CResult, modified listOutlierIndices2) tuple
-        if (res := fllResult2.Fit(flpaNoise, i64OutlierThresholdCount2, f64OutlierThreshold2, listOutlierIndices2))[0].IsFail():
-            ErrorPrint(res[0], "Failed to calculate.")
+        res, listOutlierIndices2 = fllResult2.Fit(flpaNoise, i64OutlierThresholdCount2, f64OutlierThreshold2, listOutlierIndices2)
+        
+        if res.IsFail():
+            ErrorPrint(res, "Failed to calculate.")
             break
-
-        listOutlierIndices2 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # Outlier 인덱스로 Outlier PointArray 추가 // Add Outlier PointArray as Outlier Index
         for i in range(len(listOutlierIndices2)):
@@ -125,12 +124,11 @@ def main():
         flpaOutlier3 = CFLPointArray()
 
         # Fit 함수 실행 (Parameter2) // Fit function execution (Parameter2)
-        # res는 (CResult, 변경된 listOutlierIndices3) 튜플을 반환 // res returns a (CResult, modified listOutlierIndices3) tuple
-        if (res := fllResult3.Fit(flpaNoise, i64OutlierThresholdCount3, f64OutlierThreshold3, listOutlierIndices3))[0].IsFail():
-            ErrorPrint(res[0], "Failed to calculate.")
+        res, listOutlierIndices3 = fllResult3.Fit(flpaNoise, i64OutlierThresholdCount3, f64OutlierThreshold3, listOutlierIndices3)
+        
+        if res.IsFail():
+            ErrorPrint(res, "Failed to calculate.")
             break
-
-        listOutlierIndices3 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # Outlier 인덱스로 Outlier PointArray 추가 // Add Outlier PointArray as Outlier Index
         for i in range(len(listOutlierIndices3)):

@@ -42,21 +42,21 @@ def main():
         Dst2Layer0.DrawTextCanvas(CFLPoint[Double](0, 20), "Maximum Distance", EColor.CYAN, EColor.BLACK)
 
         # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
-        if (res := viewImage[0].SynchronizePointOfView(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
-        if (res := viewImage[2].SynchronizePointOfView(viewImage[3]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImage[2].SynchronizePointOfView(viewImage[3])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
         # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
         for i in range(1, 4):
-            if (res := viewImage[0].SynchronizeWindow(viewImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to synchronize window.")
+            if (res := viewImage[0].SynchronizeWindow(viewImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to synchronize window.")
                 break
 
-        if res[0].IsFail():
+        if res.IsFail():
             break
 
         # Figure 생성 // Create figure
@@ -86,40 +86,38 @@ def main():
         # Figure 사이의 최대 거리를 나타내는 점을 추출 // Get the point representing the maximum distance between figures
         flpaResult1 = CFLPointArray()
 
-        # res은 (CResult, 변경된 flpaResult1) 튜플을 반환 // res returns a (CResult, modified flpaResult1) tuple
-        if (res := flcSource1.GetPointsOfMaximumDistance(flqOperand1, flpaResult1))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
+        res, flpaResult1 = flcSource1.GetPointsOfMaximumDistance(flqOperand1, flpaResult1)
+
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
             break
 
-        flpaResult1 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         flpaResult2 = CFLPointArray()
+        
+        res, flpaResult2 = flfaSource2.GetPointsOfMaximumDistance(flfaOperand2, flpaResult2)
 
-        # res은 (CResult, 변경된 flpaResult2) 튜플을 반환 // res returns a (CResult, modified flpaResult2) tuple
-        if (res := flfaSource2.GetPointsOfMaximumDistance(flfaOperand2, flpaResult2))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
             break
-
-        flpaResult2 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # Figure 사이의 최대 거리를 계산 // Calculate the maximum distance between figures
-        f64MaximumDistance1 = 0.0 # C#의 double에 맞게 float 초기화 // Initialize as float to match C#'s double
+        f64MaximumDistance1 = 0.0
 
-        # res은 (CResult, 변경된 f64MaximumDistance1) 튜플을 반환 // res returns a (CResult, modified f64MaximumDistance1) tuple
-        if (res := flcSource1.GetMaximumDistance(flqOperand1, f64MaximumDistance1))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
+        res, f64MaximumDistance1 = flcSource1.GetMaximumDistance(flqOperand1, f64MaximumDistance1)
+        
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
             break
 
-        f64MaximumDistance1 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
-        f64MaximumDistance2 = 0.0 # C#의 double에 맞게 float 초기화 // Initialize as float to match C#'s double
-
-        # res은 (CResult, 변경된 f64MaximumDistance2) 튜플을 반환 // res returns a (CResult, modified f64MaximumDistance2) tuple
-        if (res := flfaSource2.GetMaximumDistance(flfaOperand2, f64MaximumDistance2))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
+        f64MaximumDistance2 = 0.0
+        
+        res, f64MaximumDistance2 = flfaSource2.GetMaximumDistance(flfaOperand2, f64MaximumDistance2)
+        
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
             break
-
-        f64MaximumDistance2 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # 두 Point를 잇는 Line을 생성 // Create a line connecting two points
         fllMax1 = CFLLine[Double](flpaResult1.GetAt(0), flpaResult1.GetAt(1))

@@ -40,22 +40,22 @@ def main():
 
         # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
         for i in range(1, 4):
-            if (res := viewImage[0].SynchronizePointOfView(viewImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to synchronize view")
+            if (res := viewImage[0].SynchronizePointOfView(viewImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to synchronize view")
                 break
 
         # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
-        if (res := viewImage[0].SynchronizePointOfView(viewImage[3]))[0].IsFail():
+        if (res := viewImage[0].SynchronizePointOfView(viewImage[3])[0]).IsFail():
             break
 
         # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
         for i in range(1, 4):
-            if (res := viewImage[0].SynchronizeWindow(viewImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to synchronize window.")
+            if (res := viewImage[0].SynchronizeWindow(viewImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to synchronize window.")
                 break
 
         # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
-        if (res := viewImage[0].SynchronizeWindow(viewImage[3]))[0].IsFail():
+        if (res := viewImage[0].SynchronizeWindow(viewImage[3])[0]).IsFail():
             break
             
         # Figure 생성 // Create figure
@@ -126,12 +126,12 @@ def main():
 
         # Region1과 겹쳐지는 Figure 추출 // Get figure overlapping with Region1
         flfaResult1 = CFLFigureArray()
-        # res는 (CResult, 변경된 flfaResult1) 튜플을 반환 // res returns a (CResult, modified flfaResult1) tuple
-        if (res := flfaSource.GetFigureWithinRegion(flcrRegion1, flfaResult1))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
-            break
 
-        flfaResult1 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
+        res, flfaResult1 = flfaSource.GetFigureWithinRegion(flcrRegion1, flfaResult1)
+        
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
+            break
 
         print("Result Figure Within Region1\n")
 
@@ -145,12 +145,12 @@ def main():
 
         # Region2과 겹쳐지는 Figure 추출 // Get figure overlapping with Region2
         flfaResult2 = CFLFigureArray()
-        # res는 (CResult, 변경된 flfaResult2) 튜플을 반환 // res returns a (CResult, modified flfaResult2) tuple
-        if (res := flfaSource.GetFigureWithinRegion(flcrRegion2, flfaResult2))[0].IsFail():
-            ErrorPrint(res[0], "Failed to process.")
-            break
 
-        flfaResult2 = res[1] # ref 파라미터 결과 할당 // Assign ref parameter result
+        res, flfaResult2 = flfaSource.GetFigureWithinRegion(flcrRegion2, flfaResult2)
+        
+        if res.IsFail():
+            ErrorPrint(res, "Failed to process.")
+            break
 
         print("Result Figure Within Region2\n")
 
