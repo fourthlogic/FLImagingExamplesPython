@@ -1240,6 +1240,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reduce Dimension GeoMean Mu
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ReduceDimensionGeoMeanMultiPageTo2D", "ReduceDimensionGeoMeanMultiPageTo2D\ReduceDimensionGeoMeanMultiPageTo2D.pyproj", "{866B2C4D-5F93-4B94-85A3-F9EE77D82EE6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reduce Dimension HarMean Multi Page To 2D", "Reduce Dimension HarMean Multi Page To 2D", "{1D40CA98-4333-4C21-9884-198BA3EF9314}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ReduceDimensionHarMeanMultiPageTo2D", "ReduceDimensionHarMeanMultiPageTo2D\ReduceDimensionHarMeanMultiPageTo2D.pyproj", "{298314C0-8B6E-48E5-A8C4-6FC0D1DE4AB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2000,6 +2004,8 @@ Global
 		{386ADCBA-AE1E-40E5-BB2D-DF82BFA47746}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{866B2C4D-5F93-4B94-85A3-F9EE77D82EE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{866B2C4D-5F93-4B94-85A3-F9EE77D82EE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{298314C0-8B6E-48E5-A8C4-6FC0D1DE4AB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{298314C0-8B6E-48E5-A8C4-6FC0D1DE4AB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2612,6 +2618,8 @@ Global
 		{33A0E7AF-DC67-44DF-B7EA-54AA7052CF71} = {95D14068-F7EA-4884-B6EC-05524883BA64}
 		{484E01B1-AF24-4939-B52B-89B94472243E} = {D8B26390-C4AA-4C3C-8796-8C236CCF083A}
 		{866B2C4D-5F93-4B94-85A3-F9EE77D82EE6} = {484E01B1-AF24-4939-B52B-89B94472243E}
+		{1D40CA98-4333-4C21-9884-198BA3EF9314} = {D8B26390-C4AA-4C3C-8796-8C236CCF083A}
+		{298314C0-8B6E-48E5-A8C4-6FC0D1DE4AB3} = {1D40CA98-4333-4C21-9884-198BA3EF9314}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
