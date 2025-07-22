@@ -513,6 +513,9 @@
     - ImageThreshold
       - An algorithm that binarizes an image using operand image as thresholds.
       - Operand Image로 임계값 연산을 통해 이미지를 이진화하는 알고리즘.
+    - TopographicThreshold
+      - Algorithm that calculates first and second directional derivatives from image estimated by the bicubic facet model to classify 11 categories by pixel.
+      - Bicubic facet model을 통해 추정된 이미지에서 일차, 이차 방향도함수를 계산하여 픽셀별 11가지 카테고리 분류를 하는 알고리즘.
 
   - [Transform]
 

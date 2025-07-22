@@ -932,6 +932,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LeastSquares", "LeastSquare
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Permutation", "Permutation\Permutation.pyproj", "{BA074331-D27C-4133-9C02-43E0E41D8B28}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TopographicThreshold", "TopographicThreshold\TopographicThreshold.pyproj", "{BA2A7247-6FF6-40CB-AA58-091D833CE868}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1472,6 +1474,8 @@ Global
 		{18ECEB7F-AC04-4FD0-A6CF-50D03DB78F2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA074331-D27C-4133-9C02-43E0E41D8B28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BA074331-D27C-4133-9C02-43E0E41D8B28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA2A7247-6FF6-40CB-AA58-091D833CE868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA2A7247-6FF6-40CB-AA58-091D833CE868}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1930,6 +1934,7 @@ Global
 		{2DCEA32B-C0C1-4641-8A38-D66AEEB3B064} = {6013EDBD-12D0-4E6A-A427-3BA98FFED02A}
 		{18ECEB7F-AC04-4FD0-A6CF-50D03DB78F2F} = {6013EDBD-12D0-4E6A-A427-3BA98FFED02A}
 		{BA074331-D27C-4133-9C02-43E0E41D8B28} = {6013EDBD-12D0-4E6A-A427-3BA98FFED02A}
+		{BA2A7247-6FF6-40CB-AA58-091D833CE868} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
