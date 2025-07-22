@@ -1146,6 +1146,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Mask", "Mask\Mask.pyproj", 
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Blob_Contour_Perforated", "Blob_Contour_Perforated\Blob_Contour_Perforated.pyproj", "{7F3DF15B-E3EE-4D0C-99AC-36E81F12386F}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Perspective", "Perspective\Perspective.pyproj", "{BA478C63-2F97-4D68-8B89-5F6338398636}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1842,6 +1844,8 @@ Global
 		{BE13F7C4-B0EF-4475-B27E-848CF53B6DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F3DF15B-E3EE-4D0C-99AC-36E81F12386F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7F3DF15B-E3EE-4D0C-99AC-36E81F12386F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA478C63-2F97-4D68-8B89-5F6338398636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA478C63-2F97-4D68-8B89-5F6338398636}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2408,6 +2412,7 @@ Global
 		{73DCBC26-8F97-493B-B6F8-4D8BEBF07D7C} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
 		{BE13F7C4-B0EF-4475-B27E-848CF53B6DC3} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 		{7F3DF15B-E3EE-4D0C-99AC-36E81F12386F} = {6B9D0368-75C3-4B52-A258-834FCF7B77A8}
+		{BA478C63-2F97-4D68-8B89-5F6338398636} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
