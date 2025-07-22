@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9ec68ec5-5e42-43f2-a5dc-081ef76b1da0}</ProjectGuid>
+    <ProjectGuid>{3b65585c-99f0-4eea-ad73-13c59bed17fc}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>MedianWeightedFilter_Kernel.py</StartupFile>
+    <StartupFile>MedianWeightedFilter_Region.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>MedianWeightedFilter_Kernel</Name>
-    <RootNamespace>MedianWeightedFilter_Kernel</RootNamespace>
+    <Name>MedianWeightedFilter_Region</Name>
+    <RootNamespace>MedianWeightedFilter_Region</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="MedianWeightedFilter_Kernel.py" />
+    <Compile Include="MedianWeightedFilter_Region.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
