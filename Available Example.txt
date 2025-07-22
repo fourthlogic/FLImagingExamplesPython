@@ -320,7 +320,10 @@
       - 매개변수 Figure와의 간섭영역 내의 객체를 FigureArray에서 제거하는 기능인 RemoveFigureWithinRegion에 관한 예제.
       
   - [GraphView]
-
+  
+    - GraphViewIntoDialog 
+      - The example of inserting an graph view into a dialog and using it.
+      - 그래프 뷰를 다이얼로그에 삽입해서 사용하는 예제.
     - GraphViewTheme
       - The example of setting graph view theme.
       - 그래프 뷰 테마 설정에 관한 예제.
