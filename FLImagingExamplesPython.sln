@@ -724,6 +724,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reduce Dimension Mean 2D to
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ReduceDimensionMean2Dto1D", "ReduceDimensionMean2Dto1D\ReduceDimensionMean2Dto1D.pyproj", "{614FF120-9A6F-4A0C-A2CB-4E6F2468A852}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reduce Dimension Median 2D to 1D", "Reduce Dimension Median 2D to 1D", "{43C05354-7C88-4990-9623-C19A0CEFA9B8}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ReduceDimensionMedian2Dto1D", "ReduceDimensionMedian2Dto1D\ReduceDimensionMedian2Dto1D.pyproj", "{DE0A9B7D-0FD1-42C4-8C14-167A30C7E4A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1112,6 +1116,8 @@ Global
 		{5DB815DE-F158-490B-B6F6-707287EBA1A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{614FF120-9A6F-4A0C-A2CB-4E6F2468A852}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{614FF120-9A6F-4A0C-A2CB-4E6F2468A852}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE0A9B7D-0FD1-42C4-8C14-167A30C7E4A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE0A9B7D-0FD1-42C4-8C14-167A30C7E4A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1467,6 +1473,8 @@ Global
 		{5DB815DE-F158-490B-B6F6-707287EBA1A0} = {FF777B7C-7DB4-4E67-AE2B-170FFBBAC42B}
 		{06F09F71-5E9B-4508-B160-82DC95A9F95C} = {F4BE4CD2-3EC4-41F8-AEA0-C17FFBFE0EAE}
 		{614FF120-9A6F-4A0C-A2CB-4E6F2468A852} = {06F09F71-5E9B-4508-B160-82DC95A9F95C}
+		{43C05354-7C88-4990-9623-C19A0CEFA9B8} = {F4BE4CD2-3EC4-41F8-AEA0-C17FFBFE0EAE}
+		{DE0A9B7D-0FD1-42C4-8C14-167A30C7E4A4} = {43C05354-7C88-4990-9623-C19A0CEFA9B8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
