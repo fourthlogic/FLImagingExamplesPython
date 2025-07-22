@@ -1092,6 +1092,12 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MorphologyClose", "Morpholo
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MorphologyClose_Region", "MorphologyClose_Region\MorphologyClose_Region.pyproj", "{CFDED3AE-F828-405B-B384-06CADD4A9828}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Morphology Erode", "Morphology Erode", "{A5AB9DAA-7129-435A-9E33-86295EA503D4}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MorphologyErode", "MorphologyErode\MorphologyErode.pyproj", "{91B326A7-A1AC-41C9-927C-E825A4207DAE}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MorphologyErode_Region", "MorphologyErode_Region\MorphologyErode_Region.pyproj", "{6FEF1A88-FBF9-4E06-9EC7-B00A3C743484}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1746,6 +1752,10 @@ Global
 		{D42F9E3D-1683-4DFC-91FF-26E403416BB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFDED3AE-F828-405B-B384-06CADD4A9828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CFDED3AE-F828-405B-B384-06CADD4A9828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91B326A7-A1AC-41C9-927C-E825A4207DAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91B326A7-A1AC-41C9-927C-E825A4207DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FEF1A88-FBF9-4E06-9EC7-B00A3C743484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FEF1A88-FBF9-4E06-9EC7-B00A3C743484}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2284,6 +2294,9 @@ Global
 		{F7E7A6E4-DF72-462F-88B6-5DBC7859AEC5} = {154B642B-C72D-45D4-8DE1-BE7B77051B4F}
 		{D42F9E3D-1683-4DFC-91FF-26E403416BB7} = {F7E7A6E4-DF72-462F-88B6-5DBC7859AEC5}
 		{CFDED3AE-F828-405B-B384-06CADD4A9828} = {F7E7A6E4-DF72-462F-88B6-5DBC7859AEC5}
+		{A5AB9DAA-7129-435A-9E33-86295EA503D4} = {154B642B-C72D-45D4-8DE1-BE7B77051B4F}
+		{91B326A7-A1AC-41C9-927C-E825A4207DAE} = {A5AB9DAA-7129-435A-9E33-86295EA503D4}
+		{6FEF1A88-FBF9-4E06-9EC7-B00A3C743484} = {A5AB9DAA-7129-435A-9E33-86295EA503D4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
