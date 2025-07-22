@@ -115,8 +115,8 @@ def main():
 		multiply.SetOperationSource(EOperationSource.Scalar);
 		
 		# Multiply 값 설정 // Set Multiply value
-		mvScalarValue1 = CMultiVar[Double](2, 2, 2);
-		multiply.SetScalarValue(mvScalarValue1);
+		mvScalarValue2 = CMultiVar[Double](2, 2, 2);
+		multiply.SetScalarValue(mvScalarValue2);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := multiply.Execute()).IsFail():
@@ -139,10 +139,10 @@ def main():
 		if (res := layerSource.DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 
-		if (res := layersDestination[0].DrawTextCanvas(flpPoint, 'Destination1 Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layersDestination[0].DrawTextCanvas(flpPoint, 'Destination1 Image(Multiply 1.5)', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 
-		if (res := layersDestination[1].DrawTextCanvas(flpPoint, 'Destination2 Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layersDestination[1].DrawTextCanvas(flpPoint, 'Destination2 Image(Multiply 2)', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 
 		# 이미지 뷰를 갱신 // Update image view
