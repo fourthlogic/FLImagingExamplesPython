@@ -1012,6 +1012,12 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ReduceDimensionVar2Dto1D", 
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ConditionalExtractor_Scalar_Dual", "ConditionalExtractor_Scalar_Dual\ConditionalExtractor_Scalar_Dual.pyproj", "{0C933502-CD31-45B6-B4AA-260DBCAD3558}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Least Common Multiple", "Least Common Multiple", "{7F787957-FE18-45AB-B4EC-5BD6229EAB15}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationLeastCommonMultiple_Image", "OperationLeastCommonMultiple_Image\OperationLeastCommonMultiple_Image.pyproj", "{1257847B-4098-4446-9D80-9BEAD6F565D6}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationLeastCommonMultiple_Scalar", "OperationLeastCommonMultiple_Scalar\OperationLeastCommonMultiple_Scalar.pyproj", "{3D448C4D-91C5-45BB-9958-01B1EA9F43A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1608,6 +1614,10 @@ Global
 		{CAFD3334-889F-4727-8729-5FC8607E621A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C933502-CD31-45B6-B4AA-260DBCAD3558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0C933502-CD31-45B6-B4AA-260DBCAD3558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1257847B-4098-4446-9D80-9BEAD6F565D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1257847B-4098-4446-9D80-9BEAD6F565D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D448C4D-91C5-45BB-9958-01B1EA9F43A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D448C4D-91C5-45BB-9958-01B1EA9F43A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2106,6 +2116,9 @@ Global
 		{6B135245-8A37-4959-97E8-8D159F24E5EB} = {F4BE4CD2-3EC4-41F8-AEA0-C17FFBFE0EAE}
 		{CAFD3334-889F-4727-8729-5FC8607E621A} = {6B135245-8A37-4959-97E8-8D159F24E5EB}
 		{0C933502-CD31-45B6-B4AA-260DBCAD3558} = {8B82C2E5-8851-4351-A924-CEEBE3A4F7E6}
+		{7F787957-FE18-45AB-B4EC-5BD6229EAB15} = {DF146A85-CD97-4DBB-B9EB-71F83BA2B7EB}
+		{1257847B-4098-4446-9D80-9BEAD6F565D6} = {7F787957-FE18-45AB-B4EC-5BD6229EAB15}
+		{3D448C4D-91C5-45BB-9958-01B1EA9F43A9} = {7F787957-FE18-45AB-B4EC-5BD6229EAB15}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
