@@ -141,6 +141,7 @@ def main():
 
 		# ROI 영역 디스플레이 # Display ROI area
 		flpPoint = CFLPoint[Double](0, 0)
+
 		if (res := layerSource.DrawFigureImage(flrROI, EColor.BLUE)).IsFail():
 			ErrorPrint(res, "Failed to draw figure");
 			break;
