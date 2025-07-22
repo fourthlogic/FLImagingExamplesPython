@@ -31,37 +31,27 @@ def main():
 		time.sleep(1)
 
 		# Learn 이미지 로드 // Load the learn image
-		if (res := fliLearnImage.Load('../../ExampleImages/Classifier/CircleLabel_Learn.flif')).IsFail():
+		if (res := fliLearnImage.Load('../../ExampleImages/Classifier/mnist1000.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
 		# Source 이미지 로드 // Load the source image
-		if (res := fliSourceImage.Load('../../ExampleImages/Classifier/CircleLabel_Validation.flif')).IsFail():
-			ErrorPrint(res, 'Failed to load the image file.')
-			break
-
-		# Validation 이미지 로드 // Load the validation image
-		if (res := fliValidateImage.Load('../../ExampleImages/Classifier/CircleLabel_Validation.flif')).IsFail():
+		if (res := fliSourceImage.Load('../../ExampleImages/Classifier/mnist100.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
 		# Learn 이미지 뷰 생성 // Create learn image view
-		if (res := viewImageLearn.Create(100, 0, 612, 512)).IsFail():
+		if (res := viewImageLearn.Create(100, 0, 600, 500)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
 		# Source 이미지 뷰 생성 // Create source image view
-		if (res := viewImageSource.Create(612, 0, 1124, 512)).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.')
-			break
-
-		# Validation 이미지 뷰 생성 // Create the validation image view
-		if (res := viewImageValidate.Create(1124, 0, 1636, 512)).IsFail():
+		if (res := viewImageSource.Create(600, 0, 1100, 500)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
 		# Graph 뷰 생성 // Create graph view
-		if (res := viewGraph.Create(100, 512, 612, 1024)).IsFail():
+		if (res := viewGraph.Create(1100, 0, 1600, 500)).IsFail():
 			ErrorPrint(res, 'Failed to create the graph view.')
 			break
 
@@ -77,25 +67,9 @@ def main():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# Validation 이미지 뷰에 이미지를 디스플레이 // Display the image in the validation image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageValidate.SetImagePtr(fliValidateImage)[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
-			break
-
-		# 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the image views
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSource.SynchronizePointOfView(viewImageValidate)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize view.')
-			break
-
 		# 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageLearn.SynchronizeWindow(viewImageSource)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize window.')
-			break
-		
-		if (res := viewImageLearn.SynchronizeWindow(viewImageValidate)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
@@ -103,12 +77,10 @@ def main():
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
 		layerLearn = viewImageLearn.GetLayer(0)
 		layerSource = viewImageSource.GetLayer(0)
-		layerValidate = viewImageValidate.GetLayer(0)
 
 		# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
 		layerLearn.Clear()
 		layerSource.Clear()
-		layerValidate.Clear()
 
 		# 이미지 뷰 정보 표시 // Display image view information
 		flpPoint = CFLPoint[Double](0, 0)
@@ -118,10 +90,6 @@ def main():
 			break
 
 		if (res := layerSource.DrawTextCanvas(flpPoint, 'INFERENCE', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
-			break
-
-		if (res := layerValidate.DrawTextCanvas(flpPoint, 'VALIDATE', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
@@ -135,7 +103,7 @@ def main():
 		classifier.SetLearningImage(fliLearnImage)
 
 		# 검증할 이미지 설정 // Set the image to validate
-		classifier.SetLearningValidationImage(fliValidateImage)
+		classifier.SetLearningValidationImage(fliSourceImage)
 
 		# 분류할 이미지 설정 // Set the image to classify
 		classifier.SetInferenceImage(fliSourceImage)
@@ -280,13 +248,12 @@ def main():
 		# 이미지 뷰를 갱신 // Update image view
 		viewImageLearn.Invalidate(True)
 		viewImageSource.Invalidate(True)
-		viewImageValidate.Invalidate(True)
 
 		# 그래프 뷰를 갱신 // Update the Graph view.
 		viewGraph.Invalidate(True)
 
 		# 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
-		while viewImageLearn.IsAvailable() and viewImageSource.IsAvailable() and viewImageValidate.IsAvailable() and viewGraph.IsAvailable():
+		while viewImageLearn.IsAvailable() and viewImageSource.IsAvailable() and viewGraph.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
 		break
