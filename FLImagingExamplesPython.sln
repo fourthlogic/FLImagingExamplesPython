@@ -1072,6 +1072,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DistanceTransform", "Distan
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LanczosSplineWarping", "LanczosWarping\LanczosSplineWarping.pyproj", "{2E7B2246-B67C-4E2F-BFCB-CF7CA81CCD8B}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "HarrisCornerDetector", "HarrisCornerDetector\HarrisCornerDetector.pyproj", "{5B41B324-E29F-4709-943B-165457FFF6CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1712,6 +1714,8 @@ Global
 		{225D3AE5-E8D8-48C1-9994-20BD759F10C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E7B2246-B67C-4E2F-BFCB-CF7CA81CCD8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2E7B2246-B67C-4E2F-BFCB-CF7CA81CCD8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B41B324-E29F-4709-943B-165457FFF6CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B41B324-E29F-4709-943B-165457FFF6CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2241,6 +2245,7 @@ Global
 		{D5AE536B-2A0E-4E46-B60B-6977C64AFB3E} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 		{225D3AE5-E8D8-48C1-9994-20BD759F10C3} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
 		{2E7B2246-B67C-4E2F-BFCB-CF7CA81CCD8B} = {25833D73-318A-4188-B53A-C645CFCDEDAE}
+		{5B41B324-E29F-4709-943B-165457FFF6CF} = {C173F22D-EE74-4BFD-9966-0C8282BF5BBD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
