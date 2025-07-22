@@ -34,7 +34,7 @@ def main():
 
 		# Calibrate XYZV 이미지 뷰에 이미지를 디스플레이 # Display the image in the calibrate XYZV image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcXYZV.SetImagePtr(fliCaliSrcXYZVImage))[0].IsFail():
+		if (res := viewImageCaliSrcXYZV.SetImagePtr(fliCaliSrcXYZVImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
@@ -50,7 +50,7 @@ def main():
 
 		# Calibrate RGB 이미지 뷰에 이미지를 디스플레이 # Display the image in the calibrate RGB image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcRGB.SetImagePtr(fliCaliSrcRGBImage))[0].IsFail():
+		if (res := viewImageCaliSrcRGB.SetImagePtr(fliCaliSrcRGBImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
@@ -66,7 +66,7 @@ def main():
 
 		# Execute XYZV 이미지 뷰에 이미지를 디스플레이 # Display the image in the execute XYZV image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageExecSrcXYZV.SetImagePtr(fliExecSrcXYZVImage))[0].IsFail():
+		if (res := viewImageExecSrcXYZV.SetImagePtr(fliExecSrcXYZVImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
@@ -82,7 +82,7 @@ def main():
 
 		# Execute RGB 이미지 뷰에 이미지를 디스플레이 # Display the image in the execute RGB image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageExecSrcRGB.SetImagePtr(fliExecSrcRGBImage))[0].IsFail():
+		if (res := viewImageExecSrcRGB.SetImagePtr(fliExecSrcRGBImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
@@ -93,7 +93,7 @@ def main():
 
 		# Destination 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageExecDstRGB.SetImagePtr(fliExecDstRGBImage))[0].IsFail():
+		if (res := viewImageExecDstRGB.SetImagePtr(fliExecDstRGBImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
@@ -104,37 +104,37 @@ def main():
 
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(viewImageCaliSrcRGB))[0].IsFail():
+		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(viewImageCaliSrcRGB)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(viewImageExecSrcRGB))[0].IsFail():
+		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(viewImageExecSrcRGB)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(viewImageExecSrcXYZV))[0].IsFail():
+		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(viewImageExecSrcXYZV)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(viewImageExecDstRGB))[0].IsFail():
+		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(viewImageExecDstRGB)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(view3DDst))[0].IsFail():
+		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(view3DDst)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
 		# 두 이미지 뷰의 페이지를 동기화 한다. # Synchronize the page of the two image views. 
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcXYZV.SynchronizePageIndex(viewImageCaliSrcRGB))[0].IsFail():
+		if (res := viewImageCaliSrcXYZV.SynchronizePageIndex(viewImageCaliSrcRGB)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
