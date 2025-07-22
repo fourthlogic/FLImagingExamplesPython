@@ -15,7 +15,7 @@ def main():
 	# 이미지 객체 선언 // Declare the image object
 	fliLearnImage = CFLImage()
 	fliSourceImage = CFLImage()
-	fliValidateIamge = CFLImage()
+	fliValidateImage = CFLImage()
 
 	# 이미지 뷰 선언 // Declare the image view
 	viewImageLearn = CGUIViewImage()
@@ -41,7 +41,7 @@ def main():
 			break
 
 		# Validation 이미지 로드 // Load the validation image
-		if (res := fliValidateIamge.Load('../../ExampleImages/Classifier/CircleLabel_Validation.flif')).IsFail():
+		if (res := fliValidateImage.Load('../../ExampleImages/Classifier/CircleLabel_Validation.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
@@ -79,7 +79,7 @@ def main():
 
 		# Validation 이미지 뷰에 이미지를 디스플레이 // Display the image in the validation image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageValidate.SetImagePtr(fliValidateIamge)[0]).IsFail():
+		if (res := viewImageValidate.SetImagePtr(fliValidateImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
@@ -135,7 +135,7 @@ def main():
 		classifier.SetLearningImage(fliLearnImage)
 
 		# 검증할 이미지 설정 // Set the image to validate
-		classifier.SetLearningValidationImage(fliSourceImage)
+		classifier.SetLearningValidationImage(fliValidateImage)
 
 		# 분류할 이미지 설정 // Set the image to classify
 		classifier.SetInferenceImage(fliSourceImage)
