@@ -135,6 +135,9 @@ def main():
 			(res := layer3D.DrawTextCanvas(flp, "Destination Object", EColor.YELLOW, EColor.BLACK, 20)).IsFail()):
 			ErrorPrint(res, "Failed to draw text.\n")
 			break
+		
+		viewImageSrc.SetLayerAutoClearMode(ELayerAutoClearMode.PageChanged, False)
+		viewImageDst.SetLayerAutoClearMode(ELayerAutoClearMode.PageChanged, False)
 
 		# Zoom Fit
 		if ((res := viewImageSrc.ZoomFit()).IsFail() or
