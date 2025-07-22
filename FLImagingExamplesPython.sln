@@ -1318,6 +1318,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PatternMatchSparse_SaveLoad
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RectangleArrayMatch", "RectangleArrayMatch\RectangleArrayMatch.pyproj", "{7234AE4E-8B5D-423E-ABC6-5E8E4CDAB4E6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Channel Removal", "Channel Removal", "{348633BC-7BB3-4EEC-8423-400AEBF73386}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ChannelRemoval", "ChannelRemoval\ChannelRemoval.pyproj", "{FA1CF9CD-59EB-464C-98B3-A6842F89FB55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2140,6 +2144,8 @@ Global
 		{2D457B75-6FEE-41B3-B7BF-3592C716F24D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7234AE4E-8B5D-423E-ABC6-5E8E4CDAB4E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7234AE4E-8B5D-423E-ABC6-5E8E4CDAB4E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA1CF9CD-59EB-464C-98B3-A6842F89FB55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA1CF9CD-59EB-464C-98B3-A6842F89FB55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2791,6 +2797,8 @@ Global
 		{F91A0B1E-213B-46D0-8E2D-0EAFFCE7866A} = {B3DC0D88-2729-4147-98F6-77672C2D3F15}
 		{2D457B75-6FEE-41B3-B7BF-3592C716F24D} = {B3DC0D88-2729-4147-98F6-77672C2D3F15}
 		{7234AE4E-8B5D-423E-ABC6-5E8E4CDAB4E6} = {B04F6DA5-38D8-4A82-A202-9143B1CE3E71}
+		{348633BC-7BB3-4EEC-8423-400AEBF73386} = {C7AE84F4-0805-49E9-8363-FD23EEC762CC}
+		{FA1CF9CD-59EB-464C-98B3-A6842F89FB55} = {348633BC-7BB3-4EEC-8423-400AEBF73386}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
