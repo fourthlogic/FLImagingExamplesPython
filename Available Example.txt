@@ -723,6 +723,10 @@
          - The algorithm example for generating Uniform noise within image region of interest.
          - 이미지의 관심영역 내에서 균등 잡음을 생성하는 알고리즘 예제.
 
+    - ColorSequenceConverter 
+      - The example of an algorithm that converts color sequence of an image.
+      - 이미지의 컬러 시퀀스를 바꾸는 알고리즘 예제.
+
 - [Mapping]
 
   - BicubicSplineMapping
