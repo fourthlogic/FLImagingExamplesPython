@@ -39,7 +39,7 @@ def main():
 			break
 		
 		# Calibration 이미지 로드 # Load the calibration image
-		if (res := fliCalibrationImage.Load('C:/Users/junhy/source/repos/fourthlogic/ExampleImages/PhotometricStereo3D/Calibrate.flif')).IsFail():
+		if (res := fliCalibrationImage.Load('../../ExampleImages/PhotometricStereo3D/Calibrate.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
