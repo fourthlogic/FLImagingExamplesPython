@@ -13,10 +13,10 @@ from System.Windows.Forms import Application, Form, Panel, Timer, DockStyle, Bor
 from System import IntPtr
 from System.Drawing import Size, Point
 
-class ImageViewInToDialog(Form):
+class ImageViewIntoDialog(Form):
     def __init__(self):
         Form.__init__(self)
-        self.Text = "ImageViewInToDialog"
+        self.Text = "ImageViewIntoDialog"
         self.Size = Size(740, 500)
 
         # 왼쪽 패널 (이미지 뷰 영역)
@@ -148,7 +148,7 @@ class ImageViewInToDialog(Form):
 
 
 if __name__ == "__main__":
-    form = ImageViewInToDialog()
+    form = ImageViewIntoDialog()
     Application.Run(form)
 
 

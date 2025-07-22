@@ -16,10 +16,10 @@ from System.Drawing import Size, Point
 from System.Numerics import Complex
 from System import Double
 
-class GraphViewInToDialog(Form):
+class GraphViewIntoDialog(Form):
     def __init__(self):
         Form.__init__(self)
-        self.Text = "GraphViewInToDialog"
+        self.Text = "GraphViewIntoDialog"
         self.Size = Size(740, 500)
 
         # 왼쪽 패널 (그래프 뷰 영역)
@@ -196,7 +196,7 @@ class GraphViewInToDialog(Form):
         self.result_box.Text = ""
 
 if __name__ == "__main__":
-    form = GraphViewInToDialog()
+    form = GraphViewIntoDialog()
     Application.Run(form)
 
 

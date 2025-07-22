@@ -245,6 +245,9 @@
     - View3D
       - The example of using 3D view.
       - 3D 뷰 사용에 관한 예제.
+    - View3DIntoDialog 
+      - The example of inserting an 3D view into a dialog and using it.
+      - 3D 뷰를 다이얼로그에 삽입해서 사용하는 예제.
 
   - [Figure]
   
