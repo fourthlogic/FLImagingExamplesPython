@@ -19,7 +19,7 @@ def main():
     res = CResult()
 
     # 이미지 로드 // Load image
-    if (res := fliImage.Load("../../ExampleImages/Blob/Ball.flif")).IsFail():
+    if (res := fliImage.Load("../../ExampleImages/Blob/Perforated.flif")).IsFail():
         ErrorPrint(res, "Failed to load the image file.\n")
         return
 
@@ -44,38 +44,24 @@ def main():
     # 처리할 이미지 설정 // Set the image to process
     blob.SetSourceImage(fliImage)
     
-	# ROI 범위 설정
-    flrROI = CFLRect[Int32](450, 425, 1024, 800);
-
-	# 처리할 ROI 설정
-    blob.SetSourceROI(flrROI);
+    # Threshold 모드 설정. 여기서는 2중 Threshold에 두개의 조건의 And 조건을 참으로 설정한다.
+    blob.SetThresholdMode(EThresholdMode.Dual_And)
 
     # 논리 조건 설정
-    blob.SetLogicalCondition(ELogicalCondition.GreaterEqual)
+    blob.SetLogicalCondition(ELogicalCondition.Greater, ELogicalCondition.Less)
 
-    # 임계값 설정,  위의 조건과 아래의 조건이 합쳐지면 50보다 작은 객체를 검출
-    blob.SetThreshold(100)
+    # 임계값 설정,  위의 조건과 아래의 조건이 합쳐지면 127보다 크고 240보다 작은 객체를 검출
+    blob.SetThreshold(127, 240)
+
+    # 가운데 구멍난 Contour를 지원하기 위해 Perforated 모드 설정
+    blob.SetResultType(CBlob.EBlobResultType.Contour)
+    blob.SetContourResultType(CBlob.EContourResultType.Perforated)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
     if res := blob.Execute().IsFail():
         ErrorPrint(res, "Failed to execute Blob.")
         return
     
-	# 50보다 같거나 큰 장변 길이를 가진 객체들을 제거
-    if res := blob.Filter(CBlob.EFilterItem.BoundaryRectWidth, 50, ELogicalCondition.GreaterEqual).IsFail():
-        ErrorPrint(res, "Blob filtering algorithm error occurred.")
-        return
-    
-	# 50보다 같거나 큰 단변 길이를 가진 객체들을 제거
-    if res := blob.Filter(CBlob.EFilterItem.BoundaryRectHeight, 50, ELogicalCondition.GreaterEqual).IsFail():
-        ErrorPrint(res, "Blob filtering algorithm error occurred.")
-        return
-    
-	# 면적이 50보다 작은 객체들을 제거
-    if res := blob.Filter(CBlob.EFilterItem.Area, 50, ELogicalCondition.LessEqual).IsFail():
-        ErrorPrint(res, "Blob filtering algorithm error occurred.")
-        return
-
     # Blob 결과를 얻어오기 위해 FigureArray 선언
     flfaContours = CFLFigureArray()
 
@@ -90,11 +76,6 @@ def main():
 
     # 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
     layer.Clear()
-     # ROI영역이 어디인지 알기 위해 디스플레이 한다 // Display to find out where ROI is
-    # FLImaging의 Figure객체들은 어떤 도형모양이든 상관없이 하나의 함수로 디스플레이가 가능				
-    if (res := layer.DrawFigureImage(flrROI, EColor.BLUE)).IsFail():
-        ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
-        return
 
     # flfaContours 는 Figure들의 배열이기 때문에 Layer에 넣기만 해도 모두 드로윙이 가능하다.
     # 아래 함수 DrawFigureImage는 Image좌표를 기준으로 하는 Figure를 Drawing 한다는 것을 의미하며 // The function DrawFigureImage below means drawing a picture based on the image coordinates
@@ -112,11 +93,58 @@ def main():
         else:
             flrgContour = None
             
-        strIndex = f"[{i}]\n"
-        flpCenter = CFLPoint[Double](flfaContours.GetAt(i));
+        # 폴리곤의 정점 정보를 콘솔에 출력
+        print(f"No. {i} : [\n")
 
-        # Image View 결과 출력
-        layer.DrawTextImage(flpCenter, strIndex, EColor.CYAN);
+        for j in range(flrgContour.GetCount()):            
+            if j != 0:
+                print(",")
+
+            if isinstance(flrgContour.GetAt(j), CFLPoint[Double]):
+                flpVertex = flrgContour.GetAt(j)
+            else:
+                flpVertex = None
+            
+            if flpVertex != None:
+                print("({0}, {1})".format(flpVertex.x, flpVertex.y))
+
+        if flrgContour.GetExclusiveRegion() != None:            
+            print("\nExclusive region\n{ ")
+            
+            if isinstance(flrgContour.GetExclusiveRegion(), CFLFigureArray):
+                flfaExclusive = flrgContour.GetExclusiveRegion()
+
+            for j in range(flfaExclusive.GetCount()):      
+                if isinstance(flfaExclusive.GetAt(j), CFLRegion):
+                    flrgExclusive = flfaExclusive.GetAt(j)
+                else:
+                    flrgExclusive  = None
+            
+                print(f"No. {j} : [")
+
+                for k in range(flrgExclusive.GetCount()):
+                    if k != 0:
+                        print(",");
+
+                    if isinstance(flrgExclusive.GetAt(k), CFLPoint[Double]):
+                        flpVertex = flrgExclusive.GetAt(k)
+                    else:
+                        flpVertex  = None
+            
+                    print("({0}, {1})", flpVertex.x, flpVertex.y);
+
+                print("]\n");
+            
+
+            print(" }\n");
+            
+        print("]\n\n");
+
+        flr = CFLRect[Double]();
+
+        flrgContour.GetBoundaryRect(flr);
+
+        layer.DrawTextImage(CFLPoint[Double](flr.left, flr.top), f"{i}", EColor.BLACK, EColor.YELLOW, 12, False, 0, EGUIViewImageTextAlignment.CENTER, None, 1.0, 1.0, EGUIViewImageFontWeight.BOLD, False)
        
 
     # 이미지 뷰를 갱신 합니다. // Update image view
