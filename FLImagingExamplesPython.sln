@@ -990,6 +990,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Blob_Area", "Blob_Area\Blob
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ConditionalReplacer_Image", "ConditionalReplacer_Image\ConditionalReplacer_Image.pyproj", "{ACDBCB65-C0D9-44DE-9666-C1522B139DA5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reduce Dimension Mode 2D to 1D", "Reduce Dimension Mode 2D to 1D", "{0C42DF59-FA08-40DB-8606-A6C5A17B9BB6}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ReduceDimensionMode2Dto1D", "ReduceDimensionMode2Dto1D\ReduceDimensionMode2Dto1D.pyproj", "{F1484AAF-F338-403E-98E9-80F4C5F3C008}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1574,6 +1578,8 @@ Global
 		{90F22C45-5849-460A-BB95-221150473646}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACDBCB65-C0D9-44DE-9666-C1522B139DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ACDBCB65-C0D9-44DE-9666-C1522B139DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1484AAF-F338-403E-98E9-80F4C5F3C008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1484AAF-F338-403E-98E9-80F4C5F3C008}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2061,6 +2067,8 @@ Global
 		{494D88FF-6496-45EE-BF6A-8D5672B367FE} = {1660950F-C54E-40D4-BA5E-8D698FDFD247}
 		{90F22C45-5849-460A-BB95-221150473646} = {6B9D0368-75C3-4B52-A258-834FCF7B77A8}
 		{ACDBCB65-C0D9-44DE-9666-C1522B139DA5} = {1660950F-C54E-40D4-BA5E-8D698FDFD247}
+		{0C42DF59-FA08-40DB-8606-A6C5A17B9BB6} = {F4BE4CD2-3EC4-41F8-AEA0-C17FFBFE0EAE}
+		{F1484AAF-F338-403E-98E9-80F4C5F3C008} = {0C42DF59-FA08-40DB-8606-A6C5A17B9BB6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
