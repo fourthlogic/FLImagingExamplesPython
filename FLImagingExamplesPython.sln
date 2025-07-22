@@ -1048,6 +1048,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{F2075549
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Classifier_FigureLabel", "Classifier_FigureLabel\Classifier_FigureLabel.pyproj", "{47D00FFD-7E21-4E48-AD77-441F0FB03F25}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Blob_Contour", "Blob_Contour\Blob_Contour.pyproj", "{41068C92-1A7C-4495-876D-0165ADC05CD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1670,6 +1672,8 @@ Global
 		{37B6AD59-272F-4928-A091-8A1482729C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47D00FFD-7E21-4E48-AD77-441F0FB03F25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{47D00FFD-7E21-4E48-AD77-441F0FB03F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41068C92-1A7C-4495-876D-0165ADC05CD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41068C92-1A7C-4495-876D-0165ADC05CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2187,6 +2191,7 @@ Global
 		{21BF4BF1-E38B-46F8-B2BE-DA01C3998BB9} = {DF146A85-CD97-4DBB-B9EB-71F83BA2B7EB}
 		{F2075549-647A-4CB7-8E47-7F5226D9D48D} = {0C70382F-D5A1-4EE2-8D68-9DC21BC308E0}
 		{47D00FFD-7E21-4E48-AD77-441F0FB03F25} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
+		{41068C92-1A7C-4495-876D-0165ADC05CD9} = {6B9D0368-75C3-4B52-A258-834FCF7B77A8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
