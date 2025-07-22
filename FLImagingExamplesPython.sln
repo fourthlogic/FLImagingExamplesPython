@@ -1354,6 +1354,12 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ModulationTransferFunction"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PeripheralLuminance", "PeripheralLuminance\PeripheralLuminance.pyproj", "{F46885EB-F3EE-44FF-B598-E7CD30DB27D7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hypotenuse", "Hypotenuse", "{B22C988E-A9D4-499A-A3DF-4BA648CC97E3}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationHypotenuse_Image", "OperationHypotenuse_Image\OperationHypotenuse_Image.pyproj", "{631B089C-CA05-49B4-9943-FEA0F5E94F39}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationHypotenuse_Scalar", "OperationHypotenuse_Scalar\OperationHypotenuse_Scalar.pyproj", "{96267A46-7637-4039-924C-028DA749E776}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2210,6 +2216,10 @@ Global
 		{06C71D15-B039-4F58-9558-1D0B097C5065}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F46885EB-F3EE-44FF-B598-E7CD30DB27D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F46885EB-F3EE-44FF-B598-E7CD30DB27D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{631B089C-CA05-49B4-9943-FEA0F5E94F39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{631B089C-CA05-49B4-9943-FEA0F5E94F39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96267A46-7637-4039-924C-028DA749E776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96267A46-7637-4039-924C-028DA749E776}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2879,6 +2889,9 @@ Global
 		{23DDB673-8C0F-4296-9204-B8B501592486} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
 		{06C71D15-B039-4F58-9558-1D0B097C5065} = {FE9AB51E-471D-4403-B008-F5379CE06885}
 		{F46885EB-F3EE-44FF-B598-E7CD30DB27D7} = {FE9AB51E-471D-4403-B008-F5379CE06885}
+		{B22C988E-A9D4-499A-A3DF-4BA648CC97E3} = {DF146A85-CD97-4DBB-B9EB-71F83BA2B7EB}
+		{631B089C-CA05-49B4-9943-FEA0F5E94F39} = {B22C988E-A9D4-499A-A3DF-4BA648CC97E3}
+		{96267A46-7637-4039-924C-028DA749E776} = {B22C988E-A9D4-499A-A3DF-4BA648CC97E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
