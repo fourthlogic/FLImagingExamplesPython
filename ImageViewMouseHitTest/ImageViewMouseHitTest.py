@@ -88,26 +88,20 @@ def main():
     fliImage = CFLImage()
     viewImage = CGUIViewImage()
 
-    while True:
-        res = fliImage.Load("../../ExampleImages/PagePooling/Multiple File_Min.flif")
-        if res.IsFail():
+    while True:        
+        if (res := fliImage.Load("../../ExampleImages/PagePooling/Multiple File_Min.flif")).IsFail():
             errorPrint(res, "Failed to load the image file.\n")
             break
 
-        res = viewImage.Create(300, 0, 300 + 520, 430)
-        if res.IsFail():
+        if (res := viewImage.Create(300, 0, 300 + 520, 430)).IsFail():
             errorPrint(res, "Failed to create the image view.\n")
             break
 
-        res = viewImage.SetImagePtr(fliImage)
-        if isinstance(res, tuple):
-            res = res[0]
-        if res.IsFail():
+        if (res := viewImage.SetImagePtr(fliImage)[0]).IsFail():
             errorPrint(res, "Failed to set image object on the image view.\n")
             break
 
-        res = viewImage.ZoomFit()
-        if res.IsFail():
+        if (res := viewImage.ZoomFit()).IsFail():
             errorPrint(res, "Failed to zoom fit\n")
             break
 

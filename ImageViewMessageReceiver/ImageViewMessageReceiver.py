@@ -55,13 +55,8 @@ def main():
         strName = "Chart"
 
         # Plot the data
-        if viewGraphDark.Plot(arrF64DataX, arrF64DataY, i32DataCount, EChartType.Scatter, eColor, strName) == -1:
-            print("Failed to plot data.\n")
-            break
-
-        if viewGraphLight.Plot(arrF64DataX, arrF64DataY, i32DataCount, EChartType.Scatter, eColor, strName) == -1:
-            print("Failed to plot data.\n")
-            break
+        viewGraphDark.Plot(arrF64DataX, arrF64DataY, i32DataCount, EChartType.Scatter, eColor, strName)
+        viewGraphLight.Plot(arrF64DataX, arrF64DataY, i32DataCount, EChartType.Scatter, eColor, strName)
 
         viewGraphDark.ZoomFit()
         viewGraphLight.ZoomFit()
