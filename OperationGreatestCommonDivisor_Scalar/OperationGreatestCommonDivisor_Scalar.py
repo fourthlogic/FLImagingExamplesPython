@@ -125,7 +125,7 @@ def main():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		if (res := arrLayer[EType.Destination2].DrawTextCanvas(flpPoint, 'Destination1 Image(200)', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := arrLayer[EType.Destination2].DrawTextCanvas(flpPoint, 'Destination2 Image(200)', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
