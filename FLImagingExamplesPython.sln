@@ -1030,6 +1030,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BicubicRegionInterpolation"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LineSegmentDetector", "LineSegmentDetector\LineSegmentDetector.pyproj", "{67D02D42-2E7B-4AAC-A4AC-138A9AB9F514}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Blob_BoundaryRect_ResultInfo", "Blob_BoundaryRect_ResultInfo\Blob_BoundaryRect_ResultInfo.pyproj", "{22AA6898-1BB0-4811-9CBE-8A7D896D8781}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1638,6 +1640,8 @@ Global
 		{0DDFFE11-469F-47A9-A9D0-2FE8057274C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67D02D42-2E7B-4AAC-A4AC-138A9AB9F514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{67D02D42-2E7B-4AAC-A4AC-138A9AB9F514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22AA6898-1BB0-4811-9CBE-8A7D896D8781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22AA6898-1BB0-4811-9CBE-8A7D896D8781}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2145,6 +2149,7 @@ Global
 		{BE909D02-79B6-4314-BFB0-C4D81288E2D2} = {43A26D99-88FF-4496-9A97-A4BDFD9C96E2}
 		{0DDFFE11-469F-47A9-A9D0-2FE8057274C3} = {BE909D02-79B6-4314-BFB0-C4D81288E2D2}
 		{67D02D42-2E7B-4AAC-A4AC-138A9AB9F514} = {C173F22D-EE74-4BFD-9966-0C8282BF5BBD}
+		{22AA6898-1BB0-4811-9CBE-8A7D896D8781} = {6B9D0368-75C3-4B52-A258-834FCF7B77A8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
