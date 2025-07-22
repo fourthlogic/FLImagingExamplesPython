@@ -556,7 +556,21 @@
 
 - [Mathematics]
 
-
+  - Combination 
+    - The example of combination.
+    - 조합 계산의 예제.
+  - Equation 
+    - The example of calculate equation.
+    - 방정식 계산의 예제.
+  - GetSimilarity
+    - The example of calculating a transformation matrix that minimizes the sum of the distance differences between the source and destination points.
+    - Source 점과 Destination 점의 거리 차이의 합이 최소가 되도록 하는 변환행렬을 구하는 예제.
+  - LeastSquares 
+    - The example of calculate least squares.
+    - 최소자승법 계산의 예제.
+  - Permutation 
+    - The example of permutation.
+    - 순열 계산의 예제.
 
 - [Misc]
 
