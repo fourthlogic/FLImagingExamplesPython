@@ -59,21 +59,25 @@ def main():
 		listContrast = List[List[Double]]()
 
 		# 이미지 전체(혹은 ROI 영역) 픽셀값의 Energy를 구하는 함수 # Function that calculate Energy of the image(or the region of ROI)
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := flaGLCM.GetResultEnergy(listEnergy)[0]).IsFail():
 			ErrorPrint(res, "No Result")
 			break
 
 		# 이미지 전체(혹은 ROI 영역) 픽셀값의 Correlation를 구하는 함수 # Function that calculate Correlation of the image(or the region of ROI)
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := flaGLCM.GetResultCorrelation(listCorrelation)[0]).IsFail():
 			ErrorPrint(res, "No Result")
 			break
 
 		# 이미지 전체(혹은 ROI 영역) 픽셀값의 Homogeneity를 구하는 함수 # Function that calculate Homogeneity of the image(or the region of ROI)
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := flaGLCM.GetResultHomogeneity(listHomogeneity)[0]).IsFail():
 			ErrorPrint(res, "No Result")
 			break
 
 		# 이미지 전체(혹은 ROI 영역) 픽셀값의 Contrast를 구하는 함수 # Function that calculate Contrast of the image(or the region of ROI)
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := flaGLCM.GetResultContrast(listContrast)[0]).IsFail():
 			ErrorPrint(res, "No Result")
 			break
@@ -87,14 +91,13 @@ def main():
 			break
 
 
-		
 		strText = ""
 
 		for i32PageIdx in range(listEnergy.Count):
-			# strText += String.Format("Page.No {i32PageIdx} "
+			# strText += f"Page.No {i32PageIdx} "
 
 			for i32Ch in range(listEnergy[i32PageIdx].Count):
-				# strText += String.Format("\nChannel {i32Ch} "
+				# strText += f"\nChannel {i32Ch} "
 				strText += f"Energy {listEnergy[i32PageIdx][i32Ch]:.9} "
 				strText += f"\nCorrelation {listCorrelation[i32PageIdx][i32Ch]:.9} "
 				strText += f"\nHomogeneity {listHomogeneity[i32PageIdx][i32Ch]:.9} "
