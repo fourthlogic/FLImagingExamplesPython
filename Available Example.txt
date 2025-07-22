@@ -573,6 +573,12 @@
       - The algorithm that performs the calculation of trailing zeros from the source image.
       - 이미지에 Trailing Zeros 연산을 수행하는 알고리즘
 
+  - [Moment]
+
+    - Moment_Invariant
+      - The algorithm example for obtaining Geometric Moment, Centroid Moment, Central Moment, Normalized Central Moment, Invariant Moment(or Hu moment)information about pixel intensity within image region of interest.
+      - 이미지의 관심영역 내에서 픽셀 강도에 대한 기하학적 모멘트, 도심 모멘트, 중심 모멘트, 정규화된 중심 모멘트, 불변 모멘트 정보를 얻는 알고리즘 예제.
+
   - [Threshold]
 
     - AdaptiveThresholdGaussian
