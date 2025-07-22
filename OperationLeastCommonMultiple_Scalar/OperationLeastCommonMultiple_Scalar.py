@@ -1,152 +1,124 @@
 ﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+
 # 메인 함수 // Main function
 def main():
+	# 이미지 객체 선언 # Declare the image object
+	fliSrcImage = CFLImage()
+	fliDstImage0 = CFLImage()
+	fliDstImage1 = CFLImage()
 
-	class EType:
-		Source = 0
-		Destination1 = 1
-		Destination2 = 2
-		ETypeCount = 3
-
-	# 이미지 객체 선언 // Declare the image object
-	arrFliImage = [CFLImage() for i in range(EType.ETypeCount)]
-
-	# 이미지 뷰 선언 // Declare the image view
-	arrViewImage = [CGUIViewImage() for i in range(EType.ETypeCount)]
+	# 이미지 뷰 선언 # Declare the image view
+	viewImageSrc = CGUIViewImage()
+	viewImageDst0 = CGUIViewImage()
+	viewImageDst1 = CGUIViewImage()
 
 	while True:
-		
 		# Source 이미지 로드 // Load the source image
-		if (res := arrFliImage[EType.Source].Load('../../ExampleImages/OperationGreatestCommonDivisor/Sunset.flif')).IsFail():
+		if (res := fliSrcImage.Load("../../ExampleImages/OperationLeastCommonMultiple/Gradient.flif")).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Destination1 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination1 image as same as source image
-		if (res := arrFliImage[EType.Destination1].Assign(arrFliImage[EType.Source])).IsFail():
-			ErrorPrint(res, 'Failed to load the image file.')
-			break
-
-		# Destination2 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination2 image as same as source image
-		if (res := arrFliImage[EType.Destination2].Assign(arrFliImage[EType.Source])).IsFail():
-			ErrorPrint(res, 'Failed to load the image file.')
-			break
-
-		bError = False
-
-		for i in range(EType.ETypeCount) :
-
-			#이미지 뷰 생성 // Create image view
-			if (res := arrViewImage[i].Create(i * 512 + 100, 0, i * 512 + 100 + 512, 512)).IsFail():
-				ErrorPrint(res, 'Failed to create the image view.')
-				bError = True
-				break
-
-			# 이미지 뷰에 이미지를 디스플레이 // Display an image in an image view
-			if (res := arrViewImage[i].SetImagePtr(arrFliImage[i])[0]).IsFail():
-				ErrorPrint(res, 'Failed to set image object on the image view.')
-				bError = True
-				break
-
-			if i == EType.Source :
-				continue
-
-			# 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the image views
-			if (res := arrViewImage[EType.Source].SynchronizePointOfView(arrViewImage[i])[0]).IsFail():
-				ErrorPrint(res, 'Failed to synchronize view.')
-				bError = True
-				break
-
-			# 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
-			if (res := arrViewImage[EType.Source].SynchronizeWindow(arrViewImage[i])[0]).IsFail():
-				ErrorPrint(res, 'Failed to synchronize window.')
-				bError = True
-				break
-
-		if bError :
-			break
-
-
-		# 객체 생성 // Create object
-		gcd = COperationGreatestCommonDivisor()
-
-		# Source 이미지 설정 // Set the source image
-		gcd.SetSourceImage(arrFliImage[EType.Source])
-
-		# Destination 이미지 설정 // Set the destination image
-		gcd.SetDestinationImage(arrFliImage[EType.Destination1])
-
-		# 연산 방식 설정 // Set the operation source
-		gcd.SetOperationSource(EOperationSource.Scalar)
-
-		# Scalar 값 설정 // Set the scalar value
-		mvScalarValue1 = CMultiVar[Double](50, 50, 50)
-
-		gcd.SetScalarValue(mvScalarValue1)
-
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := gcd.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute operation GCD.')
-			break
-
-		# Destination 이미지를 Destination2로 설정 // Set destination image to destination2
-		gcd.SetDestinationImage(arrFliImage[EType.Destination2])
-
-		# Scalar 값 설정 // Set the scalar value
-		mvScalarValue2 = CMultiVar[Double](200, 200, 200)
-
-		gcd.SetScalarValue(mvScalarValue2)
-
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := gcd.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute operation GCD.')
+		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
+		if ((res := fliDstImage0.Assign(fliSrcImage)).IsFail() or
+			(res := fliDstImage1.Assign(fliSrcImage)).IsFail()):
+			ErrorPrint(res, 'Failed to assign.')
 			break
 		
-		arrLayer = [CGUIViewImageLayer() for i in range(EType.ETypeCount)]
-
-		for i in range(EType.ETypeCount) :
-
-			# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-			# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
-			arrLayer[i] = arrViewImage[i].GetLayer(0)
-
-			# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
-			arrLayer[i].Clear()
-
-		# 이미지 뷰 정보 표시 // Display image view information
-		flpPoint = CFLPoint[Double](0, 0)
-
-		if (res := arrLayer[EType.Source].DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
+		# 이미지 뷰 생성 # Create image view
+		if ((res := viewImageSrc.Create(100, 0, 600, 500)).IsFail() or
+			(res := viewImageDst0.Create(600, 0, 1100, 500)).IsFail() or
+			(res := viewImageDst1.Create(1100, 0, 1600, 500)).IsFail()):
+			ErrorPrint(res, "Failed to create the image view.\n")
 			break
 
-		if (res := arrLayer[EType.Destination1].DrawTextCanvas(flpPoint, 'Destination1 Image(50)', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
+		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views. .
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if ((res := viewImageSrc.SynchronizePointOfView(viewImageDst0)[0]).IsFail() or
+			(res := viewImageSrc.SynchronizePointOfView(viewImageDst1)[0]).IsFail()):
+			ErrorPrint(res, "Failed to synchronize view. \n")
 			break
 
-		if (res := arrLayer[EType.Destination2].DrawTextCanvas(flpPoint, 'Destination2 Image(200)', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
+		# 두 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the positions of the two image view windows
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if ((res := viewImageSrc.SynchronizeWindow(viewImageDst0)[0]).IsFail() or
+			(res := viewImageSrc.SynchronizeWindow(viewImageDst1)[0]).IsFail()):
+			ErrorPrint(res, "Failed to synchronize window. \n")
 			break
 
-		# 이미지 뷰를 갱신 // Update image view
-		[arrViewImage[i].Invalidate(True) for i in range(EType.ETypeCount)]
+		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if ((res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail() or
+			(res := viewImageDst0.SetImagePtr(fliDstImage0)[0]).IsFail() or
+			(res := viewImageDst1.SetImagePtr(fliDstImage1)[0]).IsFail()):
+			ErrorPrint(res, "Failed to set image object on the image view. \n")
+			break
+		
 
-		# 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 // Wait until the image view is closed before exiting
-		bAvailable = True
+		# 알고리즘 객체 생성 # Create algorithm object
+		algObject = COperationLeastCommonMultiple()
+		
+		if (res := algObject.SetSourceImage(fliSrcImage)[0]).IsFail():
+			break
+		if (res := algObject.SetOperationSource(EOperationSource.Scalar)).IsFail():
+			break
 
-		while bAvailable :
-			for i in range(EType.ETypeCount) :
-				bAvailable = arrViewImage[i].IsAvailable()
+		mvScalarValue0 = CMultiVar[Double](5)
+		if (res := algObject.SetScalarValue(mvScalarValue0)).IsFail():
+			break
+		if (res := algObject.SetDestinationImage(fliDstImage0)[0]).IsFail():
+			break
+		
+		# 알고리즘 수행 # Execute the algorithm
+		if (res := algObject.Execute()).IsFail():
+			ErrorPrint(res, "Failed to execute the algorithm.")
+			break
+		
+		mvScalarValue1 = CMultiVar[Double](17)
+		if (res := algObject.SetScalarValue(mvScalarValue1)).IsFail():
+			break
+		if (res := algObject.SetDestinationImage(fliDstImage1)[0]).IsFail():
+			break
+		
+		# 알고리즘 수행 # Execute the algorithm
+		if (res := algObject.Execute()).IsFail():
+			ErrorPrint(res, "Failed to execute the algorithm.")
+			break
+		
+		
+		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
+		layerSrc = viewImageSrc.GetLayer(0)
+		layerDst0 = viewImageDst0.GetLayer(0)
+		layerDst1 = viewImageDst1.GetLayer(0)
 
-				if bAvailable == False :
-					break
+		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
+		layerSrc.Clear()
+		layerDst0.Clear()
+		layerDst1.Clear()
 
+		# 이미지 뷰 정보 표시 # Display image view information
+		flpTemp = CFLPoint[Double](0, 0)
+		if ((res := layerSrc.DrawTextCanvas(flpTemp, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or
+			(res := layerDst0.DrawTextCanvas(flpTemp, "Destination Image (Opr = 5)", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or
+			(res := layerDst1.DrawTextCanvas(flpTemp, "Destination Image (Opr = 17)", EColor.YELLOW, EColor.BLACK, 20)).IsFail()):
+			ErrorPrint(res, "Failed to draw text. \n")
+			break
+
+		# 이미지 뷰를 갱신 # Update image view
+		viewImageSrc.Invalidate(True)
+		viewImageDst0.Invalidate(True)
+		viewImageDst1.Invalidate(True)
+
+		# 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close
+		while viewImageSrc.IsAvailable() and viewImageDst0.IsAvailable() and viewImageDst1.IsAvailable():			
 			CThreadUtilities.Sleep(1)
 
 		break
-	
 	# End of main function
+
+
 
 # 에러 출력 함수 // Error printing function
 def ErrorPrint(res, str):
