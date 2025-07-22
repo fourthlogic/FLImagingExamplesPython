@@ -61,7 +61,7 @@ def main():
 			break
 
 		# 실행 결과를 받아오기 위한 컨테이너 // Container to get Calculated results
-		flfaPeakVectors = CFLFigureArray();
+		flfaPeakVectors = CFLFigureArray()
 
 		# 피크 벡터 추출 // Get Peak Vectors
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
@@ -70,9 +70,9 @@ def main():
 			break
 
 		# 피크 벡터를 출력 // Print Peak Vectors
-		layerSource.DrawFigureImage(flfaPeakVectors.GetAt(0), EColor.BLUE, 3, EColor.BLUE, EGUIViewImagePenStyle.Solid, 0.3, 0.3);
-		layerSource.DrawFigureImage(flfaPeakVectors.GetAt(1), EColor.GREEN, 3, EColor.GREEN, EGUIViewImagePenStyle.Solid, 0.3, 0.3);
-		layerSource.DrawFigureImage(flfaPeakVectors.GetAt(2), EColor.RED, 3, EColor.RED, EGUIViewImagePenStyle.Solid, 0.3, 0.3);
+		layerSource.DrawFigureImage(flfaPeakVectors.GetAt(0), EColor.BLUE, 3, EColor.BLUE, EGUIViewImagePenStyle.Solid, 0.3, 0.3)
+		layerSource.DrawFigureImage(flfaPeakVectors.GetAt(1), EColor.GREEN, 3, EColor.GREEN, EGUIViewImagePenStyle.Solid, 0.3, 0.3)
+		layerSource.DrawFigureImage(flfaPeakVectors.GetAt(2), EColor.RED, 3, EColor.RED, EGUIViewImagePenStyle.Solid, 0.3, 0.3)
 		
 		# ROI영역이 어디인지 알기 위해 디스플레이 한다 // Display to find out where ROI is
 		if (res := layerSource.DrawFigureImage(flrROI, EColor.LIME)).IsFail():

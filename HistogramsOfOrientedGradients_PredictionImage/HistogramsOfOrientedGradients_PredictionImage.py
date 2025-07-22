@@ -79,16 +79,16 @@ def main():
 		hog.SetSourceROI(flrROI)
 
 		# Destination 이미지 설정 // Set destination image
-		hog.SetDestinationImage(fliDestinationImage);
+		hog.SetDestinationImage(fliDestinationImage)
 
 		# Cell Size 설정 // Set Cell Size
-		hog.SetCellSize(4);
+		hog.SetCellSize(4)
 
 		# Block Size 설정 // Set Block Size
-		hog.SetBlockSize(3);
+		hog.SetBlockSize(3)
 
 		# 비주얼 출력 타입 예측 이미지로 설정 // Set Prediction Image to visual result type
-		hog.SetVisualResultType(CHistogramsOfOrientedGradients.EVisualResultType.PredictionImage);
+		hog.SetVisualResultType(CHistogramsOfOrientedGradients.EVisualResultType.PredictionImage)
 
 		# 알고리즘 수행 // Execute the algorithm
 		if (res := hog.Execute()).IsFail():
@@ -96,7 +96,7 @@ def main():
 			break
 
 		# 실행 결과를 받아오기 위한 컨테이너 // Container to get Calculated results
-		flfaPeakVectors = CFLFigureArray();
+		flfaPeakVectors = CFLFigureArray()
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
