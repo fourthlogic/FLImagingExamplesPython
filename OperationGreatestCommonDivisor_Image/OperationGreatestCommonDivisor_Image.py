@@ -30,7 +30,7 @@ def main():
 
 		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
 		if (res := arrFliImage[EType.Destination].Assign(arrFliImage[EType.Source])).IsFail():
-			ErrorPrint(res, 'Failed to load the image file.')
+			ErrorPrint(res, 'Failed to assign the image.')
 			break
 
 		bError = False
