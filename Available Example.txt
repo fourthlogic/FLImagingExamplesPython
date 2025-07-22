@@ -595,6 +595,9 @@
       - NonLocalMeansFilter
         - The example of an algorithm that processes a non local means filter to an image.
         - 이미지에서 Non Local Means 필터를 처리하는 알고리즘 예제.
+      - WeightedGuidedFilter
+        - The example of an algorithm that processes a weighted guided filter to an image.
+        - 이미지에서 weighted guided 필터를 처리하는 알고리즘 예제.
 
     - [Edge Detection]
       - KirschFilter

@@ -1392,6 +1392,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Robinson Filter", "Robinson
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RobinsonFilter", "RobinsonFilter\RobinsonFilter.pyproj", "{AFCB6981-7BCA-48DF-B72F-E7B050AEF079}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Weighted Guided Filter", "Weighted Guided Filter", "{00EE9522-CB30-4E7F-8646-898B539CC02E}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "WeightedGuidedFilter", "WeightedGuidedFilter\WeightedGuidedFilter.pyproj", "{B4D14DFC-84F0-4FB6-90D6-04EC32400AFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2272,6 +2276,8 @@ Global
 		{0B385163-6431-488B-957E-AF3E96480FE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFCB6981-7BCA-48DF-B72F-E7B050AEF079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AFCB6981-7BCA-48DF-B72F-E7B050AEF079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4D14DFC-84F0-4FB6-90D6-04EC32400AFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4D14DFC-84F0-4FB6-90D6-04EC32400AFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2960,6 +2966,8 @@ Global
 		{0B385163-6431-488B-957E-AF3E96480FE3} = {7843F0BA-6241-4EE1-9F45-9DEFC39CDA06}
 		{D9F59E8C-5339-49D4-8730-4D8AED4318B1} = {9410ECD0-99BA-4459-8382-3C8F70D23677}
 		{AFCB6981-7BCA-48DF-B72F-E7B050AEF079} = {D9F59E8C-5339-49D4-8730-4D8AED4318B1}
+		{00EE9522-CB30-4E7F-8646-898B539CC02E} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
+		{B4D14DFC-84F0-4FB6-90D6-04EC32400AFD} = {00EE9522-CB30-4E7F-8646-898B539CC02E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
