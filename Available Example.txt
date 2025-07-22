@@ -179,6 +179,12 @@
 
 
 - [AI]
+  
+  - [Model]
+
+    - Classifier_FigureLabel
+      - Example of an algorithm for classifying validation images with figures using models learned through classifier for training images with figures.
+      - Figure가 있는 학습 이미지들에 대해 classifier를 통하여 학습한 모델을 사용하여 Figure가 있는 검증 이미지를 분류하는 알고리즘 예제.
 
   - [Utilites]
 
