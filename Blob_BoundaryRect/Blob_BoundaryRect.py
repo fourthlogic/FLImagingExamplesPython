@@ -87,7 +87,7 @@ def main():
     layer.Clear()
     # ROI영역이 어디인지 알기 위해 디스플레이 한다 // Display to find out where ROI is
     # FLImaging의 Figure객체들은 어떤 도형모양이든 상관없이 하나의 함수로 디스플레이가 가능				
-    if res := layer.DrawFigureImage(flrROI, EColor.BLUE).IsFail():
+    if (res := layer.DrawFigureImage(flrROI, EColor.BLUE)).IsFail():
         ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
         return
 
@@ -96,7 +96,7 @@ def main():
     # 맨 마지막 두개의 파라미터는 불투명도 값이고 1일경우 불투명, 0일경우 완전 투명을 의미한다. // The last two parameters are opacity values, which mean opacity for 1 day and complete transparency for 0 day.
     # 여기서 0.25이므로 옅은 반투명 상태라고 볼 수 있다.
     # 파라미터 순서 : 레이어 -> Figure 객체 -> 선 색 -> 선 두께 -> 면 색 -> 펜 스타일 -> 선 알파값(불투명도) -> 면 알파값 (불투명도) // Parameter order: Layer -> Figure object -> Line color -> Line thickness -> Face color -> Pen style -> Line alpha value (opacity) -> Area alpha value (opacity)
-    if res := layer.DrawFigureImage(flfaBoundaryRects, EColor.RED, 1, EColor.RED, EGUIViewImagePenStyle.Solid, 1.0, .25).IsFail():
+    if (res := layer.DrawFigureImage(flfaBoundaryRects, EColor.RED, 1, EColor.RED, EGUIViewImagePenStyle.Solid, 1.0, .25)).IsFail():
         ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
         return
 
