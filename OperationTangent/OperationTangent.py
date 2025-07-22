@@ -57,9 +57,9 @@ def main():
 		# COperationTangent 객체 생성 // Create COperationTangent object
 		Tangent = COperationTangent()
 		# Source 이미지 설정 // Set source image
-		Tangent.SetSourceImage(fliSourceImage);
+		Tangent.SetSourceImage(fliSourceImage)
 		# Destination 이미지 설정 // Set destination image
-		Tangent.SetDestinationImage(fliDestinationImage);
+		Tangent.SetDestinationImage(fliDestinationImage)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := Tangent.Execute()).IsFail():

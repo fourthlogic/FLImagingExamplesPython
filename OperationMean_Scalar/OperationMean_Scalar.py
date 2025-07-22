@@ -105,10 +105,10 @@ def main():
 		mean.SetDestinationImage(fliDestinationImage1)
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		mean.SetOperationSource(EOperationSource.Scalar);
+		mean.SetOperationSource(EOperationSource.Scalar)
 
 		# Scalar 값 설정 // Set Scalar value
-		mean.SetScalarValue(mvScalarValue);
+		mean.SetScalarValue(mvScalarValue)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := mean.Execute()).IsFail():
@@ -119,10 +119,10 @@ def main():
 		mean.SetDestinationImage(fliDestinationImage2)
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		mean.SetOperationSource(EOperationSource.Scalar);
+		mean.SetOperationSource(EOperationSource.Scalar)
 
 		# Scalar 값 설정 // Set Scalar value
-		mean.SetScalarValue(mvScalarValue2);
+		mean.SetScalarValue(mvScalarValue2)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := mean.Execute()).IsFail():

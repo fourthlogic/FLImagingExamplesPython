@@ -44,19 +44,19 @@ def main():
 		VoxelGrid3D = CVoxelGrid3D()
 
 		# Destination object 설정 // Set the learn object
-		VoxelGrid3D.SetDestinationObject(floDestinationObject);
+		VoxelGrid3D.SetDestinationObject(floDestinationObject)
 		# Source object 설정 // Set the source object
-		VoxelGrid3D.SetSourceObject(floSourceObject);
+		VoxelGrid3D.SetSourceObject(floSourceObject)
 		# 샘플링 거리 설정 // Set the sampling distance
-		VoxelGrid3D.SetSamplingDistance(0.03);
+		VoxelGrid3D.SetSamplingDistance(0.03)
 		# 샘플링 방법 설정 // Set the sampling method
-		VoxelGrid3D.SetSamplingMethod(CVoxelGrid3D.ESamplingMethod.Mean);
+		VoxelGrid3D.SetSamplingMethod(CVoxelGrid3D.ESamplingMethod.Mean)
 		# 점 색상 포함 여부 설정 // Set whether the color of the vertex is included
-		VoxelGrid3D.EnableIncludingVertexColor(True);
+		VoxelGrid3D.EnableIncludingVertexColor(True)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(res := VoxelGrid3D.Execute()).IsFail() :	
-			ErrorPrint(res, "Failed to execute Voxel Grid 3D.");
+			ErrorPrint(res, "Failed to execute Voxel Grid 3D.")
 			break
 		
 
@@ -98,7 +98,7 @@ def main():
 		view3DSource.Invalidate(True)
 		view3DDst.Invalidate(True)
 
-		view3DDst.SynchronizePointOfView(view3DSource);
+		view3DDst.SynchronizePointOfView(view3DSource)
 
 		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 // Wait for the image and 3D view to close
 		while view3DSource.IsAvailable() and view3DDst.IsAvailable() :

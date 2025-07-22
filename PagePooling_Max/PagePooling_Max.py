@@ -78,7 +78,7 @@ def main():
 		PagePooling.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		PagePooling.SetDestinationImage(fliDestinationImage);
+		PagePooling.SetDestinationImage(fliDestinationImage)
 
 		# Index 이미지 // Index image
 		#	- 각 픽셀별로 추출한 결과 값이 위치한 페이지 인덱스 값을 대응되는 좌표의 픽셀로 출력합니다. // For each pixel, output the page index value where the resulting value is located to the pixel of the corresponding coordinates.
@@ -91,7 +91,7 @@ def main():
 		#	- Source ROI 영역 밖에 해당하는 인덱스는 무효 값으로 8bit 인덱스 이미지에서는 255, 16bit 인덱스 이미지에서는 65535 가 입력됩니다. // Indexes outside the Source ROI area are invalid values, with 255 for an 8-bit index image and 65535 for a 16-bit index image.
 		
 		# Index 이미지 설정 // Set the index image
-		PagePooling.SetIndexImage(fliIndexImage);
+		PagePooling.SetIndexImage(fliIndexImage)
 
 		# Sampling 메소드 설정 // Set the sampling method
 		#	- Max : 입력된 이미지 가운데 최대 값을 출력합니다. // Max : Outputs the maximum value of the entered image.
@@ -99,7 +99,7 @@ def main():
 		#	- Min : 입력된 이미지 가운데 최소 값을 출력합니다. // Min : Outputs the minimum value of the entered image.
 		#	- MinGaussian : 입력된 이미지 가운데 가장 앞 쪽 인덱스에 위치한 최소 값을 기준으로 가우시안 값을 출력합니다. // MinGaussian : Outputs the Gaussian value based on the minimum value located in the leading index of the entered image.
 		#	- Mean : 입력된 이미지들의 평균 값을 출력합니다. (최대 16843009 장 까지 지원됩니다.) // Mean: Outputs the average value of the entered images. (Up to 16843009 pages are supported.)
-		PagePooling.SetSamplingMethod(CPagePooling.ESamplingMethod.Max);
+		PagePooling.SetSamplingMethod(CPagePooling.ESamplingMethod.Max)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := PagePooling.Execute()).IsFail():

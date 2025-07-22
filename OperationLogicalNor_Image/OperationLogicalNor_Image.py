@@ -106,7 +106,7 @@ def main():
 		logicalNor.SetDestinationImage(fliDestinationImage)
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		logicalNor.SetOperationSource(EOperationSource.Image);
+		logicalNor.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := logicalNor.Execute()).IsFail():

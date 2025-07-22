@@ -79,7 +79,7 @@ def main():
 		# 포즈 조정 반복 횟수 설정 // Set the iteration value of pose refinement
 		VertexMatch3D.SetIteration(15)
 		# 초기 점수 설정 // Set the initial score
-		VertexMatch3D.SetInitialScore(0.1);
+		VertexMatch3D.SetInitialScore(0.1)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(res := VertexMatch3D.Learn()).IsFail() :	

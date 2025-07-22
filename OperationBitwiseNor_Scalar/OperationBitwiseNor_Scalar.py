@@ -72,10 +72,10 @@ def main():
 		flcSourceROI = CFLCircle[Double](128, 128, 80, 0, 0, 360, EArcClosingMethod.EachOther)
 
 		# Source 이미지의 ROI 지정 // Set the Source ROI
-		operationBitwiseNor.SetSourceROI(flcSourceROI);
+		operationBitwiseNor.SetSourceROI(flcSourceROI)
 
 		# Scalar Operation 소스로 설정 // Set Operation Source to scalar
-		operationBitwiseNor.SetOperationSource(EOperationSource.Scalar);
+		operationBitwiseNor.SetOperationSource(EOperationSource.Scalar)
 
 		# Scalar 값 지정 // Set the Scalar value
 		operationBitwiseNor.SetScalarValue(111)
@@ -95,12 +95,12 @@ def main():
 		layerDestination.Clear()
 
 		if (res := layerSource.DrawFigureImage(flcSourceROI, EColor.LIME)).IsFail() :
-			ErrorPrint(res, "Failed to draw figure. \n");
-			break;
+			ErrorPrint(res, "Failed to draw figure. \n")
+			break
 
 		if (res := layerDestination.DrawFigureImage(flcSourceROI, EColor.LIME)).IsFail() :		
-			ErrorPrint(res, "Failed to draw figure. \n");
-			break;
+			ErrorPrint(res, "Failed to draw figure. \n")
+			break
 
 		# 이미지 뷰 정보 표시 // Display image view information
 		flpPoint = CFLPoint[Double](0, 0)

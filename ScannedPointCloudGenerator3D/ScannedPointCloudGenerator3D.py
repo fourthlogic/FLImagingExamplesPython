@@ -44,34 +44,34 @@ def main():
 		ScannedPointCloudGenerator3D = CScannedPointCloudGenerator3D()
 
 		# Source object 설정 // Set the source object
-		ScannedPointCloudGenerator3D.SetSourceObject(floSourceObject);
+		ScannedPointCloudGenerator3D.SetSourceObject(floSourceObject)
 
 		# Destination object 설정 // Set the destination object
-		ScannedPointCloudGenerator3D.SetDestinationObject(floDestinationObject);
+		ScannedPointCloudGenerator3D.SetDestinationObject(floDestinationObject)
 
 		# 샘플링 거리 설정 // Set the sampling distance
-		ScannedPointCloudGenerator3D.SetSamplingDistance(0.01);
+		ScannedPointCloudGenerator3D.SetSamplingDistance(0.01)
 
 		# HPR 반지름 설정 // Set the HPR radius
-		ScannedPointCloudGenerator3D.SetHPRSphericalRadius(1000);
+		ScannedPointCloudGenerator3D.SetHPRSphericalRadius(1000)
 
-		tp3ViewPoint = TPoint3[Single]();
-		tp3ViewPoint.x = 229.706985;
-		tp3ViewPoint.y = -113.808151;
-		tp3ViewPoint.z = 100.796326;
+		tp3ViewPoint = TPoint3[Single]()
+		tp3ViewPoint.x = 229.706985
+		tp3ViewPoint.y = -113.808151
+		tp3ViewPoint.z = 100.796326
 
 		# 시점 설정 // Set the viewpoint
-		ScannedPointCloudGenerator3D.SetViewPoint(tp3ViewPoint);
+		ScannedPointCloudGenerator3D.SetViewPoint(tp3ViewPoint)
 
 		# 임의의 시점 적용 여부 설정 // Sets whether to use viewpoints.
-		ScannedPointCloudGenerator3D.EnableViewPointSetting(True);
+		ScannedPointCloudGenerator3D.EnableViewPointSetting(True)
 
 		# 원점 정렬 적용 여부 설정 // Sets whether to align the results to the origin.
-		ScannedPointCloudGenerator3D.EnableAlignmentOfOrigin(False);
+		ScannedPointCloudGenerator3D.EnableAlignmentOfOrigin(False)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(res := ScannedPointCloudGenerator3D.Execute()).IsFail() :	
-			ErrorPrint(res, "Failed to execute Scanned Point Cloud Generator 3D.");
+			ErrorPrint(res, "Failed to execute Scanned Point Cloud Generator 3D.")
 			break
 		
 
@@ -107,28 +107,28 @@ def main():
 			break
 
 		# 설정한 시점으로 카메라 동기화 // Synchronize the camera with the viewpoint.
-		srcCam = view3DDst.GetCamera();
+		srcCam = view3DDst.GetCamera()
 		
 		tp3Min = TPoint3[Single]()
-		tp3Max = TPoint3[Single]();
-		flp3Center = CFLPoint3[Single]();
-		flp3ViewPoint = CFLPoint3[Single]();
+		tp3Max = TPoint3[Single]()
+		flp3Center = CFLPoint3[Single]()
+		flp3ViewPoint = CFLPoint3[Single]()
 
-		floSourceObject.GetBoundingBox(tp3Min, tp3Max);
-		flp3Center.x = (tp3Min.x + tp3Max.x) / 2;
-		flp3Center.y = (tp3Min.y + tp3Max.y) / 2;
-		flp3Center.z = (tp3Min.z + tp3Max.z) / 2;
+		floSourceObject.GetBoundingBox(tp3Min, tp3Max)
+		flp3Center.x = (tp3Min.x + tp3Max.x) / 2
+		flp3Center.y = (tp3Min.y + tp3Max.y) / 2
+		flp3Center.z = (tp3Min.z + tp3Max.z) / 2
 
-		flp3ViewPoint.x = tp3ViewPoint.x;
-		flp3ViewPoint.y = tp3ViewPoint.y;
-		flp3ViewPoint.z = tp3ViewPoint.z;
+		flp3ViewPoint.x = tp3ViewPoint.x
+		flp3ViewPoint.y = tp3ViewPoint.y
+		flp3ViewPoint.z = tp3ViewPoint.z
 
-		srcCam.SetPosition(flp3ViewPoint);
-		srcCam.SetTarget(flp3Center);
+		srcCam.SetPosition(flp3ViewPoint)
+		srcCam.SetTarget(flp3Center)
 		
 
-		view3DSource.SetCamera(srcCam);
-		view3DDst.SetCamera(srcCam);
+		view3DSource.SetCamera(srcCam)
+		view3DDst.SetCamera(srcCam)
 		
 		view3DDst.ZoomFit()
 		view3DSource.ZoomFit()
@@ -137,7 +137,7 @@ def main():
 		view3DSource.Invalidate(True)
 		view3DDst.Invalidate(True)
 
-		view3DDst.SynchronizePointOfView(view3DSource);
+		view3DDst.SynchronizePointOfView(view3DSource)
 
 		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 // Wait for the image and 3D view to close
 		while view3DSource.IsAvailable() and view3DDst.IsAvailable() :

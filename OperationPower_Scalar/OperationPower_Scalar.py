@@ -104,11 +104,11 @@ def main():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		mvScalr1 = CMultiVar[Double](1.1, 1.2, 1.5);
-		mvScalr2 = CMultiVar[Double](0.8, 0.8, 1.1);
-		mvScalr3 = CMultiVar[Double](2.5, 2.5, 2.5);
-		mvScalr4 = CMultiVar[Double](2.5, 2.5, 2.5);
-		mvScalr5 = CMultiVar[Double](10, 10, 10);
+		mvScalr1 = CMultiVar[Double](1.1, 1.2, 1.5)
+		mvScalr2 = CMultiVar[Double](0.8, 0.8, 1.1)
+		mvScalr3 = CMultiVar[Double](2.5, 2.5, 2.5)
+		mvScalr4 = CMultiVar[Double](2.5, 2.5, 2.5)
+		mvScalr5 = CMultiVar[Double](10, 10, 10)
 		
 		# Operation Power 객체 생성 # Create Operation scaled divide object
 		power = COperationPower()
@@ -126,7 +126,7 @@ def main():
 		power.SetOperationSource(EOperationSource.Scalar)
 		
 		# Exponent 값 설정 // Set Exponent value
-		power.SetScalarValue(mvScalr1);
+		power.SetScalarValue(mvScalr1)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := power.Execute()).IsFail():
@@ -194,12 +194,12 @@ def main():
 		listLayer = [listViewImage[0].GetLayer(0), listViewImage[1].GetLayer(0), listViewImage[2].GetLayer(0), listViewImage[3].GetLayer(0), listViewImage[4].GetLayer(0), listViewImage[5].GetLayer(0)]
 
 		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
-		listLayer[0].Clear();
-		listLayer[1].Clear();
-		listLayer[2].Clear();
-		listLayer[3].Clear();
-		listLayer[4].Clear();
-		listLayer[5].Clear();
+		listLayer[0].Clear()
+		listLayer[1].Clear()
+		listLayer[2].Clear()
+		listLayer[3].Clear()
+		listLayer[4].Clear()
+		listLayer[5].Clear()
 		
 		# 이미지 뷰 정보 표시 # Display image view information
 		flpPoint1 = CFLPoint[Double](5, 0)

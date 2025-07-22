@@ -68,14 +68,14 @@ def main():
 		Deriche.SetDestinationImage(fliIDstImage)
 
 		# 이미지 전처리 Smoothing/Normal 설정 / Set Image Preprocessing Mode Smoothing/Normal
-		Deriche.SetConvolutionMode(CDericheEdgeDetector.EConvolutionMode.Normal);
+		Deriche.SetConvolutionMode(CDericheEdgeDetector.EConvolutionMode.Normal)
 
 		# Threshold 설정 // Set threshold value
 		mvThresholdValue = CMultiVar[Double](20, 25)
 		Deriche.SetThreshold(mvThresholdValue)
 		
 		# Alpha 값 설정 // Set alpha value
-		Deriche.SetAlpha(1.0);
+		Deriche.SetAlpha(1.0)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := Deriche.Execute()).IsFail():

@@ -88,7 +88,7 @@ def main():
 
 		# 페이지 선택
 		for i in range(0, i32PageCount) : 							
-			pagePtr.append(CFLImage(fliSource.GetPage(i)));
+			pagePtr.append(CFLImage(fliSource.GetPage(i)))
 
 			# 처리할 이미지 설정
 			CameraPose3D.SetSourceImage(pagePtr[i])

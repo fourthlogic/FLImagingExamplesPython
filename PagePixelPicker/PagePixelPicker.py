@@ -86,7 +86,7 @@ def main():
 		# 8bit 와 16 bit 를 지원하며 반드시 입력되어야 합니다.
 		# Index 이미지는 Source 이미지나 Destination 이미지와 다르게 설정해야 합니다. 
 		# Index 이미지의 각 픽셀 값은 입력된 Source 이미지의 페이지 인덱스를 의미합니다.
-		PagePixelPicker.SetIndexImage(fliIndexImage);
+		PagePixelPicker.SetIndexImage(fliIndexImage)
 
 		# Source ROI, Source Pivot, Destination ROI, Destination Pivot 기능을 지원합니다.
 		# ROI 및 Pivot 은 Image Operation Scalar 연산과 동일한 동작을 수행합니다.
@@ -94,10 +94,10 @@ def main():
 		# Blank Color 설정
 		# 기본적으로 Image Operation 의 Blank Color 와 동일한 동작을 합니다. 
 		# Index Image 픽셀 값에 해당되는 페이지 인덱스가 존재하지 않을 경우 Blank color 로 채워집니다.
-		PagePixelPicker.SetBlankColor(200);
+		PagePixelPicker.SetBlankColor(200)
 
 		# Destination 이미지 설정 // Set the destination image
-		PagePixelPicker.SetDestinationImage(fliDestinationImage);
+		PagePixelPicker.SetDestinationImage(fliDestinationImage)
 
 		# Index 이미지 // Index image
 		#	- 각 픽셀별로 추출한 결과 값이 위치한 페이지 인덱스 값을 대응되는 좌표의 픽셀로 출력합니다. // For each pixel, output the page index value where the resulting value is located to the pixel of the corresponding coordinates.
@@ -112,7 +112,7 @@ def main():
 		# Sampling 메소드 설정
 		#	- Normal : Index 이미지 각 픽셀과 좌표에 대응되는 Source 이미지 픽셀 색상 값을 출력합니다.
 		#	- Gaussian : Index 이미지 각 픽셀과 좌표에 대응되는 Source 이미지와 전 후 페이지 색상 값으로 가우시안 값을 계산하여 출력합니다.
-		PagePixelPicker.SetSamplingMethod(CPagePixelPicker.ESamplingMethod.Normal);
+		PagePixelPicker.SetSamplingMethod(CPagePixelPicker.ESamplingMethod.Normal)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := PagePixelPicker.Execute()).IsFail():

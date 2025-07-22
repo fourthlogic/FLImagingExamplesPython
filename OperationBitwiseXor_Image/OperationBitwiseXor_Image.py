@@ -92,13 +92,13 @@ def main():
 		# COperationBitwiseXor 객체 생성 // Create COperationBitwiseXor object
 		bitwiseXor = COperationBitwiseXor()
 		# Source 이미지 설정 // Set source image
-		bitwiseXor.SetSourceImage(fliSourceImage);
+		bitwiseXor.SetSourceImage(fliSourceImage)
 		# Operand 이미지 설정 // Set operand image
-		bitwiseXor.SetOperandImage(fliOperandImage);
+		bitwiseXor.SetOperandImage(fliOperandImage)
 		# Destination 이미지 설정 // Set destination image
-		bitwiseXor.SetDestinationImage(fliDestinationImage);
+		bitwiseXor.SetDestinationImage(fliDestinationImage)
 		# Image Operation 모드로 설정 // Set operation mode to image
-		bitwiseXor.SetOperationSource(EOperationSource.Image);
+		bitwiseXor.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := bitwiseXor.Execute()).IsFail():

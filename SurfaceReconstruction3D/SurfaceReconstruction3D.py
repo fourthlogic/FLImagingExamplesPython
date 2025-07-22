@@ -44,34 +44,34 @@ def main():
 		SurfaceReconstruction3D = CSurfaceReconstruction3D()
 
 		# Source Object 설정 // Set the source object
-		SurfaceReconstruction3D.SetSourceObject(floSourceObject);
+		SurfaceReconstruction3D.SetSourceObject(floSourceObject)
 
 		# Destination object 설정 // Set the destination object
-		SurfaceReconstruction3D.SetDestinationObject(floDestinationObject);
+		SurfaceReconstruction3D.SetDestinationObject(floDestinationObject)
 
 		# Reconstruction Method 설정 // Set the reconstruction method
-		SurfaceReconstruction3D.SetReconstructionMethod(CSurfaceReconstruction3D.EReconstructionMethod.Explicit_RegionGrowing);
+		SurfaceReconstruction3D.SetReconstructionMethod(CSurfaceReconstruction3D.EReconstructionMethod.Explicit_RegionGrowing)
 
 		# 최대 반경 자동 계산하도록 설정 // Set to auto-calculate maximum radius
-		SurfaceReconstruction3D.EnableExplicitAutoRadius(True);
+		SurfaceReconstruction3D.EnableExplicitAutoRadius(True)
 
 		# 최대 반경 계수 설정 // Set the maximum radius coefficient
-		SurfaceReconstruction3D.SetExplicitMaxRadiusCoefficient(5);
+		SurfaceReconstruction3D.SetExplicitMaxRadiusCoefficient(5)
 
 		# Hole filling 최대 반경 자동 계산하도록 설정 // Set to auto-calculate hole filling maximum radius
-		SurfaceReconstruction3D.EnableExplicitHoleFillingAutoRadius(True);
+		SurfaceReconstruction3D.EnableExplicitHoleFillingAutoRadius(True)
 
 		# 최대 반경 계수 설정 // Set the maximum radius coefficient
-		SurfaceReconstruction3D.SetExplicitHoleFillingRadiusCoefficient(1);
+		SurfaceReconstruction3D.SetExplicitHoleFillingRadiusCoefficient(1)
 
 		# 시작 지점 최대 개수 설정 // Set the maximum number of starting points
-		SurfaceReconstruction3D.SetExplicitMaxSeed(10000);
+		SurfaceReconstruction3D.SetExplicitMaxSeed(10000)
 
 		# 그리드 셀 거리 자동 계산하도록 설정 // Set to auto-calculate grid cell distance
-		SurfaceReconstruction3D.EnableExplicitAutoCellRadius(True);
+		SurfaceReconstruction3D.EnableExplicitAutoCellRadius(True)
 
 		# 그리드 셀 거리 계수 설정 // Set the grid cell distance coefficient
-		SurfaceReconstruction3D.SetExplicitCellRadiusCoefficient(1);
+		SurfaceReconstruction3D.SetExplicitCellRadiusCoefficient(1)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if(res := SurfaceReconstruction3D.Execute()).IsFail() :	
@@ -117,7 +117,7 @@ def main():
 		view3DSource.Invalidate(True)
 		view3DDst.Invalidate(True)
 
-		view3DDst.SynchronizePointOfView(view3DSource);
+		view3DDst.SynchronizePointOfView(view3DSource)
 
 		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 // Wait for the image and 3D view to close
 		while view3DSource.IsAvailable() and view3DDst.IsAvailable() :

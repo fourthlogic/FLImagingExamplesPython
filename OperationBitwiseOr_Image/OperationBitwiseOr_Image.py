@@ -92,13 +92,13 @@ def main():
 		# COperationBitwiseOr 객체 생성 // Create COperationBitwiseOr object
 		bitwiseOr = COperationBitwiseOr()
 		# Source 이미지 설정 // Set source image
-		bitwiseOr.SetSourceImage(fliSourceImage);
+		bitwiseOr.SetSourceImage(fliSourceImage)
 		# Operand 이미지 설정 // Set operand image
-		bitwiseOr.SetOperandImage(fliOperandImage);
+		bitwiseOr.SetOperandImage(fliOperandImage)
 		# Destination 이미지 설정 // Set destination image
-		bitwiseOr.SetDestinationImage(fliDestinationImage);
+		bitwiseOr.SetDestinationImage(fliDestinationImage)
 		# Image Operation 모드로 설정 // Set operation mode to image
-		bitwiseOr.SetOperationSource(EOperationSource.Image);
+		bitwiseOr.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := bitwiseOr.Execute()).IsFail():

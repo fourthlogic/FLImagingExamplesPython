@@ -14,9 +14,9 @@ def main():
 	floSource = CFL3DObject()
 
 	# 3D 뷰 선언 // Declare 3D view	
-	view3D = CGUIView3D();
-	viewDepthImage = CGUIViewImage();
-	viewDestinationTextureImage = CGUIViewImage();
+	view3D = CGUIView3D()
+	viewDepthImage = CGUIViewImage()
+	viewDestinationTextureImage = CGUIViewImage()
 
 	# 알고리즘 동작 결과 // Algorithm execution result
 	res = CResult()
@@ -29,29 +29,29 @@ def main():
 
 		# 이미지 뷰 생성 // Create image view
 		if(res := viewDepthImage.Create(100, 0, 612, 512)).IsFail() :		
-			ErrorPrint(res, "Failed to create the Source image view.\n");
-			break;		
+			ErrorPrint(res, "Failed to create the Source image view.\n")
+			break		
 
 		if(res := viewDestinationTextureImage.Create(612, 0, 1124, 512)).IsFail() :		
-			ErrorPrint(res, "Failed to create the Texture image view.\n");
-			break;
+			ErrorPrint(res, "Failed to create the Texture image view.\n")
+			break
 		
 		# 결과 3D 뷰 생성 // Create result 3D view
 		if(res := view3D.Create(100, 512, 612, 1024)).IsFail() :		
-			ErrorPrint(res, "Failed to create the Result 3D view.\n");
-			break;		
+			ErrorPrint(res, "Failed to create the Result 3D view.\n")
+			break		
 
 		# DepthMapToPointCloudConverter 객체 생성 // Create DepthMapToPointCloudConverter object
 		PointCloudToDepthMapConverter3D = CPointCloudToDepthMapConverter3D()
 
 		# Destination 이미지 설정 // Set the Destination image.
-		PointCloudToDepthMapConverter3D.SetDestinationImage(fliDestination);
+		PointCloudToDepthMapConverter3D.SetDestinationImage(fliDestination)
 
 		# Destination Texture 이미지 설정 // Set the texture image.
-		PointCloudToDepthMapConverter3D.SetDestinationImageTexture(fliDestinationTexture);
+		PointCloudToDepthMapConverter3D.SetDestinationImageTexture(fliDestinationTexture)
 
 		# 이미지 크기 설정 // Set the image size.
-		PointCloudToDepthMapConverter3D.SetImageSize(2064, 1544);
+		PointCloudToDepthMapConverter3D.SetImageSize(2064, 1544)
 
 		# Camera Matrix 설정 // Set the camera matrix
 		flpFocalLength = CFLPoint[Single]()
@@ -87,8 +87,8 @@ def main():
 			break
 		
 		# 이미지 포인터 설정 // Set image pointer
-		viewDepthImage.SetImagePtr(fliDestination);
-		viewDestinationTextureImage.SetImagePtr(fliDestinationTexture);
+		viewDepthImage.SetImagePtr(fliDestination)
+		viewDestinationTextureImage.SetImagePtr(fliDestinationTexture)
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately		
@@ -121,10 +121,10 @@ def main():
 			ErrorPrint(res, "Failed to set object on the 3D View.\n")
 			break
 		
-		view3D.PushObject(floSource);
-		view3D.UpdateObject(-1);
-		view3D.UpdateScreen();
-		view3D.ZoomFit();
+		view3D.PushObject(floSource)
+		view3D.UpdateObject(-1)
+		view3D.UpdateScreen()
+		view3D.ZoomFit()
 
 		viewDepthImage.ZoomFit()
 		viewDestinationTextureImage.ZoomFit()
@@ -133,7 +133,7 @@ def main():
 		viewDestinationTextureImage.Invalidate(True)
 		viewDepthImage.Invalidate(True)
 
-		viewDepthImage.SynchronizePointOfView(viewDestinationTextureImage);
+		viewDepthImage.SynchronizePointOfView(viewDestinationTextureImage)
 
 		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 // Wait for the image and 3D view to close
 		while viewDestinationTextureImage.IsAvailable() and viewDepthImage.IsAvailable() :

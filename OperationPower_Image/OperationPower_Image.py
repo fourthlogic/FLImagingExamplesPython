@@ -155,13 +155,13 @@ def main():
 		listLayer1 = [listViewImage1[0].GetLayer(0), listViewImage1[1].GetLayer(0), listViewImage1[2].GetLayer(0)]
 
 		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
-		listLayer0[0].Clear();
-		listLayer0[1].Clear();
-		listLayer0[2].Clear();
+		listLayer0[0].Clear()
+		listLayer0[1].Clear()
+		listLayer0[2].Clear()
 
-		listLayer1[0].Clear();
-		listLayer1[1].Clear();
-		listLayer1[2].Clear();
+		listLayer1[0].Clear()
+		listLayer1[1].Clear()
+		listLayer1[2].Clear()
 		
 		# 이미지 뷰 정보 표시 # Display image view information
 		flpPoint = CFLPoint[Double](5, 5)

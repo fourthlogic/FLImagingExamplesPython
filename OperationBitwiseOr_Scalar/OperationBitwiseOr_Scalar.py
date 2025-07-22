@@ -103,7 +103,7 @@ def main():
 		bitwiseOr.SetScalarValue(mvScalarValue)
 
 		#Image Operation 소스로 설정 // Set Operation Source to image
-		bitwiseOr.SetOperationSource(EOperationSource.Scalar);
+		bitwiseOr.SetOperationSource(EOperationSource.Scalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := bitwiseOr.Execute()).IsFail():
@@ -111,10 +111,10 @@ def main():
 			break
 
 		# Destination 이미지를 Destination2로 설정 // Set the Destination image to Destination2
-		bitwiseOr.SetDestinationImage(fliDestinationImage2);
+		bitwiseOr.SetDestinationImage(fliDestinationImage2)
 		# rollingLeft 값 설정 // Set rollingLeft value
 		mvScalarValue2 = CMultiVar[Double](128, 128, 128)
-		bitwiseOr.SetScalarValue(mvScalarValue2);
+		bitwiseOr.SetScalarValue(mvScalarValue2)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := bitwiseOr.Execute()).IsFail():

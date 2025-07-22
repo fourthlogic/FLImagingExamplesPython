@@ -14,9 +14,9 @@ def main():
 	floDestination = CFL3DObject()
 
 	# 3D 뷰 선언 // Declare 3D view	
-	view3D = CGUIView3D();
-	viewDepthImage = CGUIViewImage();
-	viewTextureImage = CGUIViewImage();
+	view3D = CGUIView3D()
+	viewDepthImage = CGUIViewImage()
+	viewTextureImage = CGUIViewImage()
 
 	# 알고리즘 동작 결과 // Algorithm execution result
 	res = CResult()
@@ -34,21 +34,21 @@ def main():
 
 		# 이미지 뷰 생성 // Create image view
 		if(res := viewDepthImage.Create(100, 0, 612, 512)).IsFail() :		
-			ErrorPrint(res, "Failed to create the Source image view.\n");
-			break;		
+			ErrorPrint(res, "Failed to create the Source image view.\n")
+			break		
 
 		if(res := viewTextureImage.Create(612, 0, 1124, 512)).IsFail() :		
-			ErrorPrint(res, "Failed to create the Texture image view.\n");
-			break;
+			ErrorPrint(res, "Failed to create the Texture image view.\n")
+			break
 		
 		# 결과 3D 뷰 생성 // Create result 3D view
 		if(res := view3D.Create(100, 512, 612, 1024)).IsFail() :		
-			ErrorPrint(res, "Failed to create the Result 3D view.\n");
-			break;		
+			ErrorPrint(res, "Failed to create the Result 3D view.\n")
+			break		
 
 		# 이미지 포인터 설정 // Set image pointer
-		viewDepthImage.SetImagePtr(fliSource);
-		viewTextureImage.SetImagePtr(fliTexture);
+		viewDepthImage.SetImagePtr(fliSource)
+		viewTextureImage.SetImagePtr(fliTexture)
 
 		# DepthMapToPointCloudConverter 객체 생성 // Create DepthMapToPointCloudConverter object
 		DepthMapToPointCloudConverter3D = CDepthMapToPointCloudConverter3D()
@@ -131,10 +131,10 @@ def main():
 			ErrorPrint(res, "Failed to set object on the 3D View.\n")
 			break
 		
-		view3D.PushObject(floDestination);
-		view3D.UpdateObject(-1);
-		view3D.UpdateScreen();
-		view3D.ZoomFit();
+		view3D.PushObject(floDestination)
+		view3D.UpdateObject(-1)
+		view3D.UpdateScreen()
+		view3D.ZoomFit()
 
 		viewDepthImage.ZoomFit()
 		viewTextureImage.ZoomFit()
@@ -143,7 +143,7 @@ def main():
 		viewTextureImage.Invalidate(True)
 		viewDepthImage.Invalidate(True)
 
-		viewDepthImage.SynchronizePointOfView(viewTextureImage);
+		viewDepthImage.SynchronizePointOfView(viewTextureImage)
 
 		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 // Wait for the image and 3D view to close
 		while viewTextureImage.IsAvailable() and viewDepthImage.IsAvailable() :

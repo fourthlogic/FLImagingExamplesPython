@@ -57,9 +57,9 @@ def main():
 		# COperationSine 객체 생성 // Create COperationSine object
 		Sine = COperationSine()
 		# Source 이미지 설정 // Set source image
-		Sine.SetSourceImage(fliSourceImage);
+		Sine.SetSourceImage(fliSourceImage)
 		# Destination 이미지 설정 // Set destination image
-		Sine.SetDestinationImage(fliDestinationImage);
+		Sine.SetDestinationImage(fliDestinationImage)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := Sine.Execute()).IsFail():

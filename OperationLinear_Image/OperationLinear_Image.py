@@ -116,14 +116,14 @@ def main():
 		# COperationLinear 객체 생성 // Create COperationLinear object
 		Linear = COperationLinear()
 		# Source 이미지 설정 // Set source image
-		Linear.SetSourceImage(fliSourceImage);
+		Linear.SetSourceImage(fliSourceImage)
 		# Operand 이미지 설정 // Set operand image
-		Linear.SetOperandImage(fliOperandImage1);
-		Linear.SetOperandImage2(fliOperandImage2);
+		Linear.SetOperandImage(fliOperandImage1)
+		Linear.SetOperandImage2(fliOperandImage2)
 		# Destination 이미지 설정 // Set destination image
-		Linear.SetDestinationImage(fliDestinationImage);
+		Linear.SetDestinationImage(fliDestinationImage)
 		# Image Operation 모드로 설정 // Set operation mode to image
-		Linear.SetOperationSource(EOperationSource.Image);
+		Linear.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := Linear.Execute()).IsFail():
