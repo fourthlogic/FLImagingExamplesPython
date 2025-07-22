@@ -19,7 +19,7 @@ def main():
     res = CResult()
 
     # 이미지 로드 // Load image
-    if (res := fliImage.Load("../../ExampleImages/Blob/AlignBall.flif")).IsFail():
+    if (res := fliImage.Load("../../ExampleImages/Blob/Ball.flif")).IsFail():
         ErrorPrint(res, "Failed to load the image file.\n")
         return
 
@@ -43,41 +43,40 @@ def main():
 
     # 처리할 이미지 설정 // Set the image to process
     blob.SetSourceImage(fliImage)
+    
+	# ROI 범위 설정
+    flrROI = CFLRect[Int32](450, 425, 1024, 800);
+
+	# 처리할 ROI 설정
+    blob.SetSourceROI(flrROI);
 
     # 논리 조건 설정
-    blob.SetLogicalCondition(ELogicalCondition.Less)
+    blob.SetLogicalCondition(ELogicalCondition.GreaterEqual)
 
     # 임계값 설정,  위의 조건과 아래의 조건이 합쳐지면 50보다 작은 객체를 검출
-    blob.SetThreshold(50)
-
-    # Blob Result Type mask 생성 (Contour, Area)
-    resultTypeMask = Enum.ToObject(CBlob.EBlobResultType, int(CBlob.EBlobResultType.Contour) | int(CBlob.EBlobResultType.Area))
-
-    # Result Type 설정
-    blob.SetResultType(resultTypeMask)
+    blob.SetThreshold(100)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
     if res := blob.Execute().IsFail():
         ErrorPrint(res, "Failed to execute Blob.")
         return
-
-    # 면적이 100보다 작은 객체들을 제거
-    if res := blob.Filter(CBlob.EFilterItem.Area, 100, ELogicalCondition.Less).IsFail():
+    
+	# 50보다 같거나 큰 장변 길이를 가진 객체들을 제거
+    if res := blob.Filter(CBlob.EFilterItem.BoundaryRectWidth, 50, ELogicalCondition.GreaterEqual).IsFail():
+        ErrorPrint(res, "Blob filtering algorithm error occurred.")
+        return
+    
+	# 50보다 같거나 큰 단변 길이를 가진 객체들을 제거
+    if res := blob.Filter(CBlob.EFilterItem.BoundaryRectHeight, 50, ELogicalCondition.GreaterEqual).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
 
     # Blob 결과를 얻어오기 위해 FigureArray, List<ulong> 선언
-    flfaContours = CFLFigureArray()
-    flaArea = List[UInt64]()
+    flfaBoundaryRects = CFLFigureArray()
 
     # Blob 결과들 중 Contours 을 얻어옴
-    if (res := blob.GetResultContours(flfaContours)[0]).IsFail():
+    if (res := blob.GetResultBoundaryRects(flfaBoundaryRects)[0]).IsFail():
         ErrorPrint(res, "Failed to get contours from the Blob object.")
-        return
-
-    # Blob 결과들 중 Area 을 얻어옴
-    if (res := blob.GetResultAreas(flaArea)[0]).IsFail():
-        ErrorPrint(res, "Failed to get area from the Blob object.")
         return
 
     # 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
@@ -86,32 +85,38 @@ def main():
 
     # 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
     layer.Clear()
+    # ROI영역이 어디인지 알기 위해 디스플레이 한다 // Display to find out where ROI is
+    # FLImaging의 Figure객체들은 어떤 도형모양이든 상관없이 하나의 함수로 디스플레이가 가능				
+    if res := layer.DrawFigureImage(flrROI, EColor.BLUE).IsFail():
+        ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
+        return
 
-    # flfaContours 는 Figure들의 배열이기 때문에 Layer에 넣기만 해도 모두 드로윙이 가능하다.
+    # flfaBoundaryRects 는 Figure들의 배열이기 때문에 Layer에 넣기만 해도 모두 드로윙이 가능하다.
     # 아래 함수 DrawFigureImage는 Image좌표를 기준으로 하는 Figure를 Drawing 한다는 것을 의미하며 // The function DrawFigureImage below means drawing a picture based on the image coordinates
     # 맨 마지막 두개의 파라미터는 불투명도 값이고 1일경우 불투명, 0일경우 완전 투명을 의미한다. // The last two parameters are opacity values, which mean opacity for 1 day and complete transparency for 0 day.
     # 여기서 0.25이므로 옅은 반투명 상태라고 볼 수 있다.
     # 파라미터 순서 : 레이어 -> Figure 객체 -> 선 색 -> 선 두께 -> 면 색 -> 펜 스타일 -> 선 알파값(불투명도) -> 면 알파값 (불투명도) // Parameter order: Layer -> Figure object -> Line color -> Line thickness -> Face color -> Pen style -> Line alpha value (opacity) -> Area alpha value (opacity)
-    if res := layer.DrawFigureImage(flfaContours, EColor.RED, 1, EColor.RED, EGUIViewImagePenStyle.Solid, 1.0, 0.25).IsFail():
+    if res := layer.DrawFigureImage(flfaBoundaryRects, EColor.RED, 1, EColor.RED, EGUIViewImagePenStyle.Solid, 1.0, .25).IsFail():
         ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
         return
 
-    # Image View 객체에 Index, Area 출력
-    strResult = ""
-    flsTextResult = ""
+    # Image View 객체에 Index 출력
+    for i in range(flfaBoundaryRects.GetCount()):
+        flpCenter = CFLPoint[Double](flfaBoundaryRects.GetAt(i))
 
-    for i in range(flfaContours.GetCount()):
-        strResult = f"[{i}]\n"
-        flsTextResult = f"\nArea {flaArea[i]}"
+        if isinstance(flfaBoundaryRects.GetAt(i), CFLRect[Int32]):
+            flrRect = flfaBoundaryRects.GetAt(i)
+        else:
+            flrRect = None
+            
+        if flrRect != None:
+            print("No. {} : ({},{},{},{})\n".format(i, flrRect.left, flrRect.top, flrRect.right, flrRect.bottom));
 
-        flpCenter = CFLPoint[Double](flfaContours.GetAt(i))
-
+        strIndex = f"{i}"
+        
         # Image View 결과 출력
-        layer.DrawTextImage(flpCenter, strResult, EColor.LIME, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
-        layer.DrawTextImage(flpCenter, flsTextResult, EColor.YELLOW, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
+        layer.DrawTextImage(flrRect.GetCenter(), strIndex, EColor.CYAN);
 
-        # 콘솔 결과 출력
-        print(f"[{i}] Area {flaArea[i]}\n")
 
     # 이미지 뷰를 갱신 합니다. // Update image view
     viewImage.Invalidate()
