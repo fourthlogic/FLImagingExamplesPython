@@ -1098,6 +1098,12 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MorphologyErode", "Morpholo
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MorphologyErode_Region", "MorphologyErode_Region\MorphologyErode_Region.pyproj", "{6FEF1A88-FBF9-4E06-9EC7-B00A3C743484}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Morphology Dilate", "Morphology Dilate", "{FBE5D46F-2057-4D2C-8E4A-C0FE9209AB41}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MorphologyDilate", "MorphologyDilate\MorphologyDilate.pyproj", "{1D612BF6-A4E8-4144-A4CB-C505B1F9757F}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MorphologyDilate_Region", "MorphologyDilate_Region\MorphologyDilate_Region.pyproj", "{A288AFFD-25A9-44AF-ADB5-105655522BFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1756,6 +1762,10 @@ Global
 		{91B326A7-A1AC-41C9-927C-E825A4207DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FEF1A88-FBF9-4E06-9EC7-B00A3C743484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6FEF1A88-FBF9-4E06-9EC7-B00A3C743484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D612BF6-A4E8-4144-A4CB-C505B1F9757F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D612BF6-A4E8-4144-A4CB-C505B1F9757F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A288AFFD-25A9-44AF-ADB5-105655522BFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A288AFFD-25A9-44AF-ADB5-105655522BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2297,6 +2307,9 @@ Global
 		{A5AB9DAA-7129-435A-9E33-86295EA503D4} = {154B642B-C72D-45D4-8DE1-BE7B77051B4F}
 		{91B326A7-A1AC-41C9-927C-E825A4207DAE} = {A5AB9DAA-7129-435A-9E33-86295EA503D4}
 		{6FEF1A88-FBF9-4E06-9EC7-B00A3C743484} = {A5AB9DAA-7129-435A-9E33-86295EA503D4}
+		{FBE5D46F-2057-4D2C-8E4A-C0FE9209AB41} = {154B642B-C72D-45D4-8DE1-BE7B77051B4F}
+		{1D612BF6-A4E8-4144-A4CB-C505B1F9757F} = {FBE5D46F-2057-4D2C-8E4A-C0FE9209AB41}
+		{A288AFFD-25A9-44AF-ADB5-105655522BFF} = {FBE5D46F-2057-4D2C-8E4A-C0FE9209AB41}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
