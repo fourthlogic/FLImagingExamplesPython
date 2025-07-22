@@ -66,16 +66,16 @@ def main():
 			break
 		
 		# 이미지 뷰 생성 # Create image views
-		if ((res := viewImageLrn[0].Create(100, 0, 548, 348)).IsFail() or
-			(res := viewImageLrn[1].Create(548, 0, 996, 348)).IsFail() or
-			(res := viewImageSrc[0].Create(100, 348, 548, 696)).IsFail() or
-			(res := viewImageSrc[1].Create(548, 348, 996, 696)).IsFail() or
-			(res := viewImageDst.Create(996, 348, 1444, 696)).IsFail()):
+		if ((res := viewImageLrn[0].Create(100, 0, 600, 400)).IsFail() or
+			(res := viewImageLrn[1].Create(600, 0, 1100, 400)).IsFail() or
+			(res := viewImageSrc[0].Create(100, 400, 600, 800)).IsFail() or
+			(res := viewImageSrc[1].Create(600, 400, 1100, 800)).IsFail() or
+			(res := viewImageDst.Create(200, 200, 700, 600)).IsFail()):
 			ErrorPrint(res, "Failed to create the image view.\n")
 			break
 		
 		# Destination 3D 이미지 뷰 생성 # Create the destination 3D image view
-		if (res := view3DDst.Create(400, 200, 1300, 800)).IsFail():
+		if (res := view3DDst.Create(400, 100, 1150, 550)).IsFail():
 			ErrorPrint(res, "Failed to create the image view.\n")
 			break
 

@@ -21,8 +21,8 @@ def main():
 			break
 
 		# 이미지 뷰 생성 # Create image views
-		if (res := viewImageSrc.Create(100, 0, 600, 545)).IsFail() or \
-			(res := viewImageDst.Create(600, 0, 1100, 545)).IsFail():
+		if (res := viewImageSrc.Create(100, 0, 600, 500)).IsFail() or \
+			(res := viewImageDst.Create(600, 0, 1100, 500)).IsFail():
 			ErrorPrint(res, "Failed to create the image view. \n")
 			break
 		

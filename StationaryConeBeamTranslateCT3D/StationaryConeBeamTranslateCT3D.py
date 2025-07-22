@@ -26,119 +26,93 @@ def main():
 			ErrorPrint(res, "Failed to load the image file.\n")
 			break
 
-		fliSrcImage.SelectPage(0)
-
 		# 이미지 뷰 생성 # Create image view
-		if (res := viewImageSrc.Create(100, 0, 548, 448)).IsFail():
+		if ((res := viewImageSrc.Create(100, 0, 600, 500)).IsFail() or
+			(res := viewImageDst.Create(600, 0, 1100, 500)).IsFail() or
+			(res := viewImageDstSino.Create(100, 500, 600, 1000)).IsFail() or
+			(res := view3DDst.Create(600, 500, 1100, 1000)).IsFail()):
 			ErrorPrint(res, "Failed to create the image view.\n")
 			break
 
 		# 이미지 뷰에 이미지를 디스플레이 # Display an image in an image view
-		if (res := viewImageSrc.SetImagePtr(fliSrcImage))[0].IsFail():
+		if ((res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail() or
+			(res := viewImageDst.SetImagePtr(fliDstImage)[0]).IsFail() or
+			(res := viewImageDstSino.SetImagePtr(fliDstSinoImage)[0]).IsFail()):
 			ErrorPrint(res, "Failed to set image object on the image view.\n")
 			break
-
-		# Destination 이미지 뷰 생성 # Create the destination image view
-		if (res := viewImageDst.Create(548, 0, 996, 448)).IsFail():
-			ErrorPrint(res, "Failed to create the image view.\n")
-			break
-
-		# Destination 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination image view
-		if (res := viewImageDst.SetImagePtr(fliDstImage))[0].IsFail():
-			ErrorPrint(res, "Failed to set image object on the image view.\n")
-			break
-
-		# Destination 이미지 뷰 생성 # Create the destination image view
-		if (res := viewImageDstSino.Create(100, 448, 548, 896)).IsFail():
-			ErrorPrint(res, "Failed to create the image view.\n")
-			break
-
-		# Destination 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination image view
-		if (res := viewImageDstSino.SetImagePtr(fliDstSinoImage))[0].IsFail():
-			ErrorPrint(res, "Failed to set image object on the image view.\n")
-			break
-
-		# Destination 3D 이미지 뷰 생성 # Create the destination 3D image view
-		if (res := view3DDst.Create(548, 448, 996, 896)).IsFail():
-			ErrorPrint(res, "Failed to create the image view.\n")
-			break
-
+		
 		viewImageSrc.SetFixThumbnailView(True)
 
-		# StationaryConeBeamTranslateCT3D 객체 생성 # Create StationaryConeBeamTranslateCT3D object
-		algStationaryConeBeamTranslateCT3D = CStationaryConeBeamTranslateCT3D()
 
-		# Source 이미지 설정 # Set the source image
-		if (res := algStationaryConeBeamTranslateCT3D.SetSourceImage(fliSrcImage))[0].IsFail():
+		# 알고리즘 객체 생성 # Create algorithm object
+		algObject = CStationaryConeBeamTranslateCT3D()
+
+		if (res := algObject.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
-		# 결과 destination height map 이미지 설정 # Set the destination height map image
-		if (res := algStationaryConeBeamTranslateCT3D.SetDestinationImage(fliDstImage))[0].IsFail():
+		if (res := algObject.SetDestinationImage(fliDstImage)[0]).IsFail():
 			break
-		# 결과 destination texture 이미지 설정 # Set the destination texture image
-		if (res := algStationaryConeBeamTranslateCT3D.SetDestinationSinogramImage(fliDstSinoImage))[0].IsFail():
+		if (res := algObject.SetDestinationSinogramImage(fliDstSinoImage)[0]).IsFail():
 			break
-		# Destination 3D object 설정 # Set the Destination 3D object 
-		if (res := algStationaryConeBeamTranslateCT3D.SetDestinationObject(floDestination))[0].IsFail():
+		if (res := algObject.SetDestinationObject(floDestination)[0]).IsFail():
 			break
 
-		if (res := algStationaryConeBeamTranslateCT3D.SetDestinationSinogramIndex(15)).IsFail():
+		if (res := algObject.SetDestinationSinogramIndex(15)).IsFail():
 			break
 
-		if (res := algStationaryConeBeamTranslateCT3D.SetDetectorCellSizeUnit(0.08354)).IsFail():
+		if (res := algObject.SetDetectorCellSizeUnit(0.08354)).IsFail():
 			break
-		if (res := algStationaryConeBeamTranslateCT3D.SetObjectTranslateDirection(CStationaryConeBeamTranslateCT3D.EObjectTranslateDirection.RightToLeft)).IsFail():
+		if (res := algObject.SetObjectTranslateDirection(CStationaryConeBeamTranslateCT3D.EObjectTranslateDirection.RightToLeft)).IsFail():
 			break
-		if (res := algStationaryConeBeamTranslateCT3D.SetSourceObjectDistanceUnit(13.60)).IsFail():
+		if (res := algObject.SetSourceObjectDistanceUnit(13.60)).IsFail():
 			break
-		if (res := algStationaryConeBeamTranslateCT3D.SetSourceDetectorDistanceUnit(60.00)).IsFail():
+		if (res := algObject.SetSourceDetectorDistanceUnit(60.00)).IsFail():
 			break
-		if (res := algStationaryConeBeamTranslateCT3D.SetObjectTranslationDistanceUnit(24.00)).IsFail():
+		if (res := algObject.SetObjectTranslationDistanceUnit(24.00)).IsFail():
 			break
-		if (res := algStationaryConeBeamTranslateCT3D.SetPrincipalDeltaXPixel(0.00)).IsFail():
-			break
-
-		if (res := algStationaryConeBeamTranslateCT3D.SetNormalizedAirThreshold(0.60)).IsFail():
-			break
-		if (res := algStationaryConeBeamTranslateCT3D.SetSinogramKeepRatio(0.30)).IsFail():
-			break
-		if (res := algStationaryConeBeamTranslateCT3D.SetInterpolationCoefficient(6)).IsFail():
-			break
-		if (res := algStationaryConeBeamTranslateCT3D.SetMergeCoefficient(21)).IsFail():
-			break
-		if (res := algStationaryConeBeamTranslateCT3D.EnableFrequencyRampFilter(True)).IsFail():
-			break
-		if (res := algStationaryConeBeamTranslateCT3D.SetFrequencyWindow(CStationaryConeBeamTranslateCT3D.EFrequencyWindow.Gaussian)).IsFail():
-			break
-		if (res := algStationaryConeBeamTranslateCT3D.SetSigma(0.50)).IsFail():
+		if (res := algObject.SetPrincipalDeltaXPixel(0.00)).IsFail():
 			break
 
-		if (res := algStationaryConeBeamTranslateCT3D.SetReconstructionPlaneCount(140)).IsFail():
+		if (res := algObject.SetNormalizedAirThreshold(0.60)).IsFail():
 			break
-		if (res := algStationaryConeBeamTranslateCT3D.EnableNegativeClip(True)).IsFail():
+		if (res := algObject.SetSinogramKeepRatio(0.30)).IsFail():
 			break
-		if (res := algStationaryConeBeamTranslateCT3D.EnableCircularMask(True)).IsFail():
+		if (res := algObject.SetInterpolationCoefficient(6)).IsFail():
 			break
-		if (res := algStationaryConeBeamTranslateCT3D.EnableSigmoid(True)).IsFail():
+		if (res := algObject.SetMergeCoefficient(21)).IsFail():
 			break
-		if (res := algStationaryConeBeamTranslateCT3D.SetSigmoidB(1.00)).IsFail():
+		if (res := algObject.EnableFrequencyRampFilter(True)).IsFail():
 			break
-		if (res := algStationaryConeBeamTranslateCT3D.SetSigmoidM(1.00)).IsFail():
+		if (res := algObject.SetFrequencyWindow(CStationaryConeBeamTranslateCT3D.EFrequencyWindow.Gaussian)).IsFail():
 			break
-		if (res := algStationaryConeBeamTranslateCT3D.SetIntensityThreshold(190)).IsFail():
+		if (res := algObject.SetSigma(0.50)).IsFail():
 			break
 
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := algStationaryConeBeamTranslateCT3D.Execute()).IsFail():
-			ErrorPrint(res, "Failed to execute algorithm.\n")
+		if (res := algObject.SetReconstructionPlaneCount(140)).IsFail():
+			break
+		if (res := algObject.EnableNegativeClip(True)).IsFail():
+			break
+		if (res := algObject.EnableCircularMask(True)).IsFail():
+			break
+		if (res := algObject.EnableSigmoid(True)).IsFail():
+			break
+		if (res := algObject.SetSigmoidB(1.00)).IsFail():
+			break
+		if (res := algObject.SetSigmoidM(1.00)).IsFail():
+			break
+		if (res := algObject.SetIntensityThreshold(190)).IsFail():
+			break
+		
+		# 알고리즘 수행 # Execute the algorithm
+		if (res := algObject.Execute()).IsFail():
+			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 
 
 		# 3D 이미지 뷰에 Destination Object 를 디스플레이
-		floDestinationAlg = algStationaryConeBeamTranslateCT3D.GetDestinationObject()
+		floDestinationAlg = algObject.GetDestinationObject()
 		if (res := view3DDst.PushObject(floDestinationAlg)).IsFail():
 			ErrorPrint(res, "Failed to set image object on the image view.\n")
 			break
-
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
@@ -152,49 +126,25 @@ def main():
 		layerDst.Clear()
 		layerDstSino.Clear()
 		layer3D.Clear()
-
-		# View 정보를 디스플레이 합니다. # Display View information.
-		# 아래 함수 DrawTextCanvas은 Screen좌표를 기준으로 하는 String을 Drawing 한다.# The function DrawTextCanvas below draws a String based on the screen coordinates.
-		# 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 ->
-		#                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
-		# Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
-		#                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
+		
+		# 이미지 뷰 정보 표시 # Display image view information
 		flp = CFLPoint[Double]()
-		if (res := layerSrc.DrawTextCanvas(flp, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+		if ((res := layerSrc.DrawTextCanvas(flp, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or
+			(res := layerDst.DrawTextCanvas(flp, "Destination Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or
+			(res := layerDstSino.DrawTextCanvas(flp, "Destination Sinogram Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or
+			(res := layer3D.DrawTextCanvas(flp, "Destination Object", EColor.YELLOW, EColor.BLACK, 20)).IsFail()):
 			ErrorPrint(res, "Failed to draw text.\n")
 			break
-
-		if (res := layerDst.DrawTextCanvas(flp, "Destination Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
-			ErrorPrint(res, "Failed to draw text.\n")
-			break
-
-		if (res := layerDstSino.DrawTextCanvas(flp, "Destination Sinogram Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
-			ErrorPrint(res, "Failed to draw text.\n")
-			break
-
-		if (res := layer3D.DrawTextCanvas(flp, "Destination Object", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
-			ErrorPrint(res, "Failed to draw text.\n")
-			break
-
 
 		# Zoom Fit
-		if (res := viewImageSrc.ZoomFit()).IsFail():
+		if ((res := viewImageSrc.ZoomFit()).IsFail() or
+			(res := viewImageDst.ZoomFit()).IsFail() or
+			(res := viewImageDstSino.ZoomFit()).IsFail() or
+			(res := view3DDst.ZoomFit()).IsFail()):
 			ErrorPrint(res, "Failed to zoom fit of the image view.\n")
 			break
 
-		if (res := viewImageDst.ZoomFit()).IsFail():
-			ErrorPrint(res, "Failed to zoom fit of the image view.\n")
-			break
-
-		if (res := viewImageDstSino.ZoomFit()).IsFail():
-			ErrorPrint(res, "Failed to zoom fit of the image view.\n")
-			break
-
-		if (res := view3DDst.ZoomFit()).IsFail():
-			ErrorPrint(res, "Failed to zoom fit of the image view.\n")
-			break
-
-
+		# 3D 뷰 카메라 수정 # Modify 3D view camera
 		cameraNew = CGUIView3DCamera()
 		cameraNew.Assign(view3DDst.GetCamera())
 		flpPositionOld = cameraNew.GetPosition()

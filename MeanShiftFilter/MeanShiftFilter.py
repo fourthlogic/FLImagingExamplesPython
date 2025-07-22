@@ -21,12 +21,8 @@ def main():
 			break
 
 		# 이미지 뷰 생성 # Create image view
-		if (res := viewImageSrc.Create(400, 0, 1052, 427)).IsFail():
-			ErrorPrint(res, "Failed to create the image view.\n")
-			break
-
-		# 이미지 뷰 생성 # Create image view
-		if (res := viewImageDst.Create(1052, 0, 1692, 427)).IsFail():
+		if ((res := viewImageSrc.Create(100, 0, 600, 500)).IsFail() or
+			(res := viewImageDst.Create(600, 0, 1100, 500)).IsFail()):
 			ErrorPrint(res, "Failed to create the image view.\n")
 			break
 
@@ -41,17 +37,12 @@ def main():
 		if (res := viewImageSrc.SynchronizeWindow(viewImageDst)[0]).IsFail():
 			ErrorPrint(res, "Failed to synchronize window. \n")
 			break
-
+		
 		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail():
-			ErrorPrint(res, "Failed to set image object on the image view. \n")
-			break
-
-		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageDst.SetImagePtr(fliDstImage)[0]).IsFail():
-			ErrorPrint(res, "Failed to set image object on the image view. \n")
+		if ((res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail() or
+			(res := viewImageDst.SetImagePtr(fliDstImage)[0]).IsFail()):
+			ErrorPrint(res, "Failed to set image object on the image view.\n")
 			break
 
 
@@ -79,7 +70,7 @@ def main():
 
 		# 알고리즘 수행 # Execute the algorithm
 		if (res := (msf.Execute())).IsFail():
-			ErrorPrint(res, "Failed to execute the algorithm. \n")
+			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 
 		

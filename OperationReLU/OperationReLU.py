@@ -23,31 +23,31 @@ def main():
 			break
 		
 		# 이미지 뷰 생성 # Create image view
-		if (res := viewImageSrc.Create(100, 0, 600, 500)).IsFail() or \
-			(res := viewImageDst0.Create(600, 0, 1100, 500)).IsFail() or \
-			(res := viewImageDst1.Create(1100, 0, 1600, 500)).IsFail():
+		if ((res := viewImageSrc.Create(100, 0, 600, 500)).IsFail() or
+			(res := viewImageDst0.Create(600, 0, 1100, 500)).IsFail() or
+			(res := viewImageDst1.Create(1100, 0, 1600, 500)).IsFail()):
 			ErrorPrint(res, "Failed to create the image view.\n")
 			break
 
 		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views. .
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SynchronizePointOfView(viewImageDst0)[0]).IsFail() or \
-			(res := viewImageSrc.SynchronizePointOfView(viewImageDst1)[0]).IsFail():
+		if ((res := viewImageSrc.SynchronizePointOfView(viewImageDst0)[0]).IsFail() or
+			(res := viewImageSrc.SynchronizePointOfView(viewImageDst1)[0]).IsFail()):
 			ErrorPrint(res, "Failed to synchronize view. \n")
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SynchronizeWindow(viewImageDst0)[0]).IsFail() or \
-			(res := viewImageSrc.SynchronizeWindow(viewImageDst1)[0]).IsFail():
+		if ((res := viewImageSrc.SynchronizeWindow(viewImageDst0)[0]).IsFail() or
+			(res := viewImageSrc.SynchronizeWindow(viewImageDst1)[0]).IsFail()):
 			ErrorPrint(res, "Failed to synchronize window. \n")
 			break
 
 		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail() or \
-			(res := viewImageDst0.SetImagePtr(fliDstImage0)[0]).IsFail() or \
-			(res := viewImageDst1.SetImagePtr(fliDstImage1)[0]).IsFail():
+		if ((res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail() or
+			(res := viewImageDst0.SetImagePtr(fliDstImage0)[0]).IsFail() or
+			(res := viewImageDst1.SetImagePtr(fliDstImage1)[0]).IsFail()):
 			ErrorPrint(res, "Failed to set image object on the image view. \n")
 			break
 

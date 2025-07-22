@@ -21,15 +21,11 @@ def main():
 			break
 
 		# 이미지 뷰 생성 # Create image view
-		if (res := viewImageSrc.Create(400, 0, 800, 400)).IsFail():
+		if ((res := viewImageSrc.Create(400, 0, 800, 400)).IsFail()
+			(res := viewImageDst.Create(800, 0, 1200, 400)).IsFail()):
 			ErrorPrint(res, "Failed to create the image view.\n")
 			break
 
-		# Destination 이미지 뷰 생성 # Create the destination image view
-		if (res := viewImageDst.Create(800, 0, 1200, 400)).IsFail():
-			ErrorPrint(res, "Failed to create the image view.\n")
-			break
-		
 		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SynchronizePointOfView(viewImageDst)[0]).IsFail():
@@ -42,15 +38,10 @@ def main():
 			ErrorPrint(res, "Failed to synchronize window\n")
 			break
 		
-		# 이미지 뷰에 이미지를 디스플레이 # Display an image in an image view
+		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail():
-			ErrorPrint(res, "Failed to set image object on the image view.\n")
-			break
-
-		# Destination 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageDst.SetImagePtr(fliDstImage)[0]).IsFail():
+		if ((res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail() or
+			(res := viewImageDst.SetImagePtr(fliDstImage)[0]).IsFail()):
 			ErrorPrint(res, "Failed to set image object on the image view.\n")
 			break
 
@@ -107,6 +98,7 @@ def main():
 			CThreadUtilities.Sleep(1)
 
 		msgReceiver.__del__()
+
 		break
 	# End of main function
 

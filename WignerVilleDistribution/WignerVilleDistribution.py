@@ -19,14 +19,11 @@ def main():
 		if (res := fliSrcImage.Load("../../ExampleImages/WignerVilleDistribution/chirp.flif")).IsFail():
 			ErrorPrint(res, "Failed to load the image file.\n")
 			break
-
-		# 이미지 뷰 생성 # Create image view
-		if (res := viewImageSrc.Create(300, 0, 300 + 520, 430)).IsFail():
-			ErrorPrint(res, "Failed to create the image view.\n")
-			break
-
-		if (res := viewImageDst.Create(300 + 520, 0, 300 + 520 * 2, 430)).IsFail():
-			ErrorPrint(res, "Failed to create the image view.\n")
+		
+		# 이미지 뷰 생성 # Create image views
+		if ((res := viewImageSrc.Create(100, 0, 600, 500)).IsFail() or 
+			(res := viewImageDst.Create(600, 0, 1100, 500)).IsFail()):
+			ErrorPrint(res, "Failed to create the image view. \n")
 			break
 
 		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
@@ -40,17 +37,12 @@ def main():
 		if (res := viewImageSrc.SynchronizeWindow(viewImageDst)[0]).IsFail():
 			ErrorPrint(res, "Failed to synchronize window\n")
 			break
-
+		
 		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail():
-			ErrorPrint(res, "Failed to set image object on the image view.\n")
-			break
-
-		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageDst.SetImagePtr(fliDstImage)[0]).IsFail():
-			ErrorPrint(res, "Failed to set image object on the image view.\n")
+		if ((res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail() or 
+			(res := viewImageDst.SetImagePtr(fliDstImage)[0]).IsFail()):
+			ErrorPrint(res, "Failed to set image object on the image view. \n")
 			break
 
 
@@ -98,12 +90,9 @@ def main():
 		
 		# 이미지 뷰 정보 표시 # Display image view information
 		flpTemp = CFLPoint[Double](0, 0)
-		if (res := layerSrc.DrawTextImage(flpTemp, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
-			ErrorPrint(res, "Failed to draw text.\n")
-			break
-
-		if (res := layerDst.DrawTextImage(flpTemp, "Destination Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
-			ErrorPrint(res, "Failed to draw text.\n")
+		if ((res := layerSrc.DrawTextCanvas(flpTemp, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or 
+			(res := layerDst.DrawTextCanvas(flpTemp, "Destination Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail()):
+			ErrorPrint(res, "Failed to draw text. \n")
 			break
 						
 		# 이미지 뷰를 Zoom fit # Zoom fit image view
