@@ -1200,6 +1200,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "HoughTransformCircle", "Hou
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GrayLevelCooccurrenceMatrix", "GrayLevelCooccurrenceMatrix\GrayLevelCooccurrenceMatrix.pyproj", "{62C8F377-792C-49C6-8D69-058562BA69B7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gaussian Filter", "Gaussian Filter", "{EB965EE7-DAFD-47A6-8A21-AA88BDAEA426}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GaussianFilter", "GaussianFilter\GaussianFilter.pyproj", "{77256EBE-78E8-4894-8967-4C67A7A25F79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1938,6 +1942,8 @@ Global
 		{37B6AD59-272F-4928-A091-8A1482729C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62C8F377-792C-49C6-8D69-058562BA69B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{62C8F377-792C-49C6-8D69-058562BA69B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77256EBE-78E8-4894-8967-4C67A7A25F79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77256EBE-78E8-4894-8967-4C67A7A25F79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2531,6 +2537,8 @@ Global
 		{1C3FF0C9-4695-4A29-AB2B-3242687D5CDE} = {E9FD2CC9-5BD3-4153-86F4-8A35D1421581}
 		{37B6AD59-272F-4928-A091-8A1482729C2B} = {3503E896-1CF8-4055-93AF-CF1CBFC1BB0C}
 		{62C8F377-792C-49C6-8D69-058562BA69B7} = {9269FEB9-9F08-40B0-87AC-6EB222A916D5}
+		{EB965EE7-DAFD-47A6-8A21-AA88BDAEA426} = {8482EC9E-A1B2-4EEC-8A35-15AB0D22388D}
+		{77256EBE-78E8-4894-8967-4C67A7A25F79} = {EB965EE7-DAFD-47A6-8A21-AA88BDAEA426}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
