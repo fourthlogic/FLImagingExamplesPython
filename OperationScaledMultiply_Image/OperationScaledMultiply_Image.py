@@ -94,7 +94,7 @@ def main():
 			break
 		
 		# ROI 설정을 위한 CFLRect 객체 생성 # Create a CFLRect object for setting ROI
-		flrROI = CFLRect[Int64](200, 200, 500, 500);
+		flrROI = CFLRect[Int64](200, 200, 500, 500)
 
 		# Operation Scaled Multiply 객체 생성 # Create Operation scaled divide object
 		scaledMultiply = COperationScaledMultiply()
@@ -103,22 +103,22 @@ def main():
 		scaledMultiply.SetSourceImage(fliSourceImage)
 		
 		# Source ROI 설정 # Set the Source ROI
-		scaledMultiply.SetSourceROI(flrROI);
+		scaledMultiply.SetSourceROI(flrROI)
 		
 		# Operand 이미지 설정 # Set the operand image
 		scaledMultiply.SetOperandImage(fliOperandImage)
 		
 		# Operand ROI 설정 # Set the Operand ROI
-		scaledMultiply.SetOperandROI(flrROI);
+		scaledMultiply.SetOperandROI(flrROI)
 		
 		# Destination 이미지 설정 # Set the destination image
 		scaledMultiply.SetDestinationImage(fliDestinationImage)
 		
 		# Destination ROI 설정 # Set the Destination ROI
-		scaledMultiply.SetDestinationROI(flrROI);
+		scaledMultiply.SetDestinationROI(flrROI)
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		scaledMultiply.SetOperationSource(EOperationSource.Image);
+		scaledMultiply.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := scaledMultiply.Execute()).IsFail():
