@@ -39,13 +39,13 @@ def main():
         return
 
     # Blob 객체 생성 // Create Blob object
-    blob = CBlob()
+    blob = CBlobSubsampled()
 
     # 처리할 이미지 설정 // Set the image to process
     blob.SetSourceImage(fliImage)
     
 	# ROI 범위 설정
-    flrROI = CFLRect[Int32](450, 425, 1024, 800);
+    flrROI = CFLRect[Double](450, 425, 1024, 800);
 
 	# 처리할 ROI 설정
     blob.SetSourceROI(flrROI);
@@ -55,6 +55,9 @@ def main():
 
     # 임계값 설정,  위의 조건과 아래의 조건이 합쳐지면 50보다 작은 객체를 검출
     blob.SetThreshold(100)
+    
+    # Subsampling Level 설정
+    blob.SetSubsamplingLevel(3)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
     if (res := blob.Execute()).IsFail():
@@ -104,7 +107,7 @@ def main():
     for i in range(flfaBoundaryRects.GetCount()):
         flpCenter = CFLPoint[Double](flfaBoundaryRects.GetAt(i))
 
-        if isinstance(flfaBoundaryRects.GetAt(i), CFLRect[Int32]):
+        if isinstance(flfaBoundaryRects.GetAt(i), CFLRect[Double]):
             flrRect = flfaBoundaryRects.GetAt(i)
         else:
             flrRect = None

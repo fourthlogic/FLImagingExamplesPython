@@ -1324,6 +1324,32 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ChannelRemoval", "ChannelRe
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ColorSequenceConverter", "ColorSequenceConverter\ColorSequenceConverter.pyproj", "{D50BCACE-ABF1-4B4B-BD01-320FB893A6B0}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlobSubsampled_Area", "BlobSubsampled_Area\BlobSubsampled_Area.pyproj", "{B3C69640-2748-4257-8628-39FF6D95DB96}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlobSubsampled_BoundaryRect", "BlobSubsampled_BoundaryRect\BlobSubsampled_BoundaryRect.pyproj", "{125CD107-2A61-4B06-BB35-353A097F7E5F}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlobSubsampled_BoundaryRect_ResultInfo", "BlobSubsampled_BoundaryRect_ResultInfo\BlobSubsampled_BoundaryRect_ResultInfo.pyproj", "{F9A4060D-EA72-4AD4-AE0D-829809AB3396}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlobSubsampled_Circularity", "BlobSubsampled_Circularity\BlobSubsampled_Circularity.pyproj", "{D388E9AD-49F0-4550-B259-4F3F053D706E}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlobSubsampled_Contour", "BlobSubsampled_Contour\BlobSubsampled_Contour.pyproj", "{4F8BB98B-AF15-4484-A7D3-899D2EA6DAB3}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlobSubsampled_Contour_Perforated", "BlobSubsampled_Contour_Perforated\BlobSubsampled_Contour_Perforated.pyproj", "{4C3F90B1-0E7A-4FA5-B797-4BC35ED80BEC}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlobSubsampled_ContourLength", "BlobSubsampled_ContourLength\BlobSubsampled_ContourLength.pyproj", "{A5228F3F-DE1E-43A2-91F9-AAC912016C43}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlobSubsampled_GravityCenter", "BlobSubsampled_GravityCenter\BlobSubsampled_GravityCenter.pyproj", "{A8F3D757-F67E-4D58-AB11-ADB05B6C3959}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlobSubsampled_Mean_Variance_StandardDeviation", "BlobSubsampled_Mean_Variance_StandardDeviation\BlobSubsampled_Mean_Variance_StandardDeviation.pyproj", "{DE4F1372-C63F-493A-9431-5D5D9F3105AB}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlobSubsampled_Median_Quartile", "BlobSubsampled_Median_Quartile\BlobSubsampled_Median_Quartile.pyproj", "{4FB5EC24-5350-4124-9D81-0CE6D5155090}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlobSubsampled_Min_Max", "BlobSubsampled_Min_Max\BlobSubsampled_Min_Max.pyproj", "{80012D4A-EBE5-427E-9E8B-406AF17FB3BE}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlobSubsampled_Sort", "BlobSubsampled_Sort\BlobSubsampled_Sort.pyproj", "{4539CBE0-3BDA-473A-8B43-145E91C39CA6}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BlobSubsampled_SortClusterMode", "BlobSubsampled_SortClusterMode\BlobSubsampled_SortClusterMode.pyproj", "{23DDB673-8C0F-4296-9204-B8B501592486}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2150,6 +2176,32 @@ Global
 		{FA1CF9CD-59EB-464C-98B3-A6842F89FB55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D50BCACE-ABF1-4B4B-BD01-320FB893A6B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D50BCACE-ABF1-4B4B-BD01-320FB893A6B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C69640-2748-4257-8628-39FF6D95DB96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C69640-2748-4257-8628-39FF6D95DB96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{125CD107-2A61-4B06-BB35-353A097F7E5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{125CD107-2A61-4B06-BB35-353A097F7E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A4060D-EA72-4AD4-AE0D-829809AB3396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A4060D-EA72-4AD4-AE0D-829809AB3396}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D388E9AD-49F0-4550-B259-4F3F053D706E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D388E9AD-49F0-4550-B259-4F3F053D706E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F8BB98B-AF15-4484-A7D3-899D2EA6DAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F8BB98B-AF15-4484-A7D3-899D2EA6DAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C3F90B1-0E7A-4FA5-B797-4BC35ED80BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C3F90B1-0E7A-4FA5-B797-4BC35ED80BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5228F3F-DE1E-43A2-91F9-AAC912016C43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5228F3F-DE1E-43A2-91F9-AAC912016C43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8F3D757-F67E-4D58-AB11-ADB05B6C3959}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8F3D757-F67E-4D58-AB11-ADB05B6C3959}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE4F1372-C63F-493A-9431-5D5D9F3105AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE4F1372-C63F-493A-9431-5D5D9F3105AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB5EC24-5350-4124-9D81-0CE6D5155090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FB5EC24-5350-4124-9D81-0CE6D5155090}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80012D4A-EBE5-427E-9E8B-406AF17FB3BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80012D4A-EBE5-427E-9E8B-406AF17FB3BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4539CBE0-3BDA-473A-8B43-145E91C39CA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4539CBE0-3BDA-473A-8B43-145E91C39CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23DDB673-8C0F-4296-9204-B8B501592486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23DDB673-8C0F-4296-9204-B8B501592486}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2804,6 +2856,19 @@ Global
 		{348633BC-7BB3-4EEC-8423-400AEBF73386} = {C7AE84F4-0805-49E9-8363-FD23EEC762CC}
 		{FA1CF9CD-59EB-464C-98B3-A6842F89FB55} = {348633BC-7BB3-4EEC-8423-400AEBF73386}
 		{D50BCACE-ABF1-4B4B-BD01-320FB893A6B0} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
+		{B3C69640-2748-4257-8628-39FF6D95DB96} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
+		{125CD107-2A61-4B06-BB35-353A097F7E5F} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
+		{F9A4060D-EA72-4AD4-AE0D-829809AB3396} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
+		{D388E9AD-49F0-4550-B259-4F3F053D706E} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
+		{4F8BB98B-AF15-4484-A7D3-899D2EA6DAB3} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
+		{4C3F90B1-0E7A-4FA5-B797-4BC35ED80BEC} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
+		{A5228F3F-DE1E-43A2-91F9-AAC912016C43} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
+		{A8F3D757-F67E-4D58-AB11-ADB05B6C3959} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
+		{DE4F1372-C63F-493A-9431-5D5D9F3105AB} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
+		{4FB5EC24-5350-4124-9D81-0CE6D5155090} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
+		{80012D4A-EBE5-427E-9E8B-406AF17FB3BE} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
+		{4539CBE0-3BDA-473A-8B43-145E91C39CA6} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
+		{23DDB673-8C0F-4296-9204-B8B501592486} = {ED9FF7EF-DC62-4CAE-8591-76F2ECDD0333}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
