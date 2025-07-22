@@ -1252,6 +1252,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reduce Dimension Mean Multi
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ReduceDimensionMeanMultiPageTo2D", "ReduceDimensionMeanMultiPageTo2D\ReduceDimensionMeanMultiPageTo2D.pyproj", "{265A818A-92A6-4689-8DD7-E178895EBC1F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reduce Dimension Median Multi Page To 2D", "Reduce Dimension Median Multi Page To 2D", "{C00A9B5C-6756-4A4B-9BD6-AF3340CA3EDB}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ReduceDimensionMedianMultiPageTo2D", "ReduceDimensionMedianMultiPageTo2D\ReduceDimensionMedianMultiPageTo2D.pyproj", "{E882AA35-9AB4-4C63-9BFA-79C78ADD11DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reduce Dimension Min Multi Page To 2D", "Reduce Dimension Min Multi Page To 2D", "{8056296D-68A9-40BB-ADBC-BE1A990E37F9}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ReduceDimensionMinMultiPageTo2D", "ReduceDimensionMinMultiPageTo2D\ReduceDimensionMinMultiPageTo2D.pyproj", "{4AF9CDD0-5677-4C40-9C6E-AD424443F27B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2018,6 +2026,10 @@ Global
 		{7E982532-5E5B-46A2-AA93-DAE60411D7F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{265A818A-92A6-4689-8DD7-E178895EBC1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{265A818A-92A6-4689-8DD7-E178895EBC1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E882AA35-9AB4-4C63-9BFA-79C78ADD11DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E882AA35-9AB4-4C63-9BFA-79C78ADD11DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AF9CDD0-5677-4C40-9C6E-AD424443F27B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AF9CDD0-5677-4C40-9C6E-AD424443F27B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2636,6 +2648,10 @@ Global
 		{7E982532-5E5B-46A2-AA93-DAE60411D7F9} = {7C6AD3F9-E570-4A62-B631-8E4FAA185733}
 		{A9C69C02-20BD-4C20-B57A-2DDE8D50D4DF} = {D8B26390-C4AA-4C3C-8796-8C236CCF083A}
 		{265A818A-92A6-4689-8DD7-E178895EBC1F} = {A9C69C02-20BD-4C20-B57A-2DDE8D50D4DF}
+		{C00A9B5C-6756-4A4B-9BD6-AF3340CA3EDB} = {D8B26390-C4AA-4C3C-8796-8C236CCF083A}
+		{E882AA35-9AB4-4C63-9BFA-79C78ADD11DB} = {C00A9B5C-6756-4A4B-9BD6-AF3340CA3EDB}
+		{8056296D-68A9-40BB-ADBC-BE1A990E37F9} = {D8B26390-C4AA-4C3C-8796-8C236CCF083A}
+		{4AF9CDD0-5677-4C40-9C6E-AD424443F27B} = {8056296D-68A9-40BB-ADBC-BE1A990E37F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
