@@ -340,7 +340,10 @@
       - 그래프 뷰의 최대/최솟값 표시에 관한 예제.
 
   - [ImageView]
-
+  
+    - ImageView 
+      - The example of using image views.
+      - 이미지 뷰 사용에 관한 예제.
     - ImageViewAvailableContextMenu
       - The Example of setting available context menu in image view.
       - 이미지 뷰에서 이용 가능한 컨텍스트 메뉴 지정에 관한 예제.
