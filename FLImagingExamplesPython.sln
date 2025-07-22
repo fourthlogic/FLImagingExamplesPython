@@ -1080,6 +1080,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Median Separated Filter", "
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MedianSeparatedFilter", "MedianSeparatedFilter\MedianSeparatedFilter.pyproj", "{24262ED6-0517-4AB1-83D0-CDAA25665876}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Median Weighted Filter", "Median Weighted Filter", "{6EB4B5B2-093C-4C1F-B3C5-1B2115C05365}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MedianWeightedFilter_Kernel", "MedianWeightedFilter_Kernel\MedianWeightedFilter_Kernel.pyproj", "{9EC68EC5-5E42-43F2-A5DC-081EF76B1DA0}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MedianWeightedFilter_Region", "MedianWeightedFilter_Region\MedianWeightedFilter_Region.pyproj", "{3B65585C-99F0-4EEA-AD73-13C59BED17FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1726,6 +1732,10 @@ Global
 		{81FAD668-622C-4D1F-8C81-94D2E4B24F30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24262ED6-0517-4AB1-83D0-CDAA25665876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{24262ED6-0517-4AB1-83D0-CDAA25665876}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EC68EC5-5E42-43F2-A5DC-081EF76B1DA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EC68EC5-5E42-43F2-A5DC-081EF76B1DA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B65585C-99F0-4EEA-AD73-13C59BED17FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B65585C-99F0-4EEA-AD73-13C59BED17FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2258,6 +2268,9 @@ Global
 		{81FAD668-622C-4D1F-8C81-94D2E4B24F30} = {9269FEB9-9F08-40B0-87AC-6EB222A916D5}
 		{E84D4B88-BEDD-4DE6-92AF-C53AE3AB5823} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
 		{24262ED6-0517-4AB1-83D0-CDAA25665876} = {E84D4B88-BEDD-4DE6-92AF-C53AE3AB5823}
+		{6EB4B5B2-093C-4C1F-B3C5-1B2115C05365} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
+		{9EC68EC5-5E42-43F2-A5DC-081EF76B1DA0} = {6EB4B5B2-093C-4C1F-B3C5-1B2115C05365}
+		{3B65585C-99F0-4EEA-AD73-13C59BED17FC} = {6EB4B5B2-093C-4C1F-B3C5-1B2115C05365}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
