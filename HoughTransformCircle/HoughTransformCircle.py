@@ -6,14 +6,14 @@ from FLImagingClrPy import *
 def main():
 
 	# 이미지 객체 선언 // Declare the image object
-	fliISrcImage = CFLImage()
+	fliSrcImage = CFLImage()
 
 	# 이미지 뷰 선언 // Declare the image view
 	viewImage = CGUIViewImage()
 
 	while True:
 		# 이미지 로드 // Load image
-		if (res := fliISrcImage.Load("../../ExampleImages/HoughTransform/coins.flif")).IsFail():
+		if (res := fliSrcImage.Load("../../ExampleImages/HoughTransform/coins.flif")).IsFail():
 			ErrorPrint(res, "Failed to load the image file.\n")
 			break
 
@@ -25,7 +25,7 @@ def main():
 
 		# 이미지 뷰에 이미지를 디스플레이 // Display an image in an image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImage.SetImagePtr(fliISrcImage)[0]).IsFail():
+		if (res := viewImage.SetImagePtr(fliSrcImage)[0]).IsFail():
 			ErrorPrint(res, "Failed to set image object on the image view.\n")
 			break
 		
@@ -33,7 +33,7 @@ def main():
 		houghTransform = CHoughTransform()
 
 		# Source 이미지 설정 // Set the source image
-		houghTransform.SetSourceImage(fliISrcImage)
+		houghTransform.SetSourceImage(fliSrcImage)
 
 		# HoughTransform Circle 변환 선택 // Select HoughTransform Circle transform
 		houghTransform.SetHoughShape(CHoughTransform.EHoughShape.Circle)
