@@ -1040,6 +1040,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Blob_Circularity", "Blob_Ci
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ConditionalExtractor_Image_Dual", "ConditionalExtractor_Image_Dual\ConditionalExtractor_Image_Dual.pyproj", "{3A0D5673-AF35-4D5C-9C23-B9801F0BFF89}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hough", "Hough", "{3503E896-1CF8-4055-93AF-CF1CBFC1BB0C}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "HoughTransformCircle", "HoughTransformCircle\HoughTransformCircle.pyproj", "{37B6AD59-272F-4928-A091-8A1482729C2B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1658,6 +1662,8 @@ Global
 		{15446C5E-303B-4144-92DB-84CE3D7CA166}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A0D5673-AF35-4D5C-9C23-B9801F0BFF89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A0D5673-AF35-4D5C-9C23-B9801F0BFF89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37B6AD59-272F-4928-A091-8A1482729C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37B6AD59-272F-4928-A091-8A1482729C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2170,6 +2176,8 @@ Global
 		{1643AA34-A81F-4493-B5B0-8D1B8A5C568C} = {8B82C2E5-8851-4351-A924-CEEBE3A4F7E6}
 		{15446C5E-303B-4144-92DB-84CE3D7CA166} = {6B9D0368-75C3-4B52-A258-834FCF7B77A8}
 		{3A0D5673-AF35-4D5C-9C23-B9801F0BFF89} = {8B82C2E5-8851-4351-A924-CEEBE3A4F7E6}
+		{3503E896-1CF8-4055-93AF-CF1CBFC1BB0C} = {8C1B856A-E1FA-490B-A88E-092CA27F4F51}
+		{37B6AD59-272F-4928-A091-8A1482729C2B} = {3503E896-1CF8-4055-93AF-CF1CBFC1BB0C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
