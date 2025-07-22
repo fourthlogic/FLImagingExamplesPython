@@ -58,22 +58,11 @@ def main():
             # 조합을 계산 // Calculate combinations
             C.Calculate()
             
-            InnerListType = List[Int32]
-            OuterListType = List[InnerListType]
-            listCombination = OuterListType()
+            listCombination = List[List[Int32]]()
             # 조합 결과값 얻기 // Get combination result
-            # Python 바인딩에서는 ref 파라미터가 (CResult, 결과값) 튜플로 반환됨
-            # In Python binding, ref parameters are returned as a (CResult, result_value) tuple
-            resTuple = C.GetResult(listCombination) 
-            res = resTuple[0]
-
-            if res.IsFail():
+            if (res := C.GetResult(listCombination)[0]).IsFail():
                 flstrResult = f"\nFailed to get combination result: {res.GetString()}"
                 break
-            
-            # GetResult 함수가 채워준 리스트 또는 새로 반환된 리스트를 할당받습니다.
-            # Assign the list populated by GetResult or a newly returned list.
-            listCombination = resTuple[1] 
 
             flstrCombination = ""
             i64CombinationCnt = 0

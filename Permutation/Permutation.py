@@ -68,22 +68,11 @@ def main():
             # 순열을 계산 // Calculate the permutation
             P.Calculate()
             
-            InnerListType = List[Int32]
-            OuterListType = List[InnerListType]
-            listPermutation = OuterListType()
+            listPermutation = List[List[Int32]]()
             # 순열 결과값 얻기 // Get permutation result
-            # Python 바인딩에서는 ref 파라미터가 (CResult, 결과값) 튜플로 반환됨
-            # In Python binding, ref parameters are returned as a (CResult, result_value) tuple
-            resTuple = P.GetResult(listPermutation)
-            res = resTuple[0]
-
-            if res.IsFail():
-                flstrResult = "Failed to get permutation result.\n"
-                break
-            
-            # GetResult 함수가 채워준 리스트 또는 새로 반환된 리스트를 할당받습니다.
-            # Assign the list populated by GetResult or a newly returned list.
-            listCombination = resTuple[1] 
+            if (res := P.GetResult(listPermutation)[0]).IsFail():
+               flstrResult = "Failed to get permutation result.\n"
+               break
 
             flstrPermutation = ""
             i64PermutationCnt = 0

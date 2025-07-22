@@ -91,11 +91,9 @@ def main():
             listEquationResult = List[Complex]()
 
             # 방정식의 해를 얻어온다. // Get the solution of the equation.
-            if (resTuple := CEquation.Solve(listCoef, listEquationResult))[0].IsFail():
-                strResult = f"Failed to solve equation: {resTuple[0].GetString()}"
+            if (res := CEquation.Solve(listCoef, listEquationResult)[0]).IsFail():
+                strResult = f"Failed to solve equation: {res.GetString()}"
                 break
-
-            listEquationResult = resTuple[1] # 해결된 값을 listEquationResult에 할당 // Assign solved values to listEquationResult
 
             if not listEquationResult: # 결과 리스트가 비어있으면 // If result list is empty
                 break

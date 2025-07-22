@@ -21,13 +21,13 @@ def main():
             break
 
         # 각 이미지 뷰의 시점을 동기화 한다. // Synchronize the viewpoint of each image view.
-        if (res := viewImage[0].SynchronizePointOfView(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
 
         # 각 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the position of each image view window
-        if (res := viewImage[0].SynchronizeWindow(viewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window.")
+        if (res := viewImage[0].SynchronizeWindow(viewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.")
             break
 
         # 화면에 출력하기 위해 Image View 에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
@@ -62,19 +62,16 @@ def main():
         flfaTransformed = CFLFigureArray()
         
         # GetSamplingPointsOnSegment returns a CResult and the modified CFLFigureArray
-        if (res := fleSourceFig.GetSamplingPointsOnSegment(5, flfaSource))[0].IsFail():
-            ErrorPrint(res[0], "Failed to get sampling points for source figure.")
+        if (res := fleSourceFig.GetSamplingPointsOnSegment(5, flfaSource)[0]).IsFail():
+            ErrorPrint(res, "Failed to get sampling points for source figure.")
             break
 
-        flfaSource = res[1]
-
-        if (res := fleTransformedFig.GetSamplingPointsOnSegment(5, flfaTransformed))[0].IsFail():
-            ErrorPrint(res[0], "Failed to get sampling points for transformed figure.")
+        if (res := fleTransformedFig.GetSamplingPointsOnSegment(5, flfaTransformed)[0]).IsFail():
+            ErrorPrint(res, "Failed to get sampling points for transformed figure.")
             break
-
-        flfaTransformed = res[1]
 
         flpaSource = CFLPointArray()
+
         for i in range(flfaSource.GetCount()):
             flpaSource.PushBack(CFLPoint[Double](flfaSource.GetAt(i)))
 
@@ -104,11 +101,9 @@ def main():
         # Similarity 행렬 계산 // Calculate the similarity matrix
         matResult = CMatrix[Double]()
         
-        if (res := CMatrix[Double].GetSimilarity(flpaSource, flpaTransformedWithNoise, matResult))[0].IsFail():
-            ErrorPrint(res[0], "Failed to calculate.")
+        if (res := CMatrix[Double].GetSimilarity(flpaSource, flpaTransformedWithNoise, matResult)[0]).IsFail():
+            ErrorPrint(res, "Failed to calculate.")
             break
-
-        matResult = res[1]
 
         # Console 출력 // Console output
         print("\n[index] Source Ellipse Points -> Target Points with noise")
@@ -158,18 +153,16 @@ def main():
             matA.SetValue(1, 0, flpaSourceGrid.GetAt(i).y)
             matA.SetValue(2, 0, 1)
 
-            if (res := matResult.Multiply(matA, matB))[0].IsFail():
-                ErrorPrint(res[0], "Failed to calculate Matrix Operation\n")
+            if (res := matResult.Multiply(matA, matB)[0]).IsFail():
+                ErrorPrint(res, "Failed to calculate Matrix Operation\n")
                 break
-
-            matB = res[1]
 
             flpaResult.PushBack(CFLPoint[Double](matB.GetValue(0, 0), matB.GetValue(1, 0)))
 
             # Console 출력 // Console output
             print(f"[{i}] ({flpaSourceGrid.GetAt(i).x:.3f},{flpaSourceGrid.GetAt(i).y:.3f}) -> ({flpaResult.GetAt(i).x:.3f},{flpaResult.GetAt(i).y:.3f})")
         
-        if (res := matResult.Multiply(matA, matB))[0].IsFail():
+        if (res := matResult.Multiply(matA, matB)[0]).IsFail():
             break
 
         # View 에 Text 출력 // Output text to View
