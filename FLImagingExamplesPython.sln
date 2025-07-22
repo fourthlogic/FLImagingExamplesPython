@@ -1366,6 +1366,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DiscreteSineTransform", "Di
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DiscreteWaveletTransform", "DiscreteWaveletTransform\DiscreteWaveletTransform.pyproj", "{2ACB85CC-F7E5-441B-993F-BA00B6899137}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Binomial Filter", "Binomial Filter", "{125E573C-0D9E-4ACD-8079-42E00C43475E}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BinomialFilter", "BinomialFilter\BinomialFilter.pyproj", "{CEFF7157-2A6D-4A4E-93B5-20D91E3BFD2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2232,6 +2236,8 @@ Global
 		{1F746CA4-8195-4BAF-A746-192335591C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ACB85CC-F7E5-441B-993F-BA00B6899137}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2ACB85CC-F7E5-441B-993F-BA00B6899137}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEFF7157-2A6D-4A4E-93B5-20D91E3BFD2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEFF7157-2A6D-4A4E-93B5-20D91E3BFD2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2907,6 +2913,8 @@ Global
 		{F461F3B0-A0EC-4ABF-9D8E-BAA60C99849D} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
 		{1F746CA4-8195-4BAF-A746-192335591C2C} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
 		{2ACB85CC-F7E5-441B-993F-BA00B6899137} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
+		{125E573C-0D9E-4ACD-8079-42E00C43475E} = {8482EC9E-A1B2-4EEC-8A35-15AB0D22388D}
+		{CEFF7157-2A6D-4A4E-93B5-20D91E3BFD2A} = {125E573C-0D9E-4ACD-8079-42E00C43475E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
