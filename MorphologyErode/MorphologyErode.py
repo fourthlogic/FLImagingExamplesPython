@@ -71,7 +71,7 @@ def main():
 		morphologyErode.SetDestinationImage(fliDestinationImage)
 		
 		# ROI 설정을 위한 CFLRect 객체 생성 // Create a CFLRect object for setting ROI
-		flrROI = CFLRect[int](100, 190, 360, 420);
+		flrROI = CFLRect[Int32](100, 190, 360, 420);
 
 		# Source ROI 설정 // Set the source roi
 		morphologyErode.SetSourceROI(flrROI)

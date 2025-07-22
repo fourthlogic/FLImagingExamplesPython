@@ -75,13 +75,13 @@ def main():
 		medianWeighted.SetDestinationImage(fliDestinationImage)
 		
 		# ROI 설정을 위한 CFLRect 객체 생성 // Create a CFLRect object for setting ROI
-		flrROI = CFLRect[int](100, 190, 500, 590);
+		flrROI = CFLRect[Int32](100, 190, 500, 590);
 
 		# Source ROI 설정 // Set the source roi
 		medianWeighted.SetSourceROI(flrROI)
 		
 		# 처리할 Morphology Kernel 의 (95, 75, 100, 80, 45.000000) 설정 // Set Morphology Kernel to L(95, 75, 100, 80, 45.000000)
-		flrRegion = CFLRect[int](95, 75, 100, 80, 45.000000);
+		flrRegion = CFLRect[Int32](95, 75, 100, 80, 45.000000);
 		medianWeighted.SetKernel(flrRegion);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
