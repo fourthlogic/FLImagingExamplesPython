@@ -669,6 +669,9 @@
       - FilterGeneratorBandpassFD
         - The example of an algorithm that generate a Bandpass filter in a frequency domain.
         - 주파수 영역에서 사용되는 Bandpass 필터를 생성하는 알고리즘 예제.
+      - FilterGeneratorBandrejectFD
+        - The example of an algorithm that generate a Bandreject filter in a frequency domain.
+        - 주파수 영역에서 사용되는 Bandreject 필터를 생성하는 알고리즘 예제.
 
   - [Image Enhancement]
 
