@@ -1510,6 +1510,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BicubicSplineWarping", "Bic
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BilinearSplineWarping", "BilinearSplineWarping\BilinearSplineWarping.pyproj", "{4722450F-DFB7-45EE-B2F4-17901C28AB82}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Coherence Enhancing Diffusion", "Coherence Enhancing Diffusion", "{66EDB3E4-43E6-42EC-8F07-34F6FD23B416}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CoherenceEnhancingDiffusion", "CoherenceEnhancingDiffusion\CoherenceEnhancingDiffusion.pyproj", "{CCD7FC7F-AA92-4B2A-B28A-F255ABE1712A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2472,6 +2476,8 @@ Global
 		{A24383A8-A4BB-47F2-8F19-D1A140759673}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4722450F-DFB7-45EE-B2F4-17901C28AB82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4722450F-DFB7-45EE-B2F4-17901C28AB82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD7FC7F-AA92-4B2A-B28A-F255ABE1712A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD7FC7F-AA92-4B2A-B28A-F255ABE1712A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3219,6 +3225,8 @@ Global
 		{A404F743-56E2-4CE8-B83B-8F914F9573FD} = {C173F22D-EE74-4BFD-9966-0C8282BF5BBD}
 		{A24383A8-A4BB-47F2-8F19-D1A140759673} = {25833D73-318A-4188-B53A-C645CFCDEDAE}
 		{4722450F-DFB7-45EE-B2F4-17901C28AB82} = {25833D73-318A-4188-B53A-C645CFCDEDAE}
+		{66EDB3E4-43E6-42EC-8F07-34F6FD23B416} = {6CBBF795-4533-4B7D-B631-121591A38E26}
+		{CCD7FC7F-AA92-4B2A-B28A-F255ABE1712A} = {66EDB3E4-43E6-42EC-8F07-34F6FD23B416}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
