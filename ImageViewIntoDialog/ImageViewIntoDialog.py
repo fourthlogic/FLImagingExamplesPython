@@ -8,7 +8,6 @@ import ctypes
 import sys
 import time
 
-
 def get_hwnd(widget):
     if sys.platform == "win32":
         # 윈도우 핸들 얻기 (Tkinter 내부 식별자를 사용)
