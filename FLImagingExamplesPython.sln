@@ -1514,6 +1514,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Coherence Enhancing Diffusi
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CoherenceEnhancingDiffusion", "CoherenceEnhancingDiffusion\CoherenceEnhancingDiffusion.pyproj", "{CCD7FC7F-AA92-4B2A-B28A-F255ABE1712A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Coherence Enhancing Diffusion NonNeg", "Coherence Enhancing Diffusion NonNeg", "{E2DDD695-126F-4D2A-B10D-016ACD8F3C24}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CoherenceEnhancingDiffusionNonNeg", "CoherenceEnhancingDiffusionNonNeg\CoherenceEnhancingDiffusionNonNeg.pyproj", "{4A3280EA-F726-4D35-A76D-5891AA644195}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2478,6 +2482,8 @@ Global
 		{4722450F-DFB7-45EE-B2F4-17901C28AB82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCD7FC7F-AA92-4B2A-B28A-F255ABE1712A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CCD7FC7F-AA92-4B2A-B28A-F255ABE1712A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A3280EA-F726-4D35-A76D-5891AA644195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A3280EA-F726-4D35-A76D-5891AA644195}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3227,6 +3233,8 @@ Global
 		{4722450F-DFB7-45EE-B2F4-17901C28AB82} = {25833D73-318A-4188-B53A-C645CFCDEDAE}
 		{66EDB3E4-43E6-42EC-8F07-34F6FD23B416} = {6CBBF795-4533-4B7D-B631-121591A38E26}
 		{CCD7FC7F-AA92-4B2A-B28A-F255ABE1712A} = {66EDB3E4-43E6-42EC-8F07-34F6FD23B416}
+		{E2DDD695-126F-4D2A-B10D-016ACD8F3C24} = {6CBBF795-4533-4B7D-B631-121591A38E26}
+		{4A3280EA-F726-4D35-A76D-5891AA644195} = {E2DDD695-126F-4D2A-B10D-016ACD8F3C24}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}

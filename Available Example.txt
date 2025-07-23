@@ -635,6 +635,9 @@
       - Coherence Enhancing Diffusion
         - The example of an algorithm that performs diffusion in a consistent direction of an image.
         - 이미지의 일관된 방향으로 확산을 수행하는 알고리즘 예제.
+      - Coherence Enhancing Diffusion NonNeg
+        - The example of an algorithm that performs diffusion in a consistent direction of an image.
+        - 이미지의 일관된 방향으로 확산을 수행하는 알고리즘 예제.
       - IlluminateFilter
         - The example of an algorithm that enhance contrast by applying Illuminate filtering to image
         - 이미지에 Illuminate 필터링을 적용하여 이미지의 명암 대비를 강화하는 알고리즘 예제
