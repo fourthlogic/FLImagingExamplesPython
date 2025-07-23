@@ -1480,6 +1480,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FLAutoShadingCorrection", "
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LowLuminanceCorrectionType1", "LowLuminanceCorrectionType1\LowLuminanceCorrectionType1.pyproj", "{61ADBDA5-0974-482B-A040-94FAF68D7CB9}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LowLuminanceCorrectionType2", "LowLuminanceCorrectionType2\LowLuminanceCorrectionType2.pyproj", "{5782B3F2-7C8B-433E-A14F-7B988546EC01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2418,6 +2420,8 @@ Global
 		{DA67C637-EA07-47D2-A8F0-645AEBCEEB63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61ADBDA5-0974-482B-A040-94FAF68D7CB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{61ADBDA5-0974-482B-A040-94FAF68D7CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5782B3F2-7C8B-433E-A14F-7B988546EC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5782B3F2-7C8B-433E-A14F-7B988546EC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3150,6 +3154,7 @@ Global
 		{36E6FD64-B739-4591-A9DF-24BE166CD775} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
 		{DA67C637-EA07-47D2-A8F0-645AEBCEEB63} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
 		{61ADBDA5-0974-482B-A040-94FAF68D7CB9} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
+		{5782B3F2-7C8B-433E-A14F-7B988546EC01} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
