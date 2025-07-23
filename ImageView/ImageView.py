@@ -6,206 +6,136 @@ clr.AddReference("System.Windows.Forms")
 from System.Windows.Forms import *
 from System.Drawing import Point, Size
 from System import EventHandler, Int64, Int32
+import tkinter as tk
+from tkinter import ttk, scrolledtext
 
-class FormImageView(Form):
+class FormImageView(tk.Tk):
     def __init__(self):
-        Form.__init__(self)
-        self.Text = "Form Image View"
-        self.Size = Size(420, 276)
+        super().__init__()
+        self.title("Form Image View")
+        self.geometry("404x246")
 
+        # 컨트롤 잠금 상태
         self.m_bLockControls = False
         
+        # 이미지 뷰 객체 인스턴스 생성
         self.m_viewImage = CGUIViewImage()
-        
-        x1 = 10
-        x2 = 207
-        y = 10
-        cx = 187
-        cy = 23
 
-        # Buttons
-        self.buttonOpenView = Button()
-        self.buttonOpenView.Text = "Open Image View"
-        self.buttonOpenView.Location = Point(x1, y)
-        self.buttonOpenView.Size = Size(cx, cy)
-
-        self.buttonTerminateView = Button()
-        self.buttonTerminateView.Text = "Terminate View"
-        self.buttonTerminateView.Location = Point(x2, y)
-        self.buttonTerminateView.Size = Size(cx, cy)
-
-        y += 30
-        
-        self.buttonLoadImage = Button()
-        self.buttonLoadImage.Text = "Load Image"
-        self.buttonLoadImage.Location = Point(x1, y)
-        self.buttonLoadImage.Size = Size(cx, cy)
-
-        self.buttonSaveImage = Button()
-        self.buttonSaveImage.Text = "Save Image"
-        self.buttonSaveImage.Location = Point(x2, y)
-        self.buttonSaveImage.Size = Size(cx, cy)
-        
-        self.Controls.AddRange([self.buttonOpenView, self.buttonTerminateView, self.buttonLoadImage, self.buttonSaveImage])
-
-        y += 35
-        
-        # GroupBox 추가
-        self.group = GroupBox()
-        self.group.Text = "Figure Object"
-        self.group.Location = Point(x1, y)
-        self.group.Size = Size(382, 150)
-        self.Controls.Add(self.group)
-        
-        x1 = 5
-        x2 = 197
-        y = 23
-        cx = 180
-        
-        # Label : DeclType
-        self.labelDeclType = Label()
-        self.labelDeclType.Text = "DeclType"
-        self.labelDeclType.Size = Size(cx, 16)
-        self.labelDeclType.Location = Point(x1, y)
-        self.group.Controls.Add(self.labelDeclType)
-        
-        # Label : Info
-        self.labelInfo = Label()
-        self.labelInfo.Text = "Info"
-        self.labelInfo.Size = Size(cx, 16)
-        self.labelInfo.Location = Point(x2, y)
-        self.group.Controls.Add(self.labelInfo)
-
-        y+=18
-
-        # ComboBox : DeclType
-        self.comboBoxDeclType = ComboBox()
-        self.comboBoxDeclType.DropDownStyle = ComboBoxStyle.DropDownList
-        self.comboBoxDeclType.Location = Point(x1, y)
-        self.comboBoxDeclType.Size = Size(cx, cy)
-        self.group.Controls.Add(self.comboBoxDeclType)
-        
-        # Info Output
-        self.richTextBoxInfo = TextBox()
-        self.richTextBoxInfo.Multiline = True
-        self.richTextBoxInfo.ReadOnly = True
-        self.richTextBoxInfo.ScrollBars = ScrollBars.Vertical
-        self.richTextBoxInfo.Location = Point(x2, y)
-        self.richTextBoxInfo.Size = Size(cx, 70)
-        self.group.Controls.Add(self.richTextBoxInfo)
-
-        y+=30
-        
-        # Label : TemplateType
-        self.labelDeclType = Label()
-        self.labelDeclType.Text = "TemplateType"
-        self.labelDeclType.Size = Size(cx, 16)
-        self.labelDeclType.Location = Point(x1, y)
-        self.group.Controls.Add(self.labelDeclType)
-        
-        y+=18
-
-        # ComboBox : TemplateType
-        self.comboBoxTemplateType = ComboBox()
-        self.comboBoxTemplateType.DropDownStyle = ComboBoxStyle.DropDownList
-        self.comboBoxTemplateType.Location = Point(x1, y)
-        self.comboBoxTemplateType.Size = Size(cx, cy)
-        self.group.Controls.Add(self.comboBoxTemplateType)
-
-        self.comboBoxDeclType.Items.AddRange(["Point", "Line", "Rect", "Quad", "Circle", "Ellipse", "CubicSpline", "Region", "ComplexRegion", "Doughnut"])
-        self.comboBoxTemplateType.Items.AddRange(["Int32", "Int64", "Float", "Double"])
-        self.comboBoxDeclType.SelectedIndex = 0
-        self.comboBoxTemplateType.SelectedIndex = 0
-        
-        y+=30
-        
-        # Button : Create Figure
-        self.buttonCreate = Button()
-        self.buttonCreate.Text = "Create Figure"
-        self.buttonCreate.Location = Point(x1, y)
-        self.buttonCreate.Size = Size(cx, cy)
-        self.group.Controls.Add(self.buttonCreate)
-        
-        # Button : Pop Front Figure
-        self.buttonPopFront = Button()
-        self.buttonPopFront.Text = "Pop Front Figure"
-        self.buttonPopFront.Location = Point(x2, y)
-        self.buttonPopFront.Size = Size(cx, cy)
-        self.group.Controls.Add(self.buttonPopFront)
-
-        self.buttonOpenView.Click += EventHandler(self.ClickButtonOpenView)
-        self.buttonTerminateView.Click += EventHandler(self.ClickButtonTerminateView)
-        self.buttonLoadImage.Click += EventHandler(self.ClickButtonLoadImage)
-        self.buttonSaveImage.Click += EventHandler(self.ClickButtonSaveImage)
-        self.buttonCreate.Click += EventHandler(self.ClickButtonCreate)
-        self.buttonPopFront.Click += EventHandler(self.ClickButtonPopFront)
+        self._create_main_controls()
+        self._create_group_box()
+        self.update_controls()
 
         # Timer
-        self.m_timer = Timer()
-        self.m_timer.Interval = 100
-        self.m_timer.Tick += EventHandler(self.TimerTick)
-        self.m_timer.Start()
+        self.after(100, self.timer_tick)
 
-        self.UpdateControls()
 
-    def ErrorMessageBox(self, cResult, msg):
-        message = f"Error code : {cResult.GetResultCode()}\nError name : {cResult.GetString()}\n"
-        if len(msg) > 1:
-            message += msg
-        MessageBox.Show(message, "Error")
+    def _create_main_controls(self):
+        x1, x2, y, cx, cy = 10, 207, 10, 187, 23
 
+        self.buttonOpenView = tk.Button(self, text="Open Image View", width=25, command=self.click_button_open_view)
+        self.buttonOpenView.place(x=x1, y=y, width=cx, height=cy)
+
+        self.buttonTerminateView = tk.Button(self, text="Terminate View", width=25, command=self.click_button_terminate_view)
+        self.buttonTerminateView.place(x=x2, y=y, width=cx, height=cy)
+
+        y += 30
+        self.buttonLoadImage = tk.Button(self, text="Load Image", width=25, command=self.click_button_load_image)
+        self.buttonLoadImage.place(x=x1, y=y, width=cx, height=cy)
+
+        self.buttonSaveImage = tk.Button(self, text="Save Image", width=25, command=self.click_button_save_image)
+        self.buttonSaveImage.place(x=x2, y=y, width=cx, height=cy)
+
+    def _create_group_box(self):
+        self.group = tk.LabelFrame(self, text="Figure Object")
+        self.group.place(x=10, y=75, width=382, height=150)
+
+        gx1, gx2, gy, gcx = 5, 197, 3, 175
+
+        tk.Label(self.group, text="DeclType").place(x=gx1, y=gy)
+        tk.Label(self.group, text="Info").place(x=gx2, y=gy)
+
+        gy += 22
+        self.comboBoxDeclType = ttk.Combobox(self.group, state="readonly", width=23)
+        self.comboBoxDeclType['values'] = [
+            "Point", "Line", "Rect", "Quad", "Circle",
+            "Ellipse", "CubicSpline", "Region", "ComplexRegion", "Doughnut"
+        ]
+        self.comboBoxDeclType.current(0)
+        self.comboBoxDeclType.place(x=gx1, y=gy, width=gcx)
+
+        self.richTextBoxInfo = scrolledtext.ScrolledText(self.group, width=23, height=4, state="disabled")
+        self.richTextBoxInfo.place(x=gx2, y=gy, width=gcx, height=70)
+
+        gy += 26
+        tk.Label(self.group, text="TemplateType").place(x=gx1, y=gy)
+
+        gy += 22
+        self.comboBoxTemplateType = ttk.Combobox(self.group, state="readonly", width=23)
+        self.comboBoxTemplateType['values'] = ["Int32", "Int64", "Float", "Double"]
+        self.comboBoxTemplateType.current(0)
+        self.comboBoxTemplateType.place(x=gx1, y=gy, width=gcx)
+
+        gy += 30
+        self.buttonCreate = tk.Button(self.group, text="Create Figure", width=25, command=self.click_button_create_figure)
+        self.buttonCreate.place(x=gx1, y=gy, width=gcx, height=23)
+
+        self.buttonPopFront = tk.Button(self.group, text="Pop Front Figure", width=25, command=self.click_button_pop_front)
+        self.buttonPopFront.place(x=gx2, y=gy, width=gcx, height=23)
+        
+    def timer_tick(self):
+        self.update_controls()
+        self.after(100, self.timer_tick)
+        
     def LockControls(self, lock_flag):
         self.m_bLockControls = lock_flag
-        self.UpdateControls()
+        self.update_controls()
 
-    def TimerTick(self, sender, e):
-        self.UpdateControls()
+    def update_controls(self):
+        available = not self.m_bLockControls and self.m_viewImage.IsAvailable()
+        has_image = self.m_viewImage.DoesFLImageBufferExist()
+        has_figure = self.m_viewImage.GetFigureObjectCount()
+        selected_decl_type = self.comboBoxDeclType.get()
 
-    def UpdateControls(self):
-        if self.m_bLockControls:
-            enabled = False
-        elif not self.m_viewImage.IsAvailable():
-            enabled = False
-        else:
-            enabled = True
+        disable_template = selected_decl_type in ["CubicSpline", "Region", "ComplexRegion"]
 
-        self.buttonOpenView.Enabled = not enabled
-        self.buttonTerminateView.Enabled = enabled
-        self.buttonLoadImage.Enabled = enabled
-        self.buttonSaveImage.Enabled = self.m_viewImage.DoesFLImageBufferExist() if enabled else False
-        self.buttonCreate.Enabled = enabled
-        self.buttonPopFront.Enabled = self.m_viewImage.GetFigureObjectCount() > 0 if enabled else False
-        self.comboBoxDeclType.Enabled = enabled
-        self.comboBoxTemplateType.Enabled = enabled and self.SelectedDeclType() not in [
-            EFigureDeclType.CubicSpline,
-            EFigureDeclType.Region,
-            EFigureDeclType.ComplexRegion
-        ]
+        self.buttonOpenView.config(state=("normal" if not available else "disabled"))
+        self.buttonTerminateView.config(state=("normal" if available else "disabled"))
+        self.buttonLoadImage.config(state=("normal" if available else "disabled"))
+        self.buttonSaveImage.config(state=("normal" if has_image and available else "disabled"))
+        self.buttonCreate.config(state=("normal" if available else "disabled"))
+        self.buttonPopFront.config(state=("normal" if has_figure and available else "disabled"))
+        self.comboBoxDeclType.config(state=("readonly" if available else "disabled"))
+        self.comboBoxTemplateType.config(state=("disabled" if disable_template or not available else "readonly"))
 
-    def ClickButtonOpenView(self, sender, e):
-        if self.m_viewImage.IsAvailable(): return
+    def click_button_open_view(self):
+        if self.m_viewImage.IsAvailable(): 
+            return
         res = self.m_viewImage.Create(0, 0, 500, 500)
-        if res.IsFail(): self.ErrorMessageBox(res, "")
+        if res.IsFail(): 
+            self.ErrorMessageBox(res, "")
 
-    def ClickButtonTerminateView(self, sender, e):
+
+    def click_button_terminate_view(self):
         if not self.m_viewImage.IsAvailable(): return
         res = self.m_viewImage.Destroy()
         if res.IsFail(): self.ErrorMessageBox(res, "")
 
-    def ClickButtonLoadImage(self, sender, e):
+
+    def click_button_load_image(self):
         if not self.m_viewImage.IsAvailable(): return
         self.LockControls(True)
         self.m_viewImage.Load("", EViewImageLoadOption.Load)
         self.LockControls(False)
 
-    def ClickButtonSaveImage(self, sender, e):
+
+    def click_button_save_image(self):
         if not self.m_viewImage.IsAvailable(): return
         if not self.m_viewImage.DoesFLImageBufferExist(): return
         self.LockControls(True)
         self.m_viewImage.Save("", False)
         self.LockControls(False)
-
-    def ClickButtonCreate(self, sender, e):
+        
+    def click_button_create_figure(self):
         if not self.m_viewImage.IsAvailable(): return
 
         eTemplateType = [
@@ -213,7 +143,7 @@ class FormImageView(Form):
             EFigureTemplateType.Int64,
             EFigureTemplateType.Float,
             EFigureTemplateType.Double
-        ][self.comboBoxTemplateType.SelectedIndex]
+        ][self.comboBoxTemplateType.current()]
 
         decl_type = self.SelectedDeclType()
 
@@ -239,13 +169,6 @@ class FormImageView(Form):
         flFigure.Set(flrdFigureShape)
         self.m_viewImage.PushBackFigureObject(flFigure, EAvailableFigureContextMenu.All)
 
-    def ClickButtonPopFront(self, sender, e):
-        if not self.m_viewImage.IsAvailable(): return
-        flFigure = self.m_viewImage.PopFrontFigureObject()
-        if flFigure is None: return
-        strFigure = CFigureUtilities.ConvertFigureObjectToString(flFigure)
-        self.richTextBoxInfo.Text = strFigure
-
     def SelectedDeclType(self):
         return [
             EFigureDeclType.Point,
@@ -258,7 +181,7 @@ class FormImageView(Form):
             EFigureDeclType.Region,
             EFigureDeclType.ComplexRegion,
             EFigureDeclType.Doughnut
-        ][self.comboBoxDeclType.SelectedIndex]
+        ][self.comboBoxDeclType.current()]
 
     def CreateFigure(self, decl_type, template_type):
         if decl_type == EFigureDeclType.Point:
@@ -318,6 +241,20 @@ class FormImageView(Form):
             }.get(template_type)
         return None
 
+    def click_button_pop_front(self):
+        if not self.m_viewImage.IsAvailable(): return
+        flFigure = self.m_viewImage.PopFrontFigureObject()
+        if flFigure is None: return
+        strFigure = CFigureUtilities.ConvertFigureObjectToString(flFigure)
+        self._set_info_text(strFigure)
+
+
+    def _set_info_text(self, text):
+        self.richTextBoxInfo.config(state="normal")
+        self.richTextBoxInfo.delete("1.0", "end")
+        self.richTextBoxInfo.insert("end", text)
+        self.richTextBoxInfo.config(state="disabled")
+
 if __name__ == "__main__":
-    Application.EnableVisualStyles()
-    Application.Run(FormImageView())
+    app = FormImageView()
+    app.mainloop()
