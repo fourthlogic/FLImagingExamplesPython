@@ -681,6 +681,9 @@
       - FilterGeneratorIdealFD
         - The example of an algorithm that generate a Ideal filter in a frequency domain.
         - 주파수 영역에서 사용되는 Ideal 필터를 생성하는 알고리즘 예제.
+      - FilterGeneratorMeanFD
+        - The example of an algorithm that generate a Mean filter in a frequency domain.
+        - 주파수 영역에서 사용되는 평균 필터를 생성하는 알고리즘 예제.
 
   - [Image Enhancement]
 
