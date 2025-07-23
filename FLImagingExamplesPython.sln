@@ -1458,6 +1458,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Correlation", "Correlation"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AutoCorrelationFD", "AutoCorrelationFD\AutoCorrelationFD.pyproj", "{A04FA054-6E4D-42AE-8A49-DD55DBD38F63}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CrossCorrelationFD", "CrossCorrelationFD\CrossCorrelationFD.pyproj", "{605E51AC-7EDD-48A6-AFD2-F769AE9D4B61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2376,6 +2378,8 @@ Global
 		{AFF2B9AF-96A3-4393-B4F7-9B46E22A1494}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A04FA054-6E4D-42AE-8A49-DD55DBD38F63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A04FA054-6E4D-42AE-8A49-DD55DBD38F63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{605E51AC-7EDD-48A6-AFD2-F769AE9D4B61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{605E51AC-7EDD-48A6-AFD2-F769AE9D4B61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3097,6 +3101,7 @@ Global
 		{991A3978-1A49-4AE6-B90B-73D99294E92B} = {43A26D99-88FF-4496-9A97-A4BDFD9C96E2}
 		{B2D5F8ED-0ACE-4242-9E21-C8CF6ED7A3B8} = {991A3978-1A49-4AE6-B90B-73D99294E92B}
 		{A04FA054-6E4D-42AE-8A49-DD55DBD38F63} = {B2D5F8ED-0ACE-4242-9E21-C8CF6ED7A3B8}
+		{605E51AC-7EDD-48A6-AFD2-F769AE9D4B61} = {B2D5F8ED-0ACE-4242-9E21-C8CF6ED7A3B8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
