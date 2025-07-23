@@ -664,6 +664,12 @@
         - Example of an algorithm for cross-correlation computation of the original image and the image to be computed.
         - 원본 이미지와 연산할 이미지를 Cross Correlation 연산하는 알고리즘 예제.
 
+    - [Generator]
+
+      - FilterGeneratorBandpassFD
+        - The example of an algorithm that generate a Bandpass filter in a frequency domain.
+        - 주파수 영역에서 사용되는 Bandpass 필터를 생성하는 알고리즘 예제.
+
   - [Image Enhancement]
 
     - ContrastEnhancement
