@@ -1540,6 +1540,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Normalization_MaxElement", 
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Normalization_MinMax", "Normalization_MinMax\Normalization_MinMax.pyproj", "{907FEF66-317F-4849-9575-A83492CD2F42}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Normalization_Trimming", "Normalization_Trimming\Normalization_Trimming.pyproj", "{7E512835-9A5B-4DC3-94A8-D1BDEC1A5846}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2524,6 +2526,8 @@ Global
 		{802CCB80-4AAF-4FCF-9D3E-D64455F43291}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{907FEF66-317F-4849-9575-A83492CD2F42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{907FEF66-317F-4849-9575-A83492CD2F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E512835-9A5B-4DC3-94A8-D1BDEC1A5846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E512835-9A5B-4DC3-94A8-D1BDEC1A5846}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3286,6 +3290,7 @@ Global
 		{87FFC55F-EFC9-4E6F-A16A-24407ED0FE44} = {B2623B0B-5959-4AD0-810A-25A04980625A}
 		{802CCB80-4AAF-4FCF-9D3E-D64455F43291} = {B2623B0B-5959-4AD0-810A-25A04980625A}
 		{907FEF66-317F-4849-9575-A83492CD2F42} = {B2623B0B-5959-4AD0-810A-25A04980625A}
+		{7E512835-9A5B-4DC3-94A8-D1BDEC1A5846} = {B2623B0B-5959-4AD0-810A-25A04980625A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
