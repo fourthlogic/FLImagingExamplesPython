@@ -1436,6 +1436,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inpainting Texture", "Inpai
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "InpaintingTexture", "InpaintingTexture\InpaintingTexture.pyproj", "{1DBB103B-AB05-48C3-823C-6750EF344FF9}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "VarianceThreshold", "VarianceThreshold\VarianceThreshold.pyproj", "{2B7A931B-99AF-4DB3-BE7D-B54ED0C8FFAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2342,6 +2344,8 @@ Global
 		{26799F6F-0F4E-450D-A787-D8F5E0A4FC5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DBB103B-AB05-48C3-823C-6750EF344FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1DBB103B-AB05-48C3-823C-6750EF344FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B7A931B-99AF-4DB3-BE7D-B54ED0C8FFAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B7A931B-99AF-4DB3-BE7D-B54ED0C8FFAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3052,6 +3056,7 @@ Global
 		{32C15500-F60A-4E8E-B0CD-B529CAD61F48} = {43A26D99-88FF-4496-9A97-A4BDFD9C96E2}
 		{8942A2ED-508D-4F84-B83C-F31341E2E3B2} = {32C15500-F60A-4E8E-B0CD-B529CAD61F48}
 		{1DBB103B-AB05-48C3-823C-6750EF344FF9} = {8942A2ED-508D-4F84-B83C-F31341E2E3B2}
+		{2B7A931B-99AF-4DB3-BE7D-B54ED0C8FFAA} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
