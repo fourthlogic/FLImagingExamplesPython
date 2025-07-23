@@ -102,7 +102,7 @@ def main():
 		conditionalExtractor.EnableOutOfRange(True)
 
 		# 조건이 거짓일 경우 Out of range 값 설정하기 위한 MultiVar 객체 생성 // Create the MultiVar object that sets the Out of Range value if the condition is false
-		mvOutOfRange = CMultiVar[Double](0, 0, 0);
+		mvOutOfRange = CMultiVar[Double](0, 0, 0)
 
 		# Out of Range 값 설정 // Set Out of Range value
 		conditionalExtractor.SetOutOfRangeValue(mvOutOfRange)
