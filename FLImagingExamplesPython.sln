@@ -1426,6 +1426,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Laplacian Filter", "Laplaci
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LaplacianFilter", "LaplacianFilter\LaplacianFilter.pyproj", "{EB3F00AB-F372-4AB6-B02A-8F44E5F2CF30}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Roberts Filter", "Roberts Filter", "{AD5501D1-2905-4003-8461-A441AE6D7AB0}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RobertsFilter", "RobertsFilter\RobertsFilter.pyproj", "{26799F6F-0F4E-450D-A787-D8F5E0A4FC5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2328,6 +2332,8 @@ Global
 		{44319A20-9024-4383-BD23-54B69C2379CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB3F00AB-F372-4AB6-B02A-8F44E5F2CF30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB3F00AB-F372-4AB6-B02A-8F44E5F2CF30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26799F6F-0F4E-450D-A787-D8F5E0A4FC5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26799F6F-0F4E-450D-A787-D8F5E0A4FC5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3033,6 +3039,8 @@ Global
 		{44319A20-9024-4383-BD23-54B69C2379CD} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
 		{8ADFA488-F93F-4995-9361-A94EF60CE80C} = {9410ECD0-99BA-4459-8382-3C8F70D23677}
 		{EB3F00AB-F372-4AB6-B02A-8F44E5F2CF30} = {8ADFA488-F93F-4995-9361-A94EF60CE80C}
+		{AD5501D1-2905-4003-8461-A441AE6D7AB0} = {9410ECD0-99BA-4459-8382-3C8F70D23677}
+		{26799F6F-0F4E-450D-A787-D8F5E0A4FC5A} = {AD5501D1-2905-4003-8461-A441AE6D7AB0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
