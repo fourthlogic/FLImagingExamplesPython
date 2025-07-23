@@ -105,10 +105,10 @@ def main():
             else:
                 flpVertex = None
             
-            if flpVertex != None:
-                print("({0}, {1})".format(flpVertex.x, flpVertex.y))
+            if flpVertex is not None:
+                print("({}, {})".format(flpVertex.x, flpVertex.y))
 
-        if flrgContour.GetExclusiveRegion() != None:            
+        if flrgContour.GetExclusiveRegion() is not None:            
             print("\nExclusive region\n{ ")
             
             if isinstance(flrgContour.GetExclusiveRegion(), CFLFigureArray):
@@ -131,7 +131,7 @@ def main():
                     else:
                         flpVertex  = None
             
-                    print("({0}, {1})", flpVertex.x, flpVertex.y);
+                    print("({}, {})", flpVertex.x, flpVertex.y);
 
                 print("]\n");
             

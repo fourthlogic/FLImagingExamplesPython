@@ -112,14 +112,14 @@ def main():
             else:
                 flfaCluster = None
 
-            if flfaCluster != None:
+            if flfaCluster is not None:
                 for j in range(flfaCluster.GetCount()):
                     if isinstance(flfaCluster.GetAt(j), CFLRect[Double]):
                         flrRect = flfaCluster.GetAt(j)
                     else:
                         flrRect = None
 
-                    if flrRect != None:
+                    if flrRect is not None:
                         print("Recover No. [{}][{}] : ({},{},{},{})\n".format(i, j, flrRect.left, flrRect.top, flrRect.right, flrRect.bottom))
 
                     layer.DrawTextImage(flrRect.GetCenter(), f"({i},{j})", EColor.CYAN, EColor.BLACK, 12, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)

@@ -95,7 +95,7 @@ def main():
         else:
             flrRect = None
             
-        if flrRect != None:
+        if flrRect is not None:
             print("No. [{}]\n".format(i))
             print("LeftTop     : ({},{})\n".format(flrRect.left, flrRect.top))
             print("RightBottom : ({},{})\n".format(flrRect.right, flrRect.bottom))

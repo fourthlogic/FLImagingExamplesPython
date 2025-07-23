@@ -109,7 +109,7 @@ def main():
         else:
             flrRect = None
             
-        if flrRect != None:
+        if flrRect is not None:
             print("No. {} : ({},{},{},{})\n".format(i, flrRect.left, flrRect.top, flrRect.right, flrRect.bottom));
 
         strIndex = f"{i}"

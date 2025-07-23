@@ -98,7 +98,7 @@ def main():
         else:
             flrRect = None
             
-        if flrRect != None:
+        if flrRect is not None:
             print("No. [{}]\n".format(i))
             print("LeftTop     : ({:.2f},{:.2f})\n".format(flrRect.left, flrRect.top))
             print("RightBottom : ({:.2f},{:.2f})\n".format(flrRect.right, flrRect.bottom))
