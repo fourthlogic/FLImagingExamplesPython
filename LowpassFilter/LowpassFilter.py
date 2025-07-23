@@ -99,7 +99,7 @@ def main():
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := (lowpassFilter.Execute())).IsFail():
-			ErrorPrint(res, "Failed to execute Gaussian filter.")
+			ErrorPrint(res, "Failed to execute Lowpass Filter.")
 			break
 
 		# Destination2 이미지 설정 // Set the destination2 image
@@ -112,7 +112,7 @@ def main():
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := (lowpassFilter.Execute())).IsFail():
-			ErrorPrint(res, "Failed to execute Gaussian filter.")
+			ErrorPrint(res, "Failed to execute Lowpass Filter.")
 			break
 
 		listLayer = List[CGUIViewImageLayer]()
