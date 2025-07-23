@@ -80,6 +80,9 @@ def main():
 		# Source ROI 설정 // Set the source roi
 		medianWeighted.SetSourceROI(flrROI)
 		
+		# Weighted Method 설정 // Set Weighted Method
+		filterMedianWeighted.SetWeightedMethod(CMedianWeightedFilter.EWeightedMethod.Gauss)
+		
 		# 처리할 Morphology Kernel 의 (95, 75, 100, 80, 45.000000) 설정 // Set Morphology Kernel to L(95, 75, 100, 80, 45.000000)
 		flrRegion = CFLRect[Int32](95, 75, 100, 80, 45.000000);
 		medianWeighted.SetKernel(flrRegion);
