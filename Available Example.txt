@@ -392,7 +392,10 @@
       - 매개변수 Figure와의 간섭영역 내의 객체를 FigureArray에서 제거하는 기능인 RemoveFigureWithinRegion에 관한 예제.
       
   - [GraphView]
-  
+
+    - GraphLeastSquares 
+      - The example of using least squares graph view.
+      - 최소자승법 그래프 뷰 사용에 관한 예제.
     - GraphView 
       - The example of using graph view.
       - 그래프 뷰 사용에 관한 예제.
@@ -405,6 +408,9 @@
     - GraphViewDisplayMinMax
       - The example of displaying minimum and maximum value of the graph view.
       - 그래프 뷰의 최대/최솟값 표시에 관한 예제.
+    - GraphViewContextMenu
+      - The example of customizing the context menu of the graph view.
+      - 그래프 뷰의 컨텍스트 메뉴를 커스터마이징하는 예제.
 
   - [ImageView]
   
