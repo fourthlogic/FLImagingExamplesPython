@@ -1490,6 +1490,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GenerativeAdversarialNetwor
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GenerativeAdversarialNetwork_Inpainting", "GenerativeAdversarialNetwork_Inpainting\GenerativeAdversarialNetwork_Inpainting.pyproj", "{654D9AFE-A0AE-48CF-B0CF-5E340CA3511E}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "IntensityClamping", "IntensityClamping\IntensityClamping.pyproj", "{E97D659D-1ADA-4307-A63D-5643BA849D5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2438,6 +2440,8 @@ Global
 		{A2D54BB5-EB2E-4A54-B6F4-FBB507C9251F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{654D9AFE-A0AE-48CF-B0CF-5E340CA3511E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{654D9AFE-A0AE-48CF-B0CF-5E340CA3511E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E97D659D-1ADA-4307-A63D-5643BA849D5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E97D659D-1ADA-4307-A63D-5643BA849D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3175,6 +3179,7 @@ Global
 		{2613F3AF-1BDC-43A8-B843-1F852B0F7331} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
 		{A2D54BB5-EB2E-4A54-B6F4-FBB507C9251F} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
 		{654D9AFE-A0AE-48CF-B0CF-5E340CA3511E} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
+		{E97D659D-1ADA-4307-A63D-5643BA849D5C} = {26DDAD82-9E4F-4BEB-AC67-DE8C7978F005}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
