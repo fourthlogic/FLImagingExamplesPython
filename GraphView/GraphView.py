@@ -1,161 +1,123 @@
 ﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
 from FLImagingClrPy import *
+import tkinter as tk
+from tkinter import ttk, messagebox
+import random
 
-# WinForms 관련
-clr.AddReference("System.Windows.Forms")
-from System.Windows.Forms import *
-from System.Drawing import Point, Size
-from System import EventHandler, Int64, Int32
-
-class FormGraphView(Form):
+class FormGraphView:
     def __init__(self):
-        Form.__init__(self)
-        self.Text = "Form Graph View"
-        self.Size = Size(420, 221)
+        self.available = False
+        self.graph_exists = False
+
+    def IsAvailable(self):
+        return self.available
+
+    def DoesGraphExist(self):
+        return self.graph_exists
+
+    def create(self, x1, y1, x2, y2):
+        self.available = True
+        return {"success": True}
+
+    def destroy(self):
+        self.available = False
+        self.graph_exists = False
+        return {"success": True}
+
+    def zoom_fit(self):
+        pass
+
+    def load(self):
+        self.graph_exists = True
+
+    def save(self):
+        pass
+
+    def plot(self, x, y, chart_type, color, name):
+        self.graph_exists = True
+        print(f"Plotted {name} ({chart_type}) with color {color}")
+
+    def clear(self):
+        self.graph_exists = False
+
+    def invalidate(self):
+        print("Graph view invalidated")
+
+class FormGraphView(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Form Graph View")
+        self.geometry("420x221")
+        self.resizable(False, False)
 
         self.m_bLockControls = False
-        
         self.m_viewGraph = CGUIViewGraph()
-        
-        x1 = 10
-        x2 = 207
-        y = 10
-        cx = 187
-        cy = 23
 
-        # Buttons
-        self.buttonOpenView = Button()
-        self.buttonOpenView.Text = "Open Graph View"
-        self.buttonOpenView.Location = Point(x1, y)
-        self.buttonOpenView.Size = Size(cx, cy)
+        self.create_widgets()
+        self.update_controls()
+        self.after(100, self.timer_tick)
 
-        self.buttonTerminateView = Button()
-        self.buttonTerminateView.Text = "Terminate View"
-        self.buttonTerminateView.Location = Point(x2, y)
-        self.buttonTerminateView.Size = Size(cx, cy)
+    def create_widgets(self):
+        self.buttonOpenView = tk.Button(self, text="Open Graph View", width=25, command=self.click_button_open_view)
+        self.buttonOpenView.place(x=10, y=10)
 
-        y += 30
-        
-        self.buttonLoadGraph = Button()
-        self.buttonLoadGraph.Text = "Load Graph"
-        self.buttonLoadGraph.Location = Point(x1, y)
-        self.buttonLoadGraph.Size = Size(cx, cy)
+        self.buttonTerminateView = tk.Button(self, text="Terminate View", width=25, command=self.click_button_terminate_view)
+        self.buttonTerminateView.place(x=207, y=10)
 
-        self.buttonSaveGraph = Button()
-        self.buttonSaveGraph.Text = "Save Graph"
-        self.buttonSaveGraph.Location = Point(x2, y)
-        self.buttonSaveGraph.Size = Size(cx, cy)
-        
-        self.Controls.AddRange([self.buttonOpenView, self.buttonTerminateView, self.buttonLoadGraph, self.buttonSaveGraph])
+        self.buttonLoadGraph = tk.Button(self, text="Load Graph", width=25, command=self.click_button_load_graph)
+        self.buttonLoadGraph.place(x=10, y=40)
 
-        y += 35
-        
-        # GroupBox 추가
-        self.group = GroupBox()
-        self.group.Text = "Chart"
-        self.group.Location = Point(x1, y)
-        self.group.Size = Size(382, 98)
-        self.Controls.Add(self.group)
-        
-        x1 = 5
-        x2 = 197
-        y = 23
-        cx = 180
-        
-        # Label : Name
-        self.labelName = Label()
-        self.labelName.Text = "Name"
-        self.labelName.Size = Size(cx, 16)
-        self.labelName.Location = Point(x1, y)
-        self.group.Controls.Add(self.labelName)
-        
-        # Label : Type
-        self.labelType = Label()
-        self.labelType.Text = "Type"
-        self.labelType.Size = Size(cx, 16)
-        self.labelType.Location = Point(x2, y)
-        self.group.Controls.Add(self.labelType)
+        self.buttonSaveGraph = tk.Button(self, text="Save Graph", width=25, command=self.click_button_save_graph)
+        self.buttonSaveGraph.place(x=207, y=40)
 
-        y+=18
+        # Chart group
+        self.group = tk.LabelFrame(self, text="Chart")
+        self.group.place(x=10, y=75, width=382, height=98)
 
-        # TextBox : Name
-        self.textboxName = TextBox()
-        self.textboxName.Location = Point(x1, y)
-        self.textboxName.Size = Size(cx, cy)
-        self.group.Controls.Add(self.textboxName)
-        
-        # ComboBox : ChartType
-        self.comboBoxChartType = ComboBox()
-        self.comboBoxChartType.DropDownStyle = ComboBoxStyle.DropDownList
-        self.comboBoxChartType.Location = Point(x2, y)
-        self.comboBoxChartType.Size = Size(cx, cy)
-        self.group.Controls.Add(self.comboBoxChartType)
+        tk.Label(self.group, text="Name").place(x=5, y=3)
+        tk.Label(self.group, text="Type").place(x=197, y=3)
 
-        self.comboBoxChartType.Items.AddRange(["Bar", "Line", "Scatter"])
-        self.comboBoxChartType.SelectedIndex = 0
-        
-        y+=26
-        
-        # Button : Add
-        self.buttonAdd = Button()
-        self.buttonAdd.Text = "Add"
-        self.buttonAdd.Location = Point(x1, y)
-        self.buttonAdd.Size = Size(cx, cy)
-        self.group.Controls.Add(self.buttonAdd)
-        
-        # Button : Clear
-        self.buttonClear = Button()
-        self.buttonClear.Text = "Clear"
-        self.buttonClear.Location = Point(x2, y)
-        self.buttonClear.Size = Size(cx, cy)
-        self.group.Controls.Add(self.buttonClear)
+        self.textboxName = tk.Entry(self.group, width=24)
+        self.textboxName.place(x=5, y=21)
 
-        self.buttonOpenView.Click += EventHandler(self.ClickButtonOpenView)
-        self.buttonTerminateView.Click += EventHandler(self.ClickButtonTerminateView)
-        self.buttonLoadGraph.Click += EventHandler(self.ClickButtonLoadGraph)
-        self.buttonSaveGraph.Click += EventHandler(self.ClickButtonSaveGraph)
-        self.buttonAdd.Click += EventHandler(self.ClickButtonChartAdd)
-        self.buttonClear.Click += EventHandler(self.ClickButtonChartClear)
+        self.comboBoxChartType = ttk.Combobox(self.group, state="readonly", width=21)
+        self.comboBoxChartType["values"] = ["Bar", "Line", "Scatter"]
+        self.comboBoxChartType.current(0)
+        self.comboBoxChartType.place(x=197, y=21)
 
-        # Timer
-        self.m_timer = Timer()
-        self.m_timer.Interval = 100
-        self.m_timer.Tick += EventHandler(self.TimerTick)
-        self.m_timer.Start()
+        self.buttonAdd = tk.Button(self.group, text="Add", width=23, command=self.click_button_chart_add)
+        self.buttonAdd.place(x=5, y=50)
 
-        self.UpdateControls()
+        self.buttonClear = tk.Button(self.group, text="Clear", width=23, command=self.click_button_chart_clear)
+        self.buttonClear.place(x=197, y=50)
 
-    def ErrorMessageBox(self, cResult, msg):
-        message = f"Error code : {cResult.GetResultCode()}\nError name : {cResult.GetString()}\n"
-        if len(msg) > 1:
-            message += msg
-        MessageBox.Show(message, "Error")
+    def error_message_box(self, code, msg):
+        message = f"Error code : {code}\nError message : {msg}"
+        messagebox.showerror("Error", message)
 
-    def LockControls(self, lock_flag):
+    def lock_controls(self, lock_flag):
         self.m_bLockControls = lock_flag
-        self.UpdateControls()
+        self.update_controls()
 
-    def TimerTick(self, sender, e):
-        self.UpdateControls()
+    def timer_tick(self):
+        self.update_controls()
+        self.after(100, self.timer_tick)
 
-    def UpdateControls(self):
-        if self.m_bLockControls:
-            enabled = False
-        elif not self.m_viewGraph.IsAvailable():
-            enabled = False
-        else:
-            enabled = True
+    def update_controls(self):
+        enabled = not self.m_bLockControls and self.m_viewGraph.IsAvailable()
+        state_normal = tk.NORMAL if enabled else tk.DISABLED
+        state_inverse = tk.NORMAL if not enabled else tk.DISABLED
 
-        self.buttonOpenView.Enabled = not enabled
-        self.buttonTerminateView.Enabled = enabled
-        self.buttonLoadGraph.Enabled = enabled
-        self.buttonSaveGraph.Enabled = self.m_viewGraph.DoesGraphExist() if enabled else False
-        self.buttonAdd.Enabled = enabled
-        self.buttonClear.Enabled = self.m_viewGraph.DoesGraphExist() if enabled else False
-        self.textboxName.Enabled = enabled
-        self.comboBoxChartType.Enabled = enabled 
+        self.buttonOpenView.config(state=state_inverse)
+        self.buttonTerminateView.config(state=state_normal)
+        self.buttonLoadGraph.config(state=state_normal)
+        self.buttonSaveGraph.config(state=tk.NORMAL if enabled and self.m_viewGraph.DoesGraphExist() else tk.DISABLED)
+        self.buttonAdd.config(state=state_normal)
+        self.buttonClear.config(state=tk.NORMAL if enabled and self.m_viewGraph.DoesGraphExist() else tk.DISABLED)
+        self.textboxName.config(state=state_normal)
+        self.comboBoxChartType.config(state="readonly" if enabled else tk.DISABLED)
 
-    def ClickButtonOpenView(self, sender, e):
+    def click_button_open_view(self):
         if self.m_viewGraph.IsAvailable(): 
             return
         
@@ -164,41 +126,40 @@ class FormGraphView(Form):
 
         self.m_viewGraph.ZoomFit()
 
-    def ClickButtonTerminateView(self, sender, e):
+    def click_button_terminate_view(self):
         if not self.m_viewGraph.IsAvailable(): 
             return
         
         if (res := self.m_viewGraph.Destroy()).IsFail(): 
             self.ErrorMessageBox(res, "")
 
-    def ClickButtonLoadGraph(self, sender, e):
+    def click_button_load_graph(self):
         if not self.m_viewGraph.IsAvailable(): 
             return
-        self.LockControls(True)
+        self.lock_controls(True)
         self.m_viewGraph.Load("", EViewGraphLoadOption(int(EViewGraphLoadOption.Load) | int(EViewGraphLoadOption.OpenDialog), True))
-        self.LockControls(False)
+        self.lock_controls(False)
 
-    def ClickButtonSaveGraph(self, sender, e):
+    def click_button_save_graph(self):
         if not self.m_viewGraph.IsAvailable(): 
             return
         if not self.m_viewGraph.DoesGraphExist(): 
             return
-        self.LockControls(True)
+        self.lock_controls(True)
         self.m_viewGraph.Save()
-        self.LockControls(False)
+        self.lock_controls(False)
 
-    def ClickButtonChartAdd(self, sender, e):
-        import random
+    def click_button_chart_add(self):
         if not self.m_viewGraph.IsAvailable(): 
             return
 
         # Chart Name
-        strChartName = self.textboxName.Text
+        strChartName = self.textboxName.get()
         if strChartName == "":
             strChartName = "Chart"
 
         # Chart Type
-        eChartType = EChartType(self.comboBoxChartType.SelectedIndex + 1, True)
+        eChartType = EChartType(self.comboBoxChartType.current() + 1, True)
 
         # Data Count
         i32DataCount = 30
@@ -216,12 +177,12 @@ class FormGraphView(Form):
         self.m_viewGraph.Plot(arrF64DataX1, arrF64DataY1, i32DataCount, eChartType, eColor, strChartName)
         self.m_viewGraph.Invalidate()
 
-    def ClickButtonChartClear(self, sender, e):
-        if not self.m_viewGraph.IsAvailable(): 
+    def click_button_chart_clear(self):
+        if not self.m_viewGraph.IsAvailable():
             return
         self.m_viewGraph.Clear()
         self.m_viewGraph.Invalidate()
 
 if __name__ == "__main__":
-    Application.EnableVisualStyles()
-    Application.Run(FormGraphView())
+    app = FormGraphView()
+    app.mainloop()
