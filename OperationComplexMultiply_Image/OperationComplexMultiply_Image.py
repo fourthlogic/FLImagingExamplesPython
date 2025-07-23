@@ -1,6 +1,14 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# Error 출력 함수 import // Import Error Output Function
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
+
+from ErrorPrint import *
+
 
 # 메인 함수 # Main function
 def main():
@@ -97,10 +105,10 @@ def main():
 		complexMultiply.SetDestinationImage(fliDestinationImage)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to image
-		complexMultiply.SetOperationSource(EOperationSource.Image);
+		complexMultiply.SetOperationSource(EOperationSource.Image)
 
 		# 오버플로 처리 방법 설정 # Set the overflow handling method
-		complexMultiply.SetOverflowMethod(EOverflowMethod.Wrapping);
+		complexMultiply.SetOverflowMethod(EOverflowMethod.Wrapping)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := complexMultiply.Execute()).IsFail():
@@ -145,15 +153,6 @@ def main():
 		break
 	
 	# End of main function
-
-
-
-# 에러 출력 함수 # Error printing function
-def ErrorPrint(res, str):
-	if len(str) > 1:
-		print(str)
-
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 
 if __name__ == '__main__':

@@ -1,6 +1,14 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# Error 출력 함수 import // Import Error Output Function
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
+
+from ErrorPrint import *
+
 
 # 메인 함수 # Main function
 def main():
@@ -23,7 +31,7 @@ def main():
 			break
 		
 		# Page 0 선택 # Select page 0
-		fliSourceImage.SelectPage(0);
+		fliSourceImage.SelectPage(0)
 		
 		# Source 이미지 뷰 생성 # Create source image view
 		if (res := viewImageSource.Create(100, 0, 548, 448)).IsFail():
@@ -52,7 +60,7 @@ def main():
 			ErrorPrint(res, 'Failed to create the 3D view.')
 			break
 
-		# Stereo Calibrator 3D 객체 생성 # Create Stereo Calibrator 3D object
+		# Photometric Stereo 3D 객체 생성 # Create Photometric Stereo 3D object
 		photometric = CPhotometricStereo3D()
 		
 		# Source 이미지 설정 # Set source image
@@ -71,54 +79,54 @@ def main():
 		photometric.SetValidPixelThreshold(0.125)
 		
 		# 각 이미지의 광원 Slant 값 입력
-		mvdSlant = CMultiVar[Double]();
+		mvdSlant = CMultiVar[Double]()
 
-		mvdSlant.PushBack(39.831506);
-		mvdSlant.PushBack(28.682381);
-		mvdSlant.PushBack(20.989625);
-		mvdSlant.PushBack(19.346638);
-		mvdSlant.PushBack(20.785800);
-		mvdSlant.PushBack(26.005273);
-		mvdSlant.PushBack(19.038004);
-		mvdSlant.PushBack(9.253585);
-		mvdSlant.PushBack(16.425454);
-		mvdSlant.PushBack(23.712574);
-		mvdSlant.PushBack(26.003058);
-		mvdSlant.PushBack(19.069500);
-		mvdSlant.PushBack(11.801071);
-		mvdSlant.PushBack(20.484473);
-		mvdSlant.PushBack(25.909730);
-		mvdSlant.PushBack(43.055332);
-		mvdSlant.PushBack(39.043981);
-		mvdSlant.PushBack(30.041029);
-		mvdSlant.PushBack(26.067657);
-		mvdSlant.PushBack(26.126303);
+		mvdSlant.PushBack(39.831506)
+		mvdSlant.PushBack(28.682381)
+		mvdSlant.PushBack(20.989625)
+		mvdSlant.PushBack(19.346638)
+		mvdSlant.PushBack(20.785800)
+		mvdSlant.PushBack(26.005273)
+		mvdSlant.PushBack(19.038004)
+		mvdSlant.PushBack(9.253585)
+		mvdSlant.PushBack(16.425454)
+		mvdSlant.PushBack(23.712574)
+		mvdSlant.PushBack(26.003058)
+		mvdSlant.PushBack(19.069500)
+		mvdSlant.PushBack(11.801071)
+		mvdSlant.PushBack(20.484473)
+		mvdSlant.PushBack(25.909730)
+		mvdSlant.PushBack(43.055332)
+		mvdSlant.PushBack(39.043981)
+		mvdSlant.PushBack(30.041029)
+		mvdSlant.PushBack(26.067657)
+		mvdSlant.PushBack(26.126303)
 
 		# 각 이미지의 광원 Tilt 값 입력
-		mvdTilt = CMultiVar[Double]();
+		mvdTilt = CMultiVar[Double]()
 
-		mvdTilt.PushBack(123.359091);
-		mvdTilt.PushBack(123.952892);
-		mvdTilt.PushBack(154.836215);
-		mvdTilt.PushBack(-173.353324);
-		mvdTilt.PushBack(-147.483507);
-		mvdTilt.PushBack(109.497340);
-		mvdTilt.PushBack(115.825606);
-		mvdTilt.PushBack(-169.019112);
-		mvdTilt.PushBack(-119.343654);
-		mvdTilt.PushBack(-109.319167);
-		mvdTilt.PushBack(66.944279);
-		mvdTilt.PushBack(48.136896);
-		mvdTilt.PushBack(-5.157068);
-		mvdTilt.PushBack(-54.033519);
-		mvdTilt.PushBack(-66.856636);
-		mvdTilt.PushBack(60.456870);
-		mvdTilt.PushBack(53.388008);
-		mvdTilt.PushBack(36.447691);
-		mvdTilt.PushBack(13.056294);
-		mvdTilt.PushBack(-5.976723);
+		mvdTilt.PushBack(123.359091)
+		mvdTilt.PushBack(123.952892)
+		mvdTilt.PushBack(154.836215)
+		mvdTilt.PushBack(-173.353324)
+		mvdTilt.PushBack(-147.483507)
+		mvdTilt.PushBack(109.497340)
+		mvdTilt.PushBack(115.825606)
+		mvdTilt.PushBack(-169.019112)
+		mvdTilt.PushBack(-119.343654)
+		mvdTilt.PushBack(-109.319167)
+		mvdTilt.PushBack(66.944279)
+		mvdTilt.PushBack(48.136896)
+		mvdTilt.PushBack(-5.157068)
+		mvdTilt.PushBack(-54.033519)
+		mvdTilt.PushBack(-66.856636)
+		mvdTilt.PushBack(60.456870)
+		mvdTilt.PushBack(53.388008)
+		mvdTilt.PushBack(36.447691)
+		mvdTilt.PushBack(13.056294)
+		mvdTilt.PushBack(-5.976723)
 
-		photometric.SetLightAngleDegrees(mvdSlant, mvdTilt);
+		photometric.SetLightAngleDegrees(mvdSlant, mvdTilt)
 
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
@@ -153,7 +161,7 @@ def main():
 		
 		# 3D 뷰 결과 출력 # Display 3D view result
 		fl3DObject = CFL3DObjectHeightMap(fliDestinationImage)
-		fl3DObject.SetTextureImage(fliTextureImage);
+		fl3DObject.SetTextureImage(fliTextureImage)
 
 		viewImage3D.PushObject(fl3DObject)
 		
@@ -174,15 +182,6 @@ def main():
 		break
 	
 	# End of main function
-
-
-
-# 에러 출력 함수 # Error printing function
-def ErrorPrint(res, str):
-	if len(str) > 1:
-		print(str)
-
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 
 if __name__ == '__main__':

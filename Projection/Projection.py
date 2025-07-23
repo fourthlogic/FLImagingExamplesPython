@@ -1,6 +1,14 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# Error 출력 함수 import // Import Error Output Function
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
+
+from ErrorPrint import *
+
 
 # 메인 함수 # Main function
 def main():
@@ -71,9 +79,7 @@ def main():
 			listResult.Clear()
 
 			# Projection 결과 값 가져오기 # get projection result
-			res, listResult = Projection.GetResult(i, listResult)
-
-			if res.IsFail():
+			if (res := Projection.GetResult(i, listResult)[0]).IsFail():
 				ErrorPrint(res, "Failed to Get Result.")
 				break
 
@@ -104,15 +110,6 @@ def main():
 		break
 	
 	# End of main function
-
-
-
-# 에러 출력 함수 # Error printing function
-def ErrorPrint(res, str):
-	if len(str) > 1:
-		print(str)
-
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 
 if __name__ == '__main__':

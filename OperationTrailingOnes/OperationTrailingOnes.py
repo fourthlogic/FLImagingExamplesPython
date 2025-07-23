@@ -1,6 +1,14 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# Error 출력 함수 import // Import Error Output Function
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
+
+from ErrorPrint import *
+
 
 # 메인 함수 # Main function
 def main():
@@ -89,7 +97,7 @@ def main():
 			break
 		
 		# View Binary 표시 옵션 설정 # Set view binary option
-		viewImageSrc.SetPixelNumberMode(EPixelNumberMode.Binary);
+		viewImageSrc.SetPixelNumberMode(EPixelNumberMode.Binary)
 
 		# 이미지 뷰를 갱신 # Update image view
 		viewImageSrc.Invalidate(True)
@@ -102,15 +110,6 @@ def main():
 		break
 	
 	# End of main function
-
-
-
-# 에러 출력 함수 # Error printing function
-def ErrorPrint(res, str):
-	if len(str) > 1:
-		print(str)
-
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 
 if __name__ == '__main__':

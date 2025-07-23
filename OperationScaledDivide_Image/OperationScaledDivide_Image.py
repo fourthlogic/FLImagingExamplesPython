@@ -1,6 +1,14 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# Error 출력 함수 import // Import Error Output Function
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
+
+from ErrorPrint import *
+
 
 # 메인 함수 # Main function
 def main():
@@ -27,7 +35,7 @@ def main():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
-		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
+		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination image as same as source image
 		if (res := fliDestinationImage.Assign(fliSourceImage)).IsFail():
 			ErrorPrint(res, 'Failed to assign the image.')
 			break
@@ -90,7 +98,7 @@ def main():
 			break
 		
 		# ROI 설정을 위한 CFLRect 객체 생성 # Create a CFLRect object for setting ROI
-		flrROI = CFLRect[Int64](200, 200, 500, 500);
+		flrROI = CFLRect[Int64](200, 200, 500, 500)
 
 		# Operation Scaled Divide 객체 생성 # Create Operation scaled divide object
 		scaledDivide = COperationScaledDivide()
@@ -99,22 +107,22 @@ def main():
 		scaledDivide.SetSourceImage(fliSourceImage)
 		
 		# Source ROI 설정 # Set the Source ROI
-		scaledDivide.SetSourceROI(flrROI);
+		scaledDivide.SetSourceROI(flrROI)
 		
 		# Operand 이미지 설정 # Set the operand image
 		scaledDivide.SetOperandImage(fliOperandImage)
 		
 		# Operand ROI 설정 # Set the Operand ROI
-		scaledDivide.SetOperandROI(flrROI);
+		scaledDivide.SetOperandROI(flrROI)
 		
 		# Destination 이미지 설정 # Set the destination image
 		scaledDivide.SetDestinationImage(fliDestinationImage)
 		
 		# Destination ROI 설정 # Set the Destination ROI
-		scaledDivide.SetDestinationROI(flrROI);
+		scaledDivide.SetDestinationROI(flrROI)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to image
-		scaledDivide.SetOperationSource(EOperationSource.Image);
+		scaledDivide.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := scaledDivide.Execute()).IsFail():
@@ -159,15 +167,6 @@ def main():
 		break
 	
 	# End of main function
-
-
-
-# 에러 출력 함수 # Error printing function
-def ErrorPrint(res, str):
-	if len(str) > 1:
-		print(str)
-
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 
 if __name__ == '__main__':

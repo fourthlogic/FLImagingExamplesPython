@@ -1,6 +1,14 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# Error 출력 함수 import // Import Error Output Function
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
+
+from ErrorPrint import *
+
 
 # 메인 함수 # Main function
 def main():
@@ -162,10 +170,10 @@ def main():
 			break
 		
 		# 이미지 뷰를 갱신 합니다. # Update the image view.
-		viewSrcImage[0].Invalidate(True);
-		viewSrcImage[1].Invalidate(True);
-		viewSrcImage[2].Invalidate(True);
-		viewDstImage.Invalidate(True);
+		viewSrcImage[0].Invalidate(True)
+		viewSrcImage[1].Invalidate(True)
+		viewSrcImage[2].Invalidate(True)
+		viewDstImage.Invalidate(True)
 
 		# 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewSrcImage[0].IsAvailable() and viewSrcImage[1].IsAvailable() and viewSrcImage[2].IsAvailable() and viewDstImage.IsAvailable():
@@ -174,15 +182,6 @@ def main():
 		break
 	
 	# End of main function
-
-
-
-# 에러 출력 함수 # Error printing function
-def ErrorPrint(res, str):
-	if len(str) > 1:
-		print(str)
-
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 
 if __name__ == '__main__':

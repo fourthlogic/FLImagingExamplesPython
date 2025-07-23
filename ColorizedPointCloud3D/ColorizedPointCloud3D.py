@@ -1,6 +1,14 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# Error 출력 함수 import // Import Error Output Function
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
+
+from ErrorPrint import *
+
 
 # 메인 함수 # Main function
 def main():
@@ -138,7 +146,7 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
-		# Stereo Calibrator 3D 객체 생성 # Create Stereo Calibrator 3D object
+		# Colorized Point Cloud Generator 3D 객체 생성 # Colorized Point Cloud Generator 3D object
 		colorizedPointCloudGenerator = CColorizedPointCloudGenerator3D()
 		
 		# Calibration XYZV 이미지 설정 # Set calibration XYZV image
@@ -158,36 +166,36 @@ def main():
 		
 		# 앞서 설정된 파라미터 대로 Calibration 동작 # Calibrate algorithm according to previously set parameters
 		if (res := colorizedPointCloudGenerator.Calibrate()).IsFail():
-			ErrorPrint(res, 'Failed to execute Colorized Point Cloud Generator 3D.')
+			ErrorPrint(res, 'Failed to calibrate Colorized Point Cloud Generator 3D.')
 			break
 
 		
 		# Calibration 결과 출력 # Print calibration results
-		print(f' < Calibration Result >\n');
+		print(f' < Calibration Result >\n')
 
 		# RGB 카메라의 Intrinsic Parameter 출력 # Print the intrinsic parameters of the RGB camera
-		cCalibIntrinsic = colorizedPointCloudGenerator.GetIntrinsicParameters();
+		cCalibIntrinsic = colorizedPointCloudGenerator.GetIntrinsicParameters()
 
-		print(f' < Intrinsic Parameters >\n');
+		print(f' < Intrinsic Parameters >\n')
 
-		print(f'Focal Length X ->\t{cCalibIntrinsic.f64FocalLengthX:.7}');
-		print(f'Focal Length Y ->\t{cCalibIntrinsic.f64FocalLengthY:.7}');
-		print(f'Principal Point X ->\t{cCalibIntrinsic.f64PrincipalPointX:.7}');
-		print(f'Principal Point Y ->\t{cCalibIntrinsic.f64PrincipalPointY:.7}');
-		print(f'Skew ->\t{cCalibIntrinsic.f64Skew:.7}');
+		print(f'Focal Length X ->\t{cCalibIntrinsic.f64FocalLengthX:.7}')
+		print(f'Focal Length Y ->\t{cCalibIntrinsic.f64FocalLengthY:.7}')
+		print(f'Principal Point X ->\t{cCalibIntrinsic.f64PrincipalPointX:.7}')
+		print(f'Principal Point Y ->\t{cCalibIntrinsic.f64PrincipalPointY:.7}')
+		print(f'Skew ->\t{cCalibIntrinsic.f64Skew:.7}')
 
 		print()
 
 		# RGB 카메라의 Distortion Coefficient 출력 # Print the distortion coefficients of the RGB camera
-		cCalibDistortion = colorizedPointCloudGenerator.GetDistortionCoefficients();
+		cCalibDistortion = colorizedPointCloudGenerator.GetDistortionCoefficients()
 
-		print(f' < Distortion Coefficients >\n');
+		print(f' < Distortion Coefficients >\n')
 
-		print(f'K1 ->\t{cCalibDistortion.f64K1:.7}');
-		print(f'K2 ->\t{cCalibDistortion.f64K2:.7}');
-		print(f'P1 ->\t{cCalibDistortion.f64P1:.7}');
-		print(f'P2 ->\t{cCalibDistortion.f64P2:.7}');
-		print(f'K3 ->\t{cCalibDistortion.f64K3:.7}');
+		print(f'K1 ->\t{cCalibDistortion.f64K1:.7}')
+		print(f'K2 ->\t{cCalibDistortion.f64K2:.7}')
+		print(f'P1 ->\t{cCalibDistortion.f64P1:.7}')
+		print(f'P2 ->\t{cCalibDistortion.f64P2:.7}')
+		print(f'K3 ->\t{cCalibDistortion.f64K3:.7}')
 		
 		print()
 
@@ -196,17 +204,17 @@ def main():
 
 		colorizedPointCloudGenerator.GetRelativeRotation(cMatRotation)
 
-		print(f' < Relative Rotation >\n');
+		print(f' < Relative Rotation >\n')
 
-		print(f'R00 ->\t%{cMatRotation.GetValue(0, 0):.7}');
-		print(f'R01 ->\t%{cMatRotation.GetValue(0, 1):.7}');
-		print(f'R02 ->\t%{cMatRotation.GetValue(0, 2):.7}');
-		print(f'R10 ->\t%{cMatRotation.GetValue(1, 0):.7}');
-		print(f'R11 ->\t%{cMatRotation.GetValue(1, 1):.7}');
-		print(f'R12 ->\t%{cMatRotation.GetValue(1, 2):.7}');
-		print(f'R20 ->\t%{cMatRotation.GetValue(2, 0):.7}');
-		print(f'R21 ->\t%{cMatRotation.GetValue(2, 1):.7}');
-		print(f'R22 ->\t%{cMatRotation.GetValue(2, 2):.7}');
+		print(f'R00 ->\t%{cMatRotation.GetValue(0, 0):.7}')
+		print(f'R01 ->\t%{cMatRotation.GetValue(0, 1):.7}')
+		print(f'R02 ->\t%{cMatRotation.GetValue(0, 2):.7}')
+		print(f'R10 ->\t%{cMatRotation.GetValue(1, 0):.7}')
+		print(f'R11 ->\t%{cMatRotation.GetValue(1, 1):.7}')
+		print(f'R12 ->\t%{cMatRotation.GetValue(1, 2):.7}')
+		print(f'R20 ->\t%{cMatRotation.GetValue(2, 0):.7}')
+		print(f'R21 ->\t%{cMatRotation.GetValue(2, 1):.7}')
+		print(f'R22 ->\t%{cMatRotation.GetValue(2, 2):.7}')
 		
 		print()
 
@@ -215,17 +223,17 @@ def main():
 
 		colorizedPointCloudGenerator.GetRelativeTranslation(cMatTranslation)
 
-		print(f' < Relative Translation >\n');
+		print(f' < Relative Translation >\n')
 
-		print(f'TX ->\t{cMatTranslation.GetValue(0, 0):.7}', );
-		print(f'TY ->\t{cMatTranslation.GetValue(1, 0):.7}', );
-		print(f'TZ ->\t{cMatTranslation.GetValue(2, 0):.7}', );
+		print(f'TX ->\t{cMatTranslation.GetValue(0, 0):.7}', )
+		print(f'TY ->\t{cMatTranslation.GetValue(1, 0):.7}', )
+		print(f'TZ ->\t{cMatTranslation.GetValue(2, 0):.7}', )
 		
 		print()
 
 
 		# 출력에 사용되는 3D 객채 생성 # Create 3D object used as output
-		fli3DDstObj = CFL3DObject();
+		fli3DDstObj = CFL3DObject()
 
 		# Execution XYZV 이미지 설정 # Set execution XYZV image
 		colorizedPointCloudGenerator.SetSourceImageXYZV(fliExecSrcXYZVImage)
@@ -236,7 +244,7 @@ def main():
 		# Destination 이미지 설정 # Set destination image
 		colorizedPointCloudGenerator.SetDestinationImageRGB(fliExecDstRGBImage)
 		
-		# Destination 3D Object 설정 // Set the destination 3D object
+		# Destination 3D Object 설정 # Set the destination 3D object
 		colorizedPointCloudGenerator.SetDestination3DObject(fli3DDstObj)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
@@ -282,15 +290,6 @@ def main():
 		break
 	
 	# End of main function
-
-
-
-# 에러 출력 함수 # Error printing function
-def ErrorPrint(res, str):
-	if len(str) > 1:
-		print(str)
-
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 
 if __name__ == '__main__':

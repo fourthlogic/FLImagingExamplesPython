@@ -1,6 +1,14 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# Error 출력 함수 import // Import Error Output Function
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
+
+from ErrorPrint import *
+
 
 # 메인 함수 # Main function
 def main():
@@ -25,7 +33,7 @@ def main():
 			break
 		
 		# Page 0 선택 # Select page 0
-		fliSourceImage.SelectPage(0);
+		fliSourceImage.SelectPage(0)
 		
 		# Source 이미지 뷰 생성 # Create source image view
 		if (res := viewImageSource.Create(100, 0, 498, 398)).IsFail():
@@ -44,7 +52,7 @@ def main():
 			break
 		
 		# Page 0 선택 # Select page 0
-		fliCalibrationImage.SelectPage(0);
+		fliCalibrationImage.SelectPage(0)
 		
 		# Calibration 이미지 뷰 생성 # Create calibration image view
 		if (res := viewImageCalibration.Create(498, 0, 896, 398)).IsFail():
@@ -97,11 +105,11 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 
-		# Stereo Calibrator 3D 객체 생성 # Create Stereo Calibrator 3D object
+		# Photometric Stereo 3D 객체 생성 # Create Photometric Stereo 3D object
 		photometric = CPhotometricStereo3D()
 		
 		# Calibration 이미지 설정 # Set the calibration image
-		photometric.SetCalibrationImage(fliCalibrationImage);
+		photometric.SetCalibrationImage(fliCalibrationImage)
 
 		# Calibration 데이터 설정 # Set Calibration Settings
 		cFLCircle = CFLCircle[Double](386.439657, 346.491239, 259.998140, 0.000000, 0.000000, 360.000000, EArcClosingMethod.EachOther)
@@ -148,26 +156,26 @@ def main():
 			break
 
 		# Calibrate 된 위치 데이터 저장 # Save calibrated position data
-		cMatdPosition = CMatrix[Double]();
+		cMatdPosition = CMatrix[Double]()
 
-		photometric.GetLightPositions(cMatdPosition);
+		photometric.GetLightPositions(cMatdPosition)
 
 		# Calibrate를 실행한 결과를 Console창에 출력합니다. # Output the calibration result to the console window.
-		i32CalibPageNum = fliCalibrationImage.GetPageCount();
+		i32CalibPageNum = fliCalibrationImage.GetPageCount()
 
 		# Angle Degrees 데이터 출력
-		print(" < Calibration Angle - Degrees >");
+		print(" < Calibration Angle - Degrees >")
 
 		for i in range(i32CalibPageNum):
-			print(f"Image {i} ->\tSlant: {cMulVarSlant.GetAt(i):.5}\tTilt: {cMulVarTilt.GetAt(i):.5}");
+			print(f"Image {i} ->\tSlant: {cMulVarSlant.GetAt(i):.5}\tTilt: {cMulVarTilt.GetAt(i):.5}")
 
-		print("\n");
+		print("\n")
 
 		# Positions 데이터 출력
-		print(" < Calibration Positions >");
+		print(" < Calibration Positions >")
 
 		for i in range(i32CalibPageNum):
-			print(f"Image {i} ->\tX: {cMatdPosition.GetValue(i, 0):.5}\tY: {cMatdPosition.GetValue(i, 1):.5} \tZ: {cMatdPosition.GetValue(i, 2):.5}");
+			print(f"Image {i} ->\tX: {cMatdPosition.GetValue(i, 0):.5}\tY: {cMatdPosition.GetValue(i, 1):.5} \tZ: {cMatdPosition.GetValue(i, 2):.5}")
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := photometric.Execute()).IsFail():
@@ -209,33 +217,33 @@ def main():
 		
 		# 3D 뷰 결과 출력 # Display 3D view result
 		
-		f64CenterX = fliSourceImage.GetWidth() / 2;
-		f64CenterY = fliSourceImage.GetHeight() / 2;
-		f64CenterZ = fliDestinationImage.GetBuffer()[int(f64CenterY * fliSourceImage.GetWidth() + f64CenterX)];
+		f64CenterX = fliSourceImage.GetWidth() / 2
+		f64CenterY = fliSourceImage.GetHeight() / 2
+		f64CenterZ = fliDestinationImage.GetBuffer()[int(f64CenterY * fliSourceImage.GetWidth() + f64CenterX)]
 
-		tp3dFrom = TPoint3[Single](f64CenterX, f64CenterY, f64CenterZ);
+		tp3dFrom = TPoint3[Single](f64CenterX, f64CenterY, f64CenterZ)
 
-		f64MulNum = 2000;
+		f64MulNum = 2000
 
 		for i in range(i32CalibPageNum):
-			strText = "";
+			strText = ""
 
-			strText += f"X: {cMatdPosition.GetValue(i, 0):.5}    \nY: {cMatdPosition.GetValue(i, 1):.5}    \nZ: {cMatdPosition.GetValue(i, 2):.5}\n";
+			strText += f"X: {cMatdPosition.GetValue(i, 0):.5}    \nY: {cMatdPosition.GetValue(i, 1):.5}    \nZ: {cMatdPosition.GetValue(i, 2):.5}\n"
 
-			tp3dTo = TPoint3[Single](f64MulNum * cMatdPosition.GetValue(i, 0) + f64CenterX, f64MulNum * cMatdPosition.GetValue(i, 1) + f64CenterY, f64MulNum * cMatdPosition.GetValue(i, 2) + f64CenterZ);
+			tp3dTo = TPoint3[Single](f64MulNum * cMatdPosition.GetValue(i, 0) + f64CenterX, f64MulNum * cMatdPosition.GetValue(i, 1) + f64CenterY, f64MulNum * cMatdPosition.GetValue(i, 2) + f64CenterZ)
 
-			tp3dTod = TPoint3[Double](f64MulNum * cMatdPosition.GetValue(i, 0) + f64CenterX, f64MulNum * cMatdPosition.GetValue(i, 1) + f64CenterY, f64MulNum * cMatdPosition.GetValue(i, 2) + f64CenterZ);
+			tp3dTod = TPoint3[Double](f64MulNum * cMatdPosition.GetValue(i, 0) + f64CenterX, f64MulNum * cMatdPosition.GetValue(i, 1) + f64CenterY, f64MulNum * cMatdPosition.GetValue(i, 2) + f64CenterZ)
 
-			cgui3dlineTemp = CGUIView3DObjectLine(tp3dFrom, tp3dTo, EColor.YELLOW, 1);
+			cgui3dlineTemp = CGUIView3DObjectLine(tp3dFrom, tp3dTo, EColor.YELLOW, 1)
 
-			layer3D.DrawText3D(tp3dTod, strText, EColor.BLACK, EColor.YELLOW);
+			layer3D.DrawText3D(tp3dTod, strText, EColor.BLACK, EColor.YELLOW)
 			
 			if (res := viewImage3D.PushObject(cgui3dlineTemp)).IsFail():
 				ErrorPrint(res, 'Failed to display the 3D object.')
 				break
 
 		fl3DObject = CFL3DObjectHeightMap(fliDestinationImage)
-		fl3DObject.SetTextureImage(fliTextureImage);
+		fl3DObject.SetTextureImage(fliTextureImage)
 		
 		if (res := viewImage3D.PushObject(fl3DObject)).IsFail():
 			ErrorPrint(res, 'Failed to display the 3D object.')
@@ -259,15 +267,6 @@ def main():
 		break
 	
 	# End of main function
-
-
-
-# 에러 출력 함수 # Error printing function
-def ErrorPrint(res, str):
-	if len(str) > 1:
-		print(str)
-
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 
 if __name__ == '__main__':

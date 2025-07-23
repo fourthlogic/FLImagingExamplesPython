@@ -1,6 +1,14 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# Error 출력 함수 import // Import Error Output Function
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
+
+from ErrorPrint import *
+
 
 # 메인 함수 # Main function
 def main():
@@ -63,6 +71,7 @@ def main():
 
 		# Channel 값 표기를 위한 String 변수 # string variable to indicate Channel value
 		strChannel = ""
+
 		# 그래프 선 색상 # Graph line color
 		arrColor = [EColor.BLUE, EColor.LIGHTRED, EColor.GREEN]
 
@@ -72,11 +81,9 @@ def main():
 		for i in range(i64IndexCount):
 			# 이전 데이터 삭제 # data clear
 			listResult.Clear()
-
+			
 			# Histogram 결과 값 가져오기 # get projection result
-			res, listResult = Histogram.GetResult(i, listResult)
-
-			if res.IsFail():
+			if (res := Histogram.GetResult(i, listResult)[0]).IsFail():
 				ErrorPrint(res, "Failed to Get Result.")
 				break
 
@@ -126,15 +133,6 @@ def main():
 		break
 	
 	# End of main function
-
-
-
-# 에러 출력 함수 # Error printing function
-def ErrorPrint(res, str):
-	if len(str) > 1:
-		print(str)
-
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 
 if __name__ == '__main__':

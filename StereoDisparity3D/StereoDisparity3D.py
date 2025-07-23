@@ -1,6 +1,14 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# Error 출력 함수 import // Import Error Output Function
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
+
+from ErrorPrint import *
+
 
 # 메인 함수 # Main function
 def main():
@@ -30,8 +38,8 @@ def main():
 			break
 
 		# Page 0 선택 # Select page 0
-		fliSourceImage.SelectPage(0);
-		fliSourceImage2.SelectPage(0);
+		fliSourceImage.SelectPage(0)
+		fliSourceImage2.SelectPage(0)
 
 		# Source 이미지 뷰 생성 # Create source image view
 		if (res := viewImageSource.Create(100, 0, 548, 448)).IsFail():
@@ -89,7 +97,7 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 		
-		# Stereo Calibrator 3D 객체 생성 # Create Stereo Calibrator 3D object
+		# Stereo Disparity 3D 객체 생성 # Create Stereo Disparity 3D object
 		stereoDisparity = CStereoDisparity3D()
 		
 		# Source 이미지 설정 # Set source image
@@ -127,7 +135,7 @@ def main():
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := stereoDisparity.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Stereo Calibrator 3D.')
+			ErrorPrint(res, 'Failed to execute Stereo Disparity 3D.')
 			break
 		
 		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
@@ -187,15 +195,6 @@ def main():
 		break
 	
 	# End of main function
-
-
-
-# 에러 출력 함수 # Error printing function
-def ErrorPrint(res, str):
-	if len(str) > 1:
-		print(str)
-
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 
 if __name__ == '__main__':

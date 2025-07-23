@@ -1,6 +1,14 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# Error 출력 함수 import // Import Error Output Function
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
+
+from ErrorPrint import *
+
 
 # 메인 함수 # Main function
 def main():
@@ -63,7 +71,7 @@ def main():
 		# Baseline ROI 생성 # Set the base line of the laser
 		fliBaseLine = CFLLine[Double](0, 61, 1216, 61)
 
-		# Census Transform 객체 생성 # Create Census Transform object
+		# Laser Triangulation 3D 객체 생성 # Create Laser Triangulation 3D object
 		laserTriangulation = CLaserTriangulation3D()
 
 		# Source 이미지 설정 # Set the source image
@@ -155,15 +163,6 @@ def main():
 		break
 	
 	# End of main function
-
-
-
-# 에러 출력 함수 # Error printing function
-def ErrorPrint(res, str):
-	if len(str) > 1:
-		print(str)
-
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 
 if __name__ == '__main__':

@@ -1,6 +1,14 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# Error 출력 함수 import // Import Error Output Function
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
+
+from ErrorPrint import *
+
 
 # 메인 함수 # Main function
 def main():
@@ -69,16 +77,16 @@ def main():
 		censusTransform.SetDestinationImage(fliDestinationImage)
 		
 		# Kernel의 크기 설정 # Set the size of the kernel
-		censusTransform.SetKernel(9, 7);
+		censusTransform.SetKernel(9, 7)
 
 		# Kernel의 픽셀 간의 크기를 설정 # Set the width between each pixel in the kernel
-		censusTransform.SetSparseLength(1);
+		censusTransform.SetSparseLength(1)
 
 		# 미러 모드 설정 # Set mirror mode
-		censusTransform.EnableMirrorMode(True);
+		censusTransform.EnableMirrorMode(True)
 
 		# 데이터 값의 정렬 방향 설정 # Set data alignment direction
-		censusTransform.EnableMSBShiftMode(True);
+		censusTransform.EnableMSBShiftMode(True)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := censusTransform.Execute()).IsFail():
@@ -116,15 +124,6 @@ def main():
 		break
 	
 	# End of main function
-
-
-
-# 에러 출력 함수 # Error printing function
-def ErrorPrint(res, str):
-	if len(str) > 1:
-		print(str)
-
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 
 if __name__ == '__main__':

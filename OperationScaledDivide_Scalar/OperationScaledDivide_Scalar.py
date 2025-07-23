@@ -1,6 +1,14 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# Error 출력 함수 import // Import Error Output Function
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
+
+from ErrorPrint import *
+
 
 # 메인 함수 # Main function
 def main():
@@ -79,7 +87,7 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 		
-		# Operation Complex Multiply 객체 생성 # Create Operation Complex Multiply object
+		# Operation Scaled Divide 객체 생성 # Create Operation Scaled Divide object
 		scaledDivide = COperationScaledDivide()
 
 		# Source 이미지 설정 # Set the source image
@@ -89,14 +97,14 @@ def main():
 		scaledDivide.SetDestinationImage(fliDestination1Image)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		scaledDivide.SetOperationSource(EOperationSource.Scalar);
+		scaledDivide.SetOperationSource(EOperationSource.Scalar)
 
 		# 오버플로 처리 방법 설정 # Set the overflow handling method
-		scaledDivide.SetOverflowMethod(EOverflowMethod.Clamping);
+		scaledDivide.SetOverflowMethod(EOverflowMethod.Clamping)
 		
 		# 곱할 스칼라 값 지정 # Set the Scalar multiplier
-		mvScalar = CMultiVar[Double](192, 192, 192);
-		scaledDivide.SetScalarValue(mvScalar);
+		mvScalar = CMultiVar[Double](192, 192, 192)
+		scaledDivide.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := scaledDivide.Execute()).IsFail():
@@ -107,8 +115,8 @@ def main():
 		scaledDivide.SetDestinationImage(fliDestination2Image)
 		
 		# 곱할 스칼라 값 지정 # Set the Scalar multiplier
-		mvScalar = CMultiVar[Double](512, 512, 512);
-		scaledDivide.SetScalarValue(mvScalar);
+		mvScalar = CMultiVar[Double](512, 512, 512)
+		scaledDivide.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := scaledDivide.Execute()).IsFail():
@@ -153,15 +161,6 @@ def main():
 		break
 	
 	# End of main function
-
-
-
-# 에러 출력 함수 # Error printing function
-def ErrorPrint(res, str):
-	if len(str) > 1:
-		print(str)
-
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 
 if __name__ == '__main__':
