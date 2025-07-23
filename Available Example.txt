@@ -710,6 +710,9 @@
       - Normalization_MaxElement
         - The example of an algorithm that processes a normalize(Max Element Method).
         - 이미지에서 정규화 처리하는 알고리즘 예제(Max Element 방식).
+      - Normalization_MinMax
+        - The example of an algorithm that processes a normalize(MinMax Method).
+        - 이미지에서 정규화 처리하는 알고리즘 예제(MinMax 방식).
 
     - AdaptiveEqualization
       - Algorithm that processes images through values of local equalization.
