@@ -706,6 +706,12 @@
       - The algorithm that performs the calculation of trailing zeros from the source image.
       - 이미지에 Trailing Zeros 연산을 수행하는 알고리즘
 
+  - [Inpainting]
+    
+    - InpaintingTexture
+      - The example of an algorithm that performs an inpainting by texture propagation and structure propagation.
+      - Texture Propagation과 Structure Propagation을 이용하여 인페인팅을 수행하는 알고리즘 예제.
+
   - [Moment]
 
     - Moment_Invariant
