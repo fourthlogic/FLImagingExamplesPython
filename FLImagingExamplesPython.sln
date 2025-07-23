@@ -1528,6 +1528,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MedianFilter_Region", "Medi
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MedianFilter_Kernel", "MedianFilter_Kernel\MedianFilter_Kernel.pyproj", "{B7FC04C7-AF94-4ED7-B2D9-F928F773C025}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Normalization", "Normalization", "{B2623B0B-5959-4AD0-810A-25A04980625A}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Normalization_CDF", "Normalization_CDF\Normalization_CDF.pyproj", "{87FFC55F-EFC9-4E6F-A16A-24407ED0FE44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2502,6 +2506,8 @@ Global
 		{C0487C21-135B-4120-B4C3-B7D9F47EF0C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7FC04C7-AF94-4ED7-B2D9-F928F773C025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B7FC04C7-AF94-4ED7-B2D9-F928F773C025}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87FFC55F-EFC9-4E6F-A16A-24407ED0FE44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87FFC55F-EFC9-4E6F-A16A-24407ED0FE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3258,6 +3264,8 @@ Global
 		{A1A8A61D-CC3B-4D84-829A-9BA52BB37EF6} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
 		{C0487C21-135B-4120-B4C3-B7D9F47EF0C7} = {A1A8A61D-CC3B-4D84-829A-9BA52BB37EF6}
 		{B7FC04C7-AF94-4ED7-B2D9-F928F773C025} = {A1A8A61D-CC3B-4D84-829A-9BA52BB37EF6}
+		{B2623B0B-5959-4AD0-810A-25A04980625A} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
+		{87FFC55F-EFC9-4E6F-A16A-24407ED0FE44} = {B2623B0B-5959-4AD0-810A-25A04980625A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}

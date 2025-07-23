@@ -696,6 +696,12 @@
 
   - [Image Enhancement]
 
+    - [Normalization]
+
+      - Normalization_CDF
+        - The example of an algorithm that processes a normalize(CDF Method).
+        - 이미지에서 정규화 처리하는 알고리즘 예제(CDF 방식).
+
     - AdaptiveEqualization
       - Algorithm that processes images through values of local equalization.
       - 지역 균일화 값을 통해 이미지를 처리하는 알고리즘 예제.
