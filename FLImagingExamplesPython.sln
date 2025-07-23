@@ -1482,6 +1482,14 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LowLuminanceCorrectionType1
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LowLuminanceCorrectionType2", "LowLuminanceCorrectionType2\LowLuminanceCorrectionType2.pyproj", "{5782B3F2-7C8B-433E-A14F-7B988546EC01}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "StringBasedOCR", "StringBasedOCR\StringBasedOCR.pyproj", "{129A6CF3-339F-4904-9E76-33CD26AA8E05}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GenerativeAdversarialNetwork", "GenerativeAdversarialNetwork\GenerativeAdversarialNetwork.pyproj", "{2613F3AF-1BDC-43A8-B843-1F852B0F7331}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GenerativeAdversarialNetwork_Label", "GenerativeAdversarialNetwork_Label\GenerativeAdversarialNetwork_Label.pyproj", "{A2D54BB5-EB2E-4A54-B6F4-FBB507C9251F}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GenerativeAdversarialNetwork_Inpainting", "GenerativeAdversarialNetwork_Inpainting\GenerativeAdversarialNetwork_Inpainting.pyproj", "{654D9AFE-A0AE-48CF-B0CF-5E340CA3511E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2422,6 +2430,14 @@ Global
 		{61ADBDA5-0974-482B-A040-94FAF68D7CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5782B3F2-7C8B-433E-A14F-7B988546EC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5782B3F2-7C8B-433E-A14F-7B988546EC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{129A6CF3-339F-4904-9E76-33CD26AA8E05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{129A6CF3-339F-4904-9E76-33CD26AA8E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2613F3AF-1BDC-43A8-B843-1F852B0F7331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2613F3AF-1BDC-43A8-B843-1F852B0F7331}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2D54BB5-EB2E-4A54-B6F4-FBB507C9251F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2D54BB5-EB2E-4A54-B6F4-FBB507C9251F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{654D9AFE-A0AE-48CF-B0CF-5E340CA3511E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{654D9AFE-A0AE-48CF-B0CF-5E340CA3511E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3155,6 +3171,10 @@ Global
 		{DA67C637-EA07-47D2-A8F0-645AEBCEEB63} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
 		{61ADBDA5-0974-482B-A040-94FAF68D7CB9} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
 		{5782B3F2-7C8B-433E-A14F-7B988546EC01} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
+		{129A6CF3-339F-4904-9E76-33CD26AA8E05} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
+		{2613F3AF-1BDC-43A8-B843-1F852B0F7331} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
+		{A2D54BB5-EB2E-4A54-B6F4-FBB507C9251F} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
+		{654D9AFE-A0AE-48CF-B0CF-5E340CA3511E} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
