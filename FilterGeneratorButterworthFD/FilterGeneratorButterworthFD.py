@@ -125,28 +125,28 @@ def main():
 			break
 
 		# FilterGeneratorButterworthFD 객체 생성 // Create FilterGeneratorButterworthFD object
-		filterGeneratorBandrejectFD = CFilterGeneratorButterworthFD()
+		filterGeneratorButterworthFD = CFilterGeneratorButterworthFD()
 
 		# Source 이미지 설정 // Set the source image
-		filterGeneratorBandrejectFD.SetSourceImage(fliFFTImage)
+		filterGeneratorButterworthFD.SetSourceImage(fliFFTImage)
 
 		# 정밀도 설정 (32/64 bit Floating Point 설정 가능) // Set the precision (32/64 bit Floating Point can be set)
-		filterGeneratorBandrejectFD.SetAccuracy(EFloatingPointAccuracy.Bit32)
+		filterGeneratorButterworthFD.SetAccuracy(EFloatingPointAccuracy.Bit32)
 
 		# 필터 타입 설정 // Set the filter type
-		filterGeneratorBandrejectFD.SetType(CFilterGeneratorButterworthFD.EFilterBaseFDType.FFT_Shift)
+		filterGeneratorButterworthFD.SetType(CFilterGeneratorButterworthFD.EFilterBaseFDType.FFT_Shift)
 
 		# Destination 이미지 설정 // Set the destination image
-		filterGeneratorBandrejectFD.SetDestinationImage(fliButterworthFilterImage)
+		filterGeneratorButterworthFD.SetDestinationImage(fliButterworthFilterImage)
 
 		# Distance 설정 // Set the distance
-		filterGeneratorBandrejectFD.SetDistance(50)
+		filterGeneratorButterworthFD.SetDistance(50)
 
 		# Degree 설정 // Set the degree
-		filterGeneratorBandrejectFD.SetDegree(2)
+		filterGeneratorButterworthFD.SetDegree(2)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := filterGeneratorBandrejectFD.Execute()).IsFail():
+		if (res := filterGeneratorButterworthFD.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute FilterGeneratorButterworthFD.')
 			break
 

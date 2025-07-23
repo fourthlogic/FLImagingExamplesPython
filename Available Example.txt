@@ -675,6 +675,9 @@
       - FilterGeneratorButterworthFD
         - The example of an algorithm that generate a Butterworth filter in a frequency domain.
         - 주파수 영역에서 사용되는 버터워스 필터를 생성하는 알고리즘 예제.
+      - FilterGeneratorGaussFD
+        - The example of an algorithm that generate a Gaussian filter in a frequency domain.
+        - 주파수 영역에서 사용되는 Gauss 필터를 생성하는 알고리즘 예제.
 
   - [Image Enhancement]
 
