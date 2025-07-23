@@ -216,7 +216,7 @@ def main():
 				listCosts = List[Single]()
 				listValidations = List[Single]()
 				listF1Score = List[Single]()
-				listValidationEpoch = List[Int32]()
+				listValidationEpoch = List[int]()
 
 				res, listCosts, listValidations, listF1Score, listValidationEpoch = classifier.GetLearningResultAllHistory(listCosts, listValidations, listF1Score, listValidationEpoch)
 				
