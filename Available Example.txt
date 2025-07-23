@@ -810,6 +810,9 @@
     - ColorSequenceConverter 
       - The example of an algorithm that converts color sequence of an image.
       - 이미지의 컬러 시퀀스를 바꾸는 알고리즘 예제.
+    - Tiling 
+      - The example of an algorithm that match the ROI of the source images to the destination ROI.
+      - 소스 이미지들의 ROI를 Destination ROI에 Tiling 해주는 알고리즘 예제.
 
 - [Mapping]
 
