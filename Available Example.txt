@@ -705,6 +705,9 @@
     - Demoire
       - Algorithm that remove moire pattern.
       - Moire 패턴을 제거하는 알고리즘 예제.
+    - Equalization
+      - The example of an algorithm that processes a equalize.
+      - 이미지에서 균일화 처리하는 알고리즘 예제.
     - FLAutoShadingCorrection
       - The example of an algorithm that processes a shading correction.
       - 불균일한 조명을 보정하는 알고리즘 예제.

@@ -1520,6 +1520,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CoherenceEnhancingDiffusion
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AdaptiveEqualization", "AdaptiveEqualization\AdaptiveEqualization.pyproj", "{36F38DA3-A175-40A0-8FB8-8E81022338D3}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Equalization", "Equalization\Equalization.pyproj", "{93576166-F25D-46D5-8AD5-161F1C7FAC04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2488,6 +2490,8 @@ Global
 		{4A3280EA-F726-4D35-A76D-5891AA644195}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36F38DA3-A175-40A0-8FB8-8E81022338D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{36F38DA3-A175-40A0-8FB8-8E81022338D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93576166-F25D-46D5-8AD5-161F1C7FAC04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93576166-F25D-46D5-8AD5-161F1C7FAC04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3240,6 +3244,7 @@ Global
 		{E2DDD695-126F-4D2A-B10D-016ACD8F3C24} = {6CBBF795-4533-4B7D-B631-121591A38E26}
 		{4A3280EA-F726-4D35-A76D-5891AA644195} = {E2DDD695-126F-4D2A-B10D-016ACD8F3C24}
 		{36F38DA3-A175-40A0-8FB8-8E81022338D3} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
+		{93576166-F25D-46D5-8AD5-161F1C7FAC04} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
