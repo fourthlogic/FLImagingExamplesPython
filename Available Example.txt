@@ -653,6 +653,14 @@
         - The example of an algorithm that processes a stack blur filter to an image.
         - 이미지에서 stack blur 필터를 처리하는 알고리즘 예제.
 
+  - [Frequency Domain]
+
+    - [Correlation]
+
+      - AutoCorrelationFD
+        - Example of an algorithm for correlation computation of the original image.
+        - 원본 이미지를 Correlation 연산하는 알고리즘 예제.
+
   - [Image Enhancement]
 
     - ContrastEnhancement
