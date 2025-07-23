@@ -34,7 +34,7 @@ def main():
 		bError = False
 
 		for i in range(int(EType.Destination1), int(EType.ETypeCount)):
-			# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
+		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
 			if (res := (listFliImage[i].Assign(listFliImage[int(EType.Source)]))).IsFail():
 				ErrorPrint(res, "Failed to assign the image file.\n")
 				bError = True

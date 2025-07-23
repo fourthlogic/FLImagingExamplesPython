@@ -20,7 +20,7 @@ def main():
 			break
 
 		for i in range(1, 5) :
-			# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
+		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
 			if (res := listFliImage[i].Assign(listFliImage[0])).IsFail():
 				ErrorPrint(res, 'Failed to assign the image.')
 				break
