@@ -834,3 +834,6 @@
 
 - [Misc]
 
+  - Stencil
+    - The example of a stencil class that converts a string to a figure shaped by the selected font.
+    - 입력된 문자열을 설정한 폰트 모양의 도형으로 변환하는 스텐실 클래스 예제.
