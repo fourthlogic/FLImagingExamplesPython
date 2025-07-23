@@ -568,6 +568,9 @@
 
   - [Feature Extraction]
 
+    - CannyEdgeDetector
+      - The example of Canny Edge Detection Algorithm.
+      - 캐니 엣지 검출 알고리즘 예제
     - SaliencyMap
       - The example of an algorithms that emphasize areas where people's eyes focus first.
       - 사람들의 눈이 먼저 초점을 맞추는 영역을 강조하는 알고리즘 예제
