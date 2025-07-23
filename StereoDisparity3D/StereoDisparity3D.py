@@ -180,7 +180,7 @@ def main():
 		viewImageDestination.Invalidate(True)
 		view3DDestination.Invalidate(True)
 
-		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
+		# 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewImageSource.IsAvailable() and viewImageSource2.IsAvailable() and viewImageDestination.IsAvailable() and view3DDestination.IsAvailable():
 			CThreadUtilities.Sleep(1)
 

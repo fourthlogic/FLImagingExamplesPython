@@ -97,7 +97,7 @@ def main():
 		# 이미지 뷰를 갱신 # Update image view
 		viewImage.Invalidate(True)
 
-		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
+		# 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewImage.IsAvailable() and viewGraph.IsAvailable():
 			CThreadUtilities.Sleep(1)
 

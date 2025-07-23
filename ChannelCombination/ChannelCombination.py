@@ -167,7 +167,7 @@ def main():
 		viewSrcImage[2].Invalidate(True);
 		viewDstImage.Invalidate(True);
 
-		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
+		# 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewSrcImage[0].IsAvailable() and viewSrcImage[1].IsAvailable() and viewSrcImage[2].IsAvailable() and viewDstImage.IsAvailable():
 			CThreadUtilities.Sleep(1)
 

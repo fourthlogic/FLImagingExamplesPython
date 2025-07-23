@@ -197,7 +197,7 @@ def main():
 		viewImageDestination.Invalidate(True)
 		viewImageDestination2.Invalidate(True)
 
-		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
+		# 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewImageLearn.IsAvailable() and viewImageLearn2.IsAvailable() and viewImageDestination.IsAvailable() and viewImageDestination2.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
