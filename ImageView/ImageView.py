@@ -1,11 +1,6 @@
 ﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
 from FLImagingClrPy import *
 
-# WinForms 관련
-clr.AddReference("System.Windows.Forms")
-from System.Windows.Forms import *
-from System.Drawing import Point, Size
-from System import EventHandler, Int64, Int32
 import tkinter as tk
 from tkinter import ttk, scrolledtext
 

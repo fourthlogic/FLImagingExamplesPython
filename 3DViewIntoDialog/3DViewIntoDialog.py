@@ -5,196 +5,130 @@ import clr
 import sys
 import time
 import random
+import tkinter as tk
+from tkinter import scrolledtext
+from System import Int64
+import random
 
-# WinForms 관련
-clr.AddReference("System.Windows.Forms")
-from System.Windows.Forms import Application, Form, Panel, Timer, DockStyle, BorderStyle, Label, Button, TextBox, ScrollBars, GroupBox, Padding
-from System import IntPtr
-from System.Drawing import Size, Point
-from System.Numerics import Complex
-from System import Double
+def get_hwnd(widget):
+    # 윈도우 핸들 얻기 (Tkinter 내부 식별자를 사용)
+    widget.update_idletasks()
+    hwnd = widget.winfo_id()
+    print(f"HWND: {hwnd}")
+    return hwnd
 
-class View3DIntoDialog(Form):
+class View3DIntoDialog(tk.Tk):
     def __init__(self):
-        Form.__init__(self)
-        self.Text = "3D View Into Dialog"
-        self.Size = Size(740, 500)
+        super().__init__()
+        self.title("3D View Into Dialog")
+        self.geometry("740x500")
 
-        # 왼쪽 패널 (3D 뷰 영역)
-        self.left_panel = Panel()
-        self.left_panel.Dock = DockStyle.Fill
-        self.left_panel.BorderStyle = BorderStyle.FixedSingle
-        self.Controls.Add(self.left_panel)
+        # Left panel (3D view area)
+        self.left_panel = tk.Frame(self, bd=1, relief="solid")
+        self.left_panel.pack(side="left", fill="both", expand=True)
 
-        # 오른쪽 컨트롤 패널
-        self.right_panel = Panel()
-        self.right_panel.Width = 200
-        self.right_panel.Dock = DockStyle.Right
-        self.right_panel.BorderStyle = BorderStyle.FixedSingle
-        self.Controls.Add(self.right_panel)
+        # Right control panel
+        self.right_panel = tk.Frame(self, width=200, bd=1, relief="solid")
+        self.right_panel.pack(side="right", fill="y")
 
         self._create_right_controls()
 
-        # 3D 뷰어 생성
+        # Create 3D view
         self.m_view3D = CGUIView3D()
-        
-        if (result := self.m_view3D.CreateAndFitParent((self.left_panel.Handle.ToInt32()))).IsFail():
+        result = self.m_view3D.CreateAndFitParent(get_hwnd(self.left_panel))
+        if result.IsFail():
             print("View3D 생성 실패")
             return
 
-		# 높이 맵 이미지와 텍스쳐 로드 # Load height map image and texture
-        if (result := self.m_view3D.Load("../../ExampleImages/View3D/mountain.flif", "../../ExampleImages/View3D/mountain_texture.flif")).IsFail():
-            print("View3D 생성 실패")
+        # Load height map and texture
+        result = self.m_view3D.Load("../../ExampleImages/View3D/mountain.flif",
+                                    "../../ExampleImages/View3D/mountain_texture.flif")
+        if result.IsFail():
+            print("View3D 로드 실패")
             return
-
 
     def _create_right_controls(self):
-        y = 10
-        # 중간 패널 생성 (여백을 위한 컨테이너 역할)
-        self.padding_panel = Panel()
-        self.padding_panel.Dock = DockStyle.Fill
-        self.padding_panel.Padding = Padding(5) # 상하좌우 5px 여백
-        self.right_panel.Controls.Add(self.padding_panel)
+        self.group = tk.LabelFrame(self.right_panel, text="Height Profile", padx=5, pady=5)
+        self.group.pack(fill="both", expand=True, padx=5, pady=5)
 
-        # GroupBox를 패딩 패널에 추가
-        self.group = GroupBox()
-        self.group.Text = "Height Profile"
-        self.group.Dock = DockStyle.Fill
-        self.padding_panel.Controls.Add(self.group)
-        
-        y = 25
-        
-        # Start 좌표
-        label_start = Label()
-        label_start.Text = "Start"
-        label_start.Size = Size(40, 20)
-        label_start.Location = Point(5, y)
-        self.group.Controls.Add(label_start)
+        # Start Point
+        tk.Label(self.group, text="Start").grid(row=0, column=0, sticky="w")
+        tk.Label(self.group, text="x").grid(row=0, column=1)
+        self.textBoxStartX = tk.Entry(self.group, width=6)
+        self.textBoxStartX.insert(0, "0")
+        self.textBoxStartX.grid(row=0, column=2)
 
-        label_x1 = Label()
-        label_x1.Text="x"
-        label_x1.Size = Size(10, 20)
-        label_x1.Location = Point(50, y)
-        self.group.Controls.Add(label_x1)
+        tk.Label(self.group, text="y").grid(row=0, column=3)
+        self.textBoxStartY = tk.Entry(self.group, width=6)
+        self.textBoxStartY.insert(0, "0")
+        self.textBoxStartY.grid(row=0, column=4)
 
-        self.textBoxStartX = TextBox()
-        self.textBoxStartX.Text = "0"
-        self.textBoxStartX.Size = Size(47, 20)
-        self.textBoxStartX.Location = Point(65, y - 5)
-        self.group.Controls.Add(self.textBoxStartX)
-        
-        label_y1 = Label()
-        label_y1.Text="y"
-        label_y1.Location = Point(120, y)
-        label_y1.Size = Size(10, 20)
-        self.group.Controls.Add(label_y1)
+        # End Point
+        tk.Label(self.group, text="End").grid(row=1, column=0, sticky="w", pady=(5, 0))
+        tk.Label(self.group, text="x").grid(row=1, column=1)
+        self.textBoxEndX = tk.Entry(self.group, width=6)
+        self.textBoxEndX.insert(0, "104")
+        self.textBoxEndX.grid(row=1, column=2, pady=(5, 0))
 
-        self.textBoxStartY = TextBox()
-        self.textBoxStartY.Text = "0"
-        self.textBoxStartY.Size = Size(47, 20)
-        self.textBoxStartY.Location = Point(135, y - 5)
-        self.group.Controls.Add(self.textBoxStartY)
-        
-        y += 25
+        tk.Label(self.group, text="y").grid(row=1, column=3)
+        self.textBoxEndY = tk.Entry(self.group, width=6)
+        self.textBoxEndY.insert(0, "120")
+        self.textBoxEndY.grid(row=1, column=4, pady=(5, 0))
 
-        # End 좌표
-        label_end = Label()
-        label_end.Text = "End"
-        label_end.Size = Size(40, 20)
-        label_end.Location = Point(5, y)
-        self.group.Controls.Add(label_end)
-        
-        label_x2 = Label()
-        label_x2.Text="x"
-        label_x2.Size = Size(10, 20)
-        label_x2.Location = Point(50, y)
-        self.group.Controls.Add(label_x2)
+        # Height Profile button
+        self.btnHeightProfile = tk.Button(self.group, text="Height Profile", command=self.on_click_height_profile)
+        self.btnHeightProfile.grid(row=2, column=0, columnspan=5, pady=(10, 5), ipadx=40)
 
-        self.textBoxEndX = TextBox()
-        self.textBoxEndX.Text = "104"
-        self.textBoxEndX.Size = Size(47, 20)
-        self.textBoxEndX.Location = Point(65, y - 5)
-        self.group.Controls.Add(self.textBoxEndX)
-        
-        label_y2 = Label()
-        label_y2.Text="y"
-        label_y2.Location = Point(120, y)
-        label_y2.Size = Size(10, 20)
-        self.group.Controls.Add(label_y2)
+        # Result box
+        self.result_box = scrolledtext.ScrolledText(self.group, height=20, width=30, state="disabled")
+        self.result_box.grid(row=3, column=0, columnspan=5, sticky="nsew")
 
-        self.textBoxEndY = TextBox()
-        self.textBoxEndY.Text = "120"
-        self.textBoxEndY.Size = Size(47, 20)
-        self.textBoxEndY.Location = Point(135, y - 5)
-        self.group.Controls.Add(self.textBoxEndY)
-        
-        y += 25
+        # Configure resize behavior
+        self.group.grid_rowconfigure(3, weight=1)
+        self.group.grid_columnconfigure(4, weight=1)
 
-        # Height Profile 버튼
-        self.btnHeightProfile = Button()
-        self.btnHeightProfile.Text = "Height Profile"
-        self.btnHeightProfile.Size = Size(180, 30)
-        self.btnHeightProfile.Location = Point(5, y)
-        self.btnHeightProfile.Click += self.on_click_height_profile
-        self.group.Controls.Add(self.btnHeightProfile)
-
-        y += 35
-
-        # 결과 출력 TextBox
-        self.result_box = TextBox()
-        self.result_box.Multiline = True
-        self.result_box.ReadOnly = True
-        self.result_box.ScrollBars = ScrollBars.Vertical
-        self.result_box.Size = Size(180, 333)
-        self.result_box.Location = Point(5, y)
-        self.group.Controls.Add(self.result_box)
-
-        # Resize 이벤트 연결
-        self.group.Resize += self.adjust_result_box_position
-
-
-    def adjust_result_box_position(self, sender, event):
-        margin = 6
-        self.result_box.Height = self.group.Height - self.result_box.Location.Y - margin 
-
-    def on_click_height_profile(self, sender, event):
+    def on_click_height_profile(self):
         if not self.m_view3D.IsAvailable():
             return
-        
+
         if self.m_view3D.GetObjectCount() == 0:
-            self.result_box.Text = "Error: Load an image file."
+            self._set_result_text("Error: Load an image file.")
             return
 
-        # Edit box에서 좌표 읽기
-        i64StartX = Int64.Parse(self.textBoxStartX.Text)
-        i64StartY = Int64.Parse(self.textBoxStartY.Text)
-        i64EndX = Int64.Parse(self.textBoxEndX.Text)
-        i64EndY = Int64.Parse(self.textBoxEndY.Text)
+        # Read coordinates
+        try:
+            i64StartX = Int64.Parse(self.textBoxStartX.get())
+            i64StartY = Int64.Parse(self.textBoxStartY.get())
+            i64EndX = Int64.Parse(self.textBoxEndX.get())
+            i64EndY = Int64.Parse(self.textBoxEndY.get())
+        except Exception:
+            self._set_result_text("Error: Invalid coordinate values.")
+            return
 
-        # CFLPoint[long] 좌표 객체 생성
         flpStart = CFLPoint[Int64](i64StartX, i64StartY)
         flpEnd = CFLPoint[Int64](i64EndX, i64EndY)
+        listF64HP = List[float]()
 
-        # 결과 저장용 리스트
-        listF64HP = List[float]()  # or List[float] / List[double] depending on FLImagingCLR API
-
-        # 높이 프로파일 호출
         result = self.m_view3D.GetHeightProfile(flpStart, flpEnd, listF64HP)[0]
-
         if result.IsOK():
-            lines = []
-            for i in range(listF64HP.Count):
-                value = listF64HP[i]
-                lines.append(f"[{i}] {value}")
-            self.result_box.Text = "\r\n".join(lines)
+            lines = [f"[{i}] {listF64HP[i]}" for i in range(listF64HP.Count)]
+            self._set_result_text("\n".join(lines))
         else:
-            self.result_box.Text = f'Error code : {result.GetResultCode()}\r\nError name : {result.GetString()}\r\n'
+            self._set_result_text(f"Error code : {result.GetResultCode()}\nError name : {result.GetString()}")
 
         self.m_view3D.Invalidate()
 
+    def _set_result_text(self, text):
+        self.result_box.config(state="normal")
+        self.result_box.delete("1.0", "end")
+        self.result_box.insert("end", text)
+        self.result_box.config(state="disabled")
+
+# Launch GUI
 if __name__ == "__main__":
-    form = View3DIntoDialog()
-    Application.Run(form)
+    app = View3DIntoDialog()
+    app.mainloop()
+
 
 
 # 에러 출력 함수 # Error printing function

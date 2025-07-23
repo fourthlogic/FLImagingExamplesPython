@@ -14,15 +14,11 @@ from System import Double
 from System.Collections.Generic import List
 
 def get_hwnd(widget):
-    if sys.platform == "win32":
-        # 윈도우 핸들 얻기 (Tkinter 내부 식별자를 사용)
-        widget.update_idletasks()
-        hwnd = widget.winfo_id()
-        print(f"HWND: {hwnd}")
-        return hwnd
-    else:
-        print("이 기능은 Windows에서만 사용 가능합니다.")
-        return None
+    # 윈도우 핸들 얻기 (Tkinter 내부 식별자를 사용)
+    widget.update_idletasks()
+    hwnd = widget.winfo_id()
+    print(f"HWND: {hwnd}")
+    return hwnd
 
 class GraphViewIntoDialog(tk.Tk):
     def __init__(self):
