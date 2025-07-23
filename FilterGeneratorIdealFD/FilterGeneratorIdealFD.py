@@ -8,14 +8,14 @@ def main():
 	# 이미지 객체 선언 // Declare the image object
 	fliSourceImage = CFLImage()
 	fliFFTImage = CFLImage()
-	fliGaussFilterImage = CFLImage()
-	fliGaussImage = CFLImage()
+	fliIdealFilterImage = CFLImage()
+	fliIdealImage = CFLImage()
 
 	# 이미지 뷰 선언 // Declare the image view
 	viewImageSrc = CGUIViewImage()
 	viewImageFFT = CGUIViewImage()
-	viewImageGaussFilter = CGUIViewImage()
-	viewImageGauss = CGUIViewImage()
+	viewImageIdealFilter = CGUIViewImage()
+	viewImageIdeal = CGUIViewImage()
 
 	while True:
 		
@@ -34,13 +34,13 @@ def main():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# Gauss filter 이미지 뷰 생성 // Create the butterworth filter image view
-		if (res := viewImageGaussFilter.Create(500, 0, 900, 400)).IsFail():
+		# Ideal filter 이미지 뷰 생성 // Create the butterworth filter image view
+		if (res := viewImageIdealFilter.Create(500, 0, 900, 400)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# Gauss 이미지 뷰 생성 // Create the butterworth image view
-		if (res := viewImageGauss.Create(500, 400, 900, 800)).IsFail():
+		# Ideal 이미지 뷰 생성 // Create the butterworth image view
+		if (res := viewImageIdeal.Create(500, 400, 900, 800)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
@@ -52,13 +52,13 @@ def main():
 
 		# 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SynchronizePointOfView(viewImageGaussFilter)[0]).IsFail():
+		if (res := viewImageSrc.SynchronizePointOfView(viewImageIdealFilter)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 
 		# 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SynchronizePointOfView(viewImageGauss)[0]).IsFail():
+		if (res := viewImageSrc.SynchronizePointOfView(viewImageIdeal)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 
@@ -74,15 +74,15 @@ def main():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# Gauss filter 이미지 뷰에 이미지를 디스플레이 // Display the image in the butterworth filter image view
+		# Ideal filter 이미지 뷰에 이미지를 디스플레이 // Display the image in the butterworth filter image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageGaussFilter.SetImagePtr(fliGaussFilterImage)[0]).IsFail():
+		if (res := viewImageIdealFilter.SetImagePtr(fliIdealFilterImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# Gauss 이미지 뷰에 이미지를 디스플레이 // Display the image in the butterworth image view
+		# Ideal 이미지 뷰에 이미지를 디스플레이 // Display the image in the butterworth image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageGauss.SetImagePtr(fliGaussImage)[0]).IsFail():
+		if (res := viewImageIdeal.SetImagePtr(fliIdealImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
@@ -94,13 +94,13 @@ def main():
 
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SynchronizeWindow(viewImageGaussFilter)[0]).IsFail():
+		if (res := viewImageSrc.SynchronizeWindow(viewImageIdealFilter)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SynchronizeWindow(viewImageGauss)[0]).IsFail():
+		if (res := viewImageSrc.SynchronizeWindow(viewImageIdeal)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
@@ -124,33 +124,27 @@ def main():
 			ErrorPrint(res, 'Failed to execute Fourier Transform.')
 			break
 
-		# FilterGeneratorGaussFD 객체 생성 // Create FilterGeneratorGaussFD object
-		filterGeneratorGaussFD = CFilterGeneratorGaussFD()
+		# FilterGeneratorIdealFD 객체 생성 // Create FilterGeneratorIdealFD object
+		filterGeneratorIdealFD = CFilterGeneratorIdealFD()
 
 		# Source 이미지 설정 // Set the source image
-		filterGeneratorGaussFD.SetSourceImage(fliFFTImage)
+		filterGeneratorIdealFD.SetSourceImage(fliFFTImage)
 
 		# 정밀도 설정 (32/64 bit Floating Point 설정 가능) // Set the precision (32/64 bit Floating Point can be set)
-		filterGeneratorGaussFD.SetAccuracy(EFloatingPointAccuracy.Bit32)
+		filterGeneratorIdealFD.SetAccuracy(EFloatingPointAccuracy.Bit32)
 
 		# 필터 타입 설정 // Set the filter type
-		filterGeneratorGaussFD.SetType(CFilterGeneratorGaussFD.EFilterBaseFDType.FFT_Shift)
+		filterGeneratorIdealFD.SetType(CFilterGeneratorIdealFD.EFilterBaseFDType.FFT_Shift)
 
 		# Destination 이미지 설정 // Set the destination image
-		filterGeneratorGaussFD.SetDestinationImage(fliGaussFilterImage)
+		filterGeneratorIdealFD.SetDestinationImage(fliIdealFilterImage)
 
-		# Sigma1 설정 // Set Sigma1
-		filterGeneratorGaussFD.SetSigma1(2)
-
-		# Sigma2 설정 // Set Sigma2
-		filterGeneratorGaussFD.SetSigma2(1)
-
-		# Phi 설정 // Set Phi
-		filterGeneratorGaussFD.SetPhi(0.785398)
+		# Frequency 설정 // Set the frequency
+		filterGeneratorIdealFD.SetFrequency(0.4)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := filterGeneratorGaussFD.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute FilterGeneratorGaussFD.')
+		if (res := filterGeneratorIdealFD.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute FilterGeneratorIdealFD.')
 			break
 
 		# Opeartion Multiply 객체 생성 // Create OperationMultiply object
@@ -163,10 +157,10 @@ def main():
 		operationMultiply.SetSourceImage(fliFFTImage)
 
 		# Operand 이미지 설정 // Set the operand image
-		operationMultiply.SetOperandImage(fliGaussFilterImage)
+		operationMultiply.SetOperandImage(fliIdealFilterImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		operationMultiply.SetDestinationImage(fliGaussImage)
+		operationMultiply.SetDestinationImage(fliIdealImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := operationMultiply.Execute()).IsFail():
@@ -174,10 +168,10 @@ def main():
 			break
 
 		# Source 이미지 설정(FFT image) // Set the source image (FFT image)
-		fourierTransform.SetSourceImage(fliGaussImage)
+		fourierTransform.SetSourceImage(fliIdealImage)
 
 		# Destination 이미지 설정(IFFT image) // Set the destination image (IFFT image)
-		fourierTransform.SetDestinationImage(fliGaussImage)
+		fourierTransform.SetDestinationImage(fliIdealImage)
 
 		# 알고리즘 수행 // Execute algorithm
 		if (res := fourierTransform.Execute()).IsFail():
@@ -188,33 +182,33 @@ def main():
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
 		layerSource = viewImageSrc.GetLayer(0)
 		layerFFT = viewImageFFT.GetLayer(0)
-		layerGaussFilter = viewImageGaussFilter.GetLayer(0)
-		layerGauss = viewImageGauss.GetLayer(0)
+		layerIdealFilter = viewImageIdealFilter.GetLayer(0)
+		layerIdeal = viewImageIdeal.GetLayer(0)
 
 		# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
 		layerSource.Clear()
 		layerFFT.Clear()
-		layerGaussFilter.Clear()
-		layerGauss.Clear()
+		layerIdealFilter.Clear()
+		layerIdeal.Clear()
 
 		# 이미지 뷰 정보 표시 // Display image view information
 		flpPoint = CFLPoint[Double](0, 0)
 
 		if (res := layerSource.DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 20)).IsFail() or \
 			(res := layerFFT.DrawTextCanvas(flpPoint, 'FFT Image', EColor.YELLOW, EColor.BLACK, 20)).IsFail() or \
-			(res := layerGaussFilter.DrawTextCanvas(flpPoint, 'Gauss Filter', EColor.YELLOW, EColor.BLACK, 20)).IsFail() or \
-			(res := layerGauss.DrawTextCanvas(flpPoint, 'Gauss Filtering Image', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+			(res := layerIdealFilter.DrawTextCanvas(flpPoint, 'Ideal Filter', EColor.YELLOW, EColor.BLACK, 20)).IsFail() or \
+			(res := layerIdeal.DrawTextCanvas(flpPoint, 'Ideal Filtering Image', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
 		# 이미지 뷰를 갱신 // Update image view
 		viewImageSrc.Invalidate(True)
 		viewImageFFT.Invalidate(True)
-		viewImageGaussFilter.Invalidate(True)
-		viewImageGauss.Invalidate(True)
+		viewImageIdealFilter.Invalidate(True)
+		viewImageIdeal.Invalidate(True)
 
 		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 // Wait until the image view is closed before exiting
-		while viewImageSrc.IsAvailable() and viewImageFFT.IsAvailable() and viewImageGaussFilter.IsAvailable() and viewImageGauss.IsAvailable():
+		while viewImageSrc.IsAvailable() and viewImageFFT.IsAvailable() and viewImageIdealFilter.IsAvailable() and viewImageIdeal.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
 		break

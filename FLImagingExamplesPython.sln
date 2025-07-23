@@ -1470,6 +1470,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FilterGeneratorButterworthF
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FilterGeneratorGaussFD", "FilterGeneratorGaussFD\FilterGeneratorGaussFD.pyproj", "{97F6B400-F82A-438F-BD09-D8631E2516D6}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FilterGeneratorIdealFD", "FilterGeneratorIdealFD\FilterGeneratorIdealFD.pyproj", "{D25D0514-1832-443D-8725-7CA530CD8845}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2398,6 +2400,8 @@ Global
 		{2A4E7ABF-DDC2-4DEC-8AFF-9E7193CFFE3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97F6B400-F82A-438F-BD09-D8631E2516D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{97F6B400-F82A-438F-BD09-D8631E2516D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D25D0514-1832-443D-8725-7CA530CD8845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D25D0514-1832-443D-8725-7CA530CD8845}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3125,6 +3129,7 @@ Global
 		{93EA06FF-AC8F-4E86-AC3E-7E7FEF3A5001} = {BF107668-6B0B-41C1-8B29-13D70A28A474}
 		{2A4E7ABF-DDC2-4DEC-8AFF-9E7193CFFE3C} = {BF107668-6B0B-41C1-8B29-13D70A28A474}
 		{97F6B400-F82A-438F-BD09-D8631E2516D6} = {BF107668-6B0B-41C1-8B29-13D70A28A474}
+		{D25D0514-1832-443D-8725-7CA530CD8845} = {BF107668-6B0B-41C1-8B29-13D70A28A474}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
