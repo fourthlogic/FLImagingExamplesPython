@@ -113,8 +113,9 @@ def main():
         i64ResultCount = arrayMatch.GetResultCount()
         f64Score = 0.0
         f64Angle = 0.0
-        arrayMatch.GetResultArrayScore(f64Score)
-        arrayMatch.GetResultArrayAngle(f64Angle)
+        
+        res, f64Score = arrayMatch.GetResultArrayScore(f64Score)
+        res, f64Angle = arrayMatch.GetResultArrayAngle(f64Angle)
 
         for i in range(i64ResultCount):
             sResult = CRectangleArrayMatch.SResult()
