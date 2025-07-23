@@ -4,102 +4,80 @@ import tkinter as tk
 from tkinter import messagebox
 from ctypes import windll
 import clr
+import ctypes
 import sys
 import time
 
-# WinForms 관련
-clr.AddReference("System.Windows.Forms")
-from System.Windows.Forms import Application, Form, Panel, Timer, DockStyle, BorderStyle, Label, Button, TextBox, ScrollBars
-from System import IntPtr
-from System.Drawing import Size, Point
 
-class ImageViewIntoDialog(Form):
+def get_hwnd(widget):
+    if sys.platform == "win32":
+        # 윈도우 핸들 얻기 (Tkinter 내부 식별자를 사용)
+        widget.update_idletasks()
+        hwnd = widget.winfo_id()
+        print(f"HWND: {hwnd}")
+        return hwnd
+    else:
+        print("이 기능은 Windows에서만 사용 가능합니다.")
+        return None
+
+class ImageViewIntoDialog(tk.Tk):
     def __init__(self):
-        Form.__init__(self)
-        self.Text = "ImageViewIntoDialog"
-        self.Size = Size(740, 500)
+        super().__init__()
+        self.title("ImageViewIntoDialog")
+        self.geometry("740x500")
 
         # 왼쪽 패널 (이미지 뷰 영역)
-        self.left_panel = Panel()
-        self.left_panel.Dock = DockStyle.Fill
-        self.left_panel.BorderStyle = BorderStyle.FixedSingle
-        self.Controls.Add(self.left_panel)
-
+        self.left_panel = tk.Frame(self, bd=2, relief="solid")
+        self.left_panel.pack(side="left", fill="both", expand=True)
+        
         # 오른쪽 컨트롤 패널
-        self.right_panel = Panel()
-        self.right_panel.Width = 160
-        self.right_panel.Dock = DockStyle.Right
-        self.right_panel.BorderStyle = BorderStyle.FixedSingle
-        self.Controls.Add(self.right_panel)
+        self.right_panel = tk.Frame(self, bd=2, relief="solid", width=160)
+        self.right_panel.pack(side="right", fill="y")
 
         self._create_right_controls()
 
         # 이미지 뷰어 생성
         self.m_viewImage = CGUIViewImage()
-        result = self.m_viewImage.CreateAndFitParent((self.left_panel.Handle.ToInt32()))
+        result = self.m_viewImage.CreateAndFitParent(get_hwnd(self.left_panel))
         if result.IsFail():
-            print("ViewImage 생성 실패")
+            print("Failed to create ViewImage")
+            
+        # 타이머 시작
+        self.after(100, self.timer_tick)
 
-        # 타이머 설정
-        self.m_timer = Timer()
-        self.m_timer.Interval = 100  # 100 ms
-        self.m_timer.Tick += EventHandler(self.timer_tick)
-        self.m_timer.Start()
-
-    def timer_tick(self, sender, args):
+    def timer_tick(self):
         self.update_controls()
+        self.after(100, self.timer_tick)
 
     def update_controls(self):
-        bEnable = False
-
-        if self.m_viewImage.IsAvailable():
+        enabled = False
+        if self.m_viewImage and self.m_viewImage.IsAvailable():
             if self.m_viewImage.GetFigureObjectCount() > 0:
-                bEnable = True
+                enabled = True
 
-        self.pop_front_button.Enabled = bEnable
+        state = "normal" if enabled else "disabled"
+        self.pop_front_button.config(state=state)
 
     def _create_right_controls(self):
-        # 제목
-        title = Label()
-        title.Text = "RectFigure Object"
-        title.Location = Point(10, 10)
-        title.Width = 140
-        self.right_panel.Controls.Add(title)
-        
-        # Create 버튼
-        self.create_button = Button()
-        self.create_button.Text = "Create"
-        self.create_button.Location = Point(10, 40)
-        self.create_button.Width = 140
-        self.create_button.Click += self.on_create_button_click
-        self.right_panel.Controls.Add(self.create_button)
-        
-        # Pop Front 버튼
-        self.pop_front_button = Button()
-        self.pop_front_button.Text = "Pop Front"
-        self.pop_front_button.Location = Point(10, 80)
-        self.pop_front_button.Width = 140
-        self.pop_front_button.Enabled = False
-        self.pop_front_button.Click += self.on_pop_front_button_click
-        self.right_panel.Controls.Add(self.pop_front_button)
-        
-        # Info 라벨
-        info_label = Label()
-        info_label.Text = "Info"
-        info_label.Location = Point(10, 120)
-        info_label.Width = 140
-        self.right_panel.Controls.Add(info_label)
-        
-        # Read-only TextBox (멀티라인)
-        self.info_box = TextBox()
-        self.info_box.Multiline = True
-        self.info_box.ReadOnly = True
-        self.info_box.ScrollBars = ScrollBars.Vertical
-        self.info_box.Location = Point(10, 140)
-        self.info_box.Size = Size(140, 300)
-        self.right_panel.Controls.Add(self.info_box)
-        
-    def on_create_button_click(self, sender, event):
+        tk.Label(self.right_panel, text="RectFigure Object").place(x=7, y=10, width=140)
+
+        self.create_button = tk.Button(self.right_panel, text="Create", command=self.on_create_button_click)
+        self.create_button.place(x=7, y=40, width=140)
+
+        self.pop_front_button = tk.Button(self.right_panel, text="Pop Front", command=self.on_pop_front_button_click, state="disabled")
+        self.pop_front_button.place(x=7, y=80, width=140)
+
+        tk.Label(self.right_panel, text="Info").place(x=7, y=120, width=140)
+
+        self.info_box = tk.Text(self.right_panel, height=15, width=18, wrap="word", state="disabled")
+        self.info_box.place(x=7, y=140, width=140, height=300)
+
+    def _append_info(self, text):
+        self.info_box.config(state="normal")
+        self.info_box.insert("end", text + "\n")
+        self.info_box.config(state="disabled")
+
+    def on_create_button_click(self):
         while True:
             # 1. 뷰 유효성 체크
             if not self.m_viewImage.IsAvailable():
@@ -132,7 +110,7 @@ class ImageViewIntoDialog(Form):
             self.m_viewImage.PushBackFigureObject(flrFigure, EAvailableFigureContextMenu.All)
             break
 
-    def on_pop_front_button_click(self, sender, event):
+    def on_pop_front_button_click(self):
         flFigure = None
         strFigureInfo = "Error"
 
@@ -144,12 +122,17 @@ class ImageViewIntoDialog(Form):
                 # Figure → 문자열 변환
                 strFigure = CFigureUtilities.ConvertFigureObjectToString(flFigure)
                 strFigureInfo = strFigure
-        self.info_box.Text = strFigureInfo
+
+        self.info_box.config(state="normal")  # 편집 가능하게 변경
+        self.info_box.delete("1.0", "end")    # 기존 텍스트 삭제
+        self.info_box.insert("end", strFigureInfo)  # 새 텍스트 삽입
+        self.info_box.config(state="disabled")  # 다시 읽기 전용으로 변경
+
 
 
 if __name__ == "__main__":
-    form = ImageViewIntoDialog()
-    Application.Run(form)
+    app = ImageViewIntoDialog()
+    app.mainloop()
 
 
 # 에러 출력 함수 # Error printing function
