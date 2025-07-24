@@ -100,11 +100,11 @@ def main():
 		# 마지막 두 개의 파라미터는 불투명도 값이고 1일 경우 불투명, 0일 경우 투명을 의미한다. // The last two parameters are opacity values, which mean opacity for 1 and complete transparency for 0.
 		# 파라미터 순서 : 레이어 -> Figure 객체 -> 선 색 -> 선 두께 -> 면 색 -> 펜 스타일 -> 선 알파값(불투명도) -> 면 알파값 (불투명도) // Parameter order: Layer -> Figure object -> Line color -> Line thickness -> Face color -> Pen style -> Line alpha value (opacity) -> Area alpha value (opacity)
 		if (res := layerSource.DrawFigureImage(flrROI, EColor.LIME)).IsFail():
-			ErrorPrint(res, "Falied to draw figure.")
+			ErrorPrint(res, 'Falied to draw figure.')
 			break
 
 		if (res := layerDestination.DrawFigureImage(flrROI, EColor.LIME)).IsFail():
-			ErrorPrint(res, "Falied to draw figure.")
+			ErrorPrint(res, 'Falied to draw figure.')
 
 		# 이미지 뷰 정보 표시 # Display image view information
 		flpPoint = CFLPoint[Double](0, 0)

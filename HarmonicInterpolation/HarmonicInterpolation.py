@@ -16,42 +16,42 @@ def main():
 	while True:
 		# Source 이미지 로드 // Load the source image
 		if (res := (fliSrcImage.Load('../../ExampleImages/RegionInterpolation/Sky_Damaged.flif'))).IsFail():
-			ErrorPrint(res, 'Failed to load the image file.\n')
+			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
 		# Source 이미지 뷰 생성 // Create the source image view
 		if (res := (viewImageSrc.Create(400, 0, 800, 400))).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.\n')
+			ErrorPrint(res, 'Failed to create the image view.')
 			break
 			
 		# Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the source image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := (viewImageSrc.SetImagePtr(fliSrcImage))[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.\n')
+			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
 		# Destination 이미지 뷰 생성 // Create the destination image view
 		if (res := (viewImageDst.Create(800, 0, 1200, 400))).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.\n')
+			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
 		# Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := (viewImageDst.SetImagePtr(fliDstImage))[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.\n')
+			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
 
 		# 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := (viewImageSrc.SynchronizePointOfView(viewImageDst))[0]).IsFail():
-			ErrorPrint(res, "Failed to synchronize view\n");
+			ErrorPrint(res, 'Failed to synchronize view');
 			break
 
 		# 이미지 뷰 윈도우의 위치를 맞춤 // Align the position of the image view window
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := (viewImageSrc.SynchronizeWindow(viewImageDst))[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize window.\n')
+			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
 		# Harmonic Interpolation 객체 생성 // Create Harmonic Interpolation object
@@ -86,10 +86,10 @@ def main():
 		# 파라미터 순서 : 레이어 -> Figure 객체 -> 선 색 -> 선 두께 -> 면 색 -> 펜 스타일 -> 선 알파값(불투명도) -> 면 알파값 (불투명도) // Parameter order: Layer -> Figure object -> Line color -> Line thickness -> Face color -> Pen style -> Line alpha value (opacity) -> Area alpha value (opacity)
 		
 		if (res := (layerSrc.DrawFigureImage(flrROI, EColor.LIME))).IsFail():
-			ErrorPrint(res, 'Failed to draw figure.\n');
+			ErrorPrint(res, 'Failed to draw figure.');
 
 		if (res := (layerDst.DrawFigureImage(flrROI, EColor.LIME))).IsFail():
-			ErrorPrint(res, 'Failed to draw figure.\n');
+			ErrorPrint(res, 'Failed to draw figure.');
 
 		# View 정보를 디스플레이 한다. // Display view information
 		# 아래 함수 DrawTextCanvas은 Screen좌표를 기준으로 하는 String을 Drawing 한다. // The function DrawTextCanvas below draws a String based on the screen coordinates.
@@ -101,11 +101,11 @@ def main():
 		flpZero = CFLPoint[Double](0, 0)
 
 		if (res := (layerSrc.DrawTextCanvas(flpZero, 'Source Image', EColor.YELLOW, EColor.BLACK, 20))).IsFail():
-			ErrorPrint(res, 'Failed to draw text.\n')
+			ErrorPrint(res, 'Failed to draw text.')
 			break
 
 		if (res := (layerDst.DrawTextCanvas(flpZero, 'Destination Image(Harmonic)', EColor.YELLOW, EColor.BLACK, 20))).IsFail():
-			ErrorPrint(res, 'Failed to draw text.\n')
+			ErrorPrint(res, 'Failed to draw text.')
 			break
 
 		# 이미지 뷰를 갱신한다. // Update the image view.

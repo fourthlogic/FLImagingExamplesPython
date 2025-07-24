@@ -77,7 +77,7 @@ def main():
 		flpPoint = CFLPoint[Double](0, 0)
 
 		if (res := layerSource.DrawFigureImage(flrROI, EColor.BLUE)).IsFail():
-			ErrorPrint(res, "Failed to draw figure")
+			ErrorPrint(res, 'Failed to draw figure')
 			break
 
 		# 이미지 뷰를 갱신 # Update image view
