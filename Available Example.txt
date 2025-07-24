@@ -1063,6 +1063,15 @@
         - The algorithm example for generating an integral image.(SumAndSquareSum Mode y = aX^2 + bX)
         - 적분합 이미지를 생성하는 알고리즘 예제.(SumAndSquareSum Mode y = aX^2 + bX)
         
+    - [PixelCounter]
+
+      - PixelCounter_Dual 
+        - Algorithm for calculating the number of valid pixels through two thresholds.
+        - 두개의 임계값을 통해 유효한 픽셀 갯수를 계산하는 알고리즘.
+      - PixelCounter_Single 
+        - Algorithm for calculating the number of valid pixels through one thresholds.
+        - 한개의 임계값을 통해 유효한 픽셀 갯수를 계산하는 알고리즘.
+
     - ColorConverter 
       - The example of an algorithm that converts color space of an color image.
       - 컬러 이미지의 색공간을 바꾸는 알고리즘 예제.
