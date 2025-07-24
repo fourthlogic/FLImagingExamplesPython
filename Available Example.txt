@@ -284,23 +284,69 @@
         - 연결 요소 검출 알고리즘의 결과를 2차원 평면에서 인간의 판단기준에서의 정렬 상태로 출력하는 예제.
 
 - [AI]
-  
-  - [Model]
 
-    - Classifier_FigureLabel
-      - Example of an algorithm for classifying validation images with figures using models learned through classifier for training images with figures.
-      - Figure가 있는 학습 이미지들에 대해 classifier를 통하여 학습한 모델을 사용하여 Figure가 있는 검증 이미지를 분류하는 알고리즘 예제.
+  - [Model]
+   
+    - AnomalyDetection
+       - Example of an algorithm for AnomalyDetection validation images using models learned through Check Anomal for training images with figures.
+       - 정상 이미지에 대해 AnomalyDetection을 통하여 학습한 모델을 사용하여 이미지의 정상/비정상을 분류하는 알고리즘 예제.
+       - Examples of algorithms that operate and classify learning/reasoning images by Tiling
 
     - Classifier_PageNameLabel
-      - Example of algorithms that classifies validation images using a model learned through training images labeled by page names.
-      - 페이지 이름으로 라벨링된 학습 이미지들에 대해 classifier를 통하여 학습한 모델을 사용하여 검증 이미지를 분류하는 알고리즘 예제.
+       - Example of algorithms that classifies validation images using a model learned through training images labeled by page names.
+       - 페이지 이름으로 라벨링된 학습 이미지들에 대해 classifier를 통하여 학습한 모델을 사용하여 검증 이미지를 분류하는 알고리즘 예제.
 
+    - Classifier_FigureLabel
+       - Example of an algorithm for classifying validation images with figures using models learned through classifier for training images with figures.
+       - Figure가 있는 학습 이미지들에 대해 classifier를 통하여 학습한 모델을 사용하여 Figure가 있는 검증 이미지를 분류하는 알고리즘 예제.
+
+    - Classifier_IndividualClassesAugmentation
+       - An example of an algorithm that classifies validation images using a model learned through classifier on training images using class-specific augmentation specifications.
+       - 클래스 별 증강 스펙을 사용하여 학습 이미지들에 대해 classifeir를 통하여 학습한 모델을 사용하여 검증 이미지를 분류하는 알고리즘 예제.
+
+    - SemanticSegmentation
+       - Example of an algorithm for SemanticSegmentation validation images with figures using models learned through SemanticSegmentation for training images with figures.
+       - Figure가 있는 학습 이미지들에 대해 SemanticSegmentation을 통하여 학습한 모델을 사용하여 Figure가 있는 검증 이미지를 분류하는 알고리즘 예제.
+       - Examples of algorithms that operate and classify learning/reasoning images by Tiling
+       - 학습/추론 이미지를 Tiling 처리하여 동작하여 분류하는 알고리즘 예제.
+       
+    - SuperResolution
+       - Example of an algorithm for SuperResolution validation images using models learned through high resolution for training images with figures.
+       - SuperResolution을 통하여 학습한 모델을 사용하여 고화질 이미지를 만다는 알고리즘 예제.
+
+    - OCR
+       - Examples of optical character recognition algorithms based on deep learning.
+       - 딥러닝 기반의 광학 문자 인식 알고리즘 예제.
+    
+    - ObjectDetection
+       - Example of finding a desired object using a Bounding Box based on deep learning
+       - 딥러닝 기반의 원하는 객체를 Bounding Box로 찾는 알고리즘 예제
+    
+    - InstanceSegmentation
+       - An example of an algorithm that classifies validation images with Figures using a model learned through InstanceSegmentation on training images with Figures.
+       - Figure가 있는 학습 이미지들에 대해 InstanceSegmentation을 통하여 학습한 모델을 사용하여 Figure가 있는 검증 이미지를 분류하는 알고리즘 예제.
+
+    - InstanceSegmentationGroupLabeling
+       - Exmaples that distinguishes validation images with Group FigureArray using a model that learns InstanceSegmentation for training images with Group FigureArray.
+       - Group FigureArray가 있는 학습 이미지들에 대해 InstanceSegmentation을 통하여 학습한 모델을 사용하여 Group FigureArray가 있는 검증 이미지를 분류하는 알고리즘 예제.
+ 
   - [Utilites]
+    
+    - AutoLabeler
+       - Algorithm example that performs Auto Labeling using learned SemanticSegmenation objects
+       - 학습된 SemanticSegmenation 객체를 이용하여 Auto Labeling 작업을 해주는 알고리즘 예제
 
     - LabelRenamer
-      - Algorithm example that replaces specific label names in a dataset with user-defined names.
-      - 입력받은 이미지의 특정한 이름을 가진 라벨들을 사용자가 설정한 이름으로 치환하는 알고리즘 예제
+       - Algorithm example that replaces specific label names in a dataset with user-defined names.
+       - 입력받은 이미지의 특정한 이름을 가진 라벨들을 사용자가 설정한 이름으로 치환하는 알고리즘 예제
 
+    - UnnamedLabelRemover
+       - Algorithm example that removes labels (figures) without names in an image.
+       - 이미지의 이름이 없는 라벨(피겨)을 제거하는 알고리즘 예제
+
+    - ValidationImageExtractor
+       - Algorithm example that classifies source images into Train Set and Validation Set at a fixed ratio.
+       - Source Image를 정해진 비율로 Train Set과 Validation Set으로 분류하는 알고리즘 예제
 
 - [Applications]
 
@@ -649,6 +695,9 @@
         - 이미지에서 weighted guided 필터를 처리하는 알고리즘 예제.
 
     - [Edge Detection]
+      - FreiFilter
+        - The example of an algorithm that detects image edges.
+        - 이미지 경계를 검출하는 알고리즘 예제.
       - GradientFilter
         - The example of an algorithm that processes a gradient differential filter to an image.
         - 이미지에서 경사 미분 필터를 처리하는 알고리즘 예제.
@@ -681,6 +730,12 @@
       - Coherence Enhancing Diffusion NonNeg
         - The example of an algorithm that performs diffusion in a consistent direction of an image.
         - 이미지의 일관된 방향으로 확산을 수행하는 알고리즘 예제.
+      - EdgeEnhancement
+        - The example of an algorithm that minimizes noise and enhances the edge of an image.
+        - 노이즈를 최소화하면서 이미지의 경계를 강조시켜주는 알고리즘 예제.
+      - EmphasizeFilter	   
+        - The example of an algorithm that enhances contrast of the image.
+        - 이미지에 명암비를 향상시키는 알고리즘 예제
       - IlluminateFilter
         - The example of an algorithm that enhance contrast by applying Illuminate filtering to image
         - 이미지에 Illuminate 필터링을 적용하여 이미지의 명암 대비를 강화하는 알고리즘 예제
@@ -784,6 +839,12 @@
     - OperationAbsolute 
       - The algorithm that performs absolute operation on the source image.
       - 이미지에 절댓값 연산을 수행하는 알고리즘
+    - OperationBit Rolling Left
+      - The algorithm that performs bit rolling left operations on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 bit rolling left 연산을 수행하는 알고리즘.
+    - OperationBit Rolling Right
+      - The algorithm that performs bit rolling right operations on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 bit rolling right 연산을 수행하는 알고리즘.
     - OperationCompare
       - The algorithm that performs compare operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 비교 연산을 수행하는 알고리즘.
@@ -993,6 +1054,24 @@
     - Tiling 
       - The example of an algorithm that match the ROI of the source images to the destination ROI.
       - 소스 이미지들의 ROI를 Destination ROI에 Tiling 해주는 알고리즘 예제.
+
+- [Warping]
+  
+    - Bicubic Spline Warping
+      - The example of an algorithm that transforms images based on Bicubic Spline Interpolation functions.
+      - Bicubic Spline Interpolation 방식을 바탕으로 이미지를 변환하는 예제.
+	- Bilinear Spline Warping
+      - The example of an algorithm that transforms images based on Bi-linear Spline model.
+      - Bi-linear 모델 식을 바탕으로 이미지를 변환하는 예제.
+    - Lanczos Spline Warping
+      - The example of an algorithm that transforms images based on Lanczos Spline Interpolation functions.
+      - Lanczos Spline Interpolation 방식을 바탕으로 이미지를 변환하는 예제.
+    - RingWarping
+      - The example of an algorithm that converts circular space to linear space.
+      - 원형 공간을 선형 공간으로 변환하는 알고리즘 예제.
+    - ThinPlateSplineWarping
+      - The example of an algorithm that transforms images based on Thin Plate Spline model functions.
+      - Thin Plate Spline 모델 함수를 바탕으로 이미지를 변환하는 예제.
 
 - [Mapping]
 
