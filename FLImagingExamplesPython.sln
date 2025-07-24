@@ -1566,6 +1566,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inpainting Coherence Transp
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "InpaintingCoherenceTransport", "InpaintingCoherenceTransport\InpaintingCoherenceTransport.pyproj", "{1397DE9C-D1E6-4DC7-B464-DD61FF418E05}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inpainting Fast Marching Method", "Inpainting Fast Marching Method", "{6CA5F456-07D3-4B47-8EF9-FD959D3F6219}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "InpaintingFastMarchingMethod", "InpaintingFastMarchingMethod\InpaintingFastMarchingMethod.pyproj", "{F69AFB88-0FF3-40A7-953D-5FD649D987A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2574,6 +2578,8 @@ Global
 		{9D531E64-0C22-4581-BE75-87D512EC0352}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1397DE9C-D1E6-4DC7-B464-DD61FF418E05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1397DE9C-D1E6-4DC7-B464-DD61FF418E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F69AFB88-0FF3-40A7-953D-5FD649D987A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F69AFB88-0FF3-40A7-953D-5FD649D987A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3349,6 +3355,8 @@ Global
 		{9D531E64-0C22-4581-BE75-87D512EC0352} = {BE909D02-79B6-4314-BFB0-C4D81288E2D2}
 		{2C1A272B-BAE0-4392-AD16-8BB718BE3672} = {32C15500-F60A-4E8E-B0CD-B529CAD61F48}
 		{1397DE9C-D1E6-4DC7-B464-DD61FF418E05} = {2C1A272B-BAE0-4392-AD16-8BB718BE3672}
+		{6CA5F456-07D3-4B47-8EF9-FD959D3F6219} = {32C15500-F60A-4E8E-B0CD-B529CAD61F48}
+		{F69AFB88-0FF3-40A7-953D-5FD649D987A3} = {6CA5F456-07D3-4B47-8EF9-FD959D3F6219}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
