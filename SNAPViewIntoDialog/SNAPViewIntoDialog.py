@@ -1,31 +1,30 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
+import tkinter as tk
 
-# WinForms 관련
-clr.AddReference("System.Windows.Forms")
-from System.Windows.Forms import Application, Form, Panel, DockStyle, BorderStyle
-from System.Drawing import Size
+def get_hwnd(widget):
+    # 윈도우 핸들 얻기 (Tkinter 내부 식별자를 사용)
+    widget.update_idletasks()
+    hwnd = widget.winfo_id()
+    return hwnd
 
-
-class SNAPViewIntoDialog(Form):
+class SNAPViewIntoDialog(tk.Tk):
 	def __init__(self):
-		Form.__init__(self)
-		self.Text = "SNAPViewIntoDialog"
-		self.Size = Size(740, 500)
+		super().__init__()
+		self.title("SNAPViewIntoDialog")
+		self.geometry("740x500")
 
         # 뷰 영역 패널 // View Area Panel
-		self.panelView = Panel()
-		self.panelView.Dock = DockStyle.Fill
-		self.panelView.BorderStyle = BorderStyle.FixedSingle
-		self.Controls.Add(self.panelView)
-
+		self.panelView = tk.Frame(self, bd=2, relief="solid")
+		self.panelView.pack(side="left", fill="both", expand=True)
+		
 		# 스냅 뷰 객체 선언 // Declare the SNAP View
 		self.m_viewSNAP = CGUIViewSNAP()
 
 		while True:
 		
 		    # 스냅 뷰 생성 // Create SNAP view
-			if (res := self.m_viewSNAP.CreateAndFitParent(self.panelView.Handle.ToInt32())).IsFail():
+			if (res := self.m_viewSNAP.CreateAndFitParent(get_hwnd(self.panelView))).IsFail():
 				ErrorPrint(res, 'Failed to create the SNAP view.')
 				break
 
@@ -51,5 +50,5 @@ def ErrorPrint(res: CResult, string: str):
 
 
 if __name__ == "__main__":
-    form = SNAPViewIntoDialog()
-    Application.Run(form)
+    app = SNAPViewIntoDialog()
+    app.mainloop()

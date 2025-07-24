@@ -176,6 +176,57 @@
 
 - [Advanced Functions]
   
+  - [Data Code]
+
+    - [Barcode]    
+      - BarcodeDecoder
+        - The example of an algorithm that detects and decodes barcode in an image.
+        - 이미지 내의 바코드를 검출 및 디코딩하는 알고리즘 예제.
+      - BarcodeEncoder
+        - The example of an algorithm that encodes the input string into a set barcode type.
+        - 입력한 문자열을 설정한 바코드 타입으로 인코딩하는 알고리즘 예제.		  
+
+    - [Data Matrix]
+      - DataMatrixDecoder
+        - The example of an algorithm that detects and decodes datamatrix in an image.
+        - 이미지 내의 데이터 매트릭스를 검출 및 디코딩하는 알고리즘 예제.
+      - DataMatrixDecoder_CountAll
+        - The example of an algorithm that detects and decodes all datamatrix in an image.
+        - 이미지 내의 모든 데이터 매트릭스를 검출 및 디코딩하는 알고리즘 예제.
+      - DataMatrixEncoder
+        - The example of an algorithm that encodes the input string into a datamatrix.
+        - 입력한 문자열을 데이터 매트릭스로 인코딩하는 알고리즘 예제.
+      - DataMatrixVerifier
+        - The example of an algorithm to evaluate print quality after detecting and decoding Data Matrix within an image.
+        - 이미지 내의 데이터 매트릭스를 검출 및 디코딩 후 인쇄 품질을 평가하는 알고리즘 예제.
+
+    - [QR Code]    
+      - QRCodeDecoder
+        - The example of an algorithm that detects and decodes QR code in an image.
+        - 이미지 내의 QR Code를 검출 및 디코딩하는 알고리즘 예제.
+      - QRCodeEncoder
+        - The example of an algorithm that encodes the input string into a QR code.
+        - 입력한 문자열을 QR Code로 인코딩하는 알고리즘 예제.
+      - QRCodeVerifier
+        - The example of an algorithm to evaluate print quality after detecting and decoding QR Code within an image.
+        - 이미지 내의 QR Code를 검출 및 디코딩 후 인쇄 품질을 평가하는 알고리즘 예제.
+        
+    - [Micro QR Code]    
+      - MicroQRCodeDecoder
+        - The example of an algorithm that detects and decodes Micro QR code in an image.
+        - 이미지 내의 Micro QR Code를 검출 및 디코딩하는 알고리즘 예제.
+      - MicroQRCodeEncoder
+        - The example of an algorithm that encodes the input string into a Micro QR code.
+        - 입력한 문자열을 Micro QR Code로 인코딩하는 알고리즘 예제.
+      - MicroQRCodeVerifier
+        - The example of an algorithm to evaluate print quality after detecting and decoding Micro QR Code within an image.
+        - 이미지 내의 Micro QR Code를 검출 및 디코딩 후 인쇄 품질을 평가하는 알고리즘 예제.
+        
+    - [Unified Data Code]    
+      - UnifiedDataCodeDecoder
+        - The example of an algorithm that detect and decode all types of data code in an image.
+        - 이미지 내의 모든 타입의 데이터 코드를 검출 및 디코딩하는 알고리즘 예제.
+
   - [Measurement]
 
     - [Gauge]
