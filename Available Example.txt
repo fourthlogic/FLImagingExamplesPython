@@ -1054,6 +1054,9 @@
     - ColorSequenceConverter 
       - The example of an algorithm that converts color sequence of an image.
       - 이미지의 컬러 시퀀스를 바꾸는 알고리즘 예제.
+    - Crop 
+      - The example of an algorithm that cuts an image to fit the ROI area.
+      - 이미지를 ROI 영역에 맞게 잘라내는 알고리즘 예제.	
     - FormatConverter
       - The algorithm example for converting a pixelformat in an image.
       - 이미지의 포맷을 변환하는 알고리즘 예제.

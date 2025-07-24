@@ -1658,6 +1658,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Colorconverter", "Colorconv
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FormatConverter", "FormatConverter\FormatConverter.pyproj", "{AA1BBD27-86D9-451F-91E4-1CD6F2A4C487}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Crop", "Crop\Crop.pyproj", "{34AD21D2-CFB4-441B-B1BD-AC1A361590CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2744,6 +2746,8 @@ Global
 		{E1A10252-1FBB-4561-BD88-2D2062CC7695}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA1BBD27-86D9-451F-91E4-1CD6F2A4C487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA1BBD27-86D9-451F-91E4-1CD6F2A4C487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34AD21D2-CFB4-441B-B1BD-AC1A361590CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34AD21D2-CFB4-441B-B1BD-AC1A361590CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3565,6 +3569,7 @@ Global
 		{2D3354C8-4E0B-44BD-B660-470C0A96F508} = {AB556765-01B7-48C6-9CAC-20D03284055D}
 		{E1A10252-1FBB-4561-BD88-2D2062CC7695} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 		{AA1BBD27-86D9-451F-91E4-1CD6F2A4C487} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
+		{34AD21D2-CFB4-441B-B1BD-AC1A361590CF} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
