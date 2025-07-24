@@ -1622,6 +1622,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fourier", "Fourier", "{F119
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FourierTransform", "FourierTransform\FourierTransform.pyproj", "{16C2871A-9506-45E4-8006-D10EE85BDD71}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FourierTransformReal", "FourierTransformReal\FourierTransformReal.pyproj", "{530307F1-A38A-41C8-9911-3101C88D5313}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2672,6 +2674,8 @@ Global
 		{291C6DC6-48BE-47F9-B1F3-A8D10EFCFCFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16C2871A-9506-45E4-8006-D10EE85BDD71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{16C2871A-9506-45E4-8006-D10EE85BDD71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{530307F1-A38A-41C8-9911-3101C88D5313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{530307F1-A38A-41C8-9911-3101C88D5313}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3475,6 +3479,7 @@ Global
 		{291C6DC6-48BE-47F9-B1F3-A8D10EFCFCFA} = {949FFFA4-06D4-47FD-BC12-85CDA35AEF70}
 		{F1197E4C-3EF8-49E6-AC9F-CFFC5D79F6C0} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
 		{16C2871A-9506-45E4-8006-D10EE85BDD71} = {F1197E4C-3EF8-49E6-AC9F-CFFC5D79F6C0}
+		{530307F1-A38A-41C8-9911-3101C88D5313} = {F1197E4C-3EF8-49E6-AC9F-CFFC5D79F6C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
