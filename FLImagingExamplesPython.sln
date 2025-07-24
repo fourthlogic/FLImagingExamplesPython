@@ -1700,6 +1700,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MicroQRCodeEncoder", "Micro
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MicroQRCodeVerifier", "MicroQRCodeVerifier\MicroQRCodeVerifier.pyproj", "{AF6EC9DB-248B-4A0D-A3B4-61812C27CE12}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "UnifiedDataCodeDecoder", "UnifiedDataCodeDecoder\UnifiedDataCodeDecoder.pyproj", "{F7B97834-031F-4213-85BB-5F58AE90700F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2822,6 +2824,8 @@ Global
 		{F5E3C679-2B72-4EE9-BBD3-D7CDEF78D218}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF6EC9DB-248B-4A0D-A3B4-61812C27CE12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF6EC9DB-248B-4A0D-A3B4-61812C27CE12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7B97834-031F-4213-85BB-5F58AE90700F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7B97834-031F-4213-85BB-5F58AE90700F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3664,6 +3668,7 @@ Global
 		{2BFC62B0-381D-4925-9843-DBFFC988457F} = {6FCAC479-2F31-4BA6-AB3D-EF352ACBB2D9}
 		{F5E3C679-2B72-4EE9-BBD3-D7CDEF78D218} = {6FCAC479-2F31-4BA6-AB3D-EF352ACBB2D9}
 		{AF6EC9DB-248B-4A0D-A3B4-61812C27CE12} = {6FCAC479-2F31-4BA6-AB3D-EF352ACBB2D9}
+		{F7B97834-031F-4213-85BB-5F58AE90700F} = {76008EA3-7F4B-4D60-8FBF-26D49BB8A087}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
