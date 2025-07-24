@@ -156,17 +156,17 @@ def main():
 			
 			# Destination Vertex를 각 View Layer에 Drawing // Drawing the destination vertex on each view layer
 			if(res := layerSource.DrawFigureImage(flpDestination, EColor.BLUE, 1).IsFail()):
-				ErrorPrint(res,"Failed to draw figure objects on the image view.\n")
+				ErrorPrint(res,"Failed to draw figure objects on the image view.")
 				break
 			
 			# Source Vertex를 각 View Layer에 Drawing // Drawing the source vertex on each view layer
 			if(res := layerSource.DrawFigureImage(flpSource, EColor.RED, 1).IsFail()):
-				ErrorPrint(res,"Failed to draw figure objects on the image view.\n")
+				ErrorPrint(res,"Failed to draw figure objects on the image view.")
 				break
 			
 			# Source Vertex를 각 View Layer에 Drawing // Drawing the source vertex on each view layer
 			if(res := layerSource.DrawFigureImage(flfaArrow, EColor.YELLOW, 1).IsFail()):
-				ErrorPrint(res,"Failed to draw figure objects on the image view.\n")
+				ErrorPrint(res,"Failed to draw figure objects on the image view.")
 				break
 
 			# 앞서 설정된 이미지, Calibration Point Array로 Calibrate 수행 // Calibrate with previously set image, Calibration Point Array
@@ -227,17 +227,17 @@ def main():
 
 			# Destination Vertex를 각 View Layer에 Drawing // Drawing the destination vertex on each view layer
 			if(res := layerSource.DrawFigureImage(flpDestination, EColor.BLUE, 1).IsFail()):
-				ErrorPrint(res,"Failed to draw figure objects on the image view.\n")
+				ErrorPrint(res,"Failed to draw figure objects on the image view.")
 				break
 
 			# Source Vertex를 각 View Layer에 Drawing // Drawing the source vertex on each view layer
 			if(res := layerSource.DrawFigureImage(flpSource, EColor.RED, 1).IsFail()):
-				ErrorPrint(res,"Failed to draw figure objects on the image view.\n")
+				ErrorPrint(res,"Failed to draw figure objects on the image view.")
 				break
 
 			# Source Vertex를 각 View Layer에 Drawing // Drawing the source vertex on each view layer
 			if(res := layerSource.DrawFigureImage(flfaArrow, EColor.YELLOW, 1).IsFail()):
-				ErrorPrint(res,"Failed to draw figure objects on the image view.\n")
+				ErrorPrint(res,"Failed to draw figure objects on the image view.")
 				break
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
@@ -305,7 +305,7 @@ def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
 
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}')
 
 
 if __name__ == '__main__':

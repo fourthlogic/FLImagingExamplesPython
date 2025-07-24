@@ -36,51 +36,51 @@ def main():
 
 		# 이미지 로드 // Load image
 		if((res := fliLearnImageLowResolution.Load("../../ExampleImages/SuperResolution/SuperResolutionTrainDataLowResolution.flif")).IsFail()):
-			ErrorPrint(res, "Failed to load the image file. \n")
+			ErrorPrint(res, "Failed to load the image file. ")
 			break
 		
 		# 이미지 로드 // Load image
 		if((res := fliLearnImageHighResolution.Load("../../ExampleImages/SuperResolution/SuperResolutionTrainDataHighResolution.flif")).IsFail()):
-			ErrorPrint(res, "Failed to load the image file. \n")
+			ErrorPrint(res, "Failed to load the image file. ")
 			break
 
 		if((res := fliValidationImageLowResolution.Load("../../ExampleImages/SuperResolution/SuperResolutionValidationDataLowResolution.flif")).IsFail()):
-			ErrorPrint(res, "Failed to load the image file.\n")
+			ErrorPrint(res, "Failed to load the image file.")
 			break
 
 		if((res := fliValidationImageHighResolution.Load("../../ExampleImages/SuperResolution/SuperResolutionValidationDataHighResolution.flif")).IsFail()):
-			ErrorPrint(res, "Failed to load the image file.\n")
+			ErrorPrint(res, "Failed to load the image file.")
 			break
 
 		# 이미지 뷰 생성 // Create image view
 		if((res := viewImageLearnLowResolution.Create(100, 0, 600, 500)).IsFail()):
-			ErrorPrint(res, "Failed to create the image view. \n")
+			ErrorPrint(res, "Failed to create the image view. ")
 			break
 
 		# 이미지 뷰 생성 // Create image view
 		if((res := viewImageLearnHighResolution.Create(600, 0, 1100, 500)).IsFail()):
-			ErrorPrint(res, "Failed to create the image view. \n")
+			ErrorPrint(res, "Failed to create the image view. ")
 			break
 		
 
 		if((res := viewImageValidationLowResolution.Create(100, 500, 600, 1000)).IsFail()):
-			ErrorPrint(res, "Failed to create the image view.\n")
+			ErrorPrint(res, "Failed to create the image view.")
 			break
 		
 
 		if((res := viewImageValidationHighResolution.Create(600, 500, 1100, 1000)).IsFail()):
-			ErrorPrint(res, "Failed to create the image view.\n")
+			ErrorPrint(res, "Failed to create the image view.")
 			break
 		
 
 		if((res := viewImagesSource.Create(1100, 0, 1600, 500)).IsFail()):
-			ErrorPrint(res, "Failed to create the image view.\n")
+			ErrorPrint(res, "Failed to create the image view.")
 			break
 		
 
 		# Graph 뷰 생성 // Create graph view
 		if((res := viewGraph.Create(1100, 500, 1600, 1000)).IsFail()):
-			ErrorPrint(res, "Failed to create the image view.\n")
+			ErrorPrint(res, "Failed to create the image view.")
 			break
 		
 
@@ -89,87 +89,87 @@ def main():
 		# 저차원 학습 이미지 뷰에 이미지를 디스플레이 // Display the image in the learn low resolution image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if((res := viewImageLearnLowResolution.SetImagePtr(fliLearnImageLowResolution)[0]).IsFail()):
-			ErrorPrint(res, "Failed to set image object on the image view. \n")
+			ErrorPrint(res, "Failed to set image object on the image view. ")
 			break
 
 		# 고차원 학습 이미지 뷰에 이미지를 디스플레이 // Display the image in the learn high resolution image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if((res := viewImageLearnHighResolution.SetImagePtr(fliLearnImageHighResolution)[0]).IsFail()):
-			ErrorPrint(res, "Failed to set image object on the image view. \n")
+			ErrorPrint(res, "Failed to set image object on the image view. ")
 			break
 
 		# 저차원 평가 이미지 뷰에 이미지를 디스플레이 // Display the image in the validation low resolution image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if((res := viewImageValidationLowResolution.SetImagePtr(fliValidationImageLowResolution)[0]).IsFail()):
-			ErrorPrint(res, "Failed to set image object on the image view. \n")
+			ErrorPrint(res, "Failed to set image object on the image view. ")
 			break
 
 		# 고차원 평가 이미지 뷰에 이미지를 디스플레이 // Display the image in the validation high resolution image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if((res := viewImageValidationHighResolution.SetImagePtr(fliValidationImageHighResolution)[0]).IsFail()):
-			ErrorPrint(res, "Failed to set image object on the image view. \n")
+			ErrorPrint(res, "Failed to set image object on the image view. ")
 			break
 
 		# Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the source image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if((res := viewImagesSource.SetImagePtr(fliResultSourceImage)[0]).IsFail()):
-			ErrorPrint(res, "Failed to set image object on the image view.\n")
+			ErrorPrint(res, "Failed to set image object on the image view.")
 			break
 
 		# 다섯 개의 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the four image view windows
 		if((res := viewImageLearnLowResolution.SynchronizeWindow(viewImageValidationLowResolution)[0]).IsFail()):
-			ErrorPrint(res, "Failed to synchronize window. \n")
+			ErrorPrint(res, "Failed to synchronize window. ")
 			break
 
 		# 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if((res := viewImageLearnLowResolution.SynchronizeWindow(viewImageLearnHighResolution)[0]).IsFail()):
-			ErrorPrint(res, "Failed to synchronize window. \n")
+			ErrorPrint(res, "Failed to synchronize window. ")
 			break
 
 		if((res := viewImageLearnLowResolution.SynchronizeWindow(viewImageValidationLowResolution)[0]).IsFail()):
-			ErrorPrint(res, "Failed to synchronize window. \n")
+			ErrorPrint(res, "Failed to synchronize window. ")
 			break
 		
 		if((res := viewImageLearnLowResolution.SynchronizeWindow(viewImageValidationHighResolution)[0]).IsFail()):
-			ErrorPrint(res, "Failed to synchronize window. \n")
+			ErrorPrint(res, "Failed to synchronize window. ")
 			break
 		
 		if((res := viewImageLearnLowResolution.SynchronizeWindow(viewImagesSource)[0]).IsFail()):
-			ErrorPrint(res, "Failed to synchronize window. \n")
+			ErrorPrint(res, "Failed to synchronize window. ")
 			break
 
 		if((res := viewImageLearnLowResolution.SynchronizeWindow(viewGraph)[0]).IsFail()):
-			ErrorPrint(res, "Failed to synchronize window. \n")
+			ErrorPrint(res, "Failed to synchronize window. ")
 			break
 
 		if((res := viewImageLearnLowResolution.SynchronizeWindow(viewGraph)[0]).IsFail()):
 		
-			ErrorPrint(res, "Failed to synchronize window. \n")
+			ErrorPrint(res, "Failed to synchronize window. ")
 			break
 		
 		# 이미지의 Page Index를 맞춤 // Synchronize the Page Index of the image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if((res := viewImageLearnLowResolution.SynchronizePageIndex(viewImageLearnHighResolution)[0]).IsFail()):
 		
-			ErrorPrint(res, "Failed to synchronize window. \n")
+			ErrorPrint(res, "Failed to synchronize window. ")
 			break
 		
 		if((res := viewImageValidationLowResolution.SynchronizePageIndex(viewImageValidationHighResolution)[0]).IsFail()):
 		
-			ErrorPrint(res, "Failed to synchronize window. \n")
+			ErrorPrint(res, "Failed to synchronize window. ")
 			break
 		
 		if((res := viewImageValidationHighResolution.SynchronizePageIndex(viewImagesSource)[0]).IsFail()):
 		
-			ErrorPrint(res, "Failed to synchronize window. \n")
+			ErrorPrint(res, "Failed to synchronize window. ")
 			break
 		
 		# 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the image views
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if((res := viewImageValidationHighResolution.SynchronizePointOfView(viewImagesSource)[0]).IsFail()):
 		
-			ErrorPrint(res, "Failed to synchronize window. \n")
+			ErrorPrint(res, "Failed to synchronize window. ")
 			break
 		
 
@@ -197,23 +197,23 @@ def main():
 		flpPoint = CFLPoint[Double](0, 0)
 
 		if((res := layerLearnLowResolution.DrawTextCanvas(flpPoint, "LEARN LOW RESOLUTION", EColor.YELLOW, EColor.BLACK, 30)).IsFail()):
-			ErrorPrint(res, "Failed to draw text\n")
+			ErrorPrint(res, "Failed to draw text")
 			break
 
 		if((res := layerLearnHighResolution.DrawTextCanvas(flpPoint, "LEARN HIGH RESOLUTION", EColor.YELLOW, EColor.BLACK, 30)).IsFail()):
-			ErrorPrint(res, "Failed to draw text\n")
+			ErrorPrint(res, "Failed to draw text")
 			break
 
 		if((res := layerValidationLowResolution.DrawTextCanvas(flpPoint, "VALIDATION LOW RESOLUTION", EColor.YELLOW, EColor.BLACK, 30)).IsFail()):
-			ErrorPrint(res, "Failed to draw text\n")
+			ErrorPrint(res, "Failed to draw text")
 			break
 
 		if((res := layerValidationHighResolution.DrawTextCanvas(flpPoint, "VALIDATION HIGH RESOLUTION", EColor.YELLOW, EColor.BLACK, 30)).IsFail()):
-			ErrorPrint(res, "Failed to draw text\n")
+			ErrorPrint(res, "Failed to draw text")
 			break
 
 		if((res := layerResultSource.DrawTextCanvas(flpPoint, "INFERENCE RESULT", EColor.YELLOW, EColor.BLACK, 30)).IsFail()):
-			ErrorPrint(res, "Failed to draw text\n")
+			ErrorPrint(res, "Failed to draw text")
 			break
 
 		# 이미지 뷰를 갱신 // Update the image view.
@@ -408,7 +408,7 @@ def main():
 
 		# 알고리즘 수행 // Execute the algorithm
 		if((res := superResolution.Execute()).IsFail()):
-			ErrorPrint(res, "Failed to execute.\n")
+			ErrorPrint(res, "Failed to execute.")
 			break
 
 		# 결과 이미지를 이미지 뷰에 맞게 조정합니다. // Fit the result image to the image view.
@@ -437,7 +437,7 @@ def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
 
-	print(f'Error code : res.GetResultCode()\nError name : res.GetString()\n')
+	print(f'Error code : res.GetResultCode()\nError name : res.GetString()')
 
 if __name__ == '__main__':
     main()

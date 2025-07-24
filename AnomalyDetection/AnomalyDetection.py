@@ -44,16 +44,16 @@ def main():
 			break
 		
 		if((res := viewImageInference.Create(600, 0, 1100, 500)).IsFail()):
-			ErrorPrint(res, "Failed to create the image view.\n")
+			ErrorPrint(res, "Failed to create the image view.")
 			break
 
 		if((res := viewImagesLabelFigure.Create(100, 500, 600, 1000)).IsFail()):
-			ErrorPrint(res, "Failed to create the image view.\n")
+			ErrorPrint(res, "Failed to create the image view.")
 			break
 
 		# Graph 뷰 생성 // Create graph view
 		if((res := viewGraph.Create(600, 500, 1100, 1000)).IsFail()):
-			ErrorPrint(res, "Failed to create the image view.\n")
+			ErrorPrint(res, "Failed to create the image view.")
 			break
 
 		viewGraph.SetDarkMode()
@@ -108,15 +108,15 @@ def main():
 		flpPoint = CFLPoint[Double](0, 0)
 
 		if((res := layerLearn.DrawTextCanvas(flpPoint, "LEARN", EColor.YELLOW, EColor.BLACK, 30)).IsFail()):
-			ErrorPrint(res, "Failed to draw text\n")
+			ErrorPrint(res, "Failed to draw text")
 			break
 		
 		if((res := layerValidation.DrawTextCanvas(flpPoint, "VALIDATION", EColor.YELLOW, EColor.BLACK, 30)).IsFail()):
-			ErrorPrint(res, "Failed to draw text\n")
+			ErrorPrint(res, "Failed to draw text")
 			break
 
 		if((res := layerResultLabelFigure.DrawTextCanvas(flpPoint, "RESULT", EColor.YELLOW, EColor.BLACK, 30)).IsFail()):
-			ErrorPrint(res, "Failed to draw text\n")
+			ErrorPrint(res, "Failed to draw text")
 			break
 
 		# 이미지 뷰를 갱신 // Update the image view.
@@ -292,7 +292,7 @@ def main():
 
 		# 알고리즘 수행 // Execute the algorithm
 		if((res := anomalyDetection.Execute()).IsFail()):
-			ErrorPrint(res, "Failed to execute.\n")
+			ErrorPrint(res, "Failed to execute.")
 			break
 		
 		# 결과 이미지를 이미지 뷰에 맞게 조정합니다. // Fit the result image to the image view.
@@ -321,7 +321,7 @@ def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
 
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}')
 
 
 if __name__ == '__main__':

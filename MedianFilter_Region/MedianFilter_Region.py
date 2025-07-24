@@ -106,14 +106,14 @@ def main():
 		# 맨 마지막 두개의 파라미터는 불투명도 값이고 1일경우 불투명, 0일경우 완전 투명을 의미한다. // The last two parameters are opacity values, which mean opacity for 1 day and complete transparency for 0 day.
 		# 파라미터 순서 : 레이어 -> Figure 객체 -> 선 색 -> 선 두께 -> 면 색 -> 펜 스타일 -> 선 알파값(불투명도) -> 면 알파값 (불투명도) // Parameter order: Layer -> Figure object -> Line color -> Line thickness -> Face color -> Pen style -> Line alpha value (opacity) -> Area alpha value (opacity)
 		if((res := (layerSource.DrawFigureImage(flrROI, EColor.LIME))).IsFail()):
-			ErrorPrint(res, "Failed to draw figure.\n");
+			ErrorPrint(res, "Failed to draw figure.");
 		
 		if((res := (layerDestination.DrawFigureImage(flrROI, EColor.LIME))).IsFail()):
-			ErrorPrint(res, "Failed to draw figure.\n");
+			ErrorPrint(res, "Failed to draw figure.");
 
         #Region 을 출력하는 부분 // Display Region ROI
 		if((res := (layerRegion.DrawFigureImage(flrRegion, EColor.LIME))).IsFail()):
-			ErrorPrint(res, "Failed to draw figure.\n");
+			ErrorPrint(res, "Failed to draw figure.");
 
 		# 이미지 뷰 정보 오후 9:51 2025-07-19표시 // Display image view information
 		flpPoint = CFLPoint[Double](0, 0)
@@ -150,7 +150,7 @@ def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
 
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}')
 
 
 if __name__ == '__main__':
