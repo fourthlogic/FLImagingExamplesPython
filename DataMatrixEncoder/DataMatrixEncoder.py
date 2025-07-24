@@ -9,9 +9,6 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
 
 from ErrorPrint import *
 
-clr.AddReference("mscorlib")
-from System.Text import StringBuilder
-
 # 메인 함수 # Main function
 def main():
     # 이미지 객체 선언 # Declare the image object
@@ -21,7 +18,7 @@ def main():
     viewImage = CGUIViewImage()
     res = CResult()
 
-    strInput = input("Please input encoding message.: ")
+    strInput = input("Please input encoding message: ")
 
     # 이미지 뷰 생성 # Create image view
     if (res := viewImage.Create(200, 0, 968, 576)).IsFail():
