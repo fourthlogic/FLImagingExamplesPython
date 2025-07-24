@@ -13,20 +13,20 @@ def main():
 
 	while True:
 		# 이미지 로드 // Load image
-		if (res := fliSrcImage.Load("../../ExampleImages/HoughTransform/Sudoku.flif")).IsFail():
-			ErrorPrint(res, "Failed to load the image file.\n")
+		if (res := fliSrcImage.Load('../../ExampleImages/HoughTransform/Sudoku.flif')).IsFail():
+			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
 		# 이미지 뷰 생성 // Create image view
 		if (res := viewImage.Create(300, 0, 300 + 520, 430)).IsFail():
-			ErrorPrint(res, "Failed to create the image view.\n")
+			ErrorPrint(res, 'Failed to create the image view.')
 			break
 		
 
 		# 이미지 뷰에 이미지를 디스플레이 // Display an image in an image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImage.SetImagePtr(fliSrcImage)[0]).IsFail():
-			ErrorPrint(res, "Failed to set image object on the image view.\n")
+			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 		
 		# HoughTransform 객체 생성 // Create HoughTransform  object
@@ -57,7 +57,7 @@ def main():
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := (houghTransform.Execute())).IsFail():
 		
-			ErrorPrint(res, "Failed to execute HoughTransform.")
+			ErrorPrint(res, 'Failed to execute HoughTransform.')
 			break
 		
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
@@ -78,7 +78,7 @@ def main():
 			# 이미지 뷰에 검출된 원 객체 출력 // Output the detected original object to the image view
 			if (res := (layer.DrawFigureImage(flcResult, EColor.LIGHTGREEN, 1))).IsFail():
 			
-				ErrorPrint(res, "Failed to draw Figure")
+				ErrorPrint(res, 'Failed to draw Figure')
 				break
 
 		# 이미지 뷰를 갱신 합니다. // Update image view
