@@ -1654,6 +1654,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DataMatrixEncoder", "DataMa
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DataMatrixVerifier", "DataMatrixVerifier\DataMatrixVerifier.pyproj", "{2D3354C8-4E0B-44BD-B660-470C0A96F508}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Colorconverter", "Colorconverter\Colorconverter.pyproj", "{E1A10252-1FBB-4561-BD88-2D2062CC7695}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2736,6 +2738,8 @@ Global
 		{56ACD2DB-E3BB-4612-A2D2-24EBAC5795EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D3354C8-4E0B-44BD-B660-470C0A96F508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2D3354C8-4E0B-44BD-B660-470C0A96F508}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1A10252-1FBB-4561-BD88-2D2062CC7695}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1A10252-1FBB-4561-BD88-2D2062CC7695}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3555,6 +3559,7 @@ Global
 		{CF7A38A4-8BB8-451B-97FA-C2992D2986B1} = {AB556765-01B7-48C6-9CAC-20D03284055D}
 		{56ACD2DB-E3BB-4612-A2D2-24EBAC5795EB} = {AB556765-01B7-48C6-9CAC-20D03284055D}
 		{2D3354C8-4E0B-44BD-B660-470C0A96F508} = {AB556765-01B7-48C6-9CAC-20D03284055D}
+		{E1A10252-1FBB-4561-BD88-2D2062CC7695} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
