@@ -168,16 +168,16 @@ def main():
 		flpPoint = CFLPoint[Double](0, 0)
 
 		if (res := layerSource.DrawTextImage(flpPoint, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
-			ErrorPrint(res, "Failed to draw text.\n");
+			ErrorPrint(res, "Failed to draw text.");
 
 		if (res := layerInsertion0.DrawTextImage(flpPoint, "Insertion Image1", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
-			ErrorPrint(res, "Failed to draw text.\n");
+			ErrorPrint(res, "Failed to draw text.");
 
 		if (res := layerInsertion0.DrawTextImage(flpPoint, "Insertion Image 2", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
-			ErrorPrint(res, "Failed to draw text.\n");
+			ErrorPrint(res, "Failed to draw text.");
 
 		if (res := layerDestination.DrawTextImage(flpPoint, "Insertion Image 1 +\nSource Image +\nInsertion Image 2", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
-			ErrorPrint(res, "Failed to draw text.\n");
+			ErrorPrint(res, "Failed to draw text.");
 
 		# 이미지 뷰를 갱신 // Update image view
 		viewImageSrc.Invalidate(True)
@@ -200,7 +200,7 @@ def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
 
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}')
 
 
 if __name__ == '__main__':
