@@ -1592,6 +1592,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ShapeMatchRectangle", "Shap
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "HoughTransformLine", "HoughTransformLine\HoughTransformLine.pyproj", "{78B81835-1133-4233-BE5D-FE53D7F2E752}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Gradation", "Gradation\Gradation.pyproj", "{733900CF-27AF-4D30-BA97-A66AD27B223C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2620,6 +2622,8 @@ Global
 		{4989CC78-9833-4218-843D-05522F3FF421}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78B81835-1133-4233-BE5D-FE53D7F2E752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{78B81835-1133-4233-BE5D-FE53D7F2E752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{733900CF-27AF-4D30-BA97-A66AD27B223C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{733900CF-27AF-4D30-BA97-A66AD27B223C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3408,6 +3412,7 @@ Global
 		{11C44519-D514-4E1F-8A8D-05B29A89D83A} = {DBF962C9-1DCF-447C-BC0D-DA1065F21509}
 		{4989CC78-9833-4218-843D-05522F3FF421} = {DBF962C9-1DCF-447C-BC0D-DA1065F21509}
 		{78B81835-1133-4233-BE5D-FE53D7F2E752} = {0E0D292B-2074-4688-8459-706D9641AD4A}
+		{733900CF-27AF-4D30-BA97-A66AD27B223C} = {949FFFA4-06D4-47FD-BC12-85CDA35AEF70}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
