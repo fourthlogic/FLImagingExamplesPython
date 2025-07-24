@@ -1598,6 +1598,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Gradation", "Gradation\Grad
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RadialGradation", "RadialGradation\RadialGradation.pyproj", "{8514A35B-57A9-448A-95B6-CDF4D7571133}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BarcodeDecoder", "BarcodeDecoder\BarcodeDecoder.pyproj", "{CA85DEC9-87E5-450D-9F94-8A0CA965657B}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BarcodeEncoder", "BarcodeEncoder\BarcodeEncoder.pyproj", "{6086FC3A-76B9-49A7-8014-60628E4C97DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2632,6 +2636,10 @@ Global
 		{733900CF-27AF-4D30-BA97-A66AD27B223C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8514A35B-57A9-448A-95B6-CDF4D7571133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8514A35B-57A9-448A-95B6-CDF4D7571133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA85DEC9-87E5-450D-9F94-8A0CA965657B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA85DEC9-87E5-450D-9F94-8A0CA965657B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6086FC3A-76B9-49A7-8014-60628E4C97DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6086FC3A-76B9-49A7-8014-60628E4C97DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3423,6 +3431,8 @@ Global
 		{7919C7A2-42EA-444F-AC25-2962C4FFA54B} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 		{733900CF-27AF-4D30-BA97-A66AD27B223C} = {949FFFA4-06D4-47FD-BC12-85CDA35AEF70}
 		{8514A35B-57A9-448A-95B6-CDF4D7571133} = {949FFFA4-06D4-47FD-BC12-85CDA35AEF70}
+		{CA85DEC9-87E5-450D-9F94-8A0CA965657B} = {DF98386D-47C4-4BB9-9A9D-6D971E4A6E17}
+		{6086FC3A-76B9-49A7-8014-60628E4C97DD} = {DF98386D-47C4-4BB9-9A9D-6D971E4A6E17}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
