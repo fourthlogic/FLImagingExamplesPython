@@ -1664,6 +1664,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integral", "Integral", "{50
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Integral_Polynomial", "Integral_Polynomial\Integral_Polynomial.pyproj", "{3A03E273-5014-483F-8EBB-E5BEF505ADE5}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Integral_SquareSum", "Integral_SquareSum\Integral_SquareSum.pyproj", "{8BA2DF95-AA2C-43CE-9ACF-5C87620B1908}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2754,6 +2756,8 @@ Global
 		{34AD21D2-CFB4-441B-B1BD-AC1A361590CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A03E273-5014-483F-8EBB-E5BEF505ADE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A03E273-5014-483F-8EBB-E5BEF505ADE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BA2DF95-AA2C-43CE-9ACF-5C87620B1908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BA2DF95-AA2C-43CE-9ACF-5C87620B1908}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3578,6 +3582,7 @@ Global
 		{34AD21D2-CFB4-441B-B1BD-AC1A361590CF} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 		{50806CAB-1D21-4D12-9F34-DAE96B3337B0} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 		{3A03E273-5014-483F-8EBB-E5BEF505ADE5} = {50806CAB-1D21-4D12-9F34-DAE96B3337B0}
+		{8BA2DF95-AA2C-43CE-9ACF-5C87620B1908} = {50806CAB-1D21-4D12-9F34-DAE96B3337B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
