@@ -60,19 +60,19 @@ def main():
 			break
 
 		# Format Converter 객체 생성 // Create Format Converter object
-		colorConverter = CFormatConverter()
+		formatConverter = CFormatConverter()
 
 		# Source 이미지 설정 // Set the source image
-		colorConverter.SetSourceImage(fliSourceImage)
+		formatConverter.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		colorConverter.SetDestinationImage(fliDestinationImage)
+		formatConverter.SetDestinationImage(fliDestinationImage)
 
 		# 변환할 픽셀 포맷 입력(C3_U8 -> C1_U8) // Set the pixel format to convert(C3_U8 -> C1_U8)
-		colorConverter.SetPixelFormat(EPixelFormat.C1_U8)
+		formatConverter.SetPixelFormat(EPixelFormat.C1_U8)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := colorConverter.Execute()).IsFail():
+		if (res := formatConverter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Format Converter.')
 			break
 
