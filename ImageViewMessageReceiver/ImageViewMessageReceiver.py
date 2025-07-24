@@ -170,28 +170,28 @@ def main():
 
     # 이미지 뷰 생성 # Create the first image view    
     if (res := view_image[0].Create(300, 0, 300 + 520, 430)).IsFail():
-        ErrorPrint(res, "Failed to create the image view.\n")
+        ErrorPrint(res, "Failed to create the image view.")
         return
 
     # 이미지 뷰 생성 # Create the second image view
     if (res := view_image[1].Create(300 + 520, 0, 300 + 520 * 2, 430)).IsFail():
-        ErrorPrint(res, "Failed to create the image view.\n")
+        ErrorPrint(res, "Failed to create the image view.")
         return
 
     # 뷰의 시점 동기화 # Synchronize the point of view between views
     if (res := view_image[0].SynchronizePointOfView(view_image[1])[0]).IsFail():
-        ErrorPrint(res, "Failed to synchronize view\n")
+        ErrorPrint(res, "Failed to synchronize view")
         return
 
     # 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
     if (res := view_image[0].SynchronizeWindow(view_image[1])[0]).IsFail():
-        ErrorPrint(res, "Failed to synchronize window\n")
+        ErrorPrint(res, "Failed to synchronize window")
         return
 
     # 이미지 뷰가 종료될 때까지 대기
     # Wait until the first image view is closed
     while view_image[0].IsAvailable():
-        time.sleep(0.001)
+        time.sleep(0.01)
 
 
 # 에러 출력 함수 # Error printing function
@@ -199,7 +199,7 @@ def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
 
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}')
 
 
 if __name__ == '__main__':
