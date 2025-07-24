@@ -23,23 +23,27 @@ class View3DIntoDialog(tk.Tk):
         self.title("3D View Into Dialog")
         self.geometry("740x500")
 
+        # 왼쪽 패널 (3D view 영역)
         # Left panel (3D view area)
         self.left_panel = tk.Frame(self, bd=1, relief="solid")
         self.left_panel.pack(side="left", fill="both", expand=True)
 
+        # 오른쪽 컨트롤 패널
         # Right control panel
         self.right_panel = tk.Frame(self, width=200, bd=1, relief="solid")
         self.right_panel.pack(side="right", fill="y")
 
         self._create_right_controls()
-
+        
+		# 3D 뷰 생성
         # Create 3D view
         self.m_view3D = CGUIView3D()
         result = self.m_view3D.CreateAndFitParent(get_hwnd(self.left_panel))
         if result.IsFail():
             print("View3D 생성 실패")
             return
-
+        
+		# 높이 맵 이미지와 텍스쳐 로드
         # Load height map and texture
         result = self.m_view3D.Load("../../ExampleImages/View3D/mountain.flif",
                                     "../../ExampleImages/View3D/mountain_texture.flif")
@@ -51,7 +55,7 @@ class View3DIntoDialog(tk.Tk):
         self.group = tk.LabelFrame(self.right_panel, text="Height Profile", padx=5, pady=5)
         self.group.pack(fill="both", expand=True, padx=5, pady=5)
 
-        # Start Point
+        # 시작 좌표 # Start Point
         tk.Label(self.group, text="Start").grid(row=0, column=0, sticky="w")
         tk.Label(self.group, text="x").grid(row=0, column=1)
         self.textBoxStartX = tk.Entry(self.group, width=6)
@@ -63,7 +67,7 @@ class View3DIntoDialog(tk.Tk):
         self.textBoxStartY.insert(0, "0")
         self.textBoxStartY.grid(row=0, column=4)
 
-        # End Point
+        # 종료 좌표 # End Point
         tk.Label(self.group, text="End").grid(row=1, column=0, sticky="w", pady=(5, 0))
         tk.Label(self.group, text="x").grid(row=1, column=1)
         self.textBoxEndX = tk.Entry(self.group, width=6)
@@ -94,7 +98,8 @@ class View3DIntoDialog(tk.Tk):
         if self.m_view3D.GetObjectCount() == 0:
             self._set_result_text("Error: Load an image file.")
             return
-
+        
+		# 높이 프로파일의 좌표를 Edit box 로부터 얻어 와 지정한다.
         # Read coordinates
         try:
             i64StartX = Int64.Parse(self.textBoxStartX.get())
@@ -108,7 +113,8 @@ class View3DIntoDialog(tk.Tk):
         flpStart = CFLPoint[Int64](i64StartX, i64StartY)
         flpEnd = CFLPoint[Int64](i64EndX, i64EndY)
         listF64HP = List[float]()
-
+        
+		# 높이 프로파일 정보를 얻어 온다.
         result = self.m_view3D.GetHeightProfile(flpStart, flpEnd, listF64HP)[0]
         if result.IsOK():
             lines = [f"[{i}] {listF64HP[i]}" for i in range(listF64HP.Count)]
