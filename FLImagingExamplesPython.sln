@@ -1668,6 +1668,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Integral_SquareSum", "Integ
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Integral_Sum", "Integral_Sum\Integral_Sum.pyproj", "{7C1F84A7-3F94-4262-9CE0-0AFDD90195CF}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Integral_SquareAndSum", "Integral_SquareAndSum\Integral_SquareAndSum.pyproj", "{E4A50D2D-013B-46F1-8604-47CBEB0E6541}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2762,6 +2764,8 @@ Global
 		{8BA2DF95-AA2C-43CE-9ACF-5C87620B1908}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C1F84A7-3F94-4262-9CE0-0AFDD90195CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7C1F84A7-3F94-4262-9CE0-0AFDD90195CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4A50D2D-013B-46F1-8604-47CBEB0E6541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4A50D2D-013B-46F1-8604-47CBEB0E6541}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3588,6 +3592,7 @@ Global
 		{3A03E273-5014-483F-8EBB-E5BEF505ADE5} = {50806CAB-1D21-4D12-9F34-DAE96B3337B0}
 		{8BA2DF95-AA2C-43CE-9ACF-5C87620B1908} = {50806CAB-1D21-4D12-9F34-DAE96B3337B0}
 		{7C1F84A7-3F94-4262-9CE0-0AFDD90195CF} = {50806CAB-1D21-4D12-9F34-DAE96B3337B0}
+		{E4A50D2D-013B-46F1-8604-47CBEB0E6541} = {50806CAB-1D21-4D12-9F34-DAE96B3337B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
