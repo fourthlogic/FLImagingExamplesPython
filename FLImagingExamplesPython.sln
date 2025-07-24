@@ -1730,6 +1730,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DeviceCameraPylon", "Device
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DeviceCameraRealSense", "DeviceCameraRealSense\DeviceCameraRealSense.pyproj", "{21A00772-AC77-4789-ACCD-5E724542A251}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ImageViewIntoQt", "ImageViewIntoQt\ImageViewIntoQt.pyproj", "{FE01C4D0-79C8-4AB7-B443-FDB8E8610AA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2854,8 +2856,6 @@ Global
 		{AF6EC9DB-248B-4A0D-A3B4-61812C27CE12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7B97834-031F-4213-85BB-5F58AE90700F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F7B97834-031F-4213-85BB-5F58AE90700F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E7A5D1F-0436-41DD-843C-2566EAEDAB67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E7A5D1F-0436-41DD-843C-2566EAEDAB67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE82DC89-AB85-498C-9E09-99C09CBED7E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CE82DC89-AB85-498C-9E09-99C09CBED7E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{680A5E60-0BA9-4503-BEF3-B1B3B0E1A962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -2880,6 +2880,8 @@ Global
 		{6A33D4DB-55E7-4F4C-8F47-DD49AC86A6DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21A00772-AC77-4789-ACCD-5E724542A251}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{21A00772-AC77-4789-ACCD-5E724542A251}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE01C4D0-79C8-4AB7-B443-FDB8E8610AA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE01C4D0-79C8-4AB7-B443-FDB8E8610AA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3736,6 +3738,7 @@ Global
 		{95CDBE16-DB74-43FA-AFFB-C892A369701B} = {6726DB7A-84EC-42E8-9F3B-0409AAF8CADE}
 		{6A33D4DB-55E7-4F4C-8F47-DD49AC86A6DC} = {6726DB7A-84EC-42E8-9F3B-0409AAF8CADE}
 		{21A00772-AC77-4789-ACCD-5E724542A251} = {6726DB7A-84EC-42E8-9F3B-0409AAF8CADE}
+		{FE01C4D0-79C8-4AB7-B443-FDB8E8610AA4} = {2C1A97C4-9635-450B-8729-61A8C0399DD5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
