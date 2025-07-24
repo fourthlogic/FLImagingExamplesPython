@@ -899,6 +899,9 @@
       - Move
         - The example of image move transforms.
         - 이미지 이동 변환의 예제.
+      - Rotation
+        - The example of image rotation transforms.
+        - 이미지 회전 변환의 예제.
       - Scale
         - The example of image scale transforms.
         - 이미지 스케일 변환의 예제.

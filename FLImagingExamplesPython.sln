@@ -1624,6 +1624,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FourierTransform", "Fourier
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FourierTransformReal", "FourierTransformReal\FourierTransformReal.pyproj", "{530307F1-A38A-41C8-9911-3101C88D5313}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Rotation", "Rotation\Rotation.pyproj", "{B8DF0BBF-34F6-4F45-9444-B9670F320D4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2676,6 +2678,8 @@ Global
 		{16C2871A-9506-45E4-8006-D10EE85BDD71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{530307F1-A38A-41C8-9911-3101C88D5313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{530307F1-A38A-41C8-9911-3101C88D5313}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8DF0BBF-34F6-4F45-9444-B9670F320D4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8DF0BBF-34F6-4F45-9444-B9670F320D4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3480,6 +3484,7 @@ Global
 		{F1197E4C-3EF8-49E6-AC9F-CFFC5D79F6C0} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
 		{16C2871A-9506-45E4-8006-D10EE85BDD71} = {F1197E4C-3EF8-49E6-AC9F-CFFC5D79F6C0}
 		{530307F1-A38A-41C8-9911-3101C88D5313} = {F1197E4C-3EF8-49E6-AC9F-CFFC5D79F6C0}
+		{B8DF0BBF-34F6-4F45-9444-B9670F320D4B} = {18A0101A-50E2-4C97-B6B2-0F5561F69818}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
