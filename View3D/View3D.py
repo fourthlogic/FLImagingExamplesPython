@@ -20,33 +20,34 @@ def main():
     res = CResult()
 
     while True:
-        # Load Model image        
+        # Model 이미지 로드 # Load Model image        
         if (res := arr_image[EType.Model].Load("../../ExampleImages/View3D/mountain.flif")).IsFail():
             ErrorPrint(res, "Failed to load the image file.")
             break
 
-        # Load Texture image        
+        # Texture 이미지 로드 # Load Texture image        
         if (res := arr_image[EType.Texture].Load("../../ExampleImages/View3D/mountain_texture.flif")).IsFail():
             ErrorPrint(res, "Failed to load the texture image file.")
             break
 
-        # Create model view        
+        # Model 이미지 뷰 생성 # Create model view        
         if (res := arr_view_image[EType.Model].Create(100, 0, 612, 512)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
-        # Create texture view        
+        # Texture 이미지 뷰 생성 # Create texture view        
         if (res := arr_view_image[EType.Texture].Create(612, 0, 1124, 512)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
-        # Create 3D view        
+        # 3D 뷰 생성 # Create 3D view        
         if (res := view3d.Create(1124, 0, 1636, 512)).IsFail():
             ErrorPrint(res, "Failed to create the 3D view.")
             break
 
         b_error = False
-        for i in range(EType.Count):            
+        for i in range(EType.Count):
+            # 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
             if (res := arr_view_image[i].SetImagePtr(arr_image[i])[0]).IsFail():
                 ErrorPrint(res, "Failed to set image object on the image view.")
                 b_error = True
@@ -55,20 +56,22 @@ def main():
         if b_error:
             break
 
-        # Synchronize views        
+        # 두 이미지 뷰의 시점을 동기화 # Synchronize views        
         if (res := arr_view_image[EType.Model].SynchronizePointOfView(arr_view_image[EType.Texture])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize view")
             break
 
+        # 두 이미지 뷰의 위치를 동기화 # Synchronize the position of the two image view windows.
         if (res := arr_view_image[EType.Model].SynchronizeWindow(arr_view_image[EType.Texture])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize window.")
             break
-
+        
+		# 3D 뷰와 이미지 뷰 윈도우의 위치를 동기화 # Synchronize the position of the image view and the 3D view window
         if (res := arr_view_image[EType.Model].SynchronizeWindow(view3d)[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize window.")
             break
 
-        # Create height map object
+        # 3D 뷰에 높이 맵과 텍스쳐를 로드하여 디스플레이 # Create height map object
         fl3d_ohm = CFL3DObjectHeightMap(arr_image[EType.Model], arr_image[EType.Texture])        
         if (res := view3d.PushObject(fl3d_ohm)).IsFail():
             ErrorPrint(res, "Failed to set image object on the 3D view.")
@@ -100,7 +103,7 @@ def main():
         arr_view_image[EType.Texture].Invalidate(True)
         view3d.Invalidate(True)
 
-		## 3D 뷰와 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until views close
+		# 3D 뷰와 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until views close
         while (arr_view_image[EType.Model].IsAvailable() and
                arr_view_image[EType.Texture].IsAvailable() and
                view3d.IsAvailable()):
