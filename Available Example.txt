@@ -974,6 +974,10 @@
         - An example of an algorithm for applying radial gradation to an image.
         - 이미지에 방사형 그라데이션을 적용하는 알고리즘 예제.
 
+    - RandomImageGenerator 
+        - An example of an algorithm to generate Random values using SHA256 within the region of interest in an image.
+        - 이미지의 관심영역 내에서 SHA256을 이용하여 Random 값을 생성하는 알고리즘 예제.
+
     - ColorSequenceConverter 
       - The example of an algorithm that converts color sequence of an image.
       - 이미지의 컬러 시퀀스를 바꾸는 알고리즘 예제.

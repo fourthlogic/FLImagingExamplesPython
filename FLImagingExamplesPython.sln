@@ -1616,6 +1616,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sobel Filter", "Sobel Filte
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "SobelFilter", "SobelFilter\SobelFilter.pyproj", "{687A2083-686E-4B51-A5C8-7592F66EE770}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RandomImageGenerator", "RandomImageGenerator\RandomImageGenerator.pyproj", "{291C6DC6-48BE-47F9-B1F3-A8D10EFCFCFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2662,6 +2664,8 @@ Global
 		{C9FC48D2-390A-4C53-B3D4-0B2E9A29F8D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{687A2083-686E-4B51-A5C8-7592F66EE770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{687A2083-686E-4B51-A5C8-7592F66EE770}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{291C6DC6-48BE-47F9-B1F3-A8D10EFCFCFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{291C6DC6-48BE-47F9-B1F3-A8D10EFCFCFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3462,6 +3466,7 @@ Global
 		{C9FC48D2-390A-4C53-B3D4-0B2E9A29F8D7} = {B5F56618-B2EF-4B20-AB0D-2B009805B53D}
 		{7D8EB813-48AF-4B34-8EDE-0C01409FC8F6} = {9410ECD0-99BA-4459-8382-3C8F70D23677}
 		{687A2083-686E-4B51-A5C8-7592F66EE770} = {7D8EB813-48AF-4B34-8EDE-0C01409FC8F6}
+		{291C6DC6-48BE-47F9-B1F3-A8D10EFCFCFA} = {949FFFA4-06D4-47FD-BC12-85CDA35AEF70}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
