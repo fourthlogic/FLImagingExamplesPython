@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 import clr
@@ -6,68 +6,195 @@ import sys
 import time
 import random
 
+# Message Receiver는 CFLBase를 상속 받는다. # Message Receiver inherits from CFLBase
+class CMessageReceiver(CFLBase):
+    def __init__(self, view_image):
+        super().__init__()
+        self.m_viewImage = view_image
+        # CBroadcastManager 에 구독 등록
+        # Register subscription to receive messages from CBroadcastManager
+        CBroadcastManager.Subscribe(self, CBroadcastManager.Delegate_OnReceiveBroadcast(self.OnReceiveBroadcast))
+
+    def __del__(self):
+        # 객체가 소멸할때 메세지 수신을 중단하기 위해 구독을 해제한다.
+        # Unsubscribe from CBroadcastManager when object is destroyed to stop receiving messages
+        CBroadcastManager.Unsubscribe(self)
+        
+	# 메세지가 들어오면 호출되는 함수 OnReceiveBroadcast 오버라이드 하여 구현
+    # Override the OnReceiveBroadcast function, which is called when a message arrives
+    def OnReceiveBroadcast(self, message):
+        while True:
+			# message 가 None 인지 확인
+            # Check if message is None
+            if message is None:
+                break
+            
+            # 메세지를 보낸 객체가 등록한 이미지뷰인지 확인
+            # Check if the sender of the message is the registered image view
+            if message.GetCaller() != self.m_viewImage:
+                break
+            
+			# 메세지의 채널을 얻어온다.
+            # Get the channel of the message
+            channel = message.GetChannel()
+            
+			##  채널을 확인 ## Check which channel it is
+            # 이미지 뷰 위에서 마우스가 움직인(MouseMove) 뒤(Post) # After mouse move over image view
+            if channel == int(EGUIBroadcast.ViewImage_PostMouseMove):
+				# message 객체가 CBroadcastMessage_GUI_ViewImage_MouseEvent인지 확인
+                # Verify the message is of type CBroadcastMessage_GUI_ViewImage_MouseEvent
+                msg_mouse_event = message if isinstance(message, CBroadcastMessage_GUI_ViewImage_MouseEvent) else None
+                if msg_mouse_event is None:
+                    break
+
+                # 메세지를 보낸 객체 얻어 오기
+                # Get the sender image view from the message
+                view_image = msg_mouse_event.GetCaller()
+                if view_image is None:
+                    break
+
+                # 이미지뷰의 0번 레이어 가져오기
+                # Get the 0th layer of the image view
+                layer = view_image.GetLayer(0)
+
+                # 기존에 Layer 에 그려진 도형들을 삭제
+                # Clear any existing drawings on the layer
+                layer.Clear()
+
+                # 마우스 좌표를 표시할 문자열 생성
+                # Generate a string indicating the mouse position
+                str_position = f"Move X: {msg_mouse_event.m_i32CursorX}, Y: {msg_mouse_event.m_i32CursorY}"
+                
+				# 아래 함수 DrawTextCanvas는 Screen좌표를 기준으로 문자열을 뷰어에 출력한다.
+                # The function DrawTextCanvas below draws a string on the viewer based on screen coordinates.
+				# 색상 파라미터를 EColor.TRANSPARENCY 로 넣어주면 투명색으로 처리된다.
+                # If the color parameter is EColor.TRANSPARENCY, it will be treated as transparent.
+				# 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 -> 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
+                # Parameter order: layer -> reference coordinate (Figure object) -> string -> font color -> fill color -> font size -> actual size -> angle -> alignment -> font name -> font alpha -> fill alpha -> font thickness -> font italic
+                layer.DrawTextCanvas(CFLPoint[float](10, 10), str_position, EColor.LIME, EColor.BLACK)
+
+                # 이미지뷰를 갱신
+                # Refresh the image view
+                view_image.Invalidate()
+
+            # 이미지 뷰 위에서 마우스의 왼쪽 버튼을 누른(LButtonDown) 뒤(Post)
+            # After left mouse button is pressed on image view
+            elif channel == int(EGUIBroadcast.ViewImage_PostLButtonDown):
+				# message 객체가 CBroadcastMessage_GUI_ViewImage_MouseEvent인지 확인
+                # Verify the message is of type CBroadcastMessage_GUI_ViewImage_MouseEvent
+                msg_mouse_event = message if isinstance(message, CBroadcastMessage_GUI_ViewImage_MouseEvent) else None
+                if msg_mouse_event is None:
+                    break
+                
+                # 메세지를 보낸 객체 얻어 오기
+                # Get the sender image view from the message
+                view_image = msg_mouse_event.GetCaller()
+                if view_image is None:
+                    break
+                
+                # 이미지뷰의 0번 레이어 가져오기
+                # Get the 0th layer of the image view
+                layer = view_image.GetLayer(0)
+
+                # 기존에 Layer 에 그려진 도형들을 삭제
+                # Clear any existing drawings on the layer
+                layer.Clear()
+                
+                # 마우스 좌표를 표시할 문자열 생성
+                # Generate a string indicating the mouse position
+                str_position = f"LButtonDown X: {msg_mouse_event.m_i32CursorX}, Y: {msg_mouse_event.m_i32CursorY}"
+                
+				# 아래 함수 DrawTextCanvas는 Screen좌표를 기준으로 문자열을 뷰어에 출력한다.
+                # Draw the position text to canvas
+				# 색상 파라미터를 EColor.TRANSPARENCY 로 넣어주면 투명색으로 처리된다.
+				# 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 -> 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
+				# Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle -> Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
+                layer.DrawTextCanvas(CFLPoint[float](10, 10), str_position, EColor.RED, EColor.BLACK)
+
+                # 이미지뷰를 갱신
+                # Refresh the image view
+                view_image.Invalidate()
+
+            # 이미지 뷰 위에서 마우스의 왼쪽 버튼을 올린(LButtonUp) 뒤(Post)
+            # After left mouse button is released on image view
+            elif channel == int(EGUIBroadcast.ViewImage_PostLButtonUp):
+				# message 객체가 CBroadcastMessage_GUI_ViewImage_MouseEvent인지 확인
+                # Verify the message is of type CBroadcastMessage_GUI_ViewImage_MouseEvent
+                msg_mouse_event = message if isinstance(message, CBroadcastMessage_GUI_ViewImage_MouseEvent) else None
+                if msg_mouse_event is None:
+                    break
+                
+                # 메세지를 보낸 객체 얻어 오기
+                # Get the sender image view from the message
+                view_image = msg_mouse_event.GetCaller()
+                if view_image is None:
+                    break
+                
+                # 이미지뷰의 0번 레이어 가져오기
+                # Get the 0th layer of the image view
+                layer = view_image.GetLayer(0)
+
+                # 기존에 Layer 에 그려진 도형들을 삭제
+                # Clear any existing drawings on the layer
+                layer.Clear()
+                
+                # 마우스 좌표를 표시할 문자열 생성
+                # Generate a string indicating the mouse position
+                str_position = f"LButtonUp X: {msg_mouse_event.m_i32CursorX}, Y: {msg_mouse_event.m_i32CursorY}"
+                
+				# 아래 함수 DrawTextCanvas는 Screen좌표를 기준으로 문자열을 뷰어에 출력한다.
+                # Draw the position text to canvas
+				# 색상 파라미터를 EColor.TRANSPARENCY 로 넣어주면 투명색으로 처리된다.
+				# 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 -> 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
+				# Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle -> Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
+                layer.DrawTextCanvas(CFLPoint[float](10, 10), str_position, EColor.BLUE, EColor.BLACK)
+
+                # 이미지뷰를 갱신
+                # Refresh the image view
+                view_image.Invalidate()
+
+            break
+
+
 def main():
-    # Declare the graph view
-    viewGraphDark = CGUIViewGraph()
-    viewGraphLight = CGUIViewGraph()
+    # 이미지 뷰 선언 # Declare the image view
+    view_image = [None] * 2
+    view_image[0] = CGUIViewImage()
+    view_image[1] = CGUIViewImage()
 
-    while True:        
-        if (res := viewGraphDark.Create(100, 0, 100 + 440, 340)).IsFail():
-            ErrorPrint(res, "Failed to create the graph view.\n")
-            break
+    # 메세지를 전달 받을 CMessageReceiver 객체 생성 
+    # Create the CMessageReceiver object to receive messages
+    msg_receiver = CMessageReceiver(view_image[0])
 
-        if (res := viewGraphLight.Create(100 + 440 * 1, 0, 100 + 440 * 2, 340)).IsFail():
-            ErrorPrint(res, "Failed to create the graph view.\n")
-            break
+    res = CResult()
 
-        if (res := viewGraphLight.SynchronizeWindow(viewGraphDark)[0]).IsFail():
-            ErrorPrint(res, "Failed to synchronize window.\n")
-            break
+    # 이미지 뷰 생성 # Create the first image view    
+    if (res := view_image[0].Create(300, 0, 300 + 520, 430)).IsFail():
+        ErrorPrint(res, "Failed to create the image view.\n")
+        return
 
-        # Set graph themes
-        viewGraphDark.SetDarkMode()
-        viewGraphLight.SetLightMode()
+    # 이미지 뷰 생성 # Create the second image view
+    if (res := view_image[1].Create(300 + 520, 0, 300 + 520 * 2, 430)).IsFail():
+        ErrorPrint(res, "Failed to create the image view.\n")
+        return
 
-        # Generate 100 random data points
-        i32DataCount = 100
-        arrF64DataX = [0.0] * i32DataCount
-        arrF64DataY = [0.0] * i32DataCount
+    # 뷰의 시점 동기화 # Synchronize the point of view between views
+    if (res := view_image[0].SynchronizePointOfView(view_image[1])[0]).IsFail():
+        ErrorPrint(res, "Failed to synchronize view\n")
+        return
 
-        f64PrevX = 0.0
-        f64PrevY = 0.0
+    # 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+    if (res := view_image[0].SynchronizeWindow(view_image[1])[0]).IsFail():
+        ErrorPrint(res, "Failed to synchronize window\n")
+        return
 
-        for i in range(i32DataCount):
-            arrF64DataX[i] = f64PrevX + (random.randint(0, 99) / 10.0)
-            if random.randint(0, 1) != 0:
-                arrF64DataY[i] = f64PrevY + (random.randint(0, 99) / 10.0)
-            else:
-                arrF64DataY[i] = f64PrevY - (random.randint(0, 99) / 10.0)
-            f64PrevX = arrF64DataX[i]
-            f64PrevY = arrF64DataY[i]
-
-        # Generate random color (equivalent to RGB from 3 bytes)
-        r = random.randint(0, 255)
-        g = random.randint(0, 255)
-        b = random.randint(0, 255)
-        colorValue = (b << 16) | (g << 8) | r
-        eColor = EColor(colorValue, True)
-
-        strName = "Chart"
-
-        # Plot the data
-        viewGraphDark.Plot(arrF64DataX, arrF64DataY, i32DataCount, EChartType.Scatter, eColor, strName)
-        viewGraphLight.Plot(arrF64DataX, arrF64DataY, i32DataCount, EChartType.Scatter, eColor, strName)
-
-        viewGraphDark.ZoomFit()
-        viewGraphLight.ZoomFit()
-
-        while viewGraphDark.IsAvailable() and viewGraphLight.IsAvailable():
-            time.sleep(0.01)
-
-        break
+    # 이미지 뷰가 종료될 때까지 대기
+    # Wait until the first image view is closed
+    while view_image[0].IsAvailable():
+        time.sleep(0.001)
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
