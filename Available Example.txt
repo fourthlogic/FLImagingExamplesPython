@@ -834,6 +834,9 @@
     - InpaintingFastMarchingMethod
       - The example of an algorithm that performs inpainting using Fast Marching Method
       - Fast Marching Method 을 이용하여 인페인팅을 수행하는 알고리즘 예제.
+    - InpaintingNavierStokes
+      - The example of an algorithm that performs inpainting using Navier Stokes Equations
+      - Navier Stokes Equations을 이용하여 인페인팅을 수행하는 알고리즘 예제.
     - InpaintingTexture
       - The example of an algorithm that performs an inpainting by texture propagation and structure propagation.
       - Texture Propagation과 Structure Propagation을 이용하여 인페인팅을 수행하는 알고리즘 예제.
