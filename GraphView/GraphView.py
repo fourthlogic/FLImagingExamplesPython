@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 import tkinter as tk
 from tkinter import ttk, messagebox

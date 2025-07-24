@@ -82,7 +82,7 @@ class ImageViewIntoDialog(tk.Tk):
     def _append_info(self, text):
         self.info_box.config(state="normal") # 편집 가능하게 변경
         self.info_box.delete("1.0", "end")   # 기존 텍스트 삭제
-        self.info_box.insert("end", text + "\n") # 새 텍스트 삽입
+        self.info_box.insert("end", text + "") # 새 텍스트 삽입
         self.info_box.config(state="disabled") # 다시 읽기 전용으로 변경
 
     # Create 버튼 클릭에 대한 이벤트 처리기
@@ -159,4 +159,4 @@ def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
 
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}')

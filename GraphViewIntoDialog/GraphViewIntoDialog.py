@@ -112,7 +112,7 @@ class GraphViewIntoDialog(tk.Tk):
                     strCP = f"{cp.Real}+{cp.Imaginary}i"
                 else:
                     strCP = f"{cp.Real}{cp.Imaginary}i"
-                str_info += strCP + "\n\n"
+                str_info += strCP + "\n"
 
         # 수식 객체 생성 및 그래프에 추가
         exp = CExpression()
@@ -130,7 +130,7 @@ class GraphViewIntoDialog(tk.Tk):
         # 결과 출력
         self.result_box.config(state="normal")
         self.result_box.delete("1.0", "end")
-        self.result_box.insert("end", "[root]\n" + str_info)
+        self.result_box.insert("end", "[root]" + str_info)
         self.result_box.config(state="disabled")
 
     def on_click_button_clear(self):
@@ -152,4 +152,4 @@ def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
 
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}')

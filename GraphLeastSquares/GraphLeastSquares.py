@@ -58,7 +58,7 @@ class FormGraphLeastSquares(tk.Tk):
         self.rich_text_info.pack(pady=(0, 10))
 
     def error_message_box(self, result, msg):
-        err_msg = f"Error code : {result.GetResultCode()}\nError name : {result.GetString()}\n"
+        err_msg = f"Error code : {result.GetResultCode()}\nError name : {result.GetString()}"
         if msg:
             err_msg += msg
         tk.messagebox.showerror("Error", err_msg)
@@ -152,7 +152,7 @@ class FormGraphLeastSquares(tk.Tk):
 
         self.rich_text_info.config(state="normal")
         self.rich_text_info.delete("1.0", "end")
-        self.rich_text_info.insert("end", f"R square value: {r_square}\n")
+        self.rich_text_info.insert("end", f"R square value: {r_square}")
         self.rich_text_info.config(state="disabled")
 
     def click_button_clear(self):
@@ -176,4 +176,4 @@ def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
 
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}')

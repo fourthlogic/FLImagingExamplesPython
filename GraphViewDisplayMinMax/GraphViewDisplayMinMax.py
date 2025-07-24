@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 import clr
@@ -14,24 +14,24 @@ def main():
     
     while True:
         if (res := arrViewGraph[0].Create(100, 0, 100 + 440, 340)).IsFail():
-            ErrorPrint(res, "Failed to create the graph view.\n")
+            ErrorPrint(res, "Failed to create the graph view.")
             break
 
         if (res := arrViewGraph[1].Create(100 + 440 * 1, 0, 100 + 440 * 2, 340)).IsFail():
-            ErrorPrint(res, "Failed to create the graph view.\n")
+            ErrorPrint(res, "Failed to create the graph view.")
             break
 
         if (res := arrViewGraph[2].Create(100 + 440 * 2, 0, 100 + 440 * 3, 340)).IsFail():
-            ErrorPrint(res, "Failed to create the graph view.\n")
+            ErrorPrint(res, "Failed to create the graph view.")
             break
 
         # 윈도우 동기화
         if (res := arrViewGraph[0].SynchronizeWindow(arrViewGraph[1])[0]).IsFail():
-            ErrorPrint(res, "Failed to synchronize window.\n")
+            ErrorPrint(res, "Failed to synchronize window.")
             break
 
         if (res := arrViewGraph[1].SynchronizeWindow(arrViewGraph[2])[0]).IsFail():
-            ErrorPrint(res, "Failed to synchronize window.\n")
+            ErrorPrint(res, "Failed to synchronize window.")
             break
 
         # 차트 3개 생성
@@ -99,12 +99,12 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
 
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}')
 
 
 if __name__ == '__main__':
