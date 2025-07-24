@@ -37,8 +37,8 @@ def main():
     if (res := viewImage.ZoomFit()).IsFail():
         ErrorPrint(res, "Failed to zoom fit")
         return
-
-    # Blob 객체 생성 // Create Blob object
+    
+    # Shape Match 객체 생성 // Create Shape Match object
     shapeMatch = CShapeMatchLine()
     
     # 학습할 선의 길이 설정 // Set the length of the line to learn

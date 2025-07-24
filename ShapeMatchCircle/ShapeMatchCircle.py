@@ -38,7 +38,7 @@ def main():
         ErrorPrint(res, "Failed to zoom fit")
         return
 
-    # Blob 객체 생성 // Create Blob object
+    # Shape Match 객체 생성 // Create Shape Match object
     shapeMatch = CShapeMatchCircle()
     
     # 학습할 원의 반지름 설정 // Set the radius of the circle to learn
