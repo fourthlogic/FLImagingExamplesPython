@@ -112,7 +112,7 @@ class View3DIntoDialog(tk.Tk):
         result = self.m_view3D.GetHeightProfile(flpStart, flpEnd, listF64HP)[0]
         if result.IsOK():
             lines = [f"[{i}] {listF64HP[i]}" for i in range(listF64HP.Count)]
-            self._set_result_text("\n".join(lines))
+            self._set_result_text("".join(lines))
         else:
             self._set_result_text(f"Error code : {result.GetResultCode()}\nError name : {result.GetString()}")
 
@@ -136,4 +136,4 @@ def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
 
-	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}')
