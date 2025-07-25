@@ -6,14 +6,12 @@ from FLImagingClrPy import *
 def main():
 
 	# 3D 뷰 선언 // Declare the 3d view
-	view3DSrc = CGUIView3D();
 	view3DDst = CGUIView3D();
 
 	while True:
 		
 		# 3d 뷰 생성 // Create 3d object view
-		if (res := view3DSrc.Create(0, 0, 612, 512)).IsFail() or \
-			(res := view3DDst.Create(612, 0, 1124, 512)).IsFail():
+		if (res := view3DDst.Create(612, 0, 1124, 512)).IsFail():
 			ErrorPrint(res, "Failed to create 3D views")
 			break
 
