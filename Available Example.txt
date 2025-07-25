@@ -1244,9 +1244,15 @@
     - FormatConverter
       - The algorithm example for converting a pixelformat in an image.
       - 이미지의 포맷을 변환하는 알고리즘 예제.
+    - Paste 
+      - The example of an algorithm that pastes a ROI from a source image to a destination image.
+      - 소스 이미지에서 관심 영역을 대상 이미지에 붙여넣는 알고리즘 예제.
     - Tiling 
       - The example of an algorithm that match the ROI of the source images to the destination ROI.
       - 소스 이미지들의 ROI를 Destination ROI에 Tiling 해주는 알고리즘 예제.
+    - RegionExtractor
+      - Example of an algorithm to extract the intersection of the set Figure and the region of interest from the source image.
+      - 소스 이미지에서 설정된 Figure와 관심 영역의 교집합을 추출하는 알고리즘 예제.
 
 - [Warping]
   
