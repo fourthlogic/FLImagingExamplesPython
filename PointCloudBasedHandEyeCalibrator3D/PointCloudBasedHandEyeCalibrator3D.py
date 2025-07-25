@@ -6,8 +6,7 @@ from System.Collections.Generic import List
 
 # 메인 함수 // Main function
 def main():
-	CLibraryUtilities.Initialize()
-
+	
 	dictEulerString = {
 		EEulerSequence.Extrinsic_XYZ : 'Ext_XYZ',
 		EEulerSequence.Extrinsic_XZY : 'Ext_XZY',

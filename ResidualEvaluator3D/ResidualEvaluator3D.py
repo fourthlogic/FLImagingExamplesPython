@@ -6,8 +6,7 @@ CLibraryUtilities.Initialize()
 
 # 메인 함수 // Main function
 def main():
-	CLibraryUtilities.Initialize()
-
+	
 	# 3D 객체 선언 // Declare 3D object
 	floReferenceObject = CFL3DObject()
 	floTargetObject = CFL3DObject()
