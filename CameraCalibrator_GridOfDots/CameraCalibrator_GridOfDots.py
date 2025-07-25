@@ -2,6 +2,8 @@
 from asyncio.windows_events import NULL
 from FLImagingClrPy import *
 
+CLibraryUtilities.Initialize()
+
 # 에러 출력 함수 // Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:

@@ -3,6 +3,8 @@
 from enum import Enum
 from FLImagingClrPy import *
 
+CLibraryUtilities.Initialize()
+
 # Error 출력 함수 import // Import Error Output Function
 import sys
 import os

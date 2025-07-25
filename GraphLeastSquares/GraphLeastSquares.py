@@ -1,5 +1,7 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
+
+CLibraryUtilities.Initialize()
 from ctypes import windll
 import clr
 import sys

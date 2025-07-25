@@ -1,4 +1,6 @@
 ﻿from FLImagingClrPy import *
+
+CLibraryUtilities.Initialize()
 import sys
 
 # 경고 코드 // Error print function

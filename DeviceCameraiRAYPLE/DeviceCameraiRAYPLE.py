@@ -1,6 +1,8 @@
 ﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+CLibraryUtilities.Initialize()
+
 class CDeviceEventImageEx(CDeviceEventImageBase):
 
 	def __init__(self):

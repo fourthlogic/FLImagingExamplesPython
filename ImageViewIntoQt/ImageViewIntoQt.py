@@ -1,5 +1,7 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
+
+CLibraryUtilities.Initialize()
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout, QFrame, QLabel, QPushButton, QTextEdit
 from PyQt5.QtCore import Qt, QTimer

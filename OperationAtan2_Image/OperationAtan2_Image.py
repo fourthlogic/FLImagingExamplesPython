@@ -1,6 +1,8 @@
 ﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+CLibraryUtilities.Initialize()
+
 # 에러 출력 함수 // Error printing function
 def ErrorPrint(res: CResult, string: str):
     if len(string) > 1:

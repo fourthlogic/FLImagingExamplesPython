@@ -1,6 +1,8 @@
 ﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+CLibraryUtilities.Initialize()
+
 from System.Numerics import Complex
 
 # 메인 함수 // Main function

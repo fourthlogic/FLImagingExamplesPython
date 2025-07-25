@@ -2,6 +2,8 @@
 import random
 from FLImagingClrPy import *
 
+CLibraryUtilities.Initialize()
+
 
 # 메인 함수 // Main function
 def main():

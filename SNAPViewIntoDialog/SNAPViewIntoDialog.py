@@ -1,5 +1,7 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
+
+CLibraryUtilities.Initialize()
 import tkinter as tk
 
 def get_hwnd(widget):
