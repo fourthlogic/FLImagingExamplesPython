@@ -76,7 +76,7 @@ def main():
 			break
 
 
-		# K-Means Cluster Threshold 객체 생성 // Create K-Means Cluster Threshold object
+		# K-means Cluster Threshold 객체 생성 // Create K-means Cluster Threshold object
 		kMeans = CKMeansClusterThreshold()
 
 		# Source 이미지 설정 // Set the source image
@@ -90,7 +90,7 @@ def main():
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := kMeans.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute K-Means Cluster Threshold.')
+			ErrorPrint(res, 'Failed to execute K-means Cluster Threshold.')
 			break
 
 		# Destination 이미지를 Destination2로 설정 // Set destination image to destination2
@@ -101,7 +101,7 @@ def main():
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := kMeans.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute K-Means Cluster Threshold.')
+			ErrorPrint(res, 'Failed to execute K-means Cluster Threshold.')
 			break
 
 		# Destination 이미지를 Destination3로 설정 // Set destination image to destination3
@@ -112,7 +112,7 @@ def main():
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := kMeans.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute K-Means Cluster Threshold.')
+			ErrorPrint(res, 'Failed to execute K-means Cluster Threshold.')
 			break
 		
 		arrLayer = [CGUIViewImageLayer() for i in range(EType.ETypeCount)]
