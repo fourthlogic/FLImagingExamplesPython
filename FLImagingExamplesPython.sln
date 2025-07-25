@@ -1758,6 +1758,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PoissonPointCloudUpsampler3
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "KMeansClusterThreshold", "KMeansClusterThreshold\KMeansClusterThreshold.pyproj", "{A67A4D67-C2D0-42A2-BDF5-259BA41313D7}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Measurement", "Measurement\Measurement.pyproj", "{F85553DA-53DC-481C-8300-F7EC35EF76D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2934,6 +2936,8 @@ Global
 		{F1371DDF-FED7-4A76-99ED-B5094D7AD9A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A67A4D67-C2D0-42A2-BDF5-259BA41313D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A67A4D67-C2D0-42A2-BDF5-259BA41313D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F85553DA-53DC-481C-8300-F7EC35EF76D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F85553DA-53DC-481C-8300-F7EC35EF76D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3804,6 +3808,7 @@ Global
 		{A6C028A6-39A6-4FC6-A368-8E08CEF5FEB8} = {EAF838D2-3CE6-4185-927B-5CA0F07E48A5}
 		{F1371DDF-FED7-4A76-99ED-B5094D7AD9A9} = {EAF838D2-3CE6-4185-927B-5CA0F07E48A5}
 		{A67A4D67-C2D0-42A2-BDF5-259BA41313D7} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
+		{F85553DA-53DC-481C-8300-F7EC35EF76D4} = {A98B7AD3-ADF4-427D-9C96-A72383460893}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
