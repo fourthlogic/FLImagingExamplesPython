@@ -1740,6 +1740,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CameraCalibrator_ChessBoard
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CameraCalibrator_GridOfDots", "CameraCalibrator_GridOfDots\CameraCalibrator_GridOfDots.pyproj", "{FC974ECA-9789-405F-A6F8-0076D51149C3}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OrthogonalCalibrator_ChessBoard", "OrthogonalCalibrator_ChessBoard\OrthogonalCalibrator_ChessBoard.pyproj", "{F401BFE6-A718-4B02-B0D7-F06F2D787969}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OrthogonalCalibrator_GridOfDots", "OrthogonalCalibrator_GridOfDots\OrthogonalCalibrator_GridOfDots.pyproj", "{8F037994-D154-478F-8B10-71A1CD5AC80D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2898,6 +2902,10 @@ Global
 		{5809240D-694B-4392-853A-D575C991AA41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC974ECA-9789-405F-A6F8-0076D51149C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FC974ECA-9789-405F-A6F8-0076D51149C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F401BFE6-A718-4B02-B0D7-F06F2D787969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F401BFE6-A718-4B02-B0D7-F06F2D787969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F037994-D154-478F-8B10-71A1CD5AC80D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F037994-D154-478F-8B10-71A1CD5AC80D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3759,6 +3767,8 @@ Global
 		{B2E10D80-2B5F-4E7C-AAD4-D1AC610C6EC6} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 		{5809240D-694B-4392-853A-D575C991AA41} = {D03E4186-7968-49F2-8FAC-24A2A5313D00}
 		{FC974ECA-9789-405F-A6F8-0076D51149C3} = {D03E4186-7968-49F2-8FAC-24A2A5313D00}
+		{F401BFE6-A718-4B02-B0D7-F06F2D787969} = {4FCCD3C3-792F-4C70-86EC-2EE9208DD9A5}
+		{8F037994-D154-478F-8B10-71A1CD5AC80D} = {4FCCD3C3-792F-4C70-86EC-2EE9208DD9A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
