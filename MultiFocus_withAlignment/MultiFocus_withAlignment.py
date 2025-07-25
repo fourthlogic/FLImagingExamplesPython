@@ -19,7 +19,6 @@ class CMessageReceiver(CFLBase):
 	def __del__(self):
 		# CMessageReceiver destructor
 		# Unsubscribe to stop receiving messages when the object is deleted
-		print("CMessageReceiver is deleted")
 		CBroadcastManager.Unsubscribe(self)
 	
 	def OnReceiveBroadcast(self, message: 'CBroadcastMessage'):
@@ -33,9 +32,7 @@ class CMessageReceiver(CFLBase):
 				break
 
 			# 메세지의 채널을 확인 # Check the channel of the message
-			if message.GetChannel() == EGUIBroadcast.ViewImage_PostPageChange:
-				
-				print("CMessageReceiver page changed")
+			if EGUIBroadcast(message.GetChannel()) == EGUIBroadcast.ViewImage_PostPageChange:
 				# 메세지를 호출한 객체를 CGUIViewImage 로 캐스팅 # Casting the object that called the message as CGUIViewImage
 				viewImage = message.GetCaller()
 				
