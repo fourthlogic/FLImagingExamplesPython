@@ -143,9 +143,6 @@ def main():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		# Destination 이미지 뷰의 Pixel 값을 컬러링하여 볼 수 있도록 설정 // Show Colored Pixel Values on Destination Image Views
-		[arrViewImage[i].EnablePixelSegmentationMode(True) for i in range(1, EType.ETypeCount)]
-
 		# 이미지 뷰를 갱신 // Update image view
 		[arrViewImage[i].Invalidate(True) for i in range(EType.ETypeCount)]
 

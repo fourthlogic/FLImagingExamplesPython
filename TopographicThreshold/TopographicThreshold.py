@@ -127,19 +127,19 @@ def main():
 		# 이미지 뷰 정보 표시 // Display image view information
 		flpPoint = CFLPoint[Double](0, 0)
 
-		if (res := arrLayer[EType.Source].DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := arrLayer[EType.Source].DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		if (res := arrLayer[EType.Destination1].DrawTextCanvas(flpPoint, 'Destination1 Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := arrLayer[EType.Destination1].DrawTextCanvas(flpPoint, 'Destination1 Image\nKernel Size: 5', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		if (res := arrLayer[EType.Destination2].DrawTextCanvas(flpPoint, 'Destination2 Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := arrLayer[EType.Destination2].DrawTextCanvas(flpPoint, 'Destination2 Image\nKernel Size: 7', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		if (res := arrLayer[EType.Destination3].DrawTextCanvas(flpPoint, 'Destination3 Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := arrLayer[EType.Destination3].DrawTextCanvas(flpPoint, 'Destination3 Image\nKernel Size: 9', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
