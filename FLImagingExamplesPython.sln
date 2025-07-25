@@ -1738,6 +1738,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RegionExtractor", "RegionEx
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CameraCalibrator_ChessBoard", "CameraCalibrator_ChessBoard\CameraCalibrator_ChessBoard.pyproj", "{5809240D-694B-4392-853A-D575C991AA41}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CameraCalibrator_GridOfDots", "CameraCalibrator_GridOfDots\CameraCalibrator_GridOfDots.pyproj", "{FC974ECA-9789-405F-A6F8-0076D51149C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2894,6 +2896,8 @@ Global
 		{B2E10D80-2B5F-4E7C-AAD4-D1AC610C6EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5809240D-694B-4392-853A-D575C991AA41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5809240D-694B-4392-853A-D575C991AA41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC974ECA-9789-405F-A6F8-0076D51149C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC974ECA-9789-405F-A6F8-0076D51149C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3754,6 +3758,7 @@ Global
 		{F2FB88D5-2A2A-43D3-9BF6-4757BE176A18} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 		{B2E10D80-2B5F-4E7C-AAD4-D1AC610C6EC6} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 		{5809240D-694B-4392-853A-D575C991AA41} = {D03E4186-7968-49F2-8FAC-24A2A5313D00}
+		{FC974ECA-9789-405F-A6F8-0076D51149C3} = {D03E4186-7968-49F2-8FAC-24A2A5313D00}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
