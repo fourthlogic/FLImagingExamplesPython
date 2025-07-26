@@ -1,8 +1,8 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
-import clr
-import sys
+CLibraryUtilities.Initialize()
+
 import time
 
 def main():
@@ -149,8 +149,12 @@ def main():
         
 		# 3. Zoom Fit 시점의 이미지 얻기 
 		# 3. Get image at Zoom Fit viewpoint
+        # 포인트 클라우드 형태로 디스플레이하도록 토폴로지 설정 # Set topology to display as a point cloud
         pu.SetTopologyType(ETopologyType3D.PointCloud)
+        # 각 포인트의 크기를 5로 설정 # Set the size of each point to 5
         pu.SetPointSize(5.0)
+        # 설정한 이미지 안에 3D 객체가 꽉 차도록 시점 설정 
+        # Adjust the camera view so the 3D object fits entirely within the image
         pu.ZoomFitCamera()
         # 프로젝션 수행 # Perform projection
         res = pu.Execute()
@@ -167,9 +171,12 @@ def main():
         viewImage[2].SetFixThumbnailView(True)
         viewImage[2].ShowImageMiniMap(False)
         viewImage[2].ShowPageIndex(False)
-
+        
+        # 이미지 뷰들이 종료될 때까지 대기
+        # Wait until image views are closed
         while viewImage[0].IsAvailable() and viewImage[1].IsAvailable() and viewImage[2].IsAvailable():
             time.sleep(0.01)
+
         break
 
 
