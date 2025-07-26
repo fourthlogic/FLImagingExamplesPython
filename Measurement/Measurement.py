@@ -5,7 +5,8 @@ CLibraryUtilities.Initialize()
 
 # 메인 함수 // Main function
 def main():
-	
+	CLibraryUtilities.Initialize()
+
 	# 이미지 객체 선언 // Declare image object
 	fliDistortionChessBoard = CFLImage()
 	fliUndistortedChessBoard = CFLImage()
