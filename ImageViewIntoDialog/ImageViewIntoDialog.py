@@ -44,6 +44,7 @@ class ImageViewIntoDialog(tk.Tk):
         # 타이머 시작
         # Start the periodic timer (tick every 100 ms)
         self.after(100, self.timer_tick)
+        self.focus_force()
 
     # 주기적으로 컨트롤들의 활성화 여부를 업데이트하는 타이머 함수
     # Timer function that periodically updates the enable/disable state of controls

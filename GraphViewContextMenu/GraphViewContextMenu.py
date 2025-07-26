@@ -84,6 +84,7 @@ class GraphViewContextMenu(tk.Tk):
 
         self._create_right_controls()
         self.after(100, self.update_button_apply_state)
+        self.focus_force()
 
     def _create_right_controls(self):
         frame = tk.LabelFrame(self.right_panel, text="Context Menu", padx=5, pady=5)

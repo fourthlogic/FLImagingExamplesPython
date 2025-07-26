@@ -44,11 +44,11 @@ class GraphLeastSquaresApp(tk.Tk):
 
         # 그래프 뷰 생성 및 부착  
         # Create and attach the graph view
-        self.dock_graph_view()
+        self.m_viewGraph = CGUIViewGraph()
+        if (result := self.m_viewGraph.CreateAndFitParent(get_hwnd(self.view_frame))).IsFail():
+            print("Failed to crate Graph View")
 
-        # 초기 데이터 생성  
-        # Generate initial data
-        self.click_button_add()
+        self.focus_force()
 
     # 컨트롤 패널 구성 함수  
     # Function to create the control panel UI
@@ -97,15 +97,6 @@ class GraphLeastSquaresApp(tk.Tk):
             err_msg += msg
         tk.messagebox.showerror("Error", err_msg)
 
-    # 그래프 뷰 생성 및 도킹  
-    # Create and dock the graph view into the frame
-    def dock_graph_view(self):
-        hwnd = get_hwnd(self.view_frame)
-        self.m_viewGraph = CGUIViewGraph()
-        result = self.m_viewGraph.CreateAndFitParent(hwnd)
-        if result.IsFail():
-            self.error_message_box(result, "")
-
     # Add 버튼 클릭 핸들러  
     # Event handler for Add button click
     def click_button_add(self):
@@ -152,8 +143,6 @@ class GraphLeastSquaresApp(tk.Tk):
         # 산점도 플롯  
         # Plot scatter chart
         self.m_viewGraph.Plot(arr_x, arr_y, count, EChartType.Scatter, e_color, str_chart_name)
-        self.m_viewGraph.ZoomFit()
-        self.m_viewGraph.Invalidate()
 
         # 차수가 0이면 종료  
         # Abort if degree is zero
@@ -209,6 +198,9 @@ class GraphLeastSquaresApp(tk.Tk):
             exp.SetExpression(equation)
             self.m_viewGraph.Plot(exp, e_color)
             self.m_viewGraph.Invalidate()
+            
+        self.m_viewGraph.ZoomFit()
+        self.m_viewGraph.Invalidate()
 
         # R² 결과 출력  
         # Display R-squared value

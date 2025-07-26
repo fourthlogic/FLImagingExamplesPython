@@ -49,6 +49,7 @@ class GraphViewIntoDialog(tk.Tk):
         # 시작 시 초기 그래프 추가
         # Add default graph on startup
         self.on_click_button_add()
+        self.focus_force()
 
     def _create_right_controls(self):
         # 컨트롤 그룹 프레임 생성

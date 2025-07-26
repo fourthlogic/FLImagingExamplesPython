@@ -50,6 +50,8 @@ class View3DIntoDialog(tk.Tk):
         if result.IsFail():
             print("View3D 로드 실패")
             return
+
+        self.focus_force()
         
     # 높이 프로파일 버튼 이벤트 핸들러 # Event handler for height profile button
     def on_click_height_profile(self):
