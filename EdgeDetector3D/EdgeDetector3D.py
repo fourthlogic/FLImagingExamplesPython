@@ -5,7 +5,6 @@ from System.Collections.Generic import List
 
 # 메인 함수 // Main function
 def main():
-	CLibraryUtilities.Initialize()
 
 	# 3D 객체 선언 // Declare 3D object
 	fl3DODestinationObject = CFL3DObject()

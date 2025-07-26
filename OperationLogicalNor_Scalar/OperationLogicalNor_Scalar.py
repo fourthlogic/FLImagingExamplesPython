@@ -7,8 +7,6 @@ def ErrorPrint(cResult: CResult, msg: str):
     print(f"Error code : {cResult.GetResultCode()}\nError name : {cResult.GetString()}\n")
 
 def main():
-    CLibraryUtilities.Initialize()
-
     # 이미지 객체 선언 // Declare the image object
     fliSourceImage = CFLImage()
     fliDestinationImage = CFLImage()
