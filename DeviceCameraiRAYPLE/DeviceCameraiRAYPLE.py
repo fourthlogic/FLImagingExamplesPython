@@ -1,6 +1,11 @@
 ﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# You must call the following function once
+# before using any features of the FLImaging(R) library
+CLibraryUtilities.Initialize()
+
+
 class CDeviceEventImageEx(CDeviceEventImageBase):
 
 	def __init__(self):

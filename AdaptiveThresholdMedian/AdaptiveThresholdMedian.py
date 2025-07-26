@@ -1,6 +1,11 @@
 ﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
 from FLImagingClrPy import *
 
+# You must call the following function once
+# before using any features of the FLImaging(R) library
+CLibraryUtilities.Initialize()
+
+
 # 메인 함수 // Main function
 def main():
     # 이미지 객체 선언 // Declare the image object

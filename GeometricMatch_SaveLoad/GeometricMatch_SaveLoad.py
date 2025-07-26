@@ -1,5 +1,10 @@
 ﻿from FLImagingClrPy import *
 
+# You must call the following function once
+# before using any features of the FLImaging(R) library
+CLibraryUtilities.Initialize()
+
+
 def ErrorPrint(res: CResult, message: str):
 	if len(message) > 1:
 		print(message)

@@ -1,5 +1,10 @@
 ﻿from FLImagingClrPy import *
 
+# You must call the following function once
+# before using any features of the FLImaging(R) library
+CLibraryUtilities.Initialize()
+
+
 # 에러 출력 함수 정의 // Error print function definition
 def ErrorPrint(res: CResult, msg: str):
     if len(msg) > 1:

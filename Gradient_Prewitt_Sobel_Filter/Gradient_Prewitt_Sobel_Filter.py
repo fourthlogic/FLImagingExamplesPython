@@ -3,6 +3,11 @@
 from enum import Enum
 from FLImagingClrPy import *
 
+# You must call the following function once
+# before using any features of the FLImaging(R) library
+CLibraryUtilities.Initialize()
+
+
 # Error 출력 함수 import // Import Error Output Function
 import sys
 import os
