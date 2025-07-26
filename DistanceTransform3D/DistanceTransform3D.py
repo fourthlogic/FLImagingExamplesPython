@@ -1,7 +1,5 @@
 ﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
 from FLImagingClrPy import *
-
-CLibraryUtilities.Initialize()
 import math
 
 # 메인 함수 // Main function

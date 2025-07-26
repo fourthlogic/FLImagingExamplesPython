@@ -1,8 +1,6 @@
 ﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
 from FLImagingClrPy import *
 
-CLibraryUtilities.Initialize()
-
 # 메인 함수 // Main function
 def main():
     # 이미지 객체 선언 // Declare the image object

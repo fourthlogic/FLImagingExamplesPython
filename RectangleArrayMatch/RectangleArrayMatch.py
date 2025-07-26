@@ -1,7 +1,5 @@
 ﻿from FLImagingClrPy import *
 
-CLibraryUtilities.Initialize()
-
 # 경고 코드 // Error print function
 def ErrorPrint(res: CResult, msg: str):
     if len(msg) > 1:

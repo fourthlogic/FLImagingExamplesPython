@@ -1,7 +1,5 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
-
-CLibraryUtilities.Initialize()
 clr.AddReference("System")
 from System.Text import StringBuilder
 

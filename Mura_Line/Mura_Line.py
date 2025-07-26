@@ -1,6 +1,4 @@
 ﻿from FLImagingClrPy import *
-
-CLibraryUtilities.Initialize()
 from time import sleep
 
 # 에러 출력 함수 // Error printing function

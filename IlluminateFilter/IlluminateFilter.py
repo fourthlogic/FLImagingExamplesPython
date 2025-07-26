@@ -1,8 +1,6 @@
 ﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
 from FLImagingClrPy import *
 
-CLibraryUtilities.Initialize()
-
 class EType(Enum):
 	Source = 0
 	Destination1 = 1

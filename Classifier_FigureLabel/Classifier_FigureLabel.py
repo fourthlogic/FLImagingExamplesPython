@@ -1,8 +1,6 @@
 ﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
 from tokenize import Single
 from FLImagingClrPy import *
-
-CLibraryUtilities.Initialize()
 import threading
 import time
 import msvcrt

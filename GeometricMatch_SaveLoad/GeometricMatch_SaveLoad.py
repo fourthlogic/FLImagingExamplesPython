@@ -1,7 +1,5 @@
 ﻿from FLImagingClrPy import *
 
-CLibraryUtilities.Initialize()
-
 def ErrorPrint(res: CResult, message: str):
 	if len(message) > 1:
 		print(message)
