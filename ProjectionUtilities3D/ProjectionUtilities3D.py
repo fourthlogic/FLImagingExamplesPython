@@ -1,8 +1,6 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
-CLibraryUtilities.Initialize()
-
 import time
 
 def main():
