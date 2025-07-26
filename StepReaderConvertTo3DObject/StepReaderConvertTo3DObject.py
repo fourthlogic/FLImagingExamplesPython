@@ -1,8 +1,6 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
-import clr
-import sys
 import time
 
 def main():
