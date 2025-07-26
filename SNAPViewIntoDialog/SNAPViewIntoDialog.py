@@ -9,6 +9,7 @@ import tkinter as tk
 
 def get_hwnd(widget):
     # 윈도우 핸들 얻기 (Tkinter 내부 식별자를 사용)
+    # Get window handle (using Tkinter internal identifier)
     widget.update_idletasks()
     hwnd = widget.winfo_id()
     return hwnd

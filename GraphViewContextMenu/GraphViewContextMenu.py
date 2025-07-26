@@ -15,9 +15,9 @@ from tkinter import ttk, messagebox
 
 def get_hwnd(widget):
     # 윈도우 핸들 얻기 (Tkinter 내부 식별자를 사용)
+    # Get window handle (using Tkinter internal identifier)
     widget.update_idletasks()
     hwnd = widget.winfo_id()
-    print(f"HWND: {hwnd}")
     return hwnd
 
 class GraphViewContextMenu(tk.Tk):
