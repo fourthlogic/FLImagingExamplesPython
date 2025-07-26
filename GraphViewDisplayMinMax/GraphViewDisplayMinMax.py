@@ -5,9 +5,6 @@ from FLImagingClrPy import *
 # before using any features of the FLImaging(R) library
 CLibraryUtilities.Initialize()
 
-
-import clr
-import sys
 import time
 import random
 
@@ -114,8 +111,8 @@ def main():
             view.ShowCrosshair(False)
             view.ZoomFit()
 
-        # 뷰가 닫힐 때까지 대기
-        # Wait until all views are closed
+        # 하나 이상의 뷰가 닫힐 때까지 대기
+        # Wait until at least one view is closed
         while all(view.IsAvailable() for view in arrViewGraph):
             CThreadUtilities.Sleep(1)
 

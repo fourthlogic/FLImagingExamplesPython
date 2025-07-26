@@ -84,13 +84,19 @@ def main():
 
         view3d.ZoomFit()
 
-        # Get layers and draw text
+        # 이미지뷰에서 레이어를 얻어 온 뒤 텍스트 출력 # Get layers and draw text
         arr_layer = [arr_view_image[i].GetLayer(0) for i in range(2)]
         for layer in arr_layer:
             layer.Clear()
         view3d.GetLayer(0).Clear()
 
-        position = CFLPoint[Double](0, 0)        
+        # 텍스트 출력 위치 # Text coordinates
+        position = CFLPoint[Double](0, 0)    
+        
+		# 아래 함수 DrawTextCanvas는 스크린 좌표를 기준으로 문자열을 뷰어에 출력한다.
+        # The function DrawTextCanvas displays a string on the viewer using screen coordinates.
+		# 파라미터 순서 : 기준 좌표 Figure 객체 -> 문자열 -> 텍스트 색 -> 텍스트 테두리 색 -> 폰트 크기 -> 실제 크기로 출력 유무 -> 각도 -> 정렬 -> 폰트 이름 -> 텍스트 알파값(불투명도) -> 텍스트 테두리 알파값 (불투명도) -> 폰트 두께 -> 폰트 이탤릭 여부
+		# Parameter order: reference coordinate (Figure object) -> text string -> text color -> text outline color -> font size -> render in real-world size (bool) -> angle -> alignment -> font name -> text alpha (opacity) -> text outline alpha (opacity) -> font thickness -> italic font (bool)
         if (res := arr_layer[EType.Model].DrawTextCanvas(position, "Model Image", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
             ErrorPrint(res, "Failed to draw text.")
             break

@@ -5,11 +5,7 @@ from FLImagingClrPy import *
 # before using any features of the FLImaging(R) library
 CLibraryUtilities.Initialize()
 
-
-import clr
-import sys
 import time
-import random
 
 # Message Receiver는 CFLBase를 상속 받는다. # Message Receiver inherits from CFLBase
 class CMessageReceiver(CFLBase):
@@ -70,12 +66,10 @@ class CMessageReceiver(CFLBase):
                 # Generate a string indicating the mouse position
                 str_position = f"Move X: {msg_mouse_event.m_i32CursorX}, Y: {msg_mouse_event.m_i32CursorY}"
                 
-				# 아래 함수 DrawTextCanvas는 Screen좌표를 기준으로 문자열을 뷰어에 출력한다.
-                # The function DrawTextCanvas below draws a string on the viewer based on screen coordinates.
-				# 색상 파라미터를 EColor.TRANSPARENCY 로 넣어주면 투명색으로 처리된다.
-                # If the color parameter is EColor.TRANSPARENCY, it will be treated as transparent.
-				# 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 -> 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
-                # Parameter order: layer -> reference coordinate (Figure object) -> string -> font color -> fill color -> font size -> actual size -> angle -> alignment -> font name -> font alpha -> fill alpha -> font thickness -> font italic
+		        # 아래 함수 DrawTextCanvas는 스크린 좌표를 기준으로 문자열을 뷰어에 출력한다.
+                # The function DrawTextCanvas displays a string on the viewer using screen coordinates.
+		        # 파라미터 순서 : 기준 좌표 Figure 객체 -> 문자열 -> 텍스트 색 -> 텍스트 테두리 색 -> 폰트 크기 -> 실제 크기로 출력 유무 -> 각도 -> 정렬 -> 폰트 이름 -> 텍스트 알파값(불투명도) -> 텍스트 테두리 알파값 (불투명도) -> 폰트 두께 -> 폰트 이탤릭 여부
+		        # Parameter order: reference coordinate (Figure object) -> text string -> text color -> text outline color -> font size -> render in real-world size (bool) -> angle -> alignment -> font name -> text alpha (opacity) -> text outline alpha (opacity) -> font thickness -> italic font (bool)
                 layer.DrawTextCanvas(CFLPoint[float](10, 10), str_position, EColor.LIME, EColor.BLACK)
 
                 # 이미지뷰를 갱신
@@ -109,11 +103,10 @@ class CMessageReceiver(CFLBase):
                 # Generate a string indicating the mouse position
                 str_position = f"LButtonDown X: {msg_mouse_event.m_i32CursorX}, Y: {msg_mouse_event.m_i32CursorY}"
                 
-				# 아래 함수 DrawTextCanvas는 Screen좌표를 기준으로 문자열을 뷰어에 출력한다.
-                # Draw the position text to canvas
-				# 색상 파라미터를 EColor.TRANSPARENCY 로 넣어주면 투명색으로 처리된다.
-				# 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 -> 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
-				# Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle -> Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
+		        # 아래 함수 DrawTextCanvas는 스크린 좌표를 기준으로 문자열을 뷰어에 출력한다.
+                # The function DrawTextCanvas displays a string on the viewer using screen coordinates.
+		        # 파라미터 순서 : 기준 좌표 Figure 객체 -> 문자열 -> 텍스트 색 -> 텍스트 테두리 색 -> 폰트 크기 -> 실제 크기로 출력 유무 -> 각도 -> 정렬 -> 폰트 이름 -> 텍스트 알파값(불투명도) -> 텍스트 테두리 알파값 (불투명도) -> 폰트 두께 -> 폰트 이탤릭 여부
+		        # Parameter order: reference coordinate (Figure object) -> text string -> text color -> text outline color -> font size -> render in real-world size (bool) -> angle -> alignment -> font name -> text alpha (opacity) -> text outline alpha (opacity) -> font thickness -> italic font (bool)
                 layer.DrawTextCanvas(CFLPoint[float](10, 10), str_position, EColor.RED, EColor.BLACK)
 
                 # 이미지뷰를 갱신
@@ -147,11 +140,10 @@ class CMessageReceiver(CFLBase):
                 # Generate a string indicating the mouse position
                 str_position = f"LButtonUp X: {msg_mouse_event.m_i32CursorX}, Y: {msg_mouse_event.m_i32CursorY}"
                 
-				# 아래 함수 DrawTextCanvas는 Screen좌표를 기준으로 문자열을 뷰어에 출력한다.
-                # Draw the position text to canvas
-				# 색상 파라미터를 EColor.TRANSPARENCY 로 넣어주면 투명색으로 처리된다.
-				# 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 -> 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
-				# Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle -> Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
+		        # 아래 함수 DrawTextCanvas는 스크린 좌표를 기준으로 문자열을 뷰어에 출력한다.
+                # The function DrawTextCanvas displays a string on the viewer using screen coordinates.
+		        # 파라미터 순서 : 기준 좌표 Figure 객체 -> 문자열 -> 텍스트 색 -> 텍스트 테두리 색 -> 폰트 크기 -> 실제 크기로 출력 유무 -> 각도 -> 정렬 -> 폰트 이름 -> 텍스트 알파값(불투명도) -> 텍스트 테두리 알파값 (불투명도) -> 폰트 두께 -> 폰트 이탤릭 여부
+		        # Parameter order: reference coordinate (Figure object) -> text string -> text color -> text outline color -> font size -> render in real-world size (bool) -> angle -> alignment -> font name -> text alpha (opacity) -> text outline alpha (opacity) -> font thickness -> italic font (bool)
                 layer.DrawTextCanvas(CFLPoint[float](10, 10), str_position, EColor.BLUE, EColor.BLACK)
 
                 # 이미지뷰를 갱신

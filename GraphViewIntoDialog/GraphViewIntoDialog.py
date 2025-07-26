@@ -5,9 +5,6 @@ from FLImagingClrPy import *
 # before using any features of the FLImaging(R) library
 CLibraryUtilities.Initialize()
 
-from ctypes import windll
-import clr
-import sys
 import time
 import random
 import tkinter as tk

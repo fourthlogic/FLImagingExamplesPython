@@ -9,10 +9,10 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 import random
 
-class FormGraphView(tk.Tk):
+class GraphViewerApp(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Form Graph View")
+        self.title("Graph View")
         self.geometry("420x221")
         self.resizable(False, False)
 
@@ -124,9 +124,11 @@ class FormGraphView(tk.Tk):
         if self.m_viewGraph.IsAvailable(): 
             return
         
+		# Graph 뷰 생성 # Create graph view
         if (res := self.m_viewGraph.Create(0, 0, 500, 500)).IsFail(): 
             self.ErrorMessageBox(res, "")
-
+            
+		# Graph 뷰의 스케일을 조정 # Sets the scales of the graph view.
         self.m_viewGraph.ZoomFit()
 
     def click_button_terminate_view(self):
@@ -135,6 +137,7 @@ class FormGraphView(tk.Tk):
         if not self.m_viewGraph.IsAvailable(): 
             return
         
+		# Graph 뷰 종료 # Terminate the graph view
         if (res := self.m_viewGraph.Destroy()).IsFail(): 
             self.ErrorMessageBox(res, "")
 
@@ -144,7 +147,11 @@ class FormGraphView(tk.Tk):
         if not self.m_viewGraph.IsAvailable(): 
             return
         self.lock_controls(True)
+
+        # 그래프 로드(파일 열기 다이얼로그 팝업)
+        # Load graph (opens file dialog)
         self.m_viewGraph.Load("", EViewGraphLoadOption(int(EViewGraphLoadOption.Load) | int(EViewGraphLoadOption.OpenDialog), True))
+
         self.lock_controls(False)
 
     def click_button_save_graph(self):
@@ -155,7 +162,11 @@ class FormGraphView(tk.Tk):
         if not self.m_viewGraph.DoesGraphExist(): 
             return
         self.lock_controls(True)
+
+        # 그래프 저장(파일 저장 다이얼로그 팝업)
+        # Save graph (opens file save dialog)
         self.m_viewGraph.Save()
+
         self.lock_controls(False)
 
     def click_button_chart_add(self):
@@ -164,38 +175,42 @@ class FormGraphView(tk.Tk):
         if not self.m_viewGraph.IsAvailable(): 
             return
 
-        # Chart Name
+        # 차트 이름 # Chart Name
         strChartName = self.textboxName.get()
         if strChartName == "":
             strChartName = "Chart"
 
-        # Chart Type
+        # 차트 유형 # Chart Type
         eChartType = EChartType(self.comboBoxChartType.current() + 1, True)
 
-        # Data Count
+        # 데이터 개수 # Data Count
         i32DataCount = 30
 
-        # Data Array
+        # 랜덤 값으로 데이터 배열 채우기 # Fill the data array with random values
         dataX = [float(random.randint(0, 99)) for _ in range(i32DataCount)]
         dataY = [float(random.randint(0, 99)) for _ in range(i32DataCount)]
         arrF64DataX1 = Array[Double](dataX)
         arrF64DataY1 = Array[Double](dataY)
 
-        # Chart Color
+        # 차트 색상 # Chart Color
         eColor = EColor((random.randint(0, 255)) | (random.randint(0, 255) << 8) | (random.randint(0, 255) << 16), True)
 
-        # Plot
+        # 차트를 디스플레이 # Plot the chart on the graph view
         self.m_viewGraph.Plot(arrF64DataX1, arrF64DataY1, i32DataCount, eChartType, eColor, strChartName)
+
+        # 그래프 뷰 갱신 # Refresh the graph view
         self.m_viewGraph.Invalidate()
+
 
     def click_button_chart_clear(self):
         if not self.m_viewGraph.IsAvailable():
             return
-        # 차트 클리어 처리
+        # 그래프 뷰의 차트들을 모두 클리어
         # Clear the graph view
         self.m_viewGraph.Clear()
         self.m_viewGraph.Invalidate()
 
+
 if __name__ == "__main__":
-    app = FormGraphView()
+    app = GraphViewerApp()
     app.mainloop()

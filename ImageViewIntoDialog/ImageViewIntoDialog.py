@@ -7,10 +7,6 @@ CLibraryUtilities.Initialize()
 
 import tkinter as tk
 from tkinter import messagebox
-from ctypes import windll
-import clr
-import ctypes
-import sys
 import time
 
 def get_hwnd(widget):
@@ -82,14 +78,6 @@ class ImageViewIntoDialog(tk.Tk):
         self.info_box = tk.Text(self.right_panel, height=15, width=18, wrap="word", state="disabled")
         self.info_box.place(x=7, y=140, width=140, height=300)
 
-    # info_box에 문자열을 출력하는 함수
-    # Function to display text in the info_box
-    def _append_info(self, text):
-        self.info_box.config(state="normal") # 편집 가능하게 변경
-        self.info_box.delete("1.0", "end")   # 기존 텍스트 삭제
-        self.info_box.insert("end", text + "") # 새 텍스트 삽입
-        self.info_box.config(state="disabled") # 다시 읽기 전용으로 변경
-
     # Create 버튼 클릭에 대한 이벤트 처리기
     # Event handler for Create button click
     def on_create_button_click(self):
@@ -151,7 +139,15 @@ class ImageViewIntoDialog(tk.Tk):
                 
         # info_box에 문자열을 출력
         # Display text in the info_box
-        _append_info(strFigureInfo)
+        self._append_info(strFigureInfo)
+        
+    # info_box에 문자열을 출력하는 함수
+    # Function to display text in the info_box
+    def _append_info(self, text):
+        self.info_box.config(state="normal") # 편집 가능하게 변경
+        self.info_box.delete("1.0", "end")   # 기존 텍스트 삭제
+        self.info_box.insert("end", text + "") # 새 텍스트 삽입
+        self.info_box.config(state="disabled") # 다시 읽기 전용으로 변경
 
 
 if __name__ == "__main__":

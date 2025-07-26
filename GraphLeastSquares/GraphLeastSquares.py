@@ -5,9 +5,6 @@ from FLImagingClrPy import *
 # before using any features of the FLImaging(R) library
 CLibraryUtilities.Initialize()
 
-from ctypes import windll
-import clr
-import sys
 import time
 import random
 import tkinter as tk
@@ -20,10 +17,10 @@ def get_hwnd(widget):
     hwnd = widget.winfo_id()
     return hwnd
 
-class FormGraphLeastSquares(tk.Tk):
+class GraphLeastSquaresApp(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Form Graph Least Squares")
+        self.title("Graph Least Squares")
         self.geometry("800x500")
 
         # 그래프 뷰 영역 프레임 생성 및 배치  
@@ -237,7 +234,7 @@ class FormGraphLeastSquares(tk.Tk):
 
 
 if __name__ == "__main__":
-    app = FormGraphLeastSquares()
+    app = GraphLeastSquaresApp()
     app.mainloop()
 
 # 에러 출력 함수 # Error printing function

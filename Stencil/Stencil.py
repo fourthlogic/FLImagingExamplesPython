@@ -8,9 +8,6 @@ CLibraryUtilities.Initialize()
 clr.AddReference("System")
 from System.Text import StringBuilder
 
-import clr
-import sys
-
 def main():
     viewImage = CGUIViewImage()
     res = CResult()
@@ -95,7 +92,7 @@ def main():
         # Draw the figure on the layer so it is visible
         layer.DrawFigureImage(flfaRes, EColor.BLACK, 1, EColor.YELLOW)
 
-        # 이제 로드된 폰트들 중 또다른 폰트인 Cambria를 선택
+        # 로드된 폰트들 중 또다른 폰트인 Cambria를 선택
         # Select another font (Cambria) from the loaded fonts
         if (res := stencil.SelectFont("Cambria")).IsFail():
             ErrorPrint(res, "Failed to select font : Cambria.")

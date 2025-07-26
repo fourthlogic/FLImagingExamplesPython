@@ -9,10 +9,10 @@ CLibraryUtilities.Initialize()
 import tkinter as tk
 from tkinter import ttk, scrolledtext
 
-class FormImageView(tk.Tk):
+class ImageViewerApp(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Form Image View")
+        self.title("Image View")
         self.geometry("404x246")
 
         # 컨트롤 잠금 상태
@@ -300,5 +300,5 @@ class FormImageView(tk.Tk):
         self.richTextBoxInfo.config(state="disabled")
 
 if __name__ == "__main__":
-    app = FormImageView()
+    app = ImageViewerApp()
     app.mainloop()

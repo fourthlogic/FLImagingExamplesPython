@@ -5,9 +5,6 @@ from FLImagingClrPy import *
 # before using any features of the FLImaging(R) library
 CLibraryUtilities.Initialize()
 
-
-import clr
-import sys
 import time
 import random
 
@@ -80,7 +77,7 @@ def main():
         viewGraphLight.SetLightMode()
         
 		# 그래프 뷰가 종료될 때 까지 기다림
-        # Wait until the Graph views are closed before exiting
+        # Wait until the Graph views are closed
         while viewGraphDark.IsAvailable() and viewGraphLight.IsAvailable():
             time.sleep(0.01)
 
