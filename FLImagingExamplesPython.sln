@@ -1776,6 +1776,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Trigger", "Trigger", "{3E73
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DeviceTriggerAxl", "DeviceTriggerAxl\DeviceTriggerAxl.pyproj", "{1205B0D5-BDC8-4843-90F2-26EF68C45F4B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sensor", "Sensor", "{F13892E2-1722-440D-956C-3502AC4FF174}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DeviceLaserDisplacementSensorKeyence", "DeviceLaserDisplacementSensorKeyence\DeviceLaserDisplacementSensorKeyence.pyproj", "{10CF016C-8C6A-4E17-86EE-1C8EEF288758}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2964,6 +2968,8 @@ Global
 		{23060A00-D495-4040-8777-09264F7D0444}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1205B0D5-BDC8-4843-90F2-26EF68C45F4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1205B0D5-BDC8-4843-90F2-26EF68C45F4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10CF016C-8C6A-4E17-86EE-1C8EEF288758}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10CF016C-8C6A-4E17-86EE-1C8EEF288758}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3843,6 +3849,8 @@ Global
 		{23060A00-D495-4040-8777-09264F7D0444} = {330DE15B-7187-458D-951B-C5FE06C9FB50}
 		{3E739708-672D-4D87-851C-E33FA992D20C} = {0A6FD58E-98F6-45B7-96C2-9C420AAB6DE5}
 		{1205B0D5-BDC8-4843-90F2-26EF68C45F4B} = {3E739708-672D-4D87-851C-E33FA992D20C}
+		{F13892E2-1722-440D-956C-3502AC4FF174} = {0A6FD58E-98F6-45B7-96C2-9C420AAB6DE5}
+		{10CF016C-8C6A-4E17-86EE-1C8EEF288758} = {F13892E2-1722-440D-956C-3502AC4FF174}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}

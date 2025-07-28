@@ -84,53 +84,53 @@ def main():
 			i32Select = int(strInput)
 
 			if i32Select == 1:
-				eEncoderMethod = CDeviceTriggerAxl.EEncoderMethod.UpDownSqr1;
-				break;
+				eEncoderMethod = CDeviceTriggerAxl.EEncoderMethod.UpDownSqr1
+				break
 			elif i32Select == 2:
-				eEncoderMethod = CDeviceTriggerAxl.EEncoderMethod.UpDownSqr2;
-				break;
+				eEncoderMethod = CDeviceTriggerAxl.EEncoderMethod.UpDownSqr2
+				break
 			elif i32Select == 3:
-				eEncoderMethod = CDeviceTriggerAxl.EEncoderMethod.ABPhaseSqr1;
-				break;
+				eEncoderMethod = CDeviceTriggerAxl.EEncoderMethod.ABPhaseSqr1
+				break
 			elif i32Select == 4:
-				eEncoderMethod = CDeviceTriggerAxl.EEncoderMethod.ABPhaseSqr2;
-				break;
+				eEncoderMethod = CDeviceTriggerAxl.EEncoderMethod.ABPhaseSqr2
+				break
 			elif i32Select == 5:
-				eEncoderMethod = CDeviceTriggerAxl.EEncoderMethod.ABPhaseSqr4;
-				break;
+				eEncoderMethod = CDeviceTriggerAxl.EEncoderMethod.ABPhaseSqr4
+				break
 			elif i32Select == 6:
-				eEncoderMethod = CDeviceTriggerAxl.EEncoderMethod.PulseDirSqr1;
-				break;
+				eEncoderMethod = CDeviceTriggerAxl.EEncoderMethod.PulseDirSqr1
+				break
 			elif i32Select == 7:
-				eEncoderMethod = CDeviceTriggerAxl.EEncoderMethod.PulseDirSqr2;
-				break;
+				eEncoderMethod = CDeviceTriggerAxl.EEncoderMethod.PulseDirSqr2
+				break
 
-			print("Incorrect input. Please select again.\n");
+			print("Incorrect input. Please select again.\n")
 
 		# 엔코더 방식을 설정합니다. // Sets the encoder method.
 		if((res := devTrigger.SetEncoderMethod(i32Channel, eEncoderMethod)).IsFail()):
-			ErrorPrint(res, "Failed to set encoder method.");
-			break;
+			ErrorPrint(res, "Failed to set encoder method.")
+			break
 
 		# 트리거 모드를 설정합니다. // Sets the trigger mode.
 		if((res := devTrigger.SetTriggerMode(i32Channel, CDeviceTriggerAxl.ETriggerMode.Position)).IsFail()):
-			ErrorPrint(res, "Failed to set trigger mode.");
-			break;
+			ErrorPrint(res, "Failed to set trigger mode.")
+			break
 
 		while True:
 
 			# 트리거를 비활성화 합니다. // Disable the trigger.
 			if((res := devTrigger.SetTriggerEnable(i32Channel, False)).IsFail()):
-				ErrorPrint(res, "Failed to set trigger enable.");
-				break;
+				ErrorPrint(res, "Failed to set trigger enable.")
+				break
 
 			# 엔코더 포지션을 0 으로 설정합니다. // Set the encoder position to 0.
 			if((res := devTrigger.SetEncoderPosition(i32Channel, 0)).IsFail()):
-				ErrorPrint(res, "Failed to set encoder position.");
-				break;
+				ErrorPrint(res, "Failed to set encoder position.")
+				break
 
 			# 포지션 값을 입력합니다. // Enter a position value.
-			print("");
+			print("")
 			strInput = input("Enter trigger position(10, 20, 30, ...): ")
 
 			# 포지션 값을 담기위해 List 생성 // Create List to hold position values
@@ -143,30 +143,30 @@ def main():
 				if item == "\n":
 					break
 
-				listPosition.Add(float(item));
+				listPosition.Add(float(item))
 
 			# 트리거 포지션을 설정합니다. // Sets the trigger position.
 			if((res := devTrigger.SetTriggerPosition(i32Channel, listPosition)).IsFail()):
-				ErrorPrint(res, "Failed to set trigger position.");
-				break;
+				ErrorPrint(res, "Failed to set trigger position.")
+				break
 
 			# 트리거를 활성화 합니다. // Enables the trigger.
 			if((res := devTrigger.SetTriggerEnable(i32Channel, True)).IsFail()):
-				ErrorPrint(res, "Failed to set trigger enable.");
-				break;
+				ErrorPrint(res, "Failed to set trigger enable.")
+				break
 
-			print("\n");
-			print("0. Reset the trigger position\n");
-			print("Other. Exit\n");
-			strInput = input("Enter: ");
+			print("")
+			print("0. Reset the trigger position")
+			print("Other. Exit")
+			strInput = input("Enter: ")
 
 			if strInput != "0":
-				break;
+				break
 
 		break
 	
 	# Trigger 장치의 초기화를 해제합니다. // Terminate the Trigger device.
-	devTrigger.Terminate();
+	devTrigger.Terminate()
 
 	# End of main function
 

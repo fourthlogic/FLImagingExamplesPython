@@ -474,6 +474,12 @@
 	  - Example of connecting and operating Multicam.
       - Multicam 연결 및 구동하는 예제.
 
+  - [Sensor]
+
+    - DeviceLaserDisplacementSensorKeyence
+      - Example of connecting and operating Keyence Laser Displacement Sensor.
+      - Keyence 레이저 변위 센서 연결 및 구동하는 예제. 
+
   - [Trigger]
 
     - DeviceTriggerAxl
