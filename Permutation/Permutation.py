@@ -11,7 +11,7 @@ CLibraryUtilities.Initialize()
 def main():
 
     # 순열 객체 선언 // Declare permutation object
-    P = CPermutation()
+    permutation = CPermutation()
 
     while True:
         flstrResult = ""
@@ -67,15 +67,15 @@ def main():
                 break
 
             # nPk, n 개에서 k 개를 선택하는 순열 // nPk, a permutation of selecting k objects from n objects
-            P.SetMax(n)
-            P.SetSelection(k)
+            permutation.SetMax(n)
+            permutation.SetSelection(k)
 
             # 순열을 계산 // Calculate the permutation
-            P.Calculate()
+            permutation.Calculate()
             
             listPermutation = List[List[Int32]]()
             # 순열 결과값 얻기 // Get permutation result
-            if (res := P.GetResult(listPermutation)[0]).IsFail():
+            if (res := permutation.GetResult(listPermutation)[0]).IsFail():
                flstrResult = "Failed to get permutation result.\n"
                break
 

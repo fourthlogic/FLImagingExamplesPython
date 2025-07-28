@@ -10,12 +10,12 @@ CLibraryUtilities.Initialize()
 # 메인 함수 // Main function
 def main():
     # 조합 객체 선언 // Declare a combination object
-    C = CCombination()
+    combination = CCombination()
 
     while True:
         flstrResult = ""
 
-        while True: # do-while loop in C# is typically a while True with a break
+        while True:
             print("Please input n and k as n, k.")
             print("Combination : k objects are selected from a set of n objects to produce subsets with no ordering.")
             print("ex) 6, 2")
@@ -54,18 +54,18 @@ def main():
             # 입력값 유효성 검사 // Input validation
             if k <= 0 or n <= 0 or n < k or nCount < 2:
                 flstrResult = "\nCount : 0"
-                break # break from inner while loop
+                break
 
             # nCk, n 개에서 k 개를 선택하는 조합 // nCk, a combination of selecting k objects from n objects
-            C.SetMax(n)
-            C.SetSelection(k)
+            combination.SetMax(n)
+            combination.SetSelection(k)
 
             # 조합을 계산 // Calculate combinations
-            C.Calculate()
+            combination.Calculate()
             
             listCombination = List[List[Int32]]()
             # 조합 결과값 얻기 // Get combination result
-            if (res := C.GetResult(listCombination)[0]).IsFail():
+            if (res := combination.GetResult(listCombination)[0]).IsFail():
                 flstrResult = f"\nFailed to get combination result: {res.GetString()}"
                 break
 
