@@ -80,55 +80,55 @@ def main():
 		flrROI = CFLRect[int](200, 200, 500, 500)
 
 		# 객체 생성 // Create object
-		BinomialFilter = CBinomialFilter()
+		binomialFilter = CBinomialFilter()
 
 		# Source 이미지 설정 // Set the source image
-		BinomialFilter.SetSourceImage(arrFliImage[EType.Source])
+		binomialFilter.SetSourceImage(arrFliImage[EType.Source])
 
 		# Source ROI 설정 // Set the Source ROI
-		BinomialFilter.SetSourceROI(flrROI)
+		binomialFilter.SetSourceROI(flrROI)
 
 		# Destination1 이미지 설정 // Set the destination image
-		BinomialFilter.SetDestinationImage(arrFliImage[EType.Destination1])
+		binomialFilter.SetDestinationImage(arrFliImage[EType.Destination1])
 
 		# kernel 크기 설정 // Set Kernel Size
-		BinomialFilter.SetKernel(3)
+		binomialFilter.SetKernel(3)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := BinomialFilter.Execute()).IsFail():
+		if (res := binomialFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# Destination2 이미지 설정 // Set the destination image
-		BinomialFilter.SetDestinationImage(arrFliImage[EType.Destination2])
+		binomialFilter.SetDestinationImage(arrFliImage[EType.Destination2])
 
 		# kernel 크기 설정 // Set Kernel Size
-		BinomialFilter.SetKernel(5)
+		binomialFilter.SetKernel(5)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := BinomialFilter.Execute()).IsFail():
+		if (res := binomialFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# Destination3 이미지 설정 // Set the destination image
-		BinomialFilter.SetDestinationImage(arrFliImage[EType.Destination3])
+		binomialFilter.SetDestinationImage(arrFliImage[EType.Destination3])
 
 		# kernel 크기 설정 // Set Kernel Size
-		BinomialFilter.SetKernel(7)
+		binomialFilter.SetKernel(7)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := BinomialFilter.Execute()).IsFail():
+		if (res := binomialFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# Destination4 이미지 설정 // Set the destination image
-		BinomialFilter.SetDestinationImage(arrFliImage[EType.Destination4])
+		binomialFilter.SetDestinationImage(arrFliImage[EType.Destination4])
 
 		# kernel 크기 설정 // Set Kernel Size
-		BinomialFilter.SetKernel(15)
+		binomialFilter.SetKernel(15)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := BinomialFilter.Execute()).IsFail():
+		if (res := binomialFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
