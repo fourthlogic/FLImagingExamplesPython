@@ -6,9 +6,6 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-import threading
-
-
 class CDeviceEventImageEx(CDeviceEventImageBase):
 
 	def __init__(self):
