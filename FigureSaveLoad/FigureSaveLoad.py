@@ -24,11 +24,11 @@ def main():
             break
 
         # SourceView, DstView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, DstView
-        SrcLayer0 = viewImage[0].GetLayer(0)
-        DstLayer0 = viewImage[1].GetLayer(0)
+        layerSrc = viewImage[0].GetLayer(0)
+        layerDst = viewImage[1].GetLayer(0)
 
-        SrcLayer0.DrawTextCanvas(CFLPoint[Double](0, 0), "Figure To Save", EColor.YELLOW, EColor.BLACK, 15)
-        DstLayer0.DrawTextCanvas(CFLPoint[Double](0, 0), "Loaded Figure", EColor.YELLOW, EColor.BLACK, 15)
+        layerSrc.DrawTextCanvas(CFLPoint[Double](0, 0), "Figure To Save", EColor.YELLOW, EColor.BLACK, 15)
+        layerDst.DrawTextCanvas(CFLPoint[Double](0, 0), "Loaded Figure", EColor.YELLOW, EColor.BLACK, 15)
 
         # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
         if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
@@ -62,8 +62,8 @@ def main():
         print(f"{strFigure}")
 
         # SourceView의 0번 레이어에 그리기 // Draw on Layer 0 of SourceView
-        SrcLayer0.DrawFigureImage(flr, EColor.RED)
-        SrcLayer0.DrawFigureImage(flfa, EColor.BLUE)
+        layerSrc.DrawFigureImage(flr, EColor.RED)
+        layerSrc.DrawFigureImage(flfa, EColor.BLUE)
 
         # 경로 없이 파일명만 넣고 저장하는 것도 가능 // It is also possible to put only the file name without path and save it
         if (res := flr.Save("FLRect.fig")).IsFail():
@@ -111,8 +111,8 @@ def main():
         print(f"{strFigure}")
 
         # DestinationView의 0번 레이어에 그리기 // Draw on Layer 0 of DestinationView
-        DstLayer0.DrawFigureImage(flrLoad, EColor.MAGENTA)
-        DstLayer0.DrawFigureImage(flfaLoad, EColor.LIME)
+        layerDst.DrawFigureImage(flrLoad, EColor.MAGENTA)
+        layerDst.DrawFigureImage(flfaLoad, EColor.LIME)
 
         # 이미지 뷰를 갱신 합니다. // Update image view
         viewImage[0].Invalidate(True)

@@ -33,15 +33,15 @@ def main():
             break
 
         # SourceView, DstView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, DstView
-        Src1Layer0 = viewImage[0].GetLayer(0)
-        Dst1Layer0 = viewImage[1].GetLayer(0)
-        Src2Layer0 = viewImage[2].GetLayer(0)
-        Dst2Layer0 = viewImage[3].GetLayer(0)
+        layerSrc1 = viewImage[0].GetLayer(0)
+        layerDst1 = viewImage[1].GetLayer(0)
+        layerSrc2 = viewImage[2].GetLayer(0)
+        layerDst2 = viewImage[3].GetLayer(0)
 
-        Src1Layer0.DrawTextCanvas(CFLPoint[Double](0, 0), "Source Figure 1", EColor.YELLOW, EColor.BLACK, 15)
-        Src2Layer0.DrawTextCanvas(CFLPoint[Double](0, 0), "Source Figure 2", EColor.YELLOW, EColor.BLACK, 15)
-        Dst1Layer0.DrawTextCanvas(CFLPoint[Double](0, 0), "Result Figure 1", EColor.YELLOW, EColor.BLACK, 15)
-        Dst2Layer0.DrawTextCanvas(CFLPoint[Double](0, 0), "Result Figure 2", EColor.YELLOW, EColor.BLACK, 15)
+        layerSrc1.DrawTextCanvas(CFLPoint[Double](0, 0), "Source Figure 1", EColor.YELLOW, EColor.BLACK, 15)
+        layerSrc2.DrawTextCanvas(CFLPoint[Double](0, 0), "Source Figure 2", EColor.YELLOW, EColor.BLACK, 15)
+        layerDst1.DrawTextCanvas(CFLPoint[Double](0, 0), "Result Figure 1", EColor.YELLOW, EColor.BLACK, 15)
+        layerDst2.DrawTextCanvas(CFLPoint[Double](0, 0), "Result Figure 2", EColor.YELLOW, EColor.BLACK, 15)
 
         # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
         if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
@@ -223,7 +223,7 @@ def main():
         strExpression1 = "area > 400 and center.y < 160 or vertexcount = 3"
 
         # 조건식을 View에 표기 // Draw the conditional expression in the View
-        Dst1Layer0.DrawTextCanvas(CFLPoint[Double](0, 20), strExpression1, EColor.YELLOW, EColor.BLACK, 13)
+        layerDst1.DrawTextCanvas(CFLPoint[Double](0, 20), strExpression1, EColor.YELLOW, EColor.BLACK, 13)
 
         # 조건식을 만족하는 Figure를 flfaResult1에 추출 // Extract the figure that satisfies the conditional expression to flfaResult1
         flfaResult1 = CFLFigureArray()
@@ -238,7 +238,7 @@ def main():
         strExpression2 = "area >= mean('area')"
 
         # 조건식을 View에 표기 // Draw the conditional expression in the View
-        Dst2Layer0.DrawTextCanvas(CFLPoint[Double](0, 20), strExpression2, EColor.YELLOW, EColor.BLACK, 13)
+        layerDst2.DrawTextCanvas(CFLPoint[Double](0, 20), strExpression2, EColor.YELLOW, EColor.BLACK, 13)
 
         # 조건식을 만족하는 Figure를 flfaResult2에 추출 // Get the figure that satisfies the conditional expression to flfaResult2
         flfaResult2 = CFLFigureArray()
@@ -250,16 +250,16 @@ def main():
             break
 
         # SourceView의 0번 레이어에 Source Figure 그리기 // Draw the Source Figure on Layer 0 of the SourceView
-        Src1Layer0.DrawFigureImage(flfaSource1, EColor.CYAN)
-        Src2Layer0.DrawFigureImage(flfaSource2, EColor.CYAN)
+        layerSrc1.DrawFigureImage(flfaSource1, EColor.CYAN)
+        layerSrc2.DrawFigureImage(flfaSource2, EColor.CYAN)
 
         # DstView1의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView1
-        Dst1Layer0.DrawFigureImage(flfaSource1, EColor.CYAN)
-        Dst1Layer0.DrawFigureImage(flfaResult1, EColor.LIME, 3, EColor.LIME, EGUIViewImagePenStyle.Solid, 1, 0.2)
+        layerDst1.DrawFigureImage(flfaSource1, EColor.CYAN)
+        layerDst1.DrawFigureImage(flfaResult1, EColor.LIME, 3, EColor.LIME, EGUIViewImagePenStyle.Solid, 1, 0.2)
 
         # DstView2의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView2
-        Dst2Layer0.DrawFigureImage(flfaSource2, EColor.CYAN)
-        Dst2Layer0.DrawFigureImage(flfaResult2, EColor.LIME, 3, EColor.LIME, EGUIViewImagePenStyle.Solid, 1, 0.2)
+        layerDst2.DrawFigureImage(flfaSource2, EColor.CYAN)
+        layerDst2.DrawFigureImage(flfaResult2, EColor.LIME, 3, EColor.LIME, EGUIViewImagePenStyle.Solid, 1, 0.2)
 
         # Console 출력 // Console output
         print("Source1 Figure Array\n")

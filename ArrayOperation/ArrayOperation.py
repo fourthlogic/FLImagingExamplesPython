@@ -48,7 +48,7 @@ def main():
             break
 
         # SourceView, DstView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, DstView
-        ViewLayer = [viewImage[i].GetLayer(0) for i in range(i32ViewCount)]
+        layerView = [viewImage[i].GetLayer(0) for i in range(i32ViewCount)]
 
         # Figure 생성 // Create figure
         flr = CFLRect[Double](50, 50, 100, 100, 15)
@@ -73,7 +73,7 @@ def main():
 
         # Figure 그리기 // Draw Figure
         for i in range(flfa.GetCount()):
-            ViewLayer[i].DrawFigureImage(flfa, EColor.LIME)
+            layerView[i].DrawFigureImage(flfa, EColor.LIME)
 
         ################################ GetCenterElementwise()
         # 중심점 좌표를 담을 FigureArray 생성 // Create a FigureArray to hold the coordinates of the center point
@@ -87,8 +87,8 @@ def main():
             break
 
         # 중심들을 View0의 0번 레이어에 그리기 // Draw the centers on layer 0 of View0
-        ViewLayer[0].DrawFigureImage(flfaCenter, EColor.RED)
-        ViewLayer[0].DrawTextCanvas(CFLPoint[Double](0, 0), "GetCenterElementwise() Result", EColor.YELLOW, EColor.BLACK, 15)
+        layerView[0].DrawFigureImage(flfaCenter, EColor.RED)
+        layerView[0].DrawTextCanvas(CFLPoint[Double](0, 0), "GetCenterElementwise() Result", EColor.YELLOW, EColor.BLACK, 15)
 
         # 콘솔에 중심 좌표 표시 // Print center coordinates in console
         print("Center Point\n")
@@ -114,9 +114,9 @@ def main():
         # Figure Array 각 요소의 둘레 표시 // Display perimeter of each element of Figure Array
         for i in range(flfaPerimeter.GetCount()):
             strPerimeter = f"{CFLScalar[Double](flfaPerimeter.GetAt(i)).v}"
-            ViewLayer[1].DrawTextImage(flfaCenter.GetAt(i), strPerimeter, EColor.BLACK)
+            layerView[1].DrawTextImage(flfaCenter.GetAt(i), strPerimeter, EColor.BLACK)
 
-        ViewLayer[1].DrawTextCanvas(CFLPoint[Double](0, 0), "GetPerimeterElementwise() Result", EColor.YELLOW, EColor.BLACK, 15)
+        layerView[1].DrawTextCanvas(CFLPoint[Double](0, 0), "GetPerimeterElementwise() Result", EColor.YELLOW, EColor.BLACK, 15)
 
         # 콘솔에 길이 표시 // Display the length in the console
         print("Perimeter\n")
@@ -140,8 +140,8 @@ def main():
             break
 
         # 무게중심들을 View0의 0번 레이어에 그리기 // Draw the centers of gravity on Layer 0 of View0
-        ViewLayer[2].DrawFigureImage(flfaCenterOfGravity, EColor.CYAN)
-        ViewLayer[2].DrawTextCanvas(CFLPoint[Double](0, 0), "GetCenterOfGravityElementwise() Result", EColor.YELLOW, EColor.BLACK, 15)
+        layerView[2].DrawFigureImage(flfaCenterOfGravity, EColor.CYAN)
+        layerView[2].DrawTextCanvas(CFLPoint[Double](0, 0), "GetCenterOfGravityElementwise() Result", EColor.YELLOW, EColor.BLACK, 15)
 
         # 콘솔에 무게중심 좌표 표시 // Display barycentric coordinates in console
         print("Center Of Gravity Point\n")
@@ -165,8 +165,8 @@ def main():
             break
 
         # 최소둘레 직사각형들을 View0의 0번 레이어에 그리기 // Draw the minimum enclosing rectangle on Layer 0 of View0
-        ViewLayer[3].DrawFigureImage(flfaMER, EColor.BLUE)
-        ViewLayer[3].DrawTextCanvas(CFLPoint[Double](0, 0), "GetMinimumEnclosingRectangleElementwise() Result", EColor.YELLOW, EColor.BLACK, 15)
+        layerView[3].DrawFigureImage(flfaMER, EColor.BLUE)
+        layerView[3].DrawTextCanvas(CFLPoint[Double](0, 0), "GetMinimumEnclosingRectangleElementwise() Result", EColor.YELLOW, EColor.BLACK, 15)
 
         # 콘솔에 최소둘레 직사각형을 표시 // Display the minimum enclosing rectangle in console
         print("Minimum Enclosing Rectangle\n")
