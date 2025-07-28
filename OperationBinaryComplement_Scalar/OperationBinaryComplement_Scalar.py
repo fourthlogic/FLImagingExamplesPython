@@ -62,7 +62,7 @@ def main():
 		bc.SetOperationSource(EOperationSource.Scalar);
 		
 		# 곱할 스칼라 값 지정 # Set the Scalar multiplier
-		mvScalar = CMultiVar[Double](1);
+		mvScalar = CMultiVar[UInt64](1);
 		bc.SetScalarValue(mvScalar);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
