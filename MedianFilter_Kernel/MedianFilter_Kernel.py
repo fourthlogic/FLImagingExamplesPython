@@ -48,8 +48,6 @@ def main():
 
 		# Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the source image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		
-
 		if (res := viewImageSrc.SetImagePtr(fliSourceImage))[0].IsFail():
 			ErrorPrint(res[0], 'Failed to set image object on the image view.')
 			break
@@ -67,27 +65,27 @@ def main():
 			break
 
 		# Median  Filter 객체 생성 // Create Median  Filter object
-		filterMedianSeparate = CMedianFilter()
+		median = CMedianFilter()
 
 		# Source 이미지 설정 // Set the source image
-		filterMedianSeparate.SetSourceImage(fliDestinationImage)
+		median.SetSourceImage(fliDestinationImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		filterMedianSeparate.SetDestinationImage(fliDestinationImage)
+		median.SetDestinationImage(fliDestinationImage)
 		
 		# ROI 설정을 위한 CFLRect 객체 생성 // Create a CFLRect object for setting ROI
 		flrROI = CFLRect[Int32](100, 190, 360, 420);
 
 		# Source ROI 설정 // Set the source roi
-		filterMedianSeparate.SetSourceROI(flrROI)
+		median.SetSourceROI(flrROI)
 		
-		# 처리할 filterMedianSeparate의 Kernel Size 설정 (KernelSize = 11 일 경우, Kernel Size : 11x11, 홀수만 설정가능)
-		filterMedianSeparate.SetKernelShape(EKernelShape.Circle);
-		filterMedianSeparate.SetKernel(11);
+		# 처리할 median의 Kernel Size 설정 (KernelSize = 11 일 경우, Kernel Size : 11x11, 홀수만 설정가능)
+		median.SetKernelShape(EKernelShape.Circle);
+		median.SetKernel(11);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := filterMedianSeparate.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Median .')
+		if (res := median.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute Median.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display

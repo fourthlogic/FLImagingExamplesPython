@@ -70,7 +70,7 @@ def main():
 			ErrorPrint(res[0], 'Failed to synchronize window.')
 			break
 
-		# Morphology Dilate 객체 생성 // Create Morphology Dilate object
+		# Denoising 객체 생성 // Create Denoising object
 		medianWeighted = CMedianWeightedFilter()
 
 		# Source 이미지 설정 // Set the source image
@@ -88,13 +88,13 @@ def main():
 		# Weighted Method 설정 // Set Weighted Method
 		filterMedianWeighted.SetWeightedMethod(CMedianWeightedFilter.EWeightedMethod.Gauss)
 		
-		# 처리할 Morphology Kernel 의 (95, 75, 100, 80, 45.000000) 설정 // Set Morphology Kernel to L(95, 75, 100, 80, 45.000000)
+		# 처리할 Denoising Kernel 의 (95, 75, 100, 80, 45.000000) 설정 // Set Denoising Kernel to L(95, 75, 100, 80, 45.000000)
 		flrRegion = CFLRect[Int32](95, 75, 100, 80, 45.000000);
 		medianWeighted.SetKernel(flrRegion);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := medianWeighted.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Morphology Dilate.')
+			ErrorPrint(res, 'Failed to execute Denoising.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
