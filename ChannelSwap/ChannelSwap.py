@@ -73,20 +73,20 @@ def main():
 			break
 
 		# Channel Swap 객체 생성 # Create Channel Swap object
-		ChannelSwap = CChannelSwap()
+		channelSwap = CChannelSwap()
 
 		# Source 이미지 설정 # Set the source image
-		ChannelSwap.SetSourceImage(fliSourceImage)
+		channelSwap.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		ChannelSwap.SetDestinationImage(fliDestinationImage)
+		channelSwap.SetDestinationImage(fliDestinationImage)
 
 		# 교환할 채널 인덱스 설정 # Set channel indexes to swap
-		ChannelSwap.SetSwapChannelFrom(EChannelSelection.Channel_0)
-		ChannelSwap.SetSwapChannelTo(EChannelSelection.Channel_1)
+		channelSwap.SetSwapChannelFrom(EChannelSelection.Channel_0)
+		channelSwap.SetSwapChannelTo(EChannelSelection.Channel_1)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := ChannelSwap.Execute()).IsFail():
+		if (res := channelSwap.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Channel Swap.')
 			break
 

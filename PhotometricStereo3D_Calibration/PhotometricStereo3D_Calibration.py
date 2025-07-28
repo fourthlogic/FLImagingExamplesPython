@@ -111,38 +111,38 @@ def main():
 			break
 
 		# Photometric Stereo 3D 객체 생성 # Create Photometric Stereo 3D object
-		photometric = CPhotometricStereo3D()
+		photometricStereo = CPhotometricStereo3D()
 		
 		# Calibration 이미지 설정 # Set the calibration image
-		photometric.SetCalibrationImage(fliCalibrationImage)
+		photometricStereo.SetCalibrationImage(fliCalibrationImage)
 
 		# Calibration 데이터 설정 # Set Calibration Settings
 		cFLCircle = CFLCircle[Double](386.439657, 346.491239, 259.998140, 0.000000, 0.000000, 360.000000, EArcClosingMethod.EachOther)
 
-		photometric.SetCalibrationCircleROI(cFLCircle)
+		photometricStereo.SetCalibrationCircleROI(cFLCircle)
 
 		# Source 이미지 설정 # Set source image
-		photometric.SetSourceImage(fliSourceImage)
+		photometricStereo.SetSourceImage(fliSourceImage)
 		
 		# Destination 이미지 설정 # Set destination image
-		photometric.SetDestinationHeightMapImage(fliDestinationImage)
+		photometricStereo.SetDestinationHeightMapImage(fliDestinationImage)
 		
 		# Texture 이미지 설정 # Set texture image
-		photometric.SetDestinationTextureImage(fliTextureImage)
+		photometricStereo.SetDestinationTextureImage(fliTextureImage)
 		
 		# 동작 방식 설정 # Set Operation Mode
-		photometric.SetReconstructionMode(CPhotometricStereo3D.EReconstructionMode.Poisson_FP32)
+		photometricStereo.SetReconstructionMode(CPhotometricStereo3D.EReconstructionMode.Poisson_FP32)
 
 		# Valid 픽셀의 기준 설정 # Set valid pixel ratio
-		photometric.SetValidPixelThreshold(0.125)
+		photometricStereo.SetValidPixelThreshold(0.125)
 		
 		# Angle Degrees 동작 방식으로 설정 # Set operation method as angle degrees
 		cMatTemp = CMatrix[Double](3, 3)
 
-		photometric.SetLightAngleDegrees(cMatTemp)
+		photometricStereo.SetLightAngleDegrees(cMatTemp)
 		
 		# 앞서 설정된 파라미터 대로 Calibration 수행 # Calibrate algorithm according to previously set parameters
-		if (res := photometric.Calibrate()).IsFail():
+		if (res := photometricStereo.Calibrate()).IsFail():
 			ErrorPrint(res, 'Failed to calibrate Photometric Stereo 3D.')
 			break
 
@@ -150,20 +150,20 @@ def main():
 		cMulVarSlant = CMultiVar[Double]()
 		cMulVarTilt = CMultiVar[Double]()
 
-		res, cMulVarSlant, cMulVarTilt = photometric.GetLightAngleDegrees(cMulVarSlant, cMulVarTilt)
+		res, cMulVarSlant, cMulVarTilt = photometricStereo.GetLightAngleDegrees(cMulVarSlant, cMulVarTilt)
 
 		# 위치 데이터 동작 방식으로 설정 # Set operation method as positions
-		photometric.SetLightPositions(cMatTemp)
+		photometricStereo.SetLightPositions(cMatTemp)
 		
 		# 앞서 설정된 파라미터 대로 Calibration 수행 # Calibrate algorithm according to previously set parameters
-		if (res := photometric.Calibrate()).IsFail():
+		if (res := photometricStereo.Calibrate()).IsFail():
 			ErrorPrint(res, 'Failed to calibrate Photometric Stereo 3D.')
 			break
 
 		# Calibrate 된 위치 데이터 저장 # Save calibrated position data
 		cMatdPosition = CMatrix[Double]()
 
-		photometric.GetLightPositions(cMatdPosition)
+		photometricStereo.GetLightPositions(cMatdPosition)
 
 		# Calibrate를 실행한 결과를 Console창에 출력합니다. # Output the calibration result to the console window.
 		i32CalibPageNum = fliCalibrationImage.GetPageCount()
@@ -183,7 +183,7 @@ def main():
 			print(f"Image {i} ->\tX: {cMatdPosition.GetValue(i, 0):.5}\tY: {cMatdPosition.GetValue(i, 1):.5} \tZ: {cMatdPosition.GetValue(i, 2):.5}")
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := photometric.Execute()).IsFail():
+		if (res := photometricStereo.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Photometric Stereo 3D.')
 			break
 

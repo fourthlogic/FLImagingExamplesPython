@@ -66,22 +66,22 @@ def main():
 			break
 
 		# Photometric Stereo 3D 객체 생성 # Create Photometric Stereo 3D object
-		photometric = CPhotometricStereo3D()
+		photometricStereo = CPhotometricStereo3D()
 		
 		# Source 이미지 설정 # Set source image
-		photometric.SetSourceImage(fliSourceImage)
+		photometricStereo.SetSourceImage(fliSourceImage)
 		
 		# Destination 이미지 설정 # Set destination image
-		photometric.SetDestinationHeightMapImage(fliDestinationImage)
+		photometricStereo.SetDestinationHeightMapImage(fliDestinationImage)
 		
 		# Texture 이미지 설정 # Set texture image
-		photometric.SetDestinationTextureImage(fliTextureImage)
+		photometricStereo.SetDestinationTextureImage(fliTextureImage)
 		
 		# 동작 방식 설정 # Set Operation Mode
-		photometric.SetReconstructionMode(CPhotometricStereo3D.EReconstructionMode.Poisson_FP32)
+		photometricStereo.SetReconstructionMode(CPhotometricStereo3D.EReconstructionMode.Poisson_FP32)
 
 		# Valid 픽셀의 기준 설정 # Set valid pixel ratio
-		photometric.SetValidPixelThreshold(0.125)
+		photometricStereo.SetValidPixelThreshold(0.125)
 		
 		# 각 이미지의 광원 Slant 값 입력
 		mvdSlant = CMultiVar[Double]()
@@ -131,11 +131,11 @@ def main():
 		mvdTilt.PushBack(13.056294)
 		mvdTilt.PushBack(-5.976723)
 
-		photometric.SetLightAngleDegrees(mvdSlant, mvdTilt)
+		photometricStereo.SetLightAngleDegrees(mvdSlant, mvdTilt)
 
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := photometric.Execute()).IsFail():
+		if (res := photometricStereo.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Photometric Stereo 3D.')
 			break
 
