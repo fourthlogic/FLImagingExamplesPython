@@ -2,15 +2,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{a6c028a6-39a6-4fc6-a368-8e08cef5feb8}</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
-    <StartupFile>UniformPointCloudUpsampler3D.py</StartupFile>
+    <ProjectGuid>{f1371ddf-fed7-4a76-99ed-b5094d7ad9a9}</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>PointCloudUpsamplerPoisson3D.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>UniformPointCloudUpsampler3D</Name>
-    <RootNamespace>UniformPointCloudUpsampler3D</RootNamespace>
+    <Name>PointCloudUpsamplerPoisson3D</Name>
+    <RootNamespace>PointCloudUpsamplerPoisson3D</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="UniformPointCloudUpsampler3D.py" />
+    <Compile Include="PointCloudUpsamplerPoisson3D.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

@@ -1752,9 +1752,9 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GridOfRectangleDetector", "
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "View3DIntoDialog", "View3DIntoDialog\View3DIntoDialog.pyproj", "{AAE8BFF6-2B70-4167-A33E-74C32671E332}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "UniformPointCloudUpsampler3D", "UniformPointCloudUpsampler3D\UniformPointCloudUpsampler3D.pyproj", "{A6C028A6-39A6-4FC6-A368-8E08CEF5FEB8}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PointCloudUpsamplerUniform3D", "UniformPointCloudUpsampler3D\PointCloudUpsamplerUniform3D.pyproj", "{A6C028A6-39A6-4FC6-A368-8E08CEF5FEB8}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PoissonPointCloudUpsampler3D", "PoissonPointCloudUpsampler3D\PoissonPointCloudUpsampler3D.pyproj", "{F1371DDF-FED7-4A76-99ED-B5094D7AD9A9}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PointCloudUpsamplerPoisson3D", "PoissonPointCloudUpsampler3D\PointCloudUpsamplerPoisson3D.pyproj", "{F1371DDF-FED7-4A76-99ED-B5094D7AD9A9}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "KMeansClusterThreshold", "KMeansClusterThreshold\KMeansClusterThreshold.pyproj", "{A67A4D67-C2D0-42A2-BDF5-259BA41313D7}"
 EndProject
