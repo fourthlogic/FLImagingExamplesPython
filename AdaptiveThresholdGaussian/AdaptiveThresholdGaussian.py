@@ -21,7 +21,7 @@ def main():
 	fliDstImage = CFLImage()
 
     # 이미지 뷰 선언 // Declare the image view
-	viewImage = [CGUIViewImage(), CGUIViewImage()]
+	arrViewImage = [CGUIViewImage(), CGUIViewImage()]
 
 	while True:
 		# 이미지 로드 // Load image
@@ -31,35 +31,35 @@ def main():
 			break
 		
 		# 이미지 뷰 생성 // Create image view
-		if (res := viewImage[0].Create(300, 0, 300 + 520, 430)).IsFail() :
+		if (res := arrViewImage[0].Create(300, 0, 300 + 520, 430)).IsFail() :
 			ErrorPrint(res, "Failed to create the image view.\n")
 			break
 		
-		if (res := viewImage[1].Create(300 + 520, 0, 300 + 520 * 2, 430)).IsFail() :
+		if (res := arrViewImage[1].Create(300 + 520, 0, 300 + 520 * 2, 430)).IsFail() :
 			ErrorPrint(res, "Failed to create the image view.\n")
 			break
 
 		# 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views. 
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail() :
+		if (res := arrViewImage[0].SynchronizePointOfView(arrViewImage[1])[0]).IsFail() :
 			ErrorPrint(res, "Failed to synchronize view\n")
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImage[0].SynchronizeWindow(viewImage[1])[0]).IsFail() :
+		if (res := arrViewImage[0].SynchronizeWindow(arrViewImage[1])[0]).IsFail() :
 			ErrorPrint(res, "Failed to synchronize window\n")
 			break
 
 		# 이미지 뷰에 이미지를 디스플레이 // Display the image in the image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImage[0].SetImagePtr(fliSrcImage)[0]).IsFail() :
+		if (res := arrViewImage[0].SetImagePtr(fliSrcImage)[0]).IsFail() :
 			ErrorPrint(res, "Failed to set image object on the image view.\n")
 			break
 		
 		# 이미지 뷰에 이미지를 디스플레이 // Display the image in the image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImage[1].SetImagePtr(fliDstImage)[0]).IsFail() :
+		if (res := arrViewImage[1].SetImagePtr(fliDstImage)[0]).IsFail() :
 			ErrorPrint(res, "Failed to set image object on the image view.\n")
 			break
 
@@ -85,8 +85,8 @@ def main():
 
 		# 출력을 위한 이미지 레이어를 얻어옵니다. //  Gets the image layer for output.
 		# 따로 해제할 필요 없음 // No need to release separately
-		layer1 = viewImage[0].GetLayer(0)
-		layer2 = viewImage[1].GetLayer(0)
+		layer1 = arrViewImage[0].GetLayer(0)
+		layer2 = arrViewImage[1].GetLayer(0)
 		flpTemp = CFLPoint[Double](0, 0)
 
 		# View 정보를 디스플레이 합니다. // Display View information.
@@ -97,11 +97,11 @@ def main():
 			ErrorPrint(res, "Failed to draw text.\n")
 
 		# 이미지 뷰를 갱신 합니다. // Update the image view.
-		viewImage[0].Invalidate(True)
-		viewImage[1].Invalidate(True)
+		arrViewImage[0].Invalidate(True)
+		arrViewImage[1].Invalidate(True)
 
 		# 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
-		while(viewImage[0].IsAvailable() and viewImage[0].IsAvailable()) :
+		while(arrViewImage[0].IsAvailable() and arrViewImage[0].IsAvailable()) :
 			CThreadUtilities.Sleep(1)        
 
 		break
