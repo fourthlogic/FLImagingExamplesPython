@@ -60,19 +60,19 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		OutFocusDeblurring = COutFocusDeblurring()
+		outFocusDeblurring = COutFocusDeblurring()
 
 		# Source 이미지 설정 // Set the source image
-		OutFocusDeblurring.SetSourceImage(arrFliImage[0])
+		outFocusDeblurring.SetSourceImage(arrFliImage[0])
 
 		# Destination 이미지 설정 // Set the destination image
-		OutFocusDeblurring.SetDestinationImage(arrFliImage[1])
+		outFocusDeblurring.SetDestinationImage(arrFliImage[1])
 
 		# Mode 설정 // Set Mode
-		OutFocusDeblurring.EnableWithEstimation(True)
+		outFocusDeblurring.EnableWithEstimation(True)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := OutFocusDeblurring.Execute()).IsFail():
+		if (res := outFocusDeblurring.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

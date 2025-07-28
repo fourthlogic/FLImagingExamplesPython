@@ -64,25 +64,25 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		TotalVariationDenoising = CTotalVariationDenoising()
+		totalVariationDenoising = CTotalVariationDenoising()
 
 		# Source 이미지 설정 // Set the source image
-		TotalVariationDenoising.SetSourceImage(fliSourceImage)
+		totalVariationDenoising.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		TotalVariationDenoising.SetDestinationImage(fliDestinationImage)
+		totalVariationDenoising.SetDestinationImage(fliDestinationImage)
 
 		# 모델 설정 // Set the Model Type
-		TotalVariationDenoising.SetModelType(CTotalVariationDenoising.EModelType.Anisotropic)
+		totalVariationDenoising.SetModelType(CTotalVariationDenoising.EModelType.Anisotropic)
 
 		# Lambda 설정 // Set the Lambda
-		TotalVariationDenoising.SetLambda(0.1)
+		totalVariationDenoising.SetLambda(0.1)
 
 		# 연산 반복 횟수 설정 // Set the Iteration
-		TotalVariationDenoising.SetIteration(3)
+		totalVariationDenoising.SetIteration(3)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := TotalVariationDenoising.Execute()).IsFail():
+		if (res := totalVariationDenoising.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

@@ -60,16 +60,16 @@ def main():
 			break
 		
 		# 객체 생성 // Create object
-		SineH = COperationSineH()
+		sineH = COperationSineH()
 
 		# Source 이미지 설정 // Set source image
-		SineH.SetSourceImage(fliSourceImage);
+		sineH.SetSourceImage(fliSourceImage);
 
 		# Destination 이미지 설정 // Set destination image
-		SineH.SetDestinationImage(fliDestinationImage);
+		sineH.SetDestinationImage(fliDestinationImage);
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := SineH.Execute()).IsFail():
+		if (res := sineH.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

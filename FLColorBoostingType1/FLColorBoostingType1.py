@@ -65,19 +65,19 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		FLColorBoostingType1 = CFLColorBoostingType1()
+		flColorBoostingType1 = CFLColorBoostingType1()
 
 		# Source 이미지 설정 // Set the source image
-		FLColorBoostingType1.SetSourceImage(fliSourceImage)
+		flColorBoostingType1.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		FLColorBoostingType1.SetDestinationImage(fliDestinationImage)
+		flColorBoostingType1.SetDestinationImage(fliDestinationImage)
 
 		# Factor 설정 // Set Factor
-		FLColorBoostingType1.SetFactor(3)
+		flColorBoostingType1.SetFactor(3)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := FLColorBoostingType1.Execute()).IsFail():
+		if (res := flColorBoostingType1.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

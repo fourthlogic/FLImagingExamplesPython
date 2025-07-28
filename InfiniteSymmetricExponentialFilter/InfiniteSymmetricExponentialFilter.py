@@ -80,55 +80,55 @@ def main():
 		flrROI = CFLRect[int](200, 200, 500, 500)
 
 		# 객체 생성 // Create object
-		InfiniteSymmetricExponentialFilter = CInfiniteSymmetricExponentialFilter()
+		infiniteSymmetricExponentialFilter = CInfiniteSymmetricExponentialFilter()
 
 		# Source 이미지 설정 // Set the source image
-		InfiniteSymmetricExponentialFilter.SetSourceImage(arrFliImage[EType.Source])
+		infiniteSymmetricExponentialFilter.SetSourceImage(arrFliImage[EType.Source])
 
 		# Source ROI 설정 // Set the Source ROI
-		InfiniteSymmetricExponentialFilter.SetSourceROI(flrROI)
+		infiniteSymmetricExponentialFilter.SetSourceROI(flrROI)
 
 		# Destination1 이미지 설정 // Set the destination image
-		InfiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType.Destination1])
+		infiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType.Destination1])
 
 		# PValue 값 설정 // Set the PValue value
-		InfiniteSymmetricExponentialFilter.SetPValue(0.3)
+		infiniteSymmetricExponentialFilter.SetPValue(0.3)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := InfiniteSymmetricExponentialFilter.Execute()).IsFail():
+		if (res := infiniteSymmetricExponentialFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# Destination2 이미지 설정 // Set the destination image
-		InfiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType.Destination2])
+		infiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType.Destination2])
 
 		# PValue 값 설정 // Set the PValue value
-		InfiniteSymmetricExponentialFilter.SetPValue(0.6)
+		infiniteSymmetricExponentialFilter.SetPValue(0.6)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := InfiniteSymmetricExponentialFilter.Execute()).IsFail():
+		if (res := infiniteSymmetricExponentialFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# Destination3 이미지 설정 // Set the destination image
-		InfiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType.Destination3])
+		infiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType.Destination3])
 
 		# PValue 값 설정 // Set the PValue value
-		InfiniteSymmetricExponentialFilter.SetPValue(0.9)
+		infiniteSymmetricExponentialFilter.SetPValue(0.9)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := InfiniteSymmetricExponentialFilter.Execute()).IsFail():
+		if (res := infiniteSymmetricExponentialFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# Destination4 이미지 설정 // Set the destination image
-		InfiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType.Destination4])
+		infiniteSymmetricExponentialFilter.SetDestinationImage(arrFliImage[EType.Destination4])
 
 		# PValue 값 설정 // Set the PValue value
-		InfiniteSymmetricExponentialFilter.SetPValue(1.5)
+		infiniteSymmetricExponentialFilter.SetPValue(1.5)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := InfiniteSymmetricExponentialFilter.Execute()).IsFail():
+		if (res := infiniteSymmetricExponentialFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

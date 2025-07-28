@@ -80,67 +80,67 @@ def main():
 		flrROI = CFLRect[int](200, 200, 500, 500)
 
 		# 객체 생성 // Create object
-		GaussFilter = CGaussFilter()
+		gaussFilter = CGaussFilter()
 
 		# Source 이미지 설정 // Set the source image
-		GaussFilter.SetSourceImage(arrFliImage[EType.Source])
+		gaussFilter.SetSourceImage(arrFliImage[EType.Source])
 
 		# Source ROI 설정 // Set the Source ROI
-		GaussFilter.SetSourceROI(flrROI)
+		gaussFilter.SetSourceROI(flrROI)
 
 		# Destination1 이미지 설정 // Set the destination image
-		GaussFilter.SetDestinationImage(arrFliImage[EType.Destination1])
+		gaussFilter.SetDestinationImage(arrFliImage[EType.Destination1])
 
 		# Sigma 값 설정 // Set the sigma value
-		GaussFilter.SetSigma(0.5)
+		gaussFilter.SetSigma(0.5)
 
 		# kernel 크기 설정 // Set Kernel Size
-		GaussFilter.SetKernel(3)
+		gaussFilter.SetKernel(3)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := GaussFilter.Execute()).IsFail():
+		if (res := gaussFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# Destination2 이미지 설정 // Set the destination image
-		GaussFilter.SetDestinationImage(arrFliImage[EType.Destination2])
+		gaussFilter.SetDestinationImage(arrFliImage[EType.Destination2])
 
 		# Sigma 값 설정 // Set the sigma value
-		GaussFilter.SetSigma(1)
+		gaussFilter.SetSigma(1)
 
 		# kernel 크기 설정 // Set Kernel Size
-		GaussFilter.SetKernel(7)
+		gaussFilter.SetKernel(7)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := GaussFilter.Execute()).IsFail():
+		if (res := gaussFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# Destination3 이미지 설정 // Set the destination image
-		GaussFilter.SetDestinationImage(arrFliImage[EType.Destination3])
+		gaussFilter.SetDestinationImage(arrFliImage[EType.Destination3])
 
 		# Sigma 값 설정 // Set the sigma value
-		GaussFilter.SetSigma(3)
+		gaussFilter.SetSigma(3)
 
 		# kernel 크기 설정 // Set Kernel Size
-		GaussFilter.SetKernel(19)
+		gaussFilter.SetKernel(19)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := GaussFilter.Execute()).IsFail():
+		if (res := gaussFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# Destination4 이미지 설정 // Set the destination image
-		GaussFilter.SetDestinationImage(arrFliImage[EType.Destination4])
+		gaussFilter.SetDestinationImage(arrFliImage[EType.Destination4])
 
 		# Sigma 값 설정 // Set the sigma value
-		GaussFilter.SetSigma(5)
+		gaussFilter.SetSigma(5)
 
 		# kernel 크기 설정 // Set Kernel Size
-		GaussFilter.SetKernel(31)
+		gaussFilter.SetKernel(31)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := GaussFilter.Execute()).IsFail():
+		if (res := gaussFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

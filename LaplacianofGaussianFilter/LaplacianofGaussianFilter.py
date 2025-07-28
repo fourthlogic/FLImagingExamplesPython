@@ -80,55 +80,55 @@ def main():
 		flrROI = CFLRect[int](150, 150, 300, 300)
 
 		# 객체 생성 // Create object
-		LaplacianOfGaussianFilter = CLaplacianOfGaussianFilter()
+		laplacianOfGaussianFilter = CLaplacianOfGaussianFilter()
 
 		# Source 이미지 설정 // Set the source image
-		LaplacianOfGaussianFilter.SetSourceImage(arrFliImage[EType.Source])
+		laplacianOfGaussianFilter.SetSourceImage(arrFliImage[EType.Source])
 
 		# Source ROI 설정 // Set the Source ROI
-		LaplacianOfGaussianFilter.SetSourceROI(flrROI)
+		laplacianOfGaussianFilter.SetSourceROI(flrROI)
 
 		# Destination1 이미지 설정 // Set the destination image
-		LaplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType.Destination1])
+		laplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType.Destination1])
 
 		# Sigma 값 설정 // Set the sigma value
-		LaplacianOfGaussianFilter.SetSigma(0.5)
+		laplacianOfGaussianFilter.SetSigma(0.5)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := LaplacianOfGaussianFilter.Execute()).IsFail():
+		if (res := laplacianOfGaussianFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# Destination2 이미지 설정 // Set the destination image
-		LaplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType.Destination2])
+		laplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType.Destination2])
 
 		# Sigma 값 설정 // Set the sigma value
-		LaplacianOfGaussianFilter.SetSigma(0.8)
+		laplacianOfGaussianFilter.SetSigma(0.8)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := LaplacianOfGaussianFilter.Execute()).IsFail():
+		if (res := laplacianOfGaussianFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# Destination3 이미지 설정 // Set the destination image
-		LaplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType.Destination3])
+		laplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType.Destination3])
 
 		# Sigma 값 설정 // Set the sigma value
-		LaplacianOfGaussianFilter.SetSigma(1)
+		laplacianOfGaussianFilter.SetSigma(1)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := LaplacianOfGaussianFilter.Execute()).IsFail():
+		if (res := laplacianOfGaussianFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# Destination4 이미지 설정 // Set the destination image
-		LaplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType.Destination4])
+		laplacianOfGaussianFilter.SetDestinationImage(arrFliImage[EType.Destination4])
 
 		# Sigma 값 설정 // Set the sigma value
-		LaplacianOfGaussianFilter.SetSigma(2)
+		laplacianOfGaussianFilter.SetSigma(2)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := LaplacianOfGaussianFilter.Execute()).IsFail():
+		if (res := laplacianOfGaussianFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

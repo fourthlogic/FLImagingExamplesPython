@@ -64,28 +64,28 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		FLDenoisingType1 = CFLDenoisingType1()
+		flDenoisingType1 = CFLDenoisingType1()
 
 		# Source 이미지 설정 // Set the source image
-		FLDenoisingType1.SetSourceImage(fliSourceImage)
+		flDenoisingType1.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		FLDenoisingType1.SetDestinationImage(fliDestinationImage)
+		flDenoisingType1.SetDestinationImage(fliDestinationImage)
 
 		# Kernel 크기 설정 // Set the Kernel Size
-		FLDenoisingType1.SetKernel(5)
+		flDenoisingType1.SetKernel(5)
 
 		# Sigma 설정 // Set the Sigma
-		FLDenoisingType1.SetSigma(2)
+		flDenoisingType1.SetSigma(2)
 
 		# Amplitude 설정 // Set the Amplitude
-		FLDenoisingType1.SetAmplitude(20)
+		flDenoisingType1.SetAmplitude(20)
 
 		# Operation Mode 설정 // Set the Operation Mode
-		FLDenoisingType1.SetOperationMode(CFLDenoisingType1.EOperationMode.Normal)
+		flDenoisingType1.SetOperationMode(CFLDenoisingType1.EOperationMode.Normal)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := FLDenoisingType1.Execute()).IsFail():
+		if (res := flDenoisingType1.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

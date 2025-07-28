@@ -60,19 +60,19 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		CameraMotionDeblurring = CCameraMotionDeblurring()
+		cameraMotionDeblurring = CCameraMotionDeblurring()
 
 		# Source 이미지 설정 // Set the source image
-		CameraMotionDeblurring.SetSourceImage(arrFliImage[0])
+		cameraMotionDeblurring.SetSourceImage(arrFliImage[0])
 
 		# Destination 이미지 설정 // Set the destination image
-		CameraMotionDeblurring.SetDestinationImage(arrFliImage[1])
+		cameraMotionDeblurring.SetDestinationImage(arrFliImage[1])
 
 		# Mode 설정 // Set Mode
-		CameraMotionDeblurring.EnableWithEstimation(True)
+		cameraMotionDeblurring.EnableWithEstimation(True)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := CameraMotionDeblurring.Execute()).IsFail():
+		if (res := cameraMotionDeblurring.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

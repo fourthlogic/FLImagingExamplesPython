@@ -60,19 +60,19 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		Decolorization = CDecolorization()
+		decolorization = CDecolorization()
 
 		# Source 이미지 설정 // Set the source image
-		Decolorization.SetSourceImage(arrFliImage[0])
+		decolorization.SetSourceImage(arrFliImage[0])
 
 		# Destination 이미지 설정 // Set the destination image
-		Decolorization.SetDestinationImage(arrFliImage[1])
+		decolorization.SetDestinationImage(arrFliImage[1])
 
 		# 연산 속도 설정 // Set the Operation Speed
-		Decolorization.SetOperationSpeed(CDecolorization.EOperationSpeed.Normal)
+		decolorization.SetOperationSpeed(CDecolorization.EOperationSpeed.Normal)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := Decolorization.Execute()).IsFail():
+		if (res := decolorization.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

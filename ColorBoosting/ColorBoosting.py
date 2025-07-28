@@ -65,19 +65,19 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		ColorBoosting = CColorBoosting()
+		colorBoosting = CColorBoosting()
 
 		# Source 이미지 설정 // Set the source image
-		ColorBoosting.SetSourceImage(fliSourceImage)
+		colorBoosting.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		ColorBoosting.SetDestinationImage(fliDestinationImage)
+		colorBoosting.SetDestinationImage(fliDestinationImage)
 
 		# 연산 타입 설정 // Set the Operation Type
-		ColorBoosting.SetOperationType(CColorBoosting.EOperationType.Constant)
+		colorBoosting.SetOperationType(CColorBoosting.EOperationType.Constant)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := ColorBoosting.Execute()).IsFail():
+		if (res := colorBoosting.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

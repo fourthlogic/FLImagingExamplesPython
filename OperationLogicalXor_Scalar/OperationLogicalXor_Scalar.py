@@ -85,36 +85,36 @@ def main():
 			break
 
 		# 객체 생성 # Create object
-		logical = COperationLogicalXor()
+		logicalXor = COperationLogicalXor()
 
 		# Source 이미지 설정 # Set the source image
-		logical.SetSourceImage(fliSourceImage)
+		logicalXor.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		logical.SetDestinationImage(fliDestination1Image)
+		logicalXor.SetDestinationImage(fliDestination1Image)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		logical.SetOperationSource(EOperationSource.Scalar);
+		logicalXor.SetOperationSource(EOperationSource.Scalar);
 		
-		# Logical Xnor 값 지정 # Set the Logical Xnor value
+		# Logical Xor 값 지정 # Set the Logical Xor value
 		mvScalar = CMultiVar[Double](0, 0, 0);
-		logical.SetScalarValue(mvScalar);
+		logicalXor.SetScalarValue(mvScalar);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := logical.Execute()).IsFail():
+		if (res := logicalXor.Execute()).IsFail():
 
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# Destination 이미지 설정 # Set the destination image
-		logical.SetDestinationImage(fliDestination2Image)
+		logicalXor.SetDestinationImage(fliDestination2Image)
 		
-		# Logical Xnor 값 지정 # Set the Logical Xnor value
+		# Logical Xor 값 지정 # Set the Logical Xor value
 		mvScalar = CMultiVar[Double](255, 255, 255);
-		logical.SetScalarValue(mvScalar);
+		logicalXor.SetScalarValue(mvScalar);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := logical.Execute()).IsFail():
+		if (res := logicalXor.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

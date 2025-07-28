@@ -74,30 +74,30 @@ def main():
 
 
 		# 객체 생성 // Create object
-		DeviationFilter = CDeviationFilter()
+		deviationFilter = CDeviationFilter()
 
 		# Source 이미지 설정 // Set the source image
-		DeviationFilter.SetSourceImage(arrFliImage[EType.Source])
+		deviationFilter.SetSourceImage(arrFliImage[EType.Source])
 
 		# Destination 이미지 설정 // Set the destination image
-		DeviationFilter.SetDestinationImage(arrFliImage[EType.Destination1])
+		deviationFilter.SetDestinationImage(arrFliImage[EType.Destination1])
 
 		# 파라미터 값 설정 // Set parameter value
-		DeviationFilter.SetKernel(5)
+		deviationFilter.SetKernel(5)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := DeviationFilter.Execute()).IsFail():
+		if (res := deviationFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# Destination 이미지를 Destination2로 설정 // Set destination image to destination2
-		DeviationFilter.SetDestinationImage(arrFliImage[EType.Destination2])
+		deviationFilter.SetDestinationImage(arrFliImage[EType.Destination2])
 
 		# 파라미터 값 설정 // Set parameter value
-		DeviationFilter.SetKernel(25)
+		deviationFilter.SetKernel(25)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := DeviationFilter.Execute()).IsFail():
+		if (res := deviationFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

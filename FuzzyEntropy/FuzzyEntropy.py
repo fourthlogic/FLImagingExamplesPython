@@ -35,23 +35,23 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		fuzzyentropy = CFuzzyEntropy()
+		fuzzyEntropy = CFuzzyEntropy()
 
 		# ROI 범위 설정 // Set the ROI value
-		flrROI = CFLCircle[Double](310.466830, 81.769042, 81.769042, 0.000000, 0.000000, 360.000000, EArcClosingMethod.EachOther)
+		flcROI = CFLCircle[Double](310.466830, 81.769042, 81.769042, 0.000000, 0.000000, 360.000000, EArcClosingMethod.EachOther)
 
 		# Source 이미지 설정 // Set the source image
-		fuzzyentropy.SetSourceImage(fliSourceImage)
+		fuzzyEntropy.SetSourceImage(fliSourceImage)
 
 		# Source ROI 설정 // Set the Source ROI
-		fuzzyentropy.SetSourceROI(flrROI)
+		fuzzyEntropy.SetSourceROI(flcROI)
 
 		# Parameter 설정(A: 0, C: 255) // Set the parameter(A: 0, C: 255)
-		fuzzyentropy.SetParameterA(0)
-		fuzzyentropy.SetParameterC(255)
+		fuzzyEntropy.SetParameterA(0)
+		fuzzyEntropy.SetParameterC(255)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := fuzzyentropy.Execute()).IsFail():
+		if (res := fuzzyEntropy.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
@@ -59,7 +59,7 @@ def main():
 		mvFuzzyEntropy = CMultiVar[Double]()
 
 		# 이미지 전체(혹은 ROI 영역) 픽셀값의 Fuzzy Entropy를 구하는 함수 // Function that calculate the fuzzy entropy of the image(or the region of ROI)
-		if (res := fuzzyentropy.GetResultFuzzyEntropy(mvFuzzyEntropy)[0]).IsFail():
+		if (res := fuzzyEntropy.GetResultFuzzyEntropy(mvFuzzyEntropy)[0]).IsFail():
 			ErrorPrint(res, 'Failed to process.')
 			break
 
@@ -71,7 +71,7 @@ def main():
 		layerSource.Clear()
 
 		# ROI영역이 어디인지 알기 위해 디스플레이 한다 // Display to find out where ROI is
-		if (res := layerSource.DrawFigureImage(flrROI, EColor.LIME)).IsFail():
+		if (res := layerSource.DrawFigureImage(flcROI, EColor.LIME)).IsFail():
 			ErrorPrint(res, 'Failed to draw figure.')
 			break
 
@@ -83,10 +83,6 @@ def main():
 		# 이미지 뷰 정보 표시 // Display image view information
 		if (res := layerSource.DrawTextCanvas(flpPoint, strFuzzyEntropy, EColor.YELLOW, EColor.BLACK, 25)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
-			break
-
-		if (res := layerSource.DrawFigureImage(flrROI, EColor.LIME)).IsFail():
-			ErrorPrint(res, 'Failed to draw figure.')
 			break
 
 		# 이미지 뷰를 갱신 // Update image view
