@@ -52,21 +52,21 @@ def main():
 			break
 		
 		# CameraPose3D 객체 생성 // Create CameraPose3D object
-		CameraPose3D = CCameraPose3D()
+		cameraPose3D = CCameraPose3D()
 
 		# Camera Matrix 설정 // Set the camera matrix
 		flpFocalLength = CFLPoint[Double](617.8218, 618.2815)
 		flpPrincipalPoint = CFLPoint[Double](319.05237, 243.0472)
-		CameraPose3D.SetCameraMatrix(flpFocalLength, flpPrincipalPoint)
+		cameraPose3D.SetCameraMatrix(flpFocalLength, flpPrincipalPoint)
 
 		# 셀 간격 설정 // Set the board cell pitch
-		CameraPose3D.SetBoardCellPitch(5, 5)
+		cameraPose3D.SetBoardCellPitch(5, 5)
 
 		# 캘리브레이션 객체 타입 설정 // Set the calibration object type
-		CameraPose3D.SetCalibrationObjectType(ECalibrationObjectType.ChessBoard)
+		cameraPose3D.SetCalibrationObjectType(ECalibrationObjectType.ChessBoard)
 
 		# 이미지 전처리 타입 설정 // Set the image preprocessing method
-		CameraPose3D.SetPreprocessingMethod(ECalibrationPreprocessingMethod.ShadingCorrection)
+		cameraPose3D.SetPreprocessingMethod(ECalibrationPreprocessingMethod.ShadingCorrection)
 
 		i32PageCount = fliSource.GetPageCount()
 
@@ -96,13 +96,13 @@ def main():
 			pagePtr.append(CFLImage(fliSource.GetPage(i)))
 
 			# 처리할 이미지 설정
-			CameraPose3D.SetSourceImage(pagePtr[i])
+			cameraPose3D.SetSourceImage(pagePtr[i])
 
 			# 이미지 포인터 설정 // Set image pointer
 			arrViewWrap[i].SetImagePtr(pagePtr[i])
 
 			# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-			if(res := CameraPose3D.Execute()).IsFail() :			
+			if(res := cameraPose3D.Execute()).IsFail() :			
 				ErrorPrint(res, "Failed to execute Camera Pose 3D.")
 				break			
 
@@ -126,11 +126,11 @@ def main():
 
 			# 결과 객체 영역 가져오기 // Get the result board region
 			flqBoardRegion = CFLQuad[Double]()
-			CameraPose3D.GetResultBoardRegion(flqBoardRegion)
+			cameraPose3D.GetResultBoardRegion(flqBoardRegion)
 
 			# 결과 코너점 가져오기 // Get the result corner points
 			flfaCornerPoints = CFLFigureArray()
-			CameraPose3D.GetResultCornerPoints(flfaCornerPoints)
+			cameraPose3D.GetResultCornerPoints(flfaCornerPoints)
 
 			# 결과 객체 영역 그리기 // Draw the result board region
 			layerViewSource.DrawFigureImage(flqBoardRegion, EColor.BLUE, 3)
@@ -150,10 +150,10 @@ def main():
 			listResultEulerAngle = List[Double]()
 			matResultRotationMatrix = CMatrix[Double]()
 
-			res, listResultRotationVector = CameraPose3D.GetResultRotationVector(listResultRotationVector)
-			res, matResultRotationMatrix = CameraPose3D.GetResultRotationMatrix(matResultRotationMatrix)
-			res, listResultTranslationVector = CameraPose3D.GetResultTranslationVector(listResultTranslationVector)
-			res, listResultEulerAngle = CameraPose3D.GetResultEulerAngle(eEulerSequence, listResultEulerAngle)
+			res, listResultRotationVector = cameraPose3D.GetResultRotationVector(listResultRotationVector)
+			res, matResultRotationMatrix = cameraPose3D.GetResultRotationMatrix(matResultRotationMatrix)
+			res, listResultTranslationVector = cameraPose3D.GetResultTranslationVector(listResultTranslationVector)
+			res, listResultEulerAngle = cameraPose3D.GetResultEulerAngle(eEulerSequence, listResultEulerAngle)
 
 			flpImageSize = CFLPoint[Double](fliSource)
 			flpImageSize.x *= 2

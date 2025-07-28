@@ -59,40 +59,40 @@ def main():
 			break
 				
 		# Vertex3D 객체 생성 // Create Vertex3D object
-		VertexMatch3D = CVertexMatch3D()
+		vertexMatch3D = CVertexMatch3D()
 
 		# Learn object 설정 // Set the learn object
-		VertexMatch3D.SetLearnObject(floLearnObject)
+		vertexMatch3D.SetLearnObject(floLearnObject)
 		# Source object 설정 // Set the source object
-		VertexMatch3D.SetSourceObject(floSourceObject)
+		vertexMatch3D.SetSourceObject(floSourceObject)
 		# Min score 설정 // Set the min score
-		VertexMatch3D.SetMinScore(0.3)
+		vertexMatch3D.SetMinScore(0.3)
 		# 최대 결과 개수 설정 // Set the max count of match result
-		VertexMatch3D.SetMaxObject(1)
+		vertexMatch3D.SetMaxObject(1)
 		# 학습 샘플링 거리 설정 // Set the learn sampling distance
-		VertexMatch3D.SetLearnSamplingDistance(0.03)
+		vertexMatch3D.SetLearnSamplingDistance(0.03)
 		# 장면 샘플링 거리 설정 // Set the scene sampling distance
-		VertexMatch3D.SetSceneSamplingDistance(0.03)
+		vertexMatch3D.SetSceneSamplingDistance(0.03)
 		# 키포인트 비율 설정 // Set the keypoint ratio.
-		VertexMatch3D.SetKeypointRatio(0.5)
+		vertexMatch3D.SetKeypointRatio(0.5)
 		# 엣지 학습 여부 설정 // Set the edge train
-		VertexMatch3D.EnableTrainEdge(False)
+		vertexMatch3D.EnableTrainEdge(False)
 		# 배경 제거 여부 설정 // Set the background removal
-		VertexMatch3D.EnableBackgroundRemoval(False)
+		vertexMatch3D.EnableBackgroundRemoval(False)
 		# 클러스터링 범위 설정 // Set the clustering range
-		VertexMatch3D.SetClusterRange(0.02)
+		vertexMatch3D.SetClusterRange(0.02)
 		# 포즈 조정 반복 횟수 설정 // Set the iteration value of pose refinement
-		VertexMatch3D.SetIteration(15)
+		vertexMatch3D.SetIteration(15)
 		# 초기 점수 설정 // Set the initial score
-		VertexMatch3D.SetInitialScore(0.1)
+		vertexMatch3D.SetInitialScore(0.1)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(res := VertexMatch3D.Learn()).IsFail() :	
+		if(res := vertexMatch3D.Learn()).IsFail() :	
 			ErrorPrint(res, "Failed to learn Vertex Match 3D.")
 			break
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(res := VertexMatch3D.Execute()).IsFail() :	
+		if(res := vertexMatch3D.Execute()).IsFail() :	
 			ErrorPrint(res, "Failed to execute Vertex Match 3D.")
 			break
 
@@ -130,7 +130,7 @@ def main():
 			break
 		
 		# 3D 오브젝트 뷰에 결과 Object와 비교를 위한 Source 오브젝트 디스플레이
-		if(res := view3DDst.PushObject(VertexMatch3D.GetSourceObject())).IsFail():
+		if(res := view3DDst.PushObject(vertexMatch3D.GetSourceObject())).IsFail():
 			ErrorPrint(res, "Failed to set object on the 3D View.\n")
 			break
 		
@@ -142,7 +142,7 @@ def main():
 		f64Score = 0.0
 		f64Residual = 0.0
 
-		i64ResultCount = VertexMatch3D.GetResultCount()
+		i64ResultCount = vertexMatch3D.GetResultCount()
 
 		if i64ResultCount == 0 :		
 			ErrorPrint(res, "Failed to estimate pose matrix.\n")
@@ -155,7 +155,7 @@ def main():
 			tp3RotVec = TPoint3[Double]()
 
 			# 추정된 포즈 행렬 가져오기
-			res, sResult = VertexMatch3D.GetResultPoseMatrix(i, sResult)
+			res, sResult = vertexMatch3D.GetResultPoseMatrix(i, sResult)
 
 			if res.IsFail():			
 				ErrorPrint(res, "Failed to estimate pose matrix.\n")
@@ -190,7 +190,7 @@ def main():
 			Console.WriteLine("    Residual : {0}", f64Residual)
 			Console.WriteLine("\n")
 
-			res, floLearnTransform, tp3Center = VertexMatch3D.GetResultObject(i, floLearnTransform, tp3Center)
+			res, floLearnTransform, tp3Center = vertexMatch3D.GetResultObject(i, floLearnTransform, tp3Center)
 
 			if res.IsFail() :			
 				ErrorPrint(res, "Failed to set object on the 3d view.\n")

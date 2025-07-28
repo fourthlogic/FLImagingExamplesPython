@@ -35,25 +35,25 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		SIFT = CScaleInvariantFeatureTransform()
+		scaleInvariantFeatureTransform = CScaleInvariantFeatureTransform()
 
 		# Source 이미지 설정 // Set the source image
-		SIFT.SetSourceImage(fliSourceImage)
+		scaleInvariantFeatureTransform.SetSourceImage(fliSourceImage)
 
 		# Octave Layer 설정 // Set Octave Layer
-		SIFT.SetOctaveLayers(3)
+		scaleInvariantFeatureTransform.SetOctaveLayers(3)
 
 		# 대비 임계값 설정 // Set contrast threshold
-		SIFT.SetContrastThreshold(0.04)
+		scaleInvariantFeatureTransform.SetContrastThreshold(0.04)
 
 		# 에지 임계값 설정 // Set edge threshold
-		SIFT.SetEdgeThreshold(10.0)
+		scaleInvariantFeatureTransform.SetEdgeThreshold(10.0)
 
 		# Sigma 설정 // Set sigma
-		SIFT.SetSigma(1.6)
+		scaleInvariantFeatureTransform.SetSigma(1.6)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := SIFT.Execute()).IsFail():
+		if (res := scaleInvariantFeatureTransform.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
@@ -61,7 +61,7 @@ def main():
 		flfaResultPoints = CFLPointArray()
 
 		# 검출된 특징점를 구하는 함수 // Function that calculate the feature points
-		if (res := SIFT.GetResultPoints(flfaResultPoints)[0]).IsFail():
+		if (res := scaleInvariantFeatureTransform.GetResultPoints(flfaResultPoints)[0]).IsFail():
 			ErrorPrint(res, 'Failed to process.')
 			break
 

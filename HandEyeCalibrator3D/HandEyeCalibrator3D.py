@@ -52,39 +52,39 @@ def main():
 			break
 
 		# HandEyeCalibrator3D 객체 생성 // Create HandEyeCalibrator3D object
-		HandEyeCalibrator3D = CHandEyeCalibrator3D()
+		handEyeCalibrator3D = CHandEyeCalibrator3D()
 
 		# 엔드 이펙터 포즈 로드 // Load the end effector pose
-		if(res := HandEyeCalibrator3D.LoadEndEffectorPose('../../ExampleImages/HandEyeCalibrator3D/EndEffectorPose.csv')).IsFail() :				
+		if(res := handEyeCalibrator3D.LoadEndEffectorPose('../../ExampleImages/HandEyeCalibrator3D/EndEffectorPose.csv')).IsFail() :				
 			ErrorPrint(res, 'Failed to load the file.\n')
 			break			
 
 		# 처리할 이미지 설정
-		HandEyeCalibrator3D.SetSourceImage(fliSource)
+		handEyeCalibrator3D.SetSourceImage(fliSource)
 
 		# Camera Matrix 설정 // Set the camera matrix
 		flpFocalLength = CFLPoint[Double](428.668823242188, 428.268188476563)
 		flpPrincipalPoint = CFLPoint[Double](422.934997558594, 240.188659667969)
 		 
-		HandEyeCalibrator3D.SetCalibrationCameraMatrix(flpFocalLength, flpPrincipalPoint)
+		handEyeCalibrator3D.SetCalibrationCameraMatrix(flpFocalLength, flpPrincipalPoint)
 
 		# 셀 간격 설정 // Set the board cell pitch
-		HandEyeCalibrator3D.SetCalibrationBoardCellPitch(15, 15)
+		handEyeCalibrator3D.SetCalibrationBoardCellPitch(15, 15)
 
 		# 캘리브레이션 객체 타입 설정 // Set the calibration object type
-		HandEyeCalibrator3D.SetCalibrationObjectType(ECalibrationObjectType.ChessBoard)
+		handEyeCalibrator3D.SetCalibrationObjectType(ECalibrationObjectType.ChessBoard)
 
 		# 최적화 방법 설정 // Set the optimization method
-		HandEyeCalibrator3D.SetOptimizationMethod(EOptimizationMethod.Nonlinear)
+		handEyeCalibrator3D.SetOptimizationMethod(EOptimizationMethod.Nonlinear)
 
 		# 회전 타입 설정 // Set the rotation type
-		HandEyeCalibrator3D.SetRotationType(ERotationType.RotationVector)
+		handEyeCalibrator3D.SetRotationType(ERotationType.RotationVector)
 
 		# 엔드 이펙터 각 단위 설정 // Set the end effector angle unit
-		HandEyeCalibrator3D.SetEndEffectorAngleUnit(EAngleUnit.Radian)
+		handEyeCalibrator3D.SetEndEffectorAngleUnit(EAngleUnit.Radian)
 
 		# 오일러 각 순서 설정 // Set the euler sequence
-		HandEyeCalibrator3D.SetEulerSequence(EEulerSequence.Extrinsic_XYZ)
+		handEyeCalibrator3D.SetEulerSequence(EEulerSequence.Extrinsic_XYZ)
 
 		#왜곡 계수 설정 // Set the distortion coefficient
 		listDistortionCoefficient = List[Double]()
@@ -95,7 +95,7 @@ def main():
 		listDistortionCoefficient.Add(0.000785713375080377)
 		listDistortionCoefficient.Add(-0.0189481563866138)
 
-		HandEyeCalibrator3D.SetCalibrationDistortionCoefficient(listDistortionCoefficient)
+		handEyeCalibrator3D.SetCalibrationDistortionCoefficient(listDistortionCoefficient)
 
 		i32PageCount = fliSource.GetPageCount()
 
@@ -135,7 +135,7 @@ def main():
 		
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(res := HandEyeCalibrator3D.Calibrate()).IsFail() :		
+		if(res := handEyeCalibrator3D.Calibrate()).IsFail() :		
 			ErrorPrint(res, 'Failed to execute Hand Eye Calibrator 3D.')
 			break
 		
@@ -146,13 +146,13 @@ def main():
 			tp3ResultTranslationVector = TPoint3[Double]()
 			listResultEulerAngle = List[Double]()			
 			# 캘리브레이션 결과 얻어오기 // Get the calibration result
-			HandEyeCalibrator3D.GetResultHandToEyeRotationVector(matResultRotationVector)
-			HandEyeCalibrator3D.GetResultHandToEyeTranslationVector(tp3ResultTranslationVector)
-			HandEyeCalibrator3D.GetResultHandToEyeEulerAngle(listResultEulerAngle)
+			handEyeCalibrator3D.GetResultHandToEyeRotationVector(matResultRotationVector)
+			handEyeCalibrator3D.GetResultHandToEyeTranslationVector(tp3ResultTranslationVector)
+			handEyeCalibrator3D.GetResultHandToEyeEulerAngle(listResultEulerAngle)
 			f64RotationError = 0.0
 			f64TranslationError = 0.0
-			res, f64RotationError = HandEyeCalibrator3D.GetResultRotationError(f64RotationError)
-			res, f64TranslationError = HandEyeCalibrator3D.GetResultTranslationError(f64TranslationError)
+			res, f64RotationError = handEyeCalibrator3D.GetResultRotationError(f64RotationError)
+			res, f64TranslationError = handEyeCalibrator3D.GetResultTranslationError(f64TranslationError)
 
 			# 3D View의 canvas rect 영역 얻어오기 // Get the canvas rect region
 			flrCanvasRegion = view3D.GetClientRectCanvasRegion()
@@ -171,7 +171,7 @@ def main():
 			fl3DOCalibrationBoard = CFL3DObject() 
 			tp3BoardCenter = TPoint3[Double]()
 
-			HandEyeCalibrator3D.GetResultCalibration3DObject(fl3DOCalibrationBoard, tp3BoardCenter)		
+			handEyeCalibrator3D.GetResultCalibration3DObject(fl3DOCalibrationBoard, tp3BoardCenter)		
 			strIdx = f'Calibration Board'
 
 			view3DLayer.DrawText3D(tp3BoardCenter, strIdx, EColor.RED, EColor.BLACK, 9.0)
@@ -186,11 +186,11 @@ def main():
 				tp3Board = TPoint3[Single]()
 
 		 		# 결과 3D 객체 얻어오기 // Get the result 3D object
-				res, fl3DCam, tp3CamCenter = HandEyeCalibrator3D.GetResultCamera3DObject(i, fl3DCam, tp3CamCenter)
+				res, fl3DCam, tp3CamCenter = handEyeCalibrator3D.GetResultCamera3DObject(i, fl3DCam, tp3CamCenter)
 
 				if res.IsOK() :
 					# 카메라 포즈 추정에 실패할 경우 NOK 출력 // NOK output if camera pose estimation fails
-					res, tp3Cam, tp3Board = HandEyeCalibrator3D.GetResultReprojectionPoint(i, tp3Cam, tp3Board)
+					res, tp3Cam, tp3Board = handEyeCalibrator3D.GetResultReprojectionPoint(i, tp3Cam, tp3Board)
 
 					if res.IsFail() :
 						strIdx = f'Cam {i} (NOK)'
@@ -202,7 +202,7 @@ def main():
 						
 					view3D.PushObject(CGUIView3DObjectLine(tp3Cam, tp3Board, EColor.CYAN))
 					
-					res, flo3DORobot, tp3RobotCenter = HandEyeCalibrator3D.GetEndEffector3DObject(i, fl3DORobot, tp3RobotCenter)
+					res, flo3DORobot, tp3RobotCenter = handEyeCalibrator3D.GetEndEffector3DObject(i, fl3DORobot, tp3RobotCenter)
 
 					if res.IsOK():		 		
 						strIdx = f'End Effector {i}'

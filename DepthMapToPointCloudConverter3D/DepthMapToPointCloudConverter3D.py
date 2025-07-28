@@ -56,17 +56,17 @@ def main():
 		viewTextureImage.SetImagePtr(fliTexture)
 
 		# DepthMapToPointCloudConverter 객체 생성 // Create DepthMapToPointCloudConverter object
-		DepthMapToPointCloudConverter3D = CDepthMapToPointCloudConverter3D()
+		depthMapToPointCloudConverter3D = CDepthMapToPointCloudConverter3D()
 
 		# SourceROI 설정 // Set the source roi.
 		flfSourceROI = CFLQuad[Double](926.290236, 549.117967, 1341.038113, 503.567623, 1384.191071, 1083.151113, 974.237967, 1117.298584)
-		DepthMapToPointCloudConverter3D.SetSourceROI(flfSourceROI)
+		depthMapToPointCloudConverter3D.SetSourceROI(flfSourceROI)
 
 		# Source 이미지 설정 // Set the source image.
-		DepthMapToPointCloudConverter3D.SetSourceImage(fliSource)
+		depthMapToPointCloudConverter3D.SetSourceImage(fliSource)
 
 		# Texture 이미지 설정 // Set the texture image.
-		DepthMapToPointCloudConverter3D.SetTextureImage(fliTexture)
+		depthMapToPointCloudConverter3D.SetTextureImage(fliTexture)
 
 		# Camera Matrix 설정 // Set the camera matrix
 		flpFocalLength = CFLPoint[Single]()
@@ -77,7 +77,7 @@ def main():
 		flpPrincipalPoint.x = 988.599976
 		flpPrincipalPoint.y = 750.299988
 
-		DepthMapToPointCloudConverter3D.SetIntrinsicParameter(flpFocalLength, flpPrincipalPoint)
+		depthMapToPointCloudConverter3D.SetIntrinsicParameter(flpFocalLength, flpPrincipalPoint)
 
 		#왜곡 계수 설정 // Set the distortion coefficient
 		flaDistortionCoefficient = List[Double]()
@@ -88,19 +88,19 @@ def main():
 		flaDistortionCoefficient.Add(-0.0005675755000)
 		flaDistortionCoefficient.Add(-0.0246060137000)
 
-		DepthMapToPointCloudConverter3D.SetDistortionCoefficient(flaDistortionCoefficient)
+		depthMapToPointCloudConverter3D.SetDistortionCoefficient(flaDistortionCoefficient)
 
 		# 법선 벡터 추정 여부 설정 // Set whether to estimate the normal vector
-		DepthMapToPointCloudConverter3D.EnableIncludingNormalVector(False)
+		depthMapToPointCloudConverter3D.EnableIncludingNormalVector(False)
 
 		# Z축 방향 설정 // Set z-axis direction.
-		DepthMapToPointCloudConverter3D.SetDirectionType(EDirectionType.Increment)
+		depthMapToPointCloudConverter3D.SetDirectionType(EDirectionType.Increment)
 
 		# Destination 3D Object 설정 // Set the destination 3D object
-		DepthMapToPointCloudConverter3D.SetDestinationObject(floDestination)
+		depthMapToPointCloudConverter3D.SetDestinationObject(floDestination)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(res := DepthMapToPointCloudConverter3D.Execute()).IsFail() :	
+		if(res := depthMapToPointCloudConverter3D.Execute()).IsFail() :	
 			ErrorPrint(res, "Failed to execute Depth Map To Point Cloud Converter 3D.")
 			break
 		

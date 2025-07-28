@@ -64,29 +64,29 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		Lanser = CLanserEdgeDetector()
+		lanserEdgeDetector = CLanserEdgeDetector()
 
 		# Source 이미지 설정 // Set the source image
-		Lanser.SetSourceImage(fliISrcImage)
+		lanserEdgeDetector.SetSourceImage(fliISrcImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		Lanser.SetDestinationImage(fliIDstImage)
+		lanserEdgeDetector.SetDestinationImage(fliIDstImage)
 
 		# Edge Detector Mode 설정 // Set Edge Detector Mode
-		Lanser.SetEdgeDetectorMode(CLanserEdgeDetector.EEdgeDetectorMode.Shen);
+		lanserEdgeDetector.SetEdgeDetectorMode(CLanserEdgeDetector.EEdgeDetectorMode.Shen);
 
 		# 이미지 전처리 Smoothing/Normal 설정 / Set Image Preprocessing Mode Smoothing/Normal
-		Lanser.SetNoiseReduction(CLanserEdgeDetector.ENoiseReduction.Smoothing);
+		lanserEdgeDetector.SetNoiseReduction(CLanserEdgeDetector.ENoiseReduction.Smoothing);
 
 		# Threshold 설정 // Set threshold value
 		mvThresholdValue = CMultiVar[Double](15, 30)
-		Lanser.SetThreshold(mvThresholdValue)
+		lanserEdgeDetector.SetThreshold(mvThresholdValue)
 		
 		# Alpha 값 설정 // Set alpha value
-		Lanser.SetAlphaValue(2.0);
+		lanserEdgeDetector.SetAlphaValue(2.0);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := Lanser.Execute()).IsFail():
+		if (res := lanserEdgeDetector.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

@@ -59,28 +59,28 @@ def main():
 			break
 				
 		# Surface3D 객체 생성 // Create Surface3D object
-		SurfaceMatch3D = CSurfaceMatch3D()
+		surfaceMatch3D = CSurfaceMatch3D()
 
 		# Learn object 설정 // Set the learn object
-		SurfaceMatch3D.SetLearnObject(floLearnObject)
+		surfaceMatch3D.SetLearnObject(floLearnObject)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(res := SurfaceMatch3D.Learn()).IsFail() :	
+		if(res := surfaceMatch3D.Learn()).IsFail() :	
 			ErrorPrint(res, "Failed to learn Surface 3D.")
 			break
 		
 		# 학습 데이터 저장 // Save the learnt data
-		if(res := SurfaceMatch3D.Save("../../ExampleImages/SurfaceMatch3D/Example FLSM Data.flsm")).IsFail() :
+		if(res := surfaceMatch3D.Save("../../ExampleImages/SurfaceMatch3D/Example FLSM Data.flsm")).IsFail() :
 			ErrorPrint(res, "Failed to save the learnt data file.\n")
 			break		
 
 		# 학습 데이터 불러오기 // Load the learnt data
-		if(res := SurfaceMatch3D.Load("../../ExampleImages/SurfaceMatch3D/Example FLSM Data.flsm")).IsFail() :
+		if(res := surfaceMatch3D.Load("../../ExampleImages/SurfaceMatch3D/Example FLSM Data.flsm")).IsFail() :
 			ErrorPrint(res, "Failed to load the learnt data file.\n")
 			break		
 
 		floSampleObject = CFL3DObject()
-		res, floSampleObject = SurfaceMatch3D.GetSampledLearn3DObject(floSampleObject)
+		res, floSampleObject = surfaceMatch3D.GetSampledLearn3DObject(floSampleObject)
 
 		# Learn Object 출력 // Display the learn object
 		if(res := view3DLearn.PushObject(floLearnObject)).IsFail() :
@@ -93,28 +93,28 @@ def main():
 			break		
 
 		# Source object 설정 // Set the source object
-		SurfaceMatch3D.SetSourceObject(floSourceObject)
+		surfaceMatch3D.SetSourceObject(floSourceObject)
 		# Min score 설정 // Set the min score
-		SurfaceMatch3D.SetMinScore(0.3)
+		surfaceMatch3D.SetMinScore(0.3)
 		# 최대 결과 개수 설정 // Set the max count of match result
-		SurfaceMatch3D.SetMaxObject(4)
+		surfaceMatch3D.SetMaxObject(4)
 		# 학습 샘플링 거리 설정 // Set the learn sampling distance
-		SurfaceMatch3D.SetLearnSamplingDistance(0.03)
+		surfaceMatch3D.SetLearnSamplingDistance(0.03)
 		# 장면 샘플링 거리 설정 // Set the scene sampling distance
-		SurfaceMatch3D.SetSceneSamplingDistance(0.03)
+		surfaceMatch3D.SetSceneSamplingDistance(0.03)
 		# 키포인트 비율 설정 // Set the keypoint ratio.
-		SurfaceMatch3D.SetKeypointRatio(0.5)
+		surfaceMatch3D.SetKeypointRatio(0.5)
 		# 엣지 학습 여부 설정 // Set the edge train
-		SurfaceMatch3D.EnableTrainEdge(False)
+		surfaceMatch3D.EnableTrainEdge(False)
 		# 배경 제거 여부 설정 // Set the background removal
-		SurfaceMatch3D.EnableBackgroundRemoval(False)
+		surfaceMatch3D.EnableBackgroundRemoval(False)
 		# 클러스터링 범위 설정 // Set the clustering range
-		SurfaceMatch3D.SetClusterRange(0.02)
+		surfaceMatch3D.SetClusterRange(0.02)
 		# 포즈 조정 반복 횟수 설정 // Set the iteration value of pose refinement
-		SurfaceMatch3D.SetIteration(5)
+		surfaceMatch3D.SetIteration(5)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(res := SurfaceMatch3D.Execute()).IsFail() :	
+		if(res := surfaceMatch3D.Execute()).IsFail() :	
 			ErrorPrint(res, "Failed to execute Surface Match 3D.")
 			break
 
@@ -152,7 +152,7 @@ def main():
 			break
 		
 		# 3D 오브젝트 뷰에 결과 Object와 비교를 위한 Source 오브젝트 디스플레이
-		if(res := view3DDst.PushObject(SurfaceMatch3D.GetSourceObject())).IsFail():
+		if(res := view3DDst.PushObject(surfaceMatch3D.GetSourceObject())).IsFail():
 			ErrorPrint(res, "Failed to set object on the 3D View.\n")
 			break
 		
@@ -164,7 +164,7 @@ def main():
 		f64Score = 0.0
 		f64Residual = 0.0
 
-		i64ResultCount = SurfaceMatch3D.GetResultCount()
+		i64ResultCount = surfaceMatch3D.GetResultCount()
 
 		if i64ResultCount == 0 :		
 			ErrorPrint(res, "Failed to estimate pose matrix.\n")
@@ -177,7 +177,7 @@ def main():
 			tp3RotVec = TPoint3[Double]()
 
 			# 추정된 포즈 행렬 가져오기
-			res, sResult = SurfaceMatch3D.GetResultPoseMatrix(i, sResult)
+			res, sResult = surfaceMatch3D.GetResultPoseMatrix(i, sResult)
 
 			if res.IsFail():			
 				ErrorPrint(res, "Failed to estimate pose matrix.\n")
@@ -212,7 +212,7 @@ def main():
 			Console.WriteLine("    Residual : {0}", f64Residual)
 			Console.WriteLine("\n")
 
-			res, floLearnTransform, tp3Center = SurfaceMatch3D.GetResultObject(i, floLearnTransform, tp3Center)
+			res, floLearnTransform, tp3Center = surfaceMatch3D.GetResultObject(i, floLearnTransform, tp3Center)
 
 			if res.IsFail() :			
 				ErrorPrint(res, "Failed to set object on the 3d view.\n")

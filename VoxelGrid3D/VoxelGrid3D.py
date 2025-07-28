@@ -46,21 +46,21 @@ def main():
 			break
 		
 		# VoxelGrid3D 객체 생성 // Create VoxelGrid3D object
-		VoxelGrid3D = CVoxelGrid3D()
+		voxelGrid3D = CVoxelGrid3D()
 
 		# Destination object 설정 // Set the learn object
-		VoxelGrid3D.SetDestinationObject(floDestinationObject)
+		voxelGrid3D.SetDestinationObject(floDestinationObject)
 		# Source object 설정 // Set the source object
-		VoxelGrid3D.SetSourceObject(floSourceObject)
+		voxelGrid3D.SetSourceObject(floSourceObject)
 		# 샘플링 거리 설정 // Set the sampling distance
-		VoxelGrid3D.SetSamplingDistance(0.03)
+		voxelGrid3D.SetSamplingDistance(0.03)
 		# 샘플링 방법 설정 // Set the sampling method
-		VoxelGrid3D.SetSamplingMethod(CVoxelGrid3D.ESamplingMethod.Mean)
+		voxelGrid3D.SetSamplingMethod(CVoxelGrid3D.ESamplingMethod.Mean)
 		# 점 색상 포함 여부 설정 // Set whether the color of the vertex is included
-		VoxelGrid3D.EnableIncludingVertexColor(True)
+		voxelGrid3D.EnableIncludingVertexColor(True)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(res := VoxelGrid3D.Execute()).IsFail() :	
+		if(res := voxelGrid3D.Execute()).IsFail() :	
 			ErrorPrint(res, "Failed to execute Voxel Grid 3D.")
 			break
 		
@@ -92,7 +92,7 @@ def main():
 			break
 		
 		# 3D 오브젝트 뷰에 결과 오브젝트 디스플레이
-		if(res := view3DDst.PushObject(VoxelGrid3D.GetDestinationObject())).IsFail() :		
+		if(res := view3DDst.PushObject(voxelGrid3D.GetDestinationObject())).IsFail() :		
 			ErrorPrint(res, "Failed to set object on the 3D View.\n")
 			break
 

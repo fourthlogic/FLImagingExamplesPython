@@ -65,16 +65,16 @@ def main():
 			break
 
 		# Bitwise Not 객체 생성 // Create Bitwise Not object
-		operationBitwiseNot = COperationBitwiseNot()
+		bitwiseNot = COperationBitwiseNot()
 
 		# Source 이미지 설정 // Set the source image
-		operationBitwiseNot.SetSourceImage(fliSourceImage)
+		bitwiseNot.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		operationBitwiseNot.SetDestinationImage(fliDestinationImage)
+		bitwiseNot.SetDestinationImage(fliDestinationImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := operationBitwiseNot.Execute()).IsFail():
+		if (res := bitwiseNot.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Bitwise Not.')
 			break
 		

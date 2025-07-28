@@ -56,25 +56,25 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		Stitching = CStitching()
+		stitching = CStitching()
 
 		# Source 이미지 설정 // Set the source image
-		Stitching.SetSourceImage(fliSourceImage)
+		stitching.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		Stitching.SetDestinationImage(fliDestinationImage)
+		stitching.SetDestinationImage(fliDestinationImage)
 
 		# Gaussian 전처리 설정 // Set Gaussian preprocessing
-		Stitching.SetProjectionMethod(CStitching.EProjectionMethod.Spherical)
+		stitching.SetProjectionMethod(CStitching.EProjectionMethod.Spherical)
 
 		# threshold 값 // threshold value
-		Stitching.SetThreshold(0.6)
+		stitching.SetThreshold(0.6)
 
 		# NFeature 값 // NFeature value
-		Stitching.SetNFeature(1000)
+		stitching.SetNFeature(1000)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := Stitching.Execute()).IsFail():
+		if (res := stitching.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

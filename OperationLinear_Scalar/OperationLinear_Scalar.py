@@ -64,23 +64,23 @@ def main():
 			break
 		
 		# COperationLinear 객체 생성 // Create COperationLinear object
-		Linear = COperationLinear()
+		linear = COperationLinear()
 		# Source 이미지 설정 // Set source image
-		Linear.SetSourceImage(fliSourceImage)	
+		linear.SetSourceImage(fliSourceImage)	
 		# ROI 범위 설정 // Set the ROI value
 		flcSourceROI = CFLCircle[Double](128, 128, 80, 0, 0, 360, EArcClosingMethod.EachOther)
 		# Source 이미지의 ROI 지정 // Set the Source ROI
-		Linear.SetSourceROI(flcSourceROI)
+		linear.SetSourceROI(flcSourceROI)
 		# Destination 이미지 설정 // Set destination image
-		Linear.SetDestinationImage(fliDestinationImage)
+		linear.SetDestinationImage(fliDestinationImage)
 		# Image Operation 모드로 설정 // Set operation mode to image
-		Linear.SetOperationSource(EOperationSource.Scalar)
+		linear.SetOperationSource(EOperationSource.Scalar)
 		# 스칼라 값 지정 // Set the Scalar value
-		Linear.SetScalarValue(111, EScalarIndex.First)
-		Linear.SetScalarValue(111, EScalarIndex.Second)
+		linear.SetScalarValue(111, EScalarIndex.First)
+		linear.SetScalarValue(111, EScalarIndex.Second)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := Linear.Execute()).IsFail():
+		if (res := linear.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Bitwise Or.')
 			break
 

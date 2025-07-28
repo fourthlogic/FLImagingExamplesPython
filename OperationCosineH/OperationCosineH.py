@@ -60,14 +60,14 @@ def main():
 			break
 		
 		# COperationCosineH 객체 생성 // Create COperationCosineH object
-		CosineH = COperationCosineH()
+		cosineH = COperationCosineH()
 		# Source 이미지 설정 // Set source image
-		CosineH.SetSourceImage(fliSourceImage)
+		cosineH.SetSourceImage(fliSourceImage)
 		# Destination 이미지 설정 // Set destination image
-		CosineH.SetDestinationImage(fliDestinationImage)
+		cosineH.SetDestinationImage(fliDestinationImage)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := CosineH.Execute()).IsFail():
+		if (res := cosineH.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute CosineH.')
 			break
 

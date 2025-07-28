@@ -46,19 +46,19 @@ def main():
 			break
 		
 		# ScannedPointCloudGenerator3D 객체 생성 // Create ScannedPointCloudGenerator3D object
-		ScannedPointCloudGenerator3D = CScannedPointCloudGenerator3D()
+		scannedPointCloudGenerator3D = CScannedPointCloudGenerator3D()
 
 		# Source object 설정 // Set the source object
-		ScannedPointCloudGenerator3D.SetSourceObject(floSourceObject)
+		scannedPointCloudGenerator3D.SetSourceObject(floSourceObject)
 
 		# Destination object 설정 // Set the destination object
-		ScannedPointCloudGenerator3D.SetDestinationObject(floDestinationObject)
+		scannedPointCloudGenerator3D.SetDestinationObject(floDestinationObject)
 
 		# 샘플링 거리 설정 // Set the sampling distance
-		ScannedPointCloudGenerator3D.SetSamplingDistance(0.01)
+		scannedPointCloudGenerator3D.SetSamplingDistance(0.01)
 
 		# HPR 반지름 설정 // Set the HPR radius
-		ScannedPointCloudGenerator3D.SetHPRSphericalRadius(1000)
+		scannedPointCloudGenerator3D.SetHPRSphericalRadius(1000)
 
 		tp3ViewPoint = TPoint3[Single]()
 		tp3ViewPoint.x = 229.706985
@@ -66,16 +66,16 @@ def main():
 		tp3ViewPoint.z = 100.796326
 
 		# 시점 설정 // Set the viewpoint
-		ScannedPointCloudGenerator3D.SetViewPoint(tp3ViewPoint)
+		scannedPointCloudGenerator3D.SetViewPoint(tp3ViewPoint)
 
 		# 임의의 시점 적용 여부 설정 // Sets whether to use viewpoints.
-		ScannedPointCloudGenerator3D.EnableViewPointSetting(True)
+		scannedPointCloudGenerator3D.EnableViewPointSetting(True)
 
 		# 원점 정렬 적용 여부 설정 // Sets whether to align the results to the origin.
-		ScannedPointCloudGenerator3D.EnableAlignmentOfOrigin(False)
+		scannedPointCloudGenerator3D.EnableAlignmentOfOrigin(False)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(res := ScannedPointCloudGenerator3D.Execute()).IsFail() :	
+		if(res := scannedPointCloudGenerator3D.Execute()).IsFail() :	
 			ErrorPrint(res, "Failed to execute Scanned Point Cloud Generator 3D.")
 			break
 		
@@ -107,7 +107,7 @@ def main():
 			break
 		
 		# 3D 오브젝트 뷰에 결과 오브젝트 디스플레이
-		if(res := view3DDst.PushObject(ScannedPointCloudGenerator3D.GetDestinationObject())).IsFail() :		
+		if(res := view3DDst.PushObject(scannedPointCloudGenerator3D.GetDestinationObject())).IsFail() :		
 			ErrorPrint(res, "Failed to set object on the 3D View.\n")
 			break
 

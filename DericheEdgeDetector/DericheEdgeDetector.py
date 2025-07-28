@@ -64,26 +64,26 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		Deriche = CDericheEdgeDetector()
+		dericheEdgeDetector = CDericheEdgeDetector()
 
 		# Source 이미지 설정 // Set the source image
-		Deriche.SetSourceImage(fliISrcImage)
+		dericheEdgeDetector.SetSourceImage(fliISrcImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		Deriche.SetDestinationImage(fliIDstImage)
+		dericheEdgeDetector.SetDestinationImage(fliIDstImage)
 
 		# 이미지 전처리 Smoothing/Normal 설정 / Set Image Preprocessing Mode Smoothing/Normal
-		Deriche.SetConvolutionMode(CDericheEdgeDetector.EConvolutionMode.Normal)
+		dericheEdgeDetector.SetConvolutionMode(CDericheEdgeDetector.EConvolutionMode.Normal)
 
 		# Threshold 설정 // Set threshold value
 		mvThresholdValue = CMultiVar[Double](20, 25)
-		Deriche.SetThreshold(mvThresholdValue)
+		dericheEdgeDetector.SetThreshold(mvThresholdValue)
 		
 		# Alpha 값 설정 // Set alpha value
-		Deriche.SetAlpha(1.0)
+		dericheEdgeDetector.SetAlpha(1.0)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := Deriche.Execute()).IsFail():
+		if (res := dericheEdgeDetector.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

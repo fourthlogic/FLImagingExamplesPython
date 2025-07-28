@@ -60,14 +60,14 @@ def main():
 			break
 		
 		# COperationCosine 객체 생성 // Create COperationCosine object
-		Cosine = COperationCosine()
+		cosine = COperationCosine()
 		# Source 이미지 설정 // Set source image
-		Cosine.SetSourceImage(fliSourceImage)
+		cosine.SetSourceImage(fliSourceImage)
 		# Destination 이미지 설정 // Set destination image
-		Cosine.SetDestinationImage(fliDestinationImage)
+		cosine.SetDestinationImage(fliDestinationImage)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := Cosine.Execute()).IsFail():
+		if (res := cosine.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Cosine.')
 			break
 

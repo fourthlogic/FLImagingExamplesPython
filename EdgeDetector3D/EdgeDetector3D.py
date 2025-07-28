@@ -47,19 +47,19 @@ def main():
 			break
 		
 		# EdgeDetector3D 객체 생성 // Create EdgeDetector3D object
-		EdgeDetector3D = CEdgeDetector3D()
+		edgeDetector3D = CEdgeDetector3D()
 
 		# Destination object 설정 // Set the learn object
-		EdgeDetector3D.SetDestinationObject(fl3DODestinationObject)
+		edgeDetector3D.SetDestinationObject(fl3DODestinationObject)
 		# Source object 설정 // Set the source object
-		EdgeDetector3D.SetSourceObject(fl3DOSourceObject)
+		edgeDetector3D.SetSourceObject(fl3DOSourceObject)
 		# Min score 설정 // Set the min score
-		EdgeDetector3D.SetEdgeThreshold(0.01)
+		edgeDetector3D.SetEdgeThreshold(0.01)
 		# 장면 샘플링 거리 설정 // Set the scene sampling distance
-		EdgeDetector3D.SetNearestNeighborCount(32)
+		edgeDetector3D.SetNearestNeighborCount(32)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(res := EdgeDetector3D.Execute()).IsFail() :	
+		if(res := edgeDetector3D.Execute()).IsFail() :	
 			ErrorPrint(res, "Failed to execute Edge Detector 3D.")
 			break
 		
@@ -92,13 +92,13 @@ def main():
 		
 
 		# 3D 오브젝트 뷰에 결과 Object와 비교를 위한 Source 오브젝트 디스플레이
-		if(res := view3DDst.PushObject(EdgeDetector3D.GetSourceObject())).IsFail() :		
+		if(res := view3DDst.PushObject(edgeDetector3D.GetSourceObject())).IsFail() :		
 			ErrorPrint(res, "Failed to set object on the 3D View.\n")
 			break
 		
 
 		# 3D 오브젝트 뷰에 결과 오브젝트 디스플레이
-		if(res := view3DDst.PushObject(EdgeDetector3D.GetDestinationObject())).IsFail() :		
+		if(res := view3DDst.PushObject(edgeDetector3D.GetDestinationObject())).IsFail() :		
 			ErrorPrint(res, "Failed to set object on the 3D View.\n")
 			break
 		

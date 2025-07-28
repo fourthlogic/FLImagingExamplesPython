@@ -53,17 +53,17 @@ def main():
 			break
 		
 		# ResidualEvaluator3D 객체 생성 // Create ResidualEvaluator3D object
-		ResidualEvaluator3D = CResidualEvaluator3D()
+		residualEvaluator3D = CResidualEvaluator3D()
 
 		# Reference object 설정 // Set the reference object
-		ResidualEvaluator3D.SetLearnObject(floReferenceObject)
+		residualEvaluator3D.SetLearnObject(floReferenceObject)
 		# Target object 설정 // Set the target object
-		ResidualEvaluator3D.SetSourceObject(floTargetObject)
+		residualEvaluator3D.SetSourceObject(floTargetObject)
 		# 최대 결과 개수 설정 // Set the max count of match result
-		ResidualEvaluator3D.SetResidualType(CResidualEvaluator3D.EResidualType.RMSE)
+		residualEvaluator3D.SetResidualType(CResidualEvaluator3D.EResidualType.RMSE)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(res := ResidualEvaluator3D.Execute()).IsFail() :	
+		if(res := residualEvaluator3D.Execute()).IsFail() :	
 			ErrorPrint(res, "Failed to execute ResidualEvaluator 3D.")
 			break
 		
@@ -94,7 +94,7 @@ def main():
 			ErrorPrint(res, "Failed to draw text.\n")
 			break
 		
-		f64Residual = ResidualEvaluator3D.GetResidual()
+		f64Residual = residualEvaluator3D.GetResidual()
 
 		strChannel = String.Format("Residual : {0}", f64Residual)
 

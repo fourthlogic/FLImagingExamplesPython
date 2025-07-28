@@ -47,16 +47,16 @@ def main():
 			break		
 
 		# DepthMapToPointCloudConverter 객체 생성 // Create DepthMapToPointCloudConverter object
-		PointCloudToDepthMapConverter3D = CPointCloudToDepthMapConverter3D()
+		pointCloudToDepthMapConverter3D = CPointCloudToDepthMapConverter3D()
 
 		# Destination 이미지 설정 // Set the Destination image.
-		PointCloudToDepthMapConverter3D.SetDestinationImage(fliDestination)
+		pointCloudToDepthMapConverter3D.SetDestinationImage(fliDestination)
 
 		# Destination Texture 이미지 설정 // Set the texture image.
-		PointCloudToDepthMapConverter3D.SetDestinationImageTexture(fliDestinationTexture)
+		pointCloudToDepthMapConverter3D.SetDestinationImageTexture(fliDestinationTexture)
 
 		# 이미지 크기 설정 // Set the image size.
-		PointCloudToDepthMapConverter3D.SetImageSize(2064, 1544)
+		pointCloudToDepthMapConverter3D.SetImageSize(2064, 1544)
 
 		# Camera Matrix 설정 // Set the camera matrix
 		flpFocalLength = CFLPoint[Single]()
@@ -67,7 +67,7 @@ def main():
 		flpPrincipalPoint.x = 988.599976
 		flpPrincipalPoint.y = 750.299988
 
-		PointCloudToDepthMapConverter3D.SetIntrinsicParameter(flpFocalLength, flpPrincipalPoint)
+		pointCloudToDepthMapConverter3D.SetIntrinsicParameter(flpFocalLength, flpPrincipalPoint)
 
 		#왜곡 계수 설정 // Set the distortion coefficient
 		flaDistortionCoefficient = List[Double]()
@@ -78,16 +78,16 @@ def main():
 		flaDistortionCoefficient.Add(-0.0005675755000)
 		flaDistortionCoefficient.Add(-0.0246060137000)
 
-		PointCloudToDepthMapConverter3D.SetDistortionCoefficient(flaDistortionCoefficient)
+		pointCloudToDepthMapConverter3D.SetDistortionCoefficient(flaDistortionCoefficient)
 
 		# Z축 방향 설정 // Set z-axis direction.
-		PointCloudToDepthMapConverter3D.SetDirectionType(EDirectionType.Increment)
+		pointCloudToDepthMapConverter3D.SetDirectionType(EDirectionType.Increment)
 
 		# Source 3D Object 설정 // Set the source 3D object
-		PointCloudToDepthMapConverter3D.SetSourceObject(floSource)
+		pointCloudToDepthMapConverter3D.SetSourceObject(floSource)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(res := PointCloudToDepthMapConverter3D.Execute()).IsFail() :	
+		if(res := pointCloudToDepthMapConverter3D.Execute()).IsFail() :	
 			ErrorPrint(res, "Failed to execute Depth Map To Point Cloud Converter 3D.")
 			break
 		

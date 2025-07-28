@@ -70,51 +70,51 @@ def main():
 			break
 
 		# WienerDeconvolution filter 객체 생성 // Create WienerDeconvolution filter object
-		WienerDeconvolutionFilter = CWienerDeconvolutionFilter()
+		wienerDeconvolutionFilter = CWienerDeconvolutionFilter()
 		# Source 이미지 설정 // Set the source image
-		WienerDeconvolutionFilter.SetSourceImage(listFliImage[0])
+		wienerDeconvolutionFilter.SetSourceImage(listFliImage[0])
 
 		# Destination1 이미지 설정 // Set the destination1 image
-		WienerDeconvolutionFilter.SetDestinationImage(listFliImage[1])
+		wienerDeconvolutionFilter.SetDestinationImage(listFliImage[1])
 
 		# Destination3 이미지 설정 // Set the destination3 image
-		WienerDeconvolutionFilter.SetResultFrequency(listFliImage[3])
+		wienerDeconvolutionFilter.SetResultFrequency(listFliImage[3])
 
 		# Angle 값 설정 // Set the Angle value
-		WienerDeconvolutionFilter.SetAngle(45)
+		wienerDeconvolutionFilter.SetAngle(45)
 
 		# Length 값 설정 // Set the Length value
-		WienerDeconvolutionFilter.SetLength(135)
+		wienerDeconvolutionFilter.SetLength(135)
 
 		# SNR 값 설정 // Set the SNR value
-		WienerDeconvolutionFilter.SetSNR(0.00001)
+		wienerDeconvolutionFilter.SetSNR(0.00001)
 
 		# Motion Blur 값 설정 // Set the Motion Blur value
-		WienerDeconvolutionFilter.SetOperationType(CWienerDeconvolutionFilter.EOperationType.Convolution)
+		wienerDeconvolutionFilter.SetOperationType(CWienerDeconvolutionFilter.EOperationType.Convolution)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := WienerDeconvolutionFilter.Execute()).IsFail() :
+		if (res := wienerDeconvolutionFilter.Execute()).IsFail() :
 		
-			ErrorPrint(res, "Failed to execute WienerDeconvolutionFilter.")
+			ErrorPrint(res, "Failed to execute Wiener Deconvolution Filter.")
 			break
 		
 
 		# Source 이미지 설정 // Set the source image
-		WienerDeconvolutionFilter.SetSourceImage(listFliImage[1])
+		wienerDeconvolutionFilter.SetSourceImage(listFliImage[1])
 
 		# Destination2 이미지 설정 // Set the destination2 image
-		WienerDeconvolutionFilter.SetDestinationImage(listFliImage[2])
+		wienerDeconvolutionFilter.SetDestinationImage(listFliImage[2])
 
 		# Destination4 이미지 설정 // Set the destination4 image
-		WienerDeconvolutionFilter.SetResultFrequency(listFliImage[4])
+		wienerDeconvolutionFilter.SetResultFrequency(listFliImage[4])
 
 		# Motion Blur 값 설정 // Set the Motion Blur value
-		WienerDeconvolutionFilter.SetOperationType(CWienerDeconvolutionFilter.EOperationType.Deconvolution)
+		wienerDeconvolutionFilter.SetOperationType(CWienerDeconvolutionFilter.EOperationType.Deconvolution)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if(res := WienerDeconvolutionFilter.Execute()).IsFail() :
+		if(res := wienerDeconvolutionFilter.Execute()).IsFail() :
 		
-			ErrorPrint(res, "Failed to execute WienerDeconvolutionFilter.")
+			ErrorPrint(res, "Failed to execute Wiener Deconvolution Filter.")
 			break
 						
 

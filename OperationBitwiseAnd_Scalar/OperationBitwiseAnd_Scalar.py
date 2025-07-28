@@ -65,28 +65,28 @@ def main():
 			break
 
 		# Bitwise And 객체 생성 // Create Bitwise And object
-		operationBitwiseAnd = COperationBitwiseAnd()
+		bitwiseAnd = COperationBitwiseAnd()
 
 		# Source 이미지 설정 // Set the source image
-		operationBitwiseAnd.SetSourceImage(fliSourceImage)
+		bitwiseAnd.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		operationBitwiseAnd.SetDestinationImage(fliDestinationImage)
+		bitwiseAnd.SetDestinationImage(fliDestinationImage)
 
 		# ROI 범위 설정 // Set the ROI value
 		flcSourceROI = CFLCircle[Double](128, 128, 80, 0, 0, 360, EArcClosingMethod.EachOther)
 
 		# Source 이미지의 ROI 지정 // Set the Source ROI
-		operationBitwiseAnd.SetSourceROI(flcSourceROI)
+		bitwiseAnd.SetSourceROI(flcSourceROI)
 
 		# Scalar Operation 소스로 설정 // Set Operation Source to scalar
-		operationBitwiseAnd.SetOperationSource(EOperationSource.Scalar)
+		bitwiseAnd.SetOperationSource(EOperationSource.Scalar)
 
 		# Scalar 값 지정 // Set the Scalar value
-		operationBitwiseAnd.SetScalarValue(111)
+		bitwiseAnd.SetScalarValue(111)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := operationBitwiseAnd.Execute()).IsFail():
+		if (res := bitwiseAnd.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Bitwise And.')
 			break
 		
