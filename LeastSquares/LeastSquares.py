@@ -37,15 +37,13 @@ def main():
             print("Please check the input.\n")
             break
     
-        # 입력 받은 개수만큼 데이터를 생성한다.
+        # 입력 받은 개수만큼 데이터를 생성한다. // Generates data according to the number of inputs
         arrF64DataX = [0.0] * i32DataCount
         arrF64DataY = [0.0] * i32DataCount
     
         strSampleData = ""
         f64PrevX = 0.0
         f64PrevY = 0.0
-        
-        # Random random = new Random();
         
         for i in range(i32DataCount):
             if len(strSampleData) != 0:
@@ -68,17 +66,17 @@ def main():
         print(strSampleData)
         print("\n")
     
-        # LeastSquaresD 객체 생성
+        # LeastSquares 객체 생성 // Create LeastSquares object
         ls = CLeastSquares[Double]()
     
-        # 데이터를 할당
+        # 데이터를 할당 // Assign data
         ls.Assign(arrF64DataX, arrF64DataY, i32DataCount)
     
         for i in range(1, 6):
-            # 계수 값을 받기 위해 List 생성
-            # R square 값을 받기 위해 double 선언
+            # 계수 값을 받기 위해 List 생성 // Create List to receive coefficient values
+            # R square 값을 받기 위해 double 선언 // Declare double for R square value
     
-            # 다항식 계수를 얻는다.
+            # 다항식 계수를 얻는다. // Get polynomial coefficients
             res, listF64Output, f64TRSqr = ls.GetPoly(i, List[Double](), 0.0)
     
             if res.IsFail():
@@ -93,7 +91,7 @@ def main():
             
             listCoef = List[Complex]() 
     
-            # 얻어온 계수로 다항식을 만든다.
+            # 얻어온 계수로 다항식을 만든다. // Create polynomial with obtained coefficients
             for j in range(i32Count):
                 f64Coef = listF64Output[j]
     
