@@ -19,8 +19,8 @@ def main():
     arr_image = [CFLImage() for _ in range(EType.Count)]
 
 	# 이미지 뷰 선언 # Declare the image view
-    arr_view_image = [CGUIViewImage() for _ in range(EType.Count)]
-    view3d = CGUIView3D()
+    arr_viewImage = [CGUIViewImage() for _ in range(EType.Count)]
+    view3D = CGUIView3D()
 
     res = CResult()
 
@@ -36,24 +36,24 @@ def main():
             break
 
         # Model 이미지 뷰 생성 # Create model view        
-        if (res := arr_view_image[EType.Model].Create(100, 0, 612, 512)).IsFail():
+        if (res := arr_viewImage[EType.Model].Create(100, 0, 612, 512)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
         # Texture 이미지 뷰 생성 # Create texture view        
-        if (res := arr_view_image[EType.Texture].Create(612, 0, 1124, 512)).IsFail():
+        if (res := arr_viewImage[EType.Texture].Create(612, 0, 1124, 512)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
         # 3D 뷰 생성 # Create 3D view        
-        if (res := view3d.Create(1124, 0, 1636, 512)).IsFail():
+        if (res := view3D.Create(1124, 0, 1636, 512)).IsFail():
             ErrorPrint(res, "Failed to create the 3D view.")
             break
 
         b_error = False
         for i in range(EType.Count):
             # 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
-            if (res := arr_view_image[i].SetImagePtr(arr_image[i])[0]).IsFail():
+            if (res := arr_viewImage[i].SetImagePtr(arr_image[i])[0]).IsFail():
                 ErrorPrint(res, "Failed to set image object on the image view.")
                 b_error = True
                 break
@@ -62,33 +62,33 @@ def main():
             break
 
         # 두 이미지 뷰의 시점을 동기화 # Synchronize views        
-        if (res := arr_view_image[EType.Model].SynchronizePointOfView(arr_view_image[EType.Texture])[0]).IsFail():
+        if (res := arr_viewImage[EType.Model].SynchronizePointOfView(arr_viewImage[EType.Texture])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize view")
             break
 
         # 두 이미지 뷰의 위치를 동기화 # Synchronize the position of the two image view windows.
-        if (res := arr_view_image[EType.Model].SynchronizeWindow(arr_view_image[EType.Texture])[0]).IsFail():
+        if (res := arr_viewImage[EType.Model].SynchronizeWindow(arr_viewImage[EType.Texture])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize window.")
             break
         
 		# 3D 뷰와 이미지 뷰 윈도우의 위치를 동기화 # Synchronize the position of the image view and the 3D view window
-        if (res := arr_view_image[EType.Model].SynchronizeWindow(view3d)[0]).IsFail():
+        if (res := arr_viewImage[EType.Model].SynchronizeWindow(view3D)[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize window.")
             break
 
         # 3D 뷰에 높이 맵과 텍스쳐를 로드하여 디스플레이 # Create height map object
         fl3d_ohm = CFL3DObjectHeightMap(arr_image[EType.Model], arr_image[EType.Texture])        
-        if (res := view3d.PushObject(fl3d_ohm)).IsFail():
+        if (res := view3D.PushObject(fl3d_ohm)).IsFail():
             ErrorPrint(res, "Failed to set image object on the 3D view.")
             break
 
-        view3d.ZoomFit()
+        view3D.ZoomFit()
 
         # 이미지뷰에서 레이어를 얻어 온 뒤 텍스트 출력 # Get layers and draw text
-        arr_layer = [arr_view_image[i].GetLayer(0) for i in range(2)]
+        arr_layer = [arr_viewImage[i].GetLayer(0) for i in range(2)]
         for layer in arr_layer:
             layer.Clear()
-        view3d.GetLayer(0).Clear()
+        view3D.GetLayer(0).Clear()
 
         # 텍스트 출력 위치 # Text coordinates
         position = CFLPoint[Double](0, 0)    
@@ -105,19 +105,19 @@ def main():
             ErrorPrint(res, "Failed to draw text.")
             break
 
-        if (res := view3d.GetLayer(0).DrawTextCanvas(position, "3D View", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+        if (res := view3D.GetLayer(0).DrawTextCanvas(position, "3D View", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
             ErrorPrint(res, "Failed to draw text.")
             break
         
 		# 3D 뷰와 이미지 뷰를 갱신 # Update image view
-        arr_view_image[EType.Model].Invalidate(True)
-        arr_view_image[EType.Texture].Invalidate(True)
-        view3d.Invalidate(True)
+        arr_viewImage[EType.Model].Invalidate(True)
+        arr_viewImage[EType.Texture].Invalidate(True)
+        view3D.Invalidate(True)
 
 		# 3D 뷰와 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until views close
-        while (arr_view_image[EType.Model].IsAvailable() and
-               arr_view_image[EType.Texture].IsAvailable() and
-               view3d.IsAvailable()):
+        while (arr_viewImage[EType.Model].IsAvailable() and
+               arr_viewImage[EType.Texture].IsAvailable() and
+               view3D.IsAvailable()):
             time.sleep(0.01)
         break
 	# End of main function

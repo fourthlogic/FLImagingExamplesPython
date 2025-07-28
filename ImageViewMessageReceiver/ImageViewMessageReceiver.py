@@ -9,9 +9,9 @@ import time
 
 # Message Receiver는 CFLBase를 상속 받는다. # Message Receiver inherits from CFLBase
 class CMessageReceiver(CFLBase):
-    def __init__(self, view_image):
+    def __init__(self, viewImage):
         super().__init__()
-        self.m_viewImage = view_image
+        self.m_viewImage = viewImage
         # CBroadcastManager 에 구독 등록
         # Register subscription to receive messages from CBroadcastManager
         CBroadcastManager.Subscribe(self, CBroadcastManager.Delegate_OnReceiveBroadcast(self.OnReceiveBroadcast))
@@ -50,13 +50,13 @@ class CMessageReceiver(CFLBase):
 
                 # 메세지를 보낸 객체 얻어 오기
                 # Get the sender image view from the message
-                view_image = msg_mouse_event.GetCaller()
-                if view_image is None:
+                viewImage = msg_mouse_event.GetCaller()
+                if viewImage is None:
                     break
 
                 # 이미지뷰의 0번 레이어 가져오기
                 # Get the 0th layer of the image view
-                layer = view_image.GetLayer(0)
+                layer = viewImage.GetLayer(0)
 
                 # 기존에 Layer 에 그려진 도형들을 삭제
                 # Clear any existing drawings on the layer
@@ -74,7 +74,7 @@ class CMessageReceiver(CFLBase):
 
                 # 이미지뷰를 갱신
                 # Refresh the image view
-                view_image.Invalidate()
+                viewImage.Invalidate()
 
             # 이미지 뷰 위에서 마우스의 왼쪽 버튼을 누른(LButtonDown) 뒤(Post)
             # After left mouse button is pressed on image view
@@ -87,13 +87,13 @@ class CMessageReceiver(CFLBase):
                 
                 # 메세지를 보낸 객체 얻어 오기
                 # Get the sender image view from the message
-                view_image = msg_mouse_event.GetCaller()
-                if view_image is None:
+                viewImage = msg_mouse_event.GetCaller()
+                if viewImage is None:
                     break
                 
                 # 이미지뷰의 0번 레이어 가져오기
                 # Get the 0th layer of the image view
-                layer = view_image.GetLayer(0)
+                layer = viewImage.GetLayer(0)
 
                 # 기존에 Layer 에 그려진 도형들을 삭제
                 # Clear any existing drawings on the layer
@@ -111,7 +111,7 @@ class CMessageReceiver(CFLBase):
 
                 # 이미지뷰를 갱신
                 # Refresh the image view
-                view_image.Invalidate()
+                viewImage.Invalidate()
 
             # 이미지 뷰 위에서 마우스의 왼쪽 버튼을 올린(LButtonUp) 뒤(Post)
             # After left mouse button is released on image view
@@ -124,13 +124,13 @@ class CMessageReceiver(CFLBase):
                 
                 # 메세지를 보낸 객체 얻어 오기
                 # Get the sender image view from the message
-                view_image = msg_mouse_event.GetCaller()
-                if view_image is None:
+                viewImage = msg_mouse_event.GetCaller()
+                if viewImage is None:
                     break
                 
                 # 이미지뷰의 0번 레이어 가져오기
                 # Get the 0th layer of the image view
-                layer = view_image.GetLayer(0)
+                layer = viewImage.GetLayer(0)
 
                 # 기존에 Layer 에 그려진 도형들을 삭제
                 # Clear any existing drawings on the layer
@@ -148,46 +148,46 @@ class CMessageReceiver(CFLBase):
 
                 # 이미지뷰를 갱신
                 # Refresh the image view
-                view_image.Invalidate()
+                viewImage.Invalidate()
 
             break
 
 
 def main():
     # 이미지 뷰 선언 # Declare the image view
-    view_image = [None] * 2
-    view_image[0] = CGUIViewImage()
-    view_image[1] = CGUIViewImage()
+    viewImage = [None] * 2
+    viewImage[0] = CGUIViewImage()
+    viewImage[1] = CGUIViewImage()
 
     # 메세지를 전달 받을 CMessageReceiver 객체 생성 
     # Create the CMessageReceiver object to receive messages
-    msg_receiver = CMessageReceiver(view_image[0])
+    msg_receiver = CMessageReceiver(viewImage[0])
 
     res = CResult()
 
     # 이미지 뷰 생성 # Create the first image view    
-    if (res := view_image[0].Create(300, 0, 300 + 520, 430)).IsFail():
+    if (res := viewImage[0].Create(300, 0, 300 + 520, 430)).IsFail():
         ErrorPrint(res, "Failed to create the image view.")
         return
 
     # 이미지 뷰 생성 # Create the second image view
-    if (res := view_image[1].Create(300 + 520, 0, 300 + 520 * 2, 430)).IsFail():
+    if (res := viewImage[1].Create(300 + 520, 0, 300 + 520 * 2, 430)).IsFail():
         ErrorPrint(res, "Failed to create the image view.")
         return
 
     # 뷰의 시점 동기화 # Synchronize the point of view between views
-    if (res := view_image[0].SynchronizePointOfView(view_image[1])[0]).IsFail():
+    if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
         ErrorPrint(res, "Failed to synchronize view")
         return
 
     # 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
-    if (res := view_image[0].SynchronizeWindow(view_image[1])[0]).IsFail():
+    if (res := viewImage[0].SynchronizeWindow(viewImage[1])[0]).IsFail():
         ErrorPrint(res, "Failed to synchronize window")
         return
 
     # 이미지 뷰가 종료될 때까지 대기
     # Wait until the first image view is closed
-    while view_image[0].IsAvailable():
+    while viewImage[0].IsAvailable():
         time.sleep(0.01)
 
 
