@@ -14,7 +14,7 @@ def ErrorPrint(res, str):
 
 	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
-def Undistortion(sCC, fliSourceImage, fliDestinationImage, viewImageSource, viewImageDestination):
+def Undistortion(cameraCalibrator, fliSourceImage, fliDestinationImage, viewImageSource, viewImageDestination):
 	bResult = False
 	res = CResult()
 
@@ -57,17 +57,17 @@ def Undistortion(sCC, fliSourceImage, fliDestinationImage, viewImageSource, view
 			break
 
 		# Source 이미지 설정 // Set Source image
-		if (res := sCC.SetSourceImage(fliSourceImage)[0]).IsFail():
+		if (res := cameraCalibrator.SetSourceImage(fliSourceImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
 		# Destination 이미지 설정 // Set Destination image
-		if (res := sCC.SetDestinationImage(fliDestinationImage)[0]).IsFail():
+		if (res := cameraCalibrator.SetDestinationImage(fliDestinationImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
 		# Interpolation 알고리즘 설정 // Set the Interpolation Algorithm
-		if (res := sCC.SetInterpolationMethod(EInterpolationMethod.Bilinear)).IsFail():
+		if (res := cameraCalibrator.SetInterpolationMethod(EInterpolationMethod.Bilinear)).IsFail():
 			ErrorPrint(res, 'Failed to set interpolation method')
 			break
 
@@ -75,7 +75,7 @@ def Undistortion(sCC, fliSourceImage, fliDestinationImage, viewImageSource, view
 		sPC.Start()
 
 		# Undistortion 실행 // Execute Undistortion
-		if (res := sCC.Execute()).IsFail():
+		if (res := cameraCalibrator.Execute()).IsFail():
 			ErrorPrint(res, 'Undistortion failed')
 			break
 
@@ -120,7 +120,7 @@ def main():
 	viewImageDestination = CGUIViewImage()
 
 	# Camera Calibrator 객체 생성 // Create Camera Calibrator object
-	sCC = CCameraCalibrator()
+	cameraCalibrator = CCameraCalibrator()
 
 	res = CResult()
 
@@ -143,23 +143,23 @@ def main():
 		uDist.f64P2 = arrF64Dist[3]
 		uDist.f64K3 = arrF64Dist[4]
 
-		if (res := sCC.SetIntrinsicParameters(uIntrinc)).IsFail():
+		if (res := cameraCalibrator.SetIntrinsicParameters(uIntrinc)).IsFail():
 			ErrorPrint(res, "Failed to set intrinsic parameters")
 			break
 
-		if (res := sCC.SetDistortionCoefficients(uDist)).IsFail():
+		if (res := cameraCalibrator.SetDistortionCoefficients(uDist)).IsFail():
 			ErrorPrint(res, "Failed to set distortion coefficients")
 			break
 
-		if (res := sCC.EnableAutoCalibration(False)).IsFail():
+		if (res := cameraCalibrator.EnableAutoCalibration(False)).IsFail():
 			ErrorPrint(res, "Failed to auto calibration\n")
 			break
 
-		if (res := sCC.Calibrate()).IsFail():
+		if (res := cameraCalibrator.Calibrate()).IsFail():
 			ErrorPrint(res, "Failed to calibration\n")
 			break
 
-		if not Undistortion(sCC, fliSourceImage, fliDestinationImage, viewImageSource, viewImageDestination):
+		if not Undistortion(cameraCalibrator, fliSourceImage, fliDestinationImage, viewImageSource, viewImageDestination):
 			break
 
 		layerSource = viewImageSource.GetLayer(0)

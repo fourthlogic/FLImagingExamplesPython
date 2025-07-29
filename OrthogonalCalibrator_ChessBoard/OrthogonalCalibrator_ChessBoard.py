@@ -14,32 +14,32 @@ def ErrorPrint(res, str):
 
 	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
-def Calibration(sCC, fliLearnImage):
+def Calibration(orthogonalCalibrator, fliLearnImage):
 	bResult = False
 	res = CResult()
 
 	while True:
 		# Learn 이미지 설정 // Learn image settings
-		if (res := sCC.SetCalibrationImage(fliLearnImage))[0].IsFail():
+		if (res := orthogonalCalibrator.SetCalibrationImage(fliLearnImage))[0].IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
 		# Calibator할 대상 종류를 설정합니다. // Set the target type for Calibator.
-		sCC.SetGridTypeForCameraCalibration(COrthogonalCalibrator.EGridType.ChessBoard)
+		orthogonalCalibrator.SetGridTypeForCameraCalibration(COrthogonalCalibrator.EGridType.ChessBoard)
 
 		# 직교 보정 계산을 할 Learn 이미지 설정 // Learn image settings for orthogonal correction
-		if (res := sCC.SetOrthogonalCorrectionImage(fliLearnImage))[0].IsFail():
+		if (res := orthogonalCalibrator.SetOrthogonalCorrectionImage(fliLearnImage))[0].IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
 		# 직교 보정할 대상 종류를 설정합니다. // Set the target type for orthogonal correction.
-		sCC.SetGridTypeForOrthogonalCorrection(COrthogonalCalibrator.EGridType.ChessBoard)
+		orthogonalCalibrator.SetGridTypeForOrthogonalCorrection(COrthogonalCalibrator.EGridType.ChessBoard)
 
 		# 결과에 대한 학습률을 설정합니다.
-		sCC.SetOptimalSolutionAccuracy(1e-5)
+		orthogonalCalibrator.SetOptimalSolutionAccuracy(1e-5)
 
 		# Calibration 실행 // Execute Calibration
-		if (res := sCC.Calibrate()).IsFail():
+		if (res := orthogonalCalibrator.Calibrate()).IsFail():
 			ErrorPrint(res, 'Calibration failed')
 			break
 
@@ -48,28 +48,28 @@ def Calibration(sCC, fliLearnImage):
 
 	return bResult
 
-def Undistortion(sCC, fliSourceImage, fliDestinationImage):
+def Undistortion(orthogonalCalibrator, fliSourceImage, fliDestinationImage):
 	bResult = False
 	res = CResult()
 
 	while True:
 		# Source 이미지 설정 // Set Source image
-		if (res := sCC.SetSourceImage(fliSourceImage)[0]).IsFail():
+		if (res := orthogonalCalibrator.SetSourceImage(fliSourceImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
 		# Destination 이미지 설정 // Set Destination image
-		if (res := sCC.SetDestinationImage(fliDestinationImage)[0]).IsFail():
+		if (res := orthogonalCalibrator.SetDestinationImage(fliDestinationImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
 		# Interpolation 알고리즘 설정 // Set the Interpolation Algorithm
-		if (res := sCC.SetInterpolationMethod(EInterpolationMethod.Bilinear)).IsFail():
+		if (res := orthogonalCalibrator.SetInterpolationMethod(EInterpolationMethod.Bilinear)).IsFail():
 			ErrorPrint(res, 'Failed to set interpolation method')
 			break
 
 		# Undistortion 실행 // Execute Undistortion
-		if (res := sCC.Execute()).IsFail():
+		if (res := orthogonalCalibrator.Execute()).IsFail():
 			ErrorPrint(res, 'Undistortion failed')
 			break
 
@@ -91,7 +91,7 @@ def main():
 	viewImageDestination = CGUIViewImage()
 
 	# Orthogonal Calibrator 객체 생성 // Create Orthogonal Calibrator object
-	sCC = COrthogonalCalibrator()
+	orthogonalCalibrator = COrthogonalCalibrator()
 	res = CResult()
 
 	while True:
@@ -112,7 +112,7 @@ def main():
 
 		print('Processing....')
 
-		if not Calibration(sCC, fliLearnImage):
+		if not Calibration(orthogonalCalibrator, fliLearnImage):
 			break
 		
 		# Source 이미지 로드 // Load the Source image
@@ -127,7 +127,7 @@ def main():
 			ErrorPrint(res, 'Failed to create the image file.')
 			break
 
-		if not Undistortion(sCC, fliSourceImage, fliDestinationImage):
+		if not Undistortion(orthogonalCalibrator, fliSourceImage, fliDestinationImage):
 			break
 
 		sArrGridDisplay = dict()
@@ -136,10 +136,10 @@ def main():
 		sArrGridDisplay['i64ObjectIdx'] = 0
 		sArrGridDisplay['sGridData'] = COrthogonalCalibrator.CCalibratorGridResult()
 
-		i64ObjectCount = sCC.GetResultGridPointsObjectCnt(0)
+		i64ObjectCount = orthogonalCalibrator.GetResultGridPointsObjectCnt(0)
 
 		for i64ObjectIdx in range(i64ObjectCount):
-			sCC.GetResultGridPoints(i64ObjectIdx, 0, sArrGridDisplay['sGridData'])
+			orthogonalCalibrator.GetResultGridPoints(i64ObjectIdx, 0, sArrGridDisplay['sGridData'])
 			sArrGridDisplay['i64ImageIdx'] = 0
 			sArrGridDisplay['i64ObjectIdx'] = sArrGridDisplay['sGridData'].i64ID
 
@@ -283,8 +283,8 @@ def main():
 			break
 
 		layerSource = viewImageSource.GetLayer(0)
-		sIntrinsicParam = sCC.GetResultIntrinsicParameters()
-		sDistortCoeef = sCC.GetResultDistortionCoefficients()
+		sIntrinsicParam = orthogonalCalibrator.GetResultIntrinsicParameters()
+		sDistortCoeef = orthogonalCalibrator.GetResultDistortionCoefficients()
 		strMatrix = "{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}".format(sIntrinsicParam.f64FocalLengthX, sIntrinsicParam.f64Skew, sIntrinsicParam.f64PrincipalPointX, 0, sIntrinsicParam.f64FocalLengthY, sIntrinsicParam.f64PrincipalPointY, 0, 0, 1)
 		strDistVal = "{0}, {1}, {2}, {3}, {4}".format(sDistortCoeef.f64K1, sDistortCoeef.f64K2, sDistortCoeef.f64P1, sDistortCoeef.f64P2, sDistortCoeef.f64K3)
 

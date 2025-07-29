@@ -14,23 +14,23 @@ def ErrorPrint(res, str):
 
 	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
-def Calibration(sCC, fliLearnImage):
+def Calibration(cameraCalibrator, fliLearnImage):
 	bResult = False
 	res = CResult()
 
 	while True:
 		# Learn 이미지 설정 // Learn image settings
-		if (res := sCC.SetCalibrationImage(fliLearnImage))[0].IsFail():
+		if (res := cameraCalibrator.SetCalibrationImage(fliLearnImage))[0].IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
 		# Calibator할 대상 종류를 설정합니다. // Set the target type for Calibator.
-		sCC.SetGridType(CCameraCalibrator.EGridType.ChessBoard)
+		cameraCalibrator.SetGridType(CCameraCalibrator.EGridType.ChessBoard)
 		# 결과에 대한 학습률을 설정합니다.
-		sCC.SetOptimalSolutionAccuracy(1e-5)
+		cameraCalibrator.SetOptimalSolutionAccuracy(1e-5)
 
 		# Calibration 실행 // Execute Calibration
-		if (res := sCC.Calibrate()).IsFail():
+		if (res := cameraCalibrator.Calibrate()).IsFail():
 			ErrorPrint(res, 'Calibration failed')
 			break
 
@@ -39,28 +39,28 @@ def Calibration(sCC, fliLearnImage):
 
 	return bResult
 
-def Undistortion(sCC, fliSourceImage, fliDestinationImage):
+def Undistortion(cameraCalibrator, fliSourceImage, fliDestinationImage):
 	bResult = False
 	res = CResult()
 
 	while True:
 		# Source 이미지 설정 // Set Source image
-		if (res := sCC.SetSourceImage(fliSourceImage)[0]).IsFail():
+		if (res := cameraCalibrator.SetSourceImage(fliSourceImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
 		# Destination 이미지 설정 // Set Destination image
-		if (res := sCC.SetDestinationImage(fliDestinationImage)[0]).IsFail():
+		if (res := cameraCalibrator.SetDestinationImage(fliDestinationImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
 		# Interpolation 알고리즘 설정 // Set the Interpolation Algorithm
-		if (res := sCC.SetInterpolationMethod(EInterpolationMethod.Bilinear)).IsFail():
+		if (res := cameraCalibrator.SetInterpolationMethod(EInterpolationMethod.Bilinear)).IsFail():
 			ErrorPrint(res, 'Failed to set interpolation method')
 			break
 
 		# Undistortion 실행 // Execute Undistortion
-		if (res := sCC.Execute()).IsFail():
+		if (res := cameraCalibrator.Execute()).IsFail():
 			ErrorPrint(res, 'Undistortion failed')
 			break
 
@@ -85,7 +85,7 @@ def main():
 	viewImageDestination = CGUIViewImage()
 
 	# Camera Calibrator 객체 생성 // Create Camera Calibrator object
-	sCC = CCameraCalibrator()
+	cameraCalibrator = CCameraCalibrator()
 	res = CResult()
 
 	while True:
@@ -113,7 +113,7 @@ def main():
 				ErrorPrint(res, 'Failed to set image object on the image view.')
 				break
 
-		if not Calibration(sCC, fliLearnImage):
+		if not Calibration(cameraCalibrator, fliLearnImage):
 			break
 		
 		# Source 이미지 로드 // Load the Source image
@@ -128,7 +128,7 @@ def main():
 			ErrorPrint(res, 'Failed to create the image file.')
 			break
 
-		if not Undistortion(sCC, fliSourceImage, fliDestinationImage):
+		if not Undistortion(cameraCalibrator, fliSourceImage, fliDestinationImage):
 			break
 
 		sArrGridDisplay = [dict(), dict(), dict()]
@@ -139,10 +139,10 @@ def main():
 			sArrGridDisplay[i]['sGridData'] = CCameraCalibrator.CCalibratorGridResult()
 
 		for i64ImgIdx in range(fliLearnImage.GetPageCount()):
-			i64ObjectCount = sCC.GetResultGridPointsObjectCnt(i64ImgIdx)
+			i64ObjectCount = cameraCalibrator.GetResultGridPointsObjectCnt(i64ImgIdx)
 
 			for i64ObjectIdx in range(i64ObjectCount):
-				sCC.GetResultGridPoints(i64ObjectIdx, i64ImgIdx, sArrGridDisplay[i64ImgIdx]['sGridData'])
+				cameraCalibrator.GetResultGridPoints(i64ObjectIdx, i64ImgIdx, sArrGridDisplay[i64ImgIdx]['sGridData'])
 				sArrGridDisplay[i64ImgIdx]['i64ImageIdx'] = i64ImgIdx
 				sArrGridDisplay[i64ImgIdx]['i64ObjectIdx'] = sArrGridDisplay[i64ImgIdx]['sGridData'].i64ID
 
@@ -288,8 +288,8 @@ def main():
 				break
 
 		layerSource = viewImageSource.GetLayer(0)
-		sIntrinsicParam = sCC.GetResultIntrinsicParameters()
-		sDistortCoeef = sCC.GetResultDistortionCoefficients()
+		sIntrinsicParam = cameraCalibrator.GetResultIntrinsicParameters()
+		sDistortCoeef = cameraCalibrator.GetResultDistortionCoefficients()
 		strMatrix = "{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}".format(sIntrinsicParam.f64FocalLengthX, sIntrinsicParam.f64Skew, sIntrinsicParam.f64PrincipalPointX, 0, sIntrinsicParam.f64FocalLengthY, sIntrinsicParam.f64PrincipalPointY, 0, 0, 1)
 		strDistVal = "{0}, {1}, {2}, {3}, {4}".format(sDistortCoeef.f64K1, sDistortCoeef.f64K2, sDistortCoeef.f64P1, sDistortCoeef.f64P2, sDistortCoeef.f64K3)
 
