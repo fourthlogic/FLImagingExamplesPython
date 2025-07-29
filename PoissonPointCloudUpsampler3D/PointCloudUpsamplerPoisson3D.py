@@ -23,7 +23,7 @@ def main():
 			break
 
 		#알고리즘 객체 생성 // declare algorithm instance
-		pointCloudUpsamplerPoisson3D = CPointCloudUpsamplerPoisson3D()
+		alg = CPointCloudUpsamplerPoisson3D()
 
 		# 3D 뷰와 연결이 유지된 객체 생성 // Declare the object connected to 3D view
 		view3DSrc.PushObject(CFL3DObject())
@@ -40,17 +40,17 @@ def main():
 			break
 
 		# 파라미터 설정 // Set parameter
-		pointCloudUpsamplerPoisson3D.SetSourceObject(floSrc)
-		pointCloudUpsamplerPoisson3D.SetDestinationObject(floDst)
-		pointCloudUpsamplerPoisson3D.SetColoringMode(CPointCloudUpsampler3DBase.EColoringMode.Interpolate)
-		pointCloudUpsamplerPoisson3D.EnableNormalInterpolation(True)
-		pointCloudUpsamplerPoisson3D.EnableAutoDistance(True)
-		pointCloudUpsamplerPoisson3D.EnableCopyVertex(True)
-		pointCloudUpsamplerPoisson3D.EnableFaceReconstruction(False)
-		pointCloudUpsamplerPoisson3D.EnableFaceRetainment(False)
+		alg.SetSourceObject(floSrc)
+		alg.SetDestinationObject(floDst)
+		alg.SetColoringMode(CPointCloudUpsampler3DBase.EColoringMode.Interpolate)
+		alg.EnableNormalInterpolation(True)
+		alg.EnableAutoDistance(True)
+		alg.EnableCopyVertex(True)
+		alg.EnableFaceReconstruction(False)
+		alg.EnableFaceRetainment(False)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := pointCloudUpsamplerPoisson3D.Execute()).IsFail():
+		if (res := alg.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 		
