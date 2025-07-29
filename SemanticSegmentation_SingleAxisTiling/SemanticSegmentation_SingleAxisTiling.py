@@ -188,7 +188,8 @@ def main():
 		# Set the training image segmentation mode.
 		# The original image is divided and processed by the model size by maintaining the square ratio.
 		semanticSegmentation.SetImageTilingMode(ETilingMode.SingleAxisTiling_ProportionalFit);
-
+		# 학습 이미지 분할 모드의 겹치는 비율을 설정 // Set the overlap ratio of the learning image in tiling mode
+		semanticSegmentation.SetImageTilingOverlapRatio(0.25);
 		# 자동 저장 옵션 설정 // Set Auto-Save Options
 		autoSaveSpec = CAutoSaveSpec()
 
