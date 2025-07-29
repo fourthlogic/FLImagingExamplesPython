@@ -23,7 +23,7 @@ def main():
 			break
 
 		#알고리즘 객체 생성 // declare algorithm instance
-		alg = CPoissonPointCloudUpsampler3D()
+		alg = CPointCloudUpsamplerPoisson3D()
 
 		# 3D 뷰와 연결이 유지된 객체 생성 // Declare the object connected to 3D view
 		view3DSrc.PushObject(CFL3DObject())

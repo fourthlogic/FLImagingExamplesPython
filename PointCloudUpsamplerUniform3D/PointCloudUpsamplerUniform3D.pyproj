@@ -5,7 +5,7 @@
     <ProjectGuid>{a6c028a6-39a6-4fc6-a368-8e08cef5feb8}</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>UniformPointCloudUpsampler3D.py</StartupFile>
+    <StartupFile>PointCloudUpsamplerUniform3D.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="UniformPointCloudUpsampler3D.py" />
+    <Compile Include="PointCloudUpsamplerUniform3D.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
