@@ -34,7 +34,7 @@ def main():
 			break
 
 		#알고리즘 객체 생성 // declare algorithm instance
-		alg = CPerspectiveMerge3D()
+		perspectiveMerge = CPerspectiveMerge3D()
 		
 		floSrc1 = CFL3DObject()
 		floSrc2 = CFL3DObject()
@@ -52,13 +52,13 @@ def main():
 		# 파라미터 설정 // Set parameter
 		
 		# 카메라 1, 2의 Source 객체 설정 // Set the source object of camera 1, 2
-		alg.AddSourceObject(floSrc1, tpPosition, tpRotation);
-		alg.AddSourceObject(floSrc2, tpPosition2, tpRotation2);
+		perspectiveMerge.AddSourceObject(floSrc1, tpPosition, tpRotation);
+		perspectiveMerge.AddSourceObject(floSrc2, tpPosition2, tpRotation2);
 		# Destination 객체 설정 // Set the destination object
-		alg.SetDestinationObject(floDst);
+		perspectiveMerge.SetDestinationObject(floDst);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := alg.Execute()).IsFail():
+		if (res := perspectiveMerge.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

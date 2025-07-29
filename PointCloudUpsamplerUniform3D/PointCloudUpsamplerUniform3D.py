@@ -23,7 +23,7 @@ def main():
 			break
 
 		#알고리즘 객체 생성 // declare algorithm instance
-		alg = CPointCloudUpsamplerUniform3D()
+		pointCloudUpsampler = CPointCloudUpsamplerUniform3D()
 
 		# 3D 뷰와 연결이 유지된 객체 생성 // Declare the object connected to 3D view
 		view3DSrc.PushObject(CFL3DObject())
@@ -40,17 +40,17 @@ def main():
 			break
 
 		# 파라미터 설정 // Set parameter
-		alg.SetSourceObject(floSrc)
-		alg.SetDestinationObject(floDst)
-		alg.SetColoringMode(CPointCloudUpsampler3DBase.EColoringMode.Interpolate)
-		alg.EnableNormalInterpolation(True)
-		alg.SetSamplingSize(10 ** 7)
-		alg.EnableCopyVertex(True)
-		alg.EnableFaceReconstruction(False)
-		alg.EnableFaceRetainment(False)
+		pointCloudUpsampler.SetSourceObject(floSrc)
+		pointCloudUpsampler.SetDestinationObject(floDst)
+		pointCloudUpsampler.SetColoringMode(CPointCloudUpsampler3DBase.EColoringMode.Interpolate)
+		pointCloudUpsampler.EnableNormalInterpolation(True)
+		pointCloudUpsampler.SetSamplingSize(10 ** 7)
+		pointCloudUpsampler.EnableCopyVertex(True)
+		pointCloudUpsampler.EnableFaceReconstruction(False)
+		pointCloudUpsampler.EnableFaceRetainment(False)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := alg.Execute()).IsFail():
+		if (res := pointCloudUpsampler.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 		

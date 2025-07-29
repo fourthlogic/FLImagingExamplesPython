@@ -52,58 +52,58 @@ def main():
 
 
 		# 알고리즘 객체 생성 # Create algorithm object
-		alg = CHoleFilling()
+		holeFilling = CHoleFilling()
 
 		# Source 이미지 설정 # Set the source image
-		if (res := alg.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := holeFilling.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
 		# Destination 이미지 설정 # Set the destination image
-		if (res := alg.SetDestinationImage(fliDstImage)[0]).IsFail():
+		if (res := holeFilling.SetDestinationImage(fliDstImage)[0]).IsFail():
 			break
 		# 처리할 Hole Area 넓이 범위 설정 # Set hole area range to process
-		if (res := alg.SetMinimumHoleArea(10)).IsFail():
+		if (res := holeFilling.SetMinimumHoleArea(10)).IsFail():
 			break
 		# 처리할 Hole Area 넓이 범위 설정 # Set hole area range to process
-		if (res := alg.SetMaximumHoleArea(99999999999)).IsFail():
+		if (res := holeFilling.SetMaximumHoleArea(99999999999)).IsFail():
 			break
 		# 이미지 경계와 맞닿은 hole 의 처리 여부 설정 # Set whether to process holes that touch the image boundary
-		if (res := alg.EnableIgnoreBoundaryHole(True)).IsFail():
+		if (res := holeFilling.EnableIgnoreBoundaryHole(True)).IsFail():
 			break
 		# Threshold 를 통과한 픽셀이 hole 인지 object 인지 설정 # Set whether the pixel that passed the threshold is a hole or an object
-		if (res := alg.SetThresholdPassTarget(CHoleFilling.EThresholdPassTarget.Object)).IsFail():
+		if (res := holeFilling.SetThresholdPassTarget(CHoleFilling.EThresholdPassTarget.Object)).IsFail():
 			break
 		# Threshold 수와 결합 방식을 의미하는 Threshold 모드 설정 # Threshold mode setting, which refers to the number of threshold and combination method
-		if (res := alg.SetThresholdMode(EThresholdMode.Dual_And)).IsFail():
+		if (res := holeFilling.SetThresholdMode(EThresholdMode.Dual_And)).IsFail():
 			break
 		# 각 Threshold 내에서 채널 별 논리 결과 간의 결합 방식을 의미하는 Logical Condition Of Channels 설정 # Set the Logical Condition Of Channels, which refers to the combination method between logical results for each channel within each Threshold
-		if (res := alg.SetLogicalConditionOfChannels(ELogicalConditionOfChannels.And)).IsFail():
+		if (res := holeFilling.SetLogicalConditionOfChannels(ELogicalConditionOfChannels.And)).IsFail():
 			break
 		# Hole 영역을 채우는 방식을 설정 # Set the method of filling the hole area
-		if (res := alg.SetFillingMethod(CHoleFilling.EFillingMethod.HarmonicInterpolation)).IsFail():
+		if (res := holeFilling.SetFillingMethod(CHoleFilling.EFillingMethod.HarmonicInterpolation)).IsFail():
 			break
 		# Harmonic Interpolation 의 Precision 값 설정 # Set precision value for Harmonic Interpolation
-		if (res := alg.SetPrecision(0.1)).IsFail():
+		if (res := holeFilling.SetPrecision(0.1)).IsFail():
 			break
 		# Harmonic Interpolation 의 Max Iteration 값 설정 # Set max iteration value for Harmonic Interpolation
-		if (res := alg.SetMaxIteration(100)).IsFail():
+		if (res := holeFilling.SetMaxIteration(100)).IsFail():
 			break
 		# 첫 번째 Threshold 의 채널 별 논리 연산자와 값 설정 # Set the logical operator and value for each channel of the first Threshold
 		mvThresholdCondition1 = CMultiVar[UInt64](Convert.ToUInt64(ELogicalCondition.GreaterEqual), Convert.ToUInt64(ELogicalCondition.GreaterEqual), Convert.ToUInt64(ELogicalCondition.GreaterEqual))
-		if (res := alg.SetThresholdCondition(EThresholdIndex.First, mvThresholdCondition1)).IsFail():
+		if (res := holeFilling.SetThresholdCondition(EThresholdIndex.First, mvThresholdCondition1)).IsFail():
 			break
 		mvThresholdValue1U64 = CMultiVar[UInt64](175, 230, 240)
-		if (res := alg.SetThresholdValue(EThresholdIndex.First, mvThresholdValue1U64)).IsFail():
+		if (res := holeFilling.SetThresholdValue(EThresholdIndex.First, mvThresholdValue1U64)).IsFail():
 			break
 		# 두 번째 Threshold 의 채널 별 논리 연산자와 값 설정 # Set the logical operator and value for each channel of the second Threshold
 		mvThresholdCondition2 = CMultiVar[UInt64](Convert.ToUInt64(ELogicalCondition.Less), Convert.ToUInt64(ELogicalCondition.Less), Convert.ToUInt64(ELogicalCondition.Less))
-		if (res := alg.SetThresholdCondition(EThresholdIndex.Second, mvThresholdCondition2)).IsFail():
+		if (res := holeFilling.SetThresholdCondition(EThresholdIndex.Second, mvThresholdCondition2)).IsFail():
 			break
 		mvThresholdValue2U64 = CMultiVar[UInt64](200, 240, 255)
-		if (res := alg.SetThresholdValue(EThresholdIndex.Second, mvThresholdValue2U64)).IsFail():
+		if (res := holeFilling.SetThresholdValue(EThresholdIndex.Second, mvThresholdValue2U64)).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := (alg.Execute())).IsFail():
+		if (res := (holeFilling.Execute())).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 		
@@ -124,7 +124,7 @@ def main():
 			ErrorPrint(res, "Failed to draw text.\n")
 			break
 		
-		flfHoleContour = alg.GetSelectedPageFigureObject()
+		flfHoleContour = holeFilling.GetSelectedPageFigureObject()
 		if (res := layerSrc.DrawFigureImage(flfHoleContour, EColor.CYAN)).IsFail():
 			ErrorPrint(res, "Failed to draw figure.\n")
 			break

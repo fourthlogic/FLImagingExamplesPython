@@ -50,29 +50,29 @@ def main():
 		view3DSrc.ZoomFit()
 
 		# Distance Transform 3D 객체 생성 // Create Distance Transform 3D object
-		alg = CDistanceTransform3D()
+		distanceTransform = CDistanceTransform3D()
 
 		tpPosition = TPoint3[Single](0.000000, 0.000000, 0.000000)
 		tpDirection = TPoint3[Single](-0.100000, 0.000000, -1.000000)
 		tpUpVector = TPoint3[Single](0.000000, 1.000000, 0.000000)
 
 		# Source 객체 설정 // Set the source object
-		alg.SetSourceObject(floDst)
+		distanceTransform.SetSourceObject(floDst)
 		# 카메라 위치 설정 // Set the camera position
-		alg.SetPosition(tpPosition)
+		distanceTransform.SetPosition(tpPosition)
 		# 카메라 방향 설정 // Set the camera direction
-		alg.SetDirection(tpDirection)
+		distanceTransform.SetDirection(tpDirection)
 		# 카메라 업 벡터 설정 // Set the camera up vector
-		alg.SetUpVector(tpUpVector)
+		distanceTransform.SetUpVector(tpUpVector)
 
 		# 앞서 설정된 파라미터대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := alg.Execute()).IsFail():
+		if (res := distanceTransform.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute.\n")
 			break
 
 		arrResult = List[TPoint3[Single]]()
 		# 거리 결과 가져오기 // Get the distance
-		res, arrResult = alg.GetResultDistanceAxis(arrResult)
+		res, arrResult = distanceTransform.GetResultDistanceAxis(arrResult)
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately

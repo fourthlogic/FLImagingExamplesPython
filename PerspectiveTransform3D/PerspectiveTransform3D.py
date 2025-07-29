@@ -27,7 +27,7 @@ def main():
 			break
 
 		#알고리즘 객체 생성 // declare algorithm instance
-		alg = CPerspectiveTransform3D()
+		perspectiveTransform = CPerspectiveTransform3D()
 		
 		floSrc = CFL3DObject()
 		floDst = CFL3DObject()
@@ -41,15 +41,15 @@ def main():
 		tpUpVector = TPoint3[Single](0, 1, 0)
 
 		# 파라미터 설정 // Set parameter
-		alg.SetSourceObject(floSrc)
-		alg.SetDestinationObject(floDst)
-		alg.SetPosition(tpPosition)
-		alg.SetDirection(tpDirection)
-		alg.SetDirectionType(EDirectionType.Decrement)
-		alg.SetUpVector(tpUpVector)
+		perspectiveTransform.SetSourceObject(floSrc)
+		perspectiveTransform.SetDestinationObject(floDst)
+		perspectiveTransform.SetPosition(tpPosition)
+		perspectiveTransform.SetDirection(tpDirection)
+		perspectiveTransform.SetDirectionType(EDirectionType.Decrement)
+		perspectiveTransform.SetUpVector(tpUpVector)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := alg.Execute()).IsFail():
+		if (res := perspectiveTransform.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
