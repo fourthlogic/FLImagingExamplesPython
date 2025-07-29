@@ -1798,6 +1798,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DeviceMotionEziMotionPlusRV
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DeviceMotionXMC", "DeviceMotionXMC\DeviceMotionXMC.pyproj", "{E5A202CF-3208-4E95-9BEE-5C563B205D31}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PointCloudDownsamplerStochastic3D", "PointCloudDownsamplerStochastic3D\PointCloudDownsamplerStochastic3D.pyproj", "{ED84DE65-5C58-40D6-8D1C-B32C6FEFD385}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3002,6 +3004,8 @@ Global
 		{EBDAC2EE-C460-4A2F-A01F-23CE41DF0E10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5A202CF-3208-4E95-9BEE-5C563B205D31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E5A202CF-3208-4E95-9BEE-5C563B205D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED84DE65-5C58-40D6-8D1C-B32C6FEFD385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED84DE65-5C58-40D6-8D1C-B32C6FEFD385}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3892,6 +3896,7 @@ Global
 		{86C5BA85-52AC-49F6-91C1-BEFD5BEE6C90} = {F5019C40-E6E1-4DA2-BB87-5068A6073555}
 		{EBDAC2EE-C460-4A2F-A01F-23CE41DF0E10} = {F5019C40-E6E1-4DA2-BB87-5068A6073555}
 		{E5A202CF-3208-4E95-9BEE-5C563B205D31} = {F5019C40-E6E1-4DA2-BB87-5068A6073555}
+		{ED84DE65-5C58-40D6-8D1C-B32C6FEFD385} = {EAF838D2-3CE6-4185-927B-5CA0F07E48A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
