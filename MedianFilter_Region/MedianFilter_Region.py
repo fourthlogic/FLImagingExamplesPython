@@ -70,7 +70,7 @@ def main():
 			ErrorPrint(res[0], 'Failed to synchronize window.')
 			break
 
-		# Denoising Filter 객체 생성 // Create Denoising Filter object
+		# Median Filter 객체 생성 // Create Median Filter object
 		median = CMedianFilter()
 
 		# Source 이미지 설정 // Set the source image
@@ -85,7 +85,7 @@ def main():
 		# Source ROI 설정 // Set the source roi
 		median.SetSourceROI(flrROI)
 		
-		# 처리할 Denoising Filter Kernel 의 (95, 75, 100, 80, 45.000000) 설정 // Set Denoising Filter Kernel to L(95, 75, 100, 80, 45.000000)
+		# 처리할 Median Filter Kernel 의 (95, 75, 100, 80, 45.000000) 설정 // Set Median Filter Kernel to L(95, 75, 100, 80, 45.000000)
 		flrRegion = CFLRect[Int32](95, 75, 100, 80, 45.000000);
 		median.SetKernel(flrRegion);
 
