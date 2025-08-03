@@ -104,39 +104,26 @@ def main():
         qrcodeVerifier.GetResultMicroQRCodeSpec(i, codeSpec)
 
         eECLevel = codeSpec.GetMicroQRCodeErrorCorrectionLevel()
-        eSymbol1 = getattr(EMicroQRCodeSymbolType1, "None")
-        eSymbol2 = getattr(EMicroQRCodeSymbolType2, "None")
-        codeSpec.GetSymbolType(eSymbol1, eSymbol2)
-
+        eSymbol = codeSpec.GetSymbolType()
+               
         strAdditionalData = {
+            getattr(EMicroQRCodeErrorCorrectionLevel, "None"): "[None",
             EMicroQRCodeErrorCorrectionLevel.Low: "[Low",
             EMicroQRCodeErrorCorrectionLevel.Medium: "[Medium",
             EMicroQRCodeErrorCorrectionLevel.Quartile: "[Quartile",
-            EMicroQRCodeErrorCorrectionLevel.High: "[High",
             }.get(eECLevel, "Other")
 
-        if eSymbol1 != getattr(EMicroQRCodeSymbolType1, "None"):
-            i32SymbolValue = int(eSymbol1)
+        if eSymbol != getattr(EMicroQRCodeSymbolType, "None"):
+            i32SymbolValue = int(eSymbol)
             i32Symbol = 0
 
-            for j in range(20):
+            for j in range(4):
                 if ((i32SymbolValue >> j) & 1) == 1:
                     i32Symbol = j + 1
                     break
 
             strAdditionalData += f"-{i32Symbol}]"
             
-        if eSymbol2 != getattr(EMicroQRCodeSymbolType2, "None"):
-            i32SymbolValue = int(eSymbol2)
-            i32Symbol = 0
-
-            for j in range(20):
-                if ((i32SymbolValue >> j) & 1) == 1:
-                    i32Symbol = j + 21
-                    break
-
-            strAdditionalData += f"-{i32Symbol}]"
-
         print("No. {} : {} {}\n".format(i, strAdditionalData, strDecodedMsg))
 
         # Data Matrix Verifier 결과들 중 인쇄 품질을 얻어옴 # Get print quality among Data Matrix Verifier results
