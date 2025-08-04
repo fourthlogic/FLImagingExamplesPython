@@ -175,7 +175,7 @@ def main():
 		if (res := layerSource.DrawTextImage(flpPoint, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, "Failed to draw text.");
 
-		if (res := layerInsertion0.DrawTextImage(flpPoint, "Insertion Image1", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+		if (res := layerInsertion0.DrawTextImage(flpPoint, "Insertion Image 1", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, "Failed to draw text.");
 
 		if (res := layerInsertion1.DrawTextImage(flpPoint, "Insertion Image 2", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
