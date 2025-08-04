@@ -58,7 +58,8 @@ def main():
 		flaPoints = List[List[TPoint[Double]]]()
 		i64PageIndex = 0
 		i64BoardCount = gridofRectangle.GetResultBoardCount(i64PageIndex)
-
+		
+		# 보드 영역 및 셀 간격 출력 # Display board region and cell spacing
 		for i32BoardIndex in range(i64BoardCount):
 			gridofRectangle.GetResultCenterPoints(i64PageIndex, i64BoardCount, flaPoints)
 			gridofRectangle.GetResultBoardRegion(i64PageIndex, i64BoardCount, flqRegion)

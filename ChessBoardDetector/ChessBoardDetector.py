@@ -54,6 +54,7 @@ def main():
 		layer = viewImage.GetLayer(0)
 		layer.Clear()
 
+		# 보드 영역 출력 # Display board region
 		for i in range(chessBoard.GetResultBoardCount()):
 			flq = CFLQuad[Double]()
 			chessBoard.GetResultBoardRegion(i, flq)
@@ -77,6 +78,7 @@ def main():
 				ErrorPrint(res, 'Failed to draw text.')
 				break
 
+		# 보드의 셀 간격을 출력 # Display board cell spacing
 		crTable = [EColor.RED, EColor.LIME, EColor.CYAN]
 		
 		for i in range(chessBoard.GetResultBoardCount()):
