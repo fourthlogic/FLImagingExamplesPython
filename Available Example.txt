@@ -409,46 +409,48 @@
         - Example of an algorithm that explores the shape of a set figure within an image.
         - 설정한 도형을 이미지 내에서 탐색하는 알고리즘 예제.
         
-  - [Object]      
-    - Blob_Area
-      - The example of a Blob algorithm that outputs area results.
-      - 면적 크기 결과를 출력하는 Blob 알고리즘의 예제. 
-    - Blob_BoundaryRect
-      - The example of Blob algorithm that output in the form of a boundary box.
-      - 연결 요소 검출 알고리즘의 사각 경계 박스 형태로 출력하는 예제.
-    - Blob_BoundaryRect_ResultInfo
-      - The example of Blob algorithm that output in the form of a boundary box and result information.
-      - 연결 요소 검출 알고리즘의 사각 경계 박스 형태로 출력하고 결과 정보를 출력하는 예제.
-    - Blob_Circularity
-      - The example of a Blob algorithm that outputs circularity results.
-      - circularity 결과를 출력하는 Blob 알고리즘의 예제. 
-    - Blob_Contour
-      - The example of Blob algorithm that output in the form of a contour.
-      - 연결 요소 검출 알고리즘의 윤곽선 형태로 출력하는 예제.
-    - Blob_Contour_Perforated
-      - The example of Blob algorithm that output in the form of a perforated contour.
-      - 연결 요소 검출 알고리즘의 구멍 뚫린 윤곽선 형태로 출력하는 예제.
-    - Blob_ContourLength
-      - The example of a Blob algorithm that outputs contour length results.
-      - 윤곽선 길이 결과를 출력하는 Blob 알고리즘의 예제. 
-    - Blob_GravityCenter
-      - The example of a Blob algorithm that outputs gravity center results.
-      - 무게중심 결과를 출력하는 Blob 알고리즘의 예제. 
-    - Blob_Mean_Variance_StandardDeviation
-      - The example of a Blob algorithm that outputs mean, variance, standard deviation results.
-      - 평균, 분산, 표준 편차 결과를 출력하는 Blob 알고리즘의 예제
-    - Blob_Median_Quartile
-      - The example of a Blob algorithm that outputs median, 25 quartile and 75 quartile results.
-      - 중간값, 25사분위수, 75사분위수 결과를 출력하는 Blob 알고리즘의 예제
-    - Blob_Min_Max
-      - The example of a Blob algorithm that outputs min, max results.
-      - 최소값, 최대값 결과를 출력하는 Blob 알고리즘의 예제
-    - Blob_Sort
-      - The example of Blob algorithm that sorts and output the results.
-      - 연결 요소 검출 알고리즘의 결과를 정렬하여 출력하는 예제.
-    - Blob_SortClusterMode
-      - The example of outputting the result of the connection element detection algorithm as an alignment state ased on human judgment in a twodimensional plane.
-      - 연결 요소 검출 알고리즘의 결과를 2차원 평면에서 인간의 판단기준에서의 정렬 상태로 출력하는 예제.
+  - [Object]
+  
+    - [Blob]
+      - Blob_Area
+        - The example of a Blob algorithm that outputs area results.
+        - 면적 크기 결과를 출력하는 Blob 알고리즘의 예제. 
+      - Blob_BoundaryRect
+        - The example of Blob algorithm that output in the form of a boundary box.
+        - 연결 요소 검출 알고리즘의 사각 경계 박스 형태로 출력하는 예제.
+      - Blob_BoundaryRect_ResultInfo
+        - The example of Blob algorithm that output in the form of a boundary box and result information.
+        - 연결 요소 검출 알고리즘의 사각 경계 박스 형태로 출력하고 결과 정보를 출력하는 예제.
+      - Blob_Circularity
+        - The example of a Blob algorithm that outputs circularity results.
+        - circularity 결과를 출력하는 Blob 알고리즘의 예제. 
+      - Blob_Contour
+        - The example of Blob algorithm that output in the form of a contour.
+        - 연결 요소 검출 알고리즘의 윤곽선 형태로 출력하는 예제.
+      - Blob_Contour_Perforated
+        - The example of Blob algorithm that output in the form of a perforated contour.
+        - 연결 요소 검출 알고리즘의 구멍 뚫린 윤곽선 형태로 출력하는 예제.
+      - Blob_ContourLength
+        - The example of a Blob algorithm that outputs contour length results.
+        - 윤곽선 길이 결과를 출력하는 Blob 알고리즘의 예제. 
+      - Blob_GravityCenter
+        - The example of a Blob algorithm that outputs gravity center results.
+        - 무게중심 결과를 출력하는 Blob 알고리즘의 예제. 
+      - Blob_Mean_Variance_StandardDeviation
+        - The example of a Blob algorithm that outputs mean, variance, standard deviation results.
+        - 평균, 분산, 표준 편차 결과를 출력하는 Blob 알고리즘의 예제
+      - Blob_Median_Quartile
+        - The example of a Blob algorithm that outputs median, 25 quartile and 75 quartile results.
+        - 중간값, 25사분위수, 75사분위수 결과를 출력하는 Blob 알고리즘의 예제
+      - Blob_Min_Max
+        - The example of a Blob algorithm that outputs min, max results.
+        - 최소값, 최대값 결과를 출력하는 Blob 알고리즘의 예제
+      - Blob_Sort
+        - The example of Blob algorithm that sorts and output the results.
+        - 연결 요소 검출 알고리즘의 결과를 정렬하여 출력하는 예제.
+      - Blob_SortClusterMode
+        - The example of outputting the result of the connection element detection algorithm as an alignment state ased on human judgment in a twodimensional plane.
+        - 연결 요소 검출 알고리즘의 결과를 2차원 평면에서 인간의 판단기준에서의 정렬 상태로 출력하는 예제.
       
     - [BlobSubsampled]    
       - BlobSubsampled_Area
@@ -942,6 +944,12 @@
     - ChannelInsertion
       - The example of an algorithm that Inserts channels selected from multiple images.
       - 여러 이미지에서 선택된 채널들을 삽입하는 알고리즘 예제.
+    - ChannelL1Norm
+      - The example of an algorithm that extracts L1 norm value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 L1 Norm 을 추출하여 이미지화 하는 알고리즘 예제.
+    - ChannelL2Norm
+      - The example of an algorithm that extracts L2 norm value of each pixel from a multichannel image.
+      - 다채널 이미지에서 각 픽셀의 L2 Norm 을 추출하여 이미지화 하는 알고리즘 예제.
     - ChannelMax
       - The example of an algorithm that extracts maximum value of each pixel from a multichannel image.
       - 다채널 이미지에서 각 픽셀의 최대값을 추출하여 이미지화 하는 알고리즘 예제.
@@ -1049,6 +1057,9 @@
     - DericheEdgeDetector
       - The example of Deriche Edge Detection Algorithm.
       - 데리체 엣지 검출 알고리즘 예제
+    - NonMaximumSuppression
+      - The example of Non Maximum Suppression Algorithm.
+      - 비최대 억제 알고리즘 예제
     - SaliencyMap
       - The example of an algorithms that emphasize areas where people's eyes focus first.
       - 사람들의 눈이 먼저 초점을 맞추는 영역을 강조하는 알고리즘 예제
@@ -1095,6 +1106,9 @@
       - BilateralFilter
         - The example of an algorithm that processes a bilateral filter to an image.
         - 이미지에서 bilateral 필터를 처리하는 알고리즘 예제
+      - BilateralFilterGrid
+        - The example of an algorithm that processes a bilateral filter to an image using Bilateral Grid data structure.
+        - Bilateral Grid 자료구조를 사용하여 이미지에서 bilateral 필터를 처리하는 알고리즘 예제
       - BilateralFilterSubSampled
         - The example of an algorithm that processes a bilateral filter And Applies the sampling method to an image.
         - 샘플링을 적용하여 이미지에서 bilateral 필터를 처리하는 알고리즘 예제	
@@ -1122,6 +1136,9 @@
       - MeanCurvatureFlowWeighted
         - The example of an algorithm that applies mean curvature flow to an image. (Edge preservation method of mean curvature flow algorithm)
         - 이미지에 Mean Curvature Flow Weighted(평균 곡률 흐름)를 적용하는 알고리즘 예제. (Mean Curvature Flow의 엣지 보존 방식)
+      - MeanShiftFilter
+        - The example of an algorithm that processes a mean shift filter to an image.
+        - 이미지에 Mean Shift 필터를 처리하는 알고리즘 예제.
       - MedianFilter
         - The example of an algorithm that processes a median filter to an image.
         - 이미지에서 중앙값 필터를 처리하는 알고리즘 예제.
@@ -1198,6 +1215,12 @@
       - IlluminateFilter
         - The example of an algorithm that enhance contrast by applying Illuminate filtering to image
         - 이미지에 Illuminate 필터링을 적용하여 이미지의 명암 대비를 강화하는 알고리즘 예제
+      - MultiFocus
+        - The example of an algorithm that processes multiple images with different focus points and creates a single image with all focus points.
+        - 각각 초점이 다른 여러 장의 이미지를 처리해 모든 초점을 가지는 한장의 이미지로 만드는 알고리즘 예제.
+      - MultiFocus_WithAlignment
+        - The example of an algorithm that processes multiple images that are different and unaligned, each with a different focus, making them a single aligned image with all the focus.
+        - 각각 초점이 다르고 정렬되지 않은 여러 장의 이미지를 처리해 모든 초점을 가지고 정렬된 한장의 이미지로 만드는 알고리즘 예제.
       - ShockFilter
         - The example of an algorithm that reconstructs a blurred edge into a sharp edge.
         - 흐릿한 이미지의 경계를 뚜렷하게 복원해주는 알고리즘 예제.
@@ -1366,15 +1389,24 @@
     - OperationCubeRoot
       - The algorithm that performs Cube Root operation on the source image.
       - 이미지에 세제곱근 연산을 수행하는 알고리즘.
+    - OperationELU
+      - Algorithm that outputs the function value or differential value of the ELU function to the image.
+      - 이미지에 ELU 함수의 함숫값 또는 미분값을 출력하는 알고리즘
     - OperationFourthRoot
       - The algorithm that performs Fourth Root operation on the source image.
-      - 이미지에 제곱근 연산을 수행하는 알고리즘.
+      - 이미지에 네제곱근 연산을 수행하는 알고리즘.
     - OperationGreater
       - The algorithm that performs Greater operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 Greater 연산을 수행하는 알고리즘.
     - OperationGreatestCommonDivisor
       - The algorithm that performs GCD operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 GCD 연산을 수행하는 알고리즘.
+    - OperationHardShrinkage
+      - Algorithm that outputs the function value or differential value of the hard shrinkage function to the image.
+      - 이미지에 Hard Shrinkage 함수의 함숫값 또는 미분값을 출력하는 알고리즘
+    - OperationLeastCommonMultiple
+      - The algorithm that performs LCM operations on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 LCM 연산을 수행하는 알고리즘.
     - OperationHypotenuse
       - The algorithm that performs Hypotenuse operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 Hypotenuse 연산을 수행하는 알고리즘.
@@ -1383,7 +1415,10 @@
       - 이미지에 Invert Intensity 연산을 수행하는 알고리즘
     - OperationLeadingZeros
       - The algorithm that performs calculation of leading zeros from the source image.
-      - 이미지에 Leading Zeros 연산을 수행하는 알고리즘    
+      - 이미지에 Leading Zeros 연산을 수행하는 알고리즘   
+    - OperationLeastCommonMultiple
+      - The algorithm that performs LCM operations on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 LCM 연산을 수행하는 알고리즘. 
     - OperationLesser
       - The algorithm that performs Lesser operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 Lesser 연산을 수행하는 알고리즘.
@@ -1414,15 +1449,27 @@
     - OperationMean 
       - The algorithm that performs Mean operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 Mean 연산을 수행하는 알고리즘.
+    - OperationMish
+      - Algorithm that outputs the function value or differential value of the mish function to the image.
+      - 이미지에 Mish 함수의 함숫값 또는 미분값을 출력하는 알고리즘
+    - OperationPopcount
+      - The algorithm that performs the calculation of popcount from the source image.
+      - 이미지에 Popcount 연산을 수행하는 알고리즘
+    - OperationPower
+      - The algorithm that performs power operations on an image with scalar or other image as exponent.
+      - 이미지를 스칼라 또는 다른 이미지를 지수로 하여 거듭제곱 연산을 수행하는 알고리즘.
+    - OperationPReLU
+      - Algorithm that outputs the function value or differential value of the PReLU function to the image.
+      - 이미지에 PReLU 함수의 함숫값 또는 미분값을 출력하는 알고리즘
+    - OperationReLU
+      - Algorithm that outputs the function value or differential value of the ReLU function to the image.
+      - 이미지에 ReLU 함수의 함숫값 또는 미분값을 출력하는 알고리즘
     - OperationScaledDivide
       - The algorithm that performs a Scaled Divide operation with an image or scalar value.
       - 이미지를 스칼라 또는 다른 이미지와 스케일 나눗셈 연산을 수행하는 알고리즘.
     - OperationScaledMultiply
       - The algorithm that perform Scaled Multiply operation an image with scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 스케일 곱셈 연산을 수행하는 알고리즘.
-    - OperationPower
-      - The algorithm that performs power operations on an image with scalar or other image as exponent.
-      - 이미지를 스칼라 또는 다른 이미지를 지수로 하여 거듭제곱 연산을 수행하는 알고리즘.
     - OperationScaledSubtract
       - The algorithm that perform Scaled Subtract operation an image with scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 스케일 뺄셈 연산을 수행하는 알고리즘.
@@ -1435,12 +1482,24 @@
     - OperationSineH
       - The algorithm that performs SineH operation on the source image.
       - 이미지에 SineH 연산을 수행하는 알고리즘
+    - OperationSigmoid
+      - Algorithm that outputs the function value or differential value of the sigmoid function to the image.
+      - 이미지에 Sigmoid 함수의 함숫값 또는 미분값을 출력하는 알고리즘
+    - OperationSoftplus
+      - Algorithm that outputs the function value or differential value of the softplus function to the image.
+      - 이미지에 Softplus 함수의 함숫값 또는 미분값을 출력하는 알고리즘
+    - OperationSoftShrinkage
+      - Algorithm that outputs the function value or differential value of the soft shrinkage function to the image.
+      - 이미지에 Soft Shrinkage 함수의 함숫값 또는 미분값을 출력하는 알고리즘
     - OperationSquare
       - The algorithm that performs Square operation on the source image.
       - 이미지에 제곱 연산을 수행하는 알고리즘.
     - OperationSquareRoot
       - The algorithm that performs Square Root operation on the source image.
       - 이미지에 제곱근 연산을 수행하는 알고리즘.
+    - OperationSwish
+      - Algorithm that outputs the function value or differential value of the swish function to the image.
+      - 이미지에 Swish 함수의 함숫값 또는 미분값을 출력하는 알고리즘
     - OperationTangent 
       - The algorithm that performs Tangent operation on the source image.
       - 이미지에 Tangent 연산을 수행하는 알고리즘
@@ -1557,6 +1616,9 @@
     - AutoThreshold
       - Algorithm that binarizes images through histogram and gaussian function.
       - 히스토그램과 가우스 함수를 통해 이미지를 이진화하는 알고리즘.
+    - HysteresisThreshold
+      - An algorithm that binarizes an image using global dual thresholds and local connectivity.
+      - 전역 이중 임계값과 지역 연결성을 통해 이미지를 이진화하는 알고리즘
     - ImageThreshold
       - An algorithm that binarizes an image using operand image as thresholds.
       - Operand Image로 임계값 연산을 통해 이미지를 이진화하는 알고리즘.
@@ -1629,6 +1691,9 @@
     - Homography
       - The example of an algorithm that performs projection transformation of images using multiple feature point pairs.
       - 여러개의 특징점 쌍에 의한 이미지의 투영 변환을 수행하는 알고리즘 예제.
+    - Wigner Ville Distribution
+      - The example of an algorithm that performs the Wigner Ville Distribution of 1D image.
+      - 1D 이미지에 Wigner Ville Distribution 을 수행하는 알고리즘 예제
 
   - [Utilities]
 
@@ -1706,7 +1771,10 @@
       - PixelCounter_Single 
         - Algorithm for calculating the number of valid pixels through one thresholds.
         - 한개의 임계값을 통해 유효한 픽셀 갯수를 계산하는 알고리즘.
-
+        
+    - ActiveContour
+      - An example algorithm for guiding a figure to form a contour along the detected edges.
+      - 감지된 엣지들을 따라 Figure 가 contour 를 형성하도록 유도하는 알고리즘 예제.
     - ColorConverter 
       - The example of an algorithm that converts color space of an color image.
       - 컬러 이미지의 색공간을 바꾸는 알고리즘 예제.
@@ -1740,6 +1808,9 @@
     - RegionExtractor
       - Example of an algorithm to extract the intersection of the set Figure and the region of interest from the source image.
       - 소스 이미지에서 설정된 Figure와 관심 영역의 교집합을 추출하는 알고리즘 예제.
+    - HoleFilling
+      - Example of an algorithm that extracts a figure of a hole region from the source image and interpolates inside that region.
+      - 소스 이미지에서 Hole region 의 Figure 를 추출하고 그 영역 내부를 보간하는 알고리즘 예제.
 
 - [Warping]
   
