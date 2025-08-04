@@ -85,13 +85,13 @@ def main():
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SynchronizeWindow(viewImageDst1)[0]).IsFail():
-			ErrorPrint(res[0], 'Failed to synchronize window.')
+			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SynchronizeWindow(viewImageDst2)[0]).IsFail():
-			ErrorPrint(res[0], 'Failed to synchronize window.')
+			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
 		# BitwiseOr 객체 생성 // Create BitwiseOr object
