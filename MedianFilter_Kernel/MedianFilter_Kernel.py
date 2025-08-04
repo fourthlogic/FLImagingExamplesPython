@@ -108,7 +108,7 @@ def main():
 		if((res := (layerDestination.DrawFigureImage(flrROI, EColor.LIME))).IsFail()):
 			ErrorPrint(res, "Failed to draw figure.");
 
-		# 이미지 뷰 정보 오후 9:51 2025-07-19표시 // Display image view information
+		# 이미지 뷰 정보 표시 // Display image view information
 		flpPoint = CFLPoint[Double](0, 0)
 
 		if (res := layerSource.DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
