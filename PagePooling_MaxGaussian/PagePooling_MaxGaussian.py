@@ -43,22 +43,22 @@ def main():
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
-		if (res := viewImageSource.SynchronizeWindow(viewImageDestination))[0].IsFail() :
+		if (res := viewImageSource.SynchronizeWindow(viewImageDestination)[0]).IsFail() :
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
-		if (res := viewImageSource.SynchronizeWindow(viewImageIndex))[0].IsFail() :
+		if (res := viewImageSource.SynchronizeWindow(viewImageIndex)[0]).IsFail() :
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
 		# 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views. 
-		if (res := viewImageSource.SynchronizePointOfView(viewImageDestination))[0].IsFail() :
+		if (res := viewImageSource.SynchronizePointOfView(viewImageDestination)[0]).IsFail() :
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
 		# 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views. 
-		if (res := viewImageSource.SynchronizePointOfView(viewImageIndex))[0].IsFail() :
+		if (res := viewImageSource.SynchronizePointOfView(viewImageIndex)[0]).IsFail() :
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 

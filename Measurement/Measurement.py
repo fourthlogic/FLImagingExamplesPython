@@ -45,25 +45,25 @@ def main():
 		
 		# Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if(res := viewImageDistortionChessBoard.SetImagePtr(fliDistortionChessBoard))[0].IsFail() :
+		if(res := viewImageDistortionChessBoard.SetImagePtr(fliDistortionChessBoard)[0]).IsFail() :
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
 		# Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if(res := viewImageUndistortionChessBoard.SetImagePtr(fliUndistortedChessBoard))[0].IsFail() :
+		if(res := viewImageUndistortionChessBoard.SetImagePtr(fliUndistortedChessBoard)[0]).IsFail() :
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
 		# Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if(res := viewImageDistortionMeasurement.SetImagePtr(fliDistortedMeasurementImage))[0].IsFail() :
+		if(res := viewImageDistortionMeasurement.SetImagePtr(fliDistortedMeasurementImage)[0]).IsFail() :
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
 		# Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if(res := viewImageUndistortionMeasurement.SetImagePtr(fliUndistortedMeasurementImage))[0].IsFail() :
+		if(res := viewImageUndistortionMeasurement.SetImagePtr(fliUndistortedMeasurementImage)[0]).IsFail() :
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 		
@@ -184,12 +184,12 @@ def Calibration(orthogonalCalibrator, fliBoardImage):
 	
 	while(True):	
 		# Learn 이미지 설정 // Learn image settings
-		if(res := orthogonalCalibrator.SetCalibrationImage(fliBoardImage))[0].IsFail() :	
+		if(res := orthogonalCalibrator.SetCalibrationImage(fliBoardImage)[0]).IsFail() :	
 			ErrorPrint(res, 'Failed to set image')
 			break
 
 		# 직교 보정 계산을 할 Learn 이미지 설정 // Learn image settings for orthogonal correction
-		if(res := orthogonalCalibrator.SetOrthogonalCorrectionImage(fliBoardImage))[0].IsFail() :	
+		if(res := orthogonalCalibrator.SetOrthogonalCorrectionImage(fliBoardImage)[0]).IsFail() :	
 			ErrorPrint(res, 'Failed to set image\n')
 			break
 	

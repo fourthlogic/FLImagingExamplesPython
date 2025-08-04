@@ -53,17 +53,17 @@ def main():
             break
 
         # Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the source image view
-        if (res := viewImageSource.SetImagePtr(fliSourceImage))[0].IsFail():
+        if (res := viewImageSource.SetImagePtr(fliSourceImage)[0]).IsFail():
             ErrorPrint(res, "Failed to set source image object on the image view.\n")
             break
 
         # Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
-        if (res := viewImageDestination.SetImagePtr(fliDestinationImage))[0].IsFail():
+        if (res := viewImageDestination.SetImagePtr(fliDestinationImage)[0]).IsFail():
             ErrorPrint(res, "Failed to set destination image object on the image view.\n")
             break
 
         # 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
-        if (res := viewImageSource.SynchronizeWindow(viewImageDestination))[0].IsFail():
+        if (res := viewImageSource.SynchronizeWindow(viewImageDestination)[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize window.\n")
             break
 
