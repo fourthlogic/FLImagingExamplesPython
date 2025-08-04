@@ -306,7 +306,75 @@
         - 이미지의 측정영역 내에서 코너를 측정하는 알고리즘 예제.
         
   - [Match]
-  
+
+    - [Drawing Match]
+    
+      - DrawingMatch_UsingFigure
+        - The algorithm example that learns geometric information within drawing figure and searches for matching geometric patterns in a dectected image.
+        - 하나의 도면 기하학적 정보를 학습하여, 검출 이미지에서 일치하는 기하학적 패턴을 탐색하는 알고리즘 예제.
+      - DrawingMatch_UsingGerber
+        - The algorithm example that learns geometric information within drawing gerber and searches for matching geometric patterns in a dectected image.
+        - 하나의 거버 파일의 도면 기하학적 정보를 학습하여, 검출 이미지에서 일치하는 기하학적 패턴을 탐색하는 알고리즘 예제.
+        
+    - [Geometric Match]
+    
+      - GeometricMatch
+        - The algorithm example that learns geometric information within a region of interest in an image and searches for matching geometric patterns in a dectected image.
+        - 하나의 이미지 관심영역 내에서 기하학적 정보를 학습하여, 검출 이미지에서 일치하는 기하학적 패턴을 탐색하는 알고리즘 예제.
+      - GeometricMatch_SaveLoad
+        - The algorithm example of save and load algorithm for geometric match
+        - 기하학적 싱글매칭의 저장 및 로드 예제.
+
+    - [Geometric Match Multi]
+    
+      - GeometricMatchMulti
+        - The algorithm example that learns geometrical information within one or more different image regions of interest, assigns a unique class name   and searches for matching geometrical patterns in a detected image for the learned class and classifies the class.
+        - 하나 이상의 서로 다른 이미지 관심영역 내에서 기하학적 정보를 학습 및 고유의 클래스 이름을 부여하고 학습된 클래스에 대해 검출 이미지에서 일치하는 기학적 패턴을 탐색 및 클래스를 분류하는 알고리즘 예제.
+      - GeometricMatchMulti_SaveLoad
+        - The algorithm example of save and load algorithm for geometric multi match
+        - 기하학적 멀티매칭의 저장 및 로드 예제.
+        
+    - [Pattern Match]
+    
+      - PatternMatch
+        - The algorithm example that learns pattern information within a region of interest in an image and searches for matching patterns in a dectectedimage.
+        - 하나의 이미지 관심영역 내에서 패턴 정보를 학습하여, 검출 이미지에서 일치하는 패턴을 탐색하는 알고리즘 예제.
+      - PatternMatch_SaveLoad
+        - The algorithm example of save and load algorithm for pattern match
+        - 패턴 싱글매칭의 저장 및 로드 예제.
+        
+    - [Pattern Match Sparse]
+    
+      - PatternMatchSparse
+        - The algorithm example that learns pattern information sampled with a certain standard within a region of interest in an image and searches for matching patterns in a dectectedimage.
+        - 하나의 이미지 관심영역 내에서 일정한 기준으로 샘플링된 정보를 학습하여, 검출 이미지에서 일치하는 패턴을 탐색하는 알고리즘 예제.
+      - PatternMatchSparse_SaveLoad
+        - The algorithm example of save and load algorithm for pattern match sparse
+        - 패턴 싱글매칭의 저장 및 로드 예제.
+
+    - [Pattern Match Multi]
+    
+      - PatternMatchMulti
+        - The algorithm example that learns pattern information within one or more different image regions of interest, assigns a unique class name   andsearches for matching patterns in a detected image for the learned class and classifies the class.
+        - 하나 이상의 서로 다른 이미지 관심영역 내에서 패턴 정보를 학습 및 고유의 클래스 이름을 부여하고 학습된 클래스에 대해 검출 이미지에서 일치하는 패턴  을탐색 및 클래스를 분류하는 알고리즘 예제.
+      - PatternMatchMulti_SaveLoad
+        - The algorithm example of save and load algorithm for pattern multi match
+        - 패턴 멀티매칭의 저장 및 로드 예제.
+
+        
+    - [Pattern Match Multi Sparse]
+    
+      - PatternMatchMultiSparse
+        - The algorithm example that learns pattern information sampled with a certain standard within a region of interest in one or more different image and searches for matching patterns in a dectectedimage.
+        - 하나 이상의 서로 다른 이미지 관심영역 내에서 일정한 기준으로 샘플링된 정보를 학습하여, 검출 이미지에서 일치하는 패턴을 탐색하는 알고리즘 예제.
+      - PatternMatchMultiSparse_SaveLoad
+        - The algorithm example of save and load algorithm for pattern match multi sparse
+        - 패턴 멀티매칭의 저장 및 로드 예제.
+
+    - RectangleArrayMatch
+      - The algorithm example that searchs for matching pattern array in detection image through pattern information on ROI array
+      - 관심영역 배열에 대한 패턴 정보를 통해, 검출 이미지에서 일치하는 패턴 배열을 탐색하는 알고리즘 예제.     
+      
     - [Shape Match]
     
       - Shape Match Circle
@@ -415,6 +483,18 @@
         - The example of outputting the result of the connection element detection algorithm as an alignment state based on human judgment in a twodimensional plane.
         - 연결 요소 검출 알고리즘의 결과를 2차원 평면에서 인간의 판단기준에서의 정렬 상태로 출력하는 예제.
 
+    - [Mura]
+
+      - Mura_Line
+        - The algorithm example that detects line mura defects.
+        - 선 Mura를 검출하는 Mura 알고리즘의 예제.
+      - Mura_Region
+        - The algorithm example that detects region mura defects.
+        - 영역 Mura를 검출하는 Mura 알고리즘의 예제.
+      - Mura_Spot
+        - The algorithm example that detects spot mura defects.
+        - 점 Mura를 검출하는 Mura 알고리즘의 예제.
+
   - [Optical Character]
 
     - OCR
@@ -423,6 +503,12 @@
     - OCV
       - The example of an algorithm that verifies character in an image.
       - 이미지 내의 문자를 검증하는 알고리즘 예제.
+
+  - [Optical Flow]
+    
+    - OpticalFlow Polynomial Expansion     
+      - The example of an algorithm that computes optical flow from an image set based on polynomial expansion.
+      - 다항식 전개 기반으로 이미지 집합의 광학적 흐름을 계산하는 알고리즘 예제.
 
 - [AI]
 
