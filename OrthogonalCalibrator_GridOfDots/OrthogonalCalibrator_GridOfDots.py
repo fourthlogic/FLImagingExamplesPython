@@ -20,7 +20,7 @@ def Calibration(orthogonalCalibrator, fliLearnImage):
 
 	while True:
 		# Learn 이미지 설정 // Learn image settings
-		if (res := orthogonalCalibrator.SetCalibrationImage(fliLearnImage))[0].IsFail():
+		if (res := orthogonalCalibrator.SetCalibrationImage(fliLearnImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
@@ -28,7 +28,7 @@ def Calibration(orthogonalCalibrator, fliLearnImage):
 		orthogonalCalibrator.SetGridTypeForCameraCalibration(COrthogonalCalibrator.EGridType.GridOfDots)
 
 		# 직교 보정 계산을 할 Learn 이미지 설정 // Learn image settings for orthogonal correction
-		if (res := orthogonalCalibrator.SetOrthogonalCorrectionImage(fliLearnImage))[0].IsFail():
+		if (res := orthogonalCalibrator.SetOrthogonalCorrectionImage(fliLearnImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
@@ -106,7 +106,7 @@ def main():
 			break
 
 		# Learn 이미지 뷰에 이미지를 디스플레이 // Display the image in the Learn image view
-		if (res := viewImageLearn.SetImagePtr(fliLearnImage))[0].IsFail():
+		if (res := viewImageLearn.SetImagePtr(fliLearnImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 

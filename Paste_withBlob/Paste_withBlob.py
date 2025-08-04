@@ -53,8 +53,8 @@ def main():
                 break
 
             # 이미지 뷰에 이미지를 디스플레이 // Display an image in an image view
-            if (res := arrViewImage[i].SetImagePtr(arrFliImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to set image object on the image view.\n")
+            if (res := arrViewImage[i].SetImagePtr(arrFliImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to set image object on the image view.\n")
                 bError = True
                 break
 

@@ -20,7 +20,7 @@ def Calibration(cameraCalibrator, fliLearnImage):
 
 	while True:
 		# Learn 이미지 설정 // Learn image settings
-		if (res := cameraCalibrator.SetCalibrationImage(fliLearnImage))[0].IsFail():
+		if (res := cameraCalibrator.SetCalibrationImage(fliLearnImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
@@ -109,7 +109,7 @@ def main():
 				break
 
 			# Learn 이미지 뷰에 이미지를 디스플레이 // Display the image in the Learn image view
-			if (res := viewImageLearn[i].SetImagePtr(arrFliDisplay[i]))[0].IsFail():
+			if (res := viewImageLearn[i].SetImagePtr(arrFliDisplay[i])[0]).IsFail():
 				ErrorPrint(res, 'Failed to set image object on the image view.')
 				break
 
