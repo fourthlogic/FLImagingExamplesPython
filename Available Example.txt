@@ -191,6 +191,29 @@
 
 - [Advanced Functions]
   
+  - [Calibration]
+
+    - [Camera Calibrator]
+
+      - CameraCalibrator_Chessboard
+        - The example of extracting camera distortion information from a chessboard image.
+        - 체스보드 이미지로 카메라의 왜곡 정보 추출하는 예제.
+      - CameraCalibrator_GridOfDots 
+        - The example of extracting camera distortion information from a grid of dots image.
+        - 점 격자판 이미지로 카메라의 왜곡 정보 추출하는 예제.
+      - CameraCalibrator_Undistortion 
+        - An example of correcting the lens distortion of a camera with the distortion information calculated based on the calibration.
+        - 캘리브레이션을 바탕으로 계산된 왜곡 정보로 카메라의 렌즈 왜곡을 보정하는 예제.
+
+    - [Orthogonal Calibrator]
+
+      - OrthogonalCalibrator_Chessboard 
+        - The example of extracting camera distortion information and converting it to the front direction as a chessboard image.
+        - 체스보드 이미지로 카메라의 왜곡 정보 추출하는 예제.
+      - OrthogonalCalibrator_GridOfDots 
+        - The example of extracting camera distortion information and converting it to the front direction as a grid of dots image.
+        - 점 격자판 이미지로 카메라의 왜곡 정보 추출하는 예제.
+
   - [Data Code]
 
     - [Barcode]    
@@ -241,6 +264,21 @@
       - UnifiedDataCodeDecoder
         - The example of an algorithm that detect and decode all types of data code in an image.
         - 이미지 내의 모든 타입의 데이터 코드를 검출 및 디코딩하는 알고리즘 예제.
+
+  - [Detector]
+
+    - ChessboardDetector
+      - The example of extracting information from a chessboard image.
+      - 체스보드 이미지로 정보를 추출하는 예제.
+    - GridOfDotsDetector
+      - The example of extracting information from a grid of dots image.
+      - 점 격자 이미지로 정보를 추출하는 예제.
+    - GridOfCrossDetector
+      - The example of extracting information from a grid of cross image.
+      - 십자가 격자 이미지로 정보를 추출하는 예제.
+    - GridOfRectangleDetector
+      - The example of extracting information from a grid of rectangle image.
+      - 사각형 격자 이미지로 정보를 추출하는 예제.
 
   - [Measurement]
 
@@ -348,6 +386,15 @@
       - BlobSubsampled_SortClusterMode
         - The example of outputting the result of the connection element detection algorithm as an alignment state based on human judgment in a twodimensional plane.
         - 연결 요소 검출 알고리즘의 결과를 2차원 평면에서 인간의 판단기준에서의 정렬 상태로 출력하는 예제.
+
+  - [Optical Character]
+
+    - OCR
+      - The example of an algorithm that recognizes character in an image.
+      - 이미지 내의 문자를 인식하는 알고리즘 예제.
+    - OCV
+      - The example of an algorithm that verifies character in an image.
+      - 이미지 내의 문자를 검증하는 알고리즘 예제.
 
 - [AI]
 
@@ -861,11 +908,23 @@
   - [Filter]
 
     - [Analysis]
+       - EntropyFilter	   
+        - The example of an algorithm that show entropy distribution.
+        - 이미지의 Entropy 분포를 나타내는 알고리즘 예제
       - GaborFilter
         - The example of an algorithm that processes a gabor filter to an image.
         - 이미지에서 Gabor 필터를 처리하는 알고리즘 예제.
+      - SymmetryFilter	   
+        - The example of an algorithm that show symmetry distribution.
+        - 이미지의 대칭성 분포를 나타내는 알고리즘 예제
+      - TextureFilter	   
+        - The example of an algorithm that show symmetry distribution.
+        - 이미지에 특정한 텍스쳐 변환 법칙을 적용하는 알고리즘 예제
 
     - [Denoising]
+      - AnisotropicDiffusion
+        - The example of an algorithm that diffuse the pixel value nonlinearly along the boundary of an image.
+        - 이미지의 경계를 따라 비선형적으로 값을 확산시키는 알고리즘 예제
       - BilateralFilter
         - The example of an algorithm that processes a bilateral filter to an image.
         - 이미지에서 bilateral 필터를 처리하는 알고리즘 예제
@@ -887,6 +946,9 @@
       - HybridMedianFilter
         - The example of an algorithm that processes a hybrid median filter to an image.
         - 이미지에서 하이브리드 중앙값 필터를 처리하는 알고리즘 예제.
+      - KuwaharaFilter
+        - The example of an algorithm that processes a Kuwahara filter to an image.
+        - 이미지에서 Kuwahara 필터를 처리하는 알고리즘 예제	
       - MeanCurvatureFlow
         - The example of an algorithm that applies mean curvature flow to an image.
         - 이미지에 Mean Curvature Flow(평균 곡률 흐름)를 적용하는 알고리즘 예제.
@@ -896,6 +958,9 @@
       - NonLocalMeansFilter
         - The example of an algorithm that processes a non local means filter to an image.
         - 이미지에서 Non Local Means 필터를 처리하는 알고리즘 예제.
+      - SymmetricNearestNeighborFilter
+        - The example of an algorithm that processes a Symmetric Nearest Neighbor filter to an image.
+        - 이미지에서 Symmetric Nearest Neighbor 필터를 처리하는 알고리즘 예제
       - Total Variation Denoising
         - An example of an algorithm that removes noise by reducing total variation in an image.
         - 이미지 전체 변동을 감소하여 노이즈를 제거하는 알고리즘 예제.
@@ -907,6 +972,9 @@
       - Deviation Filter
         - The example of an algorithm that detects image edges.
         - 이미지 경계를 검출하는 알고리즘 예제.
+      - DifferenceOfGaussianFilter
+        - The example of an algorithm that detects image edges usigng Difference Of Gaussian functions.
+        - Difference Of Gaussian functions를 사용하여 이미지 경계를 검출하는 알고리즘 예제
       - FreiFilter
         - The example of an algorithm that detects image edges.
         - 이미지 경계를 검출하는 알고리즘 예제.
@@ -954,6 +1022,9 @@
       - IlluminateFilter
         - The example of an algorithm that enhance contrast by applying Illuminate filtering to image
         - 이미지에 Illuminate 필터링을 적용하여 이미지의 명암 대비를 강화하는 알고리즘 예제
+      - ShockFilter
+        - The example of an algorithm that reconstructs a blurred edge into a sharp edge.
+        - 흐릿한 이미지의 경계를 뚜렷하게 복원해주는 알고리즘 예제.
 
     - [Smoothing]
       - BinomialFilter
@@ -1066,15 +1137,45 @@
     - OperationAbsolute 
       - The algorithm that performs absolute operation on the source image.
       - 이미지에 절댓값 연산을 수행하는 알고리즘
+    - OperationAtan2 
+      - The algorithm that performs Atan2 operations on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 Atan2 연산을 수행하는 알고리즘.
     - OperationBit Rolling Left
       - The algorithm that performs bit rolling left operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 bit rolling left 연산을 수행하는 알고리즘.
     - OperationBit Rolling Right
       - The algorithm that performs bit rolling right operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 bit rolling right 연산을 수행하는 알고리즘.
+    - OperationBitShift 
+      - The algorithm that performs shift operations on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 shift 연산을 수행하는 알고리즘.
+    - OperationBitwiseAnd
+      - Algorithm for performing Bitwise And operations on an image.
+      - 이미지를 Bitwise And 연산을 수행하는 알고리즘 예제.
+    - OperationBitwiseNand
+      - Algorithm for performing Bitwise And operations on an image.
+      - 이미지를 Bitwise Nand 연산을 수행하는 알고리즘 예제.
+    - OperationBitwiseNot
+      - Algorithm for performing Bitwise Not operations on an image.
+      - 이미지를 Bitwise Not 연산을 수행하는 알고리즘 예제.
+    - OperationBitwiseOr
+      - Algorithm for performing Bitwise Or operations on an image.
+      - 이미지를 Bitwise Or 연산을 수행하는 알고리즘 예제.
+    - OperationBitwiseNor
+      - Algorithm for performing Bitwise Nor operations on an image.
+      - 이미지를 Bitwise Nor 연산을 수행하는 알고리즘 예제.
+    - OperationBitwiseXor
+      - Algorithm for performing Bitwise Xor operations on an image.
+      - 이미지를 Bitwise Xor 연산을 수행하는 알고리즘 예제.
+    - OperationBitwiseXnor
+      - Algorithm for performing Bitwise Xnor operations on an image.
+      - 이미지를 Bitwise Xnor 연산을 수행하는 알고리즘 예제.
     - OperationCompare
       - The algorithm that performs compare operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 비교 연산을 수행하는 알고리즘.
+    - OperationCosecant
+      - The algorithm that performs Cosecant operation on the source image.
+      - 이미지에 Cosecant 연산을 수행하는 알고리즘
     - OperationComplexMultiply
       - The algorithm that performs Complex Multiply operation on the source image.
     - OperationCubeRoot
@@ -1200,6 +1301,9 @@
     - AdaptiveThresholdMedian
       - Algorithm that binarizes images through regional thresholds using Median Filter.
       - 중앙 값 필터를 사용한 지역 임계값을 통해 이미지를 이진화하는 알고리즘.
+    - AutoThreshold
+      - Algorithm that binarizes images through histogram and gaussian function.
+      - 히스토그램과 가우스 함수를 통해 이미지를 이진화하는 알고리즘.
     - ImageThreshold
       - An algorithm that binarizes an image using operand image as thresholds.
       - Operand Image로 임계값 연산을 통해 이미지를 이진화하는 알고리즘.
@@ -1212,6 +1316,12 @@
     - VarianceThreshold
       - Algorithm that binarizes images through regional thresholds.
       - 지역 임계값을 통해 이미지를 이진화하는 알고리즘.
+    - WatershedsThreshold
+      - Algorithm for image segmentation using Watershed method.
+      - Watershed 방법을 사용하여 이미지 분할을 하는 알고리즘.
+	- WatershedsThresholdMarker
+      - Algorithm for image segmentation using marker generated by Otsu Threshold.
+      - Otsu Threshold로 생성한 Marker를 통해 이미지를 분할하는 알고리즘.
 
   - [Transform]
   
@@ -1223,9 +1333,15 @@
       - Rotation
         - The example of image rotation transforms.
         - 이미지 회전 변환의 예제.
+      - Rotation Scale
+        - The example of image scale and rotation transforms.
+        - 이미지 회전 및 스케일 변환의 예제.
       - Scale
         - The example of image scale transforms.
         - 이미지 스케일 변환의 예제.
+      - Scale Rotation
+        - The example of image scale and rotation transforms.
+        - 이미지 스케일 및 회전 변환의 예제.
 
     - [Hough]
 
@@ -1257,6 +1373,9 @@
     - Perspective
       - The example of an algorithm that performs projection transformation of an image by a Linear Equation.
       - 선형 방정식에 의한 이미지의 투영 변환을 수행하는 알고리즘 예제.
+    - Homography
+      - The example of an algorithm that performs projection transformation of images using multiple feature point pairs.
+      - 여러개의 특징점 쌍에 의한 이미지의 투영 변환을 수행하는 알고리즘 예제.
 
   - [Utilities]
 
