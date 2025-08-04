@@ -49,16 +49,16 @@ def main():
     # 처리할 이미지 설정 # Set the image to process
     blob.SetSourceImage(fliImage)
     
-    # 논리 조건 설정
+    # 논리 조건 설정 # Set logical conditions
     blob.SetLogicalCondition(ELogicalCondition.Less)
-
-    # 임계값 설정,  위의 조건과 아래의 조건이 합쳐지면 50보다 작은 객체를 검출
+    
+    # 임계값 설정  위의 조건과 아래의 조건이 합쳐지면 50보다 작은 객체를 검출 # Set a threshold: detect objects when the combined result of the above and below conditions is less than 50.
     blob.SetThreshold(50)
         
-    # Blob Result Type mask 생성 (Contour, GravityCenter)
+    # Blob Result Type mask 생성 (Contour, Gravity Center) # Generate a mask of Blob result type (Contour, Gravity Center)
     resultTypeMask = Enum.ToObject(CBlob.EBlobResultType, int(CBlob.EBlobResultType.Contour) | int(CBlob.EBlobResultType.GravityCenter))
-
-    # Result Type 설정
+    
+    # 결과 타입 설정 # Set result type
     blob.SetResultType(resultTypeMask)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
@@ -66,28 +66,28 @@ def main():
         ErrorPrint(res, "Failed to execute Blob.")
         return
     
-    # BoundaryRect의 20보다 작은 너비를 가진 객체들을 제거
+    # BoundaryRect의 20보다 작은 너비를 가진 객체들을 제거 # Remove objects whose bounding rectangle width is less than 20
     if (res := blob.Filter(CBlob.EFilterItem.BoundaryRectWidth, 20, ELogicalCondition.Less)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
     
-    # BoundaryRect의 20보다 작은 높이를 가진 객체들을 제거
+    # BoundaryRect의 20보다 작은 높이를 가진 객체들을 제거 # Remove objects whose bounding rectangle height is less than 20
     if (res := blob.Filter(CBlob.EFilterItem.BoundaryRectHeight, 20, ELogicalCondition.Less)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
     
-    # Blob 결과를 얻어오기 위해 FigureArray 선언
+    # Blob 결과를 얻어오기 위한 객체 선언 # Declare an object to retrieve Blob results
     flfaContours = CFLFigureArray()
     flfGravityCenter = CFLFigureArray()
-
-    # Blob 결과들 중 Contours를 얻어옴
+    
+    # Blob 결과들 중 Contours 을 얻어옴 # Get contours from the set of Blob results
     if (res := blob.GetResultContours(flfaContours)[0]).IsFail():
         ErrorPrint(res, "Failed to get contours from the Blob object.")
         return
     
-    # Blob 결과들 중 Gravity Center 를 얻어옴
+    # Blob 결과들 중 Gravity Center 을 얻어옴 # Get Gravity Center from the set of Blob results
     if (res := blob.GetResultGravityCenters(flfGravityCenter)[0]).IsFail():
-        ErrorPrint(res, "Failed to get contours from the Blob object.")
+        ErrorPrint(res, "Failed to get Gravity Center from the Blob object.")
         return
 
     # 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
@@ -105,8 +105,8 @@ def main():
     if (res := layer.DrawFigureImage(flfaContours, EColor.RED, 1, EColor.RED, EGUIViewImagePenStyle.Solid, 1.0, .25)).IsFail():
         ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
         return
-
-    # Image View 객체에 Index 출력
+    
+    # Image View에 정보 출력 # Display information on the Image View
     for i in range(flfaContours.GetCount()):
         flpContoursCenter = CFLPoint[Double](flfaContours.GetAt(i));
         flpfGravityCenter = CFLPoint[Double](flfGravityCenter.GetAt(i));

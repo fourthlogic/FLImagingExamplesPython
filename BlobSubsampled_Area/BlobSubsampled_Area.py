@@ -48,20 +48,20 @@ def main():
 
     # 처리할 이미지 설정 # Set the image to process
     blob.SetSourceImage(fliImage)
-
-    # 논리 조건 설정
+    
+    # 논리 조건 설정 # Set logical conditions
     blob.SetLogicalCondition(ELogicalCondition.Less)
 
-    # 임계값 설정,  위의 조건과 아래의 조건이 합쳐지면 50보다 작은 객체를 검출
+    # 임계값 설정  위의 조건과 아래의 조건이 합쳐지면 50보다 작은 객체를 검출 # Set a threshold: detect objects when the combined result of the above and below conditions is less than 50.
     blob.SetThreshold(50)
 
-    # Blob Result Type mask 생성 (Contour, Area)
+    # Blob Result Type mask 생성 (Contour, Area) # Generate a mask of Blob result type (Contour, Area)
     resultTypeMask = Enum.ToObject(CBlob.EBlobResultType, int(CBlob.EBlobResultType.Contour) | int(CBlob.EBlobResultType.Area))
 
-    # Result Type 설정
+    # 결과 타입 설정 # Set result type
     blob.SetResultType(resultTypeMask)
-    
-    # Subsampling Level 설정
+
+    # Subsampling 수준 설정 # Set Subsampling Level
     blob.SetSubsamplingLevel(3)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
@@ -73,17 +73,17 @@ def main():
     if (res := blob.Filter(CBlob.EFilterItem.Area, 100, ELogicalCondition.Less)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
-
-    # Blob 결과를 얻어오기 위해 FigureArray, List[Double] 선언
+    
+    # Blob 결과를 얻어오기 위한 객체 선언 # Declare an object to retrieve Blob results
     flfaContours = CFLFigureArray()
     flaArea = List[Double]()
-
-    # Blob 결과들 중 Contours 을 얻어옴
+    
+    # Blob 결과들 중 Contours 을 얻어옴 # Get contours from the set of Blob results
     if (res := blob.GetResultContours(flfaContours)[0]).IsFail():
         ErrorPrint(res, "Failed to get contours from the Blob object.")
         return
-
-    # Blob 결과들 중 Area 을 얻어옴
+    
+    # Blob 결과들 중 Area 을 얻어옴 # Get Area from the set of Blob results
     if (res := blob.GetResultAreas(flaArea)[0]).IsFail():
         ErrorPrint(res, "Failed to get area from the Blob object.")
         return
@@ -103,8 +103,8 @@ def main():
     if (res := layer.DrawFigureImage(flfaContours, EColor.RED, 1, EColor.RED, EGUIViewImagePenStyle.Solid, 1.0, 0.25)).IsFail():
         ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
         return
-
-    # Image View 객체에 Index, Area 출력
+    
+    # Image View에 정보 출력 # Display information on the Image View
     strResult = ""
     flsTextResult = ""
 

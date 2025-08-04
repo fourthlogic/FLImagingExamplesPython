@@ -51,18 +51,18 @@ def main():
     
     # Threshold 모드 설정. 여기서는 2중 Threshold에 두개의 조건의 And 조건을 참으로 설정한다.
     blob.SetThresholdMode(EThresholdMode.Dual_And)
-
-    # 논리 조건 설정
+    
+    # 논리 조건 설정 # Set logical conditions
     blob.SetLogicalCondition(ELogicalCondition.Greater, ELogicalCondition.Less)
 
-    # 임계값 설정,  위의 조건과 아래의 조건이 합쳐지면 127보다 크고 240보다 작은 객체를 검출
+    # 임계값 설정, 위의 조건과 아래의 조건이 합쳐지면 127보다 크고 240보다 작은 객체를 검출 # Set a threshold: detect objects that satisfy both the above and below conditions, with values greater than 127 and less than 240.
     blob.SetThreshold(127, 240)
 
-    # 가운데 구멍난 Contour를 지원하기 위해 Perforated 모드 설정
+    # 가운데 구멍난 Contour를 지원하기 위해 Perforated 모드 설정 # Enable Perforated mode to support contours with holes
     blob.SetResultType(CBlob.EBlobResultType.Contour)
     blob.SetContourResultType(CBlob.EContourResultType.Perforated)
-    
-    # Subsampling Level 설정
+
+    # Subsampling 수준 설정 # Set Subsampling Level
     blob.SetSubsamplingLevel(3)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
@@ -70,10 +70,10 @@ def main():
         ErrorPrint(res, "Failed to execute Blob.")
         return
     
-    # Blob 결과를 얻어오기 위해 FigureArray 선언
+    # Blob 결과를 얻어오기 위한 객체 선언 # Declare an object to retrieve Blob results
     flfaContours = CFLFigureArray()
-
-    # Blob 결과들 중 Contours 을 얻어옴
+    
+    # Blob 결과들 중 Contours 을 얻어옴 # Get contours from the set of Blob results
     if (res := blob.GetResultContours(flfaContours)[0]).IsFail():
         ErrorPrint(res, "Failed to get contours from the Blob object.")
         return
@@ -93,15 +93,15 @@ def main():
     if (res := layer.DrawFigureImage(flfaContours, EColor.RED, 1, EColor.RED, EGUIViewImagePenStyle.Solid, 1.0, .25)).IsFail():
         ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
         return
-
-    # Image View 객체에 Index 출력
+    
+    # Image View에 정보 출력 # Display information on the Image View
     for i in range(flfaContours.GetCount()):           
         if isinstance(flfaContours.GetAt(i), CFLRegion):
             flrgContour = flfaContours.GetAt(i)
         else:
             flrgContour = None
             
-        # 폴리곤의 정점 정보를 콘솔에 출력
+        # Region의 정점 정보를 콘솔에 출력 # Print the vertex information of the region to the console
         print(f"No. {i} : [\n")
 
         for j in range(flrgContour.GetCount()):            

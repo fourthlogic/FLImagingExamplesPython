@@ -49,7 +49,7 @@ def main():
     # 처리할 이미지 설정 # Set the image to process
     dataMatrixDecoder.SetSourceImage(fliImage)
 
-    # Decode 데이터 영역 색상 설정. EDataMatrixColor.Auto 로 설정 시 자동으로 Decode 된다. # Sets the color of the decoded data region. If set to EDataMatrixColor.Auto, decoding is performed automatically.
+    # Decode 데이터 영역 색상 설정. EDataCodeColor.Auto 로 설정 시 자동으로 Decode 된다. # Sets the color of the decoded data region. If set to EDataCodeColor.Auto, decoding is performed automatically.
     dataMatrixDecoder.SetColorMode(EDataCodeColor.BlackOnWhite)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters

@@ -49,29 +49,23 @@ def main():
     # 처리할 이미지 설정 # Set the image to process
     blob.SetSourceImage(fliImage)
     
-    # 논리 조건 설정
+    # 논리 조건 설정 # Set logical conditions
     blob.SetLogicalCondition(ELogicalCondition.Less)
-
-    # 임계값 설정,  위의 조건과 아래의 조건이 합쳐지면 50보다 작은 객체를 검출
+    
+    # 임계값 설정  위의 조건과 아래의 조건이 합쳐지면 50보다 작은 객체를 검출 # Set a threshold: detect objects when the combined result of the above and below conditions is less than 50.
     blob.SetThreshold(50)
-        
-    # Blob Result Type mask 생성 (Contour, GravityCenter)
-    resultTypeMask = Enum.ToObject(CBlob.EBlobResultType, int(CBlob.EBlobResultType.Contour) | int(CBlob.EBlobResultType.GravityCenter))
-
-    # Result Type 설정
-    blob.SetResultType(resultTypeMask)
-
+    
     # 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
     if (res := blob.Execute()).IsFail():
         ErrorPrint(res, "Failed to execute Blob.")
         return
     
-    # BoundaryRect의 20보다 작은 너비를 가진 객체들을 제거
+    # BoundaryRect의 20보다 작은 너비를 가진 객체들을 제거 # Remove objects with a BoundaryRect width less than 20
     if (res := blob.Filter(CBlob.EFilterItem.BoundaryRectWidth, 20, ELogicalCondition.Less)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
     
-    # circularity 가 0.9보다 작은 객체들을 제거
+    # circularity 가 0.9보다 작은 객체들을 제거 # Remove objects with circularity less than 0.9
     if (res := blob.Filter(CBlob.EFilterItem.Circularity, 0.9, ELogicalCondition.Less)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
@@ -83,10 +77,10 @@ def main():
     # 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
     layer.Clear()
     
-    # Blob 결과를 얻어오기 위해 FigureArray 선언
+    # Blob 결과를 얻어오기 위한 객체 선언 # Declare an object to retrieve Blob results
     flfaContours = CFLFigureArray()
     
-    # Blob 결과들 중 Contours 을 얻어옴
+    # Blob 결과들 중 Contours 을 얻어옴 # Get contours from the set of Blob results
     if (res := blob.GetResultContours(flfaContours)[0]).IsFail():
         ErrorPrint(res, "Failed to get contours from the Blob object.")
         return
@@ -104,8 +98,8 @@ def main():
     if (res := layer.DrawFigureImage(flfaContours, EColor.RED, 1, EColor.RED, EGUIViewImagePenStyle.Solid, 1.0, .25)).IsFail():
         ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
         return
-
-    # Image View 객체에 Index 출력
+    
+    # Image View에 정보 출력 # Display information on the Image View
     for i in range(flfaContours.GetCount()):
         imgStatistics.SetSourceROI(flfaContours.GetAt(i));
                 

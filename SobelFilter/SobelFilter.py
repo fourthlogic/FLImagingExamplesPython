@@ -30,6 +30,7 @@ def main():
 		
 		# Source 이미지 로드 // Load the source image
 		res = fliSourceImage.Load("../../ExampleImages/EdgeDetection/Alphabat.flif")
+
 		if res.IsFail():
 			ErrorPrint(res, "Failed to load the image file.")
 			break
@@ -75,7 +76,8 @@ def main():
 
 		# Convolution Sobel 객체 생성 // Create Convolution Sobel object
 		convolutionSobel = CSobelFilter();
-
+		
+		# ROI 설정을 위한 FLRect 생성
 		flrROI = CFLRect[int](200, 200, 500, 500);
 
 		# Source 이미지 설정 // Set the source image

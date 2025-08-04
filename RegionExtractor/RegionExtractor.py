@@ -52,13 +52,13 @@ def main():
 		    ErrorPrint(res, "Failed to zoom fit\n")
 		    return
 
-		# Color Converter 객체 생성 // Create Color Converter object
+		# Paste 객체 생성 // Create Paste object
 		regionExtractor = CRegionExtractor()
 
 		# Source 이미지 설정 // Set the source image
 		regionExtractor.SetSourceImage(fliSourceImage)
 
-		# ROI 설정 하기 위해 FLCircle 생성 // Create a FLCircle for ROI setting
+		# ROI 설정 하기 위해 Rect 생성 // Create a Rect for ROI setting
 		flrROI = CFLRect[int](83, 64, 440,337)
 
 		# 처리할 ROI 설정 // Set the ROI to be processed 

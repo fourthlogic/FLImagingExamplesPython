@@ -52,7 +52,7 @@ def main():
 		    ErrorPrint(res, "Failed to zoom fit\n")
 		    return
 
-		# Color Converter 객체 생성 // Create Color Converter object
+		# Paste 객체 생성 // Create Paste object
 		paste = CPaste()
 
 		# Source 이미지 설정 // Set the source image

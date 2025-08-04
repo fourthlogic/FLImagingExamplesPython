@@ -48,32 +48,32 @@ def main():
 
     # 처리할 이미지 설정 # Set the image to process
     blob.SetSourceImage(fliImage)
-
-    # 논리 조건 설정
-    blob.SetLogicalCondition(ELogicalCondition.Less)
-
-    # 임계값 설정,  위의 조건과 아래의 조건이 합쳐지면 50보다 작은 객체를 검출
-    blob.SetThreshold(127)
     
-    # Subsampling Level 설정
+    # 논리 조건 설정 # Set logical conditions
+    blob.SetLogicalCondition(ELogicalCondition.Less)
+    
+    # 임계값 설정  위의 조건과 아래의 조건이 합쳐지면 127보다 작은 객체를 검출 # Set a threshold: detect objects when the combined result of the above and below conditions is less than 127.
+    blob.SetThreshold(127)
+
+    # Subsampling 수준 설정 # Set Subsampling Level
     blob.SetSubsamplingLevel(3)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
     if (res := blob.Execute()).IsFail():
         ErrorPrint(res, "Failed to execute Blob.")
         return
-
-    # 면적이 100보다 작은 객체들을 제거
-    if (res := blob.Filter(CBlob.EFilterItem.Area, 500, ELogicalCondition.LessEqual)).IsFail():
+    
+    # 면적이 500보다 작은 객체들을 제거 # Filter out objects whose area is smaller than 500
+    if (res := blob.Filter(CBlob.EFilterItem.Area, 500, ELogicalCondition.Less)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
-
-    # Blob 결과를 얻어오기 위해 FigureArray 선언
+    
+    # Blob 결과를 얻어오기 위한 객체 선언 # Declare an object to retrieve Blob results
     flfaBoundaryRects = CFLFigureArray()
-
-    # Blob 결과들 중 Contours 을 얻어옴
+    
+    # Blob 결과들 중 Boundary Rect 을 얻어옴 # Get boundary rect from the set of Blob results
     if (res := blob.GetResultBoundaryRects(flfaBoundaryRects)[0]).IsFail():
-        ErrorPrint(res, "Failed to get contours from the Blob object.")
+        ErrorPrint(res, "Failed to get boundary rect from the Blob object.")
         return
 
     # 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
@@ -91,8 +91,8 @@ def main():
     if (res := layer.DrawFigureImage(flfaBoundaryRects, EColor.RED, 1, EColor.RED, EGUIViewImagePenStyle.Solid, 1.0, 0.25)).IsFail():
         ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
         return
-
-    # Image View 객체에 Index, Area 출력
+    
+    # Image View에 정보 출력 # Display information on the Image View
     strResult = ""
     flsTextResult = ""
 

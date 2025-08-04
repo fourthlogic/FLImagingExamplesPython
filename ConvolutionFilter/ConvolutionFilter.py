@@ -202,6 +202,7 @@ def main():
 		
 		# 이미지 뷰 정보 표시 # Display image view information
 		flpTemp = CFLPoint[Double](0, 0)
+
 		if ((res := layerSrc.DrawTextCanvas(flpTemp, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or 
 			(res := layerDst0.DrawTextCanvas(flpTemp, "Destination Image 1", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or 
 			(res := layerDst1.DrawTextCanvas(flpTemp, "Destination Image 2", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or 

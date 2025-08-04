@@ -93,9 +93,7 @@ def main():
 
         # 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the all image views.
         if i > 0:
-            if (
-                res := arrViewImage[i].SynchronizePointOfView(arrViewImage[0])[0]
-            ).IsFail():
+            if (res := arrViewImage[i].SynchronizePointOfView(arrViewImage[0])[0]).IsFail():
                 ErrorPrint(res, "Failed to set image object on the image view.\n")
                 break
 

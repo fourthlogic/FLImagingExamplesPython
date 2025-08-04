@@ -101,7 +101,7 @@ def main():
 		if bError:
 			break
 
-		# ROI 설정을 위한 FLRectL 생성
+		# ROI 설정을 위한 FLRect 생성
 		flrROI = CFLRect[int](200, 200, 500, 500);
 
 		# Convolution Gradient 객체 생성 // Create Convolution Gradient object
