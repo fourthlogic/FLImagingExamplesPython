@@ -104,12 +104,12 @@ def main():
 
 
 		strMedianValue = 'Median Of Region : {}'.format(mvMedian)
-		strLowerQuartileValue = '25 Quartile Of Region : {}'.format(mvLowerQuartile)
-		strUpperQuartileValue = '75 Quartile Of Region : {}'.format(mvUpperQuartile)
+		strLowerQuartileValue = '1st Quartile Of Region : {}'.format(mvLowerQuartile)
+		strUpperQuartileValue = '3rd Quartile Of Region : {}'.format(mvUpperQuartile)
 
 		strTrimmingMedianValue = 'Median Of Trimmed Region : {}'.format(mvTrimmingMedian)
-		strTrimmingLowerQuartileValue = '25 Quartile Of Trimmed Region : {}'.format(mvTrimmingLowerQuartile)
-		strTrimmingUpperQuartileValue = '75 Quartile Of Trimmed Region : {}'.format(mvTrimmingUpperQuartile)
+		strTrimmingLowerQuartileValue = '1st Quartile Of Trimmed Region : {}'.format(mvTrimmingLowerQuartile)
+		strTrimmingUpperQuartileValue = '3rd Quartile Of Trimmed Region : {}'.format(mvTrimmingUpperQuartile)
 
 		strTrimming = 'Trimming Lower : {}, Upper : {}'.format(statistics.GetTrimming(CImageStatistics.ETrimmingLocation.Lower), statistics.GetTrimming(CImageStatistics.ETrimmingLocation.Upper))
 
