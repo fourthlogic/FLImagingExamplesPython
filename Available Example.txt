@@ -304,7 +304,35 @@
       - CornerGauge 
         - The algorithm example for estimating a corner within a measurement area of an image.
         - 이미지의 측정영역 내에서 코너를 측정하는 알고리즘 예제.
-
+        
+  - [Match]
+  
+    - [Shape Match]
+    
+      - Shape Match Circle
+        - Example of an algorithm that explores the shape of a set circle within an image.
+        - 설정한 원의 형태를 이미지 내에서 탐색하는 알고리즘 예제.
+        
+      - Shape Match Ellipse
+        - Example of an algorithm that explores the shape of a set ellipse within an image.
+        - 설정한 타원의 형태를 이미지 내에서 탐색하는 알고리즘 예제.
+        
+      - Shape Match Line
+        - Example of an algorithm that explores the shape of a set line within an image.
+        - 설정한 선의 형태를 이미지 내에서 탐색하는 알고리즘 예제.
+        
+      - Shape Match Rectangle
+        - Example of an algorithm that explores the shape of a set rectangle within an image.
+        - 설정한 사각형의 형태를 이미지 내에서 탐색하는 알고리즘 예제.
+        
+      - Shape Match Cross
+        - Example of an algorithm that explores the shape of a set cross within an image.
+        - 설정한 십자의 형태를 이미지 내에서 탐색하는 알고리즘 예제.
+        
+      - Shape Match Figure
+        - Example of an algorithm that explores the shape of a set figure within an image.
+        - 설정한 도형을 이미지 내에서 탐색하는 알고리즘 예제.
+        
   - [Object]      
     - Blob_Area
       - The example of a Blob algorithm that outputs area results.
