@@ -611,6 +611,9 @@
   - Paste_withBlob 
      - The example of an algorithm that pastes a ROI from a source image to a destination image with Blob.
      - 소스 이미지에서 관심 영역을 Blob 결과로 설정하고 대상 이미지에 붙여넣는 알고리즘 예제.
+  - Measurement
+     - The example of an algorithm that measure the actual size and position of a measurement point after camera view calibration with Orthogonal Calibration.
+     - Orthogonal Calibration으로 카메라 시점 보정 후 측정 지점에 대한 실제 크기 및 위치를 측정하는 알고리즘 예제.
 
 - [Devices]
 
@@ -1040,12 +1043,21 @@
     - ShenCastanEdgeDetector
       - The example of Shen-Castan Edge Detection Algorithm.
       - Shen-Castan 엣지 검출 알고리즘 예제
+    - LanserEdgeDetector
+      - The example of Lanser Edge Detection Algorithm.
+      - 랜서 엣지 검출 알고리즘 예제
+    - DericheEdgeDetector
+      - The example of Deriche Edge Detection Algorithm.
+      - 데리체 엣지 검출 알고리즘 예제
     - SaliencyMap
       - The example of an algorithms that emphasize areas where people's eyes focus first.
       - 사람들의 눈이 먼저 초점을 맞추는 영역을 강조하는 알고리즘 예제
     - Skeleton
       - The example of an algorithm that extracts the skeleton of an image.
       - 이미지의 뼈대를 추출하는 알고리즘 예제
+    - ScaleInvariantFeatureTransform
+      - The example of an algorithms that extracting feature points of an image.
+      - 이미지의 특징점을 추출하는 알고리즘 예제
     - OrientedFASTandRotatedBRIEF
       - The example of an algorithms that extracting feature points of an image.
       - 이미지의 특징점을 추출하는 알고리즘 예제
@@ -1070,6 +1082,11 @@
      - ConvolutionFilter
         - The example of an algorithm that processes a user-defined filter to an image.
         - 이미지에서 사용자 지정 필터를 처리하는 알고리즘 예제.
+
+    - [Deconvolution]
+      - WienerDeconvolutionFilter
+        - The example of an algorithm that restores an image applied blur.
+        - 블러가 적용된 이미지를 복원하는 알고리즘 예제
 
     - [Denoising]
       - AnisotropicDiffusion
@@ -1329,12 +1346,21 @@
     - OperationBitwiseXnor
       - Algorithm for performing Bitwise Xnor operations on an image.
       - 이미지를 Bitwise Xnor 연산을 수행하는 알고리즘 예제.
+    - OperationBlend
+      - The algorithm that performs blend operations on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 블렌드 연산을 수행하는 알고리즘.
     - OperationCompare
       - The algorithm that performs compare operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 비교 연산을 수행하는 알고리즘.
     - OperationCosecant
       - The algorithm that performs Cosecant operation on the source image.
       - 이미지에 Cosecant 연산을 수행하는 알고리즘
+    - OperationCosine 
+      - The algorithm that performs Cosine operation on the source image.
+      - 이미지에 Cosine 연산을 수행하는 알고리즘
+    - OperationCosineH 
+      - The algorithm that performs CosineH operation on the source image.
+      - 이미지에 CosineH 연산을 수행하는 알고리즘
     - OperationComplexMultiply
       - The algorithm that performs Complex Multiply operation on the source image.
     - OperationCubeRoot
@@ -1352,12 +1378,18 @@
     - OperationHypotenuse
       - The algorithm that performs Hypotenuse operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 Hypotenuse 연산을 수행하는 알고리즘.
+    - OperationInvertIntensity
+      - The algorithm that performs Invert Intensity operation on the source image.
+      - 이미지에 Invert Intensity 연산을 수행하는 알고리즘
     - OperationLeadingZeros
       - The algorithm that performs calculation of leading zeros from the source image.
       - 이미지에 Leading Zeros 연산을 수행하는 알고리즘    
     - OperationLesser
       - The algorithm that performs Lesser operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 Lesser 연산을 수행하는 알고리즘.
+    - OperationLinear
+      - Algorithm for performing Linear operations on an image.
+      - 이미지를 Linear 연산을 수행하는 알고리즘 예제.
     - OperationLogicalAnd
       - Algorithm for performing Logical And operations on an image.
       - 이미지를 Logical And 연산을 수행하는 알고리즘 예제.
@@ -1370,24 +1402,36 @@
     - OperationLogicalOr
       - Algorithm for performing Logical Or operations on an image.
       - 이미지를 Logical Or 연산을 수행하는 알고리즘 예제.
+    - OperationLogicalNor
+      - Algorithm for performing Logical Nor operations on an image.
+      - 이미지를 Logical Nor 연산을 수행하는 알고리즘 예제.
     - OperationLogicalXnor
       - Algorithm for performing Logical Xnor operations on an image.
       - 이미지를 Logical Xnor 연산을 수행하는 알고리즘 예제.
     - OperationLogicalXor
       - Algorithm for performing Logical Xor operations on an image.
       - 이미지를 Logical Xor 연산을 수행하는 알고리즘 예제.
+    - OperationMean 
+      - The algorithm that performs Mean operations on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 Mean 연산을 수행하는 알고리즘.
     - OperationScaledDivide
       - The algorithm that performs a Scaled Divide operation with an image or scalar value.
       - 이미지를 스칼라 또는 다른 이미지와 스케일 나눗셈 연산을 수행하는 알고리즘.
     - OperationScaledMultiply
       - The algorithm that perform Scaled Multiply operation an image with scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 스케일 곱셈 연산을 수행하는 알고리즘.
+    - OperationPower
+      - The algorithm that performs power operations on an image with scalar or other image as exponent.
+      - 이미지를 스칼라 또는 다른 이미지를 지수로 하여 거듭제곱 연산을 수행하는 알고리즘.
     - OperationScaledSubtract
       - The algorithm that perform Scaled Subtract operation an image with scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 스케일 뺄셈 연산을 수행하는 알고리즘.
     - OperationSignedSquareDifference
       - The algorithm that perform Signed Square Difference operation an image with scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 부호 정보가 보존된 차이의 제곱 연산을 수행하는 알고리즘.
+    - OperationSine 
+      - The algorithm that performs Sine operation on the source image.
+      - 이미지에 Sine 연산을 수행하는 알고리즘
     - OperationSineH
       - The algorithm that performs SineH operation on the source image.
       - 이미지에 SineH 연산을 수행하는 알고리즘
@@ -1397,6 +1441,9 @@
     - OperationSquareRoot
       - The algorithm that performs Square Root operation on the source image.
       - 이미지에 제곱근 연산을 수행하는 알고리즘.
+    - OperationTangent 
+      - The algorithm that performs Tangent operation on the source image.
+      - 이미지에 Tangent 연산을 수행하는 알고리즘
     - OperationTangentH
       - The algorithm that performs TangentH operation on the source image.
       - 이미지에 TangentH 연산을 수행하는 알고리즘
@@ -1430,6 +1477,29 @@
     - Moment_Zernike
       - The algorithm example to get Zernike moment information about pixel intensity within image region of interest.
       - 이미지의 관심영역 내에서 픽셀 강도에 대한 저니키 모멘트 정보를 얻는 알고리즘 예제.
+
+  - [Page]
+  
+    - [Page Pooling]	 
+      - PagePooling_Max
+        - The example of an algorithm that outputs the maximum value among the input images as the result image.
+        - 입력된 이미지 가운데 최대 값을 결과 이미지로 출력하는 알고리즘 예제.
+      - PagePooling_MaxGaussian
+        - The example of an algorithm that outputs the Gaussian value for the maximum value located at the front of the input image as the result image.
+        - 입력된 이미지 가운데 가장 앞에 위치한 최대 값에 대한 가우시안 값을 결과 이미지로 출력하는 알고리즘 예제.
+      - PagePooling_Mean
+        - The example of an algorithm that outputs the average value of the entire input image as the result image.
+        - 입력된 이미지 가운데 전체의 평균 값을 결과 이미지로 출력하는 알고리즘 예제.
+      - PagePooling_Min
+        - The example of an algorithm that outputs the minimum value among the input images as the result image.
+        - 입력된 이미지 가운데 최솟 값을 결과 이미지로 출력하는 알고리즘 예제.
+      - PagePooling_MinGaussian
+        - The example of an algorithm that outputs the Gaussian value for the minimum value located at the front of the input image as the result image.
+        - 입력된 이미지 가운데 가장 앞에 위치한 최소 값에 대한 가우시안 값을 결과 이미지로 출력하는 알고리즘 예제.
+
+    - PagePixelPicker
+      - The example of an algorithm that extract pixels corresponding to the index map image from multiple images.
+      - 복수의 이미지에서 인덱스 맵 이미지에 해당하는 픽셀을 추출하는 알고리즘 예제.	
 
   - [Morphology]
 
@@ -1658,6 +1728,9 @@
     - Paste 
       - The example of an algorithm that pastes a ROI from a source image to a destination image.
       - 소스 이미지에서 관심 영역을 대상 이미지에 붙여넣는 알고리즘 예제.
+    - Stitching
+      - The example of an algorithm that align an unordered source image.
+      - 소스 이미지를 순서에 상관 없이 정렬 해주는 알고리즘 예제
     - Tiling 
       - The example of an algorithm that match the ROI of the source images to the destination ROI.
       - 소스 이미지들의 ROI를 Destination ROI에 Tiling 해주는 알고리즘 예제.
