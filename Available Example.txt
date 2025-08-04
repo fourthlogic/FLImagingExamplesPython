@@ -305,6 +305,14 @@
         - The algorithm example for estimating a corner within a measurement area of an image.
         - 이미지의 측정영역 내에서 코너를 측정하는 알고리즘 예제.
         
+    - ModulationTransferFunction 
+        - The algorithm example to calculate the Modulation Transfer Function(MTF) of an image.
+        - 이미지의 Modulation Transfer Function(MTF)를 구하는 알고리즘 예제.
+
+    - PeripheralLuminance 
+        - The algorithm example to calculate the luminance difference between the measurement area and the surrounding area as a ratio of an image.
+        - 이미지의 측정 영역과 주변 영역의 휘도의 차이에 대한 비율 구하는 알고리즘 예제.
+
   - [Match]
 
     - [Drawing Match]
