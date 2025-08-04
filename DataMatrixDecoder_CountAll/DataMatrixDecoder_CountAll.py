@@ -55,7 +55,7 @@ def main():
     # 검사 개수 전체로 설정 # Set to total number of inspections
     dataMatrixDecoder.SetDetectingCount(EDataCodeDecoderDetectingCount.All)
     
-    # 전처리 Blur 설정. EDataMatrixImageProcessingMethod.Normal 입력 시 전처리를 하지 않는다. # Sets preprocessing blur. If EDataMatrixImageProcessingMethod.Normal is specified, no preprocessing is applied.
+    # 전처리 Blur 설정. EDataCodeDecoderDenoisingMethod.Normal 입력 시 전처리를 하지 않는다. # Sets preprocessing blur. If EDataCodeDecoderDenoisingMethod.Normal is specified, no preprocessing is applied.
     dataMatrixDecoder.SetDenoisingMethod(EDataCodeDecoderDenoisingMethod.Gaussian)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
