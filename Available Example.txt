@@ -1291,10 +1291,10 @@
     - OperationAtan2 
       - The algorithm that performs Atan2 operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 Atan2 연산을 수행하는 알고리즘.
-    - OperationBit Rolling Left
+    - OperationBitRollingLeft
       - The algorithm that performs bit rolling left operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 bit rolling left 연산을 수행하는 알고리즘.
-    - OperationBit Rolling Right
+    - OperationBitRollingRight
       - The algorithm that performs bit rolling right operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 bit rolling right 연산을 수행하는 알고리즘.
     - OperationBitShift 
