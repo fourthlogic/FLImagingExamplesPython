@@ -11,10 +11,10 @@ CLibraryUtilities.Initialize()
 def main():
 
 	# 이미지 객체 선언 # Declare the image object
-	listFliImage = [CFLImage(), CFLImage(), CFLImage(), CFLImage(), CFLImage(), CFLImage()]
+	listFliImage = [CFLImage() for i in range(6)]
 
 	# 이미지 뷰 선언 # Declare the image view
-	listViewImage = [CGUIViewImage(), CGUIViewImage(), CGUIViewImage(), CGUIViewImage(), CGUIViewImage(), CGUIViewImage()]
+	listViewImage = [CGUIViewImage() for i in range(6)]
 
 	while True:
 		
