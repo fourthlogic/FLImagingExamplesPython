@@ -24,7 +24,7 @@ def main():
 
 	while True:
 		# 이미지 로드 # Load image
-		if (res := fliSrcImage.Load("../../ExampleImages/MultiFocusDerivativeBased3D/")).IsFail():
+		if (res := fliSrcImage.Load("../../ExampleImages/DepthImageReconstruction3D/")).IsFail():
 			ErrorPrint(res, "Failed to load the image file.\n")
 			break
 		
@@ -55,7 +55,7 @@ def main():
 
 		
 		# 알고리즘 객체 생성 # Create algorithm object
-		algObject = CMultiFocusDerivativeBased3D()
+		algObject = CDepthImageReconstruction3D()
 
 		# Source 이미지 설정 # Set the source image
 		if (res := algObject.SetSourceImage(fliSrcImage)[0]).IsFail():
@@ -76,7 +76,7 @@ def main():
 		if (res := algObject.SetDepthPitch(0.2)).IsFail():
 			break
 		# Filter 설정 # Set filter
-		if (res := algObject.SetFilter(CMultiFocusDerivativeBased3D.EFilter.FLDenoisingType1)).IsFail():
+		if (res := algObject.SetFilter(CDepthImageReconstruction3D.EFilter.FLDenoisingType1)).IsFail():
 			break
 		if (res := algObject.SetFLDenoisingKernel(7)).IsFail():
 			break

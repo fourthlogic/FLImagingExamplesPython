@@ -24,7 +24,7 @@ def main():
 
 	while True:
 		# 이미지 로드 # Load image
-		if (res := fliSrcImage.Load("../../ExampleImages/MultiFocusMAPBased3D/")).IsFail():
+		if (res := fliSrcImage.Load("../../ExampleImages/DepthImageReconstructionMAPBased3D/")).IsFail():
 			ErrorPrint(res, "Failed to load the image file.\n")
 			break
 		
@@ -55,7 +55,7 @@ def main():
 
 		
 		# 알고리즘 객체 생성 # Create algorithm object
-		algObject = CMultiFocusMAPBased3D()
+		algObject = CDepthImageReconstructionMAPBased3D()
 
 		# Source 이미지 설정 # Set the source image
 		if (res := algObject.SetSourceImage(fliSrcImage)[0]).IsFail():
@@ -74,7 +74,7 @@ def main():
 		if (res := algObject.SetFMBiasValue(0.02)).IsFail():
 			break
 		# Focus measure method 설정 # Set focus measure method
-		if (res := algObject.SetFocusMeasureMethod(CMultiFocusMAPBased3D.EFocusMeasureMethod.DoG)).IsFail():
+		if (res := algObject.SetFocusMeasureMethod(CDepthImageReconstructionMAPBased3D.EFocusMeasureMethod.DoG)).IsFail():
 			break
 		# Sigma1 설정 # Set the sigma1
 		if (res := algObject.SetSigma1(0.4)).IsFail():
@@ -97,7 +97,7 @@ def main():
 			break
 
 		# Page Direction 설정 # Set the page direction
-		if (res := algObject.SetDirection(CMultiFocusMAPBased3D.EDirection.BottomToTop)).IsFail():
+		if (res := algObject.SetDirection(CDepthImageReconstructionMAPBased3D.EDirection.BottomToTop)).IsFail():
 			break
 		# Pixel Accuracy 설정 # Set the pixel accuracy
 		if (res := algObject.SetPixelAccuracy(1.0)).IsFail():

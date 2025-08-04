@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{c68a6328-7aab-4c8f-b076-9bf0e243bb61}</ProjectGuid>
+    <ProjectGuid>{9c17cbf9-fe95-4143-9363-330d685abe2d}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>MultiFocusMAPBased3D.py</StartupFile>
+    <StartupFile>DepthImageReconstruction3D.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>MultiFocusMAPBased3D</Name>
-    <RootNamespace>MultiFocusMAPBased3D</RootNamespace>
+    <Name>DepthImageReconstruction3D</Name>
+    <RootNamespace>DepthImageReconstruction3D</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="MultiFocusMAPBased3D.py" />
+    <Compile Include="DepthImageReconstruction3D.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
