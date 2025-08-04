@@ -88,10 +88,8 @@ def main():
         # Destination 이미지 설정 // Set destination image
         logicalNor.SetDestinationImage(fliDestinationImage)
 
-        # Operation Logical Nor 수행 // Execute Logical Nor operation
-        res = logicalNor.Execute()
-
-        if res.IsFail():
+        # Operation Logical Nor 수행 // Execute Logical Nor operation        
+        if (res:= logicalNor.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute OperationLogicalNor.\n")
             break
         
