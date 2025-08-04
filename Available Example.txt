@@ -968,6 +968,11 @@
       - TextureFilter	   
         - The example of an algorithm that show symmetry distribution.
         - 이미지에 특정한 텍스쳐 변환 법칙을 적용하는 알고리즘 예제
+        
+    - [Convolution]
+     - ConvolutionFilter
+        - The example of an algorithm that processes a user-defined filter to an image.
+        - 이미지에서 사용자 지정 필터를 처리하는 알고리즘 예제.
 
     - [Denoising]
       - AnisotropicDiffusion
@@ -1003,6 +1008,15 @@
       - MeanCurvatureFlowWeighted
         - The example of an algorithm that applies mean curvature flow to an image. (Edge preservation method of mean curvature flow algorithm)
         - 이미지에 Mean Curvature Flow Weighted(평균 곡률 흐름)를 적용하는 알고리즘 예제. (Mean Curvature Flow의 엣지 보존 방식)
+      - MedianFilter
+        - The example of an algorithm that processes a median filter to an image.
+        - 이미지에서 중앙값 필터를 처리하는 알고리즘 예제.
+      - MedianSeparatedFilter
+        - The example of an algorithm that processes a median separate filter to an image.
+        - 이미지에서 분리된 중앙값 필터를 처리하는 알고리즘 예제.
+      - MedianWeightedFilter
+        - The example of an algorithm that processes a median weighted filter to an image.
+        - 이미지에서 가중을 이용한 중앙값 필터를 처리하는 알고리즘 예제.
       - NonLocalMeansFilter
         - The example of an algorithm that processes a non local means filter to an image.
         - 이미지에서 Non Local Means 필터를 처리하는 알고리즘 예제.
