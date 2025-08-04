@@ -53,25 +53,25 @@ def main():
         bError = False
         # 이미지 뷰에 이미지 설정 // Set images to views
         for i in range(3):
-            if (res := arrViewImage[i].SetImagePtr(arrFliImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to set image object on the image view.")
+            if (res := arrViewImage[i].SetImagePtr(arrFliImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to set image object on the image view.")
                 bError = True
                 break
         if bError:
             break
 
         # 이미지 뷰 동기화 // Synchronize viewpoints and windows
-        if (res := arrViewImage[0].SynchronizePointOfView(arrViewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := arrViewImage[0].SynchronizePointOfView(arrViewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
-        if (res := arrViewImage[0].SynchronizePointOfView(arrViewImage[2]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
+        if (res := arrViewImage[0].SynchronizePointOfView(arrViewImage[2])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view")
             break
-        if (res := arrViewImage[0].SynchronizeWindow(arrViewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window")
+        if (res := arrViewImage[0].SynchronizeWindow(arrViewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window")
             break
-        if (res := arrViewImage[0].SynchronizeWindow(arrViewImage[2]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window")
+        if (res := arrViewImage[0].SynchronizeWindow(arrViewImage[2])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window")
             break
 
         # CMultiVar<double> 생성 // Create CMultiVar objects for scalar values
