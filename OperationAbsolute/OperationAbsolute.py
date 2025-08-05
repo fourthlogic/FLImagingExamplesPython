@@ -64,7 +64,7 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
-		# Operation Absoute 객체 생성 // Create Operation Absoute object
+		# Operation Absolute 객체 생성 // Create Operation Absolute object
 		absolute = COperationAbsolute()
 
 		# Source 이미지 설정 // Set the source image
@@ -75,7 +75,7 @@ def main():
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := absolute.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Operation Absoute.')
+			ErrorPrint(res, 'Failed to execute Operation Absolute.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
