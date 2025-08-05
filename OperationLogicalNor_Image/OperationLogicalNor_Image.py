@@ -94,7 +94,7 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 				
-		# Operation Logical Nor 객체 생성 # Create Operation scaled divide object
+		# Operation Logical Nor 객체 생성 # Create Operation Logical Nor object
 		logicalNor = COperationLogicalNor()
 
 		# Source 이미지 설정 # Set the source image

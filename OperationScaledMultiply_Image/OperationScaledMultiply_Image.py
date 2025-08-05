@@ -101,7 +101,7 @@ def main():
 		# ROI 설정을 위한 CFLRect 객체 생성 # Create a CFLRect object for setting ROI
 		flrROI = CFLRect[Int64](200, 200, 500, 500)
 
-		# Operation Scaled Multiply 객체 생성 # Create Operation scaled divide object
+		# Operation Scaled Multiply 객체 생성 # Create Operation Scaled Multiply object
 		scaledMultiply = COperationScaledMultiply()
 
 		# Source 이미지 설정 # Set the source image

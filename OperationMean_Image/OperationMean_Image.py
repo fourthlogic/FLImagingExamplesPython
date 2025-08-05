@@ -94,7 +94,7 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 				
-		# Operation Mean 객체 생성 # Create Operation scaled divide object
+		# Operation Mean 객체 생성 # Create Operation Mean object
 		mean = COperationMean()
 
 		# Source 이미지 설정 # Set the source image

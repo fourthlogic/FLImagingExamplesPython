@@ -114,7 +114,7 @@ def main():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 		
-		# Operation Power 객체 생성 # Create Operation scaled divide object
+		# Operation Power 객체 생성 # Create Operation Power object
 		power = COperationPower()
 
 		# Source 이미지 설정 # Set the source image

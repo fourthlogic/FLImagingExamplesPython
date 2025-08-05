@@ -98,7 +98,7 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 		
-		# Operation Scaled Subtract 객체 생성 # Create Operation scaled divide object
+		# Operation Scaled Subtract 객체 생성 # Create Operation Scaled Subtract object
 		scaledSubtract = COperationScaledSubtract()
 
 		# Source 이미지 설정 # Set the source image

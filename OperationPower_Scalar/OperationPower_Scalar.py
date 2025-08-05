@@ -115,7 +115,7 @@ def main():
 		mvScalr4 = CMultiVar[Double](2.5, 2.5, 2.5)
 		mvScalr5 = CMultiVar[Double](10, 10, 10)
 		
-		# Operation Power 객체 생성 # Create Operation scaled divide object
+		# Operation Power 객체 생성 # Create Operation Power object
 		power = COperationPower()
 
 		# Source 이미지 설정 # Set the source image
