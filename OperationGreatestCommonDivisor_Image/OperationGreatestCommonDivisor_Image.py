@@ -116,7 +116,7 @@ def main():
 			arrLayer[i].Clear()
 
 			# ROI 영역을 디스플레이 한다 // Display ROI
-			# FLImaging의 Figure 객체들은 도형 모향에 상관없이 하나의 함수로 디스플레이가 가능 // FLimaging's Figure objects can be displayed with one function regardless of the shape
+			# FLImaging의 Figure 객체들은 도형 모양에 상관없이 하나의 함수로 디스플레이가 가능 // FLimaging's Figure objects can be displayed with one function regardless of the shape
 			# 아래 함수 DrawFigureImage는 Image 좌표를 기준으로 하는 Figure를 Drawing 한다는 것을 의미하며 // The function DrawFigureImage below means drawing a picture based on the image coordinates
 			# 마지막 두 개의 파라미터는 불투명도 값이고 1일경우 불투명, 0일경우 완전 투명을 의미한다. // The last two parameters are opacity values, which mean opacity for 1 and complete transparency for 0.
 			# 파라미터 순서 : 레이어 -> Figure 객체 -> 선 색 -> 선 두께 -> 면 색 -> 펜 스타일 -> 선 알파값(불투명도) -> 면 알파값 (불투명도) // Parameter order: Layer -> Figure object -> Line color -> Line thickness -> Face color -> Pen style -> Line alpha value (opacity) -> Area alpha value (opacity)
