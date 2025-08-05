@@ -295,12 +295,12 @@ def main():
 	while True:
 		
 		# Learn 이미지 로드 # Load the learn image
-		if (res := fliLearnImage.Load('C:/Users/junhy/source/repos/fourthlogic/ExampleImages/StereoCalibrator3D/Left.flif')).IsFail():
+		if (res := fliLearnImage.Load('../../ExampleImages/StereoCalibrator3D/Left.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
 		# Learn 2 이미지 로드 # Load the learn 2 image
-		if (res := fliLearnImage2.Load('C:/Users/junhy/source/repos/fourthlogic/ExampleImages/StereoCalibrator3D/Right.flif')).IsFail():
+		if (res := fliLearnImage2.Load('../../ExampleImages/StereoCalibrator3D/Right.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
