@@ -1800,6 +1800,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DepthImageReconstruction3D"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DepthImageReconstructionMAPBased3D", "DepthImageReconstructionMAPBased3D\DepthImageReconstructionMAPBased3D.pyproj", "{C68A6328-7AAB-4C8F-B076-9BF0E243BB61}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DeviceLaserProfileSensorKeyence", "DeviceLaserProfileSensorKeyence\DeviceLaserProfileSensorKeyence.pyproj", "{424EA2D0-4D9B-48D7-904B-5AD7D85275BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3010,6 +3012,8 @@ Global
 		{9C17CBF9-FE95-4143-9363-330D685ABE2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C68A6328-7AAB-4C8F-B076-9BF0E243BB61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C68A6328-7AAB-4C8F-B076-9BF0E243BB61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{424EA2D0-4D9B-48D7-904B-5AD7D85275BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{424EA2D0-4D9B-48D7-904B-5AD7D85275BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3901,6 +3905,7 @@ Global
 		{21F7323B-97E4-4FAA-9E86-9187D8218A6B} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
 		{9C17CBF9-FE95-4143-9363-330D685ABE2D} = {ECFF483A-9E41-42AD-94A1-09F2D3E62F83}
 		{C68A6328-7AAB-4C8F-B076-9BF0E243BB61} = {ECFF483A-9E41-42AD-94A1-09F2D3E62F83}
+		{424EA2D0-4D9B-48D7-904B-5AD7D85275BD} = {F13892E2-1722-440D-956C-3502AC4FF174}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
