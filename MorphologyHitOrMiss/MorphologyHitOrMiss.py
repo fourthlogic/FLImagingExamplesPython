@@ -74,16 +74,15 @@ def main():
 		morphologyHitOrMiss.SetDestinationImage(fliDestinationImage)
 				
 		# 커널 생성 // Set Kernel
-		# 1,  1,  0,  0,  0,  1, 1
-		# 1,  0, -1, -1, -1,  0, 1
-		# 0, -1, -1, -1, -1, -1, 0
-		# 0, -1, -1, -1, -1, -1, 0
-		# 0, -1, -1, -1,  1, -1, 0
-		# 1,  0, -1, -1, -1,  0, 1
-		# 1,  1,  0,  0,  0,  1, 1
+		# 1,  1,  0,  0,  0,  1,  1
+		# 1,  0, -1, -1, -1,  0,  1
+		# 0, -1, -1, -1, -1, -1,  0
+		# 0, -1, -1, -1, -1, -1,  0
+		# 0, -1, -1, -1,  1, -1,  0
+		# 1,  0, -1, -1, -1,  0,  1
+		# 1,  1,  0,  0,  0,  1,  1
 
 		list2Kernel = List[List[Single]]()
-
 		list2Kernel.Add(List[Single]())
 		list2Kernel[0].Add(1)
 		list2Kernel[0].Add(1)
@@ -95,11 +94,11 @@ def main():
 
 		list2Kernel.Add(List[Single]())
 		list2Kernel[1].Add(1)
-		list2Kernel[1].Add(-1)
-		list2Kernel[1].Add(0)
-		list2Kernel[1].Add(0)
 		list2Kernel[1].Add(0)
 		list2Kernel[1].Add(-1)
+		list2Kernel[1].Add(-1)
+		list2Kernel[1].Add(-1)
+		list2Kernel[1].Add(0)
 		list2Kernel[1].Add(1)
 
 		list2Kernel.Add(List[Single]())
@@ -131,11 +130,11 @@ def main():
 		
 		list2Kernel.Add(List[Single]())
 		list2Kernel[5].Add(1)
-		list2Kernel[5].Add(-1)
-		list2Kernel[5].Add(0)
-		list2Kernel[5].Add(0)
 		list2Kernel[5].Add(0)
 		list2Kernel[5].Add(-1)
+		list2Kernel[5].Add(-1)
+		list2Kernel[5].Add(-1)
+		list2Kernel[5].Add(0)
 		list2Kernel[5].Add(1)
 		
 		list2Kernel.Add(List[Single]())
