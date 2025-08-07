@@ -46,7 +46,7 @@ def main():
 		# Source ROI 설정 // Set the Source ROI
 		statistics.SetSourceROI(flrROI)
 
-		# 결과값을 받아올 CMultiVarD 컨테이너 생성 // Create the CMultiVarD object to push the result
+		# 결과값을 받아올 CMultiVar[Double] 컨테이너 생성 // Create the CMultiVar[Double] object to push the result
 		mvMin = CMultiVar[Double]()
 		mvMax = CMultiVar[Double]()
 
@@ -65,7 +65,7 @@ def main():
 		statistics.SetTrimming(0.2, CImageStatistics.ETrimmingLocation.Lower)
 		statistics.SetTrimming(0.4, CImageStatistics.ETrimmingLocation.Upper)
 
-		# trimming 된 결과값을 받아올 CMultiVarD 컨테이너 생성 // Create the CMultiVarD object to push the trimmed result
+		# trimming 된 결과값을 받아올 CMultiVar[Double] 컨테이너 생성 // Create the CMultiVar[Double] object to push the trimmed result
 		mvTrimmingMin = CMultiVar[Double]()
 		mvTrimmingMax = CMultiVar[Double]()
 

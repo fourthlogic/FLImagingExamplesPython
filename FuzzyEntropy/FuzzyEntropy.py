@@ -55,7 +55,7 @@ def main():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
-		# 결과값을 받아올 CMultiVarD 컨테이너 생성 // Create the CMultiVarD object to push the result
+		# 결과값을 받아올 CMultiVar[Double] 컨테이너 생성 // Create the CMultiVar[Double] object to push the result
 		mvFuzzyEntropy = CMultiVar[Double]()
 
 		# 이미지 전체(혹은 ROI 영역) 픽셀값의 Fuzzy Entropy를 구하는 함수 // Function that calculate the fuzzy entropy of the image(or the region of ROI)

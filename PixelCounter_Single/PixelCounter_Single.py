@@ -55,7 +55,7 @@ def main():
 		# threshold 모드 설정(Single) # Set Threshold Mode(Single)
 		PixelCounter.SetThresholdMode(EThresholdMode.Single)
 
-		# 임계값 설정 (다채널 경우 CMultiVar 사용) # Set threshold value(Use CMultiVarD for multi-channel)
+		# 임계값 설정 (다채널 경우 CMultiVar[Double] 사용) # Set threshold value(Use CMultiVar[Double] for multi-channel)
 		PixelCounter.SetThreshold(120, EThresholdIndex.First)
 		PixelCounter.SetThreshold(230, EThresholdIndex.Second)
 
