@@ -28,24 +28,7 @@
       - PointCloudBasedHandEyeCalibrator3D
         - The example that estimating the matrix between the camera and the end effector.
         - 카메라와 엔드 이펙터의 관계 행렬을 추정하는 알고리즘 예제.
-
-  - [Match]
-    
-    - [Surface]
-      - Surface Match 3D
-        - The example of an algorithm that estimate pose matrix for a given point clouds.
-        - 주어진 포인트 클라우드에 대해 포즈 행렬을 추정하는 알고리즘 예제.
-
-    - [Vertex]
-      - Vertex Match 3D
-        - The example of an algorithm that estimate pose matrix for a given point clouds.
-        - 주어진 포인트 클라우드에 대해 포즈 행렬을 추정하는 알고리즘 예제.
-
-    - [Registration 3D]
-      - Registration 3D
-        - The example of an algorithm that estimate pose matrix for a given point clouds.
-        - 주어진 포인트 클라우드에 대해 포즈 행렬을 추정하는 알고리즘 예제.
-
+        
   - [Feature Extraction]
     
     - [Edge Detector 3D]
@@ -64,7 +47,7 @@
       - Smoothing3D
         - The example of an algorithm that smooth a given point cloud.
         - 주어진 포인트 클라우드를 스무딩하는 알고리즘 예제.
-    
+
   - [Generator]
 
     - [Point Cloud Downsampler Stochastic]
@@ -72,9 +55,9 @@
         - The example of an algorithm that reduces number of points in a point cloud by randomly dropping points.
         - 무작위 탈락을 통해 포인트 클라우드의 점의 수를 줄이는 알고리즘 예제.
 
-    - [Point Cloud Generator 3D]
-      - Point Cloud Generator 3D
-        - The example of an algorithm that generate a point cloud from predefined 3d object.
+    - [Point Cloud Generator]
+      - PointCloudGenerator3D
+        - The example of an algorithm that generates a point cloud from predefined 3d object.
         - 미리 정의된 3D 데이터에서 포인트 클라우드를 생성하는 알고리즘 예제.
 
     - [Point Cloud Upsampler Uniform]
@@ -86,6 +69,23 @@
       - PointCloudUpsamplerPoisson3D
         - The example of an algorithm that estimates underlying distribution of a point cloud and augments the data using poisson disc sampling.
         - 포인트 클라우드의 기저 분포를 추정하여 포아송 디크스 추출을 통해 데이터를 증강하는 알고리즘 예제.
+
+  - [Match]
+    
+    - [Surface]
+      - Surface Match 3D
+        - The example of an algorithm that estimate pose matrix for a given point clouds.
+        - 주어진 포인트 클라우드에 대해 포즈 행렬을 추정하는 알고리즘 예제.
+
+    - [Vertex]
+      - Vertex Match 3D
+        - The example of an algorithm that estimate pose matrix for a given point clouds.
+        - 주어진 포인트 클라우드에 대해 포즈 행렬을 추정하는 알고리즘 예제.
+
+    - [Registration]
+      - Registration 3D
+        - The example of an algorithm that estimate pose matrix for a given point clouds.
+        - 주어진 포인트 클라우드에 대해 포즈 행렬을 추정하는 알고리즘 예제.
 
   - [Reconstruction]
 
@@ -108,7 +108,7 @@
       - DepthImageReconstruction3D
         - The example of an algorithm that reconstructs a height map from a focus stack of images.
         - 여러 초점의 이미지 스택으로부터 Height Map 을 만드는 알고리즘 예제.
-  
+
     - [Depth Image Reconstruction MAP Based 3D]
 
       - DepthImageReconstructionMAPBased3D
@@ -150,7 +150,7 @@
       - PerspectiveMerge3D
         - The example an algorithm that merge vertices created by the positions and angles of two cameras on both sides of a reference position into one information.
         - 기준 위치에 대해 양 옆으로 두개의 카메라의 위치 및 각도에 의해 생성된 정점들을 하나의 정보로 합치는 알고리즘 예제.
-
+        
     - [Perspective Transform 3D]
       - PerspectiveTransform3D
         - The example of an algorithm that performs projection transformation to a given vertex based on the camera's position and the direction the camera is looking.
@@ -162,12 +162,17 @@
         - 축의 순서를 바꾸는 알고리즘 예제
 
   - [Utilities]
-    
+
     - [Depth Map To Point Cloud Converter 3D]
       - DepthMapToPointCloudConverter3D
         - An example of an algorithm that create a point cloud with a depth map image and an camera intrinsic parameter.
         - 깊이맵 이미지와 카메라 내부 행렬로 포인트 클라우드를 생성하는 알고리즘 예제.
 
+    - [Projection 3D]
+      - Projection3D
+        - An example of an algorithm that projects a 3D object into an image.
+        - 3D 객체를 이미지로 투영하는 알고리즘 예제.
+    
     - [Residual Evaluator 3D]
       - ResidualEvaluator3D
         - The example of an algorithm that measures the residuals of two given objects.
@@ -188,9 +193,8 @@
         - The example of an algorithm that sampling a given point cloud.
         - 주어진 포인트 클라우드를 샘플링하는 알고리즘 예제.
 
-
 - [Advanced Functions]
-  
+
   - [Calibration]
 
     - [Camera Calibrator]
@@ -216,13 +220,13 @@
 
   - [Data Code]
 
-    - [Barcode]    
+    - [Barcode]
       - BarcodeDecoder
         - The example of an algorithm that detects and decodes barcode in an image.
         - 이미지 내의 바코드를 검출 및 디코딩하는 알고리즘 예제.
       - BarcodeEncoder
         - The example of an algorithm that encodes the input string into a set barcode type.
-        - 입력한 문자열을 설정한 바코드 타입으로 인코딩하는 알고리즘 예제.		  
+        - 입력한 문자열을 설정한 바코드 타입으로 인코딩하는 알고리즘 예제.
 
     - [Data Matrix]
       - DataMatrixDecoder
@@ -238,7 +242,7 @@
         - The example of an algorithm to evaluate print quality after detecting and decoding Data Matrix within an image.
         - 이미지 내의 데이터 매트릭스를 검출 및 디코딩 후 인쇄 품질을 평가하는 알고리즘 예제.
 
-    - [QR Code]    
+    - [QR Code]
       - QRCodeDecoder
         - The example of an algorithm that detects and decodes QR code in an image.
         - 이미지 내의 QR Code를 검출 및 디코딩하는 알고리즘 예제.
@@ -249,7 +253,7 @@
         - The example of an algorithm to evaluate print quality after detecting and decoding QR Code within an image.
         - 이미지 내의 QR Code를 검출 및 디코딩 후 인쇄 품질을 평가하는 알고리즘 예제.
         
-    - [Micro QR Code]    
+    - [Micro QR Code]
       - MicroQRCodeDecoder
         - The example of an algorithm that detects and decodes Micro QR code in an image.
         - 이미지 내의 Micro QR Code를 검출 및 디코딩하는 알고리즘 예제.
@@ -260,7 +264,7 @@
         - The example of an algorithm to evaluate print quality after detecting and decoding Micro QR Code within an image.
         - 이미지 내의 Micro QR Code를 검출 및 디코딩 후 인쇄 품질을 평가하는 알고리즘 예제.
         
-    - [Unified Data Code]    
+    - [Unified Data Code]
       - UnifiedDataCodeDecoder
         - The example of an algorithm that detect and decode all types of data code in an image.
         - 이미지 내의 모든 타입의 데이터 코드를 검출 및 디코딩하는 알고리즘 예제.
@@ -304,7 +308,7 @@
       - CornerGauge 
         - The algorithm example for estimating a corner within a measurement area of an image.
         - 이미지의 측정영역 내에서 코너를 측정하는 알고리즘 예제.
-        
+
     - ModulationTransferFunction 
         - The algorithm example to calculate the Modulation Transfer Function(MTF) of an image.
         - 이미지의 Modulation Transfer Function(MTF)를 구하는 알고리즘 예제.
@@ -336,7 +340,7 @@
     - [Geometric Match Multi]
     
       - GeometricMatchMulti
-        - The algorithm example that learns geometrical information within one or more different image regions of interest, assigns a unique class name   and searches for matching geometrical patterns in a detected image for the learned class and classifies the class.
+        - The algorithm example that learns geometrical information within one or more different image regions of interest, assigns a unique class name and searches for matching geometrical patterns in a detected image for the learned class and classifies the class.
         - 하나 이상의 서로 다른 이미지 관심영역 내에서 기하학적 정보를 학습 및 고유의 클래스 이름을 부여하고 학습된 클래스에 대해 검출 이미지에서 일치하는 기학적 패턴을 탐색 및 클래스를 분류하는 알고리즘 예제.
       - GeometricMatchMulti_SaveLoad
         - The algorithm example of save and load algorithm for geometric multi match
@@ -345,7 +349,7 @@
     - [Pattern Match]
     
       - PatternMatch
-        - The algorithm example that learns pattern information within a region of interest in an image and searches for matching patterns in a dectectedimage.
+        - The algorithm example that learns pattern information within a region of interest in an image and searches for matching patterns in a dectected image.
         - 하나의 이미지 관심영역 내에서 패턴 정보를 학습하여, 검출 이미지에서 일치하는 패턴을 탐색하는 알고리즘 예제.
       - PatternMatch_SaveLoad
         - The algorithm example of save and load algorithm for pattern match
@@ -354,7 +358,7 @@
     - [Pattern Match Sparse]
     
       - PatternMatchSparse
-        - The algorithm example that learns pattern information sampled with a certain standard within a region of interest in an image and searches for matching patterns in a dectectedimage.
+        - The algorithm example that learns pattern information sampled with a certain standard within a region of interest in an image and searches for matching patterns in a dectected image.
         - 하나의 이미지 관심영역 내에서 일정한 기준으로 샘플링된 정보를 학습하여, 검출 이미지에서 일치하는 패턴을 탐색하는 알고리즘 예제.
       - PatternMatchSparse_SaveLoad
         - The algorithm example of save and load algorithm for pattern match sparse
@@ -363,7 +367,7 @@
     - [Pattern Match Multi]
     
       - PatternMatchMulti
-        - The algorithm example that learns pattern information within one or more different image regions of interest, assigns a unique class name   andsearches for matching patterns in a detected image for the learned class and classifies the class.
+        - The algorithm example that learns pattern information within one or more different image regions of interest, assigns a unique class name and searches for matching patterns in a detected image for the learned class and classifies the class.
         - 하나 이상의 서로 다른 이미지 관심영역 내에서 패턴 정보를 학습 및 고유의 클래스 이름을 부여하고 학습된 클래스에 대해 검출 이미지에서 일치하는 패턴  을탐색 및 클래스를 분류하는 알고리즘 예제.
       - PatternMatchMulti_SaveLoad
         - The algorithm example of save and load algorithm for pattern multi match
@@ -373,7 +377,7 @@
     - [Pattern Match Multi Sparse]
     
       - PatternMatchMultiSparse
-        - The algorithm example that learns pattern information sampled with a certain standard within a region of interest in one or more different image and searches for matching patterns in a dectectedimage.
+        - The algorithm example that learns pattern information sampled with a certain standard within a region of interest in one or more different image and searches for matching patterns in a dectected image.
         - 하나 이상의 서로 다른 이미지 관심영역 내에서 일정한 기준으로 샘플링된 정보를 학습하여, 검출 이미지에서 일치하는 패턴을 탐색하는 알고리즘 예제.
       - PatternMatchMultiSparse_SaveLoad
         - The algorithm example of save and load algorithm for pattern match multi sparse
@@ -410,7 +414,7 @@
         - 설정한 도형을 이미지 내에서 탐색하는 알고리즘 예제.
         
   - [Object]
-  
+
     - [Blob]
       - Blob_Area
         - The example of a Blob algorithm that outputs area results.
@@ -449,10 +453,10 @@
         - The example of Blob algorithm that sorts and output the results.
         - 연결 요소 검출 알고리즘의 결과를 정렬하여 출력하는 예제.
       - Blob_SortClusterMode
-        - The example of outputting the result of the connection element detection algorithm as an alignment state ased on human judgment in a twodimensional plane.
+        - The example of outputting the result of the connection element detection algorithm as an alignment state based on human judgment in a twodimensional plane.
         - 연결 요소 검출 알고리즘의 결과를 2차원 평면에서 인간의 판단기준에서의 정렬 상태로 출력하는 예제.
-      
-    - [BlobSubsampled]    
+        
+    - [BlobSubsampled]
       - BlobSubsampled_Area
         - The example of a Blob algorithm that outputs area results.
         - 면적 크기 결과를 출력하는 Blob 알고리즘의 예제. 
@@ -513,7 +517,7 @@
     - OCV
       - The example of an algorithm that verifies character in an image.
       - 이미지 내의 문자를 검증하는 알고리즘 예제.
-
+      
   - [Optical Flow]
     
     - OpticalFlow Polynomial Expansion     
@@ -562,7 +566,7 @@
        - Figure가 있는 학습 이미지들에 대해 SemanticSegmentation을 통하여 학습한 모델을 사용하여 Figure가 있는 검증 이미지를 분류하는 알고리즘 예제.
        - Examples of algorithms that operate and classify learning/reasoning images by Tiling
        - 학습/추론 이미지를 Tiling 처리하여 동작하여 분류하는 알고리즘 예제.
-
+      
     - StringBasedOCR
        - Examples of string recognition algorithms based on deep learning.
        - 딥러닝 기반의 문자열 인식 알고리즘 예제.
@@ -570,15 +574,15 @@
     - SuperResolution
        - Example of an algorithm for SuperResolution validation images using models learned through high resolution for training images with figures.
        - SuperResolution을 통하여 학습한 모델을 사용하여 고화질 이미지를 만다는 알고리즘 예제.
-
+ 
     - OCR
        - Examples of optical character recognition algorithms based on deep learning.
        - 딥러닝 기반의 광학 문자 인식 알고리즘 예제.
-    
+
     - ObjectDetection
        - Example of finding a desired object using a Bounding Box based on deep learning
        - 딥러닝 기반의 원하는 객체를 Bounding Box로 찾는 알고리즘 예제
-    
+
     - InstanceSegmentation
        - An example of an algorithm that classifies validation images with Figures using a model learned through InstanceSegmentation on training images with Figures.
        - Figure가 있는 학습 이미지들에 대해 InstanceSegmentation을 통하여 학습한 모델을 사용하여 Figure가 있는 검증 이미지를 분류하는 알고리즘 예제.
@@ -586,7 +590,7 @@
     - InstanceSegmentationGroupLabeling
        - Exmaples that distinguishes validation images with Group FigureArray using a model that learns InstanceSegmentation for training images with Group FigureArray.
        - Group FigureArray가 있는 학습 이미지들에 대해 InstanceSegmentation을 통하여 학습한 모델을 사용하여 Group FigureArray가 있는 검증 이미지를 분류하는 알고리즘 예제.
- 
+
   - [Utilites]
     
     - AutoLabeler
@@ -620,8 +624,8 @@
 - [Devices]
 
   - [Camera]
-
-     - DeviceCameraArena 
+    
+    - DeviceCameraArena 
       - Example of connecting and operating Arena Camera.
       - Arena Camera 연결 및 구동하는 예제.
     - DeviceCameraArena3D 
@@ -639,7 +643,7 @@
 	- DeviceCameraJai 
       - Example of connecting and operating Jai Camera.
       - Jai Camera 연결 및 구동하는 예제.
-	- DeviceCameraMatrox 
+    - DeviceCameraMatrox 
       - Example of connecting and operating Matrox Camera.
       - Matrox Camera 연결 및 구동하는 예제.
 	- DeviceCameraMechEye 
@@ -654,7 +658,7 @@
 	- DeviceCameraPylon 
       - Example of connecting and operating Pylon Camera.
       - Pylon Camera 연결 및 구동하는 예제.
-	- DeviceCameraRealSense 
+    - DeviceCameraRealSense 
       - Example of connecting and operating Real Sense Camera.
       - Real Sense Camera 연결 및 구동하는 예제.
 
@@ -669,7 +673,7 @@
     - DeviceCameraEGrabber
 	  - Example of connecting and operating eGrabber.
       - eGrabber 연결 및 구동하는 예제.
-    - DeviceCameraMulticam
+	- DeviceCameraMulticam
 	  - Example of connecting and operating Multicam.
       - Multicam 연결 및 구동하는 예제.
 
@@ -719,16 +723,16 @@
 
   - [3D Utilities]
 
-    - ROIUtilities3D
-      - Example of using ROIUtilities3D. This example demonstrates setting the ROI area for a 3D object and obtaining the parts included in the ROI.
-      - ROIUtilities3D 사용에 관한 예제. 3D 객체에 대해 ROI 영역을 설정하고, ROI 에 포함되는 부분을 얻어 오는 예제입니다.
     - ProjectionUtilities3D
       - ProjectionUtilities3D usage example. This example demonstrates rendering and projecting 3D objects to obtain result images without using a 3DView (GUI Framework).
       - ProjectionUtilities3D 사용에 관한 예제. 3DView (GUI Framework) 없이 3D 객체를 렌더링 및 투영한 결과를 이미지로 얻어 오는 예제입니다.
+    - ROIUtilities3D
+      - Example of using ROIUtilities3D. This example demonstrates setting the ROI area for a 3D object and obtaining the parts included in the ROI.
+      - ROIUtilities3D 사용에 관한 예제. 3D 객체에 대해 ROI 영역을 설정하고, ROI 에 포함되는 부분을 얻어 오는 예제입니다.
     - StepReaderConvertTo3DObject
       - Example of loading and tessellating a STEP file to convert it into a CFL3DObject.
       - Step 파일을 로드 및 테셀레이션하여 CFL3DOjbect 로 변환하는 예제
-    
+
   - [View3D]
 
     - View3D
@@ -737,7 +741,7 @@
     - View3DIntoDialog 
       - The example of inserting an 3D view into a dialog and using it.
       - 3D 뷰를 다이얼로그에 삽입해서 사용하는 예제.
-
+      
   - [Figure]
   
     - ArrayOperation
@@ -815,7 +819,7 @@
     - RemoveFigureWithinRegion
       - The example of RemoveFigureWithinRegion, a function that removes objects within the interference region with the parameter figure from FigureArray.
       - 매개변수 Figure와의 간섭영역 내의 객체를 FigureArray에서 제거하는 기능인 RemoveFigureWithinRegion에 관한 예제.
-      
+
   - [GraphView]
 
     - GraphLeastSquares 
@@ -838,7 +842,7 @@
       - 그래프 뷰의 컨텍스트 메뉴를 커스터마이징하는 예제.
 
   - [ImageView]
-  
+
     - ImageView 
       - The example of using image views.
       - 이미지 뷰 사용에 관한 예제.
@@ -860,18 +864,18 @@
 
   - [SNAPView]
 
-    - SNAPView
+	- SNAPView
 	  - The example of using snap views.
       - 스냅 뷰 사용에 관한 예제.
 	- SNAPViewIntoDialog
 	  - The example of inserting an snap view into a dialog and using it.
       - 스냅 뷰를 다이얼로그에 삽입해서 사용하는 예제.
-
+      
 
 - [ImageProcessing]
 
   - [Adjustment]
-
+    
     - Contrast
       - The algorithm example for adjusting image contrast.
       - 이미지 대비를 조정하는 알고리즘 예제.
@@ -896,7 +900,16 @@
 
   - [Analysis]
   
-    - [Statistics]
+    - [Moment]
+   
+      - Moment_Invariant
+        - The algorithm example for obtaining Geometric Moment, Centroid Moment, Central Moment, Normalized Central Moment, Invariant Moment(or Hu moment)information about pixel intensity within image region of interest.
+        - 이미지의 관심영역 내에서 픽셀 강도에 대한 기하학적 모멘트, 도심 모멘트, 중심 모멘트, 정규화된 중심 모멘트, 불변 모멘트 정보를 얻는 알고리즘 예제.
+      - Moment_Zernike
+        - The algorithm example to get Zernike moment information about pixel intensity within image region of interest.
+        - 이미지의 관심영역 내에서 픽셀 강도에 대한 저니키 모멘트 정보를 얻는 알고리즘 예제.
+   
+  	 - [Statistics]
 
       - Statistics_Covariance_CorrelationCoefficient 
         - The algorithm example for calculating covariance and correlationCoefficient value of pixel values in an image.
@@ -914,6 +927,9 @@
         - The algorithm example for calculating sum and sum of squares value of pixel values in an image.
         - 이미지의 픽셀값들을 합과 제곱합의 계산하는 알고리즘 예제.(Trimming 적용 전, 후)
 
+    - FuzzyEntropy 
+      - The algorithm example to get the fuzzy entropy of an image.
+      - 이미지의 fuzzy entropy 를 구하는 알고리즘 예제.
     - GrayLevelCooccurrenceMatrix
       - The example of an algorithm for calculating a Gray-Level Cooccurrence Matrix(GLCM) from an image.(Energy, Correlation, Homogeneity, Contrast)
       - 이미지에서 Gray-Level Cooccurrence Matrix(GLCM)을 계산하는 알고리즘 예제.(Energy, Correlation, Homogeneity, Contrast)
@@ -926,9 +942,6 @@
     - Projection 
       - The algorithm example to get the cumulative sum of rows or columns of an image.
       - 이미지의 행 또는 열의 누적합을 구하는 알고리즘 예제.
-    - FuzzyEntropy 
-      - The algorithm example to get the fuzzy entropy of an image.
-      - 이미지의 Fuzzy Entropy 를 구하는 알고리즘 예제.
 
   - [Calibration]
 
@@ -946,7 +959,7 @@
       - 여러 이미지에서 선택된 채널들을 결합하는 알고리즘 예제.
     - ChannelInsertion
       - The example of an algorithm that Inserts channels selected from multiple images.
-      - 여러 이미지에서 선택된 채널들을 삽입하는 알고리즘 예제.
+      - 여러 이미지에서 선택된 채널들을 삽입하는 알고리즘 예제. 
     - ChannelL1Norm
       - The example of an algorithm that extracts L1 norm value of each pixel from a multichannel image.
       - 다채널 이미지에서 각 픽셀의 L1 Norm 을 추출하여 이미지화 하는 알고리즘 예제.
@@ -1047,7 +1060,6 @@
           - 분산을 기반으로 이미지의 차원을 축소하는 알고리즘 예제.
 
   - [Feature Extraction]
-
     - CannyEdgeDetector
       - The example of Canny Edge Detection Algorithm.
       - 캐니 엣지 검출 알고리즘 예제
@@ -1063,23 +1075,26 @@
     - NonMaximumSuppression
       - The example of Non Maximum Suppression Algorithm.
       - 비최대 억제 알고리즘 예제
-    - SaliencyMap
-      - The example of an algorithms that emphasize areas where people's eyes focus first.
-      - 사람들의 눈이 먼저 초점을 맞추는 영역을 강조하는 알고리즘 예제
+    - HarrisCornerDetector
+      - The example of Harris Corner Detection Algorithm.
+      - 해리스 코너 검출 알고리즘 예제
     - Skeleton
       - The example of an algorithm that extracts the skeleton of an image.
       - 이미지의 뼈대를 추출하는 알고리즘 예제
+    - SaliencyMap
+      - The example of an algorithms that emphasize areas where people's eyes focus first.
+      - 사람들의 눈이 먼저 초점을 맞추는 영역을 강조하는 알고리즘 예제
     - ScaleInvariantFeatureTransform
       - The example of an algorithms that extracting feature points of an image.
       - 이미지의 특징점을 추출하는 알고리즘 예제
     - OrientedFASTandRotatedBRIEF
       - The example of an algorithms that extracting feature points of an image.
       - 이미지의 특징점을 추출하는 알고리즘 예제
-
+   
   - [Filter]
 
     - [Analysis]
-       - EntropyFilter	   
+      - EntropyFilter	   
         - The example of an algorithm that show entropy distribution.
         - 이미지의 Entropy 분포를 나타내는 알고리즘 예제
       - GaborFilter
@@ -1091,7 +1106,7 @@
       - TextureFilter	   
         - The example of an algorithm that show symmetry distribution.
         - 이미지에 특정한 텍스쳐 변환 법칙을 적용하는 알고리즘 예제
-        
+
     - [Convolution]
      - ConvolutionFilter
         - The example of an algorithm that processes a user-defined filter to an image.
@@ -1114,7 +1129,7 @@
         - Bilateral Grid 자료구조를 사용하여 이미지에서 bilateral 필터를 처리하는 알고리즘 예제
       - BilateralFilterSubSampled
         - The example of an algorithm that processes a bilateral filter And Applies the sampling method to an image.
-        - 샘플링을 적용하여 이미지에서 bilateral 필터를 처리하는 알고리즘 예제	
+        - 샘플링을 적용하여 이미지에서 bilateral 필터를 처리하는 알고리즘 예제
       - ContraharmonicMeanFilter
         - The example of an algorithm that processes a contraharmonic mean filter to an image.
         - 이미지에서 contraharmonic mean 필터를 처리하는 알고리즘 예제
@@ -1156,7 +1171,7 @@
         - 이미지에서 Non Local Means 필터를 처리하는 알고리즘 예제.
       - SymmetricNearestNeighborFilter
         - The example of an algorithm that processes a Symmetric Nearest Neighbor filter to an image.
-        - 이미지에서 Symmetric Nearest Neighbor 필터를 처리하는 알고리즘 예제
+        - 이미지에서 Symmetric Nearest Neighbor 필터를 처리하는 알고리즘 예제	
       - Total Variation Denoising
         - An example of an algorithm that removes noise by reducing total variation in an image.
         - 이미지 전체 변동을 감소하여 노이즈를 제거하는 알고리즘 예제.
@@ -1183,6 +1198,9 @@
       - KirschFilter
         - The example of an algorithm that detects image edges
         - Kirsch Operator를 사용하여 이미지 경계를 검출하는 알고리즘 예제
+      - LaplacianFilter
+        - The example of an algorithm that processes a laplacian differential filter to an image.
+        - 이미지에서 laplacian 미분 필터를 처리하는 알고리즘 예제.
       - LaplacianOfGaussianFilter
         - The example of an algorithm that detects image edges.
         - Laplacian Of Gaussian Operator를 사용하여 이미지 경계를 검출하는 알고리즘 예제
@@ -1192,6 +1210,9 @@
       - RangeFilter
         - The example of an algorithm that detects image edges through difference between maximum and minimum value.
         - 최댓값과 최솟값의 차를 통해 이미지 경계를 검출하는 알고리즘 예제
+      - RobertsFilter
+        - The example of an algorithm that processes a roberts differential filter to an image.
+        - 이미지에서 roberts 미분 필터를 처리하는 알고리즘 예제.
       - RobinsonFilter
         - The example of an algorithm that detects image edges
         - Robinson Operator를 사용하여 이미지 경계를 검출하는 알고리즘 예제
@@ -1215,9 +1236,12 @@
       - EmphasizeFilter	   
         - The example of an algorithm that enhances contrast of the image.
         - 이미지에 명암비를 향상시키는 알고리즘 예제
+      - HighpassFilter
+        - The example of an algorithm that processes a highpass differential filter to an image.
+        - 이미지에서 highpass 미분 필터를 처리하는 알고리즘 예제.
       - IlluminateFilter
         - The example of an algorithm that enhance contrast by applying Illuminate filtering to image
-        - 이미지에 Illuminate 필터링을 적용하여 이미지의 명암 대비를 강화하는 알고리즘 예제
+        - 이미지에 Illuminate 필터링을 적용하여 이미지의 명암 대비를 강화하는 알고리즘 예제	 
       - MultiFocus
         - The example of an algorithm that processes multiple images with different focus points and creates a single image with all focus points.
         - 각각 초점이 다른 여러 장의 이미지를 처리해 모든 초점을 가지는 한장의 이미지로 만드는 알고리즘 예제.
@@ -1235,6 +1259,9 @@
       - GaussFilter
         - The example of an algorithm that performs image smoothing using gaussian functions
         - Gauss Functions을 이용하여 이미지 스무딩을 수행하는 알고리즘 예제
+      - GaussianFilter
+        - The example of an algorithm that processes a gaussian differential filter to an image.
+        - 이미지에서 gaussian 미분 필터를 처리하는 알고리즘 예제.
       - GeometricMeanFilter
         - The example of an algorithm that processes a geometric mean filter to an image.
         - 이미지에서 기하 평균 필터를 처리하는 알고리즘 예제.
@@ -1244,18 +1271,24 @@
       - InfiniteSymmetricExponentialFilter
         - The example of an algorithm that performs image smoothing using Infinite Symmetric Exponential function
         - Infinite Symmetric Exponential Function을 이용하여 이미지 스무딩을 수행하는 알고리즘 예제
+      - LowpassFilter
+        - The example of an algorithm that processes a lowpass differential filter to an image.
+        - 이미지에서 lowpass 미분 필터를 처리하는 알고리즘 예제.
       - MidpointFilter
         - The example of an algorithm that processes midpoint filtering to an image.
         - 이미지에서 midpoint 필터링을 처리하는 알고리즘 예제
       - SigmaFilter
         - The example of an algorithm that executes non-linear image smoothing.
-        - 비선형 이미지를 스무딩해주는 알고리즘 예제.
+        - 비선형 이미지를 스무딩해주는 알고리즘 예제. 
       - StackBlurFilter
         - The example of an algorithm that processes a stack blur filter to an image.
         - 이미지에서 stack blur 필터를 처리하는 알고리즘 예제.
+      - UniformFilter
+        - The example of an algorithm that processes a uniform differential filter to an image.
+        - 이미지에서 uniform 미분 필터를 처리하는 알고리즘 예제.
 
   - [Frequency Domain]
-
+  
     - [Correlation]
 
       - AutoCorrelationFD
@@ -1266,7 +1299,7 @@
         - 원본 이미지와 연산할 이미지를 Cross Correlation 연산하는 알고리즘 예제.
 
     - [Generator]
-
+      
       - FilterGeneratorBandpassFD
         - The example of an algorithm that generate a Bandpass filter in a frequency domain.
         - 주파수 영역에서 사용되는 Bandpass 필터를 생성하는 알고리즘 예제.
@@ -1339,9 +1372,15 @@
     - OperationAbsolute 
       - The algorithm that performs absolute operation on the source image.
       - 이미지에 절댓값 연산을 수행하는 알고리즘
+    - OperationAdd 
+      - The algorithm that performs addition operations on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 덧셈 연산을 수행하는 알고리즘.
     - OperationAtan2 
       - The algorithm that performs Atan2 operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 Atan2 연산을 수행하는 알고리즘.
+    - OperationBinaryComplement
+      - Algorithm for performing binary complement operations on an image by scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 binary complement 연산을 수행하는 알고리즘 예제.
     - OperationBitRollingLeft
       - The algorithm that performs bit rolling left operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 bit rolling left 연산을 수행하는 알고리즘.
@@ -1355,7 +1394,7 @@
       - Algorithm for performing Bitwise And operations on an image.
       - 이미지를 Bitwise And 연산을 수행하는 알고리즘 예제.
     - OperationBitwiseNand
-      - Algorithm for performing Bitwise And operations on an image.
+      - Algorithm for performing Bitwise Nand operations on an image.
       - 이미지를 Bitwise Nand 연산을 수행하는 알고리즘 예제.
     - OperationBitwiseNot
       - Algorithm for performing Bitwise Not operations on an image.
@@ -1372,12 +1411,18 @@
     - OperationBitwiseXnor
       - Algorithm for performing Bitwise Xnor operations on an image.
       - 이미지를 Bitwise Xnor 연산을 수행하는 알고리즘 예제.
-    - OperationBlend
+    - OperationBlend 
       - The algorithm that performs blend operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 블렌드 연산을 수행하는 알고리즘.
     - OperationCompare
       - The algorithm that performs compare operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 비교 연산을 수행하는 알고리즘.
+    - OperationComplexDivide
+      - The algorithm that performs Complex Divide operation on the source image.
+      - 이미지에 Complex Divide 연산을 수행하는 알고리즘
+    - OperationComplexMultiply
+      - The algorithm that performs Complex Multiply operation on the source image.
+      - 이미지에 Complex Multiply 연산을 수행하는 알고리즘
     - OperationCosecant
       - The algorithm that performs Cosecant operation on the source image.
       - 이미지에 Cosecant 연산을 수행하는 알고리즘
@@ -1387,11 +1432,15 @@
     - OperationCosineH 
       - The algorithm that performs CosineH operation on the source image.
       - 이미지에 CosineH 연산을 수행하는 알고리즘
-    - OperationComplexMultiply
-      - The algorithm that performs Complex Multiply operation on the source image.
     - OperationCubeRoot
       - The algorithm that performs Cube Root operation on the source image.
       - 이미지에 세제곱근 연산을 수행하는 알고리즘.
+    - OperationDifference 
+      - The algorithm that compares an image with scalar or another image and outputs the absolute value of the difference.
+      - 이미지를 스칼라 또는 다른 이미지와 비교하여 차이의 절대 값을 출력하는 알고리즘.
+    - OperationDivide 
+      - The algorithm that performs divide operations on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 나눗셈 연산을 수행하는 알고리즘.
     - OperationELU
       - Algorithm that outputs the function value or differential value of the ELU function to the image.
       - 이미지에 ELU 함수의 함숫값 또는 미분값을 출력하는 알고리즘
@@ -1407,27 +1456,30 @@
     - OperationHardShrinkage
       - Algorithm that outputs the function value or differential value of the hard shrinkage function to the image.
       - 이미지에 Hard Shrinkage 함수의 함숫값 또는 미분값을 출력하는 알고리즘
-    - OperationLeastCommonMultiple
-      - The algorithm that performs LCM operations on an image scalar or other image.
-      - 이미지를 스칼라 또는 다른 이미지와 LCM 연산을 수행하는 알고리즘.
     - OperationHypotenuse
       - The algorithm that performs Hypotenuse operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 Hypotenuse 연산을 수행하는 알고리즘.
     - OperationInvertIntensity
       - The algorithm that performs Invert Intensity operation on the source image.
       - 이미지에 Invert Intensity 연산을 수행하는 알고리즘
+    - OperationLeadingOnes
+      - The algorithm that performs the calculation of leading ones from the source image.
+      - 이미지에 Leading Ones 연산을 수행하는 알고리즘
     - OperationLeadingZeros
       - The algorithm that performs calculation of leading zeros from the source image.
-      - 이미지에 Leading Zeros 연산을 수행하는 알고리즘   
+      - 이미지에 Leading Zeros 연산을 수행하는 알고리즘
     - OperationLeastCommonMultiple
       - The algorithm that performs LCM operations on an image scalar or other image.
-      - 이미지를 스칼라 또는 다른 이미지와 LCM 연산을 수행하는 알고리즘. 
+      - 이미지를 스칼라 또는 다른 이미지와 LCM 연산을 수행하는 알고리즘.
     - OperationLesser
       - The algorithm that performs Lesser operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 Lesser 연산을 수행하는 알고리즘.
     - OperationLinear
       - Algorithm for performing Linear operations on an image.
       - 이미지를 Linear 연산을 수행하는 알고리즘 예제.
+    - OperationLog
+      - Algorithm for performing Log operations on an image.
+      - 이미지를 Log 연산을 수행하는 알고리즘 예제.
     - OperationLogicalAnd
       - Algorithm for performing Logical And operations on an image.
       - 이미지를 Logical And 연산을 수행하는 알고리즘 예제.
@@ -1445,16 +1497,31 @@
       - 이미지를 Logical Nor 연산을 수행하는 알고리즘 예제.
     - OperationLogicalXnor
       - Algorithm for performing Logical Xnor operations on an image.
-      - 이미지를 Logical Xnor 연산을 수행하는 알고리즘 예제.
+      - 이미지를 Logical Xnor 연산을 수행하는 알고리즘 예제.    
     - OperationLogicalXor
       - Algorithm for performing Logical Xor operations on an image.
       - 이미지를 Logical Xor 연산을 수행하는 알고리즘 예제.
-    - OperationMean 
+    - OperationMaximum 
+      - The algorithm that compares an image with a scalar or other image to output a max value.
+      - 이미지를 스칼라 또는 다른 이미지와 비교하여 큰 값을 출력하는 알고리즘.
+    - OperationMean
       - The algorithm that performs Mean operations on an image scalar or other image.
       - 이미지를 스칼라 또는 다른 이미지와 Mean 연산을 수행하는 알고리즘.
+    - OperationMinimum 
+      - The algorithm that compares an image with a scalar or other image to output a min value.
+      - 이미지를 스칼라 또는 다른 이미지와 비교하여 작은 값을 출력하는 알고리즘.
     - OperationMish
       - Algorithm that outputs the function value or differential value of the mish function to the image.
       - 이미지에 Mish 함수의 함숫값 또는 미분값을 출력하는 알고리즘
+    - OperationModulo 
+      - The algorithm that performs modulo operations on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 나머지 연산을 수행하는 알고리즘.
+    - OperationMultiply 
+      - The algorithm that performs multiply operations on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 곱셈 연산을 수행하는 알고리즘.
+    - OperationOverlay 
+      - The algorithm that performs overlay operations on an image with other image.
+      - 이미지를 다른 이미지와 겹침 연산을 수행하는 알고리즘.
     - OperationPopcount
       - The algorithm that performs the calculation of popcount from the source image.
       - 이미지에 Popcount 연산을 수행하는 알고리즘
@@ -1500,10 +1567,13 @@
     - OperationSquareRoot
       - The algorithm that performs Square Root operation on the source image.
       - 이미지에 제곱근 연산을 수행하는 알고리즘.
+    - OperationSubtract 
+      - The algorithm that performs subtraction operations on an image scalar or other image.
+      - 이미지를 스칼라 또는 다른 이미지와 뺄셈 연산을 수행하는 알고리즘.
     - OperationSwish
       - Algorithm that outputs the function value or differential value of the swish function to the image.
       - 이미지에 Swish 함수의 함숫값 또는 미분값을 출력하는 알고리즘
-    - OperationTangent 
+    - OperationTangent
       - The algorithm that performs Tangent operation on the source image.
       - 이미지에 Tangent 연산을 수행하는 알고리즘
     - OperationTangentH
@@ -1531,38 +1601,6 @@
       - The example of an algorithm that performs an inpainting by texture propagation and structure propagation.
       - Texture Propagation과 Structure Propagation을 이용하여 인페인팅을 수행하는 알고리즘 예제.
 
-  - [Moment]
-
-    - Moment_Invariant
-      - The algorithm example for obtaining Geometric Moment, Centroid Moment, Central Moment, Normalized Central Moment, Invariant Moment(or Hu moment)information about pixel intensity within image region of interest.
-      - 이미지의 관심영역 내에서 픽셀 강도에 대한 기하학적 모멘트, 도심 모멘트, 중심 모멘트, 정규화된 중심 모멘트, 불변 모멘트 정보를 얻는 알고리즘 예제.
-    - Moment_Zernike
-      - The algorithm example to get Zernike moment information about pixel intensity within image region of interest.
-      - 이미지의 관심영역 내에서 픽셀 강도에 대한 저니키 모멘트 정보를 얻는 알고리즘 예제.
-
-  - [Page]
-  
-    - [Page Pooling]	 
-      - PagePooling_Max
-        - The example of an algorithm that outputs the maximum value among the input images as the result image.
-        - 입력된 이미지 가운데 최대 값을 결과 이미지로 출력하는 알고리즘 예제.
-      - PagePooling_MaxGaussian
-        - The example of an algorithm that outputs the Gaussian value for the maximum value located at the front of the input image as the result image.
-        - 입력된 이미지 가운데 가장 앞에 위치한 최대 값에 대한 가우시안 값을 결과 이미지로 출력하는 알고리즘 예제.
-      - PagePooling_Mean
-        - The example of an algorithm that outputs the average value of the entire input image as the result image.
-        - 입력된 이미지 가운데 전체의 평균 값을 결과 이미지로 출력하는 알고리즘 예제.
-      - PagePooling_Min
-        - The example of an algorithm that outputs the minimum value among the input images as the result image.
-        - 입력된 이미지 가운데 최솟 값을 결과 이미지로 출력하는 알고리즘 예제.
-      - PagePooling_MinGaussian
-        - The example of an algorithm that outputs the Gaussian value for the minimum value located at the front of the input image as the result image.
-        - 입력된 이미지 가운데 가장 앞에 위치한 최소 값에 대한 가우시안 값을 결과 이미지로 출력하는 알고리즘 예제.
-
-    - PagePixelPicker
-      - The example of an algorithm that extract pixels corresponding to the index map image from multiple images.
-      - 복수의 이미지에서 인덱스 맵 이미지에 해당하는 픽셀을 추출하는 알고리즘 예제.	
-
   - [Morphology]
 
     - MorphologyClose
@@ -1587,6 +1625,29 @@
       - The example of an algorithm that processes a top hat filter to an image.
       - 이미지에서 탑햇 필터를 처리하는 알고리즘 예제.
 
+  - [Page]
+  
+    - [Page Pooling]	 
+      - PagePooling_Max
+        - The example of an algorithm that outputs the maximum value among the input images as the result image.
+        - 입력된 이미지 가운데 최대 값을 결과 이미지로 출력하는 알고리즘 예제.
+      - PagePooling_MaxGaussian
+        - The example of an algorithm that outputs the Gaussian value for the maximum value located at the front of the input image as the result image.
+        - 입력된 이미지 가운데 가장 앞에 위치한 최대 값에 대한 가우시안 값을 결과 이미지로 출력하는 알고리즘 예제.
+      - PagePooling_Mean
+        - The example of an algorithm that outputs the average value of the entire input image as the result image.
+        - 입력된 이미지 가운데 전체의 평균 값을 결과 이미지로 출력하는 알고리즘 예제.
+      - PagePooling_Min
+        - The example of an algorithm that outputs the minimum value among the input images as the result image.
+        - 입력된 이미지 가운데 최솟 값을 결과 이미지로 출력하는 알고리즘 예제.
+      - PagePooling_MinGaussian
+        - The example of an algorithm that outputs the Gaussian value for the minimum value located at the front of the input image as the result image.
+        - 입력된 이미지 가운데 가장 앞에 위치한 최소 값에 대한 가우시안 값을 결과 이미지로 출력하는 알고리즘 예제.
+
+    - PagePixelPicker
+      - The example of an algorithm that extract pixels corresponding to the index map image from multiple images.
+      - 복수의 이미지에서 인덱스 맵 이미지에 해당하는 픽셀을 추출하는 알고리즘 예제.	
+
   - [RegionInterpolation]
   
     - Bicubic Region Interpolation 
@@ -1597,7 +1658,7 @@
       - 유효한 영역의 값들로 지정한 영역의 값을 Bilinear로 보정하여 채워주는 알고리즘 예제.
     - Harmonic Interpolation 
       - The algorithm example that compensates and fills the value of the specified area with the values of the valid area with Harmonic.
-      - 유효한 영역의 값들로 지정한 영역의 값을 Harmonic으로 보정하여 채워주는 알고리즘 예제.	 
+      - 유효한 영역의 값들로 지정한 영역의 값을 Harmonic으로 보정하여 채워주는 알고리즘 예제.	   
 
   - [Restoration]
 
@@ -1609,7 +1670,19 @@
       - 아웃 포커스로 인한 블러를 최소화 하여 이미지를 복원하는 알고리즘 예제.
 
   - [Threshold]
+  
+    - [Absolute Threshold]
 
+      - AbsoluteThreshold_Dual 
+        - The algorithm that binarizes an image through two thresholds.
+        - 두개의 임계값을 통해 이미지를 이진화하는 알고리즘.
+      - AbsoluteThreshold_Single 
+        - The algorithm that binarizes an image through a single threshold.
+        - 한개의 임계값을 통해 이미지를 이진화하는 알고리즘.
+
+    - AdaptiveThreshold
+      - Algorithm that binarizes images through regional thresholds.
+      - 지역 임계값을 통해 이미지를 이진화하는 알고리즘.
     - AdaptiveThresholdGaussian
       - Algorithm that binarizes images through regional thresholds using Gaussian Filter.
       - 가우시안 필터를 사용한 지역 임계값을 통해 이미지를 이진화하는 알고리즘.
@@ -1625,9 +1698,18 @@
     - ImageThreshold
       - An algorithm that binarizes an image using operand image as thresholds.
       - Operand Image로 임계값 연산을 통해 이미지를 이진화하는 알고리즘.
+    - IsoDataThreshold
+      - Algorithm to calculate global image thresholds using the ISO Data method.
+      - Iso Data 방법을 사용하여 전역 이미지 임계값을 계산하는 알고리즘.
     - KMeansClusterThreshold
       - Algorithm that performs a quantization operation through K-means Clustering.
       - K-평균 균집화를 통해 양자화 연산을 수행하는 알고리즘.
+    - MaximumEntropyThreshold
+      - Algorithm that calculates global image thresholds through maximum entropy values.
+      - 최대 엔트로피값을 통해 전역 이미지 임계값을 계산하는 알고리즘.
+    - OtsuThreshold
+      - Algorithm to calculate global image thresholds using the Otsu method.
+      - Otsu 방법을 사용하여 전역 이미지 임계값을 계산하는 알고리즘.
     - TopographicThreshold
       - Algorithm that calculates first and second directional derivatives from image estimated by the bicubic facet model to classify 11 categories by pixel.
       - Bicubic facet model을 통해 추정된 이미지에서 일차, 이차 방향도함수를 계산하여 픽셀별 11가지 카테고리 분류를 하는 알고리즘.
@@ -1637,10 +1719,10 @@
     - WatershedsThreshold
       - Algorithm for image segmentation using Watershed method.
       - Watershed 방법을 사용하여 이미지 분할을 하는 알고리즘.
-	- WatershedsThresholdMarker
+    - WatershedsThresholdMarker
       - Algorithm for image segmentation using marker generated by Otsu Threshold.
       - Otsu Threshold로 생성한 Marker를 통해 이미지를 분할하는 알고리즘.
-
+    
   - [Transforms]
   
     - [Affine]
@@ -1660,22 +1742,25 @@
       - Scale Rotation
         - The example of image scale and rotation transforms.
         - 이미지 스케일 및 회전 변환의 예제.
-
-    - [Hough]
-
-      - Hough Transform Line
-        - The example of HoughTransform Line Algorithm.
-        - HoughTransform 을 사용한 선 검출 알고리즘 예제
-      - Generalized Hough Transform
-        - The example of Generalized Hough Transform Algorithm.
-        - Hough Transform 을 사용한 일반화 된 검출 알고리즘 예제
-           
+        
     - [Fourier]
 
       - Fouier Transform
         - The algorithm that transforms images into Fourier transforms.
         - 이미지를 푸리에 변환을 하는 알고리즘.
-    
+        
+    - [Hough]
+
+      - Generalized Hough Transform
+        - The example of Generalized Hough Transform Algorithm.
+        - Hough Transform 을 사용한 일반화 된 검출 알고리즘 예제
+      - Hough Transform Circle
+        - The example of Hough Transform Circle Algorithm.
+        - HoughTransform 을 사용한 원 검출 알고리즘 예제
+      - Hough Transform Line
+        - The example of Hough Transform Line Algorithm.
+        - HoughTransform 을 사용한 선 검출 알고리즘 예제
+        
     - Census Transform
       - The example of an algorithm that performs the census transformation of images.
       - 이미지의 Census Transform 변환을 수행하는 알고리즘 예제.
@@ -1688,6 +1773,9 @@
     - Discrete Wavelet Transform
       - The example of an algorithm that transforms images into discrete wavelet transforms.
       - 이미지를 이산 웨이블릿 변환을 하는 알고리즘 예제.
+    - Distance Transform
+      - The example of an algorithm that measure distance with pixel which value if 0.
+      - 값이 0인 픽셀로 부터 거리를 나타내는 알고리즘 예제.
     - Perspective
       - The example of an algorithm that performs projection transformation of an image by a Linear Equation.
       - 선형 방정식에 의한 이미지의 투영 변환을 수행하는 알고리즘 예제.
@@ -1699,7 +1787,7 @@
       - 1D 이미지에 Wigner Ville Distribution 을 수행하는 알고리즘 예제
 
   - [Utilities]
-
+  
     - [Conditional Extractor]
 
       - ConditionalExtractor_Image_Dual
@@ -1716,41 +1804,41 @@
         - 한 개의 조건을 이용해 이미지와 스칼라 값을 비교하여 조건에 맞는 이미지를 추출하는 알고리즘 예제
 
     - [Conditional Replacer]
-       - The example of an algorithm that replace image using condition.
-       - 조건을 이용해 조건에 맞는 이미지를 변경하는 알고리즘 예제
+      - The example of an algorithm that replace image using condition.
+      - 조건을 이용해 조건에 맞는 이미지를 변경하는 알고리즘 예제
 
-  - [Generator]   
+    - [Generator]
 
-    - [NoiseGenerator]
+      - [NoiseGenerator]
       
-       - NoiseGenerator_Gaussian
-         - The algorithm example for generating Gaussian noise within image region of interest.
-         - 이미지의 관심영역 내에서 가우시안 잡음을 생성하는 알고리즘 예제.
-       - NoiseGenerator_Photon
-         - The algorithm example for generating Photon noise within image region of interest.
-         - 이미지의 관심영역 내에서 광자양 잡음을 생성하는 알고리즘 예제.
-       - NoiseGenerator_SaltPepper
-         - The algorithm example for generating Salt And Pepper noise within image region of interest.
-         - 이미지의 관심영역 내에서 소금 후추잡음을 생성하는 알고리즘 예제.
-       - NoiseGenerator_Speckle
-         - The algorithm example for generating Speckle noise within image region of interest.
-         - 이미지의 관심영역 내에서 간섭 잡음을 생성하는 알고리즘 예제.
-       - NoiseGenerator_Uniform
-         - The algorithm example for generating Uniform noise within image region of interest.
-         - 이미지의 관심영역 내에서 균등 잡음을 생성하는 알고리즘 예제.
-
-    - Gradation 
+        - NoiseGenerator_Gaussian
+          - The algorithm example for generating Gaussian noise within image region of interest.
+          - 이미지의 관심영역 내에서 가우시안 잡음을 생성하는 알고리즘 예제.
+        - NoiseGenerator_Photon
+          - The algorithm example for generating Photon noise within image region of interest.
+          - 이미지의 관심영역 내에서 광자양 잡음을 생성하는 알고리즘 예제.
+        - NoiseGenerator_SaltPepper
+          - The algorithm example for generating Salt And Pepper noise within image region of interest.
+          - 이미지의 관심영역 내에서 소금 후추잡음을 생성하는 알고리즘 예제.
+        - NoiseGenerator_Speckle
+          - The algorithm example for generating Speckle noise within image region of interest.
+          - 이미지의 관심영역 내에서 간섭 잡음을 생성하는 알고리즘 예제.
+        - NoiseGenerator_Uniform
+          - The algorithm example for generating Uniform noise within image region of interest.
+          - 이미지의 관심영역 내에서 균등 잡음을 생성하는 알고리즘 예제.
+          
+      - Gradation 
         - An example of an algorithm for applying gradation to an image.
         - 이미지에 그라데이션을 적용하는 알고리즘 예제.
-
-    - RadialGradation 
+        
+      - RadialGradation 
         - An example of an algorithm for applying radial gradation to an image.
         - 이미지에 방사형 그라데이션을 적용하는 알고리즘 예제.
 
-    - RandomImageGenerator 
+      - RandomImageGenerator 
         - An example of an algorithm to generate Random values using SHA256 within the region of interest in an image.
         - 이미지의 관심영역 내에서 SHA256을 이용하여 Random 값을 생성하는 알고리즘 예제.
-    
+
     - [Integral]
 
       - Integral_Polynomial
@@ -1774,10 +1862,13 @@
       - PixelCounter_Single 
         - Algorithm for calculating the number of valid pixels through one thresholds.
         - 한개의 임계값을 통해 유효한 픽셀 갯수를 계산하는 알고리즘.
-        
+
     - ActiveContour
       - An example algorithm for guiding a figure to form a contour along the detected edges.
       - 감지된 엣지들을 따라 Figure 가 contour 를 형성하도록 유도하는 알고리즘 예제.
+    - AlignmentTiling 
+      - The algorithm example for merging multiple images into one image.
+      - 여러장의 이미지를 하나의 이미지로 병합하는 알고리즘 예제.
     - ColorConverter 
       - The example of an algorithm that converts color space of an color image.
       - 컬러 이미지의 색공간을 바꾸는 알고리즘 예제.
@@ -1789,16 +1880,25 @@
       - 이미지의 컬러 시퀀스를 바꾸는 알고리즘 예제.
     - Crop 
       - The example of an algorithm that cuts an image to fit the ROI area.
-      - 이미지를 ROI 영역에 맞게 잘라내는 알고리즘 예제.
+      - 이미지를 ROI 영역에 맞게 잘라내는 알고리즘 예제.	 
     - Decolorization
       - Example of preserving the color contrast of an image and converting it to a grayscale image.
       - 이미지의 색대비를 보존하면서 회색조 이미지로 변환하는 예제.
+    - Flip 
+      - The example of an algorithm that flip source image.
+      - 소스 이미지를 뒤집어 넣어주는 알고리즘 예제. 
     - FormatConverter
       - The algorithm example for converting a pixelformat in an image.
       - 이미지의 포맷을 변환하는 알고리즘 예제.
+    - Mask 
+      - The algorithm example for masking the pixel values of an image to set value.
+      - 이미지의 픽셀값을 원하는 값으로 변경하는 알고리즘 예제.
     - Paste 
       - The example of an algorithm that pastes a ROI from a source image to a destination image.
       - 소스 이미지에서 관심 영역을 대상 이미지에 붙여넣는 알고리즘 예제.
+    - Quilting 
+      - The example of an algorithm that that creates a texture image similar to the test image.
+      - 테스트 이미지와 유사한 텍스처 이미지를 만들어 주는 알고리즘 예제.
     - Stitching
       - The example of an algorithm that align an unordered source image.
       - 소스 이미지를 순서에 상관 없이 정렬 해주는 알고리즘 예제
@@ -1815,15 +1915,15 @@
       - Example of an algorithm that extracts a figure of a hole region from the source image and interpolates inside that region.
       - 소스 이미지에서 Hole region 의 Figure 를 추출하고 그 영역 내부를 보간하는 알고리즘 예제.
 
-- [Warping]
+  - [Warping]
   
-    - Bicubic Spline Warping
+    - BicubicSplineWarping
       - The example of an algorithm that transforms images based on Bicubic Spline Interpolation functions.
       - Bicubic Spline Interpolation 방식을 바탕으로 이미지를 변환하는 예제.
-	- Bilinear Spline Warping
+    - BilinearSplineWarping
       - The example of an algorithm that transforms images based on Bi-linear Spline model.
       - Bi-linear 모델 식을 바탕으로 이미지를 변환하는 예제.
-    - Lanczos Spline Warping
+    - LanczosSplineWarping
       - The example of an algorithm that transforms images based on Lanczos Spline Interpolation functions.
       - Lanczos Spline Interpolation 방식을 바탕으로 이미지를 변환하는 예제.
     - RingWarping
@@ -1847,19 +1947,19 @@
 
 - [Mathematics]
 
-  - Combination 
+  - Combination
     - The example of combination.
     - 조합 계산의 예제.
-  - Equation 
+  - Equation
     - The example of calculate equation.
     - 방정식 계산의 예제.
   - GetSimilarity
     - The example of calculating a transformation matrix that minimizes the sum of the distance differences between the source and destination points.
     - Source 점과 Destination 점의 거리 차이의 합이 최소가 되도록 하는 변환행렬을 구하는 예제.
-  - LeastSquares 
+  - LeastSquares
     - The example of calculate least squares.
     - 최소자승법 계산의 예제.
-  - Permutation 
+  - Permutation
     - The example of permutation.
     - 순열 계산의 예제.
 
