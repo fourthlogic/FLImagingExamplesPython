@@ -47,18 +47,24 @@ def main():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageSrc.SynchronizeWindow(viewImageDst)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window.')
+			break
+
 		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
 		if (res := viewImageSrc.ZoomFit()).IsFail():
 			ErrorPrint(res, "Failed to zoom fit\n")
 			return
 
-		# Paste 객체 생성 // Create Paste object
+		# RegionExtractor 객체 생성 // Create RegionExtractor object
 		regionExtractor = CRegionExtractor()
 
 		# Source 이미지 설정 // Set the source image
 		regionExtractor.SetSourceImage(fliSourceImage)
 
-		# ROI 설정 하기 위해 Rect 생성 // Create a Rect for ROI setting
+		# ROI 설정 하기 위해 CFLRect 생성 // Create CFLRect for ROI setting
 		flrROI = CFLRect[int](83, 64, 440,337)
 
 		# 처리할 ROI 설정 // Set the ROI to be processed 

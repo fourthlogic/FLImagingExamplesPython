@@ -58,7 +58,7 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
-		# OperationGreatert 객체 생성 // Create OperationGreater object
+		# CLabelRenamerDL 객체 생성 // Create CLabelRenamerDL object
 		labelRenamer = CLabelRenamerDL()
 
 		# Source 이미지 설정 // Set the source image

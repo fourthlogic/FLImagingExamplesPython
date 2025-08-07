@@ -65,7 +65,7 @@ def main():
 			ErrorPrint(res[0], 'Failed to synchronize window.')
 			break
 
-		# OperationGreatert 객체 생성 // Create OperationGreater object
+		# OperationGreater 객체 생성 // Create OperationGreater object
 		greater = COperationGreater()
 
 		# Source 이미지 설정 // Set the source image
