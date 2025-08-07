@@ -49,8 +49,8 @@ def main():
 
 		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
 		if (res := viewImageSrc.ZoomFit()).IsFail():
-		    ErrorPrint(res, "Failed to zoom fit\n")
-		    return
+			ErrorPrint(res, "Failed to zoom fit\n")
+			return
 
 		# Paste 객체 생성 // Create Paste object
 		paste = CPaste()
