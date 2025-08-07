@@ -68,7 +68,7 @@ def main():
         # threshold 모드 설정(Dual) // Set Threshold Mode(Dual)
         absoluteThreshold.SetThresholdMode(EThresholdMode.Dual_And)
 
-        # 임계값 설정 (다채널 경우 CMultiVarD 사용) // Set threshold value (Use CMultiVarD for multi-channel)
+        # 임계값 설정 (다채널 경우 CMultiVar[Double] 사용) // Set threshold value (Use CMultiVar[Double] for multi-channel)
         absoluteThreshold.SetThreshold(100, EThresholdIndex.First)
         absoluteThreshold.SetThreshold(168, EThresholdIndex.Second)
 
