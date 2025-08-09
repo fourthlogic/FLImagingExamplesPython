@@ -55,66 +55,66 @@ def main():
 
 		
 		# 알고리즘 객체 생성 # Create algorithm object
-		algObject = CDepthImageReconstructionMAPBased3D()
+		depthImageReconstructionMAPBased3D = CDepthImageReconstructionMAPBased3D()
 
 		# Source 이미지 설정 # Set the source image
-		if (res := algObject.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
 		# 결과 destination height map 이미지 설정 # Set the destination height map image
-		if (res := algObject.SetDestinationHeightMapImage(fliDstImage)[0]).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetDestinationHeightMapImage(fliDstImage)[0]).IsFail():
 			break
 		# 결과 destination texture 이미지 설정 # Set the destination texture image
-		if (res := algObject.SetDestinationTextureImage(fliTxtImage)[0]).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetDestinationTextureImage(fliTxtImage)[0]).IsFail():
 			break
 
 		# Focus measure bias page index 설정 # Set the focus measure bias page index
-		if (res := algObject.SetFMBiasPageIndex(3)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetFMBiasPageIndex(3)).IsFail():
 			break
 		# Focus measure bias value 설정 # Set the Focus measure bias value
-		if (res := algObject.SetFMBiasValue(0.02)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetFMBiasValue(0.02)).IsFail():
 			break
 		# Focus measure method 설정 # Set focus measure method
-		if (res := algObject.SetFocusMeasureMethod(CDepthImageReconstructionMAPBased3D.EFocusMeasureMethod.DoG)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetFocusMeasureMethod(CDepthImageReconstructionMAPBased3D.EFocusMeasureMethod.DoG)).IsFail():
 			break
 		# Sigma1 설정 # Set the sigma1
-		if (res := algObject.SetSigma1(0.4)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetSigma1(0.4)).IsFail():
 			break
 		# Sigma2 설정 # Set the sigma2
-		if (res := algObject.SetSigma2(0.8)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetSigma2(0.8)).IsFail():
 			break
 
 		# Local regularization factor 설정 # Set the local regularization factor
-		if (res := algObject.SetLocalRegularizationFactor(0.02)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetLocalRegularizationFactor(0.02)).IsFail():
 			break
 		# Global regularization factor 설정 # Set the global regularization factor
-		if (res := algObject.SetGlobalRegularizationFactor(0.00000000001)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetGlobalRegularizationFactor(0.00000000001)).IsFail():
 			break
 		# Conjugate Gradient Method 의 tolerance 설정 # Set the tolerance for Conjugate Gradient Method
-		if (res := algObject.SetCGMTolerance(0.00001)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetCGMTolerance(0.00001)).IsFail():
 			break
 		# Conjugate Gradient Method 의 max iterations 설정 # Set the max iterations for Conjugate Gradient Method
-		if (res := algObject.SetCGMMaxIterations(100)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetCGMMaxIterations(100)).IsFail():
 			break
 
 		# Page Direction 설정 # Set the page direction
-		if (res := algObject.SetDirection(CDepthImageReconstructionMAPBased3D.EDirection.BottomToTop)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetDirection(CDepthImageReconstructionMAPBased3D.EDirection.BottomToTop)).IsFail():
 			break
 		# Pixel Accuracy 설정 # Set the pixel accuracy
-		if (res := algObject.SetPixelAccuracy(1.0)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetPixelAccuracy(1.0)).IsFail():
 			break
 		# Depth Pitch 설정 # Set the depth pitch
-		if (res := algObject.SetDepthPitch(2.0)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetDepthPitch(2.0)).IsFail():
 			break
 
 		# Destination 3D object 생성 활성화 # Enable the Destination 3D object generation
-		if (res := algObject.Enable3DObjectGeneration(True)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.Enable3DObjectGeneration(True)).IsFail():
 			break
 		# Destination 3D object 설정 # Set the Destination 3D object 
-		if (res := algObject.SetDestinationObject(floDstObject)[0]).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetDestinationObject(floDstObject)[0]).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := algObject.Execute()).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 		

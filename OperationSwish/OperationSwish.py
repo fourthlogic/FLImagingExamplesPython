@@ -58,29 +58,29 @@ def main():
 
 		
 		# 알고리즘 객체 생성 # Create algorithm object
-		algObject = COperationSwish()
+		operationSwish = COperationSwish()
 		
-		if (res := algObject.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := operationSwish.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
-		if (res := algObject.SetDestinationImage(fliDstImage0)[0]).IsFail():
+		if (res := operationSwish.SetDestinationImage(fliDstImage0)[0]).IsFail():
 			break
-		if (res := algObject.SetOperationMode(COperationSwish.EOperationMode.Forward)).IsFail():
+		if (res := operationSwish.SetOperationMode(COperationSwish.EOperationMode.Forward)).IsFail():
 			break
-		if (res := algObject.SetBeta(1.0)).IsFail():
+		if (res := operationSwish.SetBeta(1.0)).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
-		if ((res := algObject.Execute()).IsFail()):
+		if ((res := operationSwish.Execute()).IsFail()):
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 		
-		if (res := algObject.SetDestinationImage(fliDstImage1)[0]).IsFail():
+		if (res := operationSwish.SetDestinationImage(fliDstImage1)[0]).IsFail():
 			break
-		if (res := algObject.SetOperationMode(COperationSwish.EOperationMode.Backward)).IsFail():
+		if (res := operationSwish.SetOperationMode(COperationSwish.EOperationMode.Backward)).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := algObject.Execute()).IsFail():
+		if (res := operationSwish.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 

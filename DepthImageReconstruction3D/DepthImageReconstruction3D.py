@@ -55,40 +55,40 @@ def main():
 
 		
 		# 알고리즘 객체 생성 # Create algorithm object
-		algObject = CDepthImageReconstruction3D()
+		depthImageReconstruction3D = CDepthImageReconstruction3D()
 
 		# Source 이미지 설정 # Set the source image
-		if (res := algObject.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := depthImageReconstruction3D.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
 		# Destination Height Map 이미지 설정 # Set the destination height map image
-		if (res := algObject.SetDestinationHeightMapImage(fliDstImage)[0]).IsFail():
+		if (res := depthImageReconstruction3D.SetDestinationHeightMapImage(fliDstImage)[0]).IsFail():
 			break
 		# Destination Texture 이미지 설정 # Set the destination texture image
-		if (res := algObject.SetDestinationTextureImage(fliTxtImage)[0]).IsFail():
+		if (res := depthImageReconstruction3D.SetDestinationTextureImage(fliTxtImage)[0]).IsFail():
 			break
 		# Destination 3D Object 설정 # Set the Destination 3D Object 
-		if (res := algObject.SetDestinationObject(floDstObject)[0]).IsFail():
+		if (res := depthImageReconstruction3D.SetDestinationObject(floDstObject)[0]).IsFail():
 			break
 		# Pixel Accuracy 설정 # Set the pixel accuracy
-		if (res := algObject.SetPixelAccuracy(0.1)).IsFail():
+		if (res := depthImageReconstruction3D.SetPixelAccuracy(0.1)).IsFail():
 			break
 		# Depth Pitch 설정 # Set the depth pitch
-		if (res := algObject.SetDepthPitch(0.2)).IsFail():
+		if (res := depthImageReconstruction3D.SetDepthPitch(0.2)).IsFail():
 			break
 		# Filter 설정 # Set filter
-		if (res := algObject.SetFilter(CDepthImageReconstruction3D.EFilter.FLDenoisingType1)).IsFail():
+		if (res := depthImageReconstruction3D.SetFilter(CDepthImageReconstruction3D.EFilter.FLDenoisingType1)).IsFail():
 			break
-		if (res := algObject.SetFLDenoisingKernel(7)).IsFail():
+		if (res := depthImageReconstruction3D.SetFLDenoisingKernel(7)).IsFail():
 			break
-		if (res := algObject.SetFLDenoisingSigma(15.00)).IsFail():
+		if (res := depthImageReconstruction3D.SetFLDenoisingSigma(15.00)).IsFail():
 			break
-		if (res := algObject.SetFLDenoisingAmplitude(15.00)).IsFail():
+		if (res := depthImageReconstruction3D.SetFLDenoisingAmplitude(15.00)).IsFail():
 			break
-		if (res := algObject.EnableGaussianInterpolation(True)).IsFail():
+		if (res := depthImageReconstruction3D.EnableGaussianInterpolation(True)).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := algObject.Execute()).IsFail():
+		if (res := depthImageReconstruction3D.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 

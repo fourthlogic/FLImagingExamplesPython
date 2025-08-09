@@ -66,19 +66,19 @@ def main():
 		
 
 		# 알고리즘 객체 생성 # Create algorithm object
-		algObject = COperationLeastCommonMultiple()
+		operationLeastCommonMultiple = COperationLeastCommonMultiple()
 		
-		if (res := algObject.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := operationLeastCommonMultiple.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
-		if (res := algObject.SetOperandImage(fliOprImage)[0]).IsFail():
+		if (res := operationLeastCommonMultiple.SetOperandImage(fliOprImage)[0]).IsFail():
 			break
-		if (res := algObject.SetDestinationImage(fliDstImage)[0]).IsFail():
+		if (res := operationLeastCommonMultiple.SetDestinationImage(fliDstImage)[0]).IsFail():
 			break
-		if (res := algObject.SetOperationSource(EOperationSource.Image)).IsFail():
+		if (res := operationLeastCommonMultiple.SetOperationSource(EOperationSource.Image)).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := algObject.Execute()).IsFail():
+		if (res := operationLeastCommonMultiple.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 

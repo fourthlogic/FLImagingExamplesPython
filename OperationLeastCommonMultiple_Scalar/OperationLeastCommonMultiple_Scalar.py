@@ -62,32 +62,32 @@ def main():
 		
 
 		# 알고리즘 객체 생성 # Create algorithm object
-		algObject = COperationLeastCommonMultiple()
+		operationLeastCommonMultiple = COperationLeastCommonMultiple()
 		
-		if (res := algObject.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := operationLeastCommonMultiple.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
-		if (res := algObject.SetOperationSource(EOperationSource.Scalar)).IsFail():
+		if (res := operationLeastCommonMultiple.SetOperationSource(EOperationSource.Scalar)).IsFail():
 			break
 
 		mvScalarValue0 = CMultiVar[Double](5)
-		if (res := algObject.SetScalarValue(mvScalarValue0)).IsFail():
+		if (res := operationLeastCommonMultiple.SetScalarValue(mvScalarValue0)).IsFail():
 			break
-		if (res := algObject.SetDestinationImage(fliDstImage0)[0]).IsFail():
+		if (res := operationLeastCommonMultiple.SetDestinationImage(fliDstImage0)[0]).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := algObject.Execute()).IsFail():
+		if (res := operationLeastCommonMultiple.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 		
 		mvScalarValue1 = CMultiVar[Double](17)
-		if (res := algObject.SetScalarValue(mvScalarValue1)).IsFail():
+		if (res := operationLeastCommonMultiple.SetScalarValue(mvScalarValue1)).IsFail():
 			break
-		if (res := algObject.SetDestinationImage(fliDstImage1)[0]).IsFail():
+		if (res := operationLeastCommonMultiple.SetDestinationImage(fliDstImage1)[0]).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := algObject.Execute()).IsFail():
+		if (res := operationLeastCommonMultiple.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 		

@@ -58,15 +58,15 @@ def main():
 		
 
 		# 알고리즘 객체 생성 # Create algorithm object
-		algObject = COperationPopcount()
+		operationPopcount = COperationPopcount()
 		
-		if (res := algObject.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := operationPopcount.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
-		if (res := algObject.SetDestinationImage(fliDstImage)[0]).IsFail():
+		if (res := operationPopcount.SetDestinationImage(fliDstImage)[0]).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := algObject.Execute()).IsFail():
+		if (res := operationPopcount.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 

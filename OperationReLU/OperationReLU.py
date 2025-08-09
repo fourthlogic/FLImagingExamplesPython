@@ -58,27 +58,27 @@ def main():
 
 		
 		# 알고리즘 객체 생성 # Create algorithm object
-		algObject = COperationReLU()
+		operationReLU = COperationReLU()
 		
-		if (res := algObject.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := operationReLU.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
-		if (res := algObject.SetDestinationImage(fliDstImage0)[0]).IsFail():
+		if (res := operationReLU.SetDestinationImage(fliDstImage0)[0]).IsFail():
 			break
-		if (res := algObject.SetOperationMode(COperationReLU.EOperationMode.Forward)).IsFail():
+		if (res := operationReLU.SetOperationMode(COperationReLU.EOperationMode.Forward)).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
-		if ((res := algObject.Execute()).IsFail()):
+		if ((res := operationReLU.Execute()).IsFail()):
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 		
-		if (res := algObject.SetDestinationImage(fliDstImage1)[0]).IsFail():
+		if (res := operationReLU.SetDestinationImage(fliDstImage1)[0]).IsFail():
 			break
-		if (res := algObject.SetOperationMode(COperationReLU.EOperationMode.Backward)).IsFail():
+		if (res := operationReLU.SetOperationMode(COperationReLU.EOperationMode.Backward)).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := algObject.Execute()).IsFail():
+		if (res := operationReLU.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 		
