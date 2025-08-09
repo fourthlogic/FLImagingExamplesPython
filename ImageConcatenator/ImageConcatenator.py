@@ -66,25 +66,25 @@ def main():
 		
 
 		# 알고리즘 객체 생성 # Create algorithm object
-		sImageInsertion = CImageInsertion()
+		imageConcatenator = CImageConcatenator()
 		
 		# Source 이미지 설정 # Set source image 
-		if (res := sImageInsertion.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := imageConcatenator.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
 		# Operand 이미지 설정 # Set operand image 
-		if (res := sImageInsertion.SetOperandImage(fliOprImage)[0]).IsFail():
+		if (res := imageConcatenator.SetOperandImage(fliOprImage)[0]).IsFail():
 			break
 		# Destination 이미지 설정 # Set destination image 
-		if (res := sImageInsertion.SetDestinationImage(fliDstImage)[0]).IsFail():
+		if (res := imageConcatenator.SetDestinationImage(fliDstImage)[0]).IsFail():
 			break
 		# Operand ROI 설정 # Set operand image 
 		flrROI = CFLRect[Double](fliOprImage)
 		flrROI.left = flrROI.GetWidth() * 0.7
-		if (res := sImageInsertion.SetOperandROI(flrROI)).IsFail():
+		if (res := imageConcatenator.SetOperandROI(flrROI)).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := sImageInsertion.Execute()).IsFail():
+		if (res := imageConcatenator.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 
@@ -108,7 +108,7 @@ def main():
 			ErrorPrint(res, "Failed to draw text. \n")
 			break
 		
-		# ImageInsertion 영역 표기 # ImageInsertion Area draw
+		# ImageConcatenator 영역 표기 # ImageConcatenator Area draw
 		if (res := layerOpr.DrawFigureImage(flrROI, EColor.LIME)).IsFail():
 			ErrorPrint(res, "Failed to draw figure.\n")
 
