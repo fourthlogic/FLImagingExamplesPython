@@ -4,13 +4,13 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{ec0ffae5-e2eb-405b-a614-b6d0a6e66133}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Moire3D.py</StartupFile>
+    <StartupFile>FringePattern3D.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Moire3D</Name>
-    <RootNamespace>Moire3D</RootNamespace>
+    <Name>FringePattern3D</Name>
+    <RootNamespace>FringePattern3D</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Moire3D.py" />
+    <Compile Include="FringePattern3D.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

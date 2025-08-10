@@ -200,9 +200,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Edge Detection", "Edge Dete
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Channel Insertion", "Channel Insertion", "{B05ECEF4-213D-4F73-BCC8-93F22BE16CEB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Moire 3D", "Moire 3D", "{9886B8D1-7270-4D7B-82B4-57EAF03233C5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fringe Pattern 3D", "Fringe Pattern 3D", "{9886B8D1-7270-4D7B-82B4-57EAF03233C5}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Moire3D", "Moire3D\Moire3D.pyproj", "{EC0FFAE5-E2EB-405B-A614-B6D0A6E66133}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FringePattern3D", "FringePattern3D\FringePattern3D.pyproj", "{EC0FFAE5-E2EB-405B-A614-B6D0A6E66133}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PointCloudBasedHandEyeCalibrator3D", "PointCloudBasedHandEyeCalibrator3D\PointCloudBasedHandEyeCalibrator3D.pyproj", "{9A76C3C0-D054-4343-8145-D46736EBA961}"
 EndProject

@@ -46,27 +46,27 @@ def main():
 
 	while True:
 		# Learn 이미지 로드 # Load the reference plane image for calibration
-		if (res := vctLrnImages[0].Load("../../ExampleImages/Moire3D/Learn0/")).IsFail():
+		if (res := vctLrnImages[0].Load("../../ExampleImages/FringePattern3D/Learn0/")).IsFail():
 			ErrorPrint(res, "Failed to load the image file.\n")
 			break
 
 		# Source 이미지 로드 # Load the source image
-		if (res := vctSrcImages[0].Load("../../ExampleImages/Moire3D/Object0/")).IsFail():
+		if (res := vctSrcImages[0].Load("../../ExampleImages/FringePattern3D/Object0/")).IsFail():
 			ErrorPrint(res, "Failed to load the image file.\n")
 			break
 
 		# Learn 이미지 로드 # Load the reference plane image for calibration
-		if (res := vctLrnImages[1].Load("../../ExampleImages/Moire3D/Learn1/")).IsFail():
+		if (res := vctLrnImages[1].Load("../../ExampleImages/FringePattern3D/Learn1/")).IsFail():
 			ErrorPrint(res, "Failed to load the image file.\n")
 			break
 
 		# Source 이미지 로드 # Load the source image
-		if (res := vctSrcImages[1].Load("../../ExampleImages/Moire3D/Object1/")).IsFail():
+		if (res := vctSrcImages[1].Load("../../ExampleImages/FringePattern3D/Object1/")).IsFail():
 			ErrorPrint(res, "Failed to load the image file.\n")
 			break
 
 		# Texture 이미지 로드 # Load the texture image
-		if (res := fliTxtImage.Load("../../ExampleImages/Moire3D/text.flif")).IsFail():
+		if (res := fliTxtImage.Load("../../ExampleImages/FringePattern3D/text.flif")).IsFail():
 			ErrorPrint(res, "Failed to load the image file.\n")
 			break
 		
@@ -121,50 +121,50 @@ def main():
 
 
 		# 알고리즘 객체 생성 # Create algorithm object
-		moire3D = CMoire3D()
+		fringePattern3D = CFringePattern3D()
 
 		# 카메라의 working distance 설정 # Set working distance of the camera
-		if (res := moire3D.SetWorkingDistance(330)).IsFail():
+		if (res := fringePattern3D.SetWorkingDistance(330)).IsFail():
 			break
 		# 카메라의 field of view 설정 # Set field of view of the camera
-		if (res := moire3D.SetFieldOfView(400)).IsFail():
+		if (res := fringePattern3D.SetFieldOfView(400)).IsFail():
 			break
 		# 프로젝터 각도 설정 # Set angle of projector
 		mvF64AngleOfProjector = CMultiVar[Double](73, 105)
-		if (res := moire3D.SetAngleOfProjector(mvF64AngleOfProjector)).IsFail():
+		if (res := fringePattern3D.SetAngleOfProjector(mvF64AngleOfProjector)).IsFail():
 			break
 		# Phase Unwrap 히스토그램 bin 범위 설정 # Set histogram bin range for phase unwrapping
 		mvF64SmallBinRange = CMultiVar[Double](1, 1)
-		if (res := moire3D.SetBinInterval(mvF64SmallBinRange)).IsFail():
+		if (res := fringePattern3D.SetBinInterval(mvF64SmallBinRange)).IsFail():
 			break
 		# 패턴 타입 설정 # Set Pattern Type
-		if (res := moire3D.SetPatternType(CMoire3D.EPatternType.SquareWave)).IsFail():
+		if (res := fringePattern3D.SetPatternType(CFringePattern3D.EPatternType.SquareWave)).IsFail():
 			break
 		# Noise 감쇠 모드 활성화 # Enable noise reduction mode
-		if (res := moire3D.EnableNoiseReduction(True)).IsFail():
+		if (res := fringePattern3D.EnableNoiseReduction(True)).IsFail():
 			break
 
 		# Learn 이미지 설정 # Set the learn image
-		if (res := moire3D.SetLearnImage(vctLrnImages)[0]).IsFail():
+		if (res := fringePattern3D.SetLearnImage(vctLrnImages)[0]).IsFail():
 			break
 		
 		# 알고리즘 Calibrate 수행 # Calibrate the algorithm
-		if (res := moire3D.Calibrate()).IsFail():
+		if (res := fringePattern3D.Calibrate()).IsFail():
 			ErrorPrint(res, "Failed to calibrate.")
 			break
 		
 		# Source 이미지 설정 # Set the source image
-		if (res := moire3D.SetSourceImage(vctSrcImages)[0]).IsFail():
+		if (res := fringePattern3D.SetSourceImage(vctSrcImages)[0]).IsFail():
 			break
 		# Destination Height Map 이미지 설정 # Set the destination height map image
-		if (res := moire3D.SetDestinationHeightMapImage(fliDstImage)[0]).IsFail():
+		if (res := fringePattern3D.SetDestinationHeightMapImage(fliDstImage)[0]).IsFail():
 			break
 		# Destination 객체 설정 # Set the destination object
-		if (res := moire3D.SetDestinationObject(floDstObject)[0]).IsFail():
+		if (res := fringePattern3D.SetDestinationObject(floDstObject)[0]).IsFail():
 			break
 
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := moire3D.Execute()).IsFail():
+		if (res := fringePattern3D.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute algorithm.")
 			break
 
