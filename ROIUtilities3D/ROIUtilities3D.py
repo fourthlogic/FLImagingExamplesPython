@@ -95,24 +95,24 @@ def main():
         ###############################
 		# CROIUtilities3D 객체 선언
 		# Declare the CROIUtilities3D object
-        roiUtil3D = CROIUtilities3D()
+        roiUtilities3D = CROIUtilities3D()
 		# CROIUtilities3D 객체에 3D Object 추가 # Add 3D objects to the CROIUtilities3D object
-        roiUtil3D.PushBack3DObject(fl3DObjLeft)
-        roiUtil3D.PushBack3DObject(fl3DObjRight)
+        roiUtilities3D.PushBack3DObject(fl3DObjLeft)
+        roiUtilities3D.PushBack3DObject(fl3DObjRight)
 		# CROIUtilities3D 객체에 절두체 ROI 추가 # Add the frustum ROI to the CROIUtilities3D object
-        roiUtil3D.PushBackROI(flfr)
+        roiUtilities3D.PushBackROI(flfr)
         
 		# 선택 타입 설정 : ROI 안에 포함되는 정점만 선택 
 		# Set the selection type to include only vertices inside the ROI
-        roiUtil3D.SetSelectionType(CROIUtilities3D.EResultSelectionType.Include)
+        roiUtilities3D.SetSelectionType(CROIUtilities3D.EResultSelectionType.Include)
 		# CROIUtilities3D 실행 # Execute the CROIUtilities3D object
-        if (res := roiUtil3D.Execute()).IsFail():
+        if (res := roiUtilities3D.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute(Include).")
             break
         
 		# CROIUtilities3D 에서 결과 얻어 오기 # Retrieve the results from CROIUtilities3D
         arr2ResultROIIndexInclude = List[List[int]]()        
-        if (res := roiUtil3D.GetResult(arr2ResultROIIndexInclude)[0]).IsFail():
+        if (res := roiUtilities3D.GetResult(arr2ResultROIIndexInclude)[0]).IsFail():
             ErrorPrint(res, "Failed to get result(Include).")
             break
         
@@ -152,13 +152,13 @@ def main():
 			# 3D 뷰어 업데이트 # Update the 3D viewer
             view3DInclude.UpdateScreen()
         
-		# EResultSelectionType.Add 연산을 위해 CROIUtilities3D 객체 선언 및 roiUtil3D 를 복사 생성. 
+		# EResultSelectionType.Add 연산을 위해 CROIUtilities3D 객체 선언 및 roiUtilities3D 를 복사 생성. 
 		# Include 연산으로 얻은 결과값까지 복사됨
 		# Declare and copy construct a CROIUtilities3D object for the EResultSelectionType.Add operation. 
 		# The results from the Include operation are copied.
-        roiUtil3DAdd = CROIUtilities3D(roiUtil3D)
+        roiUtilities3DAdd = CROIUtilities3D(roiUtilities3D)
 		# 복사한 객체에서 ROI를 모두 클리어 # Clear all ROIs from the copied object
-        roiUtil3DAdd.ClearROI()
+        roiUtilities3DAdd.ClearROI()
 
 
         ###############################
@@ -166,17 +166,17 @@ def main():
         ###############################    
 		# 선택 타입 설정 : ROI 바깥의 정점만 선택 
 		# Set selection type: Select only vertices outside the ROI
-        roiUtil3D.SetSelectionType(CROIUtilities3D.EResultSelectionType.Exclude)
+        roiUtilities3D.SetSelectionType(CROIUtilities3D.EResultSelectionType.Exclude)
 
 		# CROIUtilities3D 실행 # Execute CROIUtilities3D
-        if (res := roiUtil3D.Execute()).IsFail():
+        if (res := roiUtilities3D.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute(Exclude).")
             break
 
 		# CROIUtilities3D 에서 결과 얻어 오기 # Retrieve results from CROIUtilities3D
         arr2ResultROIIndexExclude = List[List[int]]()
         
-        if (res := roiUtil3D.GetResult(arr2ResultROIIndexExclude)[0]).IsFail():
+        if (res := roiUtilities3D.GetResult(arr2ResultROIIndexExclude)[0]).IsFail():
             ErrorPrint(res, "Failed to get result(Exclude).")
             break
         
@@ -217,17 +217,17 @@ def main():
 			# 3D 뷰어 업데이트 # Update the 3D viewer
             view3DExclude.UpdateScreen()
             
-		# EResultSelectionType.Remove 연산을 위해 CROIUtilities3D 객체 선언 및 roiUtil3D 를 복사 생성. Exclude 연산으로 얻은 결과값까지 복사됨
-		# Declare a CROIUtilities3D object for EResultSelectionType.Remove operation and copy roiUtil3D. Results from the Exclude operation are copied.
-        roiUtil3DRemove = CROIUtilities3D(roiUtil3D)
+		# EResultSelectionType.Remove 연산을 위해 CROIUtilities3D 객체 선언 및 roiUtilities3D 를 복사 생성. Exclude 연산으로 얻은 결과값까지 복사됨
+		# Declare a CROIUtilities3D object for EResultSelectionType.Remove operation and copy roiUtilities3D. Results from the Exclude operation are copied.
+        roiUtilities3DRemove = CROIUtilities3D(roiUtilities3D)
         
-		# EResultSelectionType.XOR 연산을 위해 CROIUtilities3D 객체 선언 및 roiUtil3D 를 복사 생성. Exclude 연산으로 얻은 결과값까지 복사됨
-		# Declare a CROIUtilities3D object for EResultSelectionType.XOR operation and copy roiUtil3D. Results from the Exclude operation are copied.
-        roiUtil3DXOR = CROIUtilities3D(roiUtil3D)
+		# EResultSelectionType.XOR 연산을 위해 CROIUtilities3D 객체 선언 및 roiUtilities3D 를 복사 생성. Exclude 연산으로 얻은 결과값까지 복사됨
+		# Declare a CROIUtilities3D object for EResultSelectionType.XOR operation and copy roiUtilities3D. Results from the Exclude operation are copied.
+        roiUtilities3DXOR = CROIUtilities3D(roiUtilities3D)
 
 		# 복사한 객체에서 ROI를 모두 클리어 # Clear all ROIs from the copied objects
-        roiUtil3DRemove.ClearROI()
-        roiUtil3DXOR.ClearROI()
+        roiUtilities3DRemove.ClearROI()
+        roiUtilities3DXOR.ClearROI()
 
 
         ###############################
@@ -241,23 +241,23 @@ def main():
             break
         
 		# CROIUtilities3D 객체에 절두체 ROI 추가 # Add the frustum ROI to the CROIUtilities3D object
-        roiUtil3DAdd.PushBackROI(flfrAdd)
+        roiUtilities3DAdd.PushBackROI(flfrAdd)
 		# 3D 뷰에 ROI 추가 # Add the frustum ROI to the 3D view
         view3DAdd.PushBackROI(flfrAdd)
         
 		# 선택 타입 설정 : 기존 결과에 ROI 안에 포함되는 정점을 추가 
 		# Set selection type: Add vertices within the ROI to the existing results
-        roiUtil3DAdd.SetSelectionType(CROIUtilities3D.EResultSelectionType.Add)
+        roiUtilities3DAdd.SetSelectionType(CROIUtilities3D.EResultSelectionType.Add)
 
 		# CROIUtilities3D 실행 # Execute CROIUtilities3D
-        if (res := roiUtil3DAdd.Execute()).IsFail():
+        if (res := roiUtilities3DAdd.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute(Add).")
             break
         
 		# CROIUtilities3D 에서 결과 얻어 오기 # Retrieve results from CROIUtilities3D
         arr2ResultROIIndexAdd = List[List[int]]()
         
-        if (res := roiUtil3DAdd.GetResult(arr2ResultROIIndexAdd)[0]).IsFail():
+        if (res := roiUtilities3DAdd.GetResult(arr2ResultROIIndexAdd)[0]).IsFail():
             ErrorPrint(res, "Failed to get result(Add).")
             break
 
@@ -314,23 +314,23 @@ def main():
             break
         
 		# CROIUtilities3D 객체에 절두체 ROI 추가 # Add the frustum ROIs to the CROIUtilities3D object
-        roiUtil3DRemove.PushBackROI(flfrRemove1)
-        roiUtil3DRemove.PushBackROI(flfrRemove2)
+        roiUtilities3DRemove.PushBackROI(flfrRemove1)
+        roiUtilities3DRemove.PushBackROI(flfrRemove2)
 		# 3D 뷰에 ROI 추가 # Add the frustum ROIs to the 3D view
         view3DRemove.PushBackROI(flfrRemove1)
         view3DRemove.PushBackROI(flfrRemove2)
         
 		# 선택 타입 설정 : 기존 결과에서 ROI 안의 정점을 제거 # Set selection type: Remove vertices within the ROI from the existing results
-        roiUtil3DRemove.SetSelectionType(CROIUtilities3D.EResultSelectionType.Remove)
+        roiUtilities3DRemove.SetSelectionType(CROIUtilities3D.EResultSelectionType.Remove)
         
 		# CROIUtilities3D 실행 # Execute CROIUtilities3D
-        if (res := roiUtil3DRemove.Execute()).IsFail():
+        if (res := roiUtilities3DRemove.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute(Remove).")
             break
         
 		# CROIUtilities3D 에서 결과 얻어 오기 # Retrieve results from CROIUtilities3D
         arr2ResultROIIndexRemove = List[List[int]]()
-        if (res := roiUtil3DRemove.GetResult(arr2ResultROIIndexRemove)[0]).IsFail():
+        if (res := roiUtilities3DRemove.GetResult(arr2ResultROIIndexRemove)[0]).IsFail():
             ErrorPrint(res, "Failed to get result(Remove).")
             break
 
@@ -381,22 +381,22 @@ def main():
             break
         
 		# CROIUtilities3D 객체에 절두체 ROI 추가 # Add the frustum ROI to the CROIUtilities3D object
-        roiUtil3DXOR.PushBackROI(flfrXOR)
+        roiUtilities3DXOR.PushBackROI(flfrXOR)
 		# 3D 뷰에 ROI 추가 # Add the frustum ROI to the 3D view
         view3DXOR.PushBackROI(flfrXOR)
         
 		# 선택 타입 설정 : 기존 결과에서 ROI 안의 정점을 XOR 연산하여 선택 
 		# Set selection type: Perform XOR operation with vertices inside the ROI on the existing results
-        roiUtil3DXOR.SetSelectionType(CROIUtilities3D.EResultSelectionType.XOR)
+        roiUtilities3DXOR.SetSelectionType(CROIUtilities3D.EResultSelectionType.XOR)
         
 		# CROIUtilities3D 실행 # Execute CROIUtilities3D
-        if (res := roiUtil3DXOR.Execute()).IsFail():
+        if (res := roiUtilities3DXOR.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute(XOR).")
             break
         
 		# CROIUtilities3D 에서 결과 얻어 오기 # Retrieve results from CROIUtilities3D
         arr2ResultROIIndexXOR = List[List[int]]()        
-        if (res := roiUtil3DXOR.GetResult(arr2ResultROIIndexXOR)[0]).IsFail():
+        if (res := roiUtilities3DXOR.GetResult(arr2ResultROIIndexXOR)[0]).IsFail():
             ErrorPrint(res, "Failed to get result(XOR).")
             break
 

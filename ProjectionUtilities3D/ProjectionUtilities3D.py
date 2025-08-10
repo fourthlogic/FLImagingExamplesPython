@@ -41,17 +41,17 @@ def main():
         
         # CProjectionUtilities3D 객체 생성 
         # Create CProjectionUtilities3D object
-        pu = CProjectionUtilities3D()
+        projectionUtilities3D = CProjectionUtilities3D()
 
         # CProjectionUtilities3D 객체에 3D Object 를 추가
         # Add 3D Object to CProjectionUtilities3D object
-        pu.PushBack3DObject(pObj3D)
+        projectionUtilities3D.PushBack3DObject(pObj3D)
         # 결과 이미지 크기 설정 
         # Set result image size
-        pu.SetResultImageSize(400, 400)
+        projectionUtilities3D.SetResultImageSize(400, 400)
         # 결과 이미지 배경 색상 설정 
         # Set background color of result image
-        pu.SetBackgroundColorOfResultImage(21, 21, 21)
+        projectionUtilities3D.SetBackgroundColorOfResultImage(21, 21, 21)
         
         # 1-1. 특정 시점의 투영 이미지 얻기 
         # 1-1. Get projection image from specific viewpoint
@@ -67,11 +67,11 @@ def main():
         camSet1.SetFarZ(459.30)
         
         # 카메라 설정 # Set camera
-        pu.SetCamera(camSet1)
+        projectionUtilities3D.SetCamera(camSet1)
         # 프로젝션 수행 # Perform projection
-        res = pu.Execute()
+        res = projectionUtilities3D.Execute()
         # 결과 이미지 얻기 # Get result image
-        res = pu.GetResult(fliRes)
+        res = projectionUtilities3D.GetResult(fliRes)
         # 결과 이미지에 정보 텍스트 추가 
         # Add information text to result image
         figureText.Set(CFLPoint[Int32](10, 10), "1. Projection(Camera Set 1)", int(EColor.YELLOW), int(EColor.BLACK), 20, False, 0.0, EFigureTextAlignment.LEFT_TOP, "", 1, 1, EFigureTextFontWeight.BOLD, False)
@@ -94,11 +94,11 @@ def main():
         camSet2.SetFarZ(390.77)
         
         # 카메라 설정 # Set camera
-        pu.SetCamera(camSet2)
+        projectionUtilities3D.SetCamera(camSet2)
         # 프로젝션 수행 # Perform projection
-        res = pu.Execute()
+        res = projectionUtilities3D.Execute()
         # 결과 이미지 얻기 # Get result image
-        res = pu.GetResult(fliRes)
+        res = projectionUtilities3D.GetResult(fliRes)
         # 결과 이미지에 정보 텍스트 추가 
         # Add information text to result image
         figureText.Set(CFLPoint[Int32](10, 10), "1. Projection(Camera Set 2)", int(EColor.YELLOW), int(EColor.BLACK), 20, False, 0.0, EFigureTextAlignment.LEFT_TOP, "", 1, 1, EFigureTextFontWeight.BOLD, False)
@@ -116,18 +116,18 @@ def main():
         
 		# 2. 카메라 1과 카메라 2 사이의 시점에 대한 프로젝션 
 		# 2. Projection for viewpoints between Camera 1 and Camera 2		
-        pu.SetTopologyType(ETopologyType3D.Wireframe)
+        projectionUtilities3D.SetTopologyType(ETopologyType3D.Wireframe)
         for i in range(11):
             # 카메라 시점 설정 # Set camera viewpoint
             f32T = i * 0.1
             camInterpolation = CFL3DCamera()
             CFL3DCamera.Interpolate(camSet1, camSet2, f32T, camInterpolation)
             # 카메라 설정 # Set camera
-            pu.SetCamera(camInterpolation)
+            projectionUtilities3D.SetCamera(camInterpolation)
             # 프로젝션 수행 # Perform projection
-            res = pu.Execute()
+            res = projectionUtilities3D.Execute()
             # 결과 이미지 얻기 # Get result image
-            res = pu.GetResult(fliRes)
+            res = projectionUtilities3D.GetResult(fliRes)
             
             # 결과 이미지에 정보 텍스트 추가 
             # Add information text to result image
@@ -153,16 +153,16 @@ def main():
 		# 3. Zoom Fit 시점의 이미지 얻기 
 		# 3. Get image at Zoom Fit viewpoint
         # 포인트 클라우드 형태로 디스플레이하도록 토폴로지 설정 # Set topology to display as a point cloud
-        pu.SetTopologyType(ETopologyType3D.PointCloud)
+        projectionUtilities3D.SetTopologyType(ETopologyType3D.PointCloud)
         # 각 포인트의 크기를 5로 설정 # Set the size of each point to 5
-        pu.SetPointSize(5.0)
+        projectionUtilities3D.SetPointSize(5.0)
         # 설정한 이미지 안에 3D 객체가 꽉 차도록 시점 설정 
         # Adjust the camera view so the 3D object fits entirely within the image
-        pu.ZoomFitCamera()
+        projectionUtilities3D.ZoomFitCamera()
         # 프로젝션 수행 # Perform projection
-        res = pu.Execute()
+        res = projectionUtilities3D.Execute()
         # 결과 이미지 얻기 # Get result image
-        res = pu.GetResult(fliFinal[2])
+        res = projectionUtilities3D.GetResult(fliFinal[2])
         # 결과 이미지에 정보 텍스트 추가 
         # Add information text to result image
         figureText.Set(CFLPoint[Int32](10, 10), "3. Projection(ZoomFit)", int(EColor.YELLOW), int(EColor.BLACK), 20, False, 0.0, EFigureTextAlignment.LEFT_TOP, "", 1, 1, EFigureTextFontWeight.BOLD, False)

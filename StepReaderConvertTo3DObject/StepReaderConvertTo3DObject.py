@@ -80,7 +80,7 @@ def main():
         # Method 2. Load the STEP file using CStepReader, then assign it to a CFL3DObject using GetResult3DObject()
         # STEP 파일을 읽는 객체 CStepReader 선언
         # Declare a CStepReader object for reading STEP files
-        sr = CStepReader()
+        stepReader = CStepReader()
 
         # Chordal Deviation을 0.00001로 설정
         # Set chordal deviation value
@@ -109,15 +109,15 @@ def main():
             ErrorPrint(res, "Failed to get 3D object.")
             break
 
-        # CStepReader 객체(sr)에 STEP 파일을 로드
+        # CStepReader 객체(stepReader)에 STEP 파일을 로드
         # Load the STEP file into the CStepReader
-        if (res := sr.Load("../../ExampleImages/StepReaderConvertTo3DObject/Cylinder.step")).IsFail():
+        if (res := stepReader.Load("../../ExampleImages/StepReaderConvertTo3DObject/Cylinder.step")).IsFail():
             ErrorPrint(res, "Failed to load step file.")
             break
 
-        # CStepReader 객체(sr)에 로드된 STEP 파일을 CFL3DObject 객체(fl3DObject)로 얻어 오기. 이 때 f64ChordalDeviation를 전달
+        # CStepReader 객체(stepReader)에 로드된 STEP 파일을 CFL3DObject 객체(fl3DObject)로 얻어 오기. 이 때 f64ChordalDeviation를 전달
         # Retrieve the CFL3DObject from the loaded CStepReader result, passing in the chordal deviation
-        if (res := sr.GetResult3DObject(fl3DObject2, f64ChordalDeviation)[0]).IsFail():
+        if (res := stepReader.GetResult3DObject(fl3DObject2, f64ChordalDeviation)[0]).IsFail():
             ErrorPrint(res, "Failed to get 3D object from the StepReader.")
             break
         
