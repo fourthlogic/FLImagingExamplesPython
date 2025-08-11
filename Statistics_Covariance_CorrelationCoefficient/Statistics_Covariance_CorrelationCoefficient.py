@@ -35,48 +35,48 @@ def main():
 			break
 
 		# Statistics 객체 생성 // Create Statistics object
-		statistics = CImageStatistics()
+		imageStatistics = CImageStatistics()
 
 		# Source 이미지 설정 // Set the source image
-		statistics.SetSourceImage(fliSourceImage)
+		imageStatistics.SetSourceImage(fliSourceImage)
 
 		# 상관관계를 구할 채널을 설정
-		statistics.SetCorrelatedChannel(0, 1)
+		imageStatistics.SetCorrelatedChannel(0, 1)
 
 		# 결과값을 받아올 double 변수 생성 // Create the variable to save the result
 		f64Covariance = 0.0
 		f64CorrelationCoeff = 0.0
 
 		# 이미지 전체(혹은 ROI 영역) 픽셀값의 공분산을 구하는 함수 // Function that calculate the covariance of the pixel value of the image(or the region of ROI)
-		res, f64Covariance = statistics.GetCovariance(f64Covariance)
+		res, f64Covariance = imageStatistics.GetCovariance(f64Covariance)
 
 		if res.IsFail():
 			ErrorPrint(res, 'Failed to process.')
 			break
 
 		# 이미지 전체(혹은 ROI 영역) 픽셀값의 상관계수를 구하는 함수 // Function that calculate the correlation coefficient of the pixel value of the image(or the region of ROI)
-		res, f64CorrelationCoeff = statistics.GetCorrelationCoefficient(f64CorrelationCoeff)
+		res, f64CorrelationCoeff = imageStatistics.GetCorrelationCoefficient(f64CorrelationCoeff)
 
 		if res.IsFail():
 			ErrorPrint(res, 'Failed to process.')
 			break
 
 		# 상관관계를 구할 채널을 설정 // Set the Correlation channel
-		statistics.SetCorrelatedChannel(0, 2)
+		imageStatistics.SetCorrelatedChannel(0, 2)
 
 		# 결과값을 받아올 double 변수 생성 // Create the variable to save the result
 		f64Covariance2 = 0
 		f64CorrelationCoeff2 = 0
 
 		# 이미지 전체(혹은 ROI 영역) 픽셀값의 공분산을 구하는 함수 // Function that calculate the covariance of the pixel value of the image(or the region of ROI)
-		res, f64Covariance2 = statistics.GetCovariance(f64Covariance2)
+		res, f64Covariance2 = imageStatistics.GetCovariance(f64Covariance2)
 
 		if res.IsFail():
 			ErrorPrint(res, 'Failed to process.')
 			break
 
 		# 이미지 전체(혹은 ROI 영역) 픽셀값의 상관계수를 구하는 함수 // Function that calculate the correlation coefficient of the pixel value of the image(or the region of ROI)
-		res, f64CorrelationCoeff2 = statistics.GetCorrelationCoefficient(f64CorrelationCoeff2)
+		res, f64CorrelationCoeff2 = imageStatistics.GetCorrelationCoefficient(f64CorrelationCoeff2)
 		if res.IsFail():
 			ErrorPrint(res, 'Failed to process.')
 			break
@@ -107,42 +107,42 @@ def main():
 		flpPoint = CFLPoint[Double](0, 0)
 
 		# 이미지 뷰 정보 표시 // Display image view information
-		if (res := layerSource.DrawTextCanvas(flpPoint, strCorrChannel, EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, strCorrChannel, EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		flpPoint.Offset(0, 30)
+		flpPoint.Offset(0, 20)
 
 		# 이미지 뷰 정보 표시 // Display image view information
-		if (res := layerSource.DrawTextCanvas(flpPoint, strCovarianceValue, EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, strCovarianceValue, EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		flpPoint.Offset(0, 30)
+		flpPoint.Offset(0, 20)
 
 		# 이미지 뷰 정보 표시 // Display image view information
-		if (res := layerSource.DrawTextCanvas(flpPoint, strCorrelationCoeffValue, EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, strCorrelationCoeffValue, EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		flpPoint.Offset(0, 30)
+		flpPoint.Offset(0, 20)
 
 		# 이미지 뷰 정보 표시 // Display image view information
-		if (res := layerSource.DrawTextCanvas(flpPoint, strCorrChannel2, EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, strCorrChannel2, EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		flpPoint.Offset(0, 30)
+		flpPoint.Offset(0, 20)
 
 		# 이미지 뷰 정보 표시 // Display image view information
-		if (res := layerSource.DrawTextCanvas(flpPoint, strCovarianceValue2, EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, strCovarianceValue2, EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		flpPoint.Offset(0, 30)
+		flpPoint.Offset(0, 20)
 
 		# 이미지 뷰 정보 표시 // Display image view information
-		if (res := layerSource.DrawTextCanvas(flpPoint, strCorrelationCoeffValue2, EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, strCorrelationCoeffValue2, EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 

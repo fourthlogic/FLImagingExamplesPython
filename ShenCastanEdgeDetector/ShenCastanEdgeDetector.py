@@ -64,26 +64,26 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		shenCastanEdge = CShenCastanEdgeDetector()
+		shenCastanEdgeDetector = CShenCastanEdgeDetector()
 
 		# Source 이미지 설정 // Set the source image
-		shenCastanEdge.SetSourceImage(fliISrcImage)
+		shenCastanEdgeDetector.SetSourceImage(fliISrcImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		shenCastanEdge.SetDestinationImage(fliIDstImage)
+		shenCastanEdgeDetector.SetDestinationImage(fliIDstImage)
 
 		# Preprocessing 전처리 설정 // Set Preprocessing
-		shenCastanEdge.SetSmoothingMode(CShenCastanEdgeDetector.ESmoothingMode.ISEF)
+		shenCastanEdgeDetector.SetSmoothingMode(CShenCastanEdgeDetector.ESmoothingMode.ISEF)
 
 		# Threshold 설정 // Set threshold value
 		mvThresholdValue = CMultiVar[Double](5, 8)
-		shenCastanEdge.SetThreshold(mvThresholdValue)
+		shenCastanEdgeDetector.SetThreshold(mvThresholdValue)
 
 		# p 값 설정 // Set p value
-		shenCastanEdge.SetPValue(0.5)
+		shenCastanEdgeDetector.SetPValue(0.5)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := shenCastanEdge.Execute()).IsFail():
+		if (res := shenCastanEdgeDetector.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

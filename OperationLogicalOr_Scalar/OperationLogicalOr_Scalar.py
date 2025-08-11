@@ -85,36 +85,36 @@ def main():
 			break
 
 		# 객체 생성 # Create object
-		logicalOr = COperationLogicalOr()
+		operationLogicalOr = COperationLogicalOr()
 
 		# Source 이미지 설정 # Set the source image
-		logicalOr.SetSourceImage(fliSourceImage)
+		operationLogicalOr.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		logicalOr.SetDestinationImage(fliDestination1Image)
+		operationLogicalOr.SetDestinationImage(fliDestination1Image)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		logicalOr.SetOperationSource(EOperationSource.Scalar);
+		operationLogicalOr.SetOperationSource(EOperationSource.Scalar);
 		
 		# Logical Or 값 지정 # Set the Logical Or value
 		mvScalar = CMultiVar[Double](0, 0, 0);
-		logicalOr.SetScalarValue(mvScalar);
+		operationLogicalOr.SetScalarValue(mvScalar);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := logicalOr.Execute()).IsFail():
+		if (res := operationLogicalOr.Execute()).IsFail():
 
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# Destination 이미지 설정 # Set the destination image
-		logicalOr.SetDestinationImage(fliDestination2Image)
+		operationLogicalOr.SetDestinationImage(fliDestination2Image)
 		
 		# Logical Or 값 지정 # Set the Logical Or value
 		mvScalar = CMultiVar[Double](255, 255, 255);
-		logicalOr.SetScalarValue(mvScalar);
+		operationLogicalOr.SetScalarValue(mvScalar);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := logicalOr.Execute()).IsFail():
+		if (res := operationLogicalOr.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

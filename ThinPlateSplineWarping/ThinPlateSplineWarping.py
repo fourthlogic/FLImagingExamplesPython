@@ -60,16 +60,16 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		tpsWarping = CThinPlateSplineWarping()
+		thinPlateSplineWarping = CThinPlateSplineWarping()
 
 		# Source 이미지 설정 // Set the source image
-		tpsWarping.SetSourceImage(arrFliImage[0])
+		thinPlateSplineWarping.SetSourceImage(arrFliImage[0])
 
 		# Destination 이미지 설정 // Set the destination image
-		tpsWarping.SetDestinationImage(arrFliImage[1])
+		thinPlateSplineWarping.SetDestinationImage(arrFliImage[1])
 
 		# Interpolation Method 설정 // Set the interpolation method
-		tpsWarping.SetInterpolationMethod(EInterpolationMethod.Bilinear)
+		thinPlateSplineWarping.SetInterpolationMethod(EInterpolationMethod.Bilinear)
 
 		# 그리드를 (5,5)로 초기화
 		flpGridSize = CFLPoint[int](5, 5)
@@ -100,7 +100,7 @@ def main():
 				flpaDestination.PushBack(flpDistortion)
 
 		# 위에서 설정한 좌표들을 바탕으로 ThinPlateSplineWarpping 클래스에 Point 배열 설정
-		tpsWarping.SetCalibrationPointArray(flpaSource, flpaDestination)
+		thinPlateSplineWarping.SetCalibrationPointArray(flpaSource, flpaDestination)
 
 		layer = arrViewImage[0].GetLayer(0)
 
@@ -125,12 +125,12 @@ def main():
 				break
 
 		# 앞서 설정된 Source Image, Calibration Point Array를 기반으로 Calibrate 수행 // Calibrate based on previously set Source Image, Calibration Point Array
-		if (res := tpsWarping.Calibrate()).IsFail():
+		if (res := thinPlateSplineWarping.Calibrate()).IsFail():
 			ErrorPrint(res, 'Failed to calibrate.')
 			break
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := tpsWarping.Execute()).IsFail():
+		if (res := thinPlateSplineWarping.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

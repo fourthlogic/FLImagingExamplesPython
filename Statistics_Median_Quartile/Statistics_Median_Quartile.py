@@ -125,49 +125,49 @@ def main():
 		flpPoint = CFLPoint[Double](0, 0)
 
 		# 이미지 뷰 정보 표시 // Display image view information
-		if (res := layerSource.DrawTextCanvas(flpPoint, strMedianValue, EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, strMedianValue, EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		flpPoint.Offset(0, 30)
+		flpPoint.Offset(0, 20)
 
 		# 이미지 뷰 정보 표시 // Display image view information
-		if (res := layerSource.DrawTextCanvas(flpPoint, strLowerQuartileValue, EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, strLowerQuartileValue, EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		flpPoint.Offset(0, 30)
+		flpPoint.Offset(0, 20)
 
 		# 이미지 뷰 정보 표시 // Display image view information
-		if (res := layerSource.DrawTextCanvas(flpPoint, strUpperQuartileValue, EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, strUpperQuartileValue, EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		flpPoint.Offset(0, 30)
+		flpPoint.Offset(0, 20)
 
 		# 이미지 뷰 정보 표시 // Display image view information
-		if (res := layerSource.DrawTextCanvas(flpPoint, strTrimming, EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, strTrimming, EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		flpPoint.Offset(0, 30)
+		flpPoint.Offset(0, 20)
 
 		# 이미지 뷰 정보 표시 // Display image view information
-		if (res := layerSource.DrawTextCanvas(flpPoint, strTrimmingMedianValue, EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, strTrimmingMedianValue, EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		flpPoint.Offset(0, 30)
+		flpPoint.Offset(0, 20)
 
 		# 이미지 뷰 정보 표시 // Display image view information
-		if (res := layerSource.DrawTextCanvas(flpPoint, strTrimmingLowerQuartileValue, EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, strTrimmingLowerQuartileValue, EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		flpPoint.Offset(0, 30)
+		flpPoint.Offset(0, 20)
 
 		# 이미지 뷰 정보 표시 // Display image view information
-		if (res := layerSource.DrawTextCanvas(flpPoint, strTrimmingUpperQuartileValue, EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, strTrimmingUpperQuartileValue, EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 

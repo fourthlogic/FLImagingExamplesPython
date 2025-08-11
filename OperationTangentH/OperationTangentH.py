@@ -60,16 +60,16 @@ def main():
 			break
 		
 		# 객체 생성 // Create object
-		tangentH = COperationTangentH()
+		operationTangentH = COperationTangentH()
 
 		# Source 이미지 설정 // Set source image
-		tangentH.SetSourceImage(fliSourceImage);
+		operationTangentH.SetSourceImage(fliSourceImage);
 
 		# Destination 이미지 설정 // Set destination image
-		tangentH.SetDestinationImage(fliDestinationImage);
+		operationTangentH.SetDestinationImage(fliDestinationImage);
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := tangentH.Execute()).IsFail():
+		if (res := operationTangentH.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

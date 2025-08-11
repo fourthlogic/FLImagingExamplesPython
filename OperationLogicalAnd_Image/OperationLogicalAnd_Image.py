@@ -95,22 +95,22 @@ def main():
 			break
 				
 		# 객체 생성 # Create object
-		logicalAnd = COperationLogicalAnd()
+		operationLogicalAnd = COperationLogicalAnd()
 
 		# Source 이미지 설정 # Set the source image
-		logicalAnd.SetSourceImage(fliSourceImage)
+		operationLogicalAnd.SetSourceImage(fliSourceImage)
 				
 		# Operand 이미지 설정 # Set the operand image
-		logicalAnd.SetOperandImage(fliOperandImage)
+		operationLogicalAnd.SetOperandImage(fliOperandImage)
 		
 		# Destination 이미지 설정 # Set the destination image
-		logicalAnd.SetDestinationImage(fliDestinationImage)
+		operationLogicalAnd.SetDestinationImage(fliDestinationImage)
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		logicalAnd.SetOperationSource(EOperationSource.Image);
+		operationLogicalAnd.SetOperationSource(EOperationSource.Image);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := logicalAnd.Execute()).IsFail():
+		if (res := operationLogicalAnd.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

@@ -65,28 +65,28 @@ def main():
 			break
 		
 		# 객체 생성 # Create object
-		logicalNand = COperationLogicalNand()
+		operationLogicalNand = COperationLogicalNand()
 
 		# Source 이미지 설정 # Set the source image
-		logicalNand.SetSourceImage(fliSourceImage)
+		operationLogicalNand.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		logicalNand.SetDestinationImage(fliDestination1Image)
+		operationLogicalNand.SetDestinationImage(fliDestination1Image)
 
 		# ROI 범위 설정 // Set the ROI value
 		flcSourceROI = CFLCircle[Double](128, 128, 80, 0, 0, 360, EArcClosingMethod.EachOther)
 
 		# Source 이미지의 ROI 지정 // Set the Source ROI
-		logicalNand.SetSourceROI(flcSourceROI)
+		operationLogicalNand.SetSourceROI(flcSourceROI)
 
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		logicalNand.SetOperationSource(EOperationSource.Scalar);
+		operationLogicalNand.SetOperationSource(EOperationSource.Scalar);
 		
 		# 스칼라 값 지정 // Set the Scalar value
-		logicalNand.SetScalarValue(111);
+		operationLogicalNand.SetScalarValue(111);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := logicalNand.Execute()).IsFail():
+		if (res := operationLogicalNand.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
