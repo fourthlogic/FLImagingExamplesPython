@@ -23,7 +23,7 @@ viewImageFind = CGUIViewImage()
 res = CResult()
 
 # Pattern Match Multi 객체 생성 // Create Pattern Match Multi object
-FLPatternMatchMultiSparseSave = CPatternMatchMultiSparse()
+patternMatchMultiSparseSave = CPatternMatchMultiSparse()
 FLPatternMatchMultiSparseLoad = CPatternMatchMultiSparse()
 
 while True:
@@ -56,16 +56,16 @@ while True:
         layerLearn.Clear()
 
         # 학습할 이미지 설정 // Set the image to learn
-        FLPatternMatchMultiSparseSave.SetLearnImage(fliLearnImage[i64DataIdx])
+        patternMatchMultiSparseSave.SetLearnImage(fliLearnImage[i64DataIdx])
 
         # 학습할 영역을 설정합니다. // Set the area to learn.
         flpLearnPivot = CFLPoint[Double](arrLearnRegion[i64DataIdx].GetCenter())
-        FLPatternMatchMultiSparseSave.SetLearnROI(arrLearnRegion[i64DataIdx])
-        FLPatternMatchMultiSparseSave.SetLearnPivot(flpLearnPivot)
-        FLPatternMatchMultiSparseSave.SetSampleCount(256)
+        patternMatchMultiSparseSave.SetLearnROI(arrLearnRegion[i64DataIdx])
+        patternMatchMultiSparseSave.SetLearnPivot(flpLearnPivot)
+        patternMatchMultiSparseSave.SetSampleCount(256)
 
         # 알고리즘 수행 // Execute the Algorithm
-        if (res := FLPatternMatchMultiSparseSave.Learn(arrClassName[i64DataIdx])).IsFail():
+        if (res := patternMatchMultiSparseSave.Learn(arrClassName[i64DataIdx])).IsFail():
             ErrorPrint(res, "Failed to Learn.")
             break
 
@@ -106,7 +106,7 @@ while True:
         viewImageLearn[i64DataIdx].Invalidate(True)
 
     # Save 학습 데이터 저장 // Save learned data
-    if (res := FLPatternMatchMultiSparseSave.Save("../../ExampleImages/Matching/Pattern Multi Learn")).IsFail():
+    if (res := patternMatchMultiSparseSave.Save("../../ExampleImages/Matching/Pattern Multi Learn")).IsFail():
         ErrorPrint(res, "Failed to save\n")
         break
 

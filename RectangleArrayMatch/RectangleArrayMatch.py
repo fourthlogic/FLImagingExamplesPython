@@ -73,7 +73,7 @@ def main():
             break
 
         # Rectangle Array Match 객체 생성 // Create Rectangle Array Match Object
-        arrayMatch = CRectangleArrayMatch()
+        rectangleArrayMatch = CRectangleArrayMatch()
 
         # 학습할 영역을 설정합니다. // Set the area to learn.
         flfaMeasurement = CFLFigureArray()
@@ -91,15 +91,15 @@ def main():
         eFitting = CRectangleArrayMatch.EFitting.Enable
 
         # 검출 시 사용될 파라미터를 설정합니다 // Set the parameters to be used for detection
-        arrayMatch.SetSourceImage(fliFindImage)
-        arrayMatch.SetArray(flfaMeasurement)
-        arrayMatch.SetBaseAngle(0.0)
-        arrayMatch.EnablePivotImageCenter(True)
-        arrayMatch.SetPivotOffset(flpCameraPivot)
-        arrayMatch.SetMinScore(0.5)
-        arrayMatch.SetObjectAngleTolerance(180)
-        arrayMatch.SetFitting(eFitting)
-        arrayMatch.SetAllowingObjectDistanceError(-1)
+        rectangleArrayMatch.SetSourceImage(fliFindImage)
+        rectangleArrayMatch.SetArray(flfaMeasurement)
+        rectangleArrayMatch.SetBaseAngle(0.0)
+        rectangleArrayMatch.EnablePivotImageCenter(True)
+        rectangleArrayMatch.SetPivotOffset(flpCameraPivot)
+        rectangleArrayMatch.SetMinScore(0.5)
+        rectangleArrayMatch.SetObjectAngleTolerance(180)
+        rectangleArrayMatch.SetFitting(eFitting)
+        rectangleArrayMatch.SetAllowingObjectDistanceError(-1)
 
         for i64Index in range(flfaMeasurement.GetCount()):
             if flfaMeasurement.GetAt(i64Index).GetDeclType() != EFigureDeclType.Rect:
@@ -110,21 +110,21 @@ def main():
                 break
 
         # 알고리즘 수행 // Execute the algorithm
-        if (res := arrayMatch.Execute()).IsFail():
+        if (res := rectangleArrayMatch.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute.")
             break
 
         # 검출 결과 배열의 개수를 가져옵니다 // Get the number of detection result arrays
-        i64ResultCount = arrayMatch.GetResultCount()
+        i64ResultCount = rectangleArrayMatch.GetResultCount()
         f64Score = 0.0
         f64Angle = 0.0
         
-        res, f64Score = arrayMatch.GetResultArrayScore(f64Score)
-        res, f64Angle = arrayMatch.GetResultArrayAngle(f64Angle)
+        res, f64Score = rectangleArrayMatch.GetResultArrayScore(f64Score)
+        res, f64Angle = rectangleArrayMatch.GetResultArrayAngle(f64Angle)
 
         for i in range(i64ResultCount):
             sResult = CRectangleArrayMatch.SResult()
-            arrayMatch.GetResult(i, sResult)
+            rectangleArrayMatch.GetResult(i, sResult)
             flpRegionCenter = sResult.pFlrMeasuredRegion.GetCenter()
             strDisplayResult = f"Array Element ID : {int(sResult.i64Index)}\n Score : {sResult.f64Score:.3f}\n Angle : {sResult.f64Angle:.3f}"
 

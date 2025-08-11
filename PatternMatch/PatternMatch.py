@@ -72,19 +72,19 @@ def main():
         return
 
     # Pattern Match 객체 생성 // Create Pattern Match object
-    FLPatternMatch = CPatternMatch()
+    patternMatch = CPatternMatch()
 
     # 학습할 이미지 설정 // Set the image to learn
-    FLPatternMatch.SetLearnImage(fliLearnImage)
+    patternMatch.SetLearnImage(fliLearnImage)
 
     # 학습할 영역을 설정합니다. // Set the area to learn.
     learnRegion = CFLRect[Double](174.7086, 272.2204, 799.0551, 601.3228)
     flpLearnPivot = CFLPoint[Double](learnRegion.GetCenter())
-    FLPatternMatch.SetLearnROI(learnRegion)
-    FLPatternMatch.SetLearnPivot(flpLearnPivot)
+    patternMatch.SetLearnROI(learnRegion)
+    patternMatch.SetLearnPivot(flpLearnPivot)
 
     # 알고리즘 학습 // Learn the Algoritm
-    if (res := FLPatternMatch.Learn()).IsFail():
+    if (res := patternMatch.Learn()).IsFail():
         ErrorPrint(res, "Failed to Learn.")
         return
 
@@ -120,29 +120,29 @@ def main():
     print("")
 
     # 검출할 이미지 설정 // Set image to detect
-    FLPatternMatch.SetSourceImage(fliFindImage)
+    patternMatch.SetSourceImage(fliFindImage)
 
     # 검출 시 사용될 파라미터를 설정합니다. // Set the parameters to be used for detection.
-    FLPatternMatch.SetScaleRange(0.95, 1.05)
-    FLPatternMatch.SetAngleBias(0.0)
-    FLPatternMatch.SetAngleTolerance(10.0)
-    FLPatternMatch.SetAccuracy(0.5)
-    FLPatternMatch.SetMinimumDetectionScore(0.7)
-    FLPatternMatch.SetMaxObject(1)
-    FLPatternMatch.EnableInterpolation(True)
+    patternMatch.SetScaleRange(0.95, 1.05)
+    patternMatch.SetAngleBias(0.0)
+    patternMatch.SetAngleTolerance(10.0)
+    patternMatch.SetAccuracy(0.5)
+    patternMatch.SetMinimumDetectionScore(0.7)
+    patternMatch.SetMaxObject(1)
+    patternMatch.EnableInterpolation(True)
 
     # 알고리즘 수행 // Execute the Algoritm 
-    if (res := FLPatternMatch.Execute()).IsFail():
+    if (res := patternMatch.Execute()).IsFail():
         ErrorPrint(res, "Failed to execute")
         return
 
-    i64ResultCount = FLPatternMatch.GetResultCount()
+    i64ResultCount = patternMatch.GetResultCount()
 
     print(" ▶ Find Information")
 
     for i in range(i64ResultCount):
         results = CPatternMatch.SResult()
-        FLPatternMatch.GetResult(i, results)
+        patternMatch.GetResult(i, results)
 
         f32Score = results.f32Score
         f32Angle = results.f32Angle

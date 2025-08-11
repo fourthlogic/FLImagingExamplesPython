@@ -22,7 +22,7 @@ viewImageFind = CGUIViewImage()
 res = CResult()
 
 # Pattern Match Multi 객체 생성 // Create Pattern Match Multi object
-FLPatternMatchMulti = CPatternMatchMulti()
+patternMatchMulti = CPatternMatchMulti()
 
 while True:
     arrPath = ["../../ExampleImages/Matching/Pattern Multi Learn.flif",
@@ -55,15 +55,15 @@ while True:
         layerLearn.Clear()
 
         # 학습할 이미지 설정 // Set the image to learn
-        FLPatternMatchMulti.SetLearnImage(fliLearnImage[i64DataIdx])
+        patternMatchMulti.SetLearnImage(fliLearnImage[i64DataIdx])
 
         # 학습할 영역을 설정합니다. // Set the area to learn.
         flpLearnPivot = CFLPoint[Double](arrLearnRegion[i64DataIdx].GetCenter())
-        FLPatternMatchMulti.SetLearnROI(arrLearnRegion[i64DataIdx])
-        FLPatternMatchMulti.SetLearnPivot(flpLearnPivot)
+        patternMatchMulti.SetLearnROI(arrLearnRegion[i64DataIdx])
+        patternMatchMulti.SetLearnPivot(flpLearnPivot)
 
         # 알고리즘 학습 수행 // Learn the Algoritm
-        res = FLPatternMatchMulti.Learn(arrClassName[i64DataIdx])
+        res = patternMatchMulti.Learn(arrClassName[i64DataIdx])
         if res.IsFail():
             ErrorPrint(res, "Failed to Learn.")
             break
@@ -144,37 +144,37 @@ while True:
 
     # 검출 설정들
     # 찾을 이미지 설정 // Set the image to find
-    FLPatternMatchMulti.SetSourceImage(fliFindImage)
+    patternMatchMulti.SetSourceImage(fliFindImage)
     # 스케일 범위 설정 // Set the scale range
-    FLPatternMatchMulti.SetScaleRange(1.0, 1.0)
+    patternMatchMulti.SetScaleRange(1.0, 1.0)
     # 각도 바이어스 설정 // Set the angle bias
-    FLPatternMatchMulti.SetAngleBias(0.0)
+    patternMatchMulti.SetAngleBias(0.0)
     # 각도 허용 오차 설정 // Set the angle tolerance
-    FLPatternMatchMulti.SetAngleTolerance(15.0)
+    patternMatchMulti.SetAngleTolerance(15.0)
     # 정밀도 설정 // Set the accuracy
-    FLPatternMatchMulti.SetAccuracy(0.5)
+    patternMatchMulti.SetAccuracy(0.5)
     # 최소 점수 설정 // Set the minimum detection score
-    FLPatternMatchMulti.SetMinimumDetectionScore(0.7)
+    patternMatchMulti.SetMinimumDetectionScore(0.7)
     # 최대 객체 모드 설정 // Set the maximum object mode
-    FLPatternMatchMulti.SetMaxObjectMode(CPatternMatchMulti.EMaxObjectMode.Total)
+    patternMatchMulti.SetMaxObjectMode(CPatternMatchMulti.EMaxObjectMode.Total)
     # 총 객체 최대 개수 설정 // Set the total maximum object count
-    FLPatternMatchMulti.SetMaxObjectTotal(2)
+    patternMatchMulti.SetMaxObjectTotal(2)
     # 보간 사용 설정 // Enable interpolation
-    FLPatternMatchMulti.EnableInterpolation(True)
+    patternMatchMulti.EnableInterpolation(True)
     # 충돌 감지 방법 설정 // Set the conflict detection method
-    FLPatternMatchMulti.SetConflictDetectionMethod(CPatternMatchMulti.EConflictDetectionMethod.HighestScore)
+    patternMatchMulti.SetConflictDetectionMethod(CPatternMatchMulti.EConflictDetectionMethod.HighestScore)
 
-    res = FLPatternMatchMulti.Execute()
+    res = patternMatchMulti.Execute()
     if res.IsFail():
         ErrorPrint(res, "Failed to execute")
         break
 
-    i64ResultCount = FLPatternMatchMulti.GetResultCount()
+    i64ResultCount = patternMatchMulti.GetResultCount()
     print(" ▶ Find Information")
 
     for i in range(i64ResultCount):
         results = CPatternMatchMulti.SResult()
-        FLPatternMatchMulti.GetResult(i, results)
+        patternMatchMulti.GetResult(i, results)
 
         f32Score = results.f32Score
         f32Angle = results.f32Angle

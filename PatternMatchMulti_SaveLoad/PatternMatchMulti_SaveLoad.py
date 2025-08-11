@@ -25,8 +25,8 @@ def main():
     res = CResult()
 
     # Pattern Match Multi 객체 생성 // Create Pattern Match Multi object
-    FLPatternMatchMultiSave = CPatternMatchMulti()
-    FLPatternMatchMultiLoad = CPatternMatchMulti()
+    patternMatchMultiSave = CPatternMatchMulti()
+    patternMatchMultiLoad = CPatternMatchMulti()
 
     while True:
         arrPath = ["../../ExampleImages/Matching/Pattern Multi Learn.flif"] * 2
@@ -57,15 +57,15 @@ def main():
             layerLearn.Clear()
 
             # 학습할 이미지 설정 // Set the image to learn
-            FLPatternMatchMultiSave.SetLearnImage(fliLearnImage[i64DataIdx])[0]
+            patternMatchMultiSave.SetLearnImage(fliLearnImage[i64DataIdx])[0]
 
             # 학습할 영역 설정 // Set the area to learn
             flpLearnPivot = CFLPoint[Double](arrLearnRegion[i64DataIdx].GetCenter())
-            FLPatternMatchMultiSave.SetLearnROI(arrLearnRegion[i64DataIdx])
-            FLPatternMatchMultiSave.SetLearnPivot(flpLearnPivot)
+            patternMatchMultiSave.SetLearnROI(arrLearnRegion[i64DataIdx])
+            patternMatchMultiSave.SetLearnPivot(flpLearnPivot)
 
             # 알고리즘 수행 // Execute the Algoritm
-            if FLPatternMatchMultiSave.Learn(arrClassName[i64DataIdx]).IsFail():
+            if patternMatchMultiSave.Learn(arrClassName[i64DataIdx]).IsFail():
                 ErrorPrint(res, "Failed to Learn.")
                 break
 
@@ -107,7 +107,7 @@ def main():
             viewImageLearn[i64DataIdx].Invalidate(True)
 
         # 학습 정보 저장 // Save learning data
-        if (res := FLPatternMatchMultiSave.Save("../../ExampleImages/Matching/Pattern Multi Learn")).IsFail():
+        if (res := patternMatchMultiSave.Save("../../ExampleImages/Matching/Pattern Multi Learn")).IsFail():
             ErrorPrint(res, "Failed to save\n")
             break
 
@@ -140,42 +140,42 @@ def main():
             ErrorPrint(res, "Failed to draw text")
             break
 
-        if (res := FLPatternMatchMultiLoad.Load("../../ExampleImages/Matching/Pattern Multi Learn")).IsFail():
+        if (res := patternMatchMultiLoad.Load("../../ExampleImages/Matching/Pattern Multi Learn")).IsFail():
             ErrorPrint(res, "Failed to load\n")
             break
 
         # 검출 이미지 설정 및 파라미터 설정 // Set detection parameters
         # 찾을 이미지 설정 // Set the image to find
-        FLPatternMatchMultiLoad.SetSourceImage(fliFindImage)
+        patternMatchMultiLoad.SetSourceImage(fliFindImage)
         # 스케일 범위 설정 // Set the scale range
-        FLPatternMatchMultiLoad.SetScaleRange(1.0, 1.0)
+        patternMatchMultiLoad.SetScaleRange(1.0, 1.0)
         # 각도 바이어스 설정 // Set the angle bias
-        FLPatternMatchMultiLoad.SetAngleBias(0.0)
+        patternMatchMultiLoad.SetAngleBias(0.0)
         # 각도 허용 오차 설정 // Set the angle tolerance
-        FLPatternMatchMultiLoad.SetAngleTolerance(15.0)
+        patternMatchMultiLoad.SetAngleTolerance(15.0)
         # 정밀도 설정 // Set the accuracy
-        FLPatternMatchMultiLoad.SetAccuracy(0.5)
+        patternMatchMultiLoad.SetAccuracy(0.5)
         # 최소 점수 설정 // Set the minimum detection score
-        FLPatternMatchMultiLoad.SetMinimumDetectionScore(0.7)
+        patternMatchMultiLoad.SetMinimumDetectionScore(0.7)
         # 최대 객체 모드 설정 // Set the maximum object mode
-        FLPatternMatchMultiLoad.SetMaxObjectMode(CPatternMatchMulti.EMaxObjectMode.Total)
+        patternMatchMultiLoad.SetMaxObjectMode(CPatternMatchMulti.EMaxObjectMode.Total)
         # 총 객체 최대 개수 설정 // Set the total maximum object count
-        FLPatternMatchMultiLoad.SetMaxObjectTotal(2)
+        patternMatchMultiLoad.SetMaxObjectTotal(2)
         # 보간 사용 설정 // Enable interpolation
-        FLPatternMatchMultiLoad.EnableInterpolation(True)
+        patternMatchMultiLoad.EnableInterpolation(True)
         # 충돌 감지 방법 설정 // Set the conflict detection method
-        FLPatternMatchMultiLoad.SetConflictDetectionMethod(CPatternMatchMulti.EConflictDetectionMethod.HighestScore)
+        patternMatchMultiLoad.SetConflictDetectionMethod(CPatternMatchMulti.EConflictDetectionMethod.HighestScore)
 
         # 알고리즘 수행 // Execute the Algoritm
-        if (res := FLPatternMatchMultiLoad.Execute()).IsFail():
+        if (res := patternMatchMultiLoad.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute")
             break
 
-        i64ResultCount = FLPatternMatchMultiLoad.GetResultCount()
+        i64ResultCount = patternMatchMultiLoad.GetResultCount()
 
         for i in range(i64ResultCount):
             results = CPatternMatchMulti.SResult()
-            FLPatternMatchMultiLoad.GetResult(i, results)
+            patternMatchMultiLoad.GetResult(i, results)
 
             f32Score = results.f32Score
             f32Angle = results.f32Angle
