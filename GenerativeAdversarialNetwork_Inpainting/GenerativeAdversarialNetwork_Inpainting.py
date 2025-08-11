@@ -144,23 +144,23 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		gan = CGenerativeAdversarialNetworkInpaintingDL()
+		generativeAdversarialNetworkInpaintingDL = CGenerativeAdversarialNetworkInpaintingDL()
 
 		# 학습할 이미지 설정 // Set the image to learn
-		gan.SetLearningImage(fliLearnImage)
+		generativeAdversarialNetworkInpaintingDL.SetLearningImage(fliLearnImage)
 		# 검증할 이미지 설정 // Set the image to validate
-		gan.SetLearningValidationImage(fliValidateImage)
+		generativeAdversarialNetworkInpaintingDL.SetLearningValidationImage(fliValidateImage)
 		
 		# 학습할 GenerativeAdversarialNetworkInpaintingDL 모델 설정 // Set up the GenerativeAdversarialNetworkInpaintingDL model to learn
-		gan.SetModel(CGenerativeAdversarialNetworkInpaintingDL.EModel.FLGenNet_Inpainting)
+		generativeAdversarialNetworkInpaintingDL.SetModel(CGenerativeAdversarialNetworkInpaintingDL.EModel.FLGenNet_Inpainting)
 		# 학습할 GenerativeAdversarialNetworkInpaintingDL 모델 버전 설정 // Set up the GenerativeAdversarialNetworkInpaintingDL model version to learn
-		gan.SetModelVersion(CGenerativeAdversarialNetworkInpaintingDL.EModelVersion.FLGenNet_Inpainting_V1_256)
+		generativeAdversarialNetworkInpaintingDL.SetModelVersion(CGenerativeAdversarialNetworkInpaintingDL.EModelVersion.FLGenNet_Inpainting_V1_256)
 		# 학습 epoch 값을 설정 // Set the learn epoch value 
-		gan.SetLearningEpoch(500)
+		generativeAdversarialNetworkInpaintingDL.SetLearningEpoch(500)
 		# 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
-		gan.SetInterpolationMethod(EInterpolationMethod.Bilinear)
+		generativeAdversarialNetworkInpaintingDL.SetInterpolationMethod(EInterpolationMethod.Bilinear)
 		# 모델의 최적의 상태를 추적 후 마지막에 최적의 상태로 적용할 지 여부 설정 // Set whether to track the optimal state of the model and apply it as the optimal state at the end.
-		gan.EnableOptimalLearningStatePreservation(True);
+		generativeAdversarialNetworkInpaintingDL.EnableOptimalLearningStatePreservation(True);
 
 		# OptimizerSpec 객체 생성 // Create OptimizerSpec object
 		optSpec = COptimizerSpecAdamGradientDescent()
@@ -171,7 +171,7 @@ def main():
 		# Optimizer의 Beta1 설정 // Set Beta1 of Optimizer
 		optSpec.SetBeta1(.5);
 		# 설정한 Optimizer를 GenerativeAdversarialNetworkInpaintingDL에 적용 // Apply Optimizer that we set up to GenerativeAdversarialNetworkInpaintingDL
-		gan.SetLearningOptimizerSpec(optSpec)
+		generativeAdversarialNetworkInpaintingDL.SetLearningOptimizerSpec(optSpec)
 
 		# 자동 저장 옵션 설정 // Set Auto-Save Options
 		autoSaveSpec = CAutoSaveSpec()
@@ -186,12 +186,12 @@ def main():
 		autoSaveSpec.SetAutoSaveCondition("epoch >= 10 & metric > max('metric')")
 
 		# 자동 저장 옵션 설정 // Set Auto-Save Options
-		gan.SetLearningAutoSaveSpec(autoSaveSpec)
+		generativeAdversarialNetworkInpaintingDL.SetLearningAutoSaveSpec(autoSaveSpec)
 
 		# GenerativeAdversarialNetworkInpaintingDL learn function을 진행하는 스레드 생성 // Create the GenerativeAdversarialNetworkInpaintingDL Learn function thread
 		def Learn_thread():
 			global eLearnResult, bTerminated
-			eLearnResult = gan.Learn()
+			eLearnResult = generativeAdversarialNetworkInpaintingDL.Learn()
 			bTerminated = True
 		
 		def Input_thread():
@@ -204,10 +204,10 @@ def main():
 		threading.Thread(target=Learn_thread).start()
 		threading.Thread(target=Input_thread, daemon=True).start()
 
-		while not gan.IsRunning() and not bTerminated:
+		while not generativeAdversarialNetworkInpaintingDL.IsRunning() and not bTerminated:
 			time.sleep(0.001)
 
-		i32MaxEpoch = gan.GetLearningEpoch()
+		i32MaxEpoch = generativeAdversarialNetworkInpaintingDL.GetLearningEpoch()
 		i32PrevEpoch = 0
 		i32PrevCostCount = 0
 		i32PrevValidationCount = 0
@@ -216,11 +216,11 @@ def main():
 			time.sleep(0.001)
 
 			# 마지막 미니 배치 최대 반복 횟수 받기 // Get the last maximum number of iterations of the last mini batch 
-			i32MaxIteration = gan.GetActualMiniBatchCount()
+			i32MaxIteration = generativeAdversarialNetworkInpaintingDL.GetActualMiniBatchCount()
 			# 마지막 미니 배치 반복 횟수 받기 // Get the last number of mini batch iterations
-			i32Iteration = gan.GetLearningResultCurrentIteration()
+			i32Iteration = generativeAdversarialNetworkInpaintingDL.GetLearningResultCurrentIteration()
 			# 마지막 학습 횟수 받기 // Get the last epoch learning
-			i32Epoch = gan.GetLastEpoch()
+			i32Epoch = generativeAdversarialNetworkInpaintingDL.GetLastEpoch()
 
 			if i32Epoch != i32PrevEpoch and i32Iteration == i32MaxIteration and i32Epoch > 0:
 				# 학습 결과 비용과 검증 결과 기록을 받아 그래프 뷰에 출력  
@@ -230,7 +230,7 @@ def main():
 				listMRQ = List[Single]()
 				listValidationEpoch = List[Int32]()
 
-				res = gan.GetLearningResultAllHistory(listCosts, listSSIM, listMRQ, listValidationEpoch)[0]
+				res = generativeAdversarialNetworkInpaintingDL.GetLearningResultAllHistory(listCosts, listSSIM, listMRQ, listValidationEpoch)[0]
 				
 				if listCosts.Count != 0:
 					# 마지막 학습 결과 비용 받기 // Get the last cost of the learning result
@@ -252,7 +252,7 @@ def main():
 						# Graph View 데이터 입력 // Input Graph View Data
 						viewGraph.Plot(listCosts, EChartType.Line, EColor.RED, "Cost")
 
-						i32Step = gan.GetLearningValidationStep()
+						i32Step = generativeAdversarialNetworkInpaintingDL.GetLearningValidationStep()
 						listV1 = List[Single]()
 
 						for i in range(listSSIM.Count - 1):
@@ -275,13 +275,13 @@ def main():
 						viewGraph.Invalidate()
 
 					if bEscape:
-						gan.Stop()
+						generativeAdversarialNetworkInpaintingDL.Stop()
 
 					i32PrevEpoch = i32Epoch
 					i32PrevCostCount = listCosts.Count
 					i32PrevValidationCount = listSSIM.Count
 
-			if gan.IsRunning() == False:
+			if generativeAdversarialNetworkInpaintingDL.IsRunning() == False:
 				break
 			
 		if eLearnResult.IsFail():
@@ -289,13 +289,13 @@ def main():
 			break
 
 		# Source 이미지 설정 // Set the Source image
-		gan.SetInferenceImage(fliSourceImage);
+		generativeAdversarialNetworkInpaintingDL.SetInferenceImage(fliSourceImage);
 
 		# 생성할 이미지 설정 // Set the image to create
-		gan.SetInferenceResultImage(fliResultImage)
+		generativeAdversarialNetworkInpaintingDL.SetInferenceResultImage(fliResultImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := gan.Execute()).IsFail():
+		if (res := generativeAdversarialNetworkInpaintingDL.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

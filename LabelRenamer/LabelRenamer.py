@@ -59,24 +59,24 @@ def main():
 			break
 
 		# CLabelRenamerDL 객체 생성 // Create CLabelRenamerDL object
-		labelRenamer = CLabelRenamerDL()
+		labelRenamerDL = CLabelRenamerDL()
 
 		# Source 이미지 설정 // Set the source image
-		labelRenamer.SetSourceImage(fliSourceImage)
+		labelRenamerDL.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		labelRenamer.SetDestinationImage(fliDestinationImage)
+		labelRenamerDL.SetDestinationImage(fliDestinationImage)
 
 		# 파라미터 값 설정 // Set parameter value
-		labelRenamer.EnablePathMode(False);
-		labelRenamer.EnableRegularExpression(False);
-		labelRenamer.EnableMatchCase(True);
-		labelRenamer.SetCompareMode(CLabelRenamerDL.ECompareMode.TextMode);
-		labelRenamer.SetOriginalName('1(OK)');
-		labelRenamer.SetSubstituteName('1(PASS)');
+		labelRenamerDL.EnablePathMode(False);
+		labelRenamerDL.EnableRegularExpression(False);
+		labelRenamerDL.EnableMatchCase(True);
+		labelRenamerDL.SetCompareMode(CLabelRenamerDL.ECompareMode.TextMode);
+		labelRenamerDL.SetOriginalName('1(OK)');
+		labelRenamerDL.SetSubstituteName('1(PASS)');
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := labelRenamer.Execute()).IsFail():
+		if (res := labelRenamerDL.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to process.')
 			break
 

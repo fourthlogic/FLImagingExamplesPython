@@ -123,41 +123,41 @@ def main():
 		if((res := layerResultLabelFigure.DrawTextCanvas(flpPoint, "RESULT", EColor.YELLOW, EColor.BLACK, 30)).IsFail()):
 			ErrorPrint(res, "Failed to draw text")
 			break
-
+		
 		# 이미지 뷰를 갱신 // Update the image view.
 		viewImageLearn.Invalidate(True)
 		viewImageInference.Invalidate(True)
 		viewImagesLabelFigure.Invalidate(True)
 		
 		# AnomalyDetection 객체 생성 // Create AnomalyDetection object
-		anomalyDetection = CAnomalyDetectionDL()
+		anomalyDetectionDL = CAnomalyDetectionDL()
 
 		# OptimizerSpec 객체 생성 // Create OptimizerSpec object
 		optSpec = COptimizerSpecAdamGradientDescent()
 
 		# 학습할 이미지 설정 // Set the image to learn
-		anomalyDetection.SetLearningImage(fliLearnImage)
+		anomalyDetectionDL.SetLearningImage(fliLearnImage)
 		# 검증할 이미지 설정 // Set the image to validation
-		anomalyDetection.SetLearningValidationImage(fliValidationImage)
+		anomalyDetectionDL.SetLearningValidationImage(fliValidationImage)
 		# 분류할 이미지 설정 // Set the image to classify
-		anomalyDetection.SetInferenceImage(fliValidationImage)
-		anomalyDetection.SetInferenceResultImage(fliResultLabelFigureImage)
+		anomalyDetectionDL.SetInferenceImage(fliValidationImage)
+		anomalyDetectionDL.SetInferenceResultImage(fliResultLabelFigureImage)
 
 		# 학습할 AnomalyDetection 모델 설정 // Set up the AnomalyDetection model to learn
-		anomalyDetection.SetModel(CAnomalyDetectionDL.EModel.FLDefNet)
+		anomalyDetectionDL.SetModel(CAnomalyDetectionDL.EModel.FLDefNet)
 		# 학습할 AnomalyDetection 모델 Version 설정 // Set up the AnomalyDetection model version to learn
-		anomalyDetection.SetModelVersion(CAnomalyDetectionDL.EModelVersion.FLDefNet_V1_32)
+		anomalyDetectionDL.SetModelVersion(CAnomalyDetectionDL.EModelVersion.FLDefNet_V1_32)
 		# 학습 epoch 값을 설정 // Set the learn epoch value 
-		anomalyDetection.SetLearningEpoch(1000)
+		anomalyDetectionDL.SetLearningEpoch(1000)
 		# 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
-		anomalyDetection.SetInterpolationMethod(EInterpolationMethod.Bilinear)
+		anomalyDetectionDL.SetInterpolationMethod(EInterpolationMethod.Bilinear)
 		# 모델의 최적의 상태를 추적 후 마지막에 최적의 상태로 적용할 지 여부 설정 // Set whether to track the optimal state of the model and apply it as the optimal state at the end.
-		anomalyDetection.EnableOptimalLearningStatePreservation(True)
+		anomalyDetectionDL.EnableOptimalLearningStatePreservation(True)
 		
 		# Optimizer의 학습률 설정 // Set learning rate of Optimizer
 		optSpec.SetLearningRate(0.001)
 		# 설정한 Optimizer를 AnomalyDetection에 적용 // Apply Optimizer that we set up to AnomalyDetection
-		anomalyDetection.SetLearningOptimizerSpec(optSpec)
+		anomalyDetectionDL.SetLearningOptimizerSpec(optSpec)
 
 		# AugmentationSpec 설정 // Set the AugmentationSpec
 		augSpec = CAugmentationSpec()
@@ -170,11 +170,11 @@ def main():
 		augSpec.EnableHorizontalFlip(True)
 		augSpec.EnableVerticalFlip(True)
 
-		anomalyDetection.SetLearningAugmentationSpec(augSpec)
+		anomalyDetectionDL.SetLearningAugmentationSpec(augSpec)
 
 		# 학습을 종료할 조건식 설정. accuracy값이 0.9 이상인 경우 학습 종료한다.
 		# Set Conditional Expression to End Learning. If the accuracy value is 0.9 or more, end learning.
-		anomalyDetection.SetLearningStopCondition("accuracy >= 0.9")
+		anomalyDetectionDL.SetLearningStopCondition("accuracy >= 0.9")
 
 		# 자동 저장 옵션 설정 // Set Auto-Save Options
 		autoSaveSpec = CAutoSaveSpec()
@@ -189,12 +189,12 @@ def main():
 		autoSaveSpec.SetAutoSaveCondition("cost < min('cost') & accuracy > max('accuracy')")
 
 		# 자동 저장 옵션 설정 // Set Auto-Save Options
-		anomalyDetection.SetLearningAutoSaveSpec(autoSaveSpec)
+		anomalyDetectionDL.SetLearningAutoSaveSpec(autoSaveSpec)
 
 		# AnomalyDetection learn function을 진행하는 스레드 생성 // Create the AnomalyDetection Learn function thread
 		def Learn_thread():
 			global eLearnResult, bTerminated
-			eLearnResult = anomalyDetection.Learn()
+			eLearnResult = anomalyDetectionDL.Learn()
 			bTerminated = True
 		
 		def Input_thread():
@@ -207,10 +207,10 @@ def main():
 		threading.Thread(target=Learn_thread).start()
 		threading.Thread(target=Input_thread, daemon=True).start()
 
-		while not anomalyDetection.IsRunning() and not bTerminated:
+		while not anomalyDetectionDL.IsRunning() and not bTerminated:
 			time.sleep(0.001)
 
-		i32MaxEpoch = anomalyDetection.GetLearningEpoch()
+		i32MaxEpoch = anomalyDetectionDL.GetLearningEpoch()
 		i32PrevEpoch = 0
 		i32PrevCostCount = 0
 		i32PrevValidationCount = 0
@@ -219,19 +219,19 @@ def main():
 			time.sleep(0.001)
 
 			# 마지막 미니 배치 반복 횟수 받기 // Get the last maximum number of iterations of the last mini batch 
-			i32MiniBatchCount = anomalyDetection.GetActualMiniBatchCount()
+			i32MiniBatchCount = anomalyDetectionDL.GetActualMiniBatchCount()
 			# 마지막 미니 배치 반복 횟수 받기 // Get the last number of mini batch iterations
-			i32Iteration = anomalyDetection.GetLearningResultCurrentIteration()
+			i32Iteration = anomalyDetectionDL.GetLearningResultCurrentIteration()
 			# 마지막 학습 횟수 받기 // Get the last epoch learning
-			i32Epoch = anomalyDetection.GetLastEpoch()
+			i32Epoch = anomalyDetectionDL.GetLastEpoch()
 			
 			# 미니 배치 반복이 완료되면 cost와 validation 값을 디스플레이 
 			# Display cost and validation value if iterations of the mini batch is completed 
 			if i32Epoch != i32PrevEpoch and i32Iteration == i32MiniBatchCount and i32Epoch > 0:
 				# 마지막 학습 결과 비용 받기 // Get the last cost of the learning result
-				f32CurrCost = anomalyDetection.GetLearningResultLastCost()
+				f32CurrCost = anomalyDetectionDL.GetLearningResultLastCost()
 				# 마지막 검증 결과 받기 // Get the last validation result
-				f32ValidationPa = anomalyDetection.GetLearningResultLastAccuracy()
+				f32ValidationPa = anomalyDetectionDL.GetLearningResultLastAccuracy()
 
 				# 해당 epoch의 비용과 검증 결과 값 출력 // Prcost and validation value for the relevant epoch
 				print("Cost : {:6f} Accuracy : {:6f}  Epoch {} / {}", f32CurrCost, f32ValidationPa, i32Epoch, i32MaxEpoch)
@@ -242,11 +242,11 @@ def main():
 				listValidationHistory = List[Single]()
 				vctValidationEpoch = List[Int32]()
 
-				anomalyDetection.GetLearningResultAllHistory(listCostHistory, listValidationHistory, vctValidationEpoch)
+				anomalyDetectionDL.GetLearningResultAllHistory(listCostHistory, listValidationHistory, vctValidationEpoch)
 
 				# 비용 기록이나 검증 결과 기록이 있다면 출력 // Prresults if cost or validation history exists
 				if((listCostHistory.Count != 0 and i32PrevCostCount != listCostHistory.Count) or (listValidationHistory.Count != 0 and i32PrevValidationCount != listValidationHistory.Count)):
-					i32Step = anomalyDetection.GetLearningValidationStep()
+					i32Step = anomalyDetectionDL.GetLearningValidationStep()
 					listX = List[Single]()
 
 					for i in range(listValidationHistory.Count - 1):
@@ -270,14 +270,14 @@ def main():
 				# 검증 결과가 1.0일 경우 학습을 중단하고 분류 진행 
 				# If the validation result is 1.0, stop learning and classify images 
 				if(f32ValidationPa == 1.0 or bEscape):
-					anomalyDetection.Stop()
+					anomalyDetectionDL.Stop()
 
 				i32PrevEpoch = i32Epoch
 				i32PrevCostCount = listCostHistory.Count
 				i32PrevValidationCount = listValidationHistory.Count
 
 			# epoch만큼 학습이 완료되면 종료 // End when learning progresses as much as epoch
-			if(anomalyDetection.IsRunning() == False):
+			if(anomalyDetectionDL.IsRunning() == False):
 				break
 			
 		if eLearnResult.IsFail():
@@ -286,17 +286,17 @@ def main():
 
 		# Result Label Image에 피겨를 포함하지 않는 Execute
 		# 분류할 이미지 설정 // Set the image to classify
-		anomalyDetection.SetInferenceImage(fliValidationImage)
+		anomalyDetectionDL.SetInferenceImage(fliValidationImage)
 		# 추론 결과 이미지 설정 // Set the inference result Image
-		anomalyDetection.SetInferenceResultImage(fliResultLabelFigureImage)
+		anomalyDetectionDL.SetInferenceResultImage(fliResultLabelFigureImage)
 		# 추론 결과 옵션 설정 // Set the inference result options
 		# 비정상 결과 비교 Threshold 설정 // Set Anomaly Threshold
-		anomalyDetection.SetInferenceAnomalyThreshold(0.5)
+		anomalyDetectionDL.SetInferenceAnomalyThreshold(0.5)
 		# 비정상 최소 크기 설정 // Set Minimum Anomaly Area
-		anomalyDetection.SetInferenceMinimumAnomalyArea(4)
+		anomalyDetectionDL.SetInferenceMinimumAnomalyArea(4)
 
 		# 알고리즘 수행 // Execute the algorithm
-		if((res := anomalyDetection.Execute()).IsFail()):
+		if((res := anomalyDetectionDL.Execute()).IsFail()):
 			ErrorPrint(res, "Failed to execute.")
 			break
 		

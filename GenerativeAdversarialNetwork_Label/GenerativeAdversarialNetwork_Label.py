@@ -139,23 +139,23 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		gan = CGenerativeAdversarialNetworkDL()
+		generativeAdversarialNetworkDL = CGenerativeAdversarialNetworkDL()
 
 		# 학습할 이미지 설정 // Set the image to learn
-		gan.SetLearningImage(fliLearnImage)
+		generativeAdversarialNetworkDL.SetLearningImage(fliLearnImage)
 		# 검증할 이미지 설정 // Set the image to validate
-		gan.SetLearningValidationImage(fliValidateImage)
+		generativeAdversarialNetworkDL.SetLearningValidationImage(fliValidateImage)
 		
 		# 학습할 GenerativeAdversarialNetwork 모델 설정 // Set up the GenerativeAdversarialNetwork model to learn
-		gan.SetModel(CGenerativeAdversarialNetworkDL.EModel.FLGenNet_Label)
+		generativeAdversarialNetworkDL.SetModel(CGenerativeAdversarialNetworkDL.EModel.FLGenNet_Label)
 		# 학습할 GenerativeAdversarialNetwork 모델 버전 설정 // Set up the GenerativeAdversarialNetwork model version to learn
-		gan.SetModelVersion(CGenerativeAdversarialNetworkDL.EModelVersion.FLGenNet_Label_V1_64)
+		generativeAdversarialNetworkDL.SetModelVersion(CGenerativeAdversarialNetworkDL.EModelVersion.FLGenNet_Label_V1_64)
 		# 학습 epoch 값을 설정 // Set the learn epoch value 
-		gan.SetLearningEpoch(500)
+		generativeAdversarialNetworkDL.SetLearningEpoch(500)
 		# 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
-		gan.SetInterpolationMethod(EInterpolationMethod.Bilinear)
+		generativeAdversarialNetworkDL.SetInterpolationMethod(EInterpolationMethod.Bilinear)
 		# 모델의 최적의 상태를 추적 후 마지막에 최적의 상태로 적용할 지 여부 설정 // Set whether to track the optimal state of the model and apply it as the optimal state at the end.
-		gan.EnableOptimalLearningStatePreservation(True);
+		generativeAdversarialNetworkDL.EnableOptimalLearningStatePreservation(True);
 
 		# OptimizerSpec 객체 생성 // Create OptimizerSpec object
 		optSpec = COptimizerSpecAdamGradientDescent()
@@ -166,7 +166,7 @@ def main():
 		# Optimizer의 Beta1 설정 // Set Beta1 of Optimizer
 		optSpec.SetBeta1(.5);
 		# 설정한 Optimizer를 GenerativeAdversarialNetwork에 적용 // Apply Optimizer that we set up to GenerativeAdversarialNetwork
-		gan.SetLearningOptimizerSpec(optSpec)
+		generativeAdversarialNetworkDL.SetLearningOptimizerSpec(optSpec)
 
 		# 자동 저장 옵션 설정 // Set Auto-Save Options
 		autoSaveSpec = CAutoSaveSpec()
@@ -181,12 +181,12 @@ def main():
 		autoSaveSpec.SetAutoSaveCondition("epoch >= 10 & metric > max('metric')")
 
 		# 자동 저장 옵션 설정 // Set Auto-Save Options
-		gan.SetLearningAutoSaveSpec(autoSaveSpec)
+		generativeAdversarialNetworkDL.SetLearningAutoSaveSpec(autoSaveSpec)
 
 		# GenerativeAdversarialNetwork learn function을 진행하는 스레드 생성 // Create the GenerativeAdversarialNetwork Learn function thread
 		def Learn_thread():
 			global eLearnResult, bTerminated
-			eLearnResult = gan.Learn()
+			eLearnResult = generativeAdversarialNetworkDL.Learn()
 			bTerminated = True
 		
 		def Input_thread():
@@ -199,10 +199,10 @@ def main():
 		threading.Thread(target=Learn_thread).start()
 		threading.Thread(target=Input_thread, daemon=True).start()
 
-		while not gan.IsRunning() and not bTerminated:
+		while not generativeAdversarialNetworkDL.IsRunning() and not bTerminated:
 			time.sleep(0.001)
 
-		i32MaxEpoch = gan.GetLearningEpoch()
+		i32MaxEpoch = generativeAdversarialNetworkDL.GetLearningEpoch()
 		i32PrevEpoch = 0
 		i32PrevCostCount = 0
 		i32PrevValidationCount = 0
@@ -211,11 +211,11 @@ def main():
 			time.sleep(0.001)
 
 			# 마지막 미니 배치 최대 반복 횟수 받기 // Get the last maximum number of iterations of the last mini batch 
-			i32MaxIteration = gan.GetActualMiniBatchCount()
+			i32MaxIteration = generativeAdversarialNetworkDL.GetActualMiniBatchCount()
 			# 마지막 미니 배치 반복 횟수 받기 // Get the last number of mini batch iterations
-			i32Iteration = gan.GetLearningResultCurrentIteration()
+			i32Iteration = generativeAdversarialNetworkDL.GetLearningResultCurrentIteration()
 			# 마지막 학습 횟수 받기 // Get the last epoch learning
-			i32Epoch = gan.GetLastEpoch()
+			i32Epoch = generativeAdversarialNetworkDL.GetLastEpoch()
 
 			if i32Epoch != i32PrevEpoch and i32Iteration == i32MaxIteration and i32Epoch > 0:
 				# 학습 결과 비용과 검증 결과 기록을 받아 그래프 뷰에 출력  
@@ -225,7 +225,7 @@ def main():
 				listPDV = List[Single]()
 				listValidationEpoch = List[Int32]()
 
-				res = gan.GetLearningResultAllHistory(listCosts, listSSIM, listPDV, listValidationEpoch)[0]
+				res = generativeAdversarialNetworkDL.GetLearningResultAllHistory(listCosts, listSSIM, listPDV, listValidationEpoch)[0]
 				
 				if listCosts.Count != 0:
 					# 마지막 학습 결과 비용 받기 // Get the last cost of the learning result
@@ -247,7 +247,7 @@ def main():
 						# Graph View 데이터 입력 // Input Graph View Data
 						viewGraph.Plot(listCosts, EChartType.Line, EColor.RED, "Cost")
 
-						i32Step = gan.GetLearningValidationStep()
+						i32Step = generativeAdversarialNetworkDL.GetLearningValidationStep()
 						listV1 = List[Single]()
 
 						for i in range(listSSIM.Count - 1):
@@ -270,13 +270,13 @@ def main():
 						viewGraph.Invalidate()
 
 					if bEscape:
-						gan.Stop()
+						generativeAdversarialNetworkDL.Stop()
 
 					i32PrevEpoch = i32Epoch
 					i32PrevCostCount = listCosts.Count
 					i32PrevValidationCount = listSSIM.Count
 
-			if gan.IsRunning() == False:
+			if generativeAdversarialNetworkDL.IsRunning() == False:
 				break
 			
 		if eLearnResult.IsFail():
@@ -284,35 +284,35 @@ def main():
 			break
 
 		# 결과 이미지 개수 설정 // Set Result Image Count
-		gan.SetInferenceResultCount(10)
+		generativeAdversarialNetworkDL.SetInferenceResultCount(10)
 
 		# 생성할 이미지 설정 // Set the image to create
-		gan.SetInferenceResultImage(fliResultImageOK)
+		generativeAdversarialNetworkDL.SetInferenceResultImage(fliResultImageOK)
 
 		liClassWeight = List[Single]()
 		liClassWeight.Add(1.0)
 		liClassWeight.Add(0.0)
 
 		# 클래스별 가중치 설정 // Set Class Weight
-		gan.SetInferenceClassWeight(liClassWeight)
+		generativeAdversarialNetworkDL.SetInferenceClassWeight(liClassWeight)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := gan.Execute()).IsFail():
+		if (res := generativeAdversarialNetworkDL.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# 생성할 이미지 설정 // Set the image to create
-		gan.SetInferenceResultImage(fliResultImageDamaged)
+		generativeAdversarialNetworkDL.SetInferenceResultImage(fliResultImageDamaged)
 
 		liClassWeight.Clear();
 		liClassWeight.Add(0.0)
 		liClassWeight.Add(1.0)
 
 		# 클래스별 가중치 설정 // Set Class Weight
-		gan.SetInferenceClassWeight(liClassWeight)
+		generativeAdversarialNetworkDL.SetInferenceClassWeight(liClassWeight)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := gan.Execute()).IsFail():
+		if (res := generativeAdversarialNetworkDL.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

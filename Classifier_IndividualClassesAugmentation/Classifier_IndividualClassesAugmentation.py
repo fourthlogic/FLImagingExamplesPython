@@ -132,40 +132,40 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		classifier = CClassifierDL()
+		classifierDL = CClassifierDL()
 
 		# OptimizerSpec 객체 생성 // Create OptimizerSpec object
 		optSpec = COptimizerSpecAdamGradientDescent()
 
 		# 학습할 이미지 설정 // Set the image to learn
-		classifier.SetLearningImage(fliLearnImage)
+		classifierDL.SetLearningImage(fliLearnImage)
 
 		# 검증할 이미지 설정 // Set the image to validate
-		classifier.SetLearningValidationImage(fliValidateImage)
+		classifierDL.SetLearningValidationImage(fliValidateImage)
 
 		# 분류할 이미지 설정 // Set the image to classify
-		classifier.SetInferenceImage(fliSourceImage)
-		classifier.SetInferenceResultImage(fliSourceImage)
+		classifierDL.SetInferenceImage(fliSourceImage)
+		classifierDL.SetInferenceResultImage(fliSourceImage)
 
 		# 학습할 Classifier 모델 설정 // Set up the Classifier model to learn
-		classifier.SetModel(CClassifierDL.EModel.FL_CF_C)
+		classifierDL.SetModel(CClassifierDL.EModel.FL_CF_C)
 		# 학습할 Classifier 모델 버전 설정 // Set up the Classifier model version to learn
-		classifier.SetModelVersion(CClassifierDL.EModelVersion.FL_CF_C_V1_32)
+		classifierDL.SetModelVersion(CClassifierDL.EModelVersion.FL_CF_C_V1_32)
 		# 학습 epoch 값을 설정 // Set the learn epoch value 
-		classifier.SetLearningEpoch(150)
+		classifierDL.SetLearningEpoch(150)
 		# 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
-		classifier.SetInterpolationMethod(EInterpolationMethod.Bilinear)
+		classifierDL.SetInterpolationMethod(EInterpolationMethod.Bilinear)
 
 		# Optimizer의 학습률 설정 // Set learning rate of Optimizer
 		optSpec.SetLearningRate(0.001)
 		# 설정한 Optimizer를 Classifier에 적용 // Apply Optimizer that we set up to Classifier
-		classifier.SetLearningOptimizerSpec(optSpec)
+		classifierDL.SetLearningOptimizerSpec(optSpec)
 		# 모델의 최적의 상태를 추적 후 마지막에 최적의 상태로 적용할 지 여부 설정 // Set whether to track the optimal state of the model and apply it as the optimal state at the end.
-		classifier.EnableOptimalLearningStatePreservation(True)
+		classifierDL.EnableOptimalLearningStatePreservation(True)
 
 		# 학습을 종료할 조건식 설정. f1score값이 0.999 이상인 경우 학습 종료한다. metric와 동일한 값입니다.
 		# Set Conditional Expression to End Learning. If the f1score value is 0.999 or higher, end the learning. Same value as metric.
-		classifier.SetLearningStopCondition('f1score >= 0.999')
+		classifierDL.SetLearningStopCondition('f1score >= 0.999')
 
 		# 자동 저장 옵션 설정 // Set Auto-Save Options
 		autoSaveSpec = CAutoSaveSpec()
@@ -180,7 +180,7 @@ def main():
 		autoSaveSpec.SetAutoSaveCondition("f1score > max('f1score')")
 
 		# 자동 저장 옵션 설정 // Set Auto-Save Options
-		classifier.SetLearningAutoSaveSpec(autoSaveSpec)
+		classifierDL.SetLearningAutoSaveSpec(autoSaveSpec)
 
 		# Augmentation Preset 설정 // Set Augmentation Preset
 		augSpec1 = CAugmentationSpec()
@@ -200,7 +200,7 @@ def main():
 		augmentationPreset1.SetClassNumbers(flaClassNum1)
 		augmentationPreset1.SetName("Class 0")
 		augmentationPreset1.SetAugmentationSpec(augSpec1)
-		classifier.AddLearningAugmentationPreset(augmentationPreset1)
+		classifierDL.AddLearningAugmentationPreset(augmentationPreset1)
 		augSpec2 = CAugmentationSpec()
 
 		augSpec2.EnableAugmentation(True)
@@ -217,7 +217,7 @@ def main():
 		augmentationPreset2.SetClassNumbers(flaClassNum2)
 		augmentationPreset2.SetName("Class 2")
 		augmentationPreset2.SetAugmentationSpec(augSpec2)
-		classifier.AddLearningAugmentationPreset(augmentationPreset2)
+		classifierDL.AddLearningAugmentationPreset(augmentationPreset2)
 		augSpec3 = CAugmentationSpec()
 
 		augSpec3.EnableAugmentation(True)
@@ -234,7 +234,7 @@ def main():
 		augmentationPreset3.SetClassNumbers(flaClassNum3)
 		augmentationPreset3.SetName("Class 3")
 		augmentationPreset3.SetAugmentationSpec(augSpec3)
-		classifier.AddLearningAugmentationPreset(augmentationPreset3)
+		classifierDL.AddLearningAugmentationPreset(augmentationPreset3)
 		augSpec4 = CAugmentationSpec()
 
 		augSpec4.EnableAugmentation(True)
@@ -252,12 +252,12 @@ def main():
 		augmentationPreset4.SetClassNumbers(flaClassNum4)
 		augmentationPreset4.SetName("Class 4,5")
 		augmentationPreset4.SetAugmentationSpec(augSpec4)
-		classifier.AddLearningAugmentationPreset(augmentationPreset4)
+		classifierDL.AddLearningAugmentationPreset(augmentationPreset4)
 
 		# Classifier learn function을 진행하는 스레드 생성 // Create the Classifier Learn function thread
 		def Learn_thread():
 			global eLearnResult, bTerminated
-			eLearnResult = classifier.Learn()
+			eLearnResult = classifierDL.Learn()
 			bTerminated = True
 		
 		def Input_thread():
@@ -270,10 +270,10 @@ def main():
 		threading.Thread(target=Learn_thread).start()
 		threading.Thread(target=Input_thread, daemon=True).start()
 
-		while not classifier.IsRunning() and not bTerminated:
+		while not classifierDL.IsRunning() and not bTerminated:
 			time.sleep(0.001)
 
-		i32MaxEpoch = classifier.GetLearningEpoch()
+		i32MaxEpoch = classifierDL.GetLearningEpoch()
 		i32PrevEpoch = 0
 		i32PrevCostCount = 0
 		i32PrevValidationCount = 0
@@ -282,11 +282,11 @@ def main():
 			time.sleep(0.001)
 
 			# 마지막 미니 배치 최대 반복 횟수 받기 // Get the last maximum number of iterations of the last mini batch 
-			i32MaxIteration = classifier.GetActualMiniBatchCount()
+			i32MaxIteration = classifierDL.GetActualMiniBatchCount()
 			# 마지막 미니 배치 반복 횟수 받기 // Get the last number of mini batch iterations
-			i32Iteration = classifier.GetLearningResultCurrentIteration()
+			i32Iteration = classifierDL.GetLearningResultCurrentIteration()
 			# 마지막 학습 횟수 받기 // Get the last epoch learning
-			i32Epoch = classifier.GetLastEpoch()
+			i32Epoch = classifierDL.GetLastEpoch()
 
 			if i32Epoch != i32PrevEpoch and i32Iteration == i32MaxIteration and i32Epoch > 0:
 				# 학습 결과 비용과 검증 결과 기록을 받아 그래프 뷰에 출력  
@@ -296,7 +296,7 @@ def main():
 				listF1Score = List[Single]()
 				listValidationEpoch = List[int]()
 
-				res, listCosts, listValidations, listF1Score, listValidationEpoch = classifier.GetLearningResultAllHistory(listCosts, listValidations, listF1Score, listValidationEpoch)
+				res, listCosts, listValidations, listF1Score, listValidationEpoch = classifierDL.GetLearningResultAllHistory(listCosts, listValidations, listF1Score, listValidationEpoch)
 				
 				if listCosts.Count != 0:
 					# 마지막 학습 결과 비용 받기 // Get the last cost of the learning result
@@ -318,7 +318,7 @@ def main():
 						# Graph View 데이터 입력 // Input Graph View Data
 						viewGraph.Plot(listCosts, EChartType.Line, EColor.RED, "Cost")
 
-						i32Step = classifier.GetLearningValidationStep()
+						i32Step = classifierDL.GetLearningValidationStep()
 						listX = List[Single]()
 
 						for i in range(listValidations.Count - 1):
@@ -334,13 +334,13 @@ def main():
 					# 검증 결과가 1.0일 경우 학습을 중단하고 분류 진행 
 					# If the validation result is 1.0, stop learning and classify images 
 					if f32Validation == 1.0 or bEscape:
-						classifier.Stop()
+						classifierDL.Stop()
 
 					i32PrevEpoch = i32Epoch
 					i32PrevCostCount = listCosts.Count
 					i32PrevValidationCount = listValidations.Count
 
-			if classifier.IsRunning() == False:
+			if classifierDL.IsRunning() == False:
 				break
 			
 		if eLearnResult.IsFail():
@@ -348,10 +348,10 @@ def main():
 			break
 
 		# 추론 결과 정보에 대한 설정 // Set for the inference result information
-		classifier.SetInferenceResultItemSettings(CClassifierDL.EInferenceResultItemSettings.ClassNum_ClassName_ConfidenceScore)
+		classifierDL.SetInferenceResultItemSettings(CClassifierDL.EInferenceResultItemSettings.ClassNum_ClassName_ConfidenceScore)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := classifier.Execute()).IsFail():
+		if (res := classifierDL.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

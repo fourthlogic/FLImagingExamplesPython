@@ -150,34 +150,34 @@ def main():
 		viewImagesLabelFigure.Invalidate(True)
 		
 		# SemanticSegmentation 객체 생성 // Create SemanticSegmentation object
-		semanticSegmentation = CSemanticSegmentationDL()
+		semanticSegmentationDL = CSemanticSegmentationDL()
 
 		# OptimizerSpec 객체 생성 // Create OptimizerSpec object
 		optSpec = COptimizerSpecAdamGradientDescent()
 
 		# 학습할 이미지 설정 // Set the image to learn
-		semanticSegmentation.SetLearningImage(fliLearnImage)
+		semanticSegmentationDL.SetLearningImage(fliLearnImage)
 		# 검증할 이미지 설정 // Set the image to validation
-		semanticSegmentation.SetLearningValidationImage(fliValidationImage)
+		semanticSegmentationDL.SetLearningValidationImage(fliValidationImage)
 		# 분류할 이미지 설정 // Set the image to classify
-		semanticSegmentation.SetInferenceImage(fliValidationImage)
-		semanticSegmentation.SetInferenceResultImage(fliResultLabelFigureImage)
+		semanticSegmentationDL.SetInferenceImage(fliValidationImage)
+		semanticSegmentationDL.SetInferenceResultImage(fliResultLabelFigureImage)
 
 		# 학습할 SemanticSegmentation 모델 설정 // Set up the SemanticSegmentation model to learn
-		semanticSegmentation.SetModel(CSemanticSegmentationDL.EModel.FLSegNet)
+		semanticSegmentationDL.SetModel(CSemanticSegmentationDL.EModel.FLSegNet)
 		# 학습할 SemanticSegmentation 모델 Version 설정 // Set up the SemanticSegmentation model version to learn
-		semanticSegmentation.SetModelVersion(CSemanticSegmentationDL.EModelVersion.FLSegNet_V1_512_B3)
+		semanticSegmentationDL.SetModelVersion(CSemanticSegmentationDL.EModelVersion.FLSegNet_V1_512_B3)
 		# 학습 epoch 값을 설정 // Set the learn epoch value 
-		semanticSegmentation.SetLearningEpoch(120)
+		semanticSegmentationDL.SetLearningEpoch(120)
 		# 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
-		semanticSegmentation.SetInterpolationMethod(EInterpolationMethod.Bilinear)
+		semanticSegmentationDL.SetInterpolationMethod(EInterpolationMethod.Bilinear)
 		# 모델의 최적의 상태를 추적 후 마지막에 최적의 상태로 적용할 지 여부 설정 // Set whether to track the optimal state of the model and apply it as the optimal state at the end.
-		semanticSegmentation.EnableOptimalLearningStatePreservation(True)
+		semanticSegmentationDL.EnableOptimalLearningStatePreservation(True)
 		
 		# Optimizer의 학습률 설정 // Set learning rate of Optimizer
 		optSpec.SetLearningRate(0.001)
 		# 설정한 Optimizer를 SemanticSegmentation에 적용 // Apply Optimizer that we set up to SemanticSegmentation
-		semanticSegmentation.SetLearningOptimizerSpec(optSpec)
+		semanticSegmentationDL.SetLearningOptimizerSpec(optSpec)
 
 		# AugmentationSpec 설정 // Set the AugmentationSpec
 		augSpec = CAugmentationSpec()
@@ -190,11 +190,11 @@ def main():
 		augSpec.EnableHorizontalFlip(True)
 		augSpec.EnableVerticalFlip(True)
 
-		semanticSegmentation.SetLearningAugmentationSpec(augSpec)
+		semanticSegmentationDL.SetLearningAugmentationSpec(augSpec)
 
 		# 학습을 종료할 조건식 설정. miou.ze값이 0.85 이상인 경우 학습 종료한다. metric.ze와 동일한 값입니다.
 		# Set Conditional Expression to End Learning. If the miou.ze value is 0.85 or higher, end the learning. Same value as metric.ze.
-		semanticSegmentation.SetLearningStopCondition("mIoU.ze >= 0.85")
+		semanticSegmentationDL.SetLearningStopCondition("mIoU.ze >= 0.85")
 
 		# 자동 저장 옵션 설정 // Set Auto-Save Options
 		autoSaveSpec = CAutoSaveSpec()
@@ -209,12 +209,12 @@ def main():
 		autoSaveSpec.SetAutoSaveCondition("miou.ze > max('miou.ze')")
 
 		# 자동 저장 옵션 설정 // Set Auto-Save Options
-		semanticSegmentation.SetLearningAutoSaveSpec(autoSaveSpec)
+		semanticSegmentationDL.SetLearningAutoSaveSpec(autoSaveSpec)
 
 		# SemanticSegmentation learn function을 진행하는 스레드 생성 // Create the SemanticSegmentation Learn function thread
 		def Learn_thread():
 			global eLearnResult, bTerminated
-			eLearnResult = semanticSegmentation.Learn()
+			eLearnResult = semanticSegmentationDL.Learn()
 			bTerminated = True
 		
 		def Input_thread():
@@ -227,10 +227,10 @@ def main():
 		threading.Thread(target=Learn_thread).start()
 		threading.Thread(target=Input_thread, daemon=True).start()
 
-		while not semanticSegmentation.IsRunning() and not bTerminated:
+		while not semanticSegmentationDL.IsRunning() and not bTerminated:
 			time.sleep(0.001)
 
-		i32MaxEpoch = semanticSegmentation.GetLearningEpoch()
+		i32MaxEpoch = semanticSegmentationDL.GetLearningEpoch()
 		i32PrevEpoch = 0
 		i32PrevCostCount = 0
 		i32PrevValidationCount = 0
@@ -239,20 +239,20 @@ def main():
 			time.sleep(0.001)
 
 			# 마지막 미니 배치 반복 횟수 받기 // Get the last maximum number of iterations of the last mini batch 
-			i32MiniBatchCount = semanticSegmentation.GetActualMiniBatchCount()
+			i32MiniBatchCount = semanticSegmentationDL.GetActualMiniBatchCount()
 			# 마지막 미니 배치 반복 횟수 받기 // Get the last number of mini batch iterations
-			i32Iteration = semanticSegmentation.GetLearningResultCurrentIteration()
+			i32Iteration = semanticSegmentationDL.GetLearningResultCurrentIteration()
 			# 마지막 학습 횟수 받기 // Get the last epoch learning
-			i32Epoch = semanticSegmentation.GetLastEpoch()
+			i32Epoch = semanticSegmentationDL.GetLastEpoch()
 			
 			# 미니 배치 반복이 완료되면 cost와 validation 값을 디스플레이 
 			# Display cost and validation value if iterations of the mini batch is completed 
 			if i32Epoch != i32PrevEpoch and i32Iteration == i32MiniBatchCount and i32Epoch > 0:
 				# 마지막 학습 결과 비용 받기 // Get the last cost of the learning result
-				f32CurrCost = semanticSegmentation.GetLearningResultLastCost()
+				f32CurrCost = semanticSegmentationDL.GetLearningResultLastCost()
 				# 마지막 검증 결과 받기 // Get the last validation result
-				f32ValidationPa = semanticSegmentation.GetLearningResultLastAccuracy()
-				f32ValidationPaMeanIoU = semanticSegmentation.GetLearningResultLastMeanIoU()
+				f32ValidationPa = semanticSegmentationDL.GetLearningResultLastAccuracy()
+				f32ValidationPaMeanIoU = semanticSegmentationDL.GetLearningResultLastMeanIoU()
 
 				# 해당 epoch의 비용과 검증 결과 값 출력 // Prcost and validation value for the relevant epoch
 				print("Cost : {:6f} Pixel Accuracy : {:6f} mIoU : {:6f} Epoch {} / {}".format(f32CurrCost, f32ValidationPa, f32ValidationPaMeanIoU, i32Epoch, i32MaxEpoch))
@@ -266,11 +266,11 @@ def main():
 				listMeanIoUZEHistory = List[Single]()
 				vctValidationEpoch = List[Int32]()
 
-				semanticSegmentation.GetLearningResultAllHistory(listCostHistory, listValidationHistory, listMeanIoUHistory, listValidationsZEHistory, listMeanIoUZEHistory, vctValidationEpoch)
+				semanticSegmentationDL.GetLearningResultAllHistory(listCostHistory, listValidationHistory, listMeanIoUHistory, listValidationsZEHistory, listMeanIoUZEHistory, vctValidationEpoch)
 
 				# 비용 기록이나 검증 결과 기록이 있다면 출력 // Prresults if cost or validation history exists
 				if((listCostHistory.Count != 0 and i32PrevCostCount != listCostHistory.Count) or (listValidationHistory.Count != 0 and i32PrevValidationCount != listValidationHistory.Count)):
-					i32Step = semanticSegmentation.GetLearningValidationStep()
+					i32Step = semanticSegmentationDL.GetLearningValidationStep()
 					listX = List[Single]()
 
 					for i in range(listValidationHistory.Count - 1):
@@ -295,14 +295,14 @@ def main():
 				# 검증 결과가 1.0일 경우 학습을 중단하고 분류 진행 
 				# If the validation result is 1.0, stop learning and classify images 
 				if(f32ValidationPa == 1.0 or bEscape):
-					semanticSegmentation.Stop()
+					semanticSegmentationDL.Stop()
 
 				i32PrevEpoch = i32Epoch
 				i32PrevCostCount = listCostHistory.Count
 				i32PrevValidationCount = listValidationHistory.Count
 
 			# epoch만큼 학습이 완료되면 종료 // End when learning progresses as much as epoch
-			if(semanticSegmentation.IsRunning() == False):
+			if(semanticSegmentationDL.IsRunning() == False):
 				break
 			
 		if eLearnResult.IsFail():
@@ -311,45 +311,45 @@ def main():
 
 		# Result Label Image에 피겨를 포함하지 않는 Execute
 		# 분류할 이미지 설정 // Set the image to classify
-		semanticSegmentation.SetInferenceImage(fliValidationImage)
+		semanticSegmentationDL.SetInferenceImage(fliValidationImage)
 		# 추론 결과 이미지 설정 // Set the inference result Image
-		semanticSegmentation.SetInferenceResultImage(fliResultLabelImage)
+		semanticSegmentationDL.SetInferenceResultImage(fliResultLabelImage)
 		# 추론 결과 옵션 설정 // Set the inference result options;
 		# Result 결과를 Label Image로 받을지 여부 설정 // Set whether to receive the result as a Label Image
-		semanticSegmentation.EnableInferenceResultLabelImage(True)
+		semanticSegmentationDL.EnableInferenceResultLabelImage(True)
 		# Result 결과에 Region Figure를 포함 여부 설정 // Set whether to include region figure in result
-		semanticSegmentation.EnableInferenceResultIncludingRegionFigures(False)
+		semanticSegmentationDL.EnableInferenceResultIncludingRegionFigures(False)
 
 		# 알고리즘 수행 // Execute the algorithm
-		if((res := semanticSegmentation.Execute()).IsFail()):
+		if((res := semanticSegmentationDL.Execute()).IsFail()):
 			ErrorPrint(res, "Failed to execute.")
 			break
 		
 		# Result Label Image에 피겨를 포함한 Execute
 		# 추론 결과 이미지 설정 // Set the inference result Image
-		semanticSegmentation.SetInferenceResultImage(fliResultLabelFigureImage)
+		semanticSegmentationDL.SetInferenceResultImage(fliResultLabelFigureImage)
 		# 추론 결과 옵션 설정 // Set the inference result options;
 		# Result 결과를 Label Image로 받을지 여부 설정 // Set whether to receive the result as a Label Image
-		semanticSegmentation.EnableInferenceResultLabelImage(False)
+		semanticSegmentationDL.EnableInferenceResultLabelImage(False)
 		# Result 결과에 Region Figure를 포함 여부 설정 // Set whether to include region figure in result
-		semanticSegmentation.EnableInferenceResultIncludingRegionFigures(True)
+		semanticSegmentationDL.EnableInferenceResultIncludingRegionFigures(True)
 		# Result item settings enum 설정 // Set the result item settings
-		semanticSegmentation.SetInferenceResultItemSettings(CSemanticSegmentationDL.EInferenceResultItemSettings.ClassNum_ClassName_ConfidenceScore_RegionType_Contour)
+		semanticSegmentationDL.SetInferenceResultItemSettings(CSemanticSegmentationDL.EInferenceResultItemSettings.ClassNum_ClassName_ConfidenceScore_RegionType_Contour)
 
 		# 알고리즘 수행 // Execute the algorithm
-		if((res := semanticSegmentation.Execute()).IsFail()):
+		if((res := semanticSegmentationDL.Execute()).IsFail()):
 			ErrorPrint(res, "Failed to execute.")
 			break
 
-		i32LearningClassCount = semanticSegmentation.GetLearningResultClassCount()
+		i32LearningClassCount = semanticSegmentationDL.GetLearningResultClassCount()
 		# ResultContours 인덱스와 매칭 되는 라벨 번호배열을 가져오기 // ResultContours Get an array of label numbers matching the index.
 		for classNum in range(1, i32LearningClassCount):
 			flaNames = List[String]()
-			semanticSegmentation.GetLearningResultClassNames(classNum, flaNames)
+			semanticSegmentationDL.GetLearningResultClassNames(classNum, flaNames)
 			viewImagesLabel.SetSegmentationLabelText(0, classNum, flaNames[0])
 
 		# ResultLabl 뷰에 Floating Value Range를 설정
-		viewImagesLabel.SetFloatingImageValueRange(0, semanticSegmentation.GetLearningResultClassCount())
+		viewImagesLabel.SetFloatingImageValueRange(0, semanticSegmentationDL.GetLearningResultClassCount())
 
 		# 결과 이미지를 이미지 뷰에 맞게 조정합니다. // Fit the result image to the image view.
 		viewImagesLabel.ZoomFit()

@@ -131,29 +131,29 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		ocr = CStringBasedOCRDL()
+		stringBasedOCRDL = CStringBasedOCRDL()
 
 		# 학습할 이미지 설정 // Set the image to learn
-		ocr.SetLearningImage(fliLearnImage)
+		stringBasedOCRDL.SetLearningImage(fliLearnImage)
 
 		# 검증할 이미지 설정 // Set the image to validate
-		ocr.SetLearningValidationImage(fliValidateImage)
+		stringBasedOCRDL.SetLearningValidationImage(fliValidateImage)
 
 		# 학습할 StringBasedOCR 모델 설정 // Set up the StringBasedOCR model to learn
-		ocr.SetModel(CStringBasedOCRDL.EModel.FLOcrNet_S)
+		stringBasedOCRDL.SetModel(CStringBasedOCRDL.EModel.FLOcrNet_S)
 		# 학습할 StringBasedOCR 모델 버전 설정 // Set up the StringBasedOCR model version to learn
-		ocr.SetModelVersion(CStringBasedOCRDL.EModelVersion.FLOcrNet_S_V1_32_256_B2)
+		stringBasedOCRDL.SetModelVersion(CStringBasedOCRDL.EModelVersion.FLOcrNet_S_V1_32_256_B2)
 		# 학습 epoch 값을 설정 // Set the learn epoch value 
-		ocr.SetLearningEpoch(500)
+		stringBasedOCRDL.SetLearningEpoch(500)
 		# 학습 이미지 Interpolation 방식 설정 // Set Interpolation method of learn image
-		ocr.SetInterpolationMethod(EInterpolationMethod.Bilinear)
+		stringBasedOCRDL.SetInterpolationMethod(EInterpolationMethod.Bilinear)
 
 		# OptimizerSpec 객체 생성 // Create OptimizerSpec object
 		optSpec = COptimizerSpecAdamGradientDescent()
 		# Optimizer의 학습률 설정 // Set learning rate of Optimizer
 		optSpec.SetLearningRate(0.0001)
 		# 설정한 Optimizer를 StringBasedOCR에 적용 // Apply Optimizer that we set up to StringBasedOCR
-		ocr.SetLearningOptimizerSpec(optSpec)
+		stringBasedOCRDL.SetLearningOptimizerSpec(optSpec)
 
 		# AugmentationSpec 설정 // Set the AugmentationSpec
 		augSpec = CAugmentationSpec()
@@ -169,11 +169,11 @@ def main():
 		augSpec.SetTranslationParam(0.0, 0.1, 0.0, 0.1, 1.0)
 
 		# 설정한 Augmentation을 StringBasedOCR에 적용 // Apply Augmentation that we set up to StringBasedOCR
-		ocr.SetLearningAugmentationSpec(augSpec)
+		stringBasedOCRDL.SetLearningAugmentationSpec(augSpec)
 
 		# 학습을 종료할 조건식 설정. metric값이 1.0 이상인 경우 학습 종료한다. metric와 동일한 값입니다.
 		# Set Conditional Expression to End Learning. If the metric value is 1.0 or higher, end the learning. Same value as metric.
-		ocr.SetLearningStopCondition('metric >= 1.0')
+		stringBasedOCRDL.SetLearningStopCondition('metric >= 1.0')
 		
 		# 자동 저장 옵션 설정 // Set Auto-Save Options
 		autoSaveSpec = CAutoSaveSpec()
@@ -188,12 +188,12 @@ def main():
 		autoSaveSpec.SetAutoSaveCondition("epoch >= 10 & metric > max('metric')")
 
 		# 자동 저장 옵션 설정 // Set Auto-Save Options
-		ocr.SetLearningAutoSaveSpec(autoSaveSpec)
+		stringBasedOCRDL.SetLearningAutoSaveSpec(autoSaveSpec)
 
 		# StringBasedOCR learn function을 진행하는 스레드 생성 // Create the StringBasedOCR Learn function thread
 		def Learn_thread():
 			global eLearnResult, bTerminated
-			eLearnResult = ocr.Learn()
+			eLearnResult = stringBasedOCRDL.Learn()
 			bTerminated = True
 		
 		def Input_thread():
@@ -206,10 +206,10 @@ def main():
 		threading.Thread(target=Learn_thread).start()
 		threading.Thread(target=Input_thread, daemon=True).start()
 
-		while not ocr.IsRunning() and not bTerminated:
+		while not stringBasedOCRDL.IsRunning() and not bTerminated:
 			time.sleep(0.001)
 
-		i32MaxEpoch = ocr.GetLearningEpoch()
+		i32MaxEpoch = stringBasedOCRDL.GetLearningEpoch()
 		i32PrevEpoch = 0
 		i32PrevCostCount = 0
 		i32PrevValidationCount = 0
@@ -218,11 +218,11 @@ def main():
 			time.sleep(0.001)
 
 			# 마지막 미니 배치 최대 반복 횟수 받기 // Get the last maximum number of iterations of the last mini batch 
-			i32MaxIteration = ocr.GetActualMiniBatchCount()
+			i32MaxIteration = stringBasedOCRDL.GetActualMiniBatchCount()
 			# 마지막 미니 배치 반복 횟수 받기 // Get the last number of mini batch iterations
-			i32Iteration = ocr.GetLearningResultCurrentIteration()
+			i32Iteration = stringBasedOCRDL.GetLearningResultCurrentIteration()
 			# 마지막 학습 횟수 받기 // Get the last epoch learning
-			i32Epoch = ocr.GetLastEpoch()
+			i32Epoch = stringBasedOCRDL.GetLastEpoch()
 
 			if i32Epoch != i32PrevEpoch and i32Iteration == i32MaxIteration and i32Epoch > 0:
 				# 학습 결과 비용과 검증 결과 기록을 받아 그래프 뷰에 출력  
@@ -232,7 +232,7 @@ def main():
 				listMeanAP = List[Single]()
 				listValidationEpoch = List[Int32]()
 
-				res = ocr.GetLearningResultAllHistory(listCosts, list1MNED, listMeanAP, listValidationEpoch)[0]
+				res = stringBasedOCRDL.GetLearningResultAllHistory(listCosts, list1MNED, listMeanAP, listValidationEpoch)[0]
 				
 				if listCosts.Count != 0:
 					# 마지막 학습 결과 비용 받기 // Get the last cost of the learning result
@@ -254,7 +254,7 @@ def main():
 						# Graph View 데이터 입력 // Input Graph View Data
 						viewGraph.Plot(listCosts, EChartType.Line, EColor.RED, "Cost")
 
-						i32Step = ocr.GetLearningValidationStep()
+						i32Step = stringBasedOCRDL.GetLearningValidationStep()
 						listV1 = List[Single]()
 
 						for i in range(list1MNED.Count - 1):
@@ -279,13 +279,13 @@ def main():
 					# 검증 결과가 1.0일 경우 학습을 중단하고 인식 진행 
 					# If the validation result is 1.0, stop learning and classify images 
 					if f321MNED == 1.0 and f32MeanAP == 1.0 or bEscape:
-						ocr.Stop()
+						stringBasedOCRDL.Stop()
 
 					i32PrevEpoch = i32Epoch
 					i32PrevCostCount = listCosts.Count
 					i32PrevValidationCount = list1MNED.Count
 
-			if ocr.IsRunning() == False:
+			if stringBasedOCRDL.IsRunning() == False:
 				break
 			
 		if eLearnResult.IsFail():
@@ -293,11 +293,11 @@ def main():
 			break
 
 		# 인식할 이미지 설정 // Set the image to recognize
-		ocr.SetInferenceImage(fliSourceImage)
-		ocr.SetInferenceResultImage(fliSourceImage)
+		stringBasedOCRDL.SetInferenceImage(fliSourceImage)
+		stringBasedOCRDL.SetInferenceResultImage(fliSourceImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := ocr.Execute()).IsFail():
+		if (res := stringBasedOCRDL.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
