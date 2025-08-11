@@ -60,17 +60,17 @@ def main():
 			break
 
 		# Bicubic Region Interpolation 객체 생성 // Create Bicubic Region Interpolation object
-		sBRI = CBicubicRegionInterpolation()
+		bicubicRegionInterpolation = CBicubicRegionInterpolation()
 
 		# Source 이미지 설정 // Set the source image
-		sBRI.SetSourceImage(fliSrcImage)
+		bicubicRegionInterpolation.SetSourceImage(fliSrcImage)
 		# Destination 이미지 설정 // Set the destination image
-		sBRI.SetDestinationImage(fliDstImage)
+		bicubicRegionInterpolation.SetDestinationImage(fliDstImage)
 		# 보정 분할 Depth 설정 // Set calibration division depth
-		sBRI.SetDivisionDepth(5);
+		bicubicRegionInterpolation.SetDivisionDepth(5);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := (sBRI.Execute())).IsFail():
+		if (res := (bicubicRegionInterpolation.Execute())).IsFail():
 			ErrorPrint(res, 'Failed to execute bicubic region interpolation.')
 			break
 

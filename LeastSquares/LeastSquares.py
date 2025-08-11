@@ -67,17 +67,17 @@ def main():
         print("\n")
     
         # LeastSquares 객체 생성 // Create LeastSquares object
-        ls = CLeastSquares[Double]()
+        leastSqaures = CLeastSquares[Double]()
     
         # 데이터를 할당 // Assign data
-        ls.Assign(arrF64DataX, arrF64DataY, i32DataCount)
+        leastSqaures.Assign(arrF64DataX, arrF64DataY, i32DataCount)
     
         for i in range(1, 6):
             # 계수 값을 받기 위해 List 생성 // Create List to receive coefficient values
             # R square 값을 받기 위해 double 선언 // Declare double for R square value
     
             # 다항식 계수를 얻는다. // Get polynomial coefficients
-            res, listF64Output, f64TRSqr = ls.GetPoly(i, List[Double](), 0.0)
+            res, listF64Output, f64TRSqr = leastSqaures.GetPoly(i, List[Double](), 0.0)
     
             if res.IsFail():
                 print(f"Failed to get polynomial for degree {i}.\n")

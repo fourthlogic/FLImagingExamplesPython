@@ -60,17 +60,17 @@ def main():
 			break
 
 		# Bilinear Region Interpolation 객체 생성 // Create Bilinear Region Interpolation object
-		sBRI = CBilinearRegionInterpolation()
+		bilinearRegionInterpolation = CBilinearRegionInterpolation()
 
 		# Source 이미지 설정 // Set the source image
-		sBRI.SetSourceImage(fliSrcImage)
+		bilinearRegionInterpolation.SetSourceImage(fliSrcImage)
 		# Destination 이미지 설정 // Set the destination image
-		sBRI.SetDestinationImage(fliDstImage)
+		bilinearRegionInterpolation.SetDestinationImage(fliDstImage)
 		# 보정 분할 Depth 설정 // Set calibration division depth
-		sBRI.SetDivisionDepth(5);
+		bilinearRegionInterpolation.SetDivisionDepth(5);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := (sBRI.Execute())).IsFail():
+		if (res := (bilinearRegionInterpolation.Execute())).IsFail():
 			ErrorPrint(res, 'Failed to execute bilinear region interpolation.')
 			break
 

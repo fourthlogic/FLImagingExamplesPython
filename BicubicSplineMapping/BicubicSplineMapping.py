@@ -68,20 +68,20 @@ def main():
 
 
         # 좌표 매핑용 클래스 선언 // Class declaration for coordinate mapping
-        bcsm = CBicubicSplineMapping()
+        bicubicSplineMapping = CBicubicSplineMapping()
 
         # 보간 방식은 데이터 설정 이후에도 아래 함수를 통해 변경 가능합니다.
         # The interpolation method can be changed through the function below even after setting the data.
 
         # 소스의 좌표 보간 형태를 Cubic Spline으로 설정 // Set the source coordinate interpolation type to Cubic Spline
-        bcsm.SetSourceInterpolationMethod(ESourceInterpolationMethod.CubicSpline)
+        bicubicSplineMapping.SetSourceInterpolationMethod(ESourceInterpolationMethod.CubicSpline)
         # 대상의 좌표 보간 형태를 Cubic Spline으로 설정 // Set the coordinate interpolation type of the destination to Cubic Spline
-        bcsm.SetDestinationInterpolationMethod(EDestinationInterpolationMethod.CubicSpline)
+        bicubicSplineMapping.SetDestinationInterpolationMethod(EDestinationInterpolationMethod.CubicSpline)
 
         # 만약 기존 저장된 매핑 데이터가 있다면 해당 데이터를 로드합니다. // If there is previously saved mapping data, load the data.
         # 두번째 실행부터는 파일이 생성될 것이기 때문에 아래 세팅과정을 수행하지 않고 지나가게 됩니다. // Since the file will be created from the second execution, the setting process below will be skipped.
         # 계속 새로 데이터를 생성하는것을 테스트 하려 한다면 아래 Load함수와 관련된 if문 1줄을 삭제하면 됩니다. // If you want to test continuously creating new data, you can delete one line of the if statement related to the Load function below.
-        if (res := bcsm.Load("MappingData.flbcs")).IsFail():
+        if (res := bicubicSplineMapping.Load("MappingData.flbcs")).IsFail():
             # 그리드를 (5,5)로 초기화하면서, 가상 확장 영역을 3으로 지정
             # 확장영역 밖으로 값을 변환하려고 하면 값이 나오지 않기때문에 적절한 크기로 확장을 해야 하며,
             # 가능하면 정확한 매핑을 위해 큰 범위의 매핑을 하는것을 추천합니다.
@@ -90,7 +90,7 @@ def main():
             # so you need to expand it to an appropriate size, and if possible, it is recommended to map a large range for accurate mapping.
             iExtension = 3
             flpGridSize = CFLPoint[Int32](5, 5)
-            bcsm.Initialize(flpGridSize, iExtension)
+            bicubicSplineMapping.Initialize(flpGridSize, iExtension)
 
             flpGridIndex = CFLPoint[Int32]()
             for y in range(flpGridSize.y):
@@ -106,13 +106,13 @@ def main():
 
                     # 위에서 설정한 좌표들을 바탕으로 BicubicSplineMapping 클래스에 하나의 Vertex를 설정
                     # Set one vertex in the BicubicSplineMapping class based on the coordinates set above
-                    bcsm.SetControlPoint(flpGridIndex, flpSource, flpDistortion)
+                    bicubicSplineMapping.SetControlPoint(flpGridIndex, flpSource, flpDistortion)
             
             # 설정한 데이터를 매핑 가능하도록 마무리 작업을 진행합니다.
             # 반드시 이 함수를 호출해서 결과가 OK가 나와야 매핑 사용이 가능합니다.
             # We proceed with the finishing work so that the set data can be mapped.
             # You must call this function and the result must be OK to use the mapping.
-            if (res := bcsm.Finish()).IsFail():
+            if (res := bicubicSplineMapping.Finish()).IsFail():
                 ErrorPrint(res, "Failed to finalize\n")
                 break
 
@@ -120,7 +120,7 @@ def main():
             # 추후 Load함수를 통해 로드 시 위의 Initialize -> Set -> Finalize 과정을 생략할 수 있습니다.
             # If Finalize is completed, it can be saved to a file through Save.
             # When loading through the Load function later, the above Initialize -> Set -> Finalize process can be omitted.
-            if (res := bcsm.Save("MappingData.flbcs")).IsFail():
+            if (res := bicubicSplineMapping.Save("MappingData.flbcs")).IsFail():
                 ErrorPrint(res, "Failed to save mapping data\n")
                 break
         
@@ -133,9 +133,9 @@ def main():
 
         # BicubicSplineMapping 클래스에 설정된 Vertex 정보를 화면에 Display
         # Display the vertex information set in the BicubicSplineMapping class on the screen
-        for y in range(bcsm.GetRow()):
-            for x in range(bcsm.GetColumn()):
-                vertex = bcsm.GetControlPoint(CFLPoint[Int32](x, y))
+        for y in range(bicubicSplineMapping.GetRow()):
+            for x in range(bicubicSplineMapping.GetColumn()):
+                vertex = bicubicSplineMapping.GetControlPoint(CFLPoint[Int32](x, y))
 
                 flpSource = CFLPoint[Double](vertex.tpSource.x, vertex.tpSource.y)
                 flpDestination = CFLPoint[Double](vertex.tpDestination.x, vertex.tpDestination.y)
@@ -175,10 +175,10 @@ def main():
         flpaDestination = CFLPointArray() # Destination 좌표 // Destination coordinates
         flpaConvertedSource = CFLPointArray() # Destination 좌표를 다시 Source로 변환, 검증 용도의 좌표 // Convert destination coordinates back to source, coordinates for verification purposes
 
-        for y in range(int((bcsm.GetRow() - 1) * f64Slice) + 1):
+        for y in range(int((bicubicSplineMapping.GetRow() - 1) * f64Slice) + 1):
             flpdSource.y = y / f64Slice
 
-            for x in range(int((bcsm.GetColumn() - 1) * f64Slice) + 1):
+            for x in range(int((bicubicSplineMapping.GetColumn() - 1) * f64Slice) + 1):
                 flpdSource.x = x / f64Slice
                 flpaSource.PushBack(flpdSource)
 
@@ -188,7 +188,7 @@ def main():
             break
 
         # Source 좌표의 공간을 Destination 좌표 공간으로 변환 // Convert the space of source coordinates to destination coordinate space
-        if (resConvertSrcToDst := bcsm.ConvertSourceToDestination(flpaSource, flpaDestination))[0].IsOK():
+        if (resConvertSrcToDst := bicubicSplineMapping.ConvertSourceToDestination(flpaSource, flpaDestination))[0].IsOK():
             flpaDestination = resConvertSrcToDst[1]
 
         # Source 좌표에서 Destination 좌표로 변환된 좌표를 View에 Display // Display coordinates converted from source coordinates to destination coordinates on the View
@@ -198,7 +198,7 @@ def main():
 
         # 변환된 Destination 좌표를 그대로 Source 좌표로 변환해서 자신의 위치로 제대로 돌아오는지 검증
         # Verify that the converted destination coordinates are converted to source coordinates as they are and return to their own position properly
-        if (resConvertDstToSrc := bcsm.ConvertDestinationToSource(flpaDestination, flpaConvertedSource))[0].IsOK():
+        if (resConvertDstToSrc := bicubicSplineMapping.ConvertDestinationToSource(flpaDestination, flpaConvertedSource))[0].IsOK():
             flpaConvertedSource = resConvertDstToSrc[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # 변환된 좌표를 View에 Display // Display the converted coordinates in the View

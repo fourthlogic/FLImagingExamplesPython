@@ -42,44 +42,44 @@ def main():
 		layer.Clear();
 
 		# Harris Corner Detector 객체 생성 // Create Harris Corner Detector object
-		harris = CHarrisCornerDetector();
+		harrisCornerDetector = CHarrisCornerDetector();
 
 		# ROI Draw를 위한 CFLRectL 객체 생성 // Create CFLRectL object for ROI Drawing
 		flrROI = CFLRect[int](100, 50, 450, 450);
 
 		# 처리할 이미지 설정 // Set the image to process
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := harris.SetSourceImage(fliImage)[0]).IsFail():
+		if (res := harrisCornerDetector.SetSourceImage(fliImage)[0]).IsFail():
 			ErrorPrint(res, "Failed to set Source Image.");
 			break;
 
 		# 처리할 ROI 설정 // Set the ROI to process
-		if (res := (harris.SetSourceROI(flrROI))).IsFail():
+		if (res := (harrisCornerDetector.SetSourceROI(flrROI))).IsFail():
 			ErrorPrint(res, "Failed to set Source ROI.");
 			break;
 
 		# 코너를 검출하는 이미지의 Scale 값을 설정 // Set the Scale value for the image to detect the corner
-		if (res := (harris.SetScale(1.0))).IsFail():
+		if (res := (harrisCornerDetector.SetScale(1.0))).IsFail():
 			ErrorPrint(res, "Failed to set scale.");
 			break;
 
 		# 검출할 최대 점의 개수를 설정 // Set the maximum number of points to detect
-		if (res := (harris.SetMaxPoints(500))).IsFail():
+		if (res := (harrisCornerDetector.SetMaxPoints(500))).IsFail():
 			ErrorPrint(res, "Failed to set max points.");
 			break;
 
 		# 검출할 점수의 임계값을 설정 //Set the Threshold of score to detect
-		if (res := (harris.SetScoreThreshold(0.8))).IsFail():
+		if (res := (harrisCornerDetector.SetScoreThreshold(0.8))).IsFail():
 			ErrorPrint(res, "Failed to set score threshold.");
 			break;
 
 		# 해리스 코너 디텍터의 파리미터 K를 설정 //Set the parameter K for the Harris Corner Detector
-		if (res := (harris.SetParamK(0.04))).IsFail():
+		if (res := (harrisCornerDetector.SetParamK(0.04))).IsFail():
 			ErrorPrint(res, "Failed to set param K.");
 			break;
 
 		# 해리스 코너 디텍터 알고리즘 실행 // Execute Harris Corner Detector algorithm
-		if (res := (harris.Execute())).IsFail():
+		if (res := (harrisCornerDetector.Execute())).IsFail():
 			ErrorPrint(res, "Failed to execute.");
 			break;
 
@@ -88,12 +88,12 @@ def main():
 
 		# 검출된 점을 가져옴 // Get the detected points 
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := (harris.GetResultPoints(flfaResultPoints))[0]).IsFail():
+		if (res := (harrisCornerDetector.GetResultPoints(flfaResultPoints))[0]).IsFail():
 			ErrorPrint(res, "Failed to get result.");
 			break;
 
 		# 검출된 점의 개수를 가져오는 함수 // Get the number of detected points 
-		i64Count = harris.GetResultCount();
+		i64Count = harrisCornerDetector.GetResultCount();
 
 		for i in range (0, i64Count):
 			# 검출된 점을 출력 // Print the detected points 

@@ -65,7 +65,7 @@ def main():
 
 
         # 좌표 매핑용 클래스 선언 // Class declaration for coordinate mapping
-        tps = CThinPlateSplineMapping()
+        thinPlateSplineMapping = CThinPlateSplineMapping()
 
         # 그리드를 (5,5)로 초기화 // initialize the grid to (5,5)
         flpGridSize = CFLPoint[Int32](5, 5)
@@ -73,7 +73,7 @@ def main():
         # 만약 기존 저장된 매핑 데이터가 있다면 해당 데이터를 로드합니다. // If there is previously saved mapping data, load the data.
         # 두번째 실행부터는 파일이 생성될 것이기 때문에 아래 세팅과정을 수행하지 않고 지나가게 됩니다. // Since the file will be created from the second execution, the setting process below will be skipped.
         # 계속 새로 데이터를 생성하는것을 테스트 하려 한다면 아래 Load함수와 관련된 if문 1줄을 삭제하면 됩니다. // If you want to test continuously creating new data, you can delete one line of the if statement related to the Load function below.
-        if (res := tps.Load("MappingData.fltps")).IsFail():
+        if (res := thinPlateSplineMapping.Load("MappingData.fltps")).IsFail():
             flpGridIndex = CFLPoint[Int32]()
             for y in range(flpGridSize.y):
                 flpGridIndex.y = y
@@ -88,13 +88,13 @@ def main():
 
                     # 위에서 설정한 좌표들을 바탕으로 ThinPlateSplineMapping 클래스에 하나의 Vertex를 설정
                     # Set one Control Point in the ThinPlateSplineMapping class based on the coordinates set above
-                    tps.AddControlPoint(flpSource, flpDistortion)
+                    thinPlateSplineMapping.AddControlPoint(flpSource, flpDistortion)
             
             # 설정한 데이터를 매핑 가능하도록 마무리 작업을 진행합니다.
             # 반드시 이 함수를 호출해서 결과가 OK가 나와야 매핑 사용이 가능합니다.
             # We proceed with the finishing work so that the set data can be mapped.
             # You must call this function and the result must be OK to use the mapping.
-            if (res := tps.Finish()).IsFail():
+            if (res := thinPlateSplineMapping.Finish()).IsFail():
                 ErrorPrint(res, "Failed to finalize\n")
                 break
 
@@ -102,7 +102,7 @@ def main():
             # 추후 Load함수를 통해 로드 시 위의 Initialize -> Set -> Finalize 과정을 생략할 수 있습니다.
             # If Finalize is completed, it can be saved to a file through Save.
             # When loading through the Load function later, the above Initialize -> Set -> Finalize process can be omitted.
-            if (res := tps.Save("MappingData.fltps")).IsFail():
+            if (res := thinPlateSplineMapping.Save("MappingData.fltps")).IsFail():
                 ErrorPrint(res, "Failed to save mapping data\n")
                 break
         
@@ -115,11 +115,11 @@ def main():
 
         # ThinPlateSplineMapping 클래스에 설정된 Vertex 정보를 화면에 Display
         # Display the vertex information set in the ThinPlateSplineMapping class on the screen
-        for k in range(tps.GetControlPointCount()):
+        for k in range(thinPlateSplineMapping.GetControlPointCount()):
             flpSource = CFLPoint[Double]()
             flpDestination = CFLPoint[Double]()
 
-            if (res := tps.GetControlPoint(k, flpSource, flpDestination)[0]).IsFail():
+            if (res := thinPlateSplineMapping.GetControlPoint(k, flpSource, flpDestination)[0]).IsFail():
                 ErrorPrint(res, "Failed to get control point.")
                 break
 
@@ -167,7 +167,7 @@ def main():
             break
 
         # Source 좌표의 공간을 Destination 좌표 공간으로 변환 // Convert the space of source coordinates to destination coordinate space
-        if (resConvertSrcToDst := tps.ConvertSourceToDestination(flpaSource, flpaDestination))[0].IsOK():
+        if (resConvertSrcToDst := thinPlateSplineMapping.ConvertSourceToDestination(flpaSource, flpaDestination))[0].IsOK():
             flpaDestination = resConvertSrcToDst[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # Source 좌표에서 Destination 좌표로 변환된 좌표를 View에 Display // Display coordinates converted from source coordinates to destination coordinates on the View
@@ -177,7 +177,7 @@ def main():
 
         # 변환된 Destination 좌표를 그대로 Source 좌표로 변환해서 자신의 위치로 제대로 돌아오는지 검증
         # Verify that the converted destination coordinates are converted to source coordinates as they are and return to their own position properly
-        if (resConvertDstToSrc := tps.ConvertDestinationToSource(flpaDestination, flpaConvertedSource))[0].IsOK():
+        if (resConvertDstToSrc := thinPlateSplineMapping.ConvertDestinationToSource(flpaDestination, flpaConvertedSource))[0].IsOK():
             flpaConvertedSource = resConvertDstToSrc[1] # ref 파라미터 결과 할당 // Assign ref parameter result
 
         # 변환된 좌표를 View에 Display // Display the converted coordinates in the View
