@@ -59,7 +59,7 @@ def main():
 		depthMapToPointCloudConverter3D = CDepthMapToPointCloudConverter3D()
 
 		# SourceROI 설정 // Set the source roi.
-		flfSourceROI = CFLQuad[Double](926.290236, 549.117967, 1341.038113, 503.567623, 1384.191071, 1083.151113, 974.237967, 1117.298584)
+		flfSourceROI = CFLQuad[Double](236.258951, 137.611646, 247.605353, 273.171284, 355.694756, 268.393852, 339.570922, 130.445497)
 		depthMapToPointCloudConverter3D.SetSourceROI(flfSourceROI)
 
 		# Source 이미지 설정 // Set the source image.
@@ -72,10 +72,10 @@ def main():
 		flpFocalLength = CFLPoint[Single]()
 		flpPrincipalPoint = CFLPoint[Single]()
 
-		flpFocalLength.x = 2328.800049
-		flpFocalLength.y = 2330.899902
-		flpPrincipalPoint.x = 988.599976
-		flpPrincipalPoint.y = 750.299988
+		flpFocalLength.x = 582.2
+		flpFocalLength.y = 582.7
+		flpPrincipalPoint.x = 247
+		flpPrincipalPoint.y = 187.5
 
 		depthMapToPointCloudConverter3D.SetIntrinsicParameter(flpFocalLength, flpPrincipalPoint)
 
