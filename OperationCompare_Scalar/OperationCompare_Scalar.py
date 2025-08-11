@@ -72,21 +72,21 @@ def main():
 			break
 		
 		# COperationCompare 객체 생성 // Create COperationCompare object
-		compare = COperationCompare()
+		operationCompare = COperationCompare()
 		# Source 이미지 설정 // Set source image
-		compare.SetSourceImage(fliSourceImage)
+		operationCompare.SetSourceImage(fliSourceImage)
 		# Destination 이미지 설정 // Set destination image
-		compare.SetDestinationImage(fliDestinationImage)
+		operationCompare.SetDestinationImage(fliDestinationImage)
 		# Scalar Operation 모드로 설정 // Set operation mode to image
-		compare.SetOperationSource(EOperationSource.Scalar)
+		operationCompare.SetOperationSource(EOperationSource.Scalar)
 
 		mvScalar = CMultiVar[Double](110,110,110)
 
 		# Compare Scalar 값 설정 // Set comparison value of compare operation
-		compare.SetScalarValue(mvScalar)
+		operationCompare.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := compare.Execute()).IsFail():
+		if (res := operationCompare.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Compare.')
 			break
 

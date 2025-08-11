@@ -49,19 +49,19 @@ def main():
 		layerSource.Clear()
 
 		# HOG 객체 생성 // Create HOG object
-		hog = CHistogramsOfOrientedGradients()
+		histogramsOfOrientedGradients = CHistogramsOfOrientedGradients()
 
 		# ROI 범위 설정 // Set the ROI value
 		flrROI = CFLRect[int](200, 10, 300, 200)
 
 		# Source 이미지 설정 // Set the source image
-		hog.SetSourceImage(fliSourceImage)
+		histogramsOfOrientedGradients.SetSourceImage(fliSourceImage)
 
 		# Source ROI 설정 // Set the Source ROI
-		hog.SetSourceROI(flrROI)
+		histogramsOfOrientedGradients.SetSourceROI(flrROI)
 
 		# 알고리즘 수행 // Execute the algorithm
-		if (res := hog.Execute()).IsFail():
+		if (res := histogramsOfOrientedGradients.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Histograms Of Oriented Gradients.')
 			break
 
@@ -70,7 +70,7 @@ def main():
 
 		# 피크 벡터 추출 // Get Peak Vectors
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := hog.GetPeakVectorsFigure(0,flfaPeakVectors)[0]).IsFail():
+		if (res := histogramsOfOrientedGradients.GetPeakVectorsFigure(0,flfaPeakVectors)[0]).IsFail():
 			ErrorPrint(res, 'Failed to get result.')
 			break
 

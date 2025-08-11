@@ -102,18 +102,18 @@ def main():
 			break
 		
 		# COperationCompare 객체 생성 // Create COperationCompare object
-		compare = COperationCompare()
+		operationCompare = COperationCompare()
 		# Source 이미지 설정 // Set source image
-		compare.SetSourceImage(fliSourceImage)
+		operationCompare.SetSourceImage(fliSourceImage)
 		# Operand 이미지 설정 // Set operand image
-		compare.SetOperandImage(fliOperandImage)
+		operationCompare.SetOperandImage(fliOperandImage)
 		# Destination 이미지 설정 // Set destination image
-		compare.SetDestinationImage(fliDestinationImage)
+		operationCompare.SetDestinationImage(fliDestinationImage)
 		# Image Operation 모드로 설정 // Set operation mode to image
-		compare.SetOperationSource(EOperationSource.Image)
+		operationCompare.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := compare.Execute()).IsFail():
+		if (res := operationCompare.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Compare.')
 			break
 

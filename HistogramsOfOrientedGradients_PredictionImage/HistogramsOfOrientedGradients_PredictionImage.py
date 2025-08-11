@@ -72,31 +72,31 @@ def main():
 			break
 
 		# HOG 객체 생성 // Create HOG object
-		hog = CHistogramsOfOrientedGradients()
+		histogramsOfOrientedGradients = CHistogramsOfOrientedGradients()
 
 		# ROI 범위 설정 // Set the ROI value
 		flrROI = CFLRect[int](200, 10, 300, 200)
 
 		# Source 이미지 설정 // Set the source image
-		hog.SetSourceImage(fliSourceImage)
+		histogramsOfOrientedGradients.SetSourceImage(fliSourceImage)
 
 		# Source ROI 설정 // Set the Source ROI
-		hog.SetSourceROI(flrROI)
+		histogramsOfOrientedGradients.SetSourceROI(flrROI)
 
 		# Destination 이미지 설정 // Set destination image
-		hog.SetDestinationImage(fliDestinationImage)
+		histogramsOfOrientedGradients.SetDestinationImage(fliDestinationImage)
 
 		# Cell Size 설정 // Set Cell Size
-		hog.SetCellSize(4)
+		histogramsOfOrientedGradients.SetCellSize(4)
 
 		# Block Size 설정 // Set Block Size
-		hog.SetBlockSize(3)
+		histogramsOfOrientedGradients.SetBlockSize(3)
 
 		# 비주얼 출력 타입 예측 이미지로 설정 // Set Prediction Image to visual result type
-		hog.SetVisualResultType(CHistogramsOfOrientedGradients.EVisualResultType.PredictionImage)
+		histogramsOfOrientedGradients.SetVisualResultType(CHistogramsOfOrientedGradients.EVisualResultType.PredictionImage)
 
 		# 알고리즘 수행 // Execute the algorithm
-		if (res := hog.Execute()).IsFail():
+		if (res := histogramsOfOrientedGradients.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Histograms Of Oriented Gradients.')
 			break
 
