@@ -10,6 +10,7 @@ CLibraryUtilities.Initialize()
 def main():
 
 	# 이미지 객체 선언 // Declare the image object
+	fliLearnImage = CFLImage()
 	fliRecognitionImage = CFLImage()
 	fliRecognitionImageUnicode = CFLImage()
 
@@ -18,8 +19,13 @@ def main():
 	viewImageRecUnicode = CGUIViewImage()
 
 	while True:
+
+		# Learn 이미지 로드 // Load the learn image
+		if (res := fliLearnImage.Load('../../ExampleImages/OCR/FourthLogic Inc_Learn.flif')).IsFail():
+			ErrorPrint(res, 'Failed to load the image file.')
+			break
 		
-		# Recognition 이미지 로드 // Load the learn image
+		# Recognition 이미지 로드 // Load the recognition image
 		if (res := fliRecognitionImage.Load('../../ExampleImages/OCR/OCR_Recognition.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
@@ -29,7 +35,7 @@ def main():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Recognition 이미지 뷰 생성 // Create learn image view
+		# Recognition 이미지 뷰 생성 // Create the recognition image view
 		if (res := viewImageRec.Create(100, 0, 550, 480)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
@@ -71,28 +77,71 @@ def main():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
+		# 학습을 진행할 OCR 객체 생성 // Create OCR object to Learn
+		ocrLearn = COCR()
+
+		# 문자를 학습할 이미지 설정
+		if (res := ocrLearn.SetLearnImage(fliLearnImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set Learn Image.')
+			break
+
+		# 학습할 이미지에 저장되어있는 Figure 학습
+		if (res := ocrLearn.Learn()).IsFail():
+			ErrorPrint(res, 'Failed to learn.')
+			break
+
+		# 인식할 문자의 각도 범위를 설정
+		if (res := ocrLearn.SetRecognizingAngleTolerance(9.0)).IsFail():
+			ErrorPrint(res, 'Failed to set recognizing angle tolerance.')
+			break
+
+		# 인식할 문자의 색상을 설정
+		if (res := ocrLearn.SetRecognizingCharacterColorType(ECharacterColorType.All)).IsFail():
+			ErrorPrint(res, 'Failed to set recognizing character color.')
+			break
+
+		# 인식할 최소 점수를 설정
+		if (res := ocrLearn.SetRecognizingMinimumScore(0.7)).IsFail():
+			ErrorPrint(res, 'Failed to set minimum score.')
+			break
+
+		# 인식할 최대 개수를 설정
+		if (res := ocrLearn.SetRecognizingMaximumCharacterCount(20)).IsFail():
+			ErrorPrint(res, 'Failed to set maximum character count.')
+			break
+
+		# 인식할 문자의 유니코드 여부를 설정
+		if (res := ocrLearn.EnableRecognizingUnicodeByteCharacter(True)).IsFail():
+			ErrorPrint(res, 'Failed to Enable unicode byte character.')
+			break
+
+		# 학습 정보 파일 및 입력 파라미터를 저장
+		if (res := ocrLearn.Save('../../ExampleImages/OCR/OCR_FourthLogic.flocr')).IsFail():
+			ErrorPrint(res, 'Failed to save learned file.')
+			break
+
 		# 객체 생성 // Create object
-		ocr = COCR()
+		ocrLoad = COCR()
 
 		# 학습 정보 파일을 로드
-		ocr.Load("../../ExampleImages/OCR/OCR_FourthLogic.flocr")
+		ocrLoad.Load("../../ExampleImages/OCR/OCR_FourthLogic.flocr")
 
 		# Recognition 이미지 설정 // Set the recognition image
-		ocr.SetSourceImage(fliRecognitionImage)
+		ocrLoad.SetSourceImage(fliRecognitionImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := ocr.Execute()).IsFail():
+		if (res := ocrLoad.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# 찾은 문자의 개수를 받아오는 함수
-		i64ResultCount = ocr.GetResultCount()
+		i64ResultCount = ocrLoad.GetResultCount()
 
 		# 찾은 문자의 정보를 받아올 컨테이너
 		resultChar = COCR.COCRRecognitionCharacterInfo()
 
 		for i in range(i64ResultCount):
-			ocr.GetResultRecognizedCharactersInfo(i, resultChar)
+			ocrLoad.GetResultRecognizedCharactersInfo(i, resultChar)
 			flsResultString = ''
 			flsResultName = resultChar.flfaCharacter.GetName()
 			i32Score = int(resultChar.f64Score * 100.0)
@@ -110,21 +159,21 @@ def main():
 				break
 
 		# Recognition 이미지 설정 // Set the recognition image
-		ocr.SetSourceImage(fliRecognitionImageUnicode)
+		ocrLoad.SetSourceImage(fliRecognitionImageUnicode)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := ocr.Execute()).IsFail():
+		if (res := ocrLoad.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# 찾은 문자의 개수를 받아오는 함수
-		i64ResultCount = ocr.GetResultCount()
+		i64ResultCount = ocrLoad.GetResultCount()
 
 		# 찾은 문자의 정보를 받아올 컨테이너
 		resultChar = COCR.COCRRecognitionCharacterInfo()
 
 		for i in range(i64ResultCount):
-			ocr.GetResultRecognizedCharactersInfo(i, resultChar)
+			ocrLoad.GetResultRecognizedCharactersInfo(i, resultChar)
 			flsResultString = ''
 			flsResultName = resultChar.flfaCharacter.GetName()
 			i32Score = int(resultChar.f64Score * 100.0)
