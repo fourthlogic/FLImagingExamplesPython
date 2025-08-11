@@ -117,7 +117,7 @@ def main():
 		photometricStereo.SetCalibrationImage(fliCalibrationImage)
 
 		# Calibration 데이터 설정 # Set Calibration Settings
-		cFLCircle = CFLCircle[Double](386.439657, 346.491239, 259.998140, 0.000000, 0.000000, 360.000000, EArcClosingMethod.EachOther)
+		cFLCircle = CFLCircle[Double](117.210526, 104.842105, 78.736842, 0.000000, 0.000000, 360.000000, EArcClosingMethod.EachOther)
 
 		photometricStereo.SetCalibrationCircleROI(cFLCircle)
 
@@ -134,7 +134,7 @@ def main():
 		photometricStereo.SetReconstructionMode(CPhotometricStereo3D.EReconstructionMode.Poisson_FP32)
 
 		# Valid 픽셀의 기준 설정 # Set valid pixel ratio
-		photometricStereo.SetValidPixelThreshold(0.125)
+		photometricStereo.SetValidPixelThreshold(0.25)
 		
 		# Angle Degrees 동작 방식으로 설정 # Set operation method as angle degrees
 		cMatTemp = CMatrix[Double](3, 3)
@@ -228,7 +228,7 @@ def main():
 
 		tp3dFrom = TPoint3[Single](f64CenterX, f64CenterY, f64CenterZ)
 
-		f64MulNum = 2000
+		f64MulNum = 800
 
 		for i in range(i32CalibPageNum):
 			strText = ""
