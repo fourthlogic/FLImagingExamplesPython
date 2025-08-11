@@ -25,6 +25,9 @@ def main():
 		#알고리즘 객체 생성 // declare algorithm instance
 		pointCloudUpsamplerPoisson3D = CPointCloudUpsamplerPoisson3D()
 
+		view3DSrc.SetTopologyType(ETopologyType3D.PointCloud)
+		view3DDst.SetTopologyType(ETopologyType3D.PointCloud)
+
 		# 3D 뷰와 연결이 유지된 객체 생성 // Declare the object connected to 3D view
 		view3DSrc.PushObject(CFL3DObject())
 		viewObjectSrc = view3DSrc.GetView3DObject(0)
@@ -53,18 +56,13 @@ def main():
 		if (res := pointCloudUpsamplerPoisson3D.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
-		
-		#출력 뷰의 시점을 계산 // Calculate the viewpoint of destination view
-
-		viewObjectDst.SetTopologyType(ETopologyType3D.PointCloud)
-		viewObjectSrc.SetTopologyType(ETopologyType3D.PointCloud)
-
 		viewObjectSrc.UpdateAll()
 		viewObjectDst.UpdateAll()
 
 		view3DSrc.SynchronizePointOfView(view3DDst)
 		view3DSrc.SynchronizeWindow(view3DDst)
-
+		
+		#출력 뷰의 시점을 계산 // Calculate the viewpoint of destination view
 		cam = CFL3DCamera()
 
 		cam.SetProjectionType(E3DCameraProjectionType.Perspective)
