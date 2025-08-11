@@ -109,42 +109,42 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 		
-		# Rotation 객체 생성 # Create rotation object
-		Rotation = CRotation()
+		# rotation 객체 생성 # Create rotation object
+		rotation = CRotation()
 		# Source 이미지 설정 # set source image
-		Rotation.SetSourceImage(fliDstImage[0])
-		# Rotation 각도 설정 # Set Angle
-		Rotation.SetAngle(30.0)
+		rotation.SetSourceImage(fliDstImage[0])
+		# rotation 각도 설정 # Set Angle
+		rotation.SetAngle(30.0)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := Rotation.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Rotation.')
+		if (res := rotation.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute rotation.')
 			break
 
 		mvBlankColor = CMultiVar[Double](0, 0, 0)
 
 		# Source 이미지 설정 # set source image
-		Rotation.SetSourceImage(fliSrcImage)
+		rotation.SetSourceImage(fliSrcImage)
 		# Destination 이미지 설정 # set destination image
-		Rotation.SetDestinationImage(fliDstImage[1])
+		rotation.SetDestinationImage(fliDstImage[1])
 		# 공백 영역을 지정한 색으로 채우도록 설정 # Set fill blank color mode
-		Rotation.EnableFillBlankColorMode(True)
+		rotation.EnableFillBlankColorMode(True)
 		# 공백 영역 색상 지정 # Set blank color value
-		Rotation.SetBlankColor(mvBlankColor)
+		rotation.SetBlankColor(mvBlankColor)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := Rotation.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Rotation.')
+		if (res := rotation.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute rotation.')
 			break
 
 		# Destination 이미지 설정 # set destination image
-		Rotation.SetDestinationImage(fliDstImage[2])
-		# Rotation 변환 방식 픽셀로 설정 # Set Resize mode
-		Rotation.SetResizeMethod(EResizeMethod.Resize)
+		rotation.SetDestinationImage(fliDstImage[2])
+		# rotation 변환 방식 픽셀로 설정 # Set Resize mode
+		rotation.SetResizeMethod(EResizeMethod.Resize)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := Rotation.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Rotation.')
+		if (res := rotation.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute rotation.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display

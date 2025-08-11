@@ -60,17 +60,17 @@ def main():
 			break
 
 		# Harmonic Interpolation 객체 생성 // Create Harmonic Interpolation object
-		harmo = CHarmonicInterpolation()
+		harmonicInterpolation = CHarmonicInterpolation()
 
 		# Source 이미지 설정 // Set the source image
-		harmo.SetSourceImage(fliSrcImage)
+		harmonicInterpolation.SetSourceImage(fliSrcImage)
 		# Destination 이미지 설정 // Set the destination image
-		harmo.SetDestinationImage(fliDstImage)
+		harmonicInterpolation.SetDestinationImage(fliDstImage)
 		# 정밀도 설정 // Set the precision value
-		harmo.SetPrecision(0.001);
+		harmonicInterpolation.SetPrecision(0.001);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := (harmo.Execute())).IsFail():
+		if (res := (harmonicInterpolation.Execute())).IsFail():
 			ErrorPrint(res, 'Failed to execute Harmonic Interpolation.')
 			break
 
