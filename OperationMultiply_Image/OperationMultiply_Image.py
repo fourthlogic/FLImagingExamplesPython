@@ -95,22 +95,22 @@ def main():
 			break
 
 		# Multiply 객체 생성 // Create Multiply object
-		multiply = COperationMultiply()
+		operationMultiply = COperationMultiply()
 
 		# Source 이미지 설정 // Set the source image
-		multiply.SetSourceImage(fliSourceImage)
+		operationMultiply.SetSourceImage(fliSourceImage)
 
 		# Operand 이미지 설정 // Set the operand image
-		multiply.SetOperandImage(fliOperandImage)
+		operationMultiply.SetOperandImage(fliOperandImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		multiply.SetDestinationImage(fliDestinationImage)
+		operationMultiply.SetDestinationImage(fliDestinationImage)
 
 		# 연산 방식 설정 // Set operation source
-		multiply.SetOperationSource(EOperationSource.Image)
+		operationMultiply.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := multiply.Execute()).IsFail():
+		if (res := operationMultiply.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Multiply.')
 			break
 

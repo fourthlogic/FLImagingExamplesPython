@@ -95,23 +95,23 @@ def main():
 			break
 
 		# Bit Shift 객체 생성 // Create Bit Shift object
-		shift = COperationBitShift()
+		operationBitShift = COperationBitShift()
 
 		# Source 이미지 설정 // Set the source image
-		shift.SetSourceImage(fliSourceImage)
+		operationBitShift.SetSourceImage(fliSourceImage)
 
 		# Operand 이미지 설정 // Set the operand image
-		shift.SetOperandImage(fliOperandImage)
+		operationBitShift.SetOperandImage(fliOperandImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		shift.SetDestinationImage(fliDestinationImage)
+		operationBitShift.SetDestinationImage(fliDestinationImage)
 
 		# 연산 방식 설정 // Set operation source
-		shift.SetOperationSource(EOperationSource.Image)
+		operationBitShift.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := shift.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Bit Shift.')
+		if (res := operationBitShift.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute bit shift.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display

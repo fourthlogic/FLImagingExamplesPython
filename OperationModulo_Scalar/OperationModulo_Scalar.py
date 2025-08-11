@@ -93,38 +93,38 @@ def main():
 			break
 
 		# Modulo 객체 생성 // Create Modulo object
-		modulo = COperationModulo()
+		operationModulo = COperationModulo()
 
 		# Source 이미지 설정 // Set the source image
-		modulo.SetSourceImage(fliSourceImage)
+		operationModulo.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		modulo.SetDestinationImage(fliDestinationImages[0])
+		operationModulo.SetDestinationImage(fliDestinationImages[0])
 
 		# 연산 방식 설정 // Set operation source
-		modulo.SetOperationSource(EOperationSource.Scalar);
+		operationModulo.SetOperationSource(EOperationSource.Scalar);
 		
 		# Modulo 값 설정 // Set Modulo value
 		mvScalarValue1 = CMultiVar[Double](50, 50, 50);
-		modulo.SetScalarValue(mvScalarValue1);
+		operationModulo.SetScalarValue(mvScalarValue1);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := modulo.Execute()).IsFail():
+		if (res := operationModulo.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Modulo.')
 			break
 
 		# Destination 이미지 설정 // Set the destination image
-		modulo.SetDestinationImage(fliDestinationImages[1])
+		operationModulo.SetDestinationImage(fliDestinationImages[1])
 
 		# 연산 방식 설정 // Set operation source
-		modulo.SetOperationSource(EOperationSource.Scalar);
+		operationModulo.SetOperationSource(EOperationSource.Scalar);
 		
 		# Modulo 값 설정 // Set Modulo value
 		mvScalarValue2 = CMultiVar[Double](200, 200, 200);
-		modulo.SetScalarValue(mvScalarValue2);
+		operationModulo.SetScalarValue(mvScalarValue2);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := modulo.Execute()).IsFail():
+		if (res := operationModulo.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Modulo.')
 			break
 

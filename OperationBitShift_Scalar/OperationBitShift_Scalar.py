@@ -93,44 +93,44 @@ def main():
 			break
 
 		# Bit Shift 객체 생성 // Create Bit Shift object
-		shift = COperationBitShift()
+		operationBitShift = COperationBitShift()
 
 		# Source 이미지 설정 // Set the source image
-		shift.SetSourceImage(fliSourceImage)
+		operationBitShift.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		shift.SetDestinationImage(fliDestinationImages[0])
+		operationBitShift.SetDestinationImage(fliDestinationImages[0])
 
 		# 연산 방식 설정 // Set operation source
-		shift.SetOperationSource(EOperationSource.Scalar);
+		operationBitShift.SetOperationSource(EOperationSource.Scalar);
 		
 		# Shift 방향 설정
-		shift.SetShiftDirection(COperationBitShift.EShiftDirection.Left);
+		operationBitShift.SetShiftDirection(COperationBitShift.EShiftDirection.Left);
 
 		# Shift 값 설정 // Set Shift value
 		mvScalarValue1 = CMultiVar[Double](1.0, 1.0, 1.0);
-		shift.SetScalarValue(mvScalarValue1);
+		operationBitShift.SetScalarValue(mvScalarValue1);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := shift.Execute()).IsFail():
+		if (res := operationBitShift.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute bit shift.')
 			break
 
 		# Destination 이미지 설정 // Set the destination image
-		shift.SetDestinationImage(fliDestinationImages[1])
+		operationBitShift.SetDestinationImage(fliDestinationImages[1])
 
 		# 연산 방식 설정 // Set operation source
-		shift.SetOperationSource(EOperationSource.Scalar);
+		operationBitShift.SetOperationSource(EOperationSource.Scalar);
 		
 		# Shift 방향 설정
-		shift.SetShiftDirection(COperationBitShift.EShiftDirection.Right);
+		operationBitShift.SetShiftDirection(COperationBitShift.EShiftDirection.Right);
 
 		# Shift 값 설정 // Set Shift value
 		mvScalarValue2 = CMultiVar[Double](2.0, 2.0, 2.0);
-		shift.SetScalarValue(mvScalarValue2);
+		operationBitShift.SetScalarValue(mvScalarValue2);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := shift.Execute()).IsFail():
+		if (res := operationBitShift.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute bit shift.')
 			break
 

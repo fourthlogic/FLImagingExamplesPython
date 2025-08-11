@@ -93,38 +93,38 @@ def main():
 			break
 
 		# Multiply 객체 생성 // Create Multiply object
-		multiply = COperationMultiply()
+		operationMultiply = COperationMultiply()
 
 		# Source 이미지 설정 // Set the source image
-		multiply.SetSourceImage(fliSourceImage)
+		operationMultiply.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		multiply.SetDestinationImage(fliDestinationImages[0])
+		operationMultiply.SetDestinationImage(fliDestinationImages[0])
 
 		# 연산 방식 설정 // Set operation source
-		multiply.SetOperationSource(EOperationSource.Scalar);
+		operationMultiply.SetOperationSource(EOperationSource.Scalar);
 		
 		# Multiply 값 설정 // Set Multiply value
 		mvScalarValue1 = CMultiVar[Double](1.5, 1.5, 1.5);
-		multiply.SetScalarValue(mvScalarValue1);
+		operationMultiply.SetScalarValue(mvScalarValue1);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := multiply.Execute()).IsFail():
+		if (res := operationMultiply.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Multiply.')
 			break
 
 		# Destination 이미지 설정 // Set the destination image
-		multiply.SetDestinationImage(fliDestinationImages[1])
+		operationMultiply.SetDestinationImage(fliDestinationImages[1])
 
 		# 연산 방식 설정 // Set operation source
-		multiply.SetOperationSource(EOperationSource.Scalar);
+		operationMultiply.SetOperationSource(EOperationSource.Scalar);
 		
 		# Multiply 값 설정 // Set Multiply value
 		mvScalarValue2 = CMultiVar[Double](2, 2, 2);
-		multiply.SetScalarValue(mvScalarValue2);
+		operationMultiply.SetScalarValue(mvScalarValue2);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := multiply.Execute()).IsFail():
+		if (res := operationMultiply.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Multiply.')
 			break
 

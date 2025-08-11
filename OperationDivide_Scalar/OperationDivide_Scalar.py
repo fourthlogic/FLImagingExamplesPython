@@ -93,38 +93,38 @@ def main():
 			break
 
 		# Divide 객체 생성 // Create Divide object
-		divide = COperationDivide()
+		operationDivide = COperationDivide()
 
 		# Source 이미지 설정 // Set the source image
-		divide.SetSourceImage(fliSourceImage)
+		operationDivide.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		divide.SetDestinationImage(fliDestinationImages[0])
+		operationDivide.SetDestinationImage(fliDestinationImages[0])
 
 		# 연산 방식 설정 // Set operation source
-		divide.SetOperationSource(EOperationSource.Scalar);
+		operationDivide.SetOperationSource(EOperationSource.Scalar);
 		
 		# Divide 값 설정 // Set Divide value
 		mvScalarValue1 = CMultiVar[Double](1.5, 1.5, 1.5);
-		divide.SetScalarValue(mvScalarValue1);
+		operationDivide.SetScalarValue(mvScalarValue1);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := divide.Execute()).IsFail():
+		if (res := operationDivide.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Divide.')
 			break
 
 		# Destination 이미지 설정 // Set the destination image
-		divide.SetDestinationImage(fliDestinationImages[1])
+		operationDivide.SetDestinationImage(fliDestinationImages[1])
 
 		# 연산 방식 설정 // Set operation source
-		divide.SetOperationSource(EOperationSource.Scalar);
+		operationDivide.SetOperationSource(EOperationSource.Scalar);
 		
 		# Divide 값 설정 // Set Divide value
 		mvScalarValue2 = CMultiVar[Double](3.0, 3.0, 3.0);
-		divide.SetScalarValue(mvScalarValue2);
+		operationDivide.SetScalarValue(mvScalarValue2);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := divide.Execute()).IsFail():
+		if (res := operationDivide.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Divide.')
 			break
 

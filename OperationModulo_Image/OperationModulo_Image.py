@@ -95,22 +95,22 @@ def main():
 			break
 
 		# Modulo 객체 생성 // Create Modulo object
-		modulo = COperationModulo()
+		operationModulo = COperationModulo()
 
 		# Source 이미지 설정 // Set the source image
-		modulo.SetSourceImage(fliSourceImage)
+		operationModulo.SetSourceImage(fliSourceImage)
 
 		# Operand 이미지 설정 // Set the operand image
-		modulo.SetOperandImage(fliOperandImage)
+		operationModulo.SetOperandImage(fliOperandImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		modulo.SetDestinationImage(fliDestinationImage)
+		operationModulo.SetDestinationImage(fliDestinationImage)
 
 		# 연산 방식 설정 // Set operation source
-		modulo.SetOperationSource(EOperationSource.Image)
+		operationModulo.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := modulo.Execute()).IsFail():
+		if (res := operationModulo.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Modulo.')
 			break
 

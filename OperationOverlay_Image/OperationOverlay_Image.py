@@ -95,19 +95,19 @@ def main():
 			break
 
 		# Overlay 객체 생성 // Create Overlay object
-		overlay = COperationOverlay()
+		operationOverlay = COperationOverlay()
 
 		# Source 이미지 설정 // Set the source image
-		overlay.SetSourceImage(fliSourceImage)
+		operationOverlay.SetSourceImage(fliSourceImage)
 
 		# Operand 이미지 설정 // Set the operand image
-		overlay.SetOperandImage(fliOperandImage)
+		operationOverlay.SetOperandImage(fliOperandImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		overlay.SetDestinationImage(fliDestinationImage)
+		operationOverlay.SetDestinationImage(fliDestinationImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := overlay.Execute()).IsFail():
+		if (res := operationOverlay.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute overlay.')
 			break
 
