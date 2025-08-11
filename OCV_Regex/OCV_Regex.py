@@ -128,9 +128,20 @@ def main():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
-		if (res := layer1.DrawTextCanvas(CFLPoint[float](0, 0), "Verify" if ocv.GetResultVerificationState() == COCV.EVerificationState.OK else "Fail", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
-				ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
+		if (res := layer1.DrawFigureImage(flfaROI1, EColor.LIME, 5)).IsFail():
+			ErrorPrint(res, 'Failed to draw Source ROI')
+			break
+
+		for i in range(flfaROI1.GetCount()):
+			flqROI = CFLQuad[float](flfaROI1.GetAt(i))
+
+			if (res := layer1.DrawTextImage(flqROI.flpPoints[0], flqROI.GetName(), EColor.LIME, EColor.BLACK, 20, False, 0.0, EGUIViewImageTextAlignment.LEFT_BOTTOM)).IsFail():
+				ErrorPrint(res, 'Failed to draw text')
 				break
+
+		if (res := layer1.DrawTextCanvas(CFLPoint[float](0, 0), "Verify" if ocv.GetResultVerificationState() == COCV.EVerificationState.OK else "Fail", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+			ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
+			break
 
 		# 찾은 문자의 개수를 받아오는 함수
 		i64ResultCount = ocv.GetResultCount()
@@ -183,9 +194,20 @@ def main():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
-		if (res := layer2.DrawTextCanvas(CFLPoint[float](0, 0), "Verify" if ocv.GetResultVerificationState() == COCV.EVerificationState.OK else "Fail", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
-				ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
+		if (res := layer2.DrawFigureImage(flfaROI2, EColor.LIME, 5)).IsFail():
+			ErrorPrint(res, 'Failed to draw Source ROI')
+			break
+
+		for i in range(flfaROI2.GetCount()):
+			flqROI = CFLQuad[float](flfaROI2.GetAt(i))
+
+			if (res := layer2.DrawTextImage(flqROI.flpPoints[0], flqROI.GetName(), EColor.LIME, EColor.BLACK, 20, False, 0.0, EGUIViewImageTextAlignment.LEFT_BOTTOM)).IsFail():
+				ErrorPrint(res, 'Failed to draw text')
 				break
+
+		if (res := layer2.DrawTextCanvas(CFLPoint[float](0, 0), "Verify" if ocv.GetResultVerificationState() == COCV.EVerificationState.OK else "Fail", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+			ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
+			break
 
 		# 찾은 문자의 개수를 받아오는 함수
 		i64ResultCount = ocv.GetResultCount()

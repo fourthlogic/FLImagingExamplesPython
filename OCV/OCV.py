@@ -141,9 +141,17 @@ def main():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
+		if (res := layer1.DrawFigureImage(flqROI1, EColor.LIME, 5)).IsFail():
+			ErrorPrint(res, 'Failed to draw Source ROI')
+			break
+
+		if (res := layer1.DrawTextImage(flqROI1.flpPoints[0], flqROI1.GetName(), EColor.LIME, EColor.BLACK, 20, False, 0.0, EGUIViewImageTextAlignment.LEFT_BOTTOM)).IsFail():
+			ErrorPrint(res, 'Failed to draw text')
+			break
+
 		if (res := layer1.DrawTextCanvas(CFLPoint[float](0, 0), "Verify" if ocv.GetResultVerificationState() == COCV.EVerificationState.OK else "Fail", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
-				ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
-				break
+			ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
+			break
 
 		# 찾은 문자의 개수를 받아오는 함수
 		i64ResultCount = ocv.GetResultCount()
@@ -196,9 +204,17 @@ def main():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
+		if (res := layer2.DrawFigureImage(flqROI2, EColor.LIME, 5)).IsFail():
+			ErrorPrint(res, 'Failed to draw Source ROI')
+			break
+
+		if (res := layer2.DrawTextImage(flqROI2.flpPoints[0], flqROI2.GetName(), EColor.LIME, EColor.BLACK, 20, False, 0.0, EGUIViewImageTextAlignment.LEFT_BOTTOM)).IsFail():
+			ErrorPrint(res, 'Failed to draw text')
+			break
+
 		if (res := layer2.DrawTextCanvas(CFLPoint[float](0, 0), "Verify" if ocv.GetResultVerificationState() == COCV.EVerificationState.OK else "Fail", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
-				ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
-				break
+			ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
+			break
 
 		# 찾은 문자의 개수를 받아오는 함수
 		i64ResultCount = ocv.GetResultCount()
@@ -251,9 +267,17 @@ def main():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
+		if (res := layer3.DrawFigureImage(flrROI3, EColor.LIME, 5)).IsFail():
+			ErrorPrint(res, 'Failed to draw Source ROI')
+			break
+
+		if (res := layer3.DrawTextImage(CFLPoint[float](flrROI3.left, flrROI3.top), flrROI3.GetName(), EColor.LIME, EColor.BLACK, 20, False, 0.0, EGUIViewImageTextAlignment.LEFT_BOTTOM)).IsFail():
+			ErrorPrint(res, 'Failed to draw text')
+			break
+
 		if (res := layer3.DrawTextCanvas(CFLPoint[float](0, 0), "Verify" if ocv.GetResultVerificationState() == COCV.EVerificationState.OK else "Fail", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
-				ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
-				break
+			ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
+			break
 
 		# 찾은 문자의 개수를 받아오는 함수
 		i64ResultCount = ocv.GetResultCount()
