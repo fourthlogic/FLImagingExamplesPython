@@ -28,7 +28,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 # Load the source image
-		if (res := fliISrcImage.Load('../../ExampleImages/Integral/Lake.flif')).IsFail():
+		if (res := fliISrcImage.Load('../../ExampleImages/integral/Lake.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
@@ -73,28 +73,28 @@ def main():
 		
 		mvCoefficients = CMultiVar[Double](0, 2.1, 0)
 
-		# Integral 객체 생성 # Create Integral object
-		Integral = CIntegral()
+		# Integral 객체 생성 # Create integral object
+		integral = CIntegral()
 
 		# Source 이미지 설정 # Set source image 
-		Integral.SetSourceImage(fliISrcImage)
+		integral.SetSourceImage(fliISrcImage)
 
 		# Destination 이미지 설정 # Set destination image
-		Integral.SetDestinationImage(fliIDstImage)
+		integral.SetDestinationImage(fliIDstImage)
 
 		# 적분합 자료형 타입을 설정합니다. # Set integral data type.
-		Integral.SetDataType(CIntegral.EDataType.Uint32)
+		integral.SetDataType(CIntegral.EDataType.Uint32)
 
-		# Integral 누적합 연산 모드 설정 # Set integration operation method.
+		# integral 누적합 연산 모드 설정 # Set integration operation method.
 		# ECalculationMode_Sum : ax^2 + bx + c 다항식 방식의 합 # ECalculationMode_Sum : Sum sum
-		Integral.SetCalculationMode(CIntegral.ECalculationMode.Sum)
+		integral.SetCalculationMode(CIntegral.ECalculationMode.Sum)
 
 		# ax^2 + bx + c 계수 설정(a = 0, b = 2.1, c = 0) # ax^2 + bx + c Setting the coefficient (a = 0, b = 2.1, c = 0)
-		Integral.SetCoefficients(mvCoefficients)
+		integral.SetCoefficients(mvCoefficients)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := Integral.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Integral.')
+		if (res := integral.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute integral.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
