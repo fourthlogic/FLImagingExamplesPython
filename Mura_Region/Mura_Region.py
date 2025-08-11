@@ -58,33 +58,33 @@ def main():
             break
 
         # Mura 객체 생성 // Create Mura object
-        sMura = CMura()
+        mura = CMura()
 
         # 처리할 이미지 설정 // Set the image to process
-        sMura.SetSourceImage(fliImageSrc)
+        mura.SetSourceImage(fliImageSrc)
         # Auto Threshold 모드 설정 // Set auto threshold mode
-        sMura.EnableAutoThresholdMode(False)
+        mura.EnableAutoThresholdMode(False)
         # Kernel Size Rate 설정 // Set kernel size rate
-        sMura.SetKernelSizeRate(1)
+        mura.SetKernelSizeRate(1)
         # Mura Color Type 설정 // Set mura color type
-        sMura.SetMuraColorType(CMura.EMuraColorType.BlackOnWhite)
+        mura.SetMuraColorType(CMura.EMuraColorType.BlackOnWhite)
         # 논리 조건 설정 // Set logical condition
-        sMura.SetLogicalCondition(ELogicalCondition.GreaterEqual)
+        mura.SetLogicalCondition(ELogicalCondition.GreaterEqual)
 
         # 임계값 설정 // Set thresholds
         mvF64Threshold = CMultiVar[Double](10, 9, 9)
-        sMura.SetThreshold(mvF64Threshold)
+        mura.SetThreshold(mvF64Threshold)
 
         # 채널 논리 조건 설정 // Set logical condition for channels
-        sMura.SetLogicalConditionOfChannels(CBlob.ELogicalConditionOfChannels.Or)
+        mura.SetLogicalConditionOfChannels(CBlob.ELogicalConditionOfChannels.Or)
 
         # 알고리즘 실행 // Execute algorithm
-        if (res := sMura.Execute()).IsFail():
+        if (res := mura.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute Mura.")
             break
 
         # 결과 이미지 얻기 // Get result image
-        sMura.GetResultMuraImage(fliImageDst)
+        mura.GetResultMuraImage(fliImageDst)
 
         # 결과 이미지 디스플레이 // Display result image
         if (res := viewImageDst.SetImagePtr(fliImageDst))[0].IsFail():
@@ -96,12 +96,12 @@ def main():
             break
 
         # 컨투어 결과 타입 설정 // Set contour result type
-        sMura.SetContourResultType(CBlob.EContourResultType.Perforated)
+        mura.SetContourResultType(CBlob.EContourResultType.Perforated)
 
         # 컨투어 결과 얻기 // Get contour result
         flfaContours = CFLFigureArray()
 
-        if (res := sMura.GetResultContours(flfaContours)[0]).IsFail():
+        if (res := mura.GetResultContours(flfaContours)[0]).IsFail():
             ErrorPrint(res, "Failed to get boundary rects from the Mura object.")
             break
 

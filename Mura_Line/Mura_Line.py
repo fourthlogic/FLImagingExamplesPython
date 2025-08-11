@@ -60,27 +60,27 @@ def main():
             break
 
         # Mura 객체 생성 // Create Mura object
-        sMura = CMura()
+        mura = CMura()
         # 처리할 이미지 설정 // Set the image to process
-        sMura.SetSourceImage(fliImageSrc)
+        mura.SetSourceImage(fliImageSrc)
         # 자동 임계값 모드 비활성화 // Disable auto threshold mode
-        sMura.EnableAutoThresholdMode(False)
+        mura.EnableAutoThresholdMode(False)
         # 커널 크기 비율 설정 // Set kernel size rate
-        sMura.SetKernelSizeRate(0.25)
+        mura.SetKernelSizeRate(0.25)
         # Mura 색상 타입 설정 // Set Mura color type
-        sMura.SetMuraColorType(CMura.EMuraColorType.BlackOnWhite)
+        mura.SetMuraColorType(CMura.EMuraColorType.BlackOnWhite)
         # 논리 조건 설정 // Set logical condition
-        sMura.SetLogicalCondition(ELogicalCondition.GreaterEqual)
+        mura.SetLogicalCondition(ELogicalCondition.GreaterEqual)
         # 임계값 설정 // Set threshold value
-        sMura.SetThreshold(0.8)
+        mura.SetThreshold(0.8)
 
         # 알고리즘 실행 // Execute algorithm
-        if (res := sMura.Execute()).IsFail():
+        if (res := mura.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute Mura.")
             break
 
         # 결과 이미지 획득 // Get result image
-        sMura.GetResultMuraImage(fliImageDst)
+        mura.GetResultMuraImage(fliImageDst)
 
         # 결과 이미지 뷰에 출력 // Display result image
         if (res := viewImageDst.SetImagePtr(fliImageDst))[0].IsFail():
@@ -93,14 +93,14 @@ def main():
             break
 
         # Mura 결과 필터링 (길이 기준) // Filter Mura results (based on long side length)
-        if (res := sMura.Filter(CMura.EFilterItem.MinimumEnclosingRectangleLongSideLength, 50, ELogicalCondition.LessEqual)).IsFail():
+        if (res := mura.Filter(CMura.EFilterItem.MinimumEnclosingRectangleLongSideLength, 50, ELogicalCondition.LessEqual)).IsFail():
             ErrorPrint(res, "Blob filtering algorithm error occurs.")
             break
 
         # 결과 컨투어 획득 // Get contour results
         flfaContours = CFLFigureArray()
 
-        if (res := sMura.GetResultContours(flfaContours)[0]).IsFail():
+        if (res := mura.GetResultContours(flfaContours)[0]).IsFail():
             ErrorPrint(res, "Failed to get boundary rects from the Mura object.")
             break
 
