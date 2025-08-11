@@ -24,7 +24,7 @@ def main():
 
 	while True:
 		# 이미지 로드 # Load image
-		if (res := fliSrcImage.Load("../../ExampleImages/DepthImageReconstructionMAPBased3D/")).IsFail():
+		if (res := fliSrcImage.Load("../../ExampleImages/DepthImageReconstruction3D/")).IsFail():
 			ErrorPrint(res, "Failed to load the image file.\n")
 			break
 		
@@ -68,7 +68,7 @@ def main():
 			break
 
 		# Focus measure bias page index 설정 # Set the focus measure bias page index
-		if (res := depthImageReconstructionMAPBased3D.SetFMBiasPageIndex(3)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetFMBiasPageIndex(0)).IsFail():
 			break
 		# Focus measure bias value 설정 # Set the Focus measure bias value
 		if (res := depthImageReconstructionMAPBased3D.SetFMBiasValue(0.02)).IsFail():
@@ -103,7 +103,7 @@ def main():
 		if (res := depthImageReconstructionMAPBased3D.SetPixelAccuracy(1.0)).IsFail():
 			break
 		# Depth Pitch 설정 # Set the depth pitch
-		if (res := depthImageReconstructionMAPBased3D.SetDepthPitch(2.0)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetDepthPitch(8.0)).IsFail():
 			break
 
 		# Destination 3D object 생성 활성화 # Enable the Destination 3D object generation

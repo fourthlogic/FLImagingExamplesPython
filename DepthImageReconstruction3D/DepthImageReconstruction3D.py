@@ -73,16 +73,16 @@ def main():
 		if (res := depthImageReconstruction3D.SetPixelAccuracy(0.1)).IsFail():
 			break
 		# Depth Pitch 설정 # Set the depth pitch
-		if (res := depthImageReconstruction3D.SetDepthPitch(0.2)).IsFail():
+		if (res := depthImageReconstruction3D.SetDepthPitch(0.8)).IsFail():
 			break
 		# Filter 설정 # Set filter
 		if (res := depthImageReconstruction3D.SetFilter(CDepthImageReconstruction3D.EFilter.FLDenoisingType1)).IsFail():
 			break
-		if (res := depthImageReconstruction3D.SetFLDenoisingKernel(7)).IsFail():
+		if (res := depthImageReconstruction3D.SetFLDenoisingKernel(9)).IsFail():
 			break
-		if (res := depthImageReconstruction3D.SetFLDenoisingSigma(15.00)).IsFail():
+		if (res := depthImageReconstruction3D.SetFLDenoisingSigma(7)).IsFail():
 			break
-		if (res := depthImageReconstruction3D.SetFLDenoisingAmplitude(15.00)).IsFail():
+		if (res := depthImageReconstruction3D.SetFLDenoisingAmplitude(30.00)).IsFail():
 			break
 		if (res := depthImageReconstruction3D.EnableGaussianInterpolation(True)).IsFail():
 			break
