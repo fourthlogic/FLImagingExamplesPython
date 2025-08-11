@@ -94,30 +94,30 @@ def main():
 			break
 
 		# OperationGreater 객체 생성 // Create OperationGreater object
-		greater = COperationGreater()
+		operationGreater = COperationGreater()
 
 		# Source 이미지 설정 // Set the source image
-		greater.SetSourceImage(fliSourceImage)
+		operationGreater.SetSourceImage(fliSourceImage)
 
 		# Operand 이미지 설정 // Set the operand image
-		greater.SetOperandImage(fliOperandImage)
+		operationGreater.SetOperandImage(fliOperandImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		greater.SetDestinationImage(fliDestinationImage)
+		operationGreater.SetDestinationImage(fliDestinationImage)
 
 		# Image Operation 모드로 설정 // Set operation mode to image
-		greater.SetOperationSource(EOperationSource.Image);
+		operationGreater.SetOperationSource(EOperationSource.Image);
 
 		# Source가 Operand보다 클 경우 값 설정 // Set output value if source is greater than operand
 		mvInRange = CMultiVar[Double](240.0)
-		greater.SetRangeValue(mvInRange)
+		operationGreater.SetRangeValue(mvInRange)
 
 		# Source가 Operand보다 작거나 같을 경우 값 설정 // Set output value if source is less than or equal to operand
 		mvOutOfRange = CMultiVar[Double](0.0)
-		greater.SetOutOfRangeValue(mvOutOfRange)
+		operationGreater.SetOutOfRangeValue(mvOutOfRange)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := greater.Execute()).IsFail():
+		if (res := operationGreater.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Greater.')
 			break
 

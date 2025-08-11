@@ -66,31 +66,31 @@ def main():
 			break
 
 		# OperationLesser 객체 생성 // Create OperationLesser object
-		lesser = COperationLesser()
+		operationLesser = COperationLesser()
 
 		# Source 이미지 설정 // Set the source image
-		lesser.SetSourceImage(fliSourceImage)
+		operationLesser.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		lesser.SetDestinationImage(fliDestinationImage)
+		operationLesser.SetDestinationImage(fliDestinationImage)
 
 		# Scalar Operation 모드로 설정 // Set operation mode to scalar
-		lesser.SetOperationSource(EOperationSource.Scalar);
+		operationLesser.SetOperationSource(EOperationSource.Scalar);
 
 		# Lesser Scalar 값 설정 // Set comparsion value of lesser operation
 		mvScalar = CMultiVar[Double](128.0)
-		lesser.SetScalarValue(mvScalar)
+		operationLesser.SetScalarValue(mvScalar)
 
 		# Source가 Operand보다 작을 경우 값 설정 // Set output value if source is lesser than operand
 		mvInRange = CMultiVar[Double](255.0)
-		lesser.SetRangeValue(mvInRange)
+		operationLesser.SetRangeValue(mvInRange)
 
 		# Source가 Operand보다 크거나 같을 경우 값 설정 // Set output value if source is greater than or equal to operand
 		mvOutOfRange = CMultiVar[Double](50.0)
-		lesser.SetOutOfRangeValue(mvOutOfRange)
+		operationLesser.SetOutOfRangeValue(mvOutOfRange)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := lesser.Execute()).IsFail():
+		if (res := operationLesser.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Lesser.')
 			break
 
