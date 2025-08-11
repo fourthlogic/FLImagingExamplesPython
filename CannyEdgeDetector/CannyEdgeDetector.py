@@ -65,16 +65,16 @@ def main():
 			break
 
 		# Canny Edge Detector 객체 생성 // Create Canny Edge Detector object
-		cannyEdge = CCannyEdgeDetector()
+		cannyEdgeDetector = CCannyEdgeDetector()
 
 		# Source 이미지 설정 // Set the source image
-		cannyEdge.SetSourceImage(fliSourceImage)
+		cannyEdgeDetector.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		cannyEdge.SetDestinationImage(fliDestinationImage)
+		cannyEdgeDetector.SetDestinationImage(fliDestinationImage)
 
 		# Gaussian 전처리 설정 // Set Gaussian preprocessing
-		cannyEdge.SetConvolutionMode(CCannyEdgeDetector.EConvolutionMode.Gaussian)
+		cannyEdgeDetector.SetConvolutionMode(CCannyEdgeDetector.EConvolutionMode.Gaussian)
 
 		# Threshold 값 // Threshold Value
 		mvThresholdValue = CMultiVar[Double]()
@@ -83,10 +83,10 @@ def main():
 		# 최대 threshold 값 입력 // Maximum threshold value
 		mvThresholdValue.PushBack(120)
 		# 최소, 최대 threshold 설정 // Set minimum, maximum threshold
-		cannyEdge.SetThreshold(mvThresholdValue)
+		cannyEdgeDetector.SetThreshold(mvThresholdValue)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := cannyEdge.Execute()).IsFail():
+		if (res := cannyEdgeDetector.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Canny Edge Detector.')
 			break
 

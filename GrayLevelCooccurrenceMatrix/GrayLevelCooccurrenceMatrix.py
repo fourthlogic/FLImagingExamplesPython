@@ -43,25 +43,25 @@ def main():
 			break
 		
 		# Gray Level Cooccurrence Matrix 객체 생성 # Create Gray Level Cooccurrence Matrix object
-		flaGLCM = CGrayLevelCooccurrenceMatrix()
+		grayLevelCooccurrenceMatrix = CGrayLevelCooccurrenceMatrix()
 		
 		# ROI 지정 # Create ROI
 		flfSourceROI = CFLRect[Double](143.508137, 70.054249, 295.117540, 213.562386, 0.000000)
 
 		# Source 이미지 설정 # Set the source image
-		flaGLCM.SetSourceImage(fliSrcImage)
+		grayLevelCooccurrenceMatrix.SetSourceImage(fliSrcImage)
 		
 		# Source ROI 영역 지정 # set Source ROI 
-		flaGLCM.SetSourceROI(flfSourceROI)
+		grayLevelCooccurrenceMatrix.SetSourceROI(flfSourceROI)
 		
 		# grayLevel 설정(2^8 = 256) # Set gray level (2^8 = 256)
-		flaGLCM.SetGrayLevel(8)
+		grayLevelCooccurrenceMatrix.SetGrayLevel(8)
 
 		# Matrix Direction 0도 설정 # Set Matrix Direction 0 Degree
-		flaGLCM.SetDirection(CGrayLevelCooccurrenceMatrix.EDirection.Degree0)
+		grayLevelCooccurrenceMatrix.SetDirection(CGrayLevelCooccurrenceMatrix.EDirection.Degree0)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := flaGLCM.Execute()).IsFail():
+		if (res := grayLevelCooccurrenceMatrix.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Gray Level Cooccurrence Matrix.')
 			break
 		
@@ -73,25 +73,25 @@ def main():
 
 		# 이미지 전체(혹은 ROI 영역) 픽셀값의 Energy를 구하는 함수 # Function that calculate Energy of the image(or the region of ROI)
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := flaGLCM.GetResultEnergy(listEnergy)[0]).IsFail():
+		if (res := grayLevelCooccurrenceMatrix.GetResultEnergy(listEnergy)[0]).IsFail():
 			ErrorPrint(res, "No Result")
 			break
 
 		# 이미지 전체(혹은 ROI 영역) 픽셀값의 Correlation를 구하는 함수 # Function that calculate Correlation of the image(or the region of ROI)
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := flaGLCM.GetResultCorrelation(listCorrelation)[0]).IsFail():
+		if (res := grayLevelCooccurrenceMatrix.GetResultCorrelation(listCorrelation)[0]).IsFail():
 			ErrorPrint(res, "No Result")
 			break
 
 		# 이미지 전체(혹은 ROI 영역) 픽셀값의 Homogeneity를 구하는 함수 # Function that calculate Homogeneity of the image(or the region of ROI)
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := flaGLCM.GetResultHomogeneity(listHomogeneity)[0]).IsFail():
+		if (res := grayLevelCooccurrenceMatrix.GetResultHomogeneity(listHomogeneity)[0]).IsFail():
 			ErrorPrint(res, "No Result")
 			break
 
 		# 이미지 전체(혹은 ROI 영역) 픽셀값의 Contrast를 구하는 함수 # Function that calculate Contrast of the image(or the region of ROI)
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := flaGLCM.GetResultContrast(listContrast)[0]).IsFail():
+		if (res := grayLevelCooccurrenceMatrix.GetResultContrast(listContrast)[0]).IsFail():
 			ErrorPrint(res, "No Result")
 			break
 		

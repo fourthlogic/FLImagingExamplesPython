@@ -55,21 +55,21 @@ def main():
 			break
 
 		# Projection 객체 생성 # Create Projection object
-		Projection = CProjection()
+		projection = CProjection()
 
 		# Source 이미지 설정 # Set the source image
-		Projection.SetSourceImage(fliSrcImage)
+		projection.SetSourceImage(fliSrcImage)
 
 		# 연산 방향 설정 # Set operation direction
-		Projection.SetProjectionMode(CProjection.EProjectionDirection.Column)
+		projection.SetProjectionMode(CProjection.EProjectionDirection.Column)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := Projection.Execute()).IsFail():
+		if (res := projection.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Projection.')
 			break
 		
 		# Result 결과 갯수 확인 # get result count
-		i64IndexCount = Projection.GetResultCount()
+		i64IndexCount = projection.GetResultCount()
 
 		# Channel 값 표기를 위한 String 변수 # string variable to indicate Channel value
 		strChannel = ""
@@ -84,7 +84,7 @@ def main():
 			listResult.Clear()
 
 			# Projection 결과 값 가져오기 # get projection result
-			if (res := Projection.GetResult(i, listResult)[0]).IsFail():
+			if (res := projection.GetResult(i, listResult)[0]).IsFail():
 				ErrorPrint(res, "Failed to Get Result.")
 				break
 

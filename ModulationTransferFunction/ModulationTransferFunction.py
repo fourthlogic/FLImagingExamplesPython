@@ -38,18 +38,18 @@ def main():
             break
 
         # ModulationTransferFunction 객체 생성 // Create ModulationTransferFunction object
-        flaGLCM = CModulationTransferFunction()
+        modulationTransferFunction = CModulationTransferFunction()
 
         # ROI 범위 설정 // Set the ROI value
         flfSourceROI = CFLRect[Double](349.0, 43.0, 396.0, 85.0)
 
         # Source 이미지 설정 // Set the Source Image
-        flaGLCM.SetSourceImage(fliImage)
+        modulationTransferFunction.SetSourceImage(fliImage)
         # Source ROI 설정 // Set the Source ROI
-        flaGLCM.SetSourceROI(flfSourceROI)
+        modulationTransferFunction.SetSourceROI(flfSourceROI)
 
         # 알고리즘 수행 // Execute the algorithm
-        if (res := flaGLCM.Execute()).IsFail():
+        if (res := modulationTransferFunction.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute Modulation Transfer Function.")
             break
 
@@ -58,7 +58,7 @@ def main():
 
         # 이미지 전체(혹은 ROI 영역) 픽셀값의 MTF를 구하는 함수 // Function that calculates MTF of the image (or the region of ROI)
         # ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-        if (res := flaGLCM.GetResults(listMTF)[0]).IsFail():
+        if (res := modulationTransferFunction.GetResults(listMTF)[0]).IsFail():
             ErrorPrint(res, "No Result")
             break
 

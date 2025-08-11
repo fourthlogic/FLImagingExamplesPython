@@ -55,24 +55,24 @@ def main():
 			break
 
 		# Histogram 객체 생성 # Create Histogram object
-		Histogram = CHistogram()
+		histogram = CHistogram()
 		
 		# ROI 지정 # Create ROI
 		flrSrcROI = CFLRect[Double](161, 181, 293, 302)
 
 		# Source 이미지 설정 # Set the source image
-		Histogram.SetSourceImage(fliSrcImage)
+		histogram.SetSourceImage(fliSrcImage)
 		
 		# Source ROI 영역 지정 # set Source ROI 
-		Histogram.SetSourceROI(flrSrcROI)
+		histogram.SetSourceROI(flrSrcROI)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := Histogram.Execute()).IsFail():
+		if (res := histogram.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Histogram.')
 			break
 		
 		# Result 결과 갯수 확인 # get result count
-		i64IndexCount = Histogram.GetResultCount()
+		i64IndexCount = histogram.GetResultCount()
 
 		# Channel 값 표기를 위한 String 변수 # string variable to indicate Channel value
 		strChannel = ""
@@ -88,7 +88,7 @@ def main():
 			listResult.Clear()
 			
 			# Histogram 결과 값 가져오기 # get projection result
-			if (res := Histogram.GetResult(i, listResult)[0]).IsFail():
+			if (res := histogram.GetResult(i, listResult)[0]).IsFail():
 				ErrorPrint(res, "Failed to Get Result.")
 				break
 
@@ -115,10 +115,10 @@ def main():
 		mvMedian = CMultiVar[Double]()
 
 		# 평균, 분산, 표준편차, 중앙값 받기 # get mean, variance, standard deviation, median
-		Histogram.GetResultMean(mvMean)
-		Histogram.GetResultVariance(mvVariance)
-		Histogram.GetResultStdDev(mvStdDev)
-		Histogram.GetResultMedian(mvMedian)
+		histogram.GetResultMean(mvMean)
+		histogram.GetResultVariance(mvVariance)
+		histogram.GetResultStdDev(mvStdDev)
+		histogram.GetResultMedian(mvMedian)
 
 		# 출력 갯수 # get count
 		i32ResultCount = mvMean.GetCount()

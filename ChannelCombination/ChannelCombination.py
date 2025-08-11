@@ -113,7 +113,7 @@ def main():
 			break
 		
 		# Channel Combination 객체 생성 # Create Channel Combination object
-		ChannelCombination = CChannelCombination()
+		channelCombination = CChannelCombination()
 
 		# Source 이미지를 저장할 Array 선언 # Declare an Array to store the source image
 		vctSrcImages = List[CFLImage]()
@@ -132,13 +132,13 @@ def main():
 		vctSrcChannels.Add(int(EChannelSelection.Channel_0))
 
 		# 결합할 이미지 및 채널입력 # Set images, channels
-		ChannelCombination.SetSourceImage(vctSrcImages, vctSrcChannels)
+		channelCombination.SetSourceImage(vctSrcImages, vctSrcChannels)
 
 		# 결합 결과를 저장할 이미지 설정 # Set destination image
-		ChannelCombination.SetDestinationImage(fliDstImage)
+		channelCombination.SetDestinationImage(fliDstImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := ChannelCombination.Execute()).IsFail():
+		if (res := channelCombination.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 		
