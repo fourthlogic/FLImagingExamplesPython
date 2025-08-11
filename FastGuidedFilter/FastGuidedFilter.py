@@ -90,31 +90,31 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		guidedFilter = CFastGuidedFilter()
+		fastGuidedFilter = CFastGuidedFilter()
 
 		# Source 이미지 설정 // Set the source image
-		guidedFilter.SetSourceImage(fliSourceImage)
+		fastGuidedFilter.SetSourceImage(fliSourceImage)
 
 		# Operand 이미지 설정 // Set the operand image
-		guidedFilter.SetOperandImage(fliOperandImage)
+		fastGuidedFilter.SetOperandImage(fliOperandImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		guidedFilter.SetDestinationImage(fliDestinationImage)
+		fastGuidedFilter.SetDestinationImage(fliDestinationImage)
 
 		# Kernel Size = 7 설정 // Set the Kernel Size = 7
-		guidedFilter.SetKernel(7)
+		fastGuidedFilter.SetKernel(7)
 
 		# Amplitude = 30 설정 // Set the Amplitude = 30
-		guidedFilter.SetAmplitude(30)
+		fastGuidedFilter.SetAmplitude(30)
 
 		# Sampling Factor = 4 설정 // Set the Sampling Factor = 4
-		guidedFilter.SetSamplingFactor(4);
+		fastGuidedFilter.SetSamplingFactor(4);
 
 		# Interpolation = true 설정 // Set the Interpolation = true
-		guidedFilter.EnableInterpolation(True);
+		fastGuidedFilter.EnableInterpolation(True);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := guidedFilter.Execute()).IsFail():
+		if (res := fastGuidedFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

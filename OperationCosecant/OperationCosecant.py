@@ -60,14 +60,14 @@ def main():
 			break
 		
 		# COperationCosecant 객체 생성 // Create COperationCosecant object
-		Cosecant = COperationCosecant()
+		operationCosecant = COperationCosecant()
 		# Source 이미지 설정 // Set source image
-		Cosecant.SetSourceImage(fliSourceImage);
+		operationCosecant.SetSourceImage(fliSourceImage);
 		# Destination 이미지 설정 // Set destination image
-		Cosecant.SetDestinationImage(fliDestinationImage);
+		operationCosecant.SetDestinationImage(fliDestinationImage);
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := Cosecant.Execute()).IsFail():
+		if (res := operationCosecant.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Cosecant.')
 			break
 

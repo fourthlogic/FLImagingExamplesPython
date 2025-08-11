@@ -95,18 +95,18 @@ def main():
 			break
 		
 		# COperationBitwiseNand 객체 생성 // Create COperationBitwiseNand object
-		bitwiseNand = COperationBitwiseNand()
+		operationBitwiseNand = COperationBitwiseNand()
 		# Source 이미지 설정 // Set source image
-		bitwiseNand.SetSourceImage(fliSourceImage);
+		operationBitwiseNand.SetSourceImage(fliSourceImage);
 		# Operand 이미지 설정 // Set operand image
-		bitwiseNand.SetOperandImage(fliOperandImage);
+		operationBitwiseNand.SetOperandImage(fliOperandImage);
 		# Destination 이미지 설정 // Set destination image
-		bitwiseNand.SetDestinationImage(fliDestinationImage);
+		operationBitwiseNand.SetDestinationImage(fliDestinationImage);
 		# Image Operation 모드로 설정 // Set operation mode to image
-		bitwiseNand.SetOperationSource(EOperationSource.Image);
+		operationBitwiseNand.SetOperationSource(EOperationSource.Image);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := bitwiseNand.Execute()).IsFail():
+		if (res := operationBitwiseNand.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Bitwise And.')
 			break
 

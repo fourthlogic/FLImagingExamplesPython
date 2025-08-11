@@ -65,23 +65,23 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		snn = CSymmetricNearestNeighborFilter()
+		symmetricNearestNeighborFilter = CSymmetricNearestNeighborFilter()
 
 		# Source 이미지 설정 // Set the source image
-		snn.SetSourceImage(fliSourceImage)
+		symmetricNearestNeighborFilter.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		snn.SetDestinationImage(fliDestinationImage)
+		symmetricNearestNeighborFilter.SetDestinationImage(fliDestinationImage)
 
 		# Kernel Width = 9 설정 // Set the Kernel Width = 9
 		# Kernel Height = 9 설정 // Set the Kernel Height = 9
-		snn.SetKernel(9, 9);
+		symmetricNearestNeighborFilter.SetKernel(9, 9);
 
 		# Distribution 설정 // Set the Distribution
-		snn.SetDistribution(CSymmetricNearestNeighborFilter.EDistribution.Uniform);
+		symmetricNearestNeighborFilter.SetDistribution(CSymmetricNearestNeighborFilter.EDistribution.Uniform);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := snn.Execute()).IsFail():
+		if (res := symmetricNearestNeighborFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

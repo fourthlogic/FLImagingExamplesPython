@@ -65,22 +65,22 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		dog = CDifferenceOfGaussianFilter()
+		differenceOfGaussianFilter = CDifferenceOfGaussianFilter()
 
 		# Source 이미지 설정 // Set the source image
-		dog.SetSourceImage(fliSourceImage)
+		differenceOfGaussianFilter.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		dog.SetDestinationImage(fliDestinationImage)
+		differenceOfGaussianFilter.SetDestinationImage(fliDestinationImage)
 
 		# Sigma 값 설정 // Set the sigma value
-		dog.SetSigma(3)
+		differenceOfGaussianFilter.SetSigma(3)
 
 		# SigFactor 값 설정 // Set the SigFactor value
-		dog.SetSigFactor(3)
+		differenceOfGaussianFilter.SetSigFactor(3)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := dog.Execute()).IsFail():
+		if (res := differenceOfGaussianFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

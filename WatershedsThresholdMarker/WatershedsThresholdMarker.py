@@ -23,7 +23,7 @@ def main():
 
     while True:
         # 이미지 로드 // Load image
-        if (res := fliISrcImage.Load("../../ExampleImages/Threshold/Mountain.flif")).IsFail():
+        if (res := fliISrcImage.Load("../../ExampleImages/Threshold/Sun.flif")).IsFail():
             ErrorPrint(res, "Failed to load the image file.")
             break
 
@@ -56,25 +56,25 @@ def main():
             break
 
         # Watersheds Threshold Marker 객체 생성 // Create Watersheds Threshold Marker object
-        watershedsThreshold = CWatershedsThresholdMarker()
+        watershedsThresholdMarker = CWatershedsThresholdMarker()
 
         # Source 이미지 설정 // Set source image
-        watershedsThreshold.SetSourceImage(fliISrcImage)
+        watershedsThresholdMarker.SetSourceImage(fliISrcImage)
 
         # Destination 이미지 설정 // Set destination image
-        watershedsThreshold.SetDestinationImage(fliIDstImage)
+        watershedsThresholdMarker.SetDestinationImage(fliIDstImage)
 
         # threshold 모드 설정(Single) // Set threshold mode (Single)
-        watershedsThreshold.SetThresholdMode(EThresholdMode.Single)
+        watershedsThresholdMarker.SetThresholdMode(EThresholdMode.Single)
 
         # 임계값 설정 // Set threshold value
-        watershedsThreshold.SetThreshold(100)
+        watershedsThresholdMarker.SetThreshold(10)
 
         # 논리 조건 설정 // Set logical condition
-        watershedsThreshold.SetLogicalCondition(int(ELogicalCondition.Greater), EThresholdIndex.First)
+        watershedsThresholdMarker.SetLogicalCondition(int(ELogicalCondition.Greater), EThresholdIndex.First)
 
         # 알고리즘 수행 // Execute algorithm
-        if (res := watershedsThreshold.Execute()).IsFail():
+        if (res := watershedsThresholdMarker.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute Watersheds Threshold Marker.")
             break
 

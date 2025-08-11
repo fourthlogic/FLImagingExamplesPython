@@ -23,7 +23,7 @@ def main():
 
     while True:
         # 이미지 로드 // Load image
-        if (res := fliISrcImage.Load("../../ExampleImages/Threshold/Mountain.flif")).IsFail():
+        if (res := fliISrcImage.Load("../../ExampleImages/Threshold/Sun.flif")).IsFail():
             ErrorPrint(res, "Failed to load the image file.")
             break
 
@@ -68,7 +68,7 @@ def main():
         watershedsThreshold.SetThresholdMode(EThresholdMode.Single)
 
         # 임계값 설정 // Set threshold value
-        watershedsThreshold.SetThreshold(100)
+        watershedsThreshold.SetThreshold(50)
 
         # 논리 조건 설정 // Set logical condition
         watershedsThreshold.SetLogicalCondition(int(ELogicalCondition.Greater), EThresholdIndex.First)

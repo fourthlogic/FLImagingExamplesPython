@@ -68,22 +68,22 @@ def main():
         mvScalar2 = CMultiVar[float](65535, 65535, 65535)
 
         # COperationAtan2 객체 생성 // Create COperationAtan2 object
-        atan2 = COperationAtan2()
-        atan2.SetSourceImage(arrFliImage[0])
-        atan2.SetDestinationImage(arrFliImage[1])
-        atan2.SetOperationSource(EOperationSource.Scalar)  # 단일 enum 값은 그대로 넘김
-        atan2.SetScalarValue(mvScalar)
+        operationAtan2 = COperationAtan2()
+        operationAtan2.SetSourceImage(arrFliImage[0])
+        operationAtan2.SetDestinationImage(arrFliImage[1])
+        operationAtan2.SetOperationSource(EOperationSource.Scalar)  # 단일 enum 값은 그대로 넘김
+        operationAtan2.SetScalarValue(mvScalar)
 
         # 알고리즘 수행 // Execute algorithm
-        if (res := atan2.Execute()).IsFail():
+        if (res := operationAtan2.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation atan2.")
             break
 
-        atan2.SetDestinationImage(arrFliImage[2])
-        atan2.SetOperationSource(EOperationSource.Scalar)
-        atan2.SetScalarValue(mvScalar2)
+        operationAtan2.SetDestinationImage(arrFliImage[2])
+        operationAtan2.SetOperationSource(EOperationSource.Scalar)
+        operationAtan2.SetScalarValue(mvScalar2)
 
-        if (res := atan2.Execute()).IsFail():
+        if (res := operationAtan2.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation atan2.")
             break
 

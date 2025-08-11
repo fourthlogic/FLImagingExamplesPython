@@ -90,34 +90,34 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		bilateralFilter = CBilateralFilterSubSampled()
+		bilateralFilterSubSampled = CBilateralFilterSubSampled()
 
 		# Source 이미지 설정 // Set the source image
-		bilateralFilter.SetSourceImage(fliSourceImage)
+		bilateralFilterSubSampled.SetSourceImage(fliSourceImage)
 
 		# Operand 이미지 설정 // Set the operand image
-		bilateralFilter.SetOperandImage(fliOperandImage)
+		bilateralFilterSubSampled.SetOperandImage(fliOperandImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		bilateralFilter.SetDestinationImage(fliDestinationImage)
+		bilateralFilterSubSampled.SetDestinationImage(fliDestinationImage)
 
 		# Image Operation 소스로 설정 // Set Operation Source to image
-		bilateralFilter.SetOperationSource(EOperationSource.Image)
+		bilateralFilterSubSampled.SetOperationSource(EOperationSource.Image)
 
 		# Sigma Spatial = 3 설정 // Set the Sigma Spatial = 3
-		bilateralFilter.SetSigmaSpatial(3)
+		bilateralFilterSubSampled.SetSigmaSpatial(3)
 
 		# Sigma Range = 50 설정 // Set the Sigma Range = 50
-		bilateralFilter.SetSigmaRange(50)
+		bilateralFilterSubSampled.SetSigmaRange(50)
 
 		# Sampling Method Grid 로 설정 // Set the Sampling Method to Grid
-		bilateralFilter.SetSamplingMethod(ESamplingMethod.Grid)
+		bilateralFilterSubSampled.SetSamplingMethod(ESamplingMethod.Grid)
 
 		# Sampling Ratio = 0.25 설정 // Set the Sampling Ratio = 0.25
-		bilateralFilter.SetSamplingRatio(0.25)
+		bilateralFilterSubSampled.SetSamplingRatio(0.25)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := bilateralFilter.Execute()).IsFail():
+		if (res := bilateralFilterSubSampled.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

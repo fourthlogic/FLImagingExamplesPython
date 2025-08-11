@@ -72,22 +72,22 @@ def main():
             break
 
         # Operation Atan2 객체 생성 // Create Atan2 object
-        atan2 = COperationAtan2()
+        operationAtan2 = COperationAtan2()
 
         # Source 이미지 설정 // Set source image
-        atan2.SetSourceImage(arrFliImage[0])
+        operationAtan2.SetSourceImage(arrFliImage[0])
 
         # Operand 이미지 설정 // Set operand image
-        atan2.SetOperandImage(arrFliImage[1])
+        operationAtan2.SetOperandImage(arrFliImage[1])
 
         # Destination 이미지 설정 // Set destination image
-        atan2.SetDestinationImage(arrFliImage[2])
+        operationAtan2.SetDestinationImage(arrFliImage[2])
 
         # 연산 방식 설정 // Set operation source
-        atan2.SetOperationSource(EOperationSource.Image)
+        operationAtan2.SetOperationSource(EOperationSource.Image)
 
         # 알고리즘 수행 // Execute algorithm
-        if (res := atan2.Execute()).IsFail():
+        if (res := operationAtan2.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation atan2.")
             print(res.GetString())
             break
