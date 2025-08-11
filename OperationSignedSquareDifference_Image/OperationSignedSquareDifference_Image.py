@@ -94,31 +94,27 @@ def main():
 			ErrorPrint(res[0], 'Failed to synchronize window.')
 			break
 
-		# Gain Offset 객체 생성 // Create Gain Offset object
-		signedSquareDifference = COperationSignedSquareDifference()
+		# Operation Signed Square Difference 객체 생성 // Create Operation Signed Square Difference object
+		operationSignedSquareDifference = COperationSignedSquareDifference()
 
 		# Source 이미지 설정 // Set the source image
-		signedSquareDifference.SetSourceImage(fliSourceImage)
+		operationSignedSquareDifference.SetSourceImage(fliSourceImage)
 
 		# Operand 이미지 설정 // Set the operand image
-		signedSquareDifference.SetOperandImage(fliOperandImage)
+		operationSignedSquareDifference.SetOperandImage(fliOperandImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		signedSquareDifference.SetDestinationImage(fliDestinationImage)
+		operationSignedSquareDifference.SetDestinationImage(fliDestinationImage)
 
 		# Operand Overflow Method 설정 // Set the overflow method
-		signedSquareDifference.SetOverflowMethod(EOverflowMethod.Clamping);
+		operationSignedSquareDifference.SetOverflowMethod(EOverflowMethod.Clamping);
 
-		# Scalar Operation 모드로 설정 // Set operation mode to scalar
-		signedSquareDifference.SetOperationSource(EOperationSource.Image);
-
-		# 스칼라 색상 지정 // Set scalar operand color
-		mvScalar = CMultiVar[Double](0)
-		signedSquareDifference.SetScalarValue(mvScalar)
+		# Image Operation 모드로 설정 // Set operation mode to image
+		operationSignedSquareDifference.SetOperationSource(EOperationSource.Image);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := signedSquareDifference.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Gain Offset.')
+		if (res := operationSignedSquareDifference.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute Operation Signed Square Difference.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
