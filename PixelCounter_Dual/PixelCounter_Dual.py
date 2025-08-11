@@ -28,7 +28,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 # Load the source image
-		if (res := fliISrcImage.Load('../../ExampleImages/PixelCounter/Semiconductor.flif')).IsFail():
+		if (res := fliISrcImage.Load('../../ExampleImages/pixelCounter/Semiconductor.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
@@ -72,34 +72,34 @@ def main():
 			break
 		
 		# Pixel Counter 객체 생성 # Create Pixel Counter object
-		PixelCounter = CPixelCounter()
+		pixelCounter = CPixelCounter()
 
 		# Source 이미지 설정 # Set source image 
-		PixelCounter.SetSourceImage(fliISrcImage)
+		pixelCounter.SetSourceImage(fliISrcImage)
 
 		# Source ROI 이미지 설정 # Set Source ROI
 		flfSourceROI = CFLQuad[Double](170.550171, 102.400000, 380.243003, 135.950853, 341.100341, 312.092833, 124.417747, 265.960410)
-		PixelCounter.SetSourceROI(flfSourceROI)
+		pixelCounter.SetSourceROI(flfSourceROI)
 
 		# threshold 모드 설정(Dual) # Set Threshold Mode(Dual)
-		PixelCounter.SetThresholdMode(EThresholdMode.Dual_And)
+		pixelCounter.SetThresholdMode(EThresholdMode.Dual_And)
 
 		# 임계값 설정 (다채널 경우 CMultiVar[Double] 사용) # Set threshold value(Use CMultiVar[Double] for multi-channel)
-		PixelCounter.SetThreshold(120, EThresholdIndex.First)
-		PixelCounter.SetThreshold(230, EThresholdIndex.Second)
+		pixelCounter.SetThreshold(120, EThresholdIndex.First)
+		pixelCounter.SetThreshold(230, EThresholdIndex.Second)
 
 		# 논리 조건 설정 # Set condition value
-		PixelCounter.SetLogicalCondition(int(ELogicalCondition.Greater), EThresholdIndex.First)
-		PixelCounter.SetLogicalCondition(int(ELogicalCondition.Less), EThresholdIndex.Second)
+		pixelCounter.SetLogicalCondition(int(ELogicalCondition.Greater), EThresholdIndex.First)
+		pixelCounter.SetLogicalCondition(int(ELogicalCondition.Less), EThresholdIndex.Second)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := PixelCounter.Execute()).IsFail():
+		if (res := pixelCounter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Pixel Counter.')
 			break
 		
-		i64TotalPixel = PixelCounter.GetResultTotalPixelCount()
-		i64ValidPixel = PixelCounter.GetResultValidPixelCount()
-		i64InvalidPixel = PixelCounter.GetResultInvalidPixelCount()
+		i64TotalPixel = pixelCounter.GetResultTotalPixelCount()
+		i64ValidPixel = pixelCounter.GetResultValidPixelCount()
+		i64InvalidPixel = pixelCounter.GetResultInvalidPixelCount()
 
 		# 전체 픽셀, 유효한 픽셀, 유효하지 않은 픽셀 갯수 출력 # display Total, Valid, Invalid Pixel Count
 		print(f"Total Pixel Count : {i64TotalPixel}")
