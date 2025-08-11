@@ -88,7 +88,7 @@ def main():
 		illuminateFilter.SetKernel(41)
 
 		# Factor = 0.55 설정 // Set the Factor = 0.55
-		illuminateFilter.SetFactor(0.55);
+		illuminateFilter.SetFactor(0.55)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := illuminateFilter.Execute()).IsFail():
@@ -102,7 +102,7 @@ def main():
 		illuminateFilter.SetKernel(151)
 
 		# Factor = 0.8 설정 // Set the Factor = 0.8
-		illuminateFilter.SetFactor(0.8);
+		illuminateFilter.SetFactor(0.8)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := illuminateFilter.Execute()).IsFail():

@@ -75,7 +75,7 @@ def main():
 		operationGreater.SetDestinationImage(fliDestinationImage)
 
 		# Scalar Operation 모드로 설정 // Set operation mode to scalar
-		operationGreater.SetOperationSource(EOperationSource.Scalar);
+		operationGreater.SetOperationSource(EOperationSource.Scalar)
 
 		# Greater Scalar 값 설정 // Set comparsion value of greater operation
 		mvScalar = CMultiVar[Double](128.0)

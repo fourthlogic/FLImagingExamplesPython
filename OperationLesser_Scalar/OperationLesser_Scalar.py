@@ -75,7 +75,7 @@ def main():
 		operationLesser.SetDestinationImage(fliDestinationImage)
 
 		# Scalar Operation 모드로 설정 // Set operation mode to scalar
-		operationLesser.SetOperationSource(EOperationSource.Scalar);
+		operationLesser.SetOperationSource(EOperationSource.Scalar)
 
 		# Lesser Scalar 값 설정 // Set comparsion value of lesser operation
 		mvScalar = CMultiVar[Double](128.0)

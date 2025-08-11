@@ -68,12 +68,12 @@ def main():
 		labelRenamerDL.SetDestinationImage(fliDestinationImage)
 
 		# 파라미터 값 설정 // Set parameter value
-		labelRenamerDL.EnablePathMode(False);
-		labelRenamerDL.EnableRegularExpression(False);
-		labelRenamerDL.EnableMatchCase(True);
-		labelRenamerDL.SetCompareMode(CLabelRenamerDL.ECompareMode.TextMode);
-		labelRenamerDL.SetOriginalName('1(OK)');
-		labelRenamerDL.SetSubstituteName('1(PASS)');
+		labelRenamerDL.EnablePathMode(False)
+		labelRenamerDL.EnableRegularExpression(False)
+		labelRenamerDL.EnableMatchCase(True)
+		labelRenamerDL.SetCompareMode(CLabelRenamerDL.ECompareMode.TextMode)
+		labelRenamerDL.SetOriginalName('1(OK)')
+		labelRenamerDL.SetSubstituteName('1(PASS)')
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := labelRenamerDL.Execute()).IsFail():

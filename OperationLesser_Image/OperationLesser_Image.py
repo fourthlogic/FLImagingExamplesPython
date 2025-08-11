@@ -106,7 +106,7 @@ def main():
 		operationLesser.SetDestinationImage(fliDestinationImage)
 
 		# Image Operation 모드로 설정 // Set operation mode to image
-		operationLesser.SetOperationSource(EOperationSource.Image);
+		operationLesser.SetOperationSource(EOperationSource.Image)
 
 		# Source가 Operand보다 작을 경우 값 설정 // Set output value if source is lesser than operand
 		mvInRange = CMultiVar[Double](240.0)

@@ -28,8 +28,8 @@ def main():
 	viewImageValidate = CGUIViewImage()
 
 	# 그래프 뷰 선언 // Declare the graph view
-	viewGraph = CGUIViewGraph();
-	bTerminated = False;
+	viewGraph = CGUIViewGraph()
+	bTerminated = False
 
 	while True:
 		# 라이브러리가 완전히 로드 될 때까지 기다림 // Wait for the library to fully load
@@ -253,7 +253,7 @@ def main():
 
 						listX.Add((float)(listCosts.Count - 1))
 						# Graph View 데이터 입력 // Input Graph View Data
-						viewGraph.Plot(listX, listValidations, EChartType.Line, EColor.BLUE, "Validation");
+						viewGraph.Plot(listX, listValidations, EChartType.Line, EColor.BLUE, "Validation")
 
 						viewGraph.UnlockUpdate()
 						viewGraph.Invalidate()
@@ -275,7 +275,7 @@ def main():
 			break
 
 		# 추론 결과 정보에 대한 설정 // Set for the inference result information
-		classifierDL.SetInferenceResultItemSettings(CClassifierDL.EInferenceResultItemSettings.ClassNum_ClassName_ConfidenceScore);
+		classifierDL.SetInferenceResultItemSettings(CClassifierDL.EInferenceResultItemSettings.ClassNum_ClassName_ConfidenceScore)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := classifierDL.Execute()).IsFail():

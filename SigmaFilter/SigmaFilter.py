@@ -88,7 +88,7 @@ def main():
 		sigmaFilter.SetKernel(31)
 
 		# Sigma = 3 설정 // Set the Sigma = 3
-		sigmaFilter.SetSigma(3);
+		sigmaFilter.SetSigma(3)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := sigmaFilter.Execute()).IsFail():
@@ -102,7 +102,7 @@ def main():
 		sigmaFilter.SetKernel(101)
 
 		# Sigma = 3 설정 // Set the Sigma = 3
-		sigmaFilter.SetSigma(3);
+		sigmaFilter.SetSigma(3)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
 		if (res := sigmaFilter.Execute()).IsFail():
