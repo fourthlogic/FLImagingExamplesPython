@@ -24,7 +24,7 @@ def main():
 		floWorld.Load("../../ExampleImages/CoordinateFrameUnification3D/Office_mosaicked(Middle).ply")
 		floSource1.Load("../../ExampleImages/CoordinateFrameUnification3D/Office_mosaicked(Right).ply")
 
-		cfu = CCoordinateFrameUnification3D()
+		coordinateFrameUnification3D = CCoordinateFrameUnification3D()
 
 		# Scene 0와 World 좌표 간 점 대응을 추가
 		# Add point correpondence between Scene 0 & World
@@ -40,7 +40,7 @@ def main():
 		flaWorld0.Add(TPoint3[Single](0.339934, -0.020669, -0.646000))
 		flaScene0.Add(TPoint3[Single](0.189541, -0.046209, -0.589000))
 
-		cfu.AddSourceObject(floSource0, flaWorld0, flaScene0)
+		coordinateFrameUnification3D.AddSourceObject(floSource0, flaWorld0, flaScene0)
 
 		# Scene 1과 World 좌표 간 점 대응을 추가
 		# Add point correpondence between Scene 1 & World
@@ -60,13 +60,13 @@ def main():
 		flaWorld1.Add(TPoint3[Single](-0.016503, -0.275241, -1.050700))
 		flaScene1.Add(TPoint3[Single](0.568925, -0.122618, -0.588000))
 
-		cfu.AddSourceObject(floSource1, flaWorld1, flaScene1)
+		coordinateFrameUnification3D.AddSourceObject(floSource1, flaWorld1, flaScene1)
 
 		floDestination = CFL3DObject()
-		cfu.SetDestinationObject(floDestination)
+		coordinateFrameUnification3D.SetDestinationObject(floDestination)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := cfu.Execute()).IsFail():
+		if (res := coordinateFrameUnification3D.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute.\n")
 			break
 
