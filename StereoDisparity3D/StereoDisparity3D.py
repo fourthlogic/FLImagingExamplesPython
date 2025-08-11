@@ -103,43 +103,43 @@ def main():
 			break
 		
 		# Stereo Disparity 3D 객체 생성 # Create Stereo Disparity 3D object
-		stereoDisparity = CStereoDisparity3D()
+		stereoDisparity3D = CStereoDisparity3D()
 		
 		# Source 이미지 설정 # Set source image
-		stereoDisparity.SetSourceImage(fliSourceImage)
+		stereoDisparity3D.SetSourceImage(fliSourceImage)
 		
 		# Source 2 이미지 설정 # Set source 2 image
-		stereoDisparity.SetSourceImage2(fliSourceImage2)
+		stereoDisparity3D.SetSourceImage2(fliSourceImage2)
 		
 		# Destination Height Map 이미지 설정 # Set the destination height map image
-		stereoDisparity.SetDestinationHeightMapImage(fliDestinationImage)
+		stereoDisparity3D.SetDestinationHeightMapImage(fliDestinationImage)
 		
 		# 최소 허용 Disparity 값 설정 # Set the minimum allowed disparity value
-		stereoDisparity.SetMinimumDisparity(-20)
+		stereoDisparity3D.SetMinimumDisparity(-20)
 		
 		# Disparity 범위 설정 # Set the range of disparity
-		stereoDisparity.SetMaximumDisparity(0)
+		stereoDisparity3D.SetMaximumDisparity(0)
 		
 		# Matched Block 크기 설정 # Set the matched block size
-		stereoDisparity.SetMatchBlockSize(3)
+		stereoDisparity3D.SetMatchBlockSize(3)
 		
 		# 좌우 간 최대 허용 차이 값 설정 # Set maximum allowed difference value between left and right
-		stereoDisparity.SetMaximumDifference(30)
+		stereoDisparity3D.SetMaximumDifference(30)
 		
 		# 고유비 값 설정 # Set the uniqueness ratio value
-		stereoDisparity.SetUniquenessRatio(0)
+		stereoDisparity3D.SetUniquenessRatio(0)
 		
 		# P1 값 설정 # Set P1 Value
-		stereoDisparity.SetP1(200)
+		stereoDisparity3D.SetP1(200)
 		
 		# P2 값 설정 # Set P2 Value
-		stereoDisparity.SetP2(800)
+		stereoDisparity3D.SetP2(800)
 		
 		# Median Morphology 커널 사이즈 설정 # Set the median morphology kernel size
-		stereoDisparity.SetFilterSize(5)
+		stereoDisparity3D.SetFilterSize(5)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := stereoDisparity.Execute()).IsFail():
+		if (res := stereoDisparity3D.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Stereo Disparity 3D.')
 			break
 		

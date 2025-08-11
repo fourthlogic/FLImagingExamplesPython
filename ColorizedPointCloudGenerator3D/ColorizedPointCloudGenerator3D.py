@@ -152,25 +152,25 @@ def main():
 			break
 
 		# Colorized Point Cloud Generator 3D 객체 생성 # Colorized Point Cloud Generator 3D object
-		colorizedPointCloudGenerator = CColorizedPointCloudGenerator3D()
+		colorizedPointCloudGenerator3D = CColorizedPointCloudGenerator3D()
 		
 		# Calibration XYZV 이미지 설정 # Set calibration XYZV image
-		colorizedPointCloudGenerator.SetCalibrationImageXYZV(fliCaliSrcXYZVImage)
+		colorizedPointCloudGenerator3D.SetCalibrationImageXYZV(fliCaliSrcXYZVImage)
 		
 		# Calibration RGB 이미지 설정 # Set calibration RGB image
-		colorizedPointCloudGenerator.SetCalibrationImageRGB(fliCaliSrcRGBImage)
+		colorizedPointCloudGenerator3D.SetCalibrationImageRGB(fliCaliSrcRGBImage)
 		
 		# Calibration의 Grid Type 설정 # Set the grid type of the calibration
-		colorizedPointCloudGenerator.SetGridType(CCameraCalibrator.EGridType.ChessBoard)
+		colorizedPointCloudGenerator3D.SetGridType(CCameraCalibrator.EGridType.ChessBoard)
 		
 		# Calibration의 최적해 정확도 값 설정 # Set the optimal solution accuracy of the calibration
-		colorizedPointCloudGenerator.SetOptimalSolutionAccuracy(0.00001)
+		colorizedPointCloudGenerator3D.SetOptimalSolutionAccuracy(0.00001)
 		
 		# Coordinate Adjustment 자동 설정 # Coordinate Adjustment Auto Set Flag
-		colorizedPointCloudGenerator.EnableAutoCoordinateAdjustment(True)
+		colorizedPointCloudGenerator3D.EnableAutoCoordinateAdjustment(True)
 		
 		# 앞서 설정된 파라미터 대로 Calibration 동작 # Calibrate algorithm according to previously set parameters
-		if (res := colorizedPointCloudGenerator.Calibrate()).IsFail():
+		if (res := colorizedPointCloudGenerator3D.Calibrate()).IsFail():
 			ErrorPrint(res, 'Failed to calibrate Colorized Point Cloud Generator 3D.')
 			break
 
@@ -179,7 +179,7 @@ def main():
 		print(f' < Calibration Result >\n')
 
 		# RGB 카메라의 Intrinsic Parameter 출력 # Print the intrinsic parameters of the RGB camera
-		cCalibIntrinsic = colorizedPointCloudGenerator.GetIntrinsicParameters()
+		cCalibIntrinsic = colorizedPointCloudGenerator3D.GetIntrinsicParameters()
 
 		print(f' < Intrinsic Parameters >\n')
 
@@ -192,7 +192,7 @@ def main():
 		print()
 
 		# RGB 카메라의 Distortion Coefficient 출력 # Print the distortion coefficients of the RGB camera
-		cCalibDistortion = colorizedPointCloudGenerator.GetDistortionCoefficients()
+		cCalibDistortion = colorizedPointCloudGenerator3D.GetDistortionCoefficients()
 
 		print(f' < Distortion Coefficients >\n')
 
@@ -207,7 +207,7 @@ def main():
 		# 두 카메라 간의 회전 행렬 출력 # Print the relative rotation matrix between both cameras
 		cMatRotation = CMatrix[Double]()
 
-		colorizedPointCloudGenerator.GetRelativeRotation(cMatRotation)
+		colorizedPointCloudGenerator3D.GetRelativeRotation(cMatRotation)
 
 		print(f' < Relative Rotation >\n')
 
@@ -226,7 +226,7 @@ def main():
 		# 두 카메라 간의 변환 행렬 출력 # Print the relative translation matrix between both cameras
 		cMatTranslation = CMatrix[Double]()
 
-		colorizedPointCloudGenerator.GetRelativeTranslation(cMatTranslation)
+		colorizedPointCloudGenerator3D.GetRelativeTranslation(cMatTranslation)
 
 		print(f' < Relative Translation >\n')
 
@@ -241,19 +241,19 @@ def main():
 		fli3DDstObj = CFL3DObject()
 
 		# Execution XYZV 이미지 설정 # Set execution XYZV image
-		colorizedPointCloudGenerator.SetSourceImageXYZV(fliExecSrcXYZVImage)
+		colorizedPointCloudGenerator3D.SetSourceImageXYZV(fliExecSrcXYZVImage)
 		
 		# Execution RGB 이미지 설정 # Set execution RGB image
-		colorizedPointCloudGenerator.SetSourceImageRGB(fliExecSrcRGBImage)
+		colorizedPointCloudGenerator3D.SetSourceImageRGB(fliExecSrcRGBImage)
 		
 		# Destination 이미지 설정 # Set destination image
-		colorizedPointCloudGenerator.SetDestinationImageRGB(fliExecDstRGBImage)
+		colorizedPointCloudGenerator3D.SetDestinationImageRGB(fliExecDstRGBImage)
 		
 		# Destination 3D Object 설정 # Set the destination 3D object
-		colorizedPointCloudGenerator.SetDestination3DObject(fli3DDstObj)
+		colorizedPointCloudGenerator3D.SetDestination3DObject(fli3DDstObj)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := colorizedPointCloudGenerator.Execute()).IsFail():
+		if (res := colorizedPointCloudGenerator3D.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Colorized Point Cloud Generator 3D.')
 			break
 

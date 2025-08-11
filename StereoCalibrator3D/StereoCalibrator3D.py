@@ -286,7 +286,7 @@ def main():
 	viewImageDestination2 = CGUIViewImage()
 	
 	# Stereo Calibrator 3D 객체 생성 # Create Stereo Calibrator 3D object
-	stereoCalibrator = CStereoCalibrator3D()
+	stereoCalibrator3D = CStereoCalibrator3D()
 	
 	# MessageReceiver 객체 생성 # Create MessageReceiver object
 	msgReceiver = CMessageReceiver(viewImageLearn)
@@ -310,7 +310,7 @@ def main():
 		
 		print("Processing....")
 
-		if not Calibration(stereoCalibrator, fliLearnImage, fliLearnImage2):
+		if not Calibration(stereoCalibrator3D, fliLearnImage, fliLearnImage2):
 			break
 		
 		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination image as same as source image
@@ -336,7 +336,7 @@ def main():
 			break
 
 		# Undistortion 수행 # Execute undistortion
-		if not Undistortion(stereoCalibrator, fliSourceImage, fliSourceImage2, fliDestinationImage, fliDestinationImage2):
+		if not Undistortion(stereoCalibrator3D, fliSourceImage, fliSourceImage2, fliDestinationImage, fliDestinationImage2):
 			break
 
 		
@@ -346,12 +346,12 @@ def main():
 
 		for i64ImgIdx in range(fliLearnImage.GetPageCount()):
 			sArrGridDisplay[i64ImgIdx].sGridData = CStereoCalibrator3D.SGridResult()
-			stereoCalibrator.GetResultGridPoints(sArrGridDisplay[i64ImgIdx].sGridData, i64ImgIdx)
+			stereoCalibrator3D.GetResultGridPoints(sArrGridDisplay[i64ImgIdx].sGridData, i64ImgIdx)
 			sArrGridDisplay[i64ImgIdx].i64ImageIdx = i64ImgIdx
 			
 		for i64ImgIdx in range(fliLearnImage2.GetPageCount()):
 			sArrGridDisplay2[i64ImgIdx].sGridData = CStereoCalibrator3D.SGridResult()
-			stereoCalibrator.GetResultGridPoints2(sArrGridDisplay2[i64ImgIdx].sGridData, i64ImgIdx)
+			stereoCalibrator3D.GetResultGridPoints2(sArrGridDisplay2[i64ImgIdx].sGridData, i64ImgIdx)
 			sArrGridDisplay2[i64ImgIdx].i64ImageIdx = i64ImgIdx
 
 		msgReceiver.SetGrid(sArrGridDisplay)
@@ -458,19 +458,19 @@ def main():
 			break
 		
 		# calibration data 출력 # Display the calibration data
-		sIntrinsicParam = stereoCalibrator.GetResultIntrinsicParameters()
-		sDistortCoeef = stereoCalibrator.GetResultDistortionCoefficients()
+		sIntrinsicParam = stereoCalibrator3D.GetResultIntrinsicParameters()
+		sDistortCoeef = stereoCalibrator3D.GetResultDistortionCoefficients()
 
-		sIntrinsicParam2 = stereoCalibrator.GetResultIntrinsicParameters2()
-		sDistortCoeef2 = stereoCalibrator.GetResultDistortionCoefficients2()
+		sIntrinsicParam2 = stereoCalibrator3D.GetResultIntrinsicParameters2()
+		sDistortCoeef2 = stereoCalibrator3D.GetResultDistortionCoefficients2()
 
-		sRotationParam = stereoCalibrator.GetResultRotationParameters()
-		sRotationParam2 = stereoCalibrator.GetResultRotationParameters2()
+		sRotationParam = stereoCalibrator3D.GetResultRotationParameters()
+		sRotationParam2 = stereoCalibrator3D.GetResultRotationParameters2()
 
-		sTranslationParam = stereoCalibrator.GetResultTranslationParameters()
-		sTranslationParam2 = stereoCalibrator.GetResultTranslationParameters2()
+		sTranslationParam = stereoCalibrator3D.GetResultTranslationParameters()
+		sTranslationParam2 = stereoCalibrator3D.GetResultTranslationParameters2()
 
-		f64ReprojError = stereoCalibrator.GetResultReProjectionError()
+		f64ReprojError = stereoCalibrator3D.GetResultReProjectionError()
 		
 		print(f"Intrinsic Parameters")
 		print(f"\tFocal Length X: {sIntrinsicParam.f64FocalLengthX}")

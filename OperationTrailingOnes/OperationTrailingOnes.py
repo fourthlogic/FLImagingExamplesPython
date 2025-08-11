@@ -68,16 +68,16 @@ def main():
 			break
 		
 		# Operation Trailing Ones 객체 생성 # Create Operation Trailing Ones object
-		trailingOnes = COperationTrailingOnes()
+		operationTrailingOnes = COperationTrailingOnes()
 
 		# Source 이미지 설정 # Set the source image
-		trailingOnes.SetSourceImage(fliSourceImage)
+		operationTrailingOnes.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		trailingOnes.SetDestinationImage(fliDestinationImage)
+		operationTrailingOnes.SetDestinationImage(fliDestinationImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := trailingOnes.Execute()).IsFail():
+		if (res := operationTrailingOnes.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Trailing Ones.')
 			break
 		

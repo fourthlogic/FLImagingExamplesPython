@@ -106,31 +106,31 @@ def main():
 		flrROI = CFLRect[Int64](200, 200, 500, 500)
 
 		# Operation Scaled Divide 객체 생성 # Create Operation Scaled Divide object
-		scaledDivide = COperationScaledDivide()
+		operationScaledDivide = COperationScaledDivide()
 
 		# Source 이미지 설정 # Set the source image
-		scaledDivide.SetSourceImage(fliSourceImage)
+		operationScaledDivide.SetSourceImage(fliSourceImage)
 		
 		# Source ROI 설정 # Set the Source ROI
-		scaledDivide.SetSourceROI(flrROI)
+		operationScaledDivide.SetSourceROI(flrROI)
 		
 		# Operand 이미지 설정 # Set the operand image
-		scaledDivide.SetOperandImage(fliOperandImage)
+		operationScaledDivide.SetOperandImage(fliOperandImage)
 		
 		# Operand ROI 설정 # Set the Operand ROI
-		scaledDivide.SetOperandROI(flrROI)
+		operationScaledDivide.SetOperandROI(flrROI)
 		
 		# Destination 이미지 설정 # Set the destination image
-		scaledDivide.SetDestinationImage(fliDestinationImage)
+		operationScaledDivide.SetDestinationImage(fliDestinationImage)
 		
 		# Destination ROI 설정 # Set the Destination ROI
-		scaledDivide.SetDestinationROI(flrROI)
+		operationScaledDivide.SetDestinationROI(flrROI)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to image
-		scaledDivide.SetOperationSource(EOperationSource.Image)
+		operationScaledDivide.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := scaledDivide.Execute()).IsFail():
+		if (res := operationScaledDivide.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Scaled Divide.')
 			break
 

@@ -74,31 +74,31 @@ def main():
 			break
 		
 		# Laser Triangulation 3D 객체 생성 # Create Laser Triangulation 3D object
-		laserTriangulation = CLaserTriangulation3D()
+		laserTriangulation3D = CLaserTriangulation3D()
 
 		# Source 이미지 설정 # Set the source image
-		laserTriangulation.SetSourceImage(fliSourceImage)
+		laserTriangulation3D.SetSourceImage(fliSourceImage)
 
 		# Destination Height Map 이미지 설정 # Set the destination height map image
-		laserTriangulation.SetDestinationHeightMapImage(fliDestinationImage)
+		laserTriangulation3D.SetDestinationHeightMapImage(fliDestinationImage)
 
 		# Source 이미지 타입 설정 # Set the type of the source image
-		laserTriangulation.SetSourceType(CLaserTriangulation3D.ESourceType.Profile)
+		laserTriangulation3D.SetSourceType(CLaserTriangulation3D.ESourceType.Profile)
 
 		# Pixel Accuracy 설정 # Set the pixel accuracy
-		laserTriangulation.SetPixelAccuracy(0.33)
+		laserTriangulation3D.SetPixelAccuracy(0.33)
 
 		# Scan Accuracy 설정 # Set the scan accuracy
-		laserTriangulation.SetScanAccuracy(0.2)
+		laserTriangulation3D.SetScanAccuracy(0.2)
 
 		# Working Distance 설정 # Set the working distance
-		laserTriangulation.SetWorkingDistance(214.7)
+		laserTriangulation3D.SetWorkingDistance(214.7)
 
 		# 레이저 각도 설정 # Set the angle of laser
-		laserTriangulation.SetAngleOfLaser(60)
+		laserTriangulation3D.SetAngleOfLaser(60)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := laserTriangulation.Execute()).IsFail():
+		if (res := laserTriangulation3D.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Laser Triangulation.')
 			break
 

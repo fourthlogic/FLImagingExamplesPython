@@ -93,38 +93,38 @@ def main():
 			break
 		
 		# Operation Scaled Divide 객체 생성 # Create Operation Scaled Divide object
-		scaledDivide = COperationScaledDivide()
+		operationScaledDivide = COperationScaledDivide()
 
 		# Source 이미지 설정 # Set the source image
-		scaledDivide.SetSourceImage(fliSourceImage)
+		operationScaledDivide.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		scaledDivide.SetDestinationImage(fliDestination1Image)
+		operationScaledDivide.SetDestinationImage(fliDestination1Image)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		scaledDivide.SetOperationSource(EOperationSource.Scalar)
+		operationScaledDivide.SetOperationSource(EOperationSource.Scalar)
 
 		# 오버플로 처리 방법 설정 # Set the overflow handling method
-		scaledDivide.SetOverflowMethod(EOverflowMethod.Clamping)
+		operationScaledDivide.SetOverflowMethod(EOverflowMethod.Clamping)
 		
 		# 곱할 스칼라 값 지정 # Set the Scalar multiplier
 		mvScalar = CMultiVar[Double](192, 192, 192)
-		scaledDivide.SetScalarValue(mvScalar)
+		operationScaledDivide.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := scaledDivide.Execute()).IsFail():
+		if (res := operationScaledDivide.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Scaled Divide.')
 			break
 		
 		# Destination 이미지 설정 # Set the destination image
-		scaledDivide.SetDestinationImage(fliDestination2Image)
+		operationScaledDivide.SetDestinationImage(fliDestination2Image)
 		
 		# 곱할 스칼라 값 지정 # Set the Scalar multiplier
 		mvScalar = CMultiVar[Double](512, 512, 512)
-		scaledDivide.SetScalarValue(mvScalar)
+		operationScaledDivide.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := scaledDivide.Execute()).IsFail():
+		if (res := operationScaledDivide.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Scaled Divide.')
 			break
 		

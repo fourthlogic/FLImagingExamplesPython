@@ -98,25 +98,25 @@ def main():
 			break
 
 		# Operation Complex Multiply 객체 생성 # Create Operation Complex Multiply object
-		complexMultiply = COperationComplexMultiply()
+		operationComplexMultiply = COperationComplexMultiply()
 
 		# Source 이미지 설정 # Set the source image
-		complexMultiply.SetSourceImage(fliSourceImage)
+		operationComplexMultiply.SetSourceImage(fliSourceImage)
 		
 		# Operand 이미지 설정 # Set the operand image
-		complexMultiply.SetOperandImage(fliOperandImage)
+		operationComplexMultiply.SetOperandImage(fliOperandImage)
 		
 		# Destination 이미지 설정 # Set the destination image
-		complexMultiply.SetDestinationImage(fliDestinationImage)
+		operationComplexMultiply.SetDestinationImage(fliDestinationImage)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to image
-		complexMultiply.SetOperationSource(EOperationSource.Image)
+		operationComplexMultiply.SetOperationSource(EOperationSource.Image)
 
 		# 오버플로 처리 방법 설정 # Set the overflow handling method
-		complexMultiply.SetOverflowMethod(EOverflowMethod.Wrapping)
+		operationComplexMultiply.SetOverflowMethod(EOverflowMethod.Wrapping)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := complexMultiply.Execute()).IsFail():
+		if (res := operationComplexMultiply.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Complex Multiply.')
 			break
 
