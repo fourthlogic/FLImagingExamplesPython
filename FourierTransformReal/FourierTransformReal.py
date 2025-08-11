@@ -90,19 +90,19 @@ def main():
 			break
 		
 		# Fourier Transform 객체 생성 # Create Fourier Transform object
-		FourierTransformReal = CFourierTransformReal()
+		fourierTransformReal = CFourierTransformReal()
 
 		# Source 이미지 설정 # Set source image 
-		FourierTransformReal.SetSourceImage(fliISrcImage)
+		fourierTransformReal.SetSourceImage(fliISrcImage)
 
 		# Destination 이미지 설정 # Set destination image
-		FourierTransformReal.SetDestinationImage(fliFTImage)
+		fourierTransformReal.SetDestinationImage(fliFTImage)
 
 		# 결과 이미지 포멧 설정 (FFT image, 32/64 bit Floating Point 설정 가능) # Set Result image format(FFT image, 32/64 bit Floating Point) 
-		FourierTransformReal.SetResultType(EFloatingPointAccuracy.Bit32)
+		fourierTransformReal.SetResultType(EFloatingPointAccuracy.Bit32)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := FourierTransformReal.Execute()).IsFail():
+		if (res := fourierTransformReal.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 		
@@ -133,13 +133,13 @@ def main():
 			break
 		
 		# Source 이미지 설정(FFT image) # Set source image (FFT image)
-		FourierTransformReal.SetSourceImage(fliFTImage)
+		fourierTransformReal.SetSourceImage(fliFTImage)
 
 		# Destination 이미지 설정(IFFT image) # Set destination image(IFFT image)
-		FourierTransformReal.SetDestinationImage(fliIRFTImage)
+		fourierTransformReal.SetDestinationImage(fliIRFTImage)
 				
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := FourierTransformReal.Execute()).IsFail():
+		if (res := fourierTransformReal.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

@@ -28,7 +28,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 # Load the source image
-		if (res := fliISrcImage.Load('../../ExampleImages/FourierTransform/TempleNoise.flif')).IsFail():
+		if (res := fliISrcImage.Load('../../ExampleImages/fourierTransform/TempleNoise.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
@@ -90,22 +90,22 @@ def main():
 			break
 		
 		# Fourier Transform 객체 생성 # Create Fourier Transform object
-		FourierTransform = CFourierTransform()
+		fourierTransform = CFourierTransform()
 
 		# Source 이미지 설정 # Set source image 
-		FourierTransform.SetSourceImage(fliISrcImage)
+		fourierTransform.SetSourceImage(fliISrcImage)
 
 		# Destination 이미지 설정 # Set destination image
-		FourierTransform.SetDestinationImage(fliFTImage)
+		fourierTransform.SetDestinationImage(fliFTImage)
 
 		# 결과 이미지 포멧 설정 (FFT image, 32/64 bit Floating Point 설정 가능) # Set Result image format(FFT image, 32/64 bit Floating Point) 
-		FourierTransform.SetResultType(EFloatingPointAccuracy.Bit32)
+		fourierTransform.SetResultType(EFloatingPointAccuracy.Bit32)
 
 		# 푸리에 변환 결과 이미지를 쉬프트해서 받도록 설정 # Set to receive a shifted image of the Fourier transform result
-		FourierTransform.SetShiftSpectrum(EFourierTransformShiftSpectrum.Shift)
+		fourierTransform.SetShiftSpectrum(EFourierTransformShiftSpectrum.Shift)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := FourierTransform.Execute()).IsFail():
+		if (res := fourierTransform.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 		
@@ -136,13 +136,13 @@ def main():
 			break
 		
 		# Source 이미지 설정(FFT image) # Set source image (FFT image)
-		FourierTransform.SetSourceImage(fliFTImage)
+		fourierTransform.SetSourceImage(fliFTImage)
 
 		# Destination 이미지 설정(IFFT image) # Set destination image(IFFT image)
-		FourierTransform.SetDestinationImage(fliIFFTImage)
+		fourierTransform.SetDestinationImage(fliIFFTImage)
 				
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := FourierTransform.Execute()).IsFail():
+		if (res := fourierTransform.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
