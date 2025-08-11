@@ -75,26 +75,26 @@ def main():
             break
 
         # CMultiVar<double> 생성 // Create CMultiVar objects for scalar values
-        mvScalar = CMultiVar[Double](30, 0, 0)
-        mvScalar2 = CMultiVar[Double](0, 30, 0)
+        mvScalar = CMultiVar[Double](100, 0, 0)
+        mvScalar2 = CMultiVar[Double](0, 100, 0)
 
         # COperationHypotenuse 객체 생성 // Create COperationHypotenuse object
-        hypotenuse = COperationHypotenuse()
-        hypotenuse.SetSourceImage(arrFliImage[0])
-        hypotenuse.SetDestinationImage(arrFliImage[1])
-        hypotenuse.SetOperationSource(EOperationSource.Scalar)  # 단일 enum 값은 그대로 넘김
-        hypotenuse.SetScalarValue(mvScalar)
+        operationHypotenuse = COperationHypotenuse()
+        operationHypotenuse.SetSourceImage(arrFliImage[0])
+        operationHypotenuse.SetDestinationImage(arrFliImage[1])
+        operationHypotenuse.SetOperationSource(EOperationSource.Scalar)  # 단일 enum 값은 그대로 넘김
+        operationHypotenuse.SetScalarValue(mvScalar)
 
         # 알고리즘 수행 // Execute algorithm
-        if (res := hypotenuse.Execute()).IsFail():
+        if (res := operationHypotenuse.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation hypotenuse.")
             break
 
-        hypotenuse.SetDestinationImage(arrFliImage[2])
-        hypotenuse.SetOperationSource(EOperationSource.Scalar)
-        hypotenuse.SetScalarValue(mvScalar2)
+        operationHypotenuse.SetDestinationImage(arrFliImage[2])
+        operationHypotenuse.SetOperationSource(EOperationSource.Scalar)
+        operationHypotenuse.SetScalarValue(mvScalar2)
 
-        if (res := hypotenuse.Execute()).IsFail():
+        if (res := operationHypotenuse.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation hypotenuse.")
             break
 
@@ -110,10 +110,10 @@ def main():
         if (res := arrLayer[0].DrawTextCanvas(tpPosition, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
             ErrorPrint(res, "Failed to draw text.")
             break
-        if (res := arrLayer[1].DrawTextCanvas(tpPosition, "Destination1 Image(Hypotenuse 30, 0, 0)", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+        if (res := arrLayer[1].DrawTextCanvas(tpPosition, "Destination1 Image(Hypotenuse 100, 0, 0)", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
             ErrorPrint(res, "Failed to draw text.")
             break
-        if (res := arrLayer[2].DrawTextCanvas(tpPosition, "Destination2 Image(Hypotenuse 0, 30, 0)", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+        if (res := arrLayer[2].DrawTextCanvas(tpPosition, "Destination2 Image(Hypotenuse 0, 100, 0)", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
             ErrorPrint(res, "Failed to draw text.")
             break
 
