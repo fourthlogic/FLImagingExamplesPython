@@ -76,31 +76,31 @@ def main():
 		flrROI = CFLRect[int](200, 200, 500, 500)
 
 		# 객체 생성 // Create object
-		gcd = COperationGreatestCommonDivisor()
+		operationGreatestCommonDivisor = COperationGreatestCommonDivisor()
 
 		# Source 이미지 설정 // Set the source image
-		gcd.SetSourceImage(arrFliImage[EType.Source])
+		operationGreatestCommonDivisor.SetSourceImage(arrFliImage[EType.Source])
 
 		# Source ROI 설정 // Set the source ROI
-		gcd.SetSourceROI(flrROI)
+		operationGreatestCommonDivisor.SetSourceROI(flrROI)
 
 		# Operand 이미지 설정 // Set the operand image
-		gcd.SetOperandImage(arrFliImage[EType.Operand])
+		operationGreatestCommonDivisor.SetOperandImage(arrFliImage[EType.Operand])
 
 		# Operand ROI 설정 // Set the operand ROI
-		gcd.SetOperandROI(flrROI)
+		operationGreatestCommonDivisor.SetOperandROI(flrROI)
 
 		# Destination 이미지 설정 // Set the destination image
-		gcd.SetDestinationImage(arrFliImage[EType.Destination])
+		operationGreatestCommonDivisor.SetDestinationImage(arrFliImage[EType.Destination])
 
 		# Destination ROI 설정 // Set Destination ROI
-		gcd.SetDestinationROI(flrROI)
+		operationGreatestCommonDivisor.SetDestinationROI(flrROI)
 
 		# 연산 방식 설정 // Set the operation source
-		gcd.SetOperationSource(EOperationSource.Image)
+		operationGreatestCommonDivisor.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := gcd.Execute()).IsFail():
+		if (res := operationGreatestCommonDivisor.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute operation GCD.')
 			break
 

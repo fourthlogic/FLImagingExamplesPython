@@ -60,16 +60,16 @@ def main():
 			break
 
 		# Operation Trailing Zeros 객체 생성 # Create Operation Trailing Zeros object
-		trailingZeros = COperationTrailingZeros()
+		operationTrailingZeros = COperationTrailingZeros()
 
 		# Source 이미지 설정 # Set the source image
-		trailingZeros.SetSourceImage(fliSourceImage)
+		operationTrailingZeros.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		trailingZeros.SetDestinationImage(fliDestinationImage)
+		operationTrailingZeros.SetDestinationImage(fliDestinationImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := trailingZeros.Execute()).IsFail():
+		if (res := operationTrailingZeros.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Trailing Zeros.')
 			break
 

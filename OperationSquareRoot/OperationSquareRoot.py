@@ -60,16 +60,16 @@ def main():
 			break
 
 		# Square Root 객체 생성 // Create Square Root object
-		squareRoot = COperationSquareRoot()
+		operationSquareRoot = COperationSquareRoot()
 
 		# Source 이미지 설정 // Set the source image
-		squareRoot.SetSourceImage(fliSourceImage)
+		operationSquareRoot.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		squareRoot.SetDestinationImage(fliDestinationImage)
+		operationSquareRoot.SetDestinationImage(fliDestinationImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := squareRoot.Execute()).IsFail():
+		if (res := operationSquareRoot.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Square Root.')
 			break
 

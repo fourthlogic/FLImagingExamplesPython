@@ -74,37 +74,37 @@ def main():
 
 
 		# 객체 생성 // Create object
-		gcd = COperationGreatestCommonDivisor()
+		operationGreatestCommonDivisor = COperationGreatestCommonDivisor()
 
 		# Source 이미지 설정 // Set the source image
-		gcd.SetSourceImage(arrFliImage[EType.Source])
+		operationGreatestCommonDivisor.SetSourceImage(arrFliImage[EType.Source])
 
 		# Destination 이미지 설정 // Set the destination image
-		gcd.SetDestinationImage(arrFliImage[EType.Destination1])
+		operationGreatestCommonDivisor.SetDestinationImage(arrFliImage[EType.Destination1])
 
 		# 연산 방식 설정 // Set the operation source
-		gcd.SetOperationSource(EOperationSource.Scalar)
+		operationGreatestCommonDivisor.SetOperationSource(EOperationSource.Scalar)
 
 		# Scalar 값 설정 // Set the scalar value
 		mvScalarValue1 = CMultiVar[Double](50, 50, 50)
 
-		gcd.SetScalarValue(mvScalarValue1)
+		operationGreatestCommonDivisor.SetScalarValue(mvScalarValue1)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := gcd.Execute()).IsFail():
+		if (res := operationGreatestCommonDivisor.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute operation GCD.')
 			break
 
 		# Destination 이미지를 Destination2로 설정 // Set destination image to destination2
-		gcd.SetDestinationImage(arrFliImage[EType.Destination2])
+		operationGreatestCommonDivisor.SetDestinationImage(arrFliImage[EType.Destination2])
 
 		# Scalar 값 설정 // Set the scalar value
 		mvScalarValue2 = CMultiVar[Double](200, 200, 200)
 
-		gcd.SetScalarValue(mvScalarValue2)
+		operationGreatestCommonDivisor.SetScalarValue(mvScalarValue2)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := gcd.Execute()).IsFail():
+		if (res := operationGreatestCommonDivisor.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute operation GCD.')
 			break
 		

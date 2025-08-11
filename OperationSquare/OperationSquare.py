@@ -60,16 +60,16 @@ def main():
 			break
 
 		# Square 객체 생성 // Create Square object
-		square = COperationSquare()
+		operationSquare = COperationSquare()
 
 		# Source 이미지 설정 // Set the source image
-		square.SetSourceImage(fliSourceImage)
+		operationSquare.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		square.SetDestinationImage(fliDestinationImage)
+		operationSquare.SetDestinationImage(fliDestinationImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := square.Execute()).IsFail():
+		if (res := operationSquare.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Square.')
 			break
 
