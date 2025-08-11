@@ -65,16 +65,16 @@ def main():
 			break
 
 		# Operation Leading Ones 객체 생성 # Create Operation Leading Ones object
-		leadingOnes = COperationLeadingOnes()
+		operationLeadingOnes = COperationLeadingOnes()
 
 		# Source 이미지 설정 # Set the source image
-		leadingOnes.SetSourceImage(fliSourceImage)
+		operationLeadingOnes.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		leadingOnes.SetDestinationImage(fliDestinationImage)
+		operationLeadingOnes.SetDestinationImage(fliDestinationImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := leadingOnes.Execute()).IsFail():
+		if (res := operationLeadingOnes.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

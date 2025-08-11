@@ -27,7 +27,7 @@ def main():
 			break
 
 		#알고리즘 객체 생성 // declare algorithm instance
-		switchAxes = CSwitchAxes3D()
+		switchAxes3D = CSwitchAxes3D()
 		
 		floSrc = CFL3DObject()
 		floDst = CFL3DObject()
@@ -37,12 +37,12 @@ def main():
 			break
 		
 		# 파라미터 설정 // Set parameter
-		switchAxes.SetSourceObject(floSrc)
-		switchAxes.SetDestinationObject(floDst)
-		switchAxes.SetAxisMappings(switchAxes.EAxisMapping.From_PX, switchAxes.EAxisMapping.From_NY, switchAxes.EAxisMapping.Deduce, False)
+		switchAxes3D.SetSourceObject(floSrc)
+		switchAxes3D.SetDestinationObject(floDst)
+		switchAxes3D.SetAxisMappings(switchAxes3D.EAxisMapping.From_PX, switchAxes3D.EAxisMapping.From_NY, switchAxes3D.EAxisMapping.Deduce, False)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := switchAxes.Execute()).IsFail():
+		if (res := switchAxes3D.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

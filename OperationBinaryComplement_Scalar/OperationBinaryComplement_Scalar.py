@@ -50,23 +50,23 @@ def main():
 			break
 		
 		# 알고리즘 객체 생성 # Create algorithm object
-		bc = COperationBinaryComplement()
+		operationBinaryComplement = COperationBinaryComplement()
 
 		# Source 이미지 설정 # Set the source image
-		bc.SetSourceImage(fliSrcImage)
+		operationBinaryComplement.SetSourceImage(fliSrcImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		bc.SetDestinationImage(fliDstImage)
+		operationBinaryComplement.SetDestinationImage(fliDstImage)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		bc.SetOperationSource(EOperationSource.Scalar);
+		operationBinaryComplement.SetOperationSource(EOperationSource.Scalar);
 		
 		# 곱할 스칼라 값 지정 # Set the Scalar multiplier
 		mvScalar = CMultiVar[UInt64](1);
-		bc.SetScalarValue(mvScalar);
+		operationBinaryComplement.SetScalarValue(mvScalar);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := bc.Execute()).IsFail():
+		if (res := operationBinaryComplement.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

@@ -39,19 +39,19 @@ def main():
 			break
 
 		# 객체 생성 // Create object
-		lsd = CLineSegmentDetector()
-		lsd.SetSourceImage(fliSrc)
+		lineSegmentDetector = CLineSegmentDetector()
+		lineSegmentDetector.SetSourceImage(fliSrc)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := lsd.Execute()).IsFail():
+		if (res := lineSegmentDetector.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 		
-		# 검출된 특징점를 구하는 함수 // Function that calculate the feature points
-		f64ScoreThreshold = lsd.GetScoreThreshold();
+		# 검출된 특징점을 구하는 함수 // Function that calculate the feature points
+		f64ScoreThreshold = lineSegmentDetector.GetScoreThreshold();
 		
-		_, flfaResults = lsd.GetResultLineSegments(CFLFigureArray());
-		_, arrScores = lsd.GetResultScores(List[Double]());
+		_, flfaResults = lineSegmentDetector.GetResultLineSegments(CFLFigureArray());
+		_, arrScores = lineSegmentDetector.GetResultScores(List[Double]());
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately

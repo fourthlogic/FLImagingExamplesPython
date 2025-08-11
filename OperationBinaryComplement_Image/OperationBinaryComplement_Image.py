@@ -68,22 +68,22 @@ def main():
 			break
 		
 		# 알고리즘 객체 생성 # Create algorithm object
-		bc = COperationBinaryComplement()
+		operationBinaryComplement = COperationBinaryComplement()
 
 		# Source 이미지 설정 # Set the source image
-		bc.SetSourceImage(fliSourceImage)
+		operationBinaryComplement.SetSourceImage(fliSourceImage)
 		
 		# Operand 이미지 설정 # Set the operand image
-		bc.SetOperandImage(fliOperandImage)
+		operationBinaryComplement.SetOperandImage(fliOperandImage)
 		
 		# Destination 이미지 설정 # Set the destination image
-		bc.SetDestinationImage(fliDestinationImage)
+		operationBinaryComplement.SetDestinationImage(fliDestinationImage)
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		bc.SetOperationSource(EOperationSource.Image);
+		operationBinaryComplement.SetOperationSource(EOperationSource.Image);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := bc.Execute()).IsFail():
+		if (res := operationBinaryComplement.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 

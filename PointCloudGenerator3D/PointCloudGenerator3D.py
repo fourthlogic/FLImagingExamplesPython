@@ -21,7 +21,7 @@ def main():
 			break
 
 		#알고리즘 객체 생성 // declare algorithm instance
-		pointCloudGenerator = CPointCloudGenerator3D()
+		pointCloudGenerator3D = CPointCloudGenerator3D()
 		
 		# 3D 뷰와 연결이 유지된 객체 생성 // Declare the object connected to 3D view
 		view3DDst.PushObject(CFL3DObject())
@@ -29,17 +29,17 @@ def main():
 		floDst = viewObject.Get3DObject()
 				
 		# 파라미터 설정 // Set parameter
-		pointCloudGenerator.SetDestinationObject(floDst)
-		pointCloudGenerator.EnableColorGeneration(True)
-		pointCloudGenerator.EnableNormalGeneration(False)
+		pointCloudGenerator3D.SetDestinationObject(floDst)
+		pointCloudGenerator3D.EnableColorGeneration(True)
+		pointCloudGenerator3D.EnableNormalGeneration(False)
 
-		pointCloudGenerator.AddPredefinedObject(pointCloudGenerator.SCountInfo(True, 0, 0, 0), EPredefinedObject.Regular_DodecaHedron, TPoint3[Byte](255, 255, 255))
-		pointCloudGenerator.AddPredefinedObject(pointCloudGenerator.SCountInfo(False, 4000, 0, 0), EPredefinedObject.Regular_DodecaHedron, TPoint3[Byte](255, 0, 0))
-		pointCloudGenerator.AddPredefinedObject(pointCloudGenerator.SCountInfo(False, 0, 20000, 0), EPredefinedObject.Regular_DodecaHedron, TPoint3[Byte](0, 255, 0))
-		pointCloudGenerator.AddPredefinedObject(pointCloudGenerator.SCountInfo(False, 0, 0, 100000), EPredefinedObject.Regular_DodecaHedron, TPoint3[Byte](0, 0, 255))
+		pointCloudGenerator3D.AddPredefinedObject(pointCloudGenerator3D.SCountInfo(True, 0, 0, 0), EPredefinedObject.Regular_DodecaHedron, TPoint3[Byte](255, 255, 255))
+		pointCloudGenerator3D.AddPredefinedObject(pointCloudGenerator3D.SCountInfo(False, 4000, 0, 0), EPredefinedObject.Regular_DodecaHedron, TPoint3[Byte](255, 0, 0))
+		pointCloudGenerator3D.AddPredefinedObject(pointCloudGenerator3D.SCountInfo(False, 0, 20000, 0), EPredefinedObject.Regular_DodecaHedron, TPoint3[Byte](0, 255, 0))
+		pointCloudGenerator3D.AddPredefinedObject(pointCloudGenerator3D.SCountInfo(False, 0, 0, 100000), EPredefinedObject.Regular_DodecaHedron, TPoint3[Byte](0, 0, 255))
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := pointCloudGenerator.Execute()).IsFail():
+		if (res := pointCloudGenerator3D.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 		
@@ -49,7 +49,7 @@ def main():
 		view3DDst.ZoomFit()
 
 		while view3DDst.IsAvailable():
-			if (res := pointCloudGenerator.Execute()).IsFail():
+			if (res := pointCloudGenerator3D.Execute()).IsFail():
 				ErrorPrint(res, "Failed to execute.")
 				break;
 

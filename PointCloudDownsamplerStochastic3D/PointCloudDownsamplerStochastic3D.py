@@ -23,7 +23,7 @@ def main():
 			break
 
 		#알고리즘 객체 생성 // declare algorithm instance
-		pointCloudDownsampler = CPointCloudDownsamplerStochastic3D()
+		pointCloudDownsamplerStochastic3D = CPointCloudDownsamplerStochastic3D()
 
 		# 3D 뷰와 연결이 유지된 객체 생성 // Declare the object connected to 3D view
 		view3DSrc.PushObject(CFL3DObject())
@@ -40,15 +40,15 @@ def main():
 			break
 
 		# 파라미터 설정 // Set parameter
-		pointCloudDownsampler.SetSourceObject(floSrc)
-		pointCloudDownsampler.SetDestinationObject(floDst)
-		pointCloudDownsampler.SetSamplingSize(50000)
-		pointCloudDownsampler.EnableNormalRetainment(True)
-		pointCloudDownsampler.EnableColorRetainment(True)
-		pointCloudDownsampler.EnableFaceRetainment(False)
+		pointCloudDownsamplerStochastic3D.SetSourceObject(floSrc)
+		pointCloudDownsamplerStochastic3D.SetDestinationObject(floDst)
+		pointCloudDownsamplerStochastic3D.SetSamplingSize(50000)
+		pointCloudDownsamplerStochastic3D.EnableNormalRetainment(True)
+		pointCloudDownsamplerStochastic3D.EnableColorRetainment(True)
+		pointCloudDownsamplerStochastic3D.EnableFaceRetainment(False)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := pointCloudDownsampler.Execute()).IsFail():
+		if (res := pointCloudDownsamplerStochastic3D.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 		
