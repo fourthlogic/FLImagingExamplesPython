@@ -71,7 +71,7 @@ def main():
 		orthogonalCalibrator = COrthogonalCalibrator()
 
 		# Learn 이미지 로드 // Load the Learn image
-		if(res := fliDistortionChessBoard.Load('C:\\Users\\Public\\Documents\\FLImaging\\ExampleImages\\Measurement\\ChessBoard.flif')).IsFail() :		
+		if(res := fliDistortionChessBoard.Load('../../ExampleImages/Measurement/ChessBoard.flif')).IsFail() :		
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
@@ -90,7 +90,7 @@ def main():
 			break
 
 		# 측정 이미지 로드 // Load the measurement image
-		if(res := fliDistortedMeasurementImage.Load('C:\\Users\\Public\\Documents\\FLImaging\\ExampleImages\\Measurement\\Measurement.flif')).IsFail() :		
+		if(res := fliDistortedMeasurementImage.Load('../../ExampleImages/Measurement/Measurement.flif')).IsFail() :		
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
@@ -104,7 +104,7 @@ def main():
 		rectangleGauge.SetSourceImage(fliUndistortedMeasurementImage)
 
 		# 측정할 영역을 설정합니다. // Set the area to measure.
-		flrMeasureRegion = CFLRect[Double](1095.69367959050714, 1337.99846331160370, 1970.73350513123319, 1924.77041713468020, -8.06731650598383)
+		flrMeasureRegion = CFLRect[Double](274, 335, 493, 481, -8.06731650598383)
 		rectangleGauge.SetMeasurementRegion(flrMeasureRegion, 20.000000)
 
 		# 알고리즘 수행 // Execute the algorithm

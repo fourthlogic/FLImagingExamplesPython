@@ -47,7 +47,7 @@ def main():
 	while True:
 		
 		# 이미지 로드 // Load the image
-		if(res := fliSource.Load("../../ExampleImages/CameraPose3D/ChessBoard(9).flif")).IsFail() :				
+		if(res := fliSource.Load("../../ExampleImages/CameraPose3D/ChessBoard(4p).flif")).IsFail() :				
 			ErrorPrint(res, "Failed to load the object file.\n")
 			break
 		
@@ -73,15 +73,15 @@ def main():
 		flpOrigin = CFLPoint[Double](0, 0)
 
 		arrViewWrap = list() 
-		i32WindowWidth = 300
-		i32WindowHeight = 300
+		i32WindowWidth = 500
+		i32WindowHeight = 500
 
-		for i in range(0, i32PageCount // 3) :		
+		for i in range(0, i32PageCount // 2) :		
 			i32Height = i32WindowHeight * i
 
-			for j in range(0, i32PageCount // 3) :			
+			for j in range(0, i32PageCount // 2) :			
 				i32Width = i32WindowWidth * j
-				i32Index = i * 3 + j
+				i32Index = i * 2 + j
 
 				arrViewWrap.append(CGUIViewImage())
 				arrViewWrap[i32Index].Create(10 + i32Height, i32Width, 10 + i32Height + i32WindowHeight, i32Width + i32WindowWidth)					
