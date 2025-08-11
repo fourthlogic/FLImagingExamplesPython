@@ -21,12 +21,14 @@ def main():
 	# 이미지 객체 선언 # Declare the image object
 	fliSourceImage = CFLImage()
 	fliCalibrationImage = CFLImage()
+	fliCurvatureImage = CFLImage()
 	fliDestinationImage = CFLImage()
 	fliTextureImage = CFLImage()
 
 	# 이미지 뷰 선언 # Declare the image view
 	viewImageSource = CGUIViewImage()
 	viewImageCalibration = CGUIViewImage()
+	viewImageCurvature = CGUIViewImage()
 	viewImageTexture = CGUIViewImage()
 	viewImage3D = CGUIView3D()
 
@@ -81,15 +83,20 @@ def main():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 		
+		# Curvature 이미지 뷰 생성 # Create curvature image view
+		if (res := viewImageCurvature.Create(498, 398, 896, 796)).IsFail():
+			ErrorPrint(res, 'Failed to create the image view.')
+			break
+
+		# Curvature 이미지 뷰에 이미지를 디스플레이 # Display the image in the curvature image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageCurvature.SetImagePtr(fliCurvatureImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.')
+			break
+		
 		# Destination 3D 이미지 뷰 생성 # Create destination 3D image view
 		if (res := viewImage3D.Create(896, 0, 1692, 769)).IsFail():
 			ErrorPrint(res, 'Failed to create the 3D view.')
-			break
-		
-		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSource.SynchronizePointOfView(viewImageTexture)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 		
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
@@ -101,6 +108,12 @@ def main():
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSource.SynchronizeWindow(viewImageTexture)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize view.')
+			break
+		
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageSource.SynchronizeWindow(viewImageCurvature)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 
@@ -129,13 +142,19 @@ def main():
 		
 		# Texture 이미지 설정 # Set texture image
 		photometricStereo3D.SetDestinationTextureImage(fliTextureImage)
+
+		# Destination Curvature 이미지 설정 # Set the destination curvature image
+		photometricStereo3D.SetCurvatureImage(fliCurvatureImage);
 		
 		# 동작 방식 설정 # Set Operation Mode
 		photometricStereo3D.SetReconstructionMode(CPhotometricStereo3D.EReconstructionMode.Poisson_FP32)
 
 		# Valid 픽셀의 기준 설정 # Set valid pixel ratio
 		photometricStereo3D.SetValidPixelThreshold(0.25)
-		
+
+		# Curvature 이미지 Normalization 여부 설정 # Set curvature image normalization option
+		photometricStereo3D.EnableCurvatureNormalization(True);
+
 		# Angle Degrees 동작 방식으로 설정 # Set operation method as angle degrees
 		cMatTemp = CMatrix[Double](3, 3)
 
@@ -191,10 +210,16 @@ def main():
 		if (res := viewImageTexture.ZoomFit()).IsFail():
 			ErrorPrint(res, 'Failed to Zoom Fit.')
 			break
+		
+		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
+		if (res := viewImageCurvature.ZoomFit()).IsFail():
+			ErrorPrint(res, 'Failed to Zoom Fit.')
+			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
 		layerSource = viewImageSource.GetLayer(0)
+		layerCurvature = viewImageCurvature.GetLayer(0)
 		layerCalibration = viewImageCalibration.GetLayer(0)
 		layerTexture = viewImageTexture.GetLayer(0)
 		layer3D = viewImage3D.GetLayer(0)
@@ -202,6 +227,7 @@ def main():
 		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
 		layerSource.Clear()
 		layerCalibration.Clear()
+		layerCurvature.Clear()
 		layerTexture.Clear()
 		layer3D.Clear()
 
@@ -217,6 +243,10 @@ def main():
 			break
 		
 		if (res := layerTexture.DrawTextCanvas(flpPoint, 'Destination Texture Image', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+			ErrorPrint(res, 'Failed to draw text.')
+			break
+		
+		if (res := layerTexture.DrawTextCanvas(flpPoint, 'Destination Curvature Image', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 		
@@ -262,11 +292,12 @@ def main():
 		# 이미지 뷰를 갱신 # Update image view
 		viewImageSource.Invalidate(True)
 		viewImageCalibration.Invalidate(True)
+		viewImageCurvature.Invalidate(True)
 		viewImageTexture.Invalidate(True)
 		viewImage3D.Invalidate(True)
 
 		# 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
-		while viewImageSource.IsAvailable() and viewImageCalibration.IsAvailable() and viewImageTexture.IsAvailable() and viewImage3D.IsAvailable():
+		while viewImageSource.IsAvailable() and viewImageCalibration.IsAvailable() and viewImageCurvature.IsAvailable() and viewImageTexture.IsAvailable() and viewImage3D.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
 		break
