@@ -79,36 +79,36 @@ def main():
         mvScalar2 = CMultiVar[Double](200, 200, 200)
 
         # COperationMinimum 객체 생성 // Create COperationMinimum object
-        minimum = COperationMinimum()
+        operationMinimum = COperationMinimum()
 
         # Source 이미지 설정 // Set source image
-        minimum.SetSourceImage(arrFliImage[0])
+        operationMinimum.SetSourceImage(arrFliImage[0])
 
         # Destination 이미지 설정 // Set destination image (첫 번째)
-        minimum.SetDestinationImage(arrFliImage[1])
+        operationMinimum.SetDestinationImage(arrFliImage[1])
 
         # 연산 방식 설정 // Set operation source
-        minimum.SetOperationSource(EOperationSource.Scalar)
+        operationMinimum.SetOperationSource(EOperationSource.Scalar)
 
         # Scalar 값 설정 // Set scalar value (첫 번째)
-        minimum.SetScalarValue(mvScalar1)
+        operationMinimum.SetScalarValue(mvScalar1)
 
         # 알고리즘 수행 // Execute algorithm
-        if (res := minimum.Execute()).IsFail():
+        if (res := operationMinimum.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation minimum.")
             break
 
         # Destination 이미지 설정 // Set destination image (두 번째)
-        minimum.SetDestinationImage(arrFliImage[2])
+        operationMinimum.SetDestinationImage(arrFliImage[2])
 
         # 연산 방식 설정 // Set operation source
-        minimum.SetOperationSource(EOperationSource.Scalar)
+        operationMinimum.SetOperationSource(EOperationSource.Scalar)
 
         # Scalar 값 설정 // Set scalar value (두 번째)
-        minimum.SetScalarValue(mvScalar2)
+        operationMinimum.SetScalarValue(mvScalar2)
 
         # 알고리즘 수행 // Execute algorithm
-        if (res := minimum.Execute()).IsFail():
+        if (res := operationMinimum.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation minimum.")
             break
 

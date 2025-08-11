@@ -79,22 +79,22 @@ def main():
         mvScalar2 = CMultiVar[Double](0, 30, 0)
 
         # COperationAdd 객체 생성 // Create COperationAdd object
-        add = COperationAdd()
-        add.SetSourceImage(arrFliImage[0])
-        add.SetDestinationImage(arrFliImage[1])
-        add.SetOperationSource(EOperationSource.Scalar)  # 단일 enum 값은 그대로 넘김
-        add.SetScalarValue(mvScalar)
+        operationAdd = COperationAdd()
+        operationAdd.SetSourceImage(arrFliImage[0])
+        operationAdd.SetDestinationImage(arrFliImage[1])
+        operationAdd.SetOperationSource(EOperationSource.Scalar)  # 단일 enum 값은 그대로 넘김
+        operationAdd.SetScalarValue(mvScalar)
 
         # 알고리즘 수행 // Execute algorithm
-        if (res := add.Execute()).IsFail():
+        if (res := operationAdd.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation add.")
             break
 
-        add.SetDestinationImage(arrFliImage[2])
-        add.SetOperationSource(EOperationSource.Scalar)
-        add.SetScalarValue(mvScalar2)
+        operationAdd.SetDestinationImage(arrFliImage[2])
+        operationAdd.SetOperationSource(EOperationSource.Scalar)
+        operationAdd.SetScalarValue(mvScalar2)
 
-        if (res := add.Execute()).IsFail():
+        if (res := operationAdd.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation add.")
             break
 

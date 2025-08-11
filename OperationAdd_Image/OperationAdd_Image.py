@@ -77,22 +77,22 @@ def main():
             break
 
         # Operation Add 객체 생성 // Create Add object
-        add = COperationAdd()
+        operationAdd = COperationAdd()
 
         # Source 이미지 설정 // Set source image
-        add.SetSourceImage(arrFliImage[0])
+        operationAdd.SetSourceImage(arrFliImage[0])
 
         # Operand 이미지 설정 // Set operand image
-        add.SetOperandImage(arrFliImage[1])
+        operationAdd.SetOperandImage(arrFliImage[1])
 
         # Destination 이미지 설정 // Set destination image
-        add.SetDestinationImage(arrFliImage[2])
+        operationAdd.SetDestinationImage(arrFliImage[2])
 
         # 연산 방식 설정 // Set operation source
-        add.SetOperationSource(EOperationSource.Image)
+        operationAdd.SetOperationSource(EOperationSource.Image)
 
         # 알고리즘 수행 // Execute algorithm
-        if (res := add.Execute()).IsFail():
+        if (res := operationAdd.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation add.")
             print(res.GetString())
             break

@@ -75,18 +75,18 @@ def main():
             break
 
         # COperationSubtract 객체 생성 // Create COperationSubtract object
-        subtract = COperationSubtract()
+        operationSubtract = COperationSubtract()
         # Source 이미지 설정 // Set source image
-        subtract.SetSourceImage(arrFliImage[0])
+        operationSubtract.SetSourceImage(arrFliImage[0])
         # Operand 이미지 설정 // Set operand image
-        subtract.SetOperandImage(arrFliImage[1])
+        operationSubtract.SetOperandImage(arrFliImage[1])
         # Destination 이미지 설정 // Set destination image
-        subtract.SetDestinationImage(arrFliImage[2])
+        operationSubtract.SetDestinationImage(arrFliImage[2])
         # 연산 방식 설정 // Set operation source
-        subtract.SetOperationSource(EOperationSource.Image)
+        operationSubtract.SetOperationSource(EOperationSource.Image)
 
         # 알고리즘 수행 // Execute the algorithm
-        if (res := subtract.Execute()).IsFail():
+        if (res := operationSubtract.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation subtract.")
             break
 

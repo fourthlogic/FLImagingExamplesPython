@@ -75,22 +75,22 @@ def main():
             break
 
         # COperationMinimum 객체 생성 // Create COperationMinimum object
-        minimum = COperationMinimum()
+        operationMinimum = COperationMinimum()
 
         # Source 이미지 설정 // Set source image
-        minimum.SetSourceImage(arrFliImage[0])
+        operationMinimum.SetSourceImage(arrFliImage[0])
 
         # Operand 이미지 설정 // Set operand image
-        minimum.SetOperandImage(arrFliImage[1])
+        operationMinimum.SetOperandImage(arrFliImage[1])
 
         # Destination 이미지 설정 // Set destination image
-        minimum.SetDestinationImage(arrFliImage[2])
+        operationMinimum.SetDestinationImage(arrFliImage[2])
 
         # 연산 방식 설정 // Set operation source
-        minimum.SetOperationSource(EOperationSource.Image)
+        operationMinimum.SetOperationSource(EOperationSource.Image)
 
         # 알고리즘 수행 // Execute the algorithm
-        if (res := minimum.Execute()).IsFail():
+        if (res := operationMinimum.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation minimum.")
             break
 

@@ -79,36 +79,36 @@ def main():
         mvScalar2 = CMultiVar[Double](200, 200, 200)
 
         # COperationMaximum 객체 생성 // Create COperationMaximum object
-        maximum = COperationMaximum()
+        operationMaximum = COperationMaximum()
 
         # Source 이미지 설정 // Set source image
-        maximum.SetSourceImage(arrFliImage[0])
+        operationMaximum.SetSourceImage(arrFliImage[0])
 
         # Destination 이미지 설정 // Set destination image (첫 번째)
-        maximum.SetDestinationImage(arrFliImage[1])
+        operationMaximum.SetDestinationImage(arrFliImage[1])
 
         # 연산 방식 설정 // Set operation source
-        maximum.SetOperationSource(EOperationSource.Scalar)
+        operationMaximum.SetOperationSource(EOperationSource.Scalar)
 
         # Scalar 값 설정 // Set scalar value (첫 번째)
-        maximum.SetScalarValue(mvScalar1)
+        operationMaximum.SetScalarValue(mvScalar1)
 
         # 알고리즘 수행 // Execute algorithm
-        if (res := maximum.Execute()).IsFail():
+        if (res := operationMaximum.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation maximum.")
             break
 
         # Destination 이미지 설정 // Set destination image (두 번째)
-        maximum.SetDestinationImage(arrFliImage[2])
+        operationMaximum.SetDestinationImage(arrFliImage[2])
 
         # 연산 방식 설정 // Set operation source
-        maximum.SetOperationSource(EOperationSource.Scalar)
+        operationMaximum.SetOperationSource(EOperationSource.Scalar)
 
         # Scalar 값 설정 // Set scalar value (두 번째)
-        maximum.SetScalarValue(mvScalar2)
+        operationMaximum.SetScalarValue(mvScalar2)
 
         # 알고리즘 수행 // Execute algorithm
-        if (res := maximum.Execute()).IsFail():
+        if (res := operationMaximum.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation maximum.")
             break
 

@@ -80,22 +80,22 @@ def main():
         mvScalar2 = CMultiVar[Double](200, 200, 200)
 
         # Operation Maximum 객체 생성 // Create Operation Maximum object
-        maximum = COperationMaximum()
-        maximum.SetSourceImage(arrFliImage[0])
-        maximum.SetDestinationImage(arrFliImage[1])
-        maximum.SetOperationSource(EOperationSource.Scalar)
-        maximum.SetScalarValue(mvScalar)
+        operationMaximum = COperationMaximum()
+        operationMaximum.SetSourceImage(arrFliImage[0])
+        operationMaximum.SetDestinationImage(arrFliImage[1])
+        operationMaximum.SetOperationSource(EOperationSource.Scalar)
+        operationMaximum.SetScalarValue(mvScalar)
 
         # 알고리즘 수행 // Execute algorithm
-        if (res := maximum.Execute()).IsFail():
+        if (res := operationMaximum.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation maximum (first).")
             break
 
-        maximum.SetDestinationImage(arrFliImage[2])
-        maximum.SetOperationSource(EOperationSource.Scalar)
-        maximum.SetScalarValue(mvScalar2)
+        operationMaximum.SetDestinationImage(arrFliImage[2])
+        operationMaximum.SetOperationSource(EOperationSource.Scalar)
+        operationMaximum.SetScalarValue(mvScalar2)
 
-        if (res := maximum.Execute()).IsFail():
+        if (res := operationMaximum.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation maximum (second).")
             break
 
