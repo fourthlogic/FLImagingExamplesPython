@@ -69,7 +69,7 @@ def main():
     # 도면에 대한 분해능 단위를 설정합니다. // Set unit of pixel accuracy.
     drawingMatch.SetDistanceUnit(CDrawingMatch.EDistanceUnit.Millimeter)
     # 도면에 대한 분해능을 설정합니다. // Set pixel accuracy.
-    drawingMatch.SetPixelAccuracy(0.05, 0.05)
+    drawingMatch.SetPixelAccuracy(0.1, 0.1)
 
     # 특징점 추출 파라미터 설정 // Set feature extraction parameters
     # 추출할 특징점 개수를 설정합니다. // Set the number of feature points to be extracted.
