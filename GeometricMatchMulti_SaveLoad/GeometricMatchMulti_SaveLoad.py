@@ -29,9 +29,9 @@ def main():
 		do_once = False
 
 		arrPath = [
-			"../../ExampleImages/Matching/Geometric Mult Learn.flif",
-			"../../ExampleImages/Matching/Geometric Mult Learn.flif",
-			"../../ExampleImages/Matching/Geometric Mult Learn.flif",
+			"../../ExampleImages/Matching/Geometric Multi Learn.flif",
+			"../../ExampleImages/Matching/Geometric Multi Learn.flif",
+			"../../ExampleImages/Matching/Geometric Multi Learn.flif",
 		]
 
 		arrClassName = ["A", "B", "C"]
@@ -123,7 +123,7 @@ def main():
 			break
 
 		# 검출 이미지 로드 및 뷰 설정 // Load find image and setup view
-		if (res := fliFindImage.Load("../../ExampleImages/Matching/Geometric Mult Find.flif")).IsFail():
+		if (res := fliFindImage.Load("../../ExampleImages/Matching/Geometric Multi Find.flif")).IsFail():
 			ErrorPrint(res, "Failed to load find image.")
 			break
 
