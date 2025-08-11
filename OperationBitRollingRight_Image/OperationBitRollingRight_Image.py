@@ -87,20 +87,20 @@ def main():
 			break
 
 		# BitRolling Right 객체 생성 // Create BitRolling Right object
-		rollingRight = COperationBitRollingRight()
+		operationBitRollingRight = COperationBitRollingRight()
 
 		# Source 이미지 설정 // Set the source image
-		rollingRight.SetSourceImage(fliSourceImage)
+		operationBitRollingRight.SetSourceImage(fliSourceImage)
 		# Operand 이미지 설정 // Set the Operand image
-		rollingRight.SetOperandImage(fliOperandImage)
+		operationBitRollingRight.SetOperandImage(fliOperandImage)
 		# Destination 이미지 설정 // Set the destination image
-		rollingRight.SetDestinationImage(fliDestinationImage)
+		operationBitRollingRight.SetDestinationImage(fliDestinationImage)
 
 		# Operation source를 이미지로 설정 // Set operation source to image
-		rollingRight.SetOperationSource(EOperationSource.Image);
+		operationBitRollingRight.SetOperationSource(EOperationSource.Image);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := rollingRight.Execute()).IsFail():
+		if (res := operationBitRollingRight.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute BitRolling Right.')
 			break
 

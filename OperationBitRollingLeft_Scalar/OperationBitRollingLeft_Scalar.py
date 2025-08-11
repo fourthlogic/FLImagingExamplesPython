@@ -95,31 +95,31 @@ def main():
 			break
 
 		# BitRolling Left 객체 생성 // Create BitRolling Left object
-		bitRollingLeft = COperationBitRollingLeft()
+		operationBitRollingLeft = COperationBitRollingLeft()
 
 		# Source 이미지 설정 // Set the source image
-		bitRollingLeft.SetSourceImage(fliSourceImage)
+		operationBitRollingLeft.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		bitRollingLeft.SetDestinationImage(fliDestinationImage1)
+		operationBitRollingLeft.SetDestinationImage(fliDestinationImage1)
 
 		# Scalar 값 지정 // Set the Scalar value
 		mvScalarValue = CMultiVar[Double](1.0, 1.0, 1.0)
-		bitRollingLeft.SetScalarValue(mvScalarValue)
+		operationBitRollingLeft.SetScalarValue(mvScalarValue)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := bitRollingLeft.Execute()).IsFail():
+		if (res := operationBitRollingLeft.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute BitRolling Left.')
 			break
 
 		# Destination 이미지를 Destination2로 설정 // Set the Destination image to Destination2
-		bitRollingLeft.SetDestinationImage(fliDestinationImage2);
+		operationBitRollingLeft.SetDestinationImage(fliDestinationImage2);
 		# rollingLeft 값 설정 // Set rollingLeft value
 		mvScalarValue2 = CMultiVar[Double](7.0, 7.0, 7.0)
-		bitRollingLeft.SetScalarValue(mvScalarValue2);
+		operationBitRollingLeft.SetScalarValue(mvScalarValue2);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := bitRollingLeft.Execute()).IsFail():
+		if (res := operationBitRollingLeft.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute BitRolling Left.')
 			break
 		
