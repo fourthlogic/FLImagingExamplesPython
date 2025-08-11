@@ -95,22 +95,22 @@ def main():
 			break
 				
 		# Operation Logical Nor 객체 생성 # Create Operation Logical Nor object
-		logicalNor = COperationLogicalNor()
+		operationLogicalNor = COperationLogicalNor()
 
 		# Source 이미지 설정 # Set the source image
-		logicalNor.SetSourceImage(fliSourceImage)
+		operationLogicalNor.SetSourceImage(fliSourceImage)
 				
 		# Operand 이미지 설정 # Set the operand image
-		logicalNor.SetOperandImage(fliOperandImage)
+		operationLogicalNor.SetOperandImage(fliOperandImage)
 		
 		# Destination 이미지 설정 # Set the destination image
-		logicalNor.SetDestinationImage(fliDestinationImage)
+		operationLogicalNor.SetDestinationImage(fliDestinationImage)
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		logicalNor.SetOperationSource(EOperationSource.Image)
+		operationLogicalNor.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := logicalNor.Execute()).IsFail():
+		if (res := operationLogicalNor.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Logical Nor.')
 			break
 

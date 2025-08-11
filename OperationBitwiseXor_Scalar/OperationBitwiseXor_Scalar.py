@@ -95,34 +95,34 @@ def main():
 			break
 
 		# BitwiseXor 객체 생성 // Create BitwiseXor object
-		bitwiseXor = COperationBitwiseXor()
+		operationBitwiseXor = COperationBitwiseXor()
 
 		# Source 이미지 설정 // Set the source image
-		bitwiseXor.SetSourceImage(fliSourceImage)
+		operationBitwiseXor.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		bitwiseXor.SetDestinationImage(fliDestinationImage1)
+		operationBitwiseXor.SetDestinationImage(fliDestinationImage1)
 
 		# Scalar 값 지정 // Set the Scalar value
 		mvScalarValue = CMultiVar[Double](64, 64, 64)
-		bitwiseXor.SetScalarValue(mvScalarValue)
+		operationBitwiseXor.SetScalarValue(mvScalarValue)
 
 		#Image Operation 소스로 설정 // Set Operation Source to image
-		bitwiseXor.SetOperationSource(EOperationSource.Scalar)
+		operationBitwiseXor.SetOperationSource(EOperationSource.Scalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := bitwiseXor.Execute()).IsFail():
+		if (res := operationBitwiseXor.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute BitwiseXor.')
 			break
 
 		# Destination 이미지를 Destination2로 설정 // Set the Destination image to Destination2
-		bitwiseXor.SetDestinationImage(fliDestinationImage2)
+		operationBitwiseXor.SetDestinationImage(fliDestinationImage2)
 		# rollingLeft 값 설정 // Set rollingLeft value
 		mvScalarValue2 = CMultiVar[Double](128, 128, 128)
-		bitwiseXor.SetScalarValue(mvScalarValue2)
+		operationBitwiseXor.SetScalarValue(mvScalarValue2)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := bitwiseXor.Execute()).IsFail():
+		if (res := operationBitwiseXor.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute BitwiseXor.')
 			break
 		

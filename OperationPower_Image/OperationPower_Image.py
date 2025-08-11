@@ -115,42 +115,42 @@ def main():
 			break
 		
 		# Operation Power 객체 생성 # Create Operation Power object
-		power = COperationPower()
+		operationPower = COperationPower()
 
 		# Source 이미지 설정 # Set the source image
-		power.SetSourceImage(listFliImage0[0])
+		operationPower.SetSourceImage(listFliImage0[0])
 				
 		# Operand 이미지 설정 # Set the operand image
-		power.SetOperandImage(listFliImage0[1])
+		operationPower.SetOperandImage(listFliImage0[1])
 		
 		# Destination 이미지 설정 # Set the destination image
-		power.SetDestinationImage(listFliImage0[2])
+		operationPower.SetDestinationImage(listFliImage0[2])
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		power.SetOperationSource(EOperationSource.Image)
+		operationPower.SetOperationSource(EOperationSource.Image)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := power.Execute()).IsFail():
+		if (res := operationPower.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Power.')
 			break
 
 		# Source 이미지 설정 # Set the source image
-		power.SetSourceImage(listFliImage1[0])
+		operationPower.SetSourceImage(listFliImage1[0])
 				
 		# Operand 이미지 설정 # Set the operand image
-		power.SetOperandImage(listFliImage1[1])
+		operationPower.SetOperandImage(listFliImage1[1])
 		
 		# Destination 이미지 설정 # Set the destination image
-		power.SetDestinationImage(listFliImage1[2])
+		operationPower.SetDestinationImage(listFliImage1[2])
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		power.SetOperationSource(EOperationSource.Image)
+		operationPower.SetOperationSource(EOperationSource.Image)
 
 		# Overflow Method Wrapping 옵션으로 설정 // Set Overflow Method to Wrapping option
-		power.SetOverflowMethod(EOverflowMethod.Wrapping)
+		operationPower.SetOverflowMethod(EOverflowMethod.Wrapping)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := power.Execute()).IsFail():
+		if (res := operationPower.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Power.')
 			break
 

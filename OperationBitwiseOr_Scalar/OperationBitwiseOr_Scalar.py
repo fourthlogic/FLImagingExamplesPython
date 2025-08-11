@@ -95,34 +95,34 @@ def main():
 			break
 
 		# BitwiseOr 객체 생성 // Create BitwiseOr object
-		bitwiseOr = COperationBitwiseOr()
+		operationBitwiseOr = COperationBitwiseOr()
 
 		# Source 이미지 설정 // Set the source image
-		bitwiseOr.SetSourceImage(fliSourceImage)
+		operationBitwiseOr.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		bitwiseOr.SetDestinationImage(fliDestinationImage1)
+		operationBitwiseOr.SetDestinationImage(fliDestinationImage1)
 
 		# Scalar 값 지정 // Set the Scalar value
 		mvScalarValue = CMultiVar[Double](64, 64, 64)
-		bitwiseOr.SetScalarValue(mvScalarValue)
+		operationBitwiseOr.SetScalarValue(mvScalarValue)
 
 		#Image Operation 소스로 설정 // Set Operation Source to image
-		bitwiseOr.SetOperationSource(EOperationSource.Scalar)
+		operationBitwiseOr.SetOperationSource(EOperationSource.Scalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := bitwiseOr.Execute()).IsFail():
+		if (res := operationBitwiseOr.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute BitwiseOr.')
 			break
 
 		# Destination 이미지를 Destination2로 설정 // Set the Destination image to Destination2
-		bitwiseOr.SetDestinationImage(fliDestinationImage2)
+		operationBitwiseOr.SetDestinationImage(fliDestinationImage2)
 		# rollingLeft 값 설정 // Set rollingLeft value
 		mvScalarValue2 = CMultiVar[Double](128, 128, 128)
-		bitwiseOr.SetScalarValue(mvScalarValue2)
+		operationBitwiseOr.SetScalarValue(mvScalarValue2)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := bitwiseOr.Execute()).IsFail():
+		if (res := operationBitwiseOr.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute BitwiseOr.')
 			break
 		

@@ -125,19 +125,19 @@ def main():
 			break
 		
 		# COperationLinear 객체 생성 // Create COperationLinear object
-		linear = COperationLinear()
+		operationLinear = COperationLinear()
 		# Source 이미지 설정 // Set source image
-		linear.SetSourceImage(fliSourceImage)
+		operationLinear.SetSourceImage(fliSourceImage)
 		# Operand 이미지 설정 // Set operand image
-		linear.SetOperandImage(fliOperandImage1)
-		linear.SetOperandImage2(fliOperandImage2)
+		operationLinear.SetOperandImage(fliOperandImage1)
+		operationLinear.SetOperandImage2(fliOperandImage2)
 		# Destination 이미지 설정 // Set destination image
-		linear.SetDestinationImage(fliDestinationImage)
+		operationLinear.SetDestinationImage(fliDestinationImage)
 		# Image Operation 모드로 설정 // Set operation mode to image
-		linear.SetOperationSource(EOperationSource.Image)
+		operationLinear.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := linear.Execute()).IsFail():
+		if (res := operationLinear.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Bitwise Or.')
 			break
 

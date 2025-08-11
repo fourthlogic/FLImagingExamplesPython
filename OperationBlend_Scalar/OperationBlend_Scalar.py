@@ -95,35 +95,35 @@ def main():
 			break
 		
 		# COperationBlend 객체 생성 // Create COperationBlend object
-		blend = COperationBlend()
+		operationBlend = COperationBlend()
 		# Scalar 값 지정 // Set the Scalar value
 		mvScalarValue = CMultiVar[Double](30, 0, 0)		
-		blend.SetScalarValue(mvScalarValue)
+		operationBlend.SetScalarValue(mvScalarValue)
 		# Source 이미지 설정 // Set source image
-		blend.SetSourceImage(fliSourceImage)
+		operationBlend.SetSourceImage(fliSourceImage)
 		# Operand 이미지 설정 // Set operand image
-		blend.SetOperandImage(fliDestinationImage1)
+		operationBlend.SetOperandImage(fliDestinationImage1)
 		# Destination 이미지 설정 // Set destination image
-		blend.SetDestinationImage(fliDestinationImage2)
+		operationBlend.SetDestinationImage(fliDestinationImage2)
 		# Scalar Operation 모드로 설정 // Set operation mode to scalr
-		blend.SetOperationSource(EOperationSource.Scalar)
+		operationBlend.SetOperationSource(EOperationSource.Scalar)
 		# SourceRatio 설정 // Set Source Blend Ratio
-		blend.SetSourceRatio(0.75)
+		operationBlend.SetSourceRatio(0.75)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := blend.Execute()).IsFail():
+		if (res := operationBlend.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Blend.')
 			break
 
 		# SourceRatio 설정 // Set Source Blend Ratio
-		blend.SetSourceRatio(0.45)
+		operationBlend.SetSourceRatio(0.45)
 
 		# Scalar 값 지정 // Set the Scalar value
 		mvScalarValue2 = CMultiVar[Double](0, 30, 0)
-		blend.SetScalarValue(mvScalarValue2)
+		operationBlend.SetScalarValue(mvScalarValue2)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := blend.Execute()).IsFail():
+		if (res := operationBlend.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Blend.')
 			break
 

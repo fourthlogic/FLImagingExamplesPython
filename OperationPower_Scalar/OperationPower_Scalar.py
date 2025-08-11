@@ -116,81 +116,81 @@ def main():
 		mvScalr5 = CMultiVar[Double](10, 10, 10)
 		
 		# Operation Power 객체 생성 # Create Operation Power object
-		power = COperationPower()
+		operationPower = COperationPower()
 
 		# Source 이미지 설정 # Set the source image
-		power.SetSourceImage(listFliImage[0])
+		operationPower.SetSourceImage(listFliImage[0])
 		
 		# Destination 이미지 설정 # Set the destination image
-		power.SetDestinationImage(listFliImage[1])
+		operationPower.SetDestinationImage(listFliImage[1])
 		
 		# Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
-		power.SetOverflowMethod(EOverflowMethod.Clamping)
+		operationPower.SetOverflowMethod(EOverflowMethod.Clamping)
 
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		power.SetOperationSource(EOperationSource.Scalar)
+		operationPower.SetOperationSource(EOperationSource.Scalar)
 		
 		# Exponent 값 설정 // Set Exponent value
-		power.SetScalarValue(mvScalr1)
+		operationPower.SetScalarValue(mvScalr1)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := power.Execute()).IsFail():
+		if (res := operationPower.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Power.')
 			break
 
 		# Destination 이미지 설정 # Set the destination image
-		power.SetDestinationImage(listFliImage[2])
+		operationPower.SetDestinationImage(listFliImage[2])
 		
 		# Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
-		power.SetOverflowMethod(EOverflowMethod.Clamping)
+		operationPower.SetOverflowMethod(EOverflowMethod.Clamping)
 
 		# Exponent 값 설정 // Set Exponent value
-		power.SetScalarValue(mvScalr2)
+		operationPower.SetScalarValue(mvScalr2)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := power.Execute()).IsFail():
+		if (res := operationPower.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Power.')
 			break
 
 		# Destination 이미지 설정 # Set the destination image
-		power.SetDestinationImage(listFliImage[3])
+		operationPower.SetDestinationImage(listFliImage[3])
 		
 		# Overflow Method Wrapping 옵션으로 설정 // Set Overflow Method to Wrapping option
-		power.SetOverflowMethod(EOverflowMethod.Wrapping)
+		operationPower.SetOverflowMethod(EOverflowMethod.Wrapping)
 
 		# Exponent 값 설정 // Set Exponent value
-		power.SetScalarValue(mvScalr3)
+		operationPower.SetScalarValue(mvScalr3)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := power.Execute()).IsFail():
+		if (res := operationPower.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Power.')
 			break
 
 		# Destination 이미지 설정 # Set the destination image
-		power.SetDestinationImage(listFliImage[4])
+		operationPower.SetDestinationImage(listFliImage[4])
 		
 		# Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
-		power.SetOverflowMethod(EOverflowMethod.Clamping)
+		operationPower.SetOverflowMethod(EOverflowMethod.Clamping)
 
 		# Exponent 값 설정 // Set Exponent value
-		power.SetScalarValue(mvScalr4)
+		operationPower.SetScalarValue(mvScalr4)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := power.Execute()).IsFail():
+		if (res := operationPower.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Power.')
 			break
 
 		# Destination 이미지 설정 # Set the destination image
-		power.SetDestinationImage(listFliImage[5])
+		operationPower.SetDestinationImage(listFliImage[5])
 		
 		# Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
-		power.SetOverflowMethod(EOverflowMethod.Wrapping)
+		operationPower.SetOverflowMethod(EOverflowMethod.Wrapping)
 
 		# Exponent 값 설정 // Set Exponent value
-		power.SetScalarValue(mvScalr5)
+		operationPower.SetScalarValue(mvScalr5)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := power.Execute()).IsFail():
+		if (res := operationPower.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Power.')
 			break
 

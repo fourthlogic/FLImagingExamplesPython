@@ -65,16 +65,16 @@ def main():
 			break
 
 		# Invert Intensity 객체 생성 // Create Invert Intensity object
-		invertIntensity = COperationInvertIntensity()
+		operationInvertIntensity = COperationInvertIntensity()
 
 		# Source 이미지 설정 // Set the source image
-		invertIntensity.SetSourceImage(fliSourceImage)
+		operationInvertIntensity.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		invertIntensity.SetDestinationImage(fliDestinationImage)
+		operationInvertIntensity.SetDestinationImage(fliDestinationImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := invertIntensity.Execute()).IsFail():
+		if (res := operationInvertIntensity.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Invert Intensity.')
 			break
 		

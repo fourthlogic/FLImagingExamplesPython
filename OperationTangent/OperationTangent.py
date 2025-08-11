@@ -60,14 +60,14 @@ def main():
 			break
 		
 		# COperationTangent 객체 생성 // Create COperationTangent object
-		tangent = COperationTangent()
+		operationTangent = COperationTangent()
 		# Source 이미지 설정 // Set source image
-		tangent.SetSourceImage(fliSourceImage)
+		operationTangent.SetSourceImage(fliSourceImage)
 		# Destination 이미지 설정 // Set destination image
-		tangent.SetDestinationImage(fliDestinationImage)
+		operationTangent.SetDestinationImage(fliDestinationImage)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := tangent.Execute()).IsFail():
+		if (res := operationTangent.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Tangent.')
 			break
 

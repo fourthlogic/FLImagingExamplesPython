@@ -95,20 +95,20 @@ def main():
 			break
 		
 		# COperationBlend 객체 생성 // Create COperationBlend object
-		blend = COperationBlend()
+		operationBlend = COperationBlend()
 		# Source 이미지 설정 // Set source image
-		blend.SetSourceImage(fliSourceImage)
+		operationBlend.SetSourceImage(fliSourceImage)
 		# Operand 이미지 설정 // Set operand image
-		blend.SetOperandImage(fliOperandImage)
+		operationBlend.SetOperandImage(fliOperandImage)
 		# Destination 이미지 설정 // Set destination image
-		blend.SetDestinationImage(fliDestinationImage)
+		operationBlend.SetDestinationImage(fliDestinationImage)
 		# Image Operation 모드로 설정 // Set operation mode to image
-		blend.SetOperationSource(EOperationSource.Image)
+		operationBlend.SetOperationSource(EOperationSource.Image)
 		# SourceRatio 설정 // Set Source Blend Ratio
-		blend.SetSourceRatio(0.75)
+		operationBlend.SetSourceRatio(0.75)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := blend.Execute()).IsFail():
+		if (res := operationBlend.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Blend.')
 			break
 

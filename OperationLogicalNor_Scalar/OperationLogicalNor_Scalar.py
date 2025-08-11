@@ -68,28 +68,28 @@ def main():
             break
 
         # Operation Logical Nor 객체 생성 // Create Logical Nor object
-        logicalNor = COperationLogicalNor()
+        operationLogicalNor = COperationLogicalNor()
 
         # Source 이미지 설정 // Set source image
-        logicalNor.SetSourceImage(fliSourceImage)
+        operationLogicalNor.SetSourceImage(fliSourceImage)
 
         # ROI 범위 설정 // Set the ROI value
         flcSourceROI = CFLCircle[Double](128, 128, 80, 0, 0, 360, EArcClosingMethod.EachOther)
 
         # Source 이미지의 ROI 지정 // Set the Source ROI
-        logicalNor.SetSourceROI(flcSourceROI)
+        operationLogicalNor.SetSourceROI(flcSourceROI)
 
         # Scalar Operation 소스로 설정 // Set Operation Source to scalar
-        logicalNor.SetOperationSource(EOperationSource.Scalar)
+        operationLogicalNor.SetOperationSource(EOperationSource.Scalar)
 
         # 스칼라 값 지정 // Set the Scalar value
-        logicalNor.SetScalarValue(0)
+        operationLogicalNor.SetScalarValue(0)
 
         # Destination 이미지 설정 // Set destination image
-        logicalNor.SetDestinationImage(fliDestinationImage)
+        operationLogicalNor.SetDestinationImage(fliDestinationImage)
 
         # Operation Logical Nor 수행 // Execute Logical Nor operation        
-        if (res:= logicalNor.Execute()).IsFail():
+        if (res:= operationLogicalNor.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute OperationLogicalNor.\n")
             break
         

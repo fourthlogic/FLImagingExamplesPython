@@ -97,36 +97,36 @@ def main():
 		mvScalarValue2 = CMultiVar[Double](0, 0, 0)
 
 		# Operation Mean 객체 생성 # Create Operation Mean object
-		mean = COperationMean()
+		operationMean = COperationMean()
 
 		# Source 이미지 설정 # Set the source image
-		mean.SetSourceImage(fliSourceImage)
+		operationMean.SetSourceImage(fliSourceImage)
 		
 		# Destination 이미지 설정 # Set the destination image
-		mean.SetDestinationImage(fliDestinationImage1)
+		operationMean.SetDestinationImage(fliDestinationImage1)
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		mean.SetOperationSource(EOperationSource.Scalar)
+		operationMean.SetOperationSource(EOperationSource.Scalar)
 
 		# Scalar 값 설정 // Set Scalar value
-		mean.SetScalarValue(mvScalarValue)
+		operationMean.SetScalarValue(mvScalarValue)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := mean.Execute()).IsFail():
+		if (res := operationMean.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Mean.')
 			break
 
 		# Destination 이미지 설정 # Set the destination image
-		mean.SetDestinationImage(fliDestinationImage2)
+		operationMean.SetDestinationImage(fliDestinationImage2)
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		mean.SetOperationSource(EOperationSource.Scalar)
+		operationMean.SetOperationSource(EOperationSource.Scalar)
 
 		# Scalar 값 설정 // Set Scalar value
-		mean.SetScalarValue(mvScalarValue2)
+		operationMean.SetScalarValue(mvScalarValue2)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := mean.Execute()).IsFail():
+		if (res := operationMean.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Mean.')
 			break
 

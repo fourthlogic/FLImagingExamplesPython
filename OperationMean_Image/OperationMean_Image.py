@@ -95,22 +95,22 @@ def main():
 			break
 				
 		# Operation Mean 객체 생성 # Create Operation Mean object
-		mean = COperationMean()
+		operationMean = COperationMean()
 
 		# Source 이미지 설정 # Set the source image
-		mean.SetSourceImage(fliSourceImage)
+		operationMean.SetSourceImage(fliSourceImage)
 				
 		# Operand 이미지 설정 # Set the operand image
-		mean.SetOperandImage(fliOperandImage)
+		operationMean.SetOperandImage(fliOperandImage)
 		
 		# Destination 이미지 설정 # Set the destination image
-		mean.SetDestinationImage(fliDestinationImage)
+		operationMean.SetDestinationImage(fliDestinationImage)
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		mean.SetOperationSource(EOperationSource.Image)
+		operationMean.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := mean.Execute()).IsFail():
+		if (res := operationMean.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Mean.')
 			break
 
