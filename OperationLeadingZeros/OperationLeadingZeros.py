@@ -65,16 +65,16 @@ def main():
 			break
 
 		# Operation Leading Zeros 객체 생성 // Create Operation Leading Zeros object
-		leadingZeros = COperationLeadingZeros()
+		operationLeadingZeros = COperationLeadingZeros()
 
 		# Source 이미지 설정 // Set the source image
-		leadingZeros.SetSourceImage(fliSourceImage)
+		operationLeadingZeros.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		leadingZeros.SetDestinationImage(fliDestinationImage)
+		operationLeadingZeros.SetDestinationImage(fliDestinationImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := leadingZeros.Execute()).IsFail():
+		if (res := operationLeadingZeros.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Leading Zeros.')
 			break
 

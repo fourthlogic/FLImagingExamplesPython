@@ -98,31 +98,31 @@ def main():
 		flrROI = CFLRect[Int64](200, 200, 500, 500)
 
 		# Operation Scaled Multiply 객체 생성 # Create Operation Scaled Multiply object
-		scaledMultiply = COperationScaledMultiply()
+		operationScaledMultiply = COperationScaledMultiply()
 
 		# Source 이미지 설정 # Set the source image
-		scaledMultiply.SetSourceImage(fliSourceImage)
+		operationScaledMultiply.SetSourceImage(fliSourceImage)
 		
 		# Source ROI 설정 # Set the Source ROI
-		scaledMultiply.SetSourceROI(flrROI)
+		operationScaledMultiply.SetSourceROI(flrROI)
 		
 		# Operand 이미지 설정 # Set the operand image
-		scaledMultiply.SetOperandImage(fliOperandImage)
+		operationScaledMultiply.SetOperandImage(fliOperandImage)
 		
 		# Operand ROI 설정 # Set the Operand ROI
-		scaledMultiply.SetOperandROI(flrROI)
+		operationScaledMultiply.SetOperandROI(flrROI)
 		
 		# Destination 이미지 설정 # Set the destination image
-		scaledMultiply.SetDestinationImage(fliDestinationImage)
+		operationScaledMultiply.SetDestinationImage(fliDestinationImage)
 		
 		# Destination ROI 설정 # Set the Destination ROI
-		scaledMultiply.SetDestinationROI(flrROI)
+		operationScaledMultiply.SetDestinationROI(flrROI)
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		scaledMultiply.SetOperationSource(EOperationSource.Image)
+		operationScaledMultiply.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := scaledMultiply.Execute()).IsFail():
+		if (res := operationScaledMultiply.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Scaled Multiply.')
 			break
 

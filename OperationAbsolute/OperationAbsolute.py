@@ -65,16 +65,16 @@ def main():
 			break
 
 		# Operation Absolute 객체 생성 // Create Operation Absolute object
-		absolute = COperationAbsolute()
+		operationAbsolute = COperationAbsolute()
 
 		# Source 이미지 설정 // Set the source image
-		absolute.SetSourceImage(fliSourceImage)
+		operationAbsolute.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		absolute.SetDestinationImage(fliDestinationImage)
+		operationAbsolute.SetDestinationImage(fliDestinationImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := absolute.Execute()).IsFail():
+		if (res := operationAbsolute.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Absolute.')
 			break
 

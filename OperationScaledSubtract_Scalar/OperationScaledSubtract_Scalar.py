@@ -85,35 +85,35 @@ def main():
 			break
 
 		# Operation Scaled Subtract 객체 생성 # Create Operation Scaled Subtract object
-		scaledSubtract = COperationScaledSubtract()
+		operationScaledSubtract = COperationScaledSubtract()
 
 		# Source 이미지 설정 # Set the source image
-		scaledSubtract.SetSourceImage(fliSourceImage)
+		operationScaledSubtract.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		scaledSubtract.SetDestinationImage(fliDestination1Image)
+		operationScaledSubtract.SetDestinationImage(fliDestination1Image)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		scaledSubtract.SetOperationSource(EOperationSource.Scalar);
+		operationScaledSubtract.SetOperationSource(EOperationSource.Scalar);
 		
 		# 스칼라 값 지정 # Set the Scalar value
 		mvScalar = CMultiVar[Double](30, 0, 0);
-		scaledSubtract.SetScalarValue(mvScalar);
+		operationScaledSubtract.SetScalarValue(mvScalar);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := scaledSubtract.Execute()).IsFail():
+		if (res := operationScaledSubtract.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Scaled Subtract.')
 			break
 		
 		# Destination 이미지 설정 # Set the destination image
-		scaledSubtract.SetDestinationImage(fliDestination2Image)
+		operationScaledSubtract.SetDestinationImage(fliDestination2Image)
 		
 		# 스칼라 값 지정 # Set the Scalar value
 		mvScalar = CMultiVar[Double](0, 0, 30);
-		scaledSubtract.SetScalarValue(mvScalar);
+		operationScaledSubtract.SetScalarValue(mvScalar);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := scaledSubtract.Execute()).IsFail():
+		if (res := operationScaledSubtract.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Scaled Subtract.')
 			break
 

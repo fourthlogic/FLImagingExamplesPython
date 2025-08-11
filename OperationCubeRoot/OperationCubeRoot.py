@@ -65,16 +65,16 @@ def main():
 			break
 
 		# Cube Root 객체 생성 // Create Cube Root object
-		cubeRoot = COperationCubeRoot()
+		operationCubeRoot = COperationCubeRoot()
 
 		# Source 이미지 설정 // Set the source image
-		cubeRoot.SetSourceImage(fliSourceImage)
+		operationCubeRoot.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 // Set the destination image
-		cubeRoot.SetDestinationImage(fliDestinationImage)
+		operationCubeRoot.SetDestinationImage(fliDestinationImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := cubeRoot.Execute()).IsFail():
+		if (res := operationCubeRoot.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Cube Root.')
 			break
 

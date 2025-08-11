@@ -85,36 +85,36 @@ def main():
 			break
 
 		# Operation Logical Xnor 객체 생성 # Create Operation Logical Xnor object
-		logicalXnor = COperationLogicalXnor()
+		operationLogicalXnor = COperationLogicalXnor()
 
 		# Source 이미지 설정 # Set the source image
-		logicalXnor.SetSourceImage(fliSourceImage)
+		operationLogicalXnor.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		logicalXnor.SetDestinationImage(fliDestination1Image)
+		operationLogicalXnor.SetDestinationImage(fliDestination1Image)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		logicalXnor.SetOperationSource(EOperationSource.Scalar);
+		operationLogicalXnor.SetOperationSource(EOperationSource.Scalar);
 		
 		# Logical Xnor 값 지정 # Set the Logical Xnor value
 		mvScalar = CMultiVar[Double](0, 0, 0);
-		logicalXnor.SetScalarValue(mvScalar);
+		operationLogicalXnor.SetScalarValue(mvScalar);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := logicalXnor.Execute()).IsFail():
+		if (res := operationLogicalXnor.Execute()).IsFail():
 
 			ErrorPrint(res, 'Failed to execute Operation Logical Xnor.')
 			break
 
 		# Destination 이미지 설정 # Set the destination image
-		logicalXnor.SetDestinationImage(fliDestination2Image)
+		operationLogicalXnor.SetDestinationImage(fliDestination2Image)
 		
 		# Logical Xnor 값 지정 # Set the Logical Xnor value
 		mvScalar = CMultiVar[Double](255, 255, 255);
-		logicalXnor.SetScalarValue(mvScalar);
+		operationLogicalXnor.SetScalarValue(mvScalar);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := logicalXnor.Execute()).IsFail():
+		if (res := operationLogicalXnor.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Logical Xnor.')
 			break
 

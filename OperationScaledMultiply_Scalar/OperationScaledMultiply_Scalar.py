@@ -85,39 +85,39 @@ def main():
 			break
 
 		# Operation Scaled Multiply 객체 생성 # Create Operation Scaled Multiply object
-		scaledMultiply = COperationScaledMultiply()
+		operationScaledMultiply = COperationScaledMultiply()
 
 		# Source 이미지 설정 # Set the source image
-		scaledMultiply.SetSourceImage(fliSourceImage)
+		operationScaledMultiply.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		scaledMultiply.SetDestinationImage(fliDestination1Image)
+		operationScaledMultiply.SetDestinationImage(fliDestination1Image)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		scaledMultiply.SetOperationSource(EOperationSource.Scalar);
+		operationScaledMultiply.SetOperationSource(EOperationSource.Scalar);
 
 		# 오버플로 처리 방법 설정 # Set the overflow handling method
-		scaledMultiply.SetOverflowMethod(EOverflowMethod.Clamping);
+		operationScaledMultiply.SetOverflowMethod(EOverflowMethod.Clamping);
 		
 		# 곱할 스칼라 값 지정 # Set the Scalar multiplier
 		mvScalar = CMultiVar[Double](128, 128, 128);
-		scaledMultiply.SetScalarValue(mvScalar);
+		operationScaledMultiply.SetScalarValue(mvScalar);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := scaledMultiply.Execute()).IsFail():
+		if (res := operationScaledMultiply.Execute()).IsFail():
 
 			ErrorPrint(res, 'Failed to execute Operation Scaled Multiply.')
 			break
 		
 		# Destination 이미지 설정 # Set the destination image
-		scaledMultiply.SetDestinationImage(fliDestination2Image)
+		operationScaledMultiply.SetDestinationImage(fliDestination2Image)
 		
 		# 곱할 스칼라 값 지정 # Set the Scalar multiplier
 		mvScalar = CMultiVar[Double](430, 430, 430);
-		scaledMultiply.SetScalarValue(mvScalar);
+		operationScaledMultiply.SetScalarValue(mvScalar);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := scaledMultiply.Execute()).IsFail():
+		if (res := operationScaledMultiply.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Scaled Multiply.')
 			break
 

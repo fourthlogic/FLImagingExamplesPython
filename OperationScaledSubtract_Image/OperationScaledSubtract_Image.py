@@ -95,22 +95,22 @@ def main():
 			break
 		
 		# Operation Scaled Subtract 객체 생성 # Create Operation Scaled Subtract object
-		scaledSubtract = COperationScaledSubtract()
+		operationScaledSubtract = COperationScaledSubtract()
 
 		# Source 이미지 설정 # Set the source image
-		scaledSubtract.SetSourceImage(fliSourceImage)
+		operationScaledSubtract.SetSourceImage(fliSourceImage)
 		
 		# Operand 이미지 설정 # Set the operand image
-		scaledSubtract.SetOperandImage(fliOperandImage)
+		operationScaledSubtract.SetOperandImage(fliOperandImage)
 		
 		# Destination 이미지 설정 # Set the destination image
-		scaledSubtract.SetDestinationImage(fliDestinationImage)
+		operationScaledSubtract.SetDestinationImage(fliDestinationImage)
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		scaledSubtract.SetOperationSource(EOperationSource.Image);
+		operationScaledSubtract.SetOperationSource(EOperationSource.Image);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := scaledSubtract.Execute()).IsFail():
+		if (res := operationScaledSubtract.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Scaled Subtract.')
 			break
 

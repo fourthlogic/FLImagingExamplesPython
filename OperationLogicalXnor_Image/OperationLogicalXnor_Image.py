@@ -95,22 +95,22 @@ def main():
 			break
 				
 		# Operation Logical Xnor 객체 생성 # Create Operation Logical Xnor object
-		logicalXnor = COperationLogicalXnor()
+		operationLogicalXnor = COperationLogicalXnor()
 
 		# Source 이미지 설정 # Set the source image
-		logicalXnor.SetSourceImage(fliSourceImage)
+		operationLogicalXnor.SetSourceImage(fliSourceImage)
 				
 		# Operand 이미지 설정 # Set the operand image
-		logicalXnor.SetOperandImage(fliOperandImage)
+		operationLogicalXnor.SetOperandImage(fliOperandImage)
 		
 		# Destination 이미지 설정 # Set the destination image
-		logicalXnor.SetDestinationImage(fliDestinationImage)
+		operationLogicalXnor.SetDestinationImage(fliDestinationImage)
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		logicalXnor.SetOperationSource(EOperationSource.Image);
+		operationLogicalXnor.SetOperationSource(EOperationSource.Image);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := logicalXnor.Execute()).IsFail():
+		if (res := operationLogicalXnor.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Logical Xnor.')
 			break
 
