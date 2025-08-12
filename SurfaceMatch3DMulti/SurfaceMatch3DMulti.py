@@ -32,9 +32,9 @@ def main():
 		]
 
 		arrClassName = [
-			"../../ExampleImages/SurfaceMatch3DMulti/Box1",
-			"../../ExampleImages/SurfaceMatch3DMulti/Box2",
-			"../../ExampleImages/SurfaceMatch3DMulti/Cylinder",
+			"Box1",
+			"Box2",
+			"Cylinder",
 		]
 
 		arrMaxObject = [
@@ -43,7 +43,7 @@ def main():
 			3,
 		]
 
-		surfaceMatch3DMultiMulti = CSurfaceMatch3DMulti()
+		surfaceMatch3DMulti = CSurfaceMatch3DMulti()
 
 		# Source 3D 뷰 생성
 		if(res := view3DSource.Create(100, 500, 500, 900)).IsFail() :		
@@ -57,7 +57,7 @@ def main():
 
 		for i in range(3):
 			# Source Object 로드 // Load the Source object
-			if(res := arrLearnObject.Load(arrPath[i])).IsFail() :		
+			if(res := arrLearnObject[i].Load(arrPath[i])).IsFail() :		
 				ErrorPrint(res, "Failed to load the object file.\n")
 				break
 
@@ -74,10 +74,10 @@ def main():
 			arrView3DLearn[i].SetShadingType(EShadingType3D.Flat)
 
 			# Learn object 설정 // Set the learn object
-			surfaceMatch3DMultiMulti.SetLearnObject(arrLearnObject[i])
+			surfaceMatch3DMulti.SetLearnObject(arrLearnObject[i])
 
 			# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-			if(res := surfaceMatch3DMultiMulti.Learn(arrClassName[i])).IsFail() :			
+			if(res := surfaceMatch3DMulti.Learn(arrClassName[i])).IsFail() :			
 				ErrorPrint(res, "Failed to learn Surface Match 3D Multi.")
 				break			
 
@@ -195,9 +195,6 @@ def main():
 		
 		for i in range(0, i64ResultCount) :
 			floLearnTransform = CFL3DObject()
-			flpTrans = CFLPoint3[Double]()
-			tp3Center = TPoint3[Double]()
-			tp3RotVec = TPoint3[Double]()
 
 			# 추정된 포즈 행렬 가져오기
 			res, sResult = surfaceMatch3DMulti.GetResultPoseMatrix(i, sResult)
@@ -208,32 +205,25 @@ def main():
 			
 			f64Residual = sResult.f64Residual
 			f64Score = sResult.f64Score
-			f64ArrRotX = sResult.tp3Angle.x
-			f64ArrRotY = sResult.tp3Angle.y
-			f64ArrRotZ = sResult.tp3Angle.z
-			tp3RotVec.x = sResult.tp3RotationVector.x
-			tp3RotVec.y = sResult.tp3RotationVector.y
-			tp3RotVec.z = sResult.tp3RotationVector.z
-			flpTrans.x = sResult.tp3TranslationVector.x
-			flpTrans.y = sResult.tp3TranslationVector.y
-			flpTrans.z = sResult.tp3TranslationVector.z
 
 			# 추정한 포즈 결과를 Console창에 출력한다 // Print the estimated pose matrix to the console window
 			Console.WriteLine(" ▷ Pose Matrix 0", i)
 			Console.WriteLine("  1. R : Rotation, T : Translation\n")
-			Console.WriteLine("    Class Name : {0}", sResult.strClassName
-			Console.WriteLine("    Rx   : {0}", f64ArrRotX)
-			Console.WriteLine("    Ry   : {0}", f64ArrRotY)
-			Console.WriteLine("    Rz   : {0}", f64ArrRotZ)
-			Console.WriteLine("    Rotation Vector X   : {0}", tp3RotVec.x)
-			Console.WriteLine("    Rotation Vector Y   : {0}", tp3RotVec.y)
-			Console.WriteLine("    Rotation Vector Z   : {0}", tp3RotVec.z)
-			Console.WriteLine("    Tx   : {0}", flpTrans.x)
-			Console.WriteLine("    Ty   : {0}", flpTrans.y)
-			Console.WriteLine("    Tz   : {0}", flpTrans.z)
+			Console.WriteLine("    Class Name : {0}", sResult.strClassName)
+			Console.WriteLine("    Rx   : {0}", sResult.tp3Angle.x)
+			Console.WriteLine("    Ry   : {0}", sResult.tp3Angle.y)
+			Console.WriteLine("    Rz   : {0}", sResult.tp3Angle.z)
+			Console.WriteLine("    Rotation Vector X   : {0}", sResult.tp3RotationVector.x)
+			Console.WriteLine("    Rotation Vector Y   : {0}", sResult.tp3RotationVector.y)
+			Console.WriteLine("    Rotation Vector Z   : {0}", sResult.tp3RotationVector.z)
+			Console.WriteLine("    Tx   : {0}", sResult.tp3TranslationVector.x)
+			Console.WriteLine("    Ty   : {0}", sResult.tp3TranslationVector.y)
+			Console.WriteLine("    Tz   : {0}", sResult.tp3TranslationVector.z)
 			Console.WriteLine("    Score : {0}", f64Score)
 			Console.WriteLine("    Residual : {0}", f64Residual)
 			Console.WriteLine("\n")
+
+			tp3Center = TPoint3[Double]()
 
 			res, floLearnTransform, tp3Center = surfaceMatch3DMulti.GetResultObject(i, floLearnTransform, tp3Center)
 
@@ -247,7 +237,7 @@ def main():
 				break
 			
 			strText = String.Format("Class Name : {0}\nR({1, 6:0.000000},{2, 6:0.000000},{3, 6:0.000000})\nRVec({4, 6:0.000000},{5, 6:0.000000},{6, 6:0.000000})\nT({7, 6:0.000000},{8, 6:0.000000},{9, 6:0.000000})\nScore : {10, 6:0.000000}\nResidual : {11, 6:0.000000}",
-								   sResult.strClassName, tp3F64Rotation.x, tp3F64Rotation.y, tp3F64Rotation.z, tp3F64RotVec.x, tp3F64RotVec.y, tp3F64RotVec.z, flp3F64Translation.x, flp3F64Translation.y, flp3F64Translation.z, f64Score, f64Residual)
+								   sResult.strClassName, sResult.tp3Angle.x, sResult.tp3Angle.y, sResult.tp3Angle.z, sResult.tp3RotationVector.x, sResult.tp3RotationVector.y, sResult.tp3RotationVector.z, sResult.tp3TranslationVector.x, sResult.tp3TranslationVector.y, sResult.tp3TranslationVector.z, f64Score, f64Residual)
 
 			# 추정된 포즈 행렬 및 score 출력
 			if(res := layer3DDst.DrawText3D(tp3Center, strText, EColor.YELLOW, EColor.BLACK, 15)).IsFail() :			
@@ -256,6 +246,8 @@ def main():
 			
 		view3DDst.ZoomFit()
 		view3DSource.ZoomFit()
+
+		view3DDst.SynchronizePointOfView(view3DSource)
 
 		# 이미지 뷰를 갱신 합니다. // Update image view
 		view3DSource.Invalidate(True)
