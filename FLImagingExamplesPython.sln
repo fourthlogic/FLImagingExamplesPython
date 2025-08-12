@@ -300,13 +300,13 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Smoothing3D", "Smoothing3D\
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Registration3D", "Registration3D\Registration3D.pyproj", "{FADD5A01-E6CE-40CE-81AA-2BB3BD5B8B87}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Surface", "Surface", "{CAB9AA00-3FD1-4843-8D26-C14AFA1DFD7F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Surface Match", "Surface Match", "{CAB9AA00-3FD1-4843-8D26-C14AFA1DFD7F}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "SurfaceMatch3D", "SurfaceMatch3D\SurfaceMatch3D.pyproj", "{7138A047-DE6A-4313-B012-2594171E3519}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "SurfaceMatch_SaveAndLoad3D", "SurfaceMatch_SaveAndLoad3D\SurfaceMatch_SaveAndLoad3D.pyproj", "{B8D7AD5B-880D-462D-A651-AB3FB2E7E960}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vertex", "Vertex", "{9C0A418B-A937-4B9C-A85F-7B1733C375F1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vertex Match", "Vertex Match", "{9C0A418B-A937-4B9C-A85F-7B1733C375F1}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "VertexMatch_SaveAndLoad3D", "VertexMatch_SaveAndLoad3D\VertexMatch_SaveAndLoad3D.pyproj", "{A6612E02-DFBC-411A-AC1B-F51F0ADE8BA8}"
 EndProject
@@ -1806,6 +1806,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fringe Pattern 3D", "Fringe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Surface Reconstruction 3D", "Surface Reconstruction 3D", "{370F5D58-A669-40BF-A5D3-BEF727645023}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Surface Match Multi", "Surface Match Multi", "{ACC87A78-F15C-413B-87EB-37846523D3C1}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "SurfaceMatch3DMulti", "SurfaceMatch3DMulti\SurfaceMatch3DMulti.pyproj", "{FD67C5D7-FC80-4B20-B9C1-88F00EC76663}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3018,6 +3022,8 @@ Global
 		{7919C7A2-42EA-444F-AC25-2962C4FFA54B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{424EA2D0-4D9B-48D7-904B-5AD7D85275BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{424EA2D0-4D9B-48D7-904B-5AD7D85275BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD67C5D7-FC80-4B20-B9C1-88F00EC76663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD67C5D7-FC80-4B20-B9C1-88F00EC76663}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3912,6 +3918,8 @@ Global
 		{8883401A-93A4-4A8D-ADCB-80D1BE5B0FAA} = {ECFF483A-9E41-42AD-94A1-09F2D3E62F83}
 		{8D06124E-9B5C-4F71-8454-CD12EF1C5C69} = {ECFF483A-9E41-42AD-94A1-09F2D3E62F83}
 		{370F5D58-A669-40BF-A5D3-BEF727645023} = {ECFF483A-9E41-42AD-94A1-09F2D3E62F83}
+		{ACC87A78-F15C-413B-87EB-37846523D3C1} = {D0DE8C89-36AF-4E94-BBB9-D1606287F414}
+		{FD67C5D7-FC80-4B20-B9C1-88F00EC76663} = {ACC87A78-F15C-413B-87EB-37846523D3C1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
