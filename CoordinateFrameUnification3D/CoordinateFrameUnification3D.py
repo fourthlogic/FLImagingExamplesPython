@@ -103,6 +103,9 @@ def main():
 			(res := view3DWorld.SetCamera(cam)).IsFail():
 			ErrorPrint(res, "Failed to set camera.\n")
 			break
+		
+		view3DDst.DesynchronizePointOfView(view3DSrc0);
+		view3DDst.DesynchronizePointOfView(view3DSrc1);
 
 		layer3DSrc0 = view3DSrc0.GetLayer(0)
 		layer3DSrc1 = view3DSrc1.GetLayer(0)
