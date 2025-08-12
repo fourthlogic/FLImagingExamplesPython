@@ -45,7 +45,7 @@ def main():
 		# 파라미터 설정 // Set parameter
 		pointCloudDownsamplerStochastic3D.SetSourceObject(floSrc)
 		pointCloudDownsamplerStochastic3D.SetDestinationObject(floDst)
-		pointCloudDownsamplerStochastic3D.SetSamplingSize(50000)
+		pointCloudDownsamplerStochastic3D.SetSamplingSize(20000)
 		pointCloudDownsamplerStochastic3D.EnableNormalRetainment(True)
 		pointCloudDownsamplerStochastic3D.EnableColorRetainment(True)
 		pointCloudDownsamplerStochastic3D.EnableFaceRetainment(False)
