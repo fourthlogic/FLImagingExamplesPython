@@ -16,7 +16,7 @@ def main():
 	while True:
 
 		# 스냅 파일 로드 // Load SNAP file
-		if (res := buildSNAP.Load('C:/Users/Public/Documents/FLImaging/FLImagingExamplesSNAP/Advanced Functions/Object/Blob.flsf')).IsFail():
+		if (res := buildSNAP.Load('../../FLImagingExamplesSNAP/Advanced Functions/Object/Blob/Blob.flsf')).IsFail():
 			ErrorPrint(res, 'Failed to load the file.')
 			break
 

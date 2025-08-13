@@ -35,7 +35,7 @@ class SNAPViewIntoDialog(tk.Tk):
 				break
 
 		    # 스냅 파일 로드 // Load SNAP file
-			if (res := self.m_viewSNAP.Load('C:/Users/Public/Documents/FLImaging/FLImagingExamplesSNAP/Advanced Functions/Object/Blob.flsf')).IsFail():
+			if (res := self.m_viewSNAP.Load('../../FLImagingExamplesSNAP/Advanced Functions/Object/Blob/Blob.flsf')).IsFail():
 				ErrorPrint(res, 'Failed to load the file.')
 				break
 

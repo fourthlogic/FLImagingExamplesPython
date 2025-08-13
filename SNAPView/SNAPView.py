@@ -21,7 +21,7 @@ def main():
 			break
 
 		# 스냅 파일 로드 // Load SNAP file
-		if (res := viewSNAP.Load('C:/Users/Public/Documents/FLImaging/FLImagingExamplesSNAP/Advanced Functions/Object/Blob.flsf')).IsFail():
+		if (res := viewSNAP.Load('../../FLImagingExamplesSNAP/Advanced Functions/Object/Blob/Blob.flsf')).IsFail():
 			ErrorPrint(res, 'Failed to load the file.')
 			break
 
