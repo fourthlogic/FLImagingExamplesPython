@@ -364,17 +364,8 @@
       - PatternMatch_SaveLoad
         - The algorithm example of save and load algorithm for pattern match
         - 패턴 싱글매칭의 저장 및 로드 예제.
-        
-    - [Pattern Match Sparse]
-    
-      - PatternMatchSparse
-        - The algorithm example that learns pattern information sampled with a certain standard within a region of interest in an image and searches for matching patterns in a dectected image.
-        - 하나의 이미지 관심영역 내에서 일정한 기준으로 샘플링된 정보를 학습하여, 검출 이미지에서 일치하는 패턴을 탐색하는 알고리즘 예제.
-      - PatternMatchSparse_SaveLoad
-        - The algorithm example of save and load algorithm for pattern match sparse
-        - 패턴 싱글매칭의 저장 및 로드 예제.
-
-    - [Pattern Match Multi]
+ 
+     - [Pattern Match Multi]
     
       - PatternMatchMulti
         - The algorithm example that learns pattern information within one or more different image regions of interest, assigns a unique class name and searches for matching patterns in a detected image for the learned class and classifies the class.
@@ -383,7 +374,6 @@
         - The algorithm example of save and load algorithm for pattern multi match
         - 패턴 멀티매칭의 저장 및 로드 예제.
 
-        
     - [Pattern Match Multi Sparse]
     
       - PatternMatchMultiSparse
@@ -392,6 +382,15 @@
       - PatternMatchMultiSparse_SaveLoad
         - The algorithm example of save and load algorithm for pattern match multi sparse
         - 패턴 멀티매칭의 저장 및 로드 예제.
+
+    - [Pattern Match Sparse]
+    
+      - PatternMatchSparse
+        - The algorithm example that learns pattern information sampled with a certain standard within a region of interest in an image and searches for matching patterns in a dectected image.
+        - 하나의 이미지 관심영역 내에서 일정한 기준으로 샘플링된 정보를 학습하여, 검출 이미지에서 일치하는 패턴을 탐색하는 알고리즘 예제.
+      - PatternMatchSparse_SaveLoad
+        - The algorithm example of save and load algorithm for pattern match sparse
+        - 패턴 싱글매칭의 저장 및 로드 예제. 
 
     - RectangleArrayMatch
       - The algorithm example that searchs for matching pattern array in detection image through pattern information on ROI array
@@ -964,12 +963,12 @@
 
   - [Channel]
 
-    - ChannelExtraction
-      - The example of an algorithm that extracts a specific channel from a multichannel image and make it an image.
-      - 다채널 이미지에서 특정 하나의 채널을 추출하여 이미지화하는 알고리즘 예제.
     - ChannelCombination
       - The example of an algorithm that combines channels selected from multiple images.
       - 여러 이미지에서 선택된 채널들을 결합하는 알고리즘 예제.
+    - ChannelExtraction
+      - The example of an algorithm that extracts a specific channel from a multichannel image and make it an image.
+      - 다채널 이미지에서 특정 하나의 채널을 추출하여 이미지화하는 알고리즘 예제.
     - ChannelInsertion
       - The example of an algorithm that Inserts channels selected from multiple images.
       - 여러 이미지에서 선택된 채널들을 삽입하는 알고리즘 예제. 
@@ -1758,9 +1757,13 @@
         
     - [Fourier]
 
-      - Fouier Transform
-        - The algorithm that transforms images into Fourier transforms.
+      - Fourier Transform
+        - The algorithm that transforms images into fourier transforms.
         - 이미지를 푸리에 변환을 하는 알고리즘.
+
+      - Fourier Transform Real
+        - The algorithm that transforms images into real fourier transforms.
+        - 이미지를 실푸리에 변환으로 변환하는 알고리즘.
         
     - [Hough]
 
