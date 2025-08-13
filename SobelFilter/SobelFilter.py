@@ -74,30 +74,30 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
-		# Convolution Sobel 객체 생성 // Create Convolution Sobel object
-		convolutionSobel = CSobelFilter();
+		# SobelFilter 객체 생성 // Create SobelFilter object
+		sobelFilter = CSobelFilter();
 		
 		# ROI 설정을 위한 FLRect 생성
 		flrROI = CFLRect[int](200, 200, 500, 500);
 
 		# Source 이미지 설정 // Set the source image
-		convolutionSobel.SetSourceImage(fliSourceImage);
+		sobelFilter.SetSourceImage(fliSourceImage);
 
 		# Source ROI 설정 // Set the Source ROI
-		convolutionSobel.SetSourceROI(flrROI);
+		sobelFilter.SetSourceROI(flrROI);
 
 		# Destination 이미지 설정 // Set the destination image
-		convolutionSobel.SetDestinationImage(fliDestinationImage);
+		sobelFilter.SetDestinationImage(fliDestinationImage);
 
 		# Destination ROI 설정 // Set Destination ROI
-		convolutionSobel.SetDestinationROI(flrROI);
+		sobelFilter.SetDestinationROI(flrROI);
 
-		# Convolution Sobel 커널 연산 방법 설정
-		convolutionSobel.SetKernelMethod(CSobelFilter.EKernel.Sobel);
+		# SobelFilter 커널 연산 방법 설정
+		sobelFilter.SetKernelMethod(CSobelFilter.EKernel.Sobel);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := convolutionSobel.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Sobel Filter.')
+		if (res := sobelFilter.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute sobel filter.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display

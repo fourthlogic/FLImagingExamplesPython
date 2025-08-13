@@ -74,30 +74,30 @@ def main():
 			ErrorPrint(res[0], 'Failed to synchronize window.')
 			break
 
-		# Convolution Gradient 객체 생성 // Create Convolution Gradient object
-		convolutionGradient = CGradientFilter();
+		# GradientFilter 객체 생성 // Create GradientFilter object
+		gradientFilter = CGradientFilter();
 		
 		# ROI 설정을 위한 FLRect 생성
 		flrROI = CFLRect[int](200, 200, 500, 500);
 
 		# Source 이미지 설정 // Set the source image
-		convolutionGradient.SetSourceImage(fliSourceImage);
+		gradientFilter.SetSourceImage(fliSourceImage);
 
 		# Source ROI 설정 // Set the Source ROI
-		convolutionGradient.SetSourceROI(flrROI);
+		gradientFilter.SetSourceROI(flrROI);
 
 		# Destination 이미지 설정 // Set the destination image
-		convolutionGradient.SetDestinationImage(fliDestinationImage);
+		gradientFilter.SetDestinationImage(fliDestinationImage);
 
 		# Destination ROI 설정 // Set Destination ROI
-		convolutionGradient.SetDestinationROI(flrROI);
+		gradientFilter.SetDestinationROI(flrROI);
 
-		# Convolution Gradient 커널 연산 방법 설정
-		convolutionGradient.SetKernelMethod(CGradientFilter.EKernel.Gradient);
+		# GradientFilter 커널 연산 방법 설정
+		gradientFilter.SetKernelMethod(CGradientFilter.EKernel.Gradient);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
-		if (res := convolutionGradient.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Gradient Filter.')
+		if (res := gradientFilter.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute gradient filter.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
