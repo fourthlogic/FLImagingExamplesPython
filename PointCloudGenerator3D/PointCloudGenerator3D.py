@@ -23,10 +23,7 @@ def main():
 		#알고리즘 객체 생성 // declare algorithm instance
 		pointCloudGenerator3D = CPointCloudGenerator3D()
 		
-		# 3D 뷰와 연결이 유지된 객체 생성 // Declare the object connected to 3D view
-		view3DDst.PushObject(CFL3DObject())
-		viewObject = view3DDst.GetView3DObject(0)
-		floDst = viewObject.Get3DObject()
+		floDst = CFL3DObject()
 				
 		# 파라미터 설정 // Set parameter
 		pointCloudGenerator3D.SetDestinationObject(floDst)
@@ -43,25 +40,29 @@ def main():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 		
+		view3DDst.PushObject(floDst);
 		#출력 뷰의 시점을 계산 // Calculate the viewpoint of destination view
-		viewObject.UpdateAll()
-		view3DDst.UpdateObject(0)
 		view3DDst.ZoomFit()
 
 		while view3DDst.IsAvailable():
-			if (res := pointCloudGenerator3D.Execute()).IsFail():
+			if(res := pointCloudGenerator3D.Execute()).IsFail():
 				ErrorPrint(res, "Failed to execute.")
-				break;
+				break
 
 			if not view3DDst.IsAvailable():
 				break
 
-			viewObject.UpdateVertex(True)
-			view3DDst.UpdateObject(0)
+			view3DDst.LockUpdate()
+			view3DDst.ClearObjects()
 
-			view3DDst.UpdateScreen()
-			CThreadUtilities.Sleep(1)
+			if not view3DDst.IsAvailable():
+				break
 
+			view3DDst.PushObject(floDst)
+			if not view3DDst.IsAvailable():
+				break;
+
+			view3DDst.UnlockUpdate()
 		break
 	
 	# End of main function
