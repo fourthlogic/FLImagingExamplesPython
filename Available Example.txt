@@ -778,6 +778,9 @@
     - Figure_Open
       - The example of Open operation in Figure Morphology.
       - Figure Morphology 중 Open 동작에 관한 예제.
+    - FigureOperation
+      - The example of figure operation.
+      - Figure Operation 에 관한 예제.
     - FigureSaveLoad
       - The example of saving and loading figure files(.fig).
       - Figure File(.fig) 저장, 불러오기에 관한 예제.

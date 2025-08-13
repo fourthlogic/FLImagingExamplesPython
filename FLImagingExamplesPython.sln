@@ -1814,6 +1814,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vertex Match Multi", "Verte
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "VertexMatch3DMulti", "VertexMatch3DMulti\VertexMatch3DMulti.pyproj", "{6E9CD72D-697E-4461-A388-D0F32B18C823}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FigureOperation", "FigureOperation\FigureOperation.pyproj", "{F94AC25D-01D4-4BE0-95FF-EE1B714EB32A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3030,6 +3032,8 @@ Global
 		{FD67C5D7-FC80-4B20-B9C1-88F00EC76663}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E9CD72D-697E-4461-A388-D0F32B18C823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6E9CD72D-697E-4461-A388-D0F32B18C823}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F94AC25D-01D4-4BE0-95FF-EE1B714EB32A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F94AC25D-01D4-4BE0-95FF-EE1B714EB32A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3928,6 +3932,7 @@ Global
 		{FD67C5D7-FC80-4B20-B9C1-88F00EC76663} = {ACC87A78-F15C-413B-87EB-37846523D3C1}
 		{53328DE2-FD95-4391-87A5-FCB7BD81517B} = {D0DE8C89-36AF-4E94-BBB9-D1606287F414}
 		{6E9CD72D-697E-4461-A388-D0F32B18C823} = {53328DE2-FD95-4391-87A5-FCB7BD81517B}
+		{F94AC25D-01D4-4BE0-95FF-EE1B714EB32A} = {0AAA2AA3-AE19-45F6-81D7-4A1500D0FA7B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
