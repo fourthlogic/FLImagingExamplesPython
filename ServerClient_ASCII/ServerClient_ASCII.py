@@ -1,5 +1,6 @@
 ﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
 from FLImagingClrPy import *
+import time
 
 # You must call the following function once
 # before using any features of the FLImaging(R) library
@@ -34,7 +35,7 @@ class CDeviceEventSocketServerASCIIEx(CDeviceEventSocketASCII):
                 if pDeviceSocketClientASCIIManager.IsClientAlive(pDeviceSocketClientASCII):
                     pDeviceSocketClientASCII.Send(pSocketPacket)
 
-                time.sleep(0.5)
+                CThreadUtilities.Sleep(500)
 
 
 # 클라이언트 소켓 이벤트 클래스
@@ -66,7 +67,7 @@ class CDeviceEventSocketClientASCIIEx(CDeviceEventSocketASCII):
         if self.m_bConnect and pDeviceSocketClientASCII is not None and pSocketPacket is not None:
             print("[Client] Send " + pSocketPacket)
             pDeviceSocketClientASCII.Send(pSocketPacket)
-            time.sleep(0.5)
+            CThreadUtilities.Sleep(500)
 
 
 # 에러 출력 함수 // Error printing function
@@ -125,7 +126,7 @@ def main():
 	            ErrorPrint(res, "Failed to send.")
 	            break
 
-            input("Press any key to exit...")
+            input("Press any key to exit...\n")
 
             # 소켓 해제 및 이벤트 해제 // Terminate sockets and clear events
             deviceSocketServerASCII.Terminate()

@@ -22,11 +22,7 @@ class CDeviceEventSocketServerEx(CDeviceEventSocketBase):
         if pSocketPacket is not None:
             buf = pSocketPacket.GetBuffer()
             size = int(pSocketPacket.GetSize())
-            data = bytearray(size)
-            for i in range(size):
-                data[i] = buf[i]
-
-            fls = data.decode("ascii", errors="ignore")
+            fls = bytes([buf[i] for i in range(size)]).decode('ascii', errors='ignore')
             print("[Server] Recv " + fls)
 
         # 재전송(echo) // Send string(echo)
@@ -44,7 +40,7 @@ class CDeviceEventSocketServerEx(CDeviceEventSocketBase):
                 if pDeviceSocketClientManager.IsClientAlive(pDeviceSocketClient):
                     pDeviceSocketClient.Send(pSocketPacket)
 
-                time.sleep(0.5)
+                CThreadUtilities.Sleep(500)
 
 
 # 클라이언트 소켓 이벤트 클래스
@@ -72,17 +68,17 @@ class CDeviceEventSocketClientEx(CDeviceEventSocketBase):
         if pSocketPacket is not None:
             buf = pSocketPacket.GetBuffer()
             size = int(pSocketPacket.GetSize())
-            fls = bytes(buf[:size]).decode('ascii', errors='ignore')
+            fls = bytes([buf[i] for i in range(size)]).decode('ascii', errors='ignore')
             print("[Client] Recv " + fls)
 
         # 재전송(echo) // Send string(echo)
         if self.m_bConnect and pDeviceSocketClient is not None and pSocketPacket is not None:
             buf = pSocketPacket.GetBuffer()
             size = int(pSocketPacket.GetSize())
-            fls = bytes(buf[:size]).decode('ascii', errors='ignore')
+            fls = bytes([buf[i] for i in range(size)]).decode('ascii', errors='ignore')
             print("[Client] Send " + fls)
             pDeviceSocketClient.Send(pSocketPacket)
-            time.sleep(0.5)
+            CThreadUtilities.Sleep(500)
 
 
 # 에러 출력 함수 // Error printing function
@@ -136,11 +132,11 @@ def main():
             socketPacket.Assign(dataBuf, len(dataBuf))
 
             # 클라이언트에서 서버로 데이터 송신 // Send data from client to server
-            if((res := deviceSocketClient.Send(socketPacket)).IsFail()):
-	            ErrorPrint(res, "Failed to send.")
-	            break
+            if (res := deviceSocketClient.Send(socketPacket)).IsFail():
+                ErrorPrint(res, "Failed to send.")
+                break
 
-            input("Press any key to exit...")
+            input("Press any key to exit...\n")
 
             # 소켓 해제 및 이벤트 해제 // Terminate sockets and clear events
             deviceSocketServer.Terminate()
