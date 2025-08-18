@@ -13,11 +13,13 @@ def main():
 	fliSrcImage = CFLImage()
 	fliOprImage = CFLImage()
 	fliDstImage = CFLImage()
+	fliDst2Image = CFLImage()
 
 	# 이미지 뷰 선언 # Declare the image view
 	viewImageSrc = CGUIViewImage()
 	viewImageOpr = CGUIViewImage()
 	viewImageDst = CGUIViewImage()
+	viewImageDst2 = CGUIViewImage()
 
 	while True:
 		# Source 이미지 로드 // Load the source image
@@ -38,7 +40,8 @@ def main():
 		# 이미지 뷰 생성 # Create image view
 		if ((res := viewImageSrc.Create(400, 0, 800, 400)).IsFail() or 
 			(res := viewImageOpr.Create(800, 0, 1200, 400)).IsFail() or 
-			(res := viewImageDst.Create(1200, 0, 1600, 400)).IsFail()):
+			(res := viewImageDst.Create(400, 400, 800, 800)).IsFail() or 
+			(res := viewImageDst2.Create(800, 400, 1200, 800)).IsFail()):
 			ErrorPrint(res, "Failed to create the image view.\n")
 			break
 
@@ -49,18 +52,12 @@ def main():
 			ErrorPrint(res, "Failed to synchronize view. \n")
 			break
 
-		# 두 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if ((res := viewImageSrc.SynchronizeWindow(viewImageOpr)[0]).IsFail() or 
-			(res := viewImageSrc.SynchronizeWindow(viewImageDst)[0]).IsFail()):
-			ErrorPrint(res, "Failed to synchronize window. \n")
-			break
-
 		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if ((res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail() or 
 			(res := viewImageOpr.SetImagePtr(fliOprImage)[0]).IsFail() or 
-			(res := viewImageDst.SetImagePtr(fliDstImage)[0]).IsFail()):
+			(res := viewImageDst.SetImagePtr(fliDstImage)[0]).IsFail() or 
+			(res := viewImageDst2.SetImagePtr(fliDst2Image)[0]).IsFail()):
 			ErrorPrint(res, "Failed to set image object on the image view. \n")
 			break
 		
@@ -74,15 +71,32 @@ def main():
 		# Operand 이미지 설정 # Set operand image 
 		if (res := imageConcatenator.SetOperandImage(fliOprImage)[0]).IsFail():
 			break
-		# Destination 이미지 설정 # Set destination image 
-		if (res := imageConcatenator.SetDestinationImage(fliDstImage)[0]).IsFail():
-			break
 		# Operand ROI 설정 # Set operand image 
 		flrROI = CFLRect[Double](fliOprImage)
 		flrROI.left = flrROI.GetWidth() * 0.7
 		if (res := imageConcatenator.SetOperandROI(flrROI)).IsFail():
 			break
 		
+		# 이미지를 이어붙일 방향을 설정 # Set image concatenation direction
+		imageConcatenator.SetConcatenationPosition(CImageConcatenator.EConcatenationPosition.Right)
+
+		# 결과 이미지 확장 여부 설정 # Enable or disable output image expansion
+		imageConcatenator.EnableResultImageExpansion(False)
+
+		# Destination 이미지 설정 # Set destination image 
+		if (res := imageConcatenator.SetDestinationImage(fliDstImage)[0]).IsFail():
+			break
+		# 알고리즘 수행 # Execute the algorithm
+		if (res := imageConcatenator.Execute()).IsFail():
+			ErrorPrint(res, "Failed to execute the algorithm.")
+			break
+		
+		# 결과 이미지 확장 여부 설정 # Enable or disable output image expansion
+		imageConcatenator.EnableResultImageExpansion(True)
+
+		# Destination 이미지 설정 # Set destination image 
+		if (res := imageConcatenator.SetDestinationImage(fliDst2Image)[0]).IsFail():
+			break
 		# 알고리즘 수행 # Execute the algorithm
 		if (res := imageConcatenator.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
@@ -94,17 +108,20 @@ def main():
 		layerSrc = viewImageSrc.GetLayer(0)
 		layerOpr = viewImageOpr.GetLayer(0)
 		layerDst = viewImageDst.GetLayer(0)
+		layerDst2 = viewImageDst2.GetLayer(0)
 
 		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
 		layerSrc.Clear()
 		layerOpr.Clear()
 		layerDst.Clear()
+		layerDst2.Clear()
 
 		# 이미지 뷰 정보 표시 # Display image view information
 		flpTemp = CFLPoint[Double](0, 0)
 		if ((res := layerSrc.DrawTextCanvas(flpTemp, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or 
 			(res := layerOpr.DrawTextCanvas(flpTemp, "Operand Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or 
-			(res := layerDst.DrawTextCanvas(flpTemp, "Destination Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail()):
+			(res := layerDst.DrawTextCanvas(flpTemp, "Destination Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or 
+			(res := layerDst2.DrawTextCanvas(flpTemp, "Destination Image(Expanded)", EColor.YELLOW, EColor.BLACK, 20)).IsFail()):
 			ErrorPrint(res, "Failed to draw text. \n")
 			break
 		
@@ -112,13 +129,16 @@ def main():
 		if (res := layerOpr.DrawFigureImage(flrROI, EColor.LIME)).IsFail():
 			ErrorPrint(res, "Failed to draw figure.\n")
 
-		# 이미지 뷰를 갱신 # Update image view
+		# 이미지 뷰를 갱신 # Update image view		
+		viewImageSrc.ZoomFit()
+		viewImageDst2.ZoomFit()
 		viewImageSrc.Invalidate(True)
 		viewImageOpr.Invalidate(True)
 		viewImageDst.Invalidate(True)
+		viewImageDst2.Invalidate(True)
 
 		# 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close
-		while viewImageSrc.IsAvailable() and viewImageOpr.IsAvailable() and viewImageDst.IsAvailable():			
+		while viewImageSrc.IsAvailable() and viewImageOpr.IsAvailable() and viewImageDst.IsAvailable() and viewImageDst2.IsAvailable():			
 			CThreadUtilities.Sleep(1)
 
 		break
