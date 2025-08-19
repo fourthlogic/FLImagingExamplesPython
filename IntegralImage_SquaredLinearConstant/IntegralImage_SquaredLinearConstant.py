@@ -28,7 +28,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 # Load the source image
-		if (res := fliISrcImage.Load('../../ExampleImages/IntegralImageImage/Lake.flif')).IsFail():
+		if (res := fliISrcImage.Load('../../ExampleImages/IntegralImage/Lake.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
@@ -73,8 +73,8 @@ def main():
 		
 		mvCoefficients = CMultiVar[Double](1.7, 2.1, 1.5)
 
-		# IntegralImageImage 객체 생성 # Create integralImage object
-		integralImage = CIntegralImageImage()
+		# IntegralImage 객체 생성 # Create integralImage object
+		integralImage = CIntegralImage()
 
 		# Source 이미지 설정 # Set source image 
 		integralImage.SetSourceImage(fliISrcImage)
@@ -83,12 +83,12 @@ def main():
 		integralImage.SetDestinationImage(fliIDstImage)
 
 		# 적분합 자료형 타입을 설정합니다. # Set integralImage data type.
-		integralImage.SetDataType(CIntegralImageImage.EDataType.Uint32)
+		integralImage.SetDataType(CIntegralImage.EDataType.Uint32)
 
 		# integralImage 누적합 연산 모드 설정 # Set integration operation method.
 		# ECalculationMode.SquaredLinearConstant : ax^2 + bx + c 형태의 다항식 누적합
 		# ECalculationMode.SquaredLinearConstant : Polynomial sum with constant (ax^2 + bx + c)
-		integralImage.SetCalculationMode(CIntegralImageImage.ECalculationMode.SquaredLinearConstant)
+		integralImage.SetCalculationMode(CIntegralImage.ECalculationMode.SquaredLinearConstant)
 
 		# ax^2 + bx + c 계수 설정(a = 1.7, b = 2.1, c = 1.5) # ax^2 + bx + c Setting the coefficient (a = 1.7, b = 2.1, c = 1.5)
 		integralImage.SetCoefficients(mvCoefficients)
