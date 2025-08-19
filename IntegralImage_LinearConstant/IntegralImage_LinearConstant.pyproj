@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7c1f84a7-3f94-4262-9ce0-0afdd90195cf}</ProjectGuid>
+    <ProjectGuid>{f5b4e19f-8fb6-46ac-b990-827273b720f4}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Integral_Sum.py</StartupFile>
+    <StartupFile>IntegralImage_LinearConstant.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Integral_Sum</Name>
-    <RootNamespace>Integral_Sum</RootNamespace>
+    <Name>IntegralImage_LinearConstant</Name>
+    <RootNamespace>IntegralImage_LinearConstant</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Integral_Sum.py" />
+    <Compile Include="IntegralImage_LinearConstant.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

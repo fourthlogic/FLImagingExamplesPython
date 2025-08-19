@@ -4,13 +4,13 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3a03e273-5014-483f-8ebb-e5bef505ade5}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Integral_Polynomial.py</StartupFile>
+    <StartupFile>IntegralImage_SquaredLinearConstant.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Integral_Polynomial</Name>
-    <RootNamespace>Integral_Polynomial</RootNamespace>
+    <Name>IntegralImage_SquaredLinearConstant</Name>
+    <RootNamespace>IntegralImage_SquaredLinearConstant</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Integral_Polynomial.py" />
+    <Compile Include="IntegralImage_SquaredLinearConstant.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

@@ -28,7 +28,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 # Load the source image
-		if (res := fliISrcImage.Load('../../ExampleImages/integral/Lake.flif')).IsFail():
+		if (res := fliISrcImage.Load('../../ExampleImages/IntegralImage/Lake.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
@@ -71,30 +71,31 @@ def main():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 		
-		mvCoefficients = CMultiVar[Double](1.7, 2.1, 0)
+		mvCoefficients = CMultiVar[Double](0, 2.1, 0)
 
-		# Integral 객체 생성 # Create integral object
-		integral = CIntegral()
+		# IntegralImage 객체 생성 # Create integralImage object
+		integralImage = CIntegralImage()
 
 		# Source 이미지 설정 # Set source image 
-		integral.SetSourceImage(fliISrcImage)
+		integralImage.SetSourceImage(fliISrcImage)
 
 		# Destination 이미지 설정 # Set destination image
-		integral.SetDestinationImage(fliIDstImage)
+		integralImage.SetDestinationImage(fliIDstImage)
 
-		# 적분합 자료형 타입을 설정합니다. # Set integral data type.
-		integral.SetDataType(CIntegral.EDataType.Uint32)
+		# 적분합 자료형 타입을 설정합니다. # Set integralImage data type.
+		integralImage.SetDataType(CIntegralImage.EDataType.Uint32)
 
-		# integral 누적합 연산 모드 설정 # Set integration operation method.
-		# ECalculationMode_SquareAndSum : ax^2 + bx 다항식 방식의 합 # ECalculationMode_SquareAndSum : ax^2 + bx Polynomial Sum
-		integral.SetCalculationMode(CIntegral.ECalculationMode.SquareAndSum)
+		# integralImage 누적합 연산 모드 설정 # Set integration operation method.
+		# ECalculationMode.Linear : ax 형태의 선형 누적합 
+		# ECalculationMode.Linear : Linear sum (ax)
+		integralImage.SetCalculationMode(CIntegralImage.ECalculationMode.Linear)
 
-		# ax^2 + bx + c 계수 설정(a = 1.7, b = 2.1, c = 0) # ax^2 + bx + c Setting the coefficient (a = 1.7, b = 2.1, c = 0)
-		integral.SetCoefficients(mvCoefficients)
+		# ax^2 + bx + c 계수 설정(a = 0, b = 2.1, c = 0) # ax^2 + bx + c Setting the coefficient (a = 0, b = 2.1, c = 0)
+		integralImage.SetCoefficients(mvCoefficients)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := integral.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute integral.')
+		if (res := integralImage.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute integralImage.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
