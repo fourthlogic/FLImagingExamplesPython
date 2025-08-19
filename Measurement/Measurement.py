@@ -177,7 +177,7 @@ def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
 
-	print(f'Error code : res.GetResultCode()\nError name : res.GetString()')
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 def Calibration(orthogonalCalibrator, fliBoardImage):
 	bResult = False
