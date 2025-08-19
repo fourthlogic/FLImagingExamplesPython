@@ -1826,6 +1826,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ServerClient", "ServerClien
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ServerClient_ASCII", "ServerClient_ASCII\ServerClient_ASCII.pyproj", "{771226F2-661B-44A2-897D-AD7541A14CCD}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "XYZImageToPointCloudConverter3D", "XYZImageToPointCloudConverter3D\XYZImageToPointCloudConverter3D.pyproj", "{A8A1B929-99F5-48E3-9BEE-D8AA4E7117DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3048,6 +3050,8 @@ Global
 		{235DFB36-6086-44D4-8092-16B5459F4884}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{771226F2-661B-44A2-897D-AD7541A14CCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{771226F2-661B-44A2-897D-AD7541A14CCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8A1B929-99F5-48E3-9BEE-D8AA4E7117DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8A1B929-99F5-48E3-9BEE-D8AA4E7117DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3952,6 +3956,7 @@ Global
 		{7E9B312E-5667-4941-ACDD-5169E11A69B2} = {0A6FD58E-98F6-45B7-96C2-9C420AAB6DE5}
 		{235DFB36-6086-44D4-8092-16B5459F4884} = {7E9B312E-5667-4941-ACDD-5169E11A69B2}
 		{771226F2-661B-44A2-897D-AD7541A14CCD} = {7E9B312E-5667-4941-ACDD-5169E11A69B2}
+		{A8A1B929-99F5-48E3-9BEE-D8AA4E7117DF} = {185B9BAD-D8C3-481B-BE2A-1F170F876A39}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
