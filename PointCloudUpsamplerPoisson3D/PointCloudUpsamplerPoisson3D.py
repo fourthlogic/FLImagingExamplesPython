@@ -45,7 +45,7 @@ def main():
 		# 파라미터 설정 // Set parameter
 		pointCloudUpsamplerPoisson3D.SetSourceObject(floSrc)
 		pointCloudUpsamplerPoisson3D.SetDestinationObject(floDst)
-		pointCloudUpsamplerPoisson3D.SetColoringMode(CPointCloudUpsampler3DBase.EColoringMode.Interpolate)
+		pointCloudUpsamplerPoisson3D.SetColoringMode(EColoringMode.Interpolate)
 		pointCloudUpsamplerPoisson3D.EnableNormalInterpolation(True)
 		pointCloudUpsamplerPoisson3D.EnableAutoDistance(True)
 		pointCloudUpsamplerPoisson3D.EnableCopyVertex(True)

@@ -45,7 +45,7 @@ def main():
 		# 파라미터 설정 // Set parameter
 		pointCloudUpsamplerUniform3D.SetSourceObject(floSrc)
 		pointCloudUpsamplerUniform3D.SetDestinationObject(floDst)
-		pointCloudUpsamplerUniform3D.SetColoringMode(CPointCloudUpsampler3DBase.EColoringMode.Interpolate)
+		pointCloudUpsamplerUniform3D.SetColoringMode(EColoringMode.Interpolate)
 		pointCloudUpsamplerUniform3D.EnableNormalInterpolation(True)
 		pointCloudUpsamplerUniform3D.SetSamplingSize(10 ** 7)
 		pointCloudUpsamplerUniform3D.EnableCopyVertex(True)
