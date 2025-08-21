@@ -86,8 +86,8 @@ def main():
 		integralImage.SetDataType(CIntegralImage.EDataType.Uint32)
 
 		# Integral 누적합 연산 모드 설정 # Set integration operation method.
-		# ECalculationMode_Sum : ax + c 형태의 선형 누적합 
-		# ECalculationMode_Sum : Linear sum with constant (ax + c)
+		# ECalculationMode.LinearConstant : ax + c 형태의 선형 누적합 
+		# ECalculationMode.LinearConstant : Linear sum with constant (ax + c)
 		integralImage.SetCalculationMode(CIntegralImage.ECalculationMode.LinearConstant)
 
 		# ax^2 + bx + c 계수 설정(a = 0, b = 2.1, c = 1) # ax^2 + bx + c Setting the coefficient (a = 0, b = 2.1, c = 1)

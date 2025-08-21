@@ -1,132 +1,149 @@
-﻿from FLImagingClrPy import *
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
+from FLImagingClrPy import *
 
 # You must call the following function once
 # before using any features of the FLImaging(R) library
 CLibraryUtilities.Initialize()
 
 
-def ErrorPrint(res: CResult, string: str):
-    if len(string) > 1:
-        print(string)
-    print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
+# Error 출력 함수 import # Import Error Output Function
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
+
+from ErrorPrint import *
 
 def main():
-    # 이미지 객체 선언 # Declare the image object
+
+    # 이미지 객체 선언 // Declare the image object
     arrFliImage = [CFLImage() for _ in range(3)]
 
-    # 이미지 뷰 선언 # Declare the image view
+    # 이미지 뷰 선언 // Declare the image view
     arrViewImage = [CGUIViewImage() for _ in range(3)]
 
     while True:
-        # 이미지 로드 # Load image
-        res = arrFliImage[0].Load("../../ExampleImages/OperationMaximum/Flower.flif")
-        if res.IsFail():
-            ErrorPrint(res, "Failed to load the image file.")
+        # 이미지 로드 // Load image
+        if (res := arrFliImage[0].Load("../../ExampleImages/OperationMaximum/palmtree.flif")).IsFail():
+            ErrorPrint(res, "Failed to load the image file.\n")
             break
 
-        # 이미지 복사 # Assign images
-        res = arrFliImage[1].Assign(arrFliImage[0])
-        if res.IsFail():
-            ErrorPrint(res, "Failed to assign the image file.")
+        # 이미지 로드 // Load image
+        if (res := arrFliImage[1].Load("../../ExampleImages/OperationMaximum/Flower.flif")).IsFail():
+            ErrorPrint(res, "Failed to load the image file.\n")
             break
 
-        res = arrFliImage[2].Assign(arrFliImage[0])
-        if res.IsFail():
-            ErrorPrint(res, "Failed to assign the image file.")
+        # Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
+        if (res := arrFliImage[2].Assign(arrFliImage[0])).IsFail():
+            ErrorPrint(res, "Failed to assign the image file.\n")
             break
 
-        # 이미지 뷰 생성 # Create image views
-        res = arrViewImage[0].Create(100, 0, 612, 512)
-        if res.IsFail():
-            ErrorPrint(res, "Failed to create the image view.")
+        # 이미지 뷰 생성 // Create image view
+        if (res := arrViewImage[0].Create(100, 0, 612, 512)).IsFail():
+            ErrorPrint(res, "Failed to create the image view.\n")
             break
 
-        res = arrViewImage[1].Create(612, 0, 1124, 512)
-        if res.IsFail():
-            ErrorPrint(res, "Failed to create the image view.")
+        # 이미지 뷰 생성 // Create image view
+        if (res := arrViewImage[1].Create(612, 0, 1124, 512)).IsFail():
+            ErrorPrint(res, "Failed to create the image view.\n")
             break
 
-        res = arrViewImage[2].Create(1124, 0, 1636, 512)
-        if res.IsFail():
-            ErrorPrint(res, "Failed to create the image view.")
+        # 이미지 뷰 생성 // Create image view
+        if (res := arrViewImage[2].Create(1124, 0, 1636, 512)).IsFail():
+            ErrorPrint(res, "Failed to create the image view.\n")
             break
 
-        # 이미지 뷰에 이미지 설정 # Set images to views
         bError = False
+
+        # 이미지 뷰에 이미지를 디스플레이 // Display the image in the image view
         for i in range(3):
-            if (res := arrViewImage[i].SetImagePtr(arrFliImage[i]))[0].IsFail():
-                ErrorPrint(res[0], "Failed to set image object on the image view.")
+            if (res := arrViewImage[i].SetImagePtr(arrFliImage[i])[0]).IsFail():
+                ErrorPrint(res, "Failed to set image object on the image view.\n")
                 bError = True
                 break
+
         if bError:
             break
 
-        # 이미지 뷰 동기화 # Synchronize viewpoints and windows
-        if (res := arrViewImage[0].SynchronizePointOfView(arrViewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
-            break
-        if (res := arrViewImage[0].SynchronizePointOfView(arrViewImage[2]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
-            break
-        if (res := arrViewImage[0].SynchronizeWindow(arrViewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window")
-            break
-        if (res := arrViewImage[0].SynchronizeWindow(arrViewImage[2]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize window")
+        # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
+        if (res := arrViewImage[0].SynchronizePointOfView(arrViewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view\n")
             break
 
-        # Scalar 값 생성 # Create scalar values
-        mvScalar = CMultiVar[Double](100, 100, 100)
-        mvScalar2 = CMultiVar[Double](200, 200, 200)
+        # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
+        if (res := arrViewImage[0].SynchronizePointOfView(arrViewImage[2])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize view\n")
+            break
 
-        # Operation Maximum 객체 생성 # Create Operation Maximum object
+        # 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
+        if (res := arrViewImage[0].SynchronizeWindow(arrViewImage[1])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.\n")
+            break
+
+        # 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
+        if (res := arrViewImage[0].SynchronizeWindow(arrViewImage[2])[0]).IsFail():
+            ErrorPrint(res, "Failed to synchronize window.\n")
+            break
+
+        # Operation Maximum 객체 생성 // Create Operation Maximum object
         operationMaximum = COperationMaximum()
+        # Source 이미지 설정 // Set source image
         operationMaximum.SetSourceImage(arrFliImage[0])
-        operationMaximum.SetDestinationImage(arrFliImage[1])
-        operationMaximum.SetOperationSource(EOperationSource.Scalar)
-        operationMaximum.SetScalarValue(mvScalar)
-
-        # 알고리즘 수행 # Execute algorithm
-        if (res := operationMaximum.Execute()).IsFail():
-            ErrorPrint(res, "Failed to execute operation maximum (first).")
-            break
-
+        # Operand 이미지 설정 // Set Operand image
+        operationMaximum.SetOperandImage(arrFliImage[1])
+        # Destination 이미지 설정 // Set destination image
         operationMaximum.SetDestinationImage(arrFliImage[2])
-        operationMaximum.SetOperationSource(EOperationSource.Scalar)
-        operationMaximum.SetScalarValue(mvScalar2)
+        # 연산 방식 설정 // Set operation source
+        operationMaximum.SetOperationSource(EOperationSource.Image)
 
+        # 알고리즘 수행 // Execute the algorithm
         if (res := operationMaximum.Execute()).IsFail():
-            ErrorPrint(res, "Failed to execute operation maximum (second).")
+            ErrorPrint(res, "Failed to execute operation maximum.")
+            print(res.GetString())
             break
 
-        # 레이어 획득 및 초기화 # Get and clear layers
         arrLayer = [arrViewImage[i].GetLayer(0) for i in range(3)]
-        for layer in arrLayer:
-            layer.Clear()
 
-        # 텍스트 위치 # Text position
-        tpPosition = TPoint[Double](0, 0)
+        for i in range(3):
+            # 출력을 위한 이미지 레이어를 얻어옵니다. // Gets the image layer for output.
+            # 따로 해제할 필요 없음 // No need to release separately
+            # 기존에 Layer에 그려진 도형들을 삭제 // Delete the shapes drawn on the existing layer
+            arrLayer[i].Clear()
 
-        # 텍스트 출력 # Draw text on layers
-        if (res := arrLayer[0].DrawTextCanvas(tpPosition, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
-            ErrorPrint(res, "Failed to draw text.")
+        # View 정보를 디스플레이 합니다. // Display View information.
+        # 아래 함수 DrawTextCanvas은 Screen좌표를 기준으로 하는 String을 Drawing 한다.
+        # The function DrawTextCanvas below draws a String based on the screen coordinates.
+        # 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 ->
+        #                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
+        # Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
+        #                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
+        tpPosition = TPoint[float](0, 0)
+
+        if (res := arrLayer[0].DrawTextCanvas(tpPosition, "Source Image", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+            ErrorPrint(res, "Failed to draw text.\n")
             break
-        if (res := arrLayer[1].DrawTextCanvas(tpPosition, "Destination1 Image(Maximum 100)", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
-            ErrorPrint(res, "Failed to draw text.")
-            break
-        if (res := arrLayer[2].DrawTextCanvas(tpPosition, "Destination2 Image(Maximum 200)", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
-            ErrorPrint(res, "Failed to draw text.")
+
+        if (res := arrLayer[1].DrawTextCanvas(tpPosition, "Operand Image", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+            ErrorPrint(res, "Failed to draw text.\n")
             break
 
-        # 뷰 갱신 # Invalidate views
-        for view in arrViewImage:
-            view.Invalidate(True)
+        if (res := arrLayer[2].DrawTextCanvas(tpPosition, "Destination Image", EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+            ErrorPrint(res, "Failed to draw text.\n")
+            break
 
-        # 뷰 종료 대기 # Wait until all views are closed
-        while all(view.IsAvailable() for view in arrViewImage):
+        # 이미지 뷰를 갱신 합니다. // Update the image view.
+        arrViewImage[0].Invalidate(True)
+        arrViewImage[1].Invalidate(True)
+        arrViewImage[2].Invalidate(True)
+
+        # 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
+        while (arrViewImage[0].IsAvailable()
+               and arrViewImage[1].IsAvailable()
+               and arrViewImage[2].IsAvailable()):
             CThreadUtilities.Sleep(1)
 
         break
+
 
 if __name__ == "__main__":
     main()

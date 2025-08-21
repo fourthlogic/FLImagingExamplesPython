@@ -40,12 +40,6 @@ def main():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SynchronizePointOfView(viewImageCrop)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize view.')
-			break
-
 		# Source 이미지 뷰에 이미지를 디스플레이 # Display the image in the source image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SetImagePtr(fliSourceImage)[0]).IsFail():
@@ -105,6 +99,7 @@ def main():
 
 		# 이미지 뷰를 갱신 # Update image view
 		viewImageSrc.ZoomFit()
+		viewImageCrop.ZoomFit()
 		viewImageSrc.Invalidate(True)
 		viewImageCrop.Invalidate(True)
 
