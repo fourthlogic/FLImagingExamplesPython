@@ -4,13 +4,13 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{e1a10252-1fbb-4561-bd88-2d2062cc7695}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Colorconverter.py</StartupFile>
+    <StartupFile>ColorConverter.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Colorconverter</Name>
-    <RootNamespace>Colorconverter</RootNamespace>
+    <Name>ColorConverter</Name>
+    <RootNamespace>ColorConverter</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Colorconverter.py" />
+    <Compile Include="ColorConverter.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
