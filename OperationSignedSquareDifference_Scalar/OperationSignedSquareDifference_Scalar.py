@@ -70,18 +70,18 @@ def main():
 		operationSignedSquareDifference = COperationSignedSquareDifference()
 
 		# Source 이미지 설정 # Set the source image
-		operationSignedSquareDifference.SetSourceImage(fliDestinationImage)
+		operationSignedSquareDifference.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
 		operationSignedSquareDifference.SetDestinationImage(fliDestinationImage)
 
-		# Operand Overflow Method 설정 # Set the overflow method
+		# Overflow Method 설정 # Set the overflow method
 		operationSignedSquareDifference.SetOverflowMethod(EOverflowMethod.Wrapping)
 
 		# Scalar Operation 모드로 설정 # Set operation mode to scalar
 		operationSignedSquareDifference.SetOperationSource(EOperationSource.Scalar)
 
-		# 스칼라 색상 지정 # Set scalar operand color
+		# 스칼라 값 지정 # Set scalar operand value
 		mvScalar = CMultiVar[Double](0)
 		operationSignedSquareDifference.SetScalarValue(mvScalar)
 
@@ -116,7 +116,7 @@ def main():
 		viewImageSrc.Invalidate(True)
 		viewImageDst.Invalidate(True)
 
-		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
+		# 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewImageSrc.IsAvailable() and viewImageDst.IsAvailable():
 			CThreadUtilities.Sleep(1)
 

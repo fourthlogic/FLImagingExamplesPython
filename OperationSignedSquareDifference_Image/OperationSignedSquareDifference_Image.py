@@ -58,7 +58,7 @@ def main():
 			ErrorPrint(res[0], 'Failed to synchronize view.')
 			break
 
-		# 두Source 이미지 뷰와 Destination 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the source image view and the Destination image view
+		# Source 이미지 뷰와 Destination 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the source image view and the Destination image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SynchronizePointOfView(viewImageDst)[0]).IsFail():
 			ErrorPrint(res[0], 'Failed to synchronize view.')
@@ -106,7 +106,7 @@ def main():
 		# Destination 이미지 설정 # Set the destination image
 		operationSignedSquareDifference.SetDestinationImage(fliDestinationImage)
 
-		# Operand Overflow Method 설정 # Set the overflow method
+		# Overflow Method 설정 # Set the overflow method
 		operationSignedSquareDifference.SetOverflowMethod(EOverflowMethod.Clamping)
 
 		# Image Operation 모드로 설정 # Set operation mode to image
@@ -148,7 +148,7 @@ def main():
 		viewImageOperand.Invalidate(True)
 		viewImageDst.Invalidate(True)
 
-		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
+		# 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewImageSrc.IsAvailable() and viewImageOperand.IsAvailable() and viewImageDst.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
