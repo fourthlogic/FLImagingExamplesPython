@@ -26,31 +26,31 @@ def main():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Insertion 이미지 1 로드 # Load the source image
+		# Insertion 이미지 1 로드 # Load the insertion image 1
 		if (res := fliInsertionImage[0].Load("../../ExampleImages/ChannelInsertion/Valley2.flif")).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Insertion 이미지 2 로드 # Load the source image
+		# Insertion 이미지 2 로드 # Load the insertion image 2
 		if (res := fliInsertionImage[1].Load("../../ExampleImages/ChannelInsertion/Valley3.flif")).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
 		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination image as same as source image
 		if (res := fliDestinationImage.Assign(fliSourceImage)).IsFail():
-			ErrorPrint(res, 'Failed to load the image file.')
+			ErrorPrint(res, 'Failed to assign the image file.')
 			break
 
 		# Source 이미지 뷰 생성 # Create source image view
 		if (res := viewImageSrc.Create(100, 0, 100 + 440, 340)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
-		# Insertion 이미지 뷰 생성 # Create source image view
+		# Insertion 이미지 1 뷰 생성 # Create insertion image 1 view
 		if (res := viewImageInsertion[0].Create(100 + 440, 0, 100 + 440 * 2, 340)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# Insertion 이미지 뷰 생성 # Create source image view
+		# Insertion 이미지 2 뷰 생성 # Create insertion image 2 view
 		if (res := viewImageInsertion[1].Create(100 + 440 * 2, 0, 100 + 440 * 3, 340)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
@@ -132,25 +132,25 @@ def main():
 		# 삽입할 색인을 저장할 List 선언 # Declare an List to insert the indices
 		listInsertionIndices = List[Int64]()
 
-		# 삽입 이미지 입력 # insertion images add
+		# 삽입 이미지 입력 # Add insertion images 
 		listInsertionImages.Add(fliInsertionImage[0])
 		listInsertionImages.Add(fliInsertionImage[1])
 
-		# 이미지별 추출할 채널을 입력 # channels add
+		# 이미지별 추출할 채널을 입력 # Add Insertion channels to extract
 		listInsertionChannels.Add(Convert.ToInt64(EChannelSelection.Channel_0))
 		listInsertionChannels.Add(Convert.ToInt64(EChannelSelection.Channel_0))
 
-		# 이미지별 삽입할 색인을 입력 # indices add
+		# 이미지별 삽입할 색인을 입력 # Add Insertion indices to insert
 		listInsertionIndices.Add(0)
 		listInsertionIndices.Add(1)
 
 		# 소스 이미지 설정 # Set source image
 		channelInsertion.SetSourceImage(fliSourceImage)
 
-		# 결합할 이미지 및 채널입력 # Set images, channels
+		# 삽입할 이미지 및 채널입력 # Set images, channels
 		channelInsertion.SetInsertionImage(listInsertionImages, listInsertionChannels, listInsertionIndices)
 
-		# 결합 결과를 저장할 이미지 설정 # Set destination image
+		# 삽입 결과를 저장할 이미지 설정 # Set destination image
 		channelInsertion.SetDestinationImage(fliDestinationImage)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters

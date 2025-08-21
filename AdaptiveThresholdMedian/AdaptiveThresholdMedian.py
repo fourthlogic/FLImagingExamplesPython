@@ -16,8 +16,8 @@ def main():
 	viewImage = [CGUIViewImage(), CGUIViewImage()]
 
 	while True:
-		# 이미지 로드 # Load image
 
+		# 이미지 로드 # Load image
 		if (res := fliSrcImage.Load("../../ExampleImages/Threshold/Sun.flif")).IsFail() :
 			ErrorPrint(res, "Failed to load the image file.")
 			break
