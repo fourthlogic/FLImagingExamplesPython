@@ -72,7 +72,7 @@ def main():
 
 		# 알고리즘 수행 # Execute the algorithm
 		if (res := (adaptiveThresholdMedian.Execute())).IsFail() :
-			ErrorPrint(res, "Failed to execute AdaptiveThreshold.")
+			ErrorPrint(res, "Failed to execute Adaptive Threshold Median.")
 			break
 
 		# 출력을 위한 이미지 레이어를 얻어옵니다. #  Gets the image layer for output.
