@@ -84,13 +84,13 @@ def main():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# Insertion 이미지 뷰에 이미지를 디스플레이 # Display the image in the source image view
+		# Insertion 이미지 뷰에 이미지를 디스플레이 # Display the image in the insertion image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageInsertion[0].SetImagePtr(fliInsertionImage[0])[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# Insertion 이미지 뷰에 이미지를 디스플레이 # Display the image in the source image view
+		# Insertion 이미지 뷰에 이미지를 디스플레이 # Display the image in the insertion image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageInsertion[1].SetImagePtr(fliInsertionImage[1])[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
@@ -123,13 +123,13 @@ def main():
 		# Channel Insertion 객체 생성 # Create Channel Insertion object
 		channelInsertion = CChannelInsertion()
 
-		# 삽입 이미지를 저장할 List 생성 # Declare an Array to store the insertion image
+		# 삽입 이미지를 저장할 List 생성 # Declare an List to store the insertion image
 		listInsertionImages = List[CFLImage]()
 
-		# 추출할 채널을 저장할 Array 선언 # Declare an Array to extract the channels
+		# 추출할 채널을 저장할 List 선언 # Declare an List to extract the channels
 		listInsertionChannels = List[Int64]()
 
-		# 삽입할 색인을 저장할 Array 선언 # Declare an Array to insert the indices
+		# 삽입할 색인을 저장할 List 선언 # Declare an List to insert the indices
 		listInsertionIndices = List[Int64]()
 
 		# 삽입 이미지 입력 # insertion images add
@@ -198,7 +198,7 @@ def main():
 	
 	# End of main function
 
-
+	
 
 # 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
