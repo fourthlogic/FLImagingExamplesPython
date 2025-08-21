@@ -20,26 +20,26 @@ class SNAPViewIntoDialog(tk.Tk):
 		self.title("SNAPViewIntoDialog")
 		self.geometry("740x500")
 
-        # 뷰 영역 패널 // View Area Panel
+        # 뷰 영역 패널 # View Area Panel
 		self.panelView = tk.Frame(self, bd=2, relief="solid")
 		self.panelView.pack(side="left", fill="both", expand=True)
 		
-		# 스냅 뷰 객체 선언 // Declare the SNAP View
+		# 스냅 뷰 객체 선언 # Declare the SNAP View
 		self.m_viewSNAP = CGUIViewSNAP()
 
 		while True:
 		
-		    # 스냅 뷰 생성 // Create SNAP view
+		    # 스냅 뷰 생성 # Create SNAP view
 			if (res := self.m_viewSNAP.CreateAndFitParent(get_hwnd(self.panelView))).IsFail():
 				ErrorPrint(res, 'Failed to create the SNAP view.')
 				break
 
-		    # 스냅 파일 로드 // Load SNAP file
+		    # 스냅 파일 로드 # Load SNAP file
 			if (res := self.m_viewSNAP.Load('../../FLImagingExamplesSNAP/Advanced Functions/Object/Blob/Blob.flsf')).IsFail():
 				ErrorPrint(res, 'Failed to load the file.')
 				break
 
-		    # 스냅 실행 // Run SNAP
+		    # 스냅 실행 # Run SNAP
 			if (res := self.m_viewSNAP.Run()).IsFail():
 				ErrorPrint(res, 'Failed to run the SNAP.')
 				break
@@ -47,7 +47,7 @@ class SNAPViewIntoDialog(tk.Tk):
 			break
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res: CResult, string: str):
 	if len(string) > 1:
 		print(string)

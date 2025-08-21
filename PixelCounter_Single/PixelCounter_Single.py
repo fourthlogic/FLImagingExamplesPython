@@ -6,7 +6,7 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-# Error 출력 함수 import // Import Error Output Function
+# Error 출력 함수 import # Import Error Output Function
 import sys
 import os
 
@@ -90,9 +90,9 @@ def main():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 		
-		# Source ROI 출력 // Display Source ROI 
+		# Source ROI 출력 # Display Source ROI 
 		if (res := layer1.DrawFigureImage(flfSourceROI, EColor.LIME)).IsFail():
-			ErrorPrint(res, "Failed to draw Source ROI .\n");
+			ErrorPrint(res, "Failed to draw Source ROI .\n")
 
 		# 이미지 뷰를 갱신 합니다. # Update the image view.
 		viewImage[0].Invalidate(True)

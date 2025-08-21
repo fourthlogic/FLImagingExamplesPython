@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,16 +7,16 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-	# 이미지 객체 선언 // Declare the image object
+	# 이미지 객체 선언 # Declare the image object
 	fliSourceImage = CFLImage()
 	fliOperandImage1 = CFLImage()
 	fliOperandImage2 = CFLImage()
 	fliDestinationImage = CFLImage()
 
-	# 이미지 뷰 선언 // Declare the image view
+	# 이미지 뷰 선언 # Declare the image view
 	viewImageSrc = CGUIViewImage()
 	viewImageOperand1 = CGUIViewImage()
 	viewImageOperand2 = CGUIViewImage()
@@ -24,138 +24,138 @@ def main():
 
 	while True:
 		
-		# Source 이미지 로드 // Load the source image
+		# Source 이미지 로드 # Load the source image
 		if (res := fliSourceImage.Load('../../ExampleImages/OperationLinear/Space.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
-		# Operand1 이미지 로드 // Load the operand1 image
+		# Operand1 이미지 로드 # Load the operand1 image
 		if (res := fliOperandImage1.Load('../../ExampleImages/OperationLinear/circle.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Operand2 이미지 로드 // Load the operand2 image
+		# Operand2 이미지 로드 # Load the operand2 image
 		if (res := fliOperandImage2.Load('../../ExampleImages/OperationLinear/Sky.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
+		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination image as same as source image
 		if (res := fliDestinationImage.Assign(fliSourceImage)).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Source 이미지 뷰 생성 // Create source image view
+		# Source 이미지 뷰 생성 # Create source image view
 		if (res := viewImageSrc.Create(100, 0, 412, 312)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# Operand 이미지 뷰 생성 // Create the operand image view
+		# Operand 이미지 뷰 생성 # Create the operand image view
 		if (res := viewImageOperand1.Create(412, 0, 724, 312)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# Operand 이미지 뷰 생성 // Create the operand image view
+		# Operand 이미지 뷰 생성 # Create the operand image view
 		if (res := viewImageOperand2.Create(724, 0, 1036, 312)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# Destination 이미지 뷰 생성 // Create the destination image view
+		# Destination 이미지 뷰 생성 # Create the destination image view
 		if (res := viewImageDst.Create(1036, 0, 1348, 312)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# Source 이미지 뷰와 Operand 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the source image view and the Operand image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# Source 이미지 뷰와 Operand 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the source image view and the Operand image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res:= viewImageSrc.SynchronizePointOfView(viewImageOperand1)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 
-		# Source 이미지 뷰와 Operand 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the source image view and the Operand image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# Source 이미지 뷰와 Operand 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the source image view and the Operand image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res:= viewImageSrc.SynchronizePointOfView(viewImageOperand2)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 
-		# Source 이미지 뷰와 Destination 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the source image view and the Destination image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# Source 이미지 뷰와 Destination 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the source image view and the Destination image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SynchronizePointOfView(viewImageDst)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 
-		# Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the source image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# Source 이미지 뷰에 이미지를 디스플레이 # Display the image in the source image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SetImagePtr(fliSourceImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# Operand 이미지 뷰에 이미지를 디스플레이 // Display the image in the operand image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# Operand 이미지 뷰에 이미지를 디스플레이 # Display the image in the operand image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageOperand1.SetImagePtr(fliOperandImage1)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# Operand 이미지 뷰에 이미지를 디스플레이 // Display the image in the operand image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# Operand 이미지 뷰에 이미지를 디스플레이 # Display the image in the operand image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageOperand2.SetImagePtr(fliOperandImage2)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the destination image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# Destination 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageDst.SetImagePtr(fliDestinationImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SynchronizeWindow(viewImageOperand1)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
-		# 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SynchronizeWindow(viewImageOperand2)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
-		# 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SynchronizeWindow(viewImageDst)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 		
-		# COperationLinear 객체 생성 // Create COperationLinear object
+		# COperationLinear 객체 생성 # Create COperationLinear object
 		operationLinear = COperationLinear()
-		# Source 이미지 설정 // Set source image
+		# Source 이미지 설정 # Set source image
 		operationLinear.SetSourceImage(fliSourceImage)
-		# Operand 이미지 설정 // Set operand image
+		# Operand 이미지 설정 # Set operand image
 		operationLinear.SetOperandImage(fliOperandImage1)
 		operationLinear.SetOperandImage2(fliOperandImage2)
-		# Destination 이미지 설정 // Set destination image
+		# Destination 이미지 설정 # Set destination image
 		operationLinear.SetDestinationImage(fliDestinationImage)
-		# Image Operation 모드로 설정 // Set operation mode to image
+		# Image Operation 모드로 설정 # Set operation mode to image
 		operationLinear.SetOperationSource(EOperationSource.Image)
 
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationLinear.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Bitwise Or.')
 			break
 
-		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
+		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
 		layerSource = viewImageSrc.GetLayer(0)
 		layerOperand1 = viewImageOperand1.GetLayer(0)
 		layerOperand2 = viewImageOperand2.GetLayer(0)
 		layerDestination = viewImageDst.GetLayer(0)
 
-		# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
+		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
 		layerSource.Clear()
 		layerOperand1.Clear()
 		layerOperand2.Clear()
 		layerDestination.Clear()
 
-		# 이미지 뷰 정보 표시 // Display image view information
-		# 아래 함수 DrawTextCanvas은 Screen좌표를 기준으로 하는 String을 Drawing 한다. // The function DrawTextCanvas below draws a String based on the screen coordinates.
+		# 이미지 뷰 정보 표시 # Display image view information
+		# 아래 함수 DrawTextCanvas은 Screen좌표를 기준으로 하는 String을 Drawing 한다. # The function DrawTextCanvas below draws a String based on the screen coordinates.
 		# 색상 파라미터를 EGUIViewImageLayerTransparencyColor 으로 넣어주게되면 배경색으로 처리함으로 불투명도를 0으로 한것과 같은 효과가 있다.
 		# If the color parameter is set as EGUIViewImageLayerTransparencyColor, it has the same effect as setting the opacity to 0 by treating it as a background color.
 		# 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 ->
@@ -180,13 +180,13 @@ def main():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		# 이미지 뷰를 갱신 // Update image view
+		# 이미지 뷰를 갱신 # Update image view
 		viewImageSrc.Invalidate(True)
 		viewImageOperand1.Invalidate(True)
 		viewImageOperand2.Invalidate(True)
 		viewImageDst.Invalidate(True)
 
-		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 // Wait until the image view is closed before exiting
+		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewImageSrc.IsAvailable() and viewImageOperand1.IsAvailable() and viewImageOperand2.IsAvailable() and viewImageDst.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
@@ -196,7 +196,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

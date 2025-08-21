@@ -21,11 +21,11 @@ def main():
 		arrU8 = bytearray(b'0' * 32)
 
 		for i in range(16):
-			value = ~(1 << i);
-			arrU8[2 * i] = (value & 255);
-			arrU8[2 * i + 1] = (value >> 8) & 255;
+			value = ~(1 << i)
+			arrU8[2 * i] = (value & 255)
+			arrU8[2 * i + 1] = (value >> 8) & 255
 
-		# 버퍼로부터 Source 이미지 생성 // Create the source image from the buffer
+		# 버퍼로부터 Source 이미지 생성 # Create the source image from the buffer
 		if (res := fliSourceImage.Create(4, 4, arrU8, EPixelFormat.C1_U16)).IsFail(): 
 			ErrorPrint(res, "Failed to load the image file. \n")
 			break
@@ -96,7 +96,7 @@ def main():
 			break
 		
 		# View Binary 표시 옵션 설정 # Set view binary option
-		viewImageSrc.SetPixelNumberMode(EPixelNumberMode.Hexadecimal);
+		viewImageSrc.SetPixelNumberMode(EPixelNumberMode.Hexadecimal)
 
 		# 이미지 뷰를 갱신 # Update image view
 		viewImageSrc.Invalidate(True)

@@ -59,11 +59,11 @@ def main():
 		operationBinaryComplement.SetDestinationImage(fliDstImage)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		operationBinaryComplement.SetOperationSource(EOperationSource.Scalar);
+		operationBinaryComplement.SetOperationSource(EOperationSource.Scalar)
 		
 		# 곱할 스칼라 값 지정 # Set the Scalar multiplier
-		mvScalar = CMultiVar[UInt64](1);
-		operationBinaryComplement.SetScalarValue(mvScalar);
+		mvScalar = CMultiVar[UInt64](1)
+		operationBinaryComplement.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationBinaryComplement.Execute()).IsFail():
@@ -100,7 +100,7 @@ def main():
 	# End of main function
 
 	
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res: CResult, string: str):
 	if len(string) > 1:
 		print(string)

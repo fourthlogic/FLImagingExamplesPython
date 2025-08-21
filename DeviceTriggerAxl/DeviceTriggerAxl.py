@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -6,29 +6,29 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-	# Axl Trigger 장치를 선언 // Declare Axl Trigger device
+	# Axl Trigger 장치를 선언 # Declare Axl Trigger device
 	devTrigger = CDeviceTriggerAxl()
 
 	while True:
 		
-		# 장치의 모듈 인덱스를 입력합니다. // Enter the module index of the device.
+		# 장치의 모듈 인덱스를 입력합니다. # Enter the module index of the device.
 		strInput = input("Enter Module index: ")
 		i32ModuleIndex = int(strInput)
 
-		# 장치의 모듈 인덱스를 설정합니다. // Sets the module index for the device.
+		# 장치의 모듈 인덱스를 설정합니다. # Sets the module index for the device.
 		if((res := devTrigger.SetModuleIndex(i32ModuleIndex)).IsFail()):
 			ErrorPrint(res, "Failed to set module index.")
 			break
 
-		# Trigger 장치를 초기화 합니다. // Initialize the Trigger device.
+		# Trigger 장치를 초기화 합니다. # Initialize the Trigger device.
 		if((res := devTrigger.Initialize()).IsFail()):
 			ErrorPrint(res, "Failed to initialize the device.")
 			break
 
-		# 트리거 채널을 입력합니다. // Enter the trigger channel.
+		# 트리거 채널을 입력합니다. # Enter the trigger channel.
 		i32Channel = 0
 
 		while True:
@@ -41,7 +41,7 @@ def main():
 			else:
 				break
 
-		# 엔코더 소스를 입력합니다. // Enter the encoder source.
+		# 엔코더 소스를 입력합니다. # Enter the encoder source.
 		eEncoderSource = CDeviceTriggerAxl.EEncoderSource.ABPhase
 
 		while True:
@@ -61,13 +61,13 @@ def main():
 
 			print("Incorrect input. Please select again.\n")
 
-		# 엔코더 소스를 설정합니다. // Sets the encoder source.
+		# 엔코더 소스를 설정합니다. # Sets the encoder source.
 		if((res := devTrigger.SetEncoderSource(i32Channel, eEncoderSource)).IsFail()):
 			ErrorPrint(res, "Failed to set encoder source.")
 			break
 
 
-		# 엔코더 방식을 입력합니다. // Enter the encoder method.
+		# 엔코더 방식을 입력합니다. # Enter the encoder method.
 		eEncoderMethod = CDeviceTriggerAxl.EEncoderMethod.UpDownSqr1
 
 		while True:
@@ -107,36 +107,36 @@ def main():
 
 			print("Incorrect input. Please select again.\n")
 
-		# 엔코더 방식을 설정합니다. // Sets the encoder method.
+		# 엔코더 방식을 설정합니다. # Sets the encoder method.
 		if((res := devTrigger.SetEncoderMethod(i32Channel, eEncoderMethod)).IsFail()):
 			ErrorPrint(res, "Failed to set encoder method.")
 			break
 
-		# 트리거 모드를 설정합니다. // Sets the trigger mode.
+		# 트리거 모드를 설정합니다. # Sets the trigger mode.
 		if((res := devTrigger.SetTriggerMode(i32Channel, CDeviceTriggerAxl.ETriggerMode.Position)).IsFail()):
 			ErrorPrint(res, "Failed to set trigger mode.")
 			break
 
 		while True:
 
-			# 트리거를 비활성화 합니다. // Disable the trigger.
+			# 트리거를 비활성화 합니다. # Disable the trigger.
 			if((res := devTrigger.SetTriggerEnable(i32Channel, False)).IsFail()):
 				ErrorPrint(res, "Failed to set trigger enable.")
 				break
 
-			# 엔코더 포지션을 0 으로 설정합니다. // Set the encoder position to 0.
+			# 엔코더 포지션을 0 으로 설정합니다. # Set the encoder position to 0.
 			if((res := devTrigger.SetEncoderPosition(i32Channel, 0)).IsFail()):
 				ErrorPrint(res, "Failed to set encoder position.")
 				break
 
-			# 포지션 값을 입력합니다. // Enter a position value.
+			# 포지션 값을 입력합니다. # Enter a position value.
 			print("")
 			strInput = input("Enter trigger position(10, 20, 30, ...): ")
 
-			# 포지션 값을 담기위해 List 생성 // Create List to hold position values
+			# 포지션 값을 담기위해 List 생성 # Create List to hold position values
 			listPosition = List[Double]()
 
-			# 입력 받은 문자열을 ',' 으로 구분하여 double 값으로 변환합니다. // Separate the input string with ',' and convert it to a double value.
+			# 입력 받은 문자열을 ',' 으로 구분하여 double 값으로 변환합니다. # Separate the input string with ',' and convert it to a double value.
 			arrStrInput = strInput.split(',')
 
 			for item in arrStrInput:
@@ -145,12 +145,12 @@ def main():
 
 				listPosition.Add(float(item))
 
-			# 트리거 포지션을 설정합니다. // Sets the trigger position.
+			# 트리거 포지션을 설정합니다. # Sets the trigger position.
 			if((res := devTrigger.SetTriggerPosition(i32Channel, listPosition)).IsFail()):
 				ErrorPrint(res, "Failed to set trigger position.")
 				break
 
-			# 트리거를 활성화 합니다. // Enables the trigger.
+			# 트리거를 활성화 합니다. # Enables the trigger.
 			if((res := devTrigger.SetTriggerEnable(i32Channel, True)).IsFail()):
 				ErrorPrint(res, "Failed to set trigger enable.")
 				break
@@ -165,12 +165,12 @@ def main():
 
 		break
 	
-	# Trigger 장치의 초기화를 해제합니다. // Terminate the Trigger device.
+	# Trigger 장치의 초기화를 해제합니다. # Terminate the Trigger device.
 	devTrigger.Terminate()
 
 	# End of main function
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res: CResult, string: str):
 	if len(string) > 1:
 		print(string)

@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,7 +7,7 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 	
     # 3D 뷰 선언
@@ -19,7 +19,7 @@ def main():
     layer3D = [CGUIView3DLayer() for _ in range(4)]
 
     while True:
-        # 3D 뷰 생성 // Create the 3D view
+        # 3D 뷰 생성 # Create the 3D view
         if (res := view3D[0].Create(400, 0, 812, 384)).IsFail():
             ErrorPrint(res, "Failed to create the 3D view.")
             break
@@ -36,7 +36,7 @@ def main():
             ErrorPrint(res, "Failed to create the 3D view.")
             break
 
-        # 각 3D 뷰의 시점을 동기화 한다. // Synchronize the viewpoint of each 3D view.
+        # 각 3D 뷰의 시점을 동기화 한다. # Synchronize the viewpoint of each 3D view.
         if (res := view3D[0].SynchronizePointOfView(view3D[1])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize view")
             break
@@ -44,7 +44,7 @@ def main():
             ErrorPrint(res, "Failed to synchronize view")
             break
 
-        # 각 3D 뷰 윈도우의 위치를 동기화 한다 // Synchronize the position of each 3D view window
+        # 각 3D 뷰 윈도우의 위치를 동기화 한다 # Synchronize the position of each 3D view window
         for i in range(1, 4):
             if (res := view3D[0].SynchronizeWindow(view3D[i])[0]).IsFail():
                 ErrorPrint(res, "Failed to synchronize window.")
@@ -53,11 +53,11 @@ def main():
         if (res := view3D[0].SynchronizeWindow(view3D[3])[0]).IsFail():
             break
 
-        # 각각의 3D View 에서 0번 레이어 가져오기 // Get Layer 0 from each 3D view
+        # 각각의 3D View 에서 0번 레이어 가져오기 # Get Layer 0 from each 3D view
         for i in range(4):
             layer3D[i] = view3D[i].GetLayer(0)
 
-        # 각 레이어 캔버스에 텍스트 그리기 // Draw text to each Layer Canvas
+        # 각 레이어 캔버스에 텍스트 그리기 # Draw text to each Layer Canvas
         layer3D[0].DrawTextCanvas(CFLPoint[Double](3, 0), "Figure A (Regular Quad)", EColor.YELLOW, EColor.BLACK, 20)
         layer3D[1].DrawTextCanvas(CFLPoint[Double](3, 0), "Figure A (Regular Quad)", EColor.YELLOW, EColor.BLACK, 20)
         layer3D[2].DrawTextCanvas(CFLPoint[Double](3, 0), "Figure B (Distorted Quad)", EColor.YELLOW, EColor.BLACK, 20)
@@ -68,7 +68,7 @@ def main():
         layer3D[2].DrawTextCanvas(CFLPoint[Double](3, 30), "Base Plane", EColor.YELLOW, EColor.BLACK, 15)
         layer3D[3].DrawTextCanvas(CFLPoint[Double](3, 30), "Length : -20", EColor.YELLOW, EColor.BLACK, 15)
 
-        # Figure A 의 한쪽 면 생성 // Create one side of Figure A
+        # Figure A 의 한쪽 면 생성 # Create one side of Figure A
         flpFigA0 = CFLPoint3[Double](0, 0, 5)
         flpFigA1 = CFLPoint3[Double](0, 10, 5)
         flpFigA2 = CFLPoint3[Double](10, 10, 0)
@@ -109,7 +109,7 @@ def main():
         f64LengthA = 20.0
         flqsSolidFigA = CFLQuadrilateralSolid3[Double](flqBasePlaneFigA, f64LengthA)
 
-        # Figure B 의 한쪽 면 생성 // Create one side of Figure B
+        # Figure B 의 한쪽 면 생성 # Create one side of Figure B
         flpFigB0 = CFLPoint3[Double](0, 0, -3)
         flpFigB1 = CFLPoint3[Double](-1, 9, -4)
         flpFigB2 = CFLPoint3[Double](10, 10, 1)
@@ -122,7 +122,7 @@ def main():
         flqsSolidFigB = CFLQuadrilateralSolid3[Double](flqBasePlaneFigB, f64LengthB)
 
 
-        # 3D 뷰에 3D figure 추가 // Add 3D figures to the 3D view
+        # 3D 뷰에 3D figure 추가 # Add 3D figures to the 3D view
         view3DObj = CGUIView3DObject()
         view3DObj.SetTopologyType(ETopologyType3D.Wireframe)
 
@@ -132,11 +132,11 @@ def main():
             view3DObj.Set3DObject(arr3DObj[i])
             view3D[i].PushObject(view3DObj)
 
-        # 추가한 3D 객체가 화면 안에 들어오도록 Zoom Fit // Perform Zoom Fit to ensure added 3D objects are within the view
+        # 추가한 3D 객체가 화면 안에 들어오도록 Zoom Fit # Perform Zoom Fit to ensure added 3D objects are within the view
         view3D[1].ZoomFit()
         view3D[3].ZoomFit()
 
-        # 3D 뷰어의 시점(카메라) 변경 // Change the viewpoint (camera) of the 3D viewer
+        # 3D 뷰어의 시점(카메라) 변경 # Change the viewpoint (camera) of the 3D viewer
         cam1 = view3D[1].GetCamera()
         cam1.SetPosition(CFLPoint3[Single](21.40, -30.30, 9.04))
         cam1.SetDirection(CFLPoint3[Single](-0.38, 0.92, 0.06))
@@ -150,7 +150,7 @@ def main():
         view3D[3].SetCamera(cam3)
 
 
-        # Console 출력 // Console output
+        # Console 출력 # Console output
         print("<Figure A>\n")
         print(f"Base Plane : \n{CFigureUtilities.ConvertFigureObjectToString(flqBasePlaneFigA)}\n\n")
         print(f"Solid Figure : \n{CFigureUtilities.ConvertFigureObjectToString(flqsSolidFigA)}\n\n")
@@ -159,12 +159,12 @@ def main():
         print(f"Base Plane : \n{CFigureUtilities.ConvertFigureObjectToString(flqBasePlaneFigB)}\n\n")
         print(f"Solid Figure : \n{CFigureUtilities.ConvertFigureObjectToString(flqsSolidFigB)}\n\n")
 
-        # 3D 뷰들을 갱신 합니다. // Update the 3D views.
+        # 3D 뷰들을 갱신 합니다. # Update the 3D views.
         for i in range(4):
             view3D[i].UpdateScreen()
             view3D[i].Invalidate(True)
 
-        # 3D 뷰가 넷중에 하나라도 꺼지면 종료로 간주 // Consider closed when any of the four 3D views are turned off
+        # 3D 뷰가 넷중에 하나라도 꺼지면 종료로 간주 # Consider closed when any of the four 3D views are turned off
         while all(view.IsAvailable() for view in view3D):
             CThreadUtilities.Sleep(1)
         
@@ -174,7 +174,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

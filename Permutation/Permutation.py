@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,10 +7,10 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-    # 순열 객체 선언 // Declare permutation object
+    # 순열 객체 선언 # Declare permutation object
     permutation = CPermutation()
 
     while True:
@@ -21,13 +21,13 @@ def main():
             print("Permutation : k objects are selected from a set of n objects to produce subsets with ordering.")
             print("ex) 6, 2")
 
-            # n, k 문자열을 입력 받는다. // Receive n, k strings.
+            # n, k 문자열을 입력 받는다. # Receive n, k strings.
             strInput = input("Input: ")
 
             if strInput == "":
                 break
 
-            # 입력 받은 문자열을 ',' 으로 구분하여 int 값으로 변환한다. // Separates the input string with ',' and converts it to an int value.
+            # 입력 받은 문자열을 ',' 으로 구분하여 int 값으로 변환한다. # Separates the input string with ',' and converts it to an int value.
             arrStrInput = strInput.split(',')
 
             n = -1
@@ -66,15 +66,15 @@ def main():
                 flstrResult = "\nCount : 0"
                 break
 
-            # nPk, n 개에서 k 개를 선택하는 순열 // nPk, a permutation of selecting k objects from n objects
+            # nPk, n 개에서 k 개를 선택하는 순열 # nPk, a permutation of selecting k objects from n objects
             permutation.SetMax(n)
             permutation.SetSelection(k)
 
-            # 순열을 계산 // Calculate the permutation
+            # 순열을 계산 # Calculate the permutation
             permutation.Calculate()
             
             listPermutation = List[List[Int32]]()
-            # 순열 결과값 얻기 // Get permutation result
+            # 순열 결과값 얻기 # Get permutation result
             if (res := permutation.GetResult(listPermutation)[0]).IsFail():
                flstrResult = "Failed to get permutation result.\n"
                break
@@ -108,7 +108,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

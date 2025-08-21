@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,9 +7,9 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
-    # 조합 객체 선언 // Declare a combination object
+    # 조합 객체 선언 # Declare a combination object
     combination = CCombination()
 
     while True:
@@ -24,7 +24,7 @@ def main():
             if strInput == "":
                 break
 
-            # 입력 받은 문자열을 ',' 으로 구분하여 int 값으로 변환한다. // Separates the input string with ',' and converts it to an int value.
+            # 입력 받은 문자열을 ',' 으로 구분하여 int 값으로 변환한다. # Separates the input string with ',' and converts it to an int value.
             arrStrInput = strInput.split(',')
 
             n = -1
@@ -32,7 +32,7 @@ def main():
             nCount = 0
 
             for input_val in arrStrInput:
-                input_val = input_val.strip() # 공백 제거 // Remove whitespace
+                input_val = input_val.strip() # 공백 제거 # Remove whitespace
                 if len(input_val) == 0:
                     break
 
@@ -51,20 +51,20 @@ def main():
 
                 nCount += 1
             
-            # 입력값 유효성 검사 // Input validation
+            # 입력값 유효성 검사 # Input validation
             if k <= 0 or n <= 0 or n < k or nCount < 2:
                 flstrResult = "\nCount : 0"
                 break
 
-            # nCk, n 개에서 k 개를 선택하는 조합 // nCk, a combination of selecting k objects from n objects
+            # nCk, n 개에서 k 개를 선택하는 조합 # nCk, a combination of selecting k objects from n objects
             combination.SetMax(n)
             combination.SetSelection(k)
 
-            # 조합을 계산 // Calculate combinations
+            # 조합을 계산 # Calculate combinations
             combination.Calculate()
             
             listCombination = List[List[Int32]]()
-            # 조합 결과값 얻기 // Get combination result
+            # 조합 결과값 얻기 # Get combination result
             if (res := combination.GetResult(listCombination)[0]).IsFail():
                 flstrResult = f"\nFailed to get combination result: {res.GetString()}"
                 break
@@ -90,7 +90,7 @@ def main():
 
         print(flstrResult)
 
-        # 사용자가 입력 없이 Enter를 누르면 종료 // Exit if user presses Enter without input
+        # 사용자가 입력 없이 Enter를 누르면 종료 # Exit if user presses Enter without input
         if strInput == "":
             break
 
@@ -98,7 +98,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

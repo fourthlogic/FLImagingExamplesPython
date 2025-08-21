@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -6,54 +6,54 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-	# 이미지 객체 선언 // Declare the image object
+	# 이미지 객체 선언 # Declare the image object
 	fliImage = CFLImage()
 
-	# 이미지 뷰 선언 // Declare the image view
+	# 이미지 뷰 선언 # Declare the image view
 	viewImage = CGUIViewImage()
 
 	while True:
 		
-		# 이미지 로드 // Load the image
+		# 이미지 로드 # Load the image
 		if (res := fliImage.Load('../../ExampleImages/OCR/Dot_Print_Number.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# 이미지 뷰 생성 // Create image view
+		# 이미지 뷰 생성 # Create image view
 		if (res := viewImage.Create(100, 0, 550, 480)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# 이미지 뷰에 이미지를 디스플레이 // Display the image in the image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImage.SetImagePtr(fliImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
+		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
 		layer = viewImage.GetLayer(0)
 
-		# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
+		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
 		layer.Clear()
 
-		# 이미지 뷰 정보 표시 // Display image view information
+		# 이미지 뷰 정보 표시 # Display image view information
 		flpPoint = CFLPoint[Double](0, 0)
 
 		if (res := layer.DrawTextCanvas(flpPoint, 'Learn & Recognition Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		# 객체 생성 // Create object
+		# 객체 생성 # Create object
 		ocr = COCR()
 
-		# Learn 이미지 설정 // Set the learn image
+		# Learn 이미지 설정 # Set the learn image
 		ocr.SetLearnImage(fliImage)
 
-		# 앞서 설정된 파라미터 대로 학습 수행 // Execute learning according to previously set parameters
+		# 앞서 설정된 파라미터 대로 학습 수행 # Execute learning according to previously set parameters
 		if (res := ocr.Learn()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
@@ -79,7 +79,7 @@ def main():
 				ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
 				break
 
-		# Recognition 이미지 설정 // Set the recognition image
+		# Recognition 이미지 설정 # Set the recognition image
 		ocr.SetSourceImage(fliImage)
 
 		# 인식할 문자의 각도 범위를 설정
@@ -106,7 +106,7 @@ def main():
 		# 인식할 최대 개수를 설정
 		ocr.SetRecognizingMaximumCharacterCount(100)
 
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := ocr.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
@@ -135,10 +135,10 @@ def main():
 				ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
 				break
 
-		# 이미지 뷰를 갱신 // Update image view
+		# 이미지 뷰를 갱신 # Update image view
 		viewImage.Invalidate(True)
 
-		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 // Wait until the image view is closed before exiting
+		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewImage.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
@@ -146,7 +146,7 @@ def main():
 	
 	# End of main function
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

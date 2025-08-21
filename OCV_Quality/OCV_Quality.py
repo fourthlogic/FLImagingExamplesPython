@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -6,22 +6,22 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-	# 이미지 객체 선언 // Declare the image object
+	# 이미지 객체 선언 # Declare the image object
 	fliImage1 = CFLImage()
 	fliImage2 = CFLImage()
 	fliImage3 = CFLImage()
 
-	# 이미지 뷰 선언 // Declare the image view
+	# 이미지 뷰 선언 # Declare the image view
 	viewImage1 = CGUIViewImage()
 	viewImage2 = CGUIViewImage()
 	viewImage3 = CGUIViewImage()
 
 	while True:
 		
-		# 이미지 로드 // Load the image
+		# 이미지 로드 # Load the image
 		if (res := fliImage1.Load('../../ExampleImages/OCV/A.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
@@ -34,7 +34,7 @@ def main():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# 이미지 뷰 생성 // Create image view
+		# 이미지 뷰 생성 # Create image view
 		if (res := viewImage1.Create(100, 0, 550, 480)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
@@ -47,8 +47,8 @@ def main():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# 이미지 뷰에 이미지를 디스플레이 // Display the image in the image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImage1.SetImagePtr(fliImage1)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
@@ -61,18 +61,18 @@ def main():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
+		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
 		layer1 = viewImage1.GetLayer(0)
 		layer2 = viewImage2.GetLayer(0)
 		layer3 = viewImage3.GetLayer(0)
 
-		# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
+		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
 		layer1.Clear()
 		layer2.Clear()
 		layer3.Clear()
 
-		# 객체 생성 // Create object
+		# 객체 생성 # Create object
 		ocv = COCV()
 
 		# 학습 정보 파일을 로드
@@ -81,7 +81,7 @@ def main():
 		# 문자를 검증할 이미지 설정
 		ocv.SetSourceImage(fliImage1)
 
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := ocv.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
@@ -105,7 +105,7 @@ def main():
 			fllBlankSpaceWidth = resultChar.fllBlankSpaceWidthLine
 
 			flsResultString = "[" + flsResultName + "]" + "Quality: {0}%\nScale: {1:.2f}\nAngle: {2}\nLighting: {3:.2f}\nContrast: {4:.2f}".format(i32Quality, (resultChar.f64ScaleWidth * resultChar.f64ScaleHeight), resultChar.f64Rotation, resultChar.f64Lighting, resultChar.f64Contrast)
-			flsResultString2 = "Space Width: {0:.2f}".format(resultChar.f64BlankSpaceWidth);
+			flsResultString2 = "Space Width: {0:.2f}".format(resultChar.f64BlankSpaceWidth)
 
 			if (res := layer1.DrawTextImage(CFLPoint[float](flrBoundary.left, flrBoundary.top), flsResultString, EColor.YELLOW, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.LEFT_BOTTOM)).IsFail():
 				ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
@@ -133,7 +133,7 @@ def main():
 		# 문자를 검증할 이미지 설정
 		ocv.SetSourceImage(fliImage2)
 
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := ocv.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
@@ -157,7 +157,7 @@ def main():
 			fllBlankSpaceWidth = resultChar.fllBlankSpaceWidthLine
 
 			flsResultString = "[" + flsResultName + "]" + "Quality: {0}%\nScale: {1:.2f}\nAngle: {2}\nLighting: {3:.2f}\nContrast: {4:.2f}".format(i32Quality, (resultChar.f64ScaleWidth * resultChar.f64ScaleHeight), resultChar.f64Rotation, resultChar.f64Lighting, resultChar.f64Contrast)
-			flsResultString2 = "Space Width: {0:.2f}".format(resultChar.f64BlankSpaceWidth);
+			flsResultString2 = "Space Width: {0:.2f}".format(resultChar.f64BlankSpaceWidth)
 
 			if (res := layer2.DrawTextImage(CFLPoint[float](flrBoundary.left, flrBoundary.top), flsResultString, EColor.YELLOW, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.LEFT_BOTTOM)).IsFail():
 				ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
@@ -185,7 +185,7 @@ def main():
 		# 문자를 검증할 이미지 설정
 		ocv.SetSourceImage(fliImage3)
 
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := ocv.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
@@ -209,7 +209,7 @@ def main():
 			fllBlankSpaceWidth = resultChar.fllBlankSpaceWidthLine
 
 			flsResultString = "[" + flsResultName + "]" + "Quality: {0}%\nScale: {1:.2f}\nAngle: {2}\nLighting: {3:.2f}\nContrast: {4:.2f}".format(i32Quality, (resultChar.f64ScaleWidth * resultChar.f64ScaleHeight), resultChar.f64Rotation, resultChar.f64Lighting, resultChar.f64Contrast)
-			flsResultString2 = "Space Width: {0:.2f}".format(resultChar.f64BlankSpaceWidth);
+			flsResultString2 = "Space Width: {0:.2f}".format(resultChar.f64BlankSpaceWidth)
 
 			if (res := layer3.DrawTextImage(CFLPoint[float](flrBoundary.left, flrBoundary.top), flsResultString, EColor.YELLOW, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.LEFT_BOTTOM)).IsFail():
 				ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
@@ -234,12 +234,12 @@ def main():
 				ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
 				break
 
-		# 이미지 뷰를 갱신 // Update image view
+		# 이미지 뷰를 갱신 # Update image view
 		viewImage1.Invalidate(True)
 		viewImage2.Invalidate(True)
 		viewImage3.Invalidate(True)
 
-		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 // Wait until the image view is closed before exiting
+		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewImage1.IsAvailable() and viewImage2.IsAvailable() and viewImage3.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
@@ -247,7 +247,7 @@ def main():
 	
 	# End of main function
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

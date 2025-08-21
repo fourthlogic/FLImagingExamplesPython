@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,16 +7,16 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 	
     i32ViewCount = 4
 
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     viewImage = [CGUIViewImage() for _ in range(i32ViewCount)]
 
     while True:
-        # 이미지 뷰 생성 // Create image view
+        # 이미지 뷰 생성 # Create image view
         if (res := viewImage[0].Create(400, 0, 912, 384)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
@@ -34,12 +34,12 @@ def main():
             break
 
         for i in range(1, i32ViewCount):
-            # 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoint of the image view
+            # 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoint of the image view
             if (res := viewImage[0].SynchronizePointOfView(viewImage[i])[0]).IsFail():
                 ErrorPrint(res, "Failed to synchronize view")
                 break
 
-            # 이미지 뷰 윈도우의 위치를 맞춤 // Align the position of the image view window
+            # 이미지 뷰 윈도우의 위치를 맞춤 # Align the position of the image view window
             if (res := viewImage[0].SynchronizeWindow(viewImage[i])[0]).IsFail():
                 ErrorPrint(res, "Failed to synchronize window.")
                 break
@@ -47,10 +47,10 @@ def main():
         if (res := viewImage[0].SynchronizeWindow(viewImage[i32ViewCount - 1])[0]).IsFail():
             break
 
-        # SourceView, DstView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, DstView
+        # SourceView, DstView 의 0번 레이어 가져오기 # Get Layer 0 of SourceView, DstView
         layerView = [viewImage[i].GetLayer(0) for i in range(i32ViewCount)]
 
-        # Figure 생성 // Create figure
+        # Figure 생성 # Create figure
         flr = CFLRect[Double](50, 50, 100, 100, 15)
         flq = CFLQuad[Double](200, 50, 360, 50, 400, 160, 150, 110)
         flc = CFLCircle[Double](100.0, 150.0, 30.0, 0, 30, 90, EArcClosingMethod.Center)
@@ -71,26 +71,26 @@ def main():
 
         print("\n")
 
-        # Figure 그리기 // Draw Figure
+        # Figure 그리기 # Draw Figure
         for i in range(flfa.GetCount()):
             layerView[i].DrawFigureImage(flfa, EColor.LIME)
 
         ################################ GetCenterElementwise()
-        # 중심점 좌표를 담을 FigureArray 생성 // Create a FigureArray to hold the coordinates of the center point
+        # 중심점 좌표를 담을 FigureArray 생성 # Create a FigureArray to hold the coordinates of the center point
         flfaCenter = CFLFigureArray()
 
-        # Figure Array 각 요소의 중심점 계산 // Calculate the center point of each element of Figure Array
+        # Figure Array 각 요소의 중심점 계산 # Calculate the center point of each element of Figure Array
         res, flfaCenter = flfa.GetCenterElementwise(flfaCenter)
 
         if res.IsFail():
             ErrorPrint(res, "Failed to calculate center elementwise.")
             break
 
-        # 중심들을 View0의 0번 레이어에 그리기 // Draw the centers on layer 0 of View0
+        # 중심들을 View0의 0번 레이어에 그리기 # Draw the centers on layer 0 of View0
         layerView[0].DrawFigureImage(flfaCenter, EColor.RED)
         layerView[0].DrawTextCanvas(CFLPoint[Double](0, 0), "GetCenterElementwise() Result", EColor.YELLOW, EColor.BLACK, 15)
 
-        # 콘솔에 중심 좌표 표시 // Print center coordinates in console
+        # 콘솔에 중심 좌표 표시 # Print center coordinates in console
         print("Center Point\n")
 
         for i in range(flfa.GetCount()):
@@ -101,24 +101,24 @@ def main():
 
 
         ################################ GetPerimeterElementwise()
-        # 각 둘레의 길이를 저장할 CFLFigureArray 생성 // Create CFLFigureArray to store the length of each perimeter
+        # 각 둘레의 길이를 저장할 CFLFigureArray 생성 # Create CFLFigureArray to store the length of each perimeter
         flfaPerimeter = CFLFigureArray()
 
-        # Figure Array 각 요소의 둘레 계산 // Calculate the perimeter of each element of the Figure Array
+        # Figure Array 각 요소의 둘레 계산 # Calculate the perimeter of each element of the Figure Array
         res, flfaPerimeter = flfa.GetPerimeterElementwise(flfaPerimeter)
 
         if res.IsFail():
             ErrorPrint(res, "Failed to calculate perimeter elementwise.")
             break
 
-        # Figure Array 각 요소의 둘레 표시 // Display perimeter of each element of Figure Array
+        # Figure Array 각 요소의 둘레 표시 # Display perimeter of each element of Figure Array
         for i in range(flfaPerimeter.GetCount()):
             strPerimeter = f"{CFLScalar[Double](flfaPerimeter.GetAt(i)).v}"
             layerView[1].DrawTextImage(flfaCenter.GetAt(i), strPerimeter, EColor.BLACK)
 
         layerView[1].DrawTextCanvas(CFLPoint[Double](0, 0), "GetPerimeterElementwise() Result", EColor.YELLOW, EColor.BLACK, 15)
 
-        # 콘솔에 길이 표시 // Display the length in the console
+        # 콘솔에 길이 표시 # Display the length in the console
         print("Perimeter\n")
 
         for i in range(flfaPerimeter.GetCount()):
@@ -129,21 +129,21 @@ def main():
 
 
         ################################ GetCenterOfGravityElementwise()
-        # 무게중심점 좌표를 담을 FigureArray 생성 // Create a FigureArray to contain the coordinates of the center of gravity
+        # 무게중심점 좌표를 담을 FigureArray 생성 # Create a FigureArray to contain the coordinates of the center of gravity
         flfaCenterOfGravity = CFLFigureArray()
 
-        # Figure Array 각 요소의 무게중심점 계산 // Calculate the center of gravity of each element of the Figure Array
+        # Figure Array 각 요소의 무게중심점 계산 # Calculate the center of gravity of each element of the Figure Array
         res, flfaCenterOfGravity = flfa.GetCenterOfGravityElementwise(flfaCenterOfGravity)
 
         if res.IsFail():
             ErrorPrint(res, "Failed to calculate center of gravity elementwise.")
             break
 
-        # 무게중심들을 View0의 0번 레이어에 그리기 // Draw the centers of gravity on Layer 0 of View0
+        # 무게중심들을 View0의 0번 레이어에 그리기 # Draw the centers of gravity on Layer 0 of View0
         layerView[2].DrawFigureImage(flfaCenterOfGravity, EColor.CYAN)
         layerView[2].DrawTextCanvas(CFLPoint[Double](0, 0), "GetCenterOfGravityElementwise() Result", EColor.YELLOW, EColor.BLACK, 15)
 
-        # 콘솔에 무게중심 좌표 표시 // Display barycentric coordinates in console
+        # 콘솔에 무게중심 좌표 표시 # Display barycentric coordinates in console
         print("Center Of Gravity Point\n")
 
         for i in range(flfa.GetCount()):
@@ -154,21 +154,21 @@ def main():
 
 
         ################################ GetMinimumEnclosingRectangleElementwise()
-        # 최소둘레 직사각형을 담을 FigureArray 생성 // Create a FigureArray to contain the minimum enclosing rectangle
+        # 최소둘레 직사각형을 담을 FigureArray 생성 # Create a FigureArray to contain the minimum enclosing rectangle
         flfaMER = CFLFigureArray()
 
-        # Figure Array 각 요소의 최소둘레 직사각형을 계산 // Calculate the minimum enclosing rectangle of each element of the Figure Array
+        # Figure Array 각 요소의 최소둘레 직사각형을 계산 # Calculate the minimum enclosing rectangle of each element of the Figure Array
         res, flfaMER = flfa.GetMinimumEnclosingRectangleElementwise(flfaMER)
 
         if res.IsFail():
             ErrorPrint(res, "Failed to calculate minimum enclosing rectangle elementwise.")
             break
 
-        # 최소둘레 직사각형들을 View0의 0번 레이어에 그리기 // Draw the minimum enclosing rectangle on Layer 0 of View0
+        # 최소둘레 직사각형들을 View0의 0번 레이어에 그리기 # Draw the minimum enclosing rectangle on Layer 0 of View0
         layerView[3].DrawFigureImage(flfaMER, EColor.BLUE)
         layerView[3].DrawTextCanvas(CFLPoint[Double](0, 0), "GetMinimumEnclosingRectangleElementwise() Result", EColor.YELLOW, EColor.BLACK, 15)
 
-        # 콘솔에 최소둘레 직사각형을 표시 // Display the minimum enclosing rectangle in console
+        # 콘솔에 최소둘레 직사각형을 표시 # Display the minimum enclosing rectangle in console
         print("Minimum Enclosing Rectangle\n")
 
         for i in range(flfa.GetCount()):
@@ -177,11 +177,11 @@ def main():
 
         print("\n")
 
-        # 이미지 뷰를 갱신 합니다. // Update image view
+        # 이미지 뷰를 갱신 합니다. # Update image view
         for i in range(i32ViewCount):
             viewImage[i].Invalidate(True)
 
-        # 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
+        # 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close
         while all(view.IsAvailable() for view in viewImage):
             CThreadUtilities.Sleep(1)
         
@@ -191,7 +191,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

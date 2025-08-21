@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -26,16 +26,16 @@ class CDeviceEventImageEx(CDeviceEventImageBase):
 
 			self.m_viewImage.Invalidate()
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-	# CResult 객체 선언 // Declare the CRessult object
+	# CResult 객체 선언 # Declare the CRessult object
 	er = CResult(EResult.UnknownError)
 
-	# 이미지 뷰 선언 // Declare the image view
+	# 이미지 뷰 선언 # Declare the image view
 	viewImage = CGUIViewImage()
 
-	# Multicam 카메라 선언 // Declare the Multicam camera
+	# Multicam 카메라 선언 # Declare the Multicam camera
 	camMulticam = CDeviceCameraMulticam()
 
 	while True:
@@ -46,16 +46,16 @@ def main():
 		i32BoardIndex = 0
 		eBoardTopology = CDeviceCameraMulticam.EBoardTopology.Mono
 
-		# Cam file 의 전체 경로를 입력 // Enter the full path of Cam file.
+		# Cam file 의 전체 경로를 입력 # Enter the full path of Cam file.
 		strCamFilePath = input("Enter camfile full path (e.g. C:/Camfile/AnyCamfile.cam): ")
 
-		# 보드의 인덱스 입력 // Enter the index of board
+		# 보드의 인덱스 입력 # Enter the index of board
 		strInput = input("Enter board index: ")
 
 		if(strInput.isdigit()):
 			i32BoardIndex = int(strInput)
 
-		# 보드의 Topology를 선택 // Select topology of board
+		# 보드의 Topology를 선택 # Select topology of board
 		while True:
 
 			print("1. Mono")
@@ -82,23 +82,23 @@ def main():
 
 			print("Incorrect input. Please select again.\n")
 
-		# 이벤트를 받을 객체 선언 // Declare the object that receives events
+		# 이벤트를 받을 객체 선언 # Declare the object that receives events
 		eventImage = CDeviceEventImageEx()
 
-		# 카메라에 이벤트 객체 설정 // Set event object on Camera 
+		# 카메라에 이벤트 객체 설정 # Set event object on Camera 
 		camMulticam.RegisterDeviceEvent(eventImage)
 
-		# 카메라에 파라미터 설정 // Set paramter on Camera
+		# 카메라에 파라미터 설정 # Set paramter on Camera
 		camMulticam.SetCamFilePath(strCamFilePath)
 		camMulticam.SetBoardIndex(i32BoardIndex)
 		camMulticam.SetBoardTopology(eBoardTopology)
 
-		# 카메라 초기화 // Initialize the camera
+		# 카메라 초기화 # Initialize the camera
 		if((er := camMulticam.Initialize()).IsFail()):
 			print("Failed to initialize the camera.\n")
 			break
 
-		# 이미지 뷰 생성 // Create image view
+		# 이미지 뷰 생성 # Create image view
 		if((er := viewImage.Create(0,0,1000,1000)).IsFail()):
 			er = EResult.FailedToCreateObject
 			print("Failed to create the image view.\n")
@@ -106,25 +106,25 @@ def main():
 
 		eventImage.SetViewImage(viewImage)
 
-		# 카메라 Live // Live the camera
+		# 카메라 Live # Live the camera
 		if((er := camMulticam.Live()).IsFail()):
 			print("Failed to live the camera\n")
 			break
 
-		# 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close.
+		# 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close.
 		while(viewImage.IsAvailable()):
 			CThreadUtilities.Sleep(1)
 
 		break
 	
-	# 카메라의 초기화를 해제 // Terminate the camera
+	# 카메라의 초기화를 해제 # Terminate the camera
 	camMulticam.Terminate()
-	# 카메라에 연결된 이벤트 객체 삭제 // Clear the object that receives events.
+	# 카메라에 연결된 이벤트 객체 삭제 # Clear the object that receives events.
 	camMulticam.ClearDeviceEvents()
 
 	# End of main function
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res: CResult, string: str):
 	if len(string) > 1:
 		print(string)

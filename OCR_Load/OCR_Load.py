@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -6,67 +6,67 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-	# 이미지 객체 선언 // Declare the image object
+	# 이미지 객체 선언 # Declare the image object
 	fliLearnImage = CFLImage()
 	fliRecognitionImage = CFLImage()
 	fliRecognitionImageUnicode = CFLImage()
 
-	# 이미지 뷰 선언 // Declare the image view
+	# 이미지 뷰 선언 # Declare the image view
 	viewImageRec = CGUIViewImage()
 	viewImageRecUnicode = CGUIViewImage()
 
 	while True:
 
-		# Learn 이미지 로드 // Load the learn image
+		# Learn 이미지 로드 # Load the learn image
 		if (res := fliLearnImage.Load('../../ExampleImages/OCR/FourthLogic Inc_Learn.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
-		# Recognition 이미지 로드 // Load the recognition image
+		# Recognition 이미지 로드 # Load the recognition image
 		if (res := fliRecognitionImage.Load('../../ExampleImages/OCR/OCR_Recognition.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Recognition 이미지를 로드 // Load the recognition image
+		# Recognition 이미지를 로드 # Load the recognition image
 		if (res := fliRecognitionImageUnicode.Load("../../ExampleImages/OCR/OCR_Recognition_Unicode2.flif")).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Recognition 이미지 뷰 생성 // Create the recognition image view
+		# Recognition 이미지 뷰 생성 # Create the recognition image view
 		if (res := viewImageRec.Create(100, 0, 550, 480)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# Recognition 이미지 뷰 생성 // Create the recognition image view
+		# Recognition 이미지 뷰 생성 # Create the recognition image view
 		if (res := viewImageRecUnicode.Create(550, 0, 1050, 480)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# Recognition 이미지 뷰에 이미지를 디스플레이 // Display the image in the learn image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# Recognition 이미지 뷰에 이미지를 디스플레이 # Display the image in the learn image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageRec.SetImagePtr(fliRecognitionImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# Recognition 이미지 뷰에 이미지를 디스플레이 // Display the image in the recognition image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# Recognition 이미지 뷰에 이미지를 디스플레이 # Display the image in the recognition image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageRecUnicode.SetImagePtr(fliRecognitionImageUnicode)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
+		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
 		layerRecognition = viewImageRec.GetLayer(0)
 		layerRecognitionUnicode = viewImageRecUnicode.GetLayer(0)
 
-		# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
+		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
 		layerRecognition.Clear()
 		layerRecognitionUnicode.Clear()
 
-		# 이미지 뷰 정보 표시 // Display image view information
+		# 이미지 뷰 정보 표시 # Display image view information
 		flpPoint = CFLPoint[Double](0, 0)
 
 		if (res := layerRecognition.DrawTextCanvas(flpPoint, 'Recognition Image 1', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
@@ -77,7 +77,7 @@ def main():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		# 학습을 진행할 OCR 객체 생성 // Create OCR object to Learn
+		# 학습을 진행할 OCR 객체 생성 # Create OCR object to Learn
 		ocrLearn = COCR()
 
 		# 문자를 학습할 이미지 설정
@@ -120,16 +120,16 @@ def main():
 			ErrorPrint(res, 'Failed to save learned file.')
 			break
 
-		# 객체 생성 // Create object
+		# 객체 생성 # Create object
 		ocrLoad = COCR()
 
 		# 학습 정보 파일을 로드
 		ocrLoad.Load("../../ExampleImages/OCR/OCR_FourthLogic.flocr")
 
-		# Recognition 이미지 설정 // Set the recognition image
+		# Recognition 이미지 설정 # Set the recognition image
 		ocrLoad.SetSourceImage(fliRecognitionImage)
 
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := ocrLoad.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
@@ -158,10 +158,10 @@ def main():
 				ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
 				break
 
-		# Recognition 이미지 설정 // Set the recognition image
+		# Recognition 이미지 설정 # Set the recognition image
 		ocrLoad.SetSourceImage(fliRecognitionImageUnicode)
 
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := ocrLoad.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
@@ -190,11 +190,11 @@ def main():
 				ErrorPrint(res, 'Failed to draw recognized character : {0}'.format(i))
 				break
 
-		# 이미지 뷰를 갱신 // Update image view
+		# 이미지 뷰를 갱신 # Update image view
 		viewImageRec.Invalidate(True)
 		viewImageRecUnicode.Invalidate(True)
 
-		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 // Wait until the image view is closed before exiting
+		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewImageRec.IsAvailable() and viewImageRecUnicode.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
@@ -202,7 +202,7 @@ def main():
 	
 	# End of main function
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

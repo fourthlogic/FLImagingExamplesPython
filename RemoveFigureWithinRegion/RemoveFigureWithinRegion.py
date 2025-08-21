@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,15 +7,15 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 	
-    # 이미지 뷰 선언 // Declare the image object
+    # 이미지 뷰 선언 # Declare the image object
     viewImage = [CGUIViewImage() for _ in range(4)]
 
     while True:
 
-        # 이미지 뷰 생성 // Create image view
+        # 이미지 뷰 생성 # Create image view
         if (res := viewImage[0].Create(400, 0, 912, 384)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
@@ -32,39 +32,39 @@ def main():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
-        # SourceView, DstView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, DstView
+        # SourceView, DstView 의 0번 레이어 가져오기 # Get Layer 0 of SourceView, DstView
         layerSrc0 = viewImage[0].GetLayer(0)
         layerDst0 = viewImage[1].GetLayer(0)
         layerSrc1 = viewImage[2].GetLayer(0)
         layerDst1 = viewImage[3].GetLayer(0)
 
-        # 텍스트 그리기 // Draw text
+        # 텍스트 그리기 # Draw text
         layerSrc0.DrawTextCanvas(CFLPoint[Double](0, 0), "Source Figure And Region1", EColor.YELLOW, EColor.BLACK, 15)
         layerDst0.DrawTextCanvas(CFLPoint[Double](0, 0), "Remove Figure Within Region1", EColor.YELLOW, EColor.BLACK, 15)
         layerSrc1.DrawTextCanvas(CFLPoint[Double](0, 0), "Source Figure And Region2", EColor.YELLOW, EColor.BLACK, 15)
         layerDst1.DrawTextCanvas(CFLPoint[Double](0, 0), "Remove Figure Within Region2", EColor.YELLOW, EColor.BLACK, 15)
 
-        # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
+        # 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
         for i in range(1, 4):
             if (res := viewImage[0].SynchronizePointOfView(viewImage[i])[0]).IsFail():
                 ErrorPrint(res, "Failed to synchronize view")
                 break
 
-        # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
+        # 이전 루프에서 break가 발생했는지 다시 확인 # Check again if a break occurred in the previous loop
         if (res := viewImage[0].SynchronizePointOfView(viewImage[3])[0]).IsFail():
             break
 
-        # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
+        # 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
         for i in range(1, 4):
             if (res := viewImage[0].SynchronizeWindow(viewImage[i])[0]).IsFail():
                 ErrorPrint(res, "Failed to synchronize window.")
                 break
 
-        # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
+        # 이전 루프에서 break가 발생했는지 다시 확인 # Check again if a break occurred in the previous loop
         if (res := viewImage[0].SynchronizeWindow(viewImage[3])[0]).IsFail():
             break
 
-        # Figure 생성 // Create figure
+        # Figure 생성 # Create figure
         fll = CFLLine[Double](76, 300, 130, 210)
         flr = CFLRect[Double](50, 50, 100, 100)
         flc = CFLCircle[Double](150.0, 100.0, 30.0, 0.0, 0.0, 80.0, EArcClosingMethod.Center)
@@ -82,7 +82,7 @@ def main():
         flfaSource.PushBack(fle)
         flfaSource.PushBack(flcr)
 
-        # Region 생성 // Create region
+        # Region 생성 # Create region
         flcrRegion1 = CFLComplexRegion()
         flcrRegion1.PushBack(CFLPoint[Double](0, 0))
         flcrRegion1.PushBack(CFLPoint[Double](220, 50))
@@ -100,7 +100,7 @@ def main():
         flcrRegion2.PushBack(CFLPoint[Double](140, 200))
         flcrRegion2.PushBack(CFLPoint[Double](110, 80))
 
-        # Figure 정보 출력 // Print Figure information
+        # Figure 정보 출력 # Print Figure information
         print("Source Figure Array\n")
         strFigure = f"{CFigureUtilities.ConvertFigureObjectToString(flfaSource)}\n\n"
         print(strFigure)
@@ -109,7 +109,7 @@ def main():
         strFigure = f"{CFigureUtilities.ConvertFigureObjectToString(flcrRegion1)}\n\n"
         print(strFigure)
 
-        # SourceView1의 0번 레이어에 Source Figure, Region1 그리기 // Draw Source Figure, Region1 on Layer 0 of SourceView1
+        # SourceView1의 0번 레이어에 Source Figure, Region1 그리기 # Draw Source Figure, Region1 on Layer 0 of SourceView1
         layerSrc0.DrawFigureImage(flfaSource, EColor.CYAN)
         layerSrc0.DrawFigureImage(flcrRegion1, EColor.BLUE, 1, EColor.BLUE, EGUIViewImagePenStyle.Solid, 1, 0.2)
 
@@ -117,11 +117,11 @@ def main():
         strFigure = f"{CFigureUtilities.ConvertFigureObjectToString(flcrRegion2)}\n\n"
         print(strFigure)
 
-        # SourceView2의 0번 레이어에 Source Figure, Region2 그리기 // Draw Source Figure, Region2 on Layer 0 of SourceView2
+        # SourceView2의 0번 레이어에 Source Figure, Region2 그리기 # Draw Source Figure, Region2 on Layer 0 of SourceView2
         layerSrc1.DrawFigureImage(flfaSource, EColor.CYAN)
         layerSrc1.DrawFigureImage(flcrRegion2, EColor.BLUE, 1, EColor.BLUE, EGUIViewImagePenStyle.Solid, 1, 0.2)
 
-        # Region1과 겹쳐지는 Figure 제거 // Remove the overlapping figure with Region1
+        # Region1과 겹쳐지는 Figure 제거 # Remove the overlapping figure with Region1
         flfaResult1 = CFLFigureArray(flfaSource)
 
         if (res := flfaResult1.RemoveFigureWithinRegion(flcrRegion1)).IsFail():
@@ -132,12 +132,12 @@ def main():
         strFigure = f"{CFigureUtilities.ConvertFigureObjectToString(flfaResult1)}\n\n"
         print(strFigure)
 
-        # DstView1의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView1
+        # DstView1의 0번 레이어에 결과 그리기 # Draw the result on layer 0 of DstView1
         layerDst0.DrawFigureImage(flfaSource, EColor.CYAN)
         layerDst0.DrawFigureImage(flcrRegion1, EColor.BLUE, 1, EColor.BLUE, EGUIViewImagePenStyle.Solid, 1, 0.2)
         layerDst0.DrawFigureImage(flfaResult1, EColor.LIME, 3, EColor.LIME, EGUIViewImagePenStyle.Solid, 1, 0.2)
 
-        # Region2과 겹쳐지는 Figure 제거 // Remove figure overlapping with Region2
+        # Region2과 겹쳐지는 Figure 제거 # Remove figure overlapping with Region2
         flfaResult2 = CFLFigureArray(flfaSource)
 
         if (res := flfaResult2.RemoveFigureWithinRegion(flcrRegion2)).IsFail():
@@ -148,16 +148,16 @@ def main():
         strFigure = f"{CFigureUtilities.ConvertFigureObjectToString(flfaResult2)}\n\n"
         print(strFigure)
 
-        # DstView1의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView1
+        # DstView1의 0번 레이어에 결과 그리기 # Draw the result on layer 0 of DstView1
         layerDst1.DrawFigureImage(flfaSource, EColor.CYAN)
         layerDst1.DrawFigureImage(flcrRegion2, EColor.BLUE, 1, EColor.BLUE, EGUIViewImagePenStyle.Solid, 1, 0.2)
         layerDst1.DrawFigureImage(flfaResult2, EColor.LIME, 3, EColor.LIME, EGUIViewImagePenStyle.Solid, 1, 0.2)
 
-        # 이미지 뷰를 갱신 합니다. // Update image view
+        # 이미지 뷰를 갱신 합니다. # Update image view
         for i in range(4):
             viewImage[i].Invalidate(True)
 
-        # 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
+        # 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close
         while all(view.IsAvailable() for view in viewImage):
             CThreadUtilities.Sleep(1)
 
@@ -167,7 +167,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

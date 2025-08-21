@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -10,7 +10,7 @@ from System.Numerics import Complex
 import random
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
     arrStrEquation = [
         "Linear equation",
@@ -37,7 +37,7 @@ def main():
             print("Please check the input.\n")
             break
     
-        # 입력 받은 개수만큼 데이터를 생성한다. // Generates data according to the number of inputs
+        # 입력 받은 개수만큼 데이터를 생성한다. # Generates data according to the number of inputs
         arrF64DataX = [0.0] * i32DataCount
         arrF64DataY = [0.0] * i32DataCount
     
@@ -66,17 +66,17 @@ def main():
         print(strSampleData)
         print("\n")
     
-        # LeastSquares 객체 생성 // Create LeastSquares object
+        # LeastSquares 객체 생성 # Create LeastSquares object
         leastSqaures = CLeastSquares[Double]()
     
-        # 데이터를 할당 // Assign data
+        # 데이터를 할당 # Assign data
         leastSqaures.Assign(arrF64DataX, arrF64DataY, i32DataCount)
     
         for i in range(1, 6):
-            # 계수 값을 받기 위해 List 생성 // Create List to receive coefficient values
-            # R square 값을 받기 위해 double 선언 // Declare double for R square value
+            # 계수 값을 받기 위해 List 생성 # Create List to receive coefficient values
+            # R square 값을 받기 위해 double 선언 # Declare double for R square value
     
-            # 다항식 계수를 얻는다. // Get polynomial coefficients
+            # 다항식 계수를 얻는다. # Get polynomial coefficients
             res, listF64Output, f64TRSqr = leastSqaures.GetPoly(i, List[Double](), 0.0)
     
             if res.IsFail():
@@ -91,7 +91,7 @@ def main():
             
             listCoef = List[Complex]() 
     
-            # 얻어온 계수로 다항식을 만든다. // Create polynomial with obtained coefficients
+            # 얻어온 계수로 다항식을 만든다. # Create polynomial with obtained coefficients
             for j in range(i32Count):
                 f64Coef = listF64Output[j]
     
@@ -124,17 +124,17 @@ def main():
             print(strR)
             print(strEquation)
     
-            # 방정식의 해를 얻기위해 List<Complex> 생성 // Create List<Complex> to get solution of equation
+            # 방정식의 해를 얻기위해 List<Complex> 생성 # Create List<Complex> to get solution of equation
             listEquationResult = List[Complex]()
     
-            # 방정식의 해를 얻어온다. // Get the solution of the equation.
+            # 방정식의 해를 얻어온다. # Get the solution of the equation.
             res, listEquationResult = CEquation.Solve(listCoef, listEquationResult)
     
             if res.IsFail():
                 print(f"Failed to solve equation for degree {i}.\n")
                 continue
     
-            # 방정식의 해를 표시한다. // Display the solution of the equation.
+            # 방정식의 해를 표시한다. # Display the solution of the equation.
             strResult = "Result \n"
             
             for j in range(listEquationResult.Count):
@@ -158,7 +158,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

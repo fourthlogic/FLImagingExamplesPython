@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,15 +7,15 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 	
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     viewImage = [CGUIViewImage() for _ in range(4)]
 
     while True:
 
-        # 이미지 뷰 생성 // Create image view
+        # 이미지 뷰 생성 # Create image view
         if (res := viewImage[0].Create(400, 0, 812, 384)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
@@ -32,7 +32,7 @@ def main():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
-        # SourceView, DstView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, DstView
+        # SourceView, DstView 의 0번 레이어 가져오기 # Get Layer 0 of SourceView, DstView
         layerSrc1 = viewImage[0].GetLayer(0)
         layerDst1 = viewImage[1].GetLayer(0)
         layerSrc2 = viewImage[2].GetLayer(0)
@@ -43,7 +43,7 @@ def main():
         layerDst1.DrawTextCanvas(CFLPoint[Double](0, 0), "Result Figure 1", EColor.YELLOW, EColor.BLACK, 15)
         layerDst2.DrawTextCanvas(CFLPoint[Double](0, 0), "Result Figure 2", EColor.YELLOW, EColor.BLACK, 15)
 
-        # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
+        # 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
         if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize view")
             break
@@ -52,24 +52,24 @@ def main():
             ErrorPrint(res, "Failed to synchronize view")
             break
 
-        # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
+        # 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
         for i in range(1, 4):
             if (res := viewImage[0].SynchronizeWindow(viewImage[i])[0]).IsFail():
                 ErrorPrint(res, "Failed to synchronize window.")
                 break
 
-        if (res := viewImage[0].SynchronizeWindow(viewImage[3])[0]).IsFail(): # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
+        if (res := viewImage[0].SynchronizeWindow(viewImage[3])[0]).IsFail(): # 이전 루프에서 break가 발생했는지 다시 확인 # Check again if a break occurred in the previous loop
             break
 
         flfaSource1 = CFLFigureArray()
         flfaSource2 = CFLFigureArray()
 
-        # Source Figure 불러오기 // Load source figure
+        # Source Figure 불러오기 # Load source figure
         if (res := flfaSource1.Load("../../ExampleImages/Figure/various shapes.fig")).IsFail():
             ErrorPrint(res, "Failed to load the figure file.")
             break
 
-        # Source Figure 불러오기 // Load source figure
+        # Source Figure 불러오기 # Load source figure
         if (res := flfaSource2.Load("../../ExampleImages/Figure/Circles.fig")).IsFail():
             ErrorPrint(res, "Failed to load the figure file.")
             break
@@ -219,13 +219,13 @@ def main():
         # 	standard deviation                                     : Stdev or Stddev
 
 
-        # 조건식 문자열 // Condition string
+        # 조건식 문자열 # Condition string
         strExpression1 = "area > 400 and center.y < 160 or vertexcount = 3"
 
-        # 조건식을 View에 표기 // Draw the conditional expression in the View
+        # 조건식을 View에 표기 # Draw the conditional expression in the View
         layerDst1.DrawTextCanvas(CFLPoint[Double](0, 20), strExpression1, EColor.YELLOW, EColor.BLACK, 13)
 
-        # 조건식을 만족하는 Figure를 flfaResult1에 추출 // Extract the figure that satisfies the conditional expression to flfaResult1
+        # 조건식을 만족하는 Figure를 flfaResult1에 추출 # Extract the figure that satisfies the conditional expression to flfaResult1
         flfaResult1 = CFLFigureArray()
 
         res, flfaResult1 = flfaSource1.GetFigure(strExpression1, flfaResult1)
@@ -234,13 +234,13 @@ def main():
             ErrorPrint(res, "Failed to process.")
             break
 
-        # 조건식 문자열 // Condition string
+        # 조건식 문자열 # Condition string
         strExpression2 = "area >= mean('area')"
 
-        # 조건식을 View에 표기 // Draw the conditional expression in the View
+        # 조건식을 View에 표기 # Draw the conditional expression in the View
         layerDst2.DrawTextCanvas(CFLPoint[Double](0, 20), strExpression2, EColor.YELLOW, EColor.BLACK, 13)
 
-        # 조건식을 만족하는 Figure를 flfaResult2에 추출 // Get the figure that satisfies the conditional expression to flfaResult2
+        # 조건식을 만족하는 Figure를 flfaResult2에 추출 # Get the figure that satisfies the conditional expression to flfaResult2
         flfaResult2 = CFLFigureArray()
 
         res, flfaResult2 = flfaSource2.GetFigure(strExpression2, flfaResult2)
@@ -249,19 +249,19 @@ def main():
             ErrorPrint(res, "Failed to process.")
             break
 
-        # SourceView의 0번 레이어에 Source Figure 그리기 // Draw the Source Figure on Layer 0 of the SourceView
+        # SourceView의 0번 레이어에 Source Figure 그리기 # Draw the Source Figure on Layer 0 of the SourceView
         layerSrc1.DrawFigureImage(flfaSource1, EColor.CYAN)
         layerSrc2.DrawFigureImage(flfaSource2, EColor.CYAN)
 
-        # DstView1의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView1
+        # DstView1의 0번 레이어에 결과 그리기 # Draw the result on layer 0 of DstView1
         layerDst1.DrawFigureImage(flfaSource1, EColor.CYAN)
         layerDst1.DrawFigureImage(flfaResult1, EColor.LIME, 3, EColor.LIME, EGUIViewImagePenStyle.Solid, 1, 0.2)
 
-        # DstView2의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView2
+        # DstView2의 0번 레이어에 결과 그리기 # Draw the result on layer 0 of DstView2
         layerDst2.DrawFigureImage(flfaSource2, EColor.CYAN)
         layerDst2.DrawFigureImage(flfaResult2, EColor.LIME, 3, EColor.LIME, EGUIViewImagePenStyle.Solid, 1, 0.2)
 
-        # Console 출력 // Console output
+        # Console 출력 # Console output
         print("Source1 Figure Array\n")
         print(f"{CFigureUtilities.ConvertFigureObjectToString(flfaSource1)}\n\n")
 
@@ -275,11 +275,11 @@ def main():
         print(f"{CFigureUtilities.ConvertFigureObjectToString(flfaResult2)}\n\n")
 
 
-        # 이미지 뷰를 갱신 합니다. // Update image view
+        # 이미지 뷰를 갱신 합니다. # Update image view
         for i in range(4):
             viewImage[i].Invalidate(True)
 
-        # 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
+        # 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close
         while all(view.IsAvailable() for view in viewImage):
             CThreadUtilities.Sleep(1)
 
@@ -289,7 +289,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

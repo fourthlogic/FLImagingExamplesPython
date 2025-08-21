@@ -27,7 +27,7 @@ def main():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break		
 		
-		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
+		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination image as same as source image
 		if (res := fliDestinationImage1.Assign(fliSourceImage)).IsFail():
 			ErrorPrint(res, 'Failed to assign the image.')
 			break
@@ -108,7 +108,7 @@ def main():
 		# 연산 방식 이미지로 설정 # Set operation source to image
 		operationMean.SetOperationSource(EOperationSource.Scalar)
 
-		# Scalar 값 설정 // Set Scalar value
+		# Scalar 값 설정 # Set Scalar value
 		operationMean.SetScalarValue(mvScalarValue)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
@@ -122,7 +122,7 @@ def main():
 		# 연산 방식 이미지로 설정 # Set operation source to image
 		operationMean.SetOperationSource(EOperationSource.Scalar)
 
-		# Scalar 값 설정 // Set Scalar value
+		# Scalar 값 설정 # Set Scalar value
 		operationMean.SetScalarValue(mvScalarValue2)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters

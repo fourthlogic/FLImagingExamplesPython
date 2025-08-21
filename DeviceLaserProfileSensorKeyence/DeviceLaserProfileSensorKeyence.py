@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -39,30 +39,30 @@ class CDeviceEventProfileEx(CDeviceEventProfileBase):
 
 			self.m_viewLuminanceImage.Invalidate()
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 	
-	# CResult 객체 선언 // Declare the CRessult object
+	# CResult 객체 선언 # Declare the CRessult object
 	res = CResult(EResult.UnknownError)
 
-	# 이미지 뷰 선언 // Declare the image view
+	# 이미지 뷰 선언 # Declare the image view
 	viewHeightImage = CGUIViewImage()
 	viewLuminanceImage = CGUIViewImage()
 
-	# Laser Profile Sensor 선언 // Laser Profile Sensor Declaration
+	# Laser Profile Sensor 선언 # Laser Profile Sensor Declaration
 	devLaserProfile = CDeviceLaserProfileSensorKeyence()
 	
-	# 이벤트를 받을 객체 선언 // Declare the object that receives events
+	# 이벤트를 받을 객체 선언 # Declare the object that receives events
 	eventProfile = CDeviceEventProfileEx()
 
-	# 카메라에 이벤트 객체 설정 // Set event object on Camera 
+	# 카메라에 이벤트 객체 설정 # Set event object on Camera 
 	devLaserProfile.RegisterDeviceEvent(eventProfile)
 
 	while True:
 		
 		strConnection = ""
 		
-		# IP 주소를 입력 받습니다. // Enter the IP address.
+		# IP 주소를 입력 받습니다. # Enter the IP address.
 		while True:
 
 			strConnection = input("Input IP Address: ")
@@ -72,7 +72,7 @@ def main():
 
 			ErrorPrint(res, "Failed to set IP Address.\n")
 			
-		# 포트 번호를 입력 받습니다. // Enter the port number.
+		# 포트 번호를 입력 받습니다. # Enter the port number.
 		while True:
 
 			strConnection = input("Input Port Number: ")
@@ -83,7 +83,7 @@ def main():
 
 			ErrorPrint(res, "Failed to set port number.\n")
 			
-		# 고속 통신용 포트 번호를 입력 받습니다. // Enter the port number for high-speed communication.
+		# 고속 통신용 포트 번호를 입력 받습니다. # Enter the port number for high-speed communication.
 		while True:
 
 			strConnection = input("Input High-speed Port Number: ")
@@ -94,7 +94,7 @@ def main():
 
 			ErrorPrint(res, "Failed to set high-speed port number.\n")
 			
-		# Profile 수를 입력 받습니다. // Enter the profile number.
+		# Profile 수를 입력 받습니다. # Enter the profile number.
 		while True:
 
 			strConnection = input("Input Profile Count: ")
@@ -106,39 +106,39 @@ def main():
 			ErrorPrint(res, "Failed to set profile count.\n")
 
 
-		# 프로파일 센서를 초기화 합니다. // Initialize the profile sensor.
+		# 프로파일 센서를 초기화 합니다. # Initialize the profile sensor.
 		if((res := devLaserProfile.Initialize()).IsFail()):
 			ErrorPrint(res, "Failed to initialize device.\n")
 			break
 		
-		# 높이 이미지 뷰 생성 // Create height image view
+		# 높이 이미지 뷰 생성 # Create height image view
 		if((res := viewHeightImage.Create(400, 0, 812, 384)).IsFail()):
 			ErrorPrint(res, "Failed to create the image view.\n")
 			break
 		
-		# 휘도 이미지 뷰 생성 // Create luminance image view
+		# 휘도 이미지 뷰 생성 # Create luminance image view
 		if((res := viewLuminanceImage.Create(812, 0, 1224, 384)).IsFail()):
 			ErrorPrint(res, "Failed to create the image view.\n")
 			break
 		
-		# 뷰 시점 동기화 // Synchronize view points
+		# 뷰 시점 동기화 # Synchronize view points
 		if (res := viewHeightImage.SynchronizePointOfView(viewLuminanceImage)[0]).IsFail():
 			ErrorPrint(res, "Failed to synchronize view.\n")
 			break
 
-		# 윈도우 위치 동기화 // Synchronize window positions
+		# 윈도우 위치 동기화 # Synchronize window positions
 		if (res := viewHeightImage.SynchronizeWindow(viewLuminanceImage)[0]).IsFail():
 			ErrorPrint(res, "Failed to synchronize window.\n")
 			break
 
-		# 이벤트 객체에 View를 설정합니다. // Set a View on the event object.
+		# 이벤트 객체에 View를 설정합니다. # Set a View on the event object.
 		eventProfile.SetViewHeightImage(viewHeightImage)
 		eventProfile.SetViewLuminanceImage(viewLuminanceImage)
 		
-		# 활성 프로그램 No. 를 전환합니다. // Change active program number.
-		devLaserProfile.SetProgramNumber(0);
-		# 설정 함수의 적용 범위를 설정합니다. // Set the setting depth of the setting function.
-		devLaserProfile.SetSettingDepth(CDeviceLaserProfileSensorKeyence.ESettingDepth.Running);
+		# 활성 프로그램 No. 를 전환합니다. # Change active program number.
+		devLaserProfile.SetProgramNumber(0)
+		# 설정 함수의 적용 범위를 설정합니다. # Set the setting depth of the setting function.
+		devLaserProfile.SetSettingDepth(CDeviceLaserProfileSensorKeyence.ESettingDepth.Running)
 
 		# 파라미터 설정 함수 - Keyence 사의 LJ X Navigator 설치 후 C:\Program Files\KEYENCE\LJ-X Navigator\lib\Manual 경로의 매뉴얼 11.3 참고
 		# Parameter setting function - Refer to section 11.3 of the manual located at C:\Program Files\KEYENCE\LJ-X Navigator\lib\Manual after installing Keyence's LJ-X Navigator.
@@ -167,36 +167,36 @@ def main():
 
 		devLaserProfile.SetCommonSetting(CDeviceLaserProfileSensorKeyence.ECommonSettingItem.LuminanceOutput, bytes(arrData))
 
-		# 프로파일 센서를 Start 합니다. // Start the profile sensor.
+		# 프로파일 센서를 Start 합니다. # Start the profile sensor.
 		if((res := devLaserProfile.Start()).IsFail()):
 			ErrorPrint(res, "Failed to start the profile sensor.\n")
 			break
 		
-		CThreadUtilities.Sleep(100);
-		viewHeightImage.ZoomFit();
+		CThreadUtilities.Sleep(100)
+		viewHeightImage.ZoomFit()
 		
-		# 각각의 image View 에서 0번 레이어 가져오기 // Get Layer 0 from each image view 
-		layerHeight = viewHeightImage.GetLayer(0);
-		layerLuminance = viewLuminanceImage.GetLayer(0);
+		# 각각의 image View 에서 0번 레이어 가져오기 # Get Layer 0 from each image view 
+		layerHeight = viewHeightImage.GetLayer(0)
+		layerLuminance = viewLuminanceImage.GetLayer(0)
 
-		# 각 레이어 캔버스에 텍스트 그리기 // Draw text to each Layer Canvas
-		layerHeight.DrawTextCanvas(CFLPoint[Int32](0, 0), "Height", EColor.YELLOW, EColor.BLACK, 30);
-		layerLuminance.DrawTextCanvas(CFLPoint[Int32](0, 0), "Luminance", EColor.YELLOW, EColor.BLACK, 30);
+		# 각 레이어 캔버스에 텍스트 그리기 # Draw text to each Layer Canvas
+		layerHeight.DrawTextCanvas(CFLPoint[Int32](0, 0), "Height", EColor.YELLOW, EColor.BLACK, 30)
+		layerLuminance.DrawTextCanvas(CFLPoint[Int32](0, 0), "Luminance", EColor.YELLOW, EColor.BLACK, 30)
 
-		# 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close.
+		# 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close.
 		while(viewHeightImage.IsAvailable()):
 			CThreadUtilities.Sleep(1)
 
 		break
 	
-	# 프로파일 센서의 초기화를 해제합니다. // Uninitialize the profile sensor.
+	# 프로파일 센서의 초기화를 해제합니다. # Uninitialize the profile sensor.
 	devLaserProfile.Terminate()
-	# 프로파일 센서에 연결된 이벤트 객체 삭제 // Clear the object that receives events.
+	# 프로파일 센서에 연결된 이벤트 객체 삭제 # Clear the object that receives events.
 	devLaserProfile.ClearDeviceEvents()
 
 	# End of main function
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res: CResult, string: str):
 	if len(string) > 1:
 		print(string)

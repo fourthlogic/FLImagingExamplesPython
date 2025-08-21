@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,15 +7,15 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 	
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     viewImage = [CGUIViewImage() for _ in range(4)]
 
     while True:
 
-        # 이미지 뷰 생성 // Create image view
+        # 이미지 뷰 생성 # Create image view
         if (res := viewImage[0].Create(400, 0, 812, 384)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
@@ -32,7 +32,7 @@ def main():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
-        # SourceView, DstView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, DstView
+        # SourceView, DstView 의 0번 레이어 가져오기 # Get Layer 0 of SourceView, DstView
         layerSrc1 = viewImage[0].GetLayer(0)
         layerDst1 = viewImage[1].GetLayer(0)
         layerSrc2 = viewImage[2].GetLayer(0)
@@ -46,7 +46,7 @@ def main():
         layerDst1.DrawTextCanvas(CFLPoint[Double](0, 20), "Index of Minimum Distance", EColor.CYAN, EColor.BLACK)
         layerDst2.DrawTextCanvas(CFLPoint[Double](0, 20), "Index of Minimum Distance", EColor.CYAN, EColor.BLACK)
 
-        # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
+        # 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
         if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize view")
             break
@@ -55,7 +55,7 @@ def main():
             ErrorPrint(res, "Failed to synchronize view")
             break
 
-        # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
+        # 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
         for i in range(1, 4):
             if (res := viewImage[0].SynchronizeWindow(viewImage[i])[0]).IsFail():
                 ErrorPrint(res, "Failed to synchronize window.")
@@ -64,13 +64,13 @@ def main():
         if (res := viewImage[0].SynchronizeWindow(viewImage[3])[0]).IsFail():
             break
 
-        # Figure 생성 // Create figure
+        # Figure 생성 # Create figure
         flpaSource1 = CFLPointArray()
         flcDestination1 = CFLCircle[Double]()
         flfaSource2 = CFLFigureArray()
         flfaDestination2 = CFLFigureArray()
 
-        # Source Figure 불러오기 // Load Source figure
+        # Source Figure 불러오기 # Load Source figure
         if (res := flpaSource1.Load("../../ExampleImages/Figure/PointArray1.fig")).IsFail():
             ErrorPrint(res, "Failed to load the figure file.")
             break
@@ -79,7 +79,7 @@ def main():
             ErrorPrint(res, "Failed to load the figure file.")
             break
 
-        # Destination Figure 불러오기 // Load Destination Figure
+        # Destination Figure 불러오기 # Load Destination Figure
         if (res := flcDestination1.Load("../../ExampleImages/Figure/Circle2.fig")).IsFail():
             ErrorPrint(res, "Failed to load the figure file.")
             break
@@ -88,7 +88,7 @@ def main():
             ErrorPrint(res, "Failed to load the figure file.")
             break
 
-        # Figure 사이의 최소 거리를 나타내는 인덱스를 추출 // Get the index of representing the minimum distance between figures
+        # Figure 사이의 최소 거리를 나타내는 인덱스를 추출 # Get the index of representing the minimum distance between figures
         flfaResultSrc1 = CFLFigureArray()
 
         res, flfaResultSrc1 = flpaSource1.GetIndexOfMinimumDistance(flcDestination1, flfaResultSrc1)
@@ -100,18 +100,18 @@ def main():
         flfaResultSrc2 = CFLFigureArray()
         flfaResultDst2 = CFLFigureArray()
 
-        # refVal는 (변경된 flfaResultSrc2, 변경된 flfaResultDst2) 튜플을 반환 // refVal returns a (modified flfaResultSrc2, modified flfaResultDst2) tuple
+        # refVal는 (변경된 flfaResultSrc2, 변경된 flfaResultDst2) 튜플을 반환 # refVal returns a (modified flfaResultSrc2, modified flfaResultDst2) tuple
         res, *refVal = flfaSource2.GetIndexOfMinimumDistance(flfaDestination2, flfaResultSrc2, True, True, flfaResultDst2)
         
         if res.IsFail():
             ErrorPrint(res, "Failed to process.")
             break
 
-        flfaResultSrc2 = refVal[0] # ref 파라미터 결과 할당 // Assign ref parameter result
-        flfaResultDst2 = refVal[1] # 두 번째 ref 파라미터 결과 할당 // Assign second ref parameter result
+        flfaResultSrc2 = refVal[0] # ref 파라미터 결과 할당 # Assign ref parameter result
+        flfaResultDst2 = refVal[1] # 두 번째 ref 파라미터 결과 할당 # Assign second ref parameter result
 
 
-        # SourceView1의 0번 레이어에 Source, Destination Figure 그리기 // Draw Source and Destination Figure on Layer 0 of SourceView1
+        # SourceView1의 0번 레이어에 Source, Destination Figure 그리기 # Draw Source and Destination Figure on Layer 0 of SourceView1
         layerSrc1.DrawFigureImage(flpaSource1, EColor.BLACK, 3)
         layerSrc1.DrawFigureImage(flpaSource1, EColor.LIME)
         layerSrc1.DrawFigureImage(flcDestination1, EColor.BLACK, 3)
@@ -120,8 +120,8 @@ def main():
         for i in range(flpaSource1.GetCount()):
             layerSrc1.DrawTextImage(flpaSource1.GetAt(i).GetCenter(), f"{i}", EColor.CYAN, EColor.BLACK, 12, False, 0.0, EGUIViewImageTextAlignment.CENTER_BOTTOM)
 
-        # DstView1의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView1
-        # C#의 (CFLScalar<long>)flfaResultSrc1.Front()와 유사 // Similar to C#'s (CFLScalar<long>)flfaResultSrc1.Front()
+        # DstView1의 0번 레이어에 결과 그리기 # Draw the result on layer 0 of DstView1
+        # C#의 (CFLScalar<long>)flfaResultSrc1.Front()와 유사 # Similar to C#'s (CFLScalar<long>)flfaResultSrc1.Front()
         flvSrc = CFLScalar[Int64](flfaResultSrc1.Front()) 
         layerDst1.DrawFigureImage(flpaSource1, EColor.BLACK, 3)
         layerDst1.DrawFigureImage(flpaSource1, EColor.LIME)
@@ -131,7 +131,7 @@ def main():
         layerDst1.DrawTextImage(flpaSource1.GetAt(flvSrc.v).GetCenter(), f"{flvSrc.v}", EColor.CYAN, EColor.BLACK, 12, False, 0.0, EGUIViewImageTextAlignment.CENTER_BOTTOM)
         layerDst1.DrawTextImage(flcDestination1.GetCenter(), f"{flvSrc.v}", EColor.CYAN, EColor.BLACK, 12, False, 0.0, EGUIViewImageTextAlignment.CENTER_CENTER)
 
-        # SourceView2의 0번 레이어에 Source, Destination Figure 그리기 // Draw Source and Destination Figure on Layer 0 of SourceView2
+        # SourceView2의 0번 레이어에 Source, Destination Figure 그리기 # Draw Source and Destination Figure on Layer 0 of SourceView2
         layerSrc2.DrawFigureImage(flfaSource2, EColor.BLACK, 3)
         layerSrc2.DrawFigureImage(flfaSource2, EColor.LIME)
         layerSrc2.DrawFigureImage(flfaDestination2, EColor.BLACK, 3)
@@ -153,27 +153,27 @@ def main():
             for j in range(flfaArrayDepth1.GetCount()):
                 layerSrc2.DrawTextImage(flfaArrayDepth1.GetAt(j).GetCenter(), f"{j}", EColor.CYAN, EColor.BLACK, 12, False, 0.0, EGUIViewImageTextAlignment.CENTER_CENTER)
         
-        # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
+        # 이전 루프에서 break가 발생했는지 다시 확인 # Check again if a break occurred in the previous loop
         if 'res' in locals() and res.IsFail():
             break
 
         for i in range(flfaDestination2.GetCount()):
             layerSrc2.DrawTextImage(flfaDestination2.GetAt(i).GetCenter(), f"{i}", EColor.CYAN, EColor.BLACK, 12, False, 0.0, EGUIViewImageTextAlignment.CENTER_CENTER)
 
-        # DstView2의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView2
+        # DstView2의 0번 레이어에 결과 그리기 # Draw the result on layer 0 of DstView2
         layerDst2.DrawFigureImage(flfaSource2, EColor.BLACK, 3)
         layerDst2.DrawFigureImage(flfaSource2, EColor.LIME)
         layerDst2.DrawFigureImage(flfaDestination2, EColor.BLACK, 3)
         layerDst2.DrawFigureImage(flfaDestination2, EColor.KHAKI)
 
-        # C#의 (CFLScalar<long>)flfaResultSrc2.GetAt(0)와 유사 // Similar to C#'s (CFLScalar<long>)flfaResultSrc2.GetAt(0)
+        # C#의 (CFLScalar<long>)flfaResultSrc2.GetAt(0)와 유사 # Similar to C#'s (CFLScalar<long>)flfaResultSrc2.GetAt(0)
         flvSrcDepth1 = CFLScalar[Int64](flfaResultSrc2.GetAt(0))
         flvSrcDepth2 = CFLScalar[Int64](flfaResultSrc2.GetAt(1))
 
-        # C#의 (CFLFigureArray)flfaSource2.GetAt(flvSrcDepth1.v)와 유사 // Similar to C#'s (CFLFigureArray)flfaSource2.GetAt(flvSrcDepth1.v)
+        # C#의 (CFLFigureArray)flfaSource2.GetAt(flvSrcDepth1.v)와 유사 # Similar to C#'s (CFLFigureArray)flfaSource2.GetAt(flvSrcDepth1.v)
         flfaSrcDepth1 = CFLFigureArray(flfaSource2.GetAt(flvSrcDepth1.v))
         flfSrcDepth1 = flfaSource2.GetAt(flvSrcDepth1.v)
-        # C#의 ((CFLFigureArray)flfSrcDepth1).GetAt(flvSrcDepth2.v)와 유사 // Similar to C#'s ((CFLFigureArray)flfSrcDepth1).GetAt(flvSrcDepth2.v)
+        # C#의 ((CFLFigureArray)flfSrcDepth1).GetAt(flvSrcDepth2.v)와 유사 # Similar to C#'s ((CFLFigureArray)flfSrcDepth1).GetAt(flvSrcDepth2.v)
         flfSrcDepth2 = CFLFigureArray(flfSrcDepth1).GetAt(flvSrcDepth2.v)
 
         flfaArraySrcDepth1 = CFLFigureArray(flfaSource2.GetAt(flvSrcDepth1.v))
@@ -200,7 +200,7 @@ def main():
         layerDst2.DrawFigureImage(flfDstDepth1, EColor.MAGENTA, 1)
 
 
-        # Console 출력 // Console output
+        # Console 출력 # Console output
         print("Source1 CFLPointArray\n")
         print(f"{CFigureUtilities.ConvertFigureObjectToString(flpaSource1)}\n\n")
 
@@ -224,11 +224,11 @@ def main():
         print("Dst Result2 Index of Minimum distance\n")
         print(f"Depth1 : {flvDstDepth1.v}\n\n")
 
-        # 이미지 뷰를 갱신 합니다. // Update image view
+        # 이미지 뷰를 갱신 합니다. # Update image view
         for i in range(4):
             viewImage[i].Invalidate(True)
 
-        # 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
+        # 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close
         while all(view.IsAvailable() for view in viewImage):
             CThreadUtilities.Sleep(1)
 
@@ -238,7 +238,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

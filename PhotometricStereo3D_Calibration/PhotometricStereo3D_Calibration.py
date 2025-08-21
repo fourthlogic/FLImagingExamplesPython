@@ -6,7 +6,7 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-# Error 출력 함수 import // Import Error Output Function
+# Error 출력 함수 import # Import Error Output Function
 import sys
 import os
 
@@ -144,7 +144,7 @@ def main():
 		photometricStereo3D.SetDestinationTextureImage(fliTextureImage)
 
 		# Destination Curvature 이미지 설정 # Set the destination curvature image
-		photometricStereo3D.SetCurvatureImage(fliCurvatureImage);
+		photometricStereo3D.SetCurvatureImage(fliCurvatureImage)
 		
 		# 동작 방식 설정 # Set Operation Mode
 		photometricStereo3D.SetReconstructionMode(CPhotometricStereo3D.EReconstructionMode.Poisson_FP32)
@@ -153,7 +153,7 @@ def main():
 		photometricStereo3D.SetValidPixelThreshold(0.25)
 
 		# Curvature 이미지 Normalization 여부 설정 # Set curvature image normalization option
-		photometricStereo3D.EnableCurvatureNormalization(True);
+		photometricStereo3D.EnableCurvatureNormalization(True)
 
 		# Angle Degrees 동작 방식으로 설정 # Set operation method as angle degrees
 		cMatTemp = CMatrix[Double](3, 3)

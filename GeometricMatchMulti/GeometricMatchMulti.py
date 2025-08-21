@@ -11,15 +11,15 @@ def ErrorPrint(res: CResult, message: str):
 	print(f"Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n")
 
 def main():
-	# 이미지 객체 선언 // Declare the image object
+	# 이미지 객체 선언 # Declare the image object
 	fliLearnImage = [CFLImage() for _ in range(3)]
 	fliFindImage = CFLImage()
 
-	# 이미지 뷰 선언 // Declare the image view
+	# 이미지 뷰 선언 # Declare the image view
 	viewImageLearn = [CGUIViewImage() for _ in range(3)]
 	viewImageFind = CGUIViewImage()
 
-	# Geometric Match Multi 객체 생성 // Create Geometric Match Multi object
+	# Geometric Match Multi 객체 생성 # Create Geometric Match Multi object
 	geometricMatchMulti = CGeometricMatchMulti()
 
 	res = CResult()
@@ -41,16 +41,16 @@ def main():
 		print(" ▷ Learn Information")
 
 		for i in range(3):
-			# 이미지 로드 // Load image
+			# 이미지 로드 # Load image
 			if fliLearnImage[i].Load(arrPath[i]).IsFail():
 				break
 
-			# 이미지 뷰 생성 // Create image view
+			# 이미지 뷰 생성 # Create image view
 			if (res := viewImageLearn[i].Create(400 + 512 * i, 0, 400 + 512 * (i + 1), 384)).IsFail():
 				ErrorPrint(res, "Failed to create image view.")
 				break
 
-			# 이미지 뷰에 이미지를 디스플레이 // Display the image in the imageview
+			# 이미지 뷰에 이미지를 디스플레이 # Display the image in the imageview
 			if (res := viewImageLearn[i].SetImagePtr(fliLearnImage[i])[0]).IsFail():
 				ErrorPrint(res, "Failed to set image.")
 				break
@@ -58,10 +58,10 @@ def main():
 			layerLearn = viewImageLearn[i].GetLayer(0)
 			layerLearn.Clear()
 
-			# 학습 이미지 설정 // Set learning image
+			# 학습 이미지 설정 # Set learning image
 			geometricMatchMulti.SetLearnImage(fliLearnImage[i])
 
-			# 학습할 영역 설정 // Set the area to learn
+			# 학습할 영역 설정 # Set the area to learn
 			learnRegion = CFLRect[Double]()
 			if i == 0:
 				learnRegion.Set(402.23622, 165.22834, 541.73228, 610.803149)
@@ -74,15 +74,15 @@ def main():
 			geometricMatchMulti.SetLearnROI(learnRegion)
 			geometricMatchMulti.SetLearnPivot(flpLearnPivot)
 
-			# 학습 파라미터 설정 // Set the learning parameters
-			# 추출할 특징점 개수를 설정합니다. // Set the number of feature points to be extracted.
+			# 학습 파라미터 설정 # Set the learning parameters
+			# 추출할 특징점 개수를 설정합니다. # Set the number of feature points to be extracted.
 			geometricMatchMulti.SetFeatureCount(2048)
-			#추출할 특징점 처리과정에서의 노이즈 필터링 정도를 설정합니다. // Set the noise filtering degree in the process of processing the feature points to be extracted.
+			#추출할 특징점 처리과정에서의 노이즈 필터링 정도를 설정합니다. # Set the noise filtering degree in the process of processing the feature points to be extracted.
 			geometricMatchMulti.SetFeatureFiltering(0.5)
-			#추출할 특징점 처리과정에서의 허용 임계값을 설정합니다. // Set the allowable threshold in the feature point processing process to be extracted.
+			#추출할 특징점 처리과정에서의 허용 임계값을 설정합니다. # Set the allowable threshold in the feature point processing process to be extracted.
 			geometricMatchMulti.SetLearnThresholdCoefficient(1.3)
 
-			# 알고리즘 수행 // Execute the algorithm
+			# 알고리즘 수행 # Execute the algorithm
 			if geometricMatchMulti.Learn(arrClassName[i]).IsFail():
 				ErrorPrint(res, "Failed to learn.")
 				break
@@ -96,7 +96,7 @@ def main():
 			layerLearn.DrawFigureImage(flfaPointPivot, EColor.BLACK, 3)
 			layerLearn.DrawFigureImage(flfaPointPivot, EColor.LIME)
 
-			# 학습한 특징점 디스플레이 // Display learned feature points
+			# 학습한 특징점 디스플레이 # Display learned feature points
 			flfaFeaturePoints = CFLFigureArray()
 			geometricMatchMulti.GetLearnedFeature(flfaFeaturePoints)
 			layerLearn.DrawFigureImage(flfaFeaturePoints, arrColor[i])
@@ -116,7 +116,7 @@ def main():
 
 			viewImageLearn[i].Invalidate(True)
 
-		# 검출 이미지 로드 및 뷰 설정 // Load find image and setup view
+		# 검출 이미지 로드 및 뷰 설정 # Load find image and setup view
 		if (res := fliFindImage.Load("../../ExampleImages/Matching/Geometric Multi Find.flif")).IsFail():
 			ErrorPrint(res, "Failed to load find image.")
 			break
@@ -136,43 +136,43 @@ def main():
 		layerFind.Clear()
 		layerFind.DrawTextCanvas(CFLPoint[Double](0, 0), "FIND", EColor.YELLOW, EColor.BLACK, 30)
 
-		# 검출 파라미터 설정 // Set matching parameters
-		# 검출 이미지 설정 // Set source image
+		# 검출 파라미터 설정 # Set matching parameters
+		# 검출 이미지 설정 # Set source image
 		geometricMatchMulti.SetSourceImage(fliFindImage)
-		# 검출 파라미터 설정 // Set matching parameters
-		# 검출 시 사용될 파라미터를 설정합니다. // Set the parameters to be used for detection.
-		# 검출 시 사용될 기본 각도를 설정합니다. // Set the default angle to be used for detection.
-		geometricMatchMulti.SetAngleBias(0.0);
-		# 검출 시 사용될 각도의 탐색범위를 설정합니다. // Set the search range of the angle to be used for detection.
-		# 각도는 기본 각도를 기준으로 (기본 각도 - AngleTolerance, 기본 각도 + AngleTolerance)가 최종 탐색범위 // The angle is based on the basic angle (default angle - AngleTolerance, basic angle + AngleTolerance) is the final search range
-		geometricMatchMulti.SetAngleTolerance(180.0);
-		# 검출 시 사용될 스케일 탐색범위를 설정합니다. // Set the scale search range to be used for detection.
-		geometricMatchMulti.SetScaleRange(0.98, 1.02);
-		# 검출 시 사용될 최소 탐색점수를 설정합니다. // Set the minimum search score to be used for detection.
-		geometricMatchMulti.SetMinimumDetectionScore(0.5);
-		# 검출 시 사용될 탐색 방식을 설정합니다. // Set the search method to be used for detection.
+		# 검출 파라미터 설정 # Set matching parameters
+		# 검출 시 사용될 파라미터를 설정합니다. # Set the parameters to be used for detection.
+		# 검출 시 사용될 기본 각도를 설정합니다. # Set the default angle to be used for detection.
+		geometricMatchMulti.SetAngleBias(0.0)
+		# 검출 시 사용될 각도의 탐색범위를 설정합니다. # Set the search range of the angle to be used for detection.
+		# 각도는 기본 각도를 기준으로 (기본 각도 - AngleTolerance, 기본 각도 + AngleTolerance)가 최종 탐색범위 # The angle is based on the basic angle (default angle - AngleTolerance, basic angle + AngleTolerance) is the final search range
+		geometricMatchMulti.SetAngleTolerance(180.0)
+		# 검출 시 사용될 스케일 탐색범위를 설정합니다. # Set the scale search range to be used for detection.
+		geometricMatchMulti.SetScaleRange(0.98, 1.02)
+		# 검출 시 사용될 최소 탐색점수를 설정합니다. # Set the minimum search score to be used for detection.
+		geometricMatchMulti.SetMinimumDetectionScore(0.5)
+		# 검출 시 사용될 탐색 방식을 설정합니다. # Set the search method to be used for detection.
 		geometricMatchMulti.SetMaxObjectMode(CGeometricMatchMulti.EMaxObjectMode.Total)
-		# 검출 시 사용될 최대 탐색객체 수를 설정합니다. // Set the maximum number of search objects to be used for detection.
-		geometricMatchMulti.SetMaxObjectTotal(16);		
-		# 검출 시 보간법 사용 유무에 대해 설정합니다. // Set whether to use interpolation when detecting.
-		geometricMatchMulti.EnableInterpolation(True);
-		# 검출 시 최적화 정도에 대해 설정합니다. // Set the degree of optimization for detection.
-		geometricMatchMulti.SetOptimizationOption(CGeometricMatchMulti.EOptimizationOption.Fastest);
-		# 검출 시 대비정도에 대해 설정합니다. // Set the contrast level for detection.
-		geometricMatchMulti.SetContrastOption(EMatchContrastOption.Normal);
-		# 검출 시 이미지 영역밖의 탐색 정도를 설정합니다. // Set the degree of search outside the image area when detecting.
-		geometricMatchMulti.SetInvisibleRegionEstimation(1.25);
-		# 검출 시 처리과정에서의 허용 임계값을 설정합니다. // Set the allowable threshold in the process of detection.
-		geometricMatchMulti.SetFindThresholdCoefficient(1.0);
-		# 검출 시 겹쳐짐 허용 정도를 설정합니다. // Set the allowable degree of overlap during detection.
-		geometricMatchMulti.SetObjectOverlap(0.8);
+		# 검출 시 사용될 최대 탐색객체 수를 설정합니다. # Set the maximum number of search objects to be used for detection.
+		geometricMatchMulti.SetMaxObjectTotal(16)		
+		# 검출 시 보간법 사용 유무에 대해 설정합니다. # Set whether to use interpolation when detecting.
+		geometricMatchMulti.EnableInterpolation(True)
+		# 검출 시 최적화 정도에 대해 설정합니다. # Set the degree of optimization for detection.
+		geometricMatchMulti.SetOptimizationOption(CGeometricMatchMulti.EOptimizationOption.Fastest)
+		# 검출 시 대비정도에 대해 설정합니다. # Set the contrast level for detection.
+		geometricMatchMulti.SetContrastOption(EMatchContrastOption.Normal)
+		# 검출 시 이미지 영역밖의 탐색 정도를 설정합니다. # Set the degree of search outside the image area when detecting.
+		geometricMatchMulti.SetInvisibleRegionEstimation(1.25)
+		# 검출 시 처리과정에서의 허용 임계값을 설정합니다. # Set the allowable threshold in the process of detection.
+		geometricMatchMulti.SetFindThresholdCoefficient(1.0)
+		# 검출 시 겹쳐짐 허용 정도를 설정합니다. # Set the allowable degree of overlap during detection.
+		geometricMatchMulti.SetObjectOverlap(0.8)
 
-		# 알고리즘 수행 // Execute the Algoritm
+		# 알고리즘 수행 # Execute the Algoritm
 		if geometricMatchMulti.Execute().IsFail():
 			ErrorPrint(res, "Failed to execute match.")
 			break
 
-		# 기하학적 패턴 검출 결과를 가져옵니다. // Get the geometric pattern detection result.
+		# 기하학적 패턴 검출 결과를 가져옵니다. # Get the geometric pattern detection result.
 		i64ResultCount = geometricMatchMulti.GetResultCount()
 
 		for i in range(i64ResultCount):
@@ -185,7 +185,7 @@ def main():
 			flr = CFLRect[Double](result.pFlfRegion)
 			flp = CFLPoint[Double](result.pFlpPivot)
 
-			# 색상 인덱스 찾기 // Find color index
+			# 색상 인덱스 찾기 # Find color index
 			idx = arrClassName.index(className)
 
 			print(f" < Instance : {i} >")
@@ -213,7 +213,7 @@ def main():
 
 			viewImageFind.Invalidate(True)
 
-		# 이미지 뷰 종료까지 대기 // Wait for window close
+		# 이미지 뷰 종료까지 대기 # Wait for window close
 		while viewImageLearn[0].IsAvailable():
 			CThreadUtilities.Sleep(1)
 

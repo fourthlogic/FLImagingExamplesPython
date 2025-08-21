@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,69 +7,69 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-	# 이미지 객체 선언 // Declare the image object
+	# 이미지 객체 선언 # Declare the image object
 	fliSrc = CFLImage()
 	fliRes = CFLImage()
 
-	# 이미지 뷰 선언 // Declare the image view
+	# 이미지 뷰 선언 # Declare the image view
 	viewImageSrc = CGUIViewImage()
 	viewImageRes = CGUIViewImage()
 
 	while True:
 		
-		# Source 이미지 로드 // Load the source image
+		# Source 이미지 로드 # Load the source image
 		if (res := fliSrc.Load('../../ExampleImages/Matching/DrawingImage.flif')).IsFail() or \
 			(res := fliRes.Assign(fliSrc)).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Source 이미지 뷰 생성 // Create source image view
+		# Source 이미지 뷰 생성 # Create source image view
 		if (res := viewImageSrc.Create(0, 0, 600, 600)).IsFail() or \
 			(res := viewImageRes.Create(600, 0, 1200, 600)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 		
-		# 뷰에 이미지를 디스플레이 // Display the image in the view
+		# 뷰에 이미지를 디스플레이 # Display the image in the view
 		if (res := viewImageSrc.SetImagePtr(fliSrc)[0]).IsFail() or \
 		   (res := viewImageRes.SetImagePtr(fliRes)[0]).IsFail():
 			ErrorPrint(res, "Failed to set image object on the image view.\n")
 			break
 
-		# 객체 생성 // Create object
+		# 객체 생성 # Create object
 		lineSegmentDetector = CLineSegmentDetector()
 		lineSegmentDetector.SetSourceImage(fliSrc)
 
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := lineSegmentDetector.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 		
-		# 검출된 특징점을 구하는 함수 // Function that calculate the feature points
-		f64ScoreThreshold = lineSegmentDetector.GetScoreThreshold();
+		# 검출된 특징점을 구하는 함수 # Function that calculate the feature points
+		f64ScoreThreshold = lineSegmentDetector.GetScoreThreshold()
 		
-		_, flfaResults = lineSegmentDetector.GetResultLineSegments(CFLFigureArray());
-		_, arrScores = lineSegmentDetector.GetResultScores(List[Double]());
+		_, flfaResults = lineSegmentDetector.GetResultLineSegments(CFLFigureArray())
+		_, arrScores = lineSegmentDetector.GetResultScores(List[Double]())
 
-		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
+		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
 		layerSrc = viewImageSrc.GetLayer(0)
 		layerRes = viewImageRes.GetLayer(0)
 
-		# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
+		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
 		layerSrc.Clear()
 		layerRes.Clear()
 
-		# 이미지 뷰 정보 표시 // Display image view information
-		layerRes.DrawFigureImage(flfaResults, EColor.RED);
+		# 이미지 뷰 정보 표시 # Display image view information
+		layerRes.DrawFigureImage(flfaResults, EColor.RED)
 
-		# 이미지 뷰를 갱신 // Update image view
+		# 이미지 뷰를 갱신 # Update image view
 		viewImageSrc.Invalidate(True)
 		viewImageRes.Invalidate(True)
 
-		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 // Wait until the image view is closed before exiting
+		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewImageSrc.IsAvailable() and viewImageRes.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
@@ -78,7 +78,7 @@ def main():
 	# End of main function
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, string: str):
 	if len(string) > 1:
 		print(string)

@@ -101,7 +101,7 @@ def main():
     
     # Image View에 정보 출력 # Display information on the Image View
     for i in range(flfaContours.GetCount()):
-        imgStatistics.SetSourceROI(flfaContours.GetAt(i));
+        imgStatistics.SetSourceROI(flfaContours.GetAt(i))
                 
         mvMean = CMultiVar[Double]()
         mvVariance = CMultiVar[Double]()
@@ -128,7 +128,7 @@ def main():
         strStandardDeviation = "StandardDeviation : {:.3f}".format(mvStandardDeviation.GetAt(0))
         print("No. {} ".format(i) + strStandardDeviation)
         
-        flpContoursCenter = CFLPoint[Double](flfaContours.GetAt(i));        
+        flpContoursCenter = CFLPoint[Double](flfaContours.GetAt(i))        
         strIndex = "[{}]\n\n\n\n".format(i)
         strResult = "\n" + strMean + "\n" + strVariance + "\n" + strStandardDeviation + "\n"
 

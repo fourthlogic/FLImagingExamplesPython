@@ -107,7 +107,7 @@ def main():
     
     # Image View에 정보 출력 # Display information on the Image View
     for i in range(flfaContours.GetCount()):
-        imgStatistics.SetSourceROI(flfaContours.GetAt(i));
+        imgStatistics.SetSourceROI(flfaContours.GetAt(i))
                 
         mvMedian = CMultiVar[Double]()
         mvLowerQuartile = CMultiVar[Double]()
@@ -134,7 +134,7 @@ def main():
         strUpperQuartile = "Upper Quartile : {:.3f}".format(mvUpperQuartile.GetAt(0))
         print("No. {} ".format(i) + strUpperQuartile)
         
-        flpContoursCenter = CFLPoint[Double](flfaContours.GetAt(i));        
+        flpContoursCenter = CFLPoint[Double](flfaContours.GetAt(i))        
         strIndex = "[{}]\n\n\n\n".format(i)
         strResult = "\n" + strMedian + "\n" + strLowerQuartile + "\n" + strUpperQuartile + "\n"
 

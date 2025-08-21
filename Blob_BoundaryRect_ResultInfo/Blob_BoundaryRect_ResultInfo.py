@@ -113,9 +113,9 @@ def main():
             strRightBottom = "(RB :{}, {})".format(flrRect.right, flrRect.bottom)
             strInfo = "Width : {}\nHeight : {}\nCenter : ({}, {})".format(flrRect.GetWidth(), flrRect.GetHeight(), flrRect.GetCenter().x, flrRect.GetCenter().y)
 
-            flpLeftTop = CFLPoint[Double](flrRect.left, flrRect.top);
-            flpRightBottom = CFLPoint[Double](flrRect.right, flrRect.bottom);
-            flpRightTop = CFLPoint[Double](flrRect.right, flrRect.top);
+            flpLeftTop = CFLPoint[Double](flrRect.left, flrRect.top)
+            flpRightBottom = CFLPoint[Double](flrRect.right, flrRect.bottom)
+            flpRightTop = CFLPoint[Double](flrRect.right, flrRect.top)
 
             # 아래 함수 DrawTextImage는 Image좌표를 기준으로 하는 Text를 Drawing 한다는 것을 의미한다.
             # 파라미터 순서 : 레이어 -> 문자열 좌표 -> 문자열 지정 -> 문자열 색 -> 면 색 -> 폰트 크기 -> 실제 크기로 그릴지의 여부 -> 각도 -> 문자열의 위치 기준

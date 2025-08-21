@@ -111,11 +111,11 @@ def main():
     
     # Image View에 정보 출력 # Display information on the Image View
     for i in range(flfaContours.GetCount()):
-        flpContoursCenter = CFLPoint[Double](flfaContours.GetAt(i));
-        flpfGravityCenter = CFLPoint[Double](flfGravityCenter.GetAt(i));
-        flfCrossHair = CFLFigureArray();
+        flpContoursCenter = CFLPoint[Double](flfaContours.GetAt(i))
+        flpfGravityCenter = CFLPoint[Double](flfGravityCenter.GetAt(i))
+        flfCrossHair = CFLFigureArray()
 
-        flfCrossHair = flpfGravityCenter.MakeCrossHair(10, True);
+        flfCrossHair = flpfGravityCenter.MakeCrossHair(10, True)
 
         # Image View 출력
         strIndex = "[{}]\n\n\n\n".format(i)

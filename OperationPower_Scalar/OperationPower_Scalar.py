@@ -23,12 +23,12 @@ def main():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
-		# Destination1 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination1 image as same as source image
+		# Destination1 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination1 image as same as source image
 		if (res := listFliImage[1].Assign(listFliImage[0])).IsFail():
 			ErrorPrint(res, 'Failed to assign the image.')
 			break
 
-		# Destination2 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination2 image as same as source image
+		# Destination2 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination2 image as same as source image
 		if (res := listFliImage[2].Assign(listFliImage[0])).IsFail():
 			ErrorPrint(res, 'Failed to assign the image.')
 			break
@@ -124,13 +124,13 @@ def main():
 		# Destination 이미지 설정 # Set the destination image
 		operationPower.SetDestinationImage(listFliImage[1])
 		
-		# Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
+		# Overflow Method Clamping 옵션으로 설정 # Set Overflow Method to Clamping option
 		operationPower.SetOverflowMethod(EOverflowMethod.Clamping)
 
 		# 연산 방식 이미지로 설정 # Set operation source to image
 		operationPower.SetOperationSource(EOperationSource.Scalar)
 		
-		# Exponent 값 설정 // Set Exponent value
+		# Exponent 값 설정 # Set Exponent value
 		operationPower.SetScalarValue(mvScalr1)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
@@ -141,10 +141,10 @@ def main():
 		# Destination 이미지 설정 # Set the destination image
 		operationPower.SetDestinationImage(listFliImage[2])
 		
-		# Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
+		# Overflow Method Clamping 옵션으로 설정 # Set Overflow Method to Clamping option
 		operationPower.SetOverflowMethod(EOverflowMethod.Clamping)
 
-		# Exponent 값 설정 // Set Exponent value
+		# Exponent 값 설정 # Set Exponent value
 		operationPower.SetScalarValue(mvScalr2)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
@@ -155,10 +155,10 @@ def main():
 		# Destination 이미지 설정 # Set the destination image
 		operationPower.SetDestinationImage(listFliImage[3])
 		
-		# Overflow Method Wrapping 옵션으로 설정 // Set Overflow Method to Wrapping option
+		# Overflow Method Wrapping 옵션으로 설정 # Set Overflow Method to Wrapping option
 		operationPower.SetOverflowMethod(EOverflowMethod.Wrapping)
 
-		# Exponent 값 설정 // Set Exponent value
+		# Exponent 값 설정 # Set Exponent value
 		operationPower.SetScalarValue(mvScalr3)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
@@ -169,10 +169,10 @@ def main():
 		# Destination 이미지 설정 # Set the destination image
 		operationPower.SetDestinationImage(listFliImage[4])
 		
-		# Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
+		# Overflow Method Clamping 옵션으로 설정 # Set Overflow Method to Clamping option
 		operationPower.SetOverflowMethod(EOverflowMethod.Clamping)
 
-		# Exponent 값 설정 // Set Exponent value
+		# Exponent 값 설정 # Set Exponent value
 		operationPower.SetScalarValue(mvScalr4)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
@@ -183,10 +183,10 @@ def main():
 		# Destination 이미지 설정 # Set the destination image
 		operationPower.SetDestinationImage(listFliImage[5])
 		
-		# Overflow Method Clamping 옵션으로 설정 // Set Overflow Method to Clamping option
+		# Overflow Method Clamping 옵션으로 설정 # Set Overflow Method to Clamping option
 		operationPower.SetOverflowMethod(EOverflowMethod.Wrapping)
 
-		# Exponent 값 설정 // Set Exponent value
+		# Exponent 값 설정 # Set Exponent value
 		operationPower.SetScalarValue(mvScalr5)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters

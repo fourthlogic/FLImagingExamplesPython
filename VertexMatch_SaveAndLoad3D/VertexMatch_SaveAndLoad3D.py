@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -8,24 +8,24 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-	# 3D 객체 선언 // Declare 3D object
+	# 3D 객체 선언 # Declare 3D object
 	floDestinationObject = CFL3DObject()
 	floLearnObject = CFL3DObject()
 	floSourceObject = CFL3DObject()
 
-	# 3D 뷰 선언 // Declare 3D view	
+	# 3D 뷰 선언 # Declare 3D view	
 	view3DDst = CGUIView3D()
 	view3DLearn = CGUIView3D()
 	view3DSource = CGUIView3D()
 
-	# 알고리즘 동작 결과 // Algorithm execution result
+	# 알고리즘 동작 결과 # Algorithm execution result
 	res = CResult()
 
 	while True:		
-		# Source Object 로드 // Load the Source object
+		# Source Object 로드 # Load the Source object
 		if(res := floLearnObject.Load("../../ExampleImages/VertexMatch3D/ResultPoints.ply")).IsFail() :		
 			ErrorPrint(res, "Failed to load the object file.\n")
 			break
@@ -58,23 +58,23 @@ def main():
 			ErrorPrint(res, "Failed to create the Destination 3D view.\n")
 			break
 				
-		# Vertex3D 객체 생성 // Create Vertex3D object
+		# Vertex3D 객체 생성 # Create Vertex3D object
 		vertexMatch3D = CVertexMatch3D()
 
-		# Learn object 설정 // Set the learn object
+		# Learn object 설정 # Set the learn object
 		vertexMatch3D.SetLearnObject(floLearnObject)
 		
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if(res := vertexMatch3D.Learn()).IsFail() :	
 			ErrorPrint(res, "Failed to learn Vertex 3D.")
 			break
 		
-		# 학습 데이터 저장 // Save the learnt data
+		# 학습 데이터 저장 # Save the learnt data
 		if(res := vertexMatch3D.Save("../../ExampleImages/VertexMatch3D/Example FLSM Data.flsm")).IsFail() :
 			ErrorPrint(res, "Failed to save the learnt data file.\n")
 			break		
 
-		# 학습 데이터 불러오기 // Load the learnt data
+		# 학습 데이터 불러오기 # Load the learnt data
 		if(res := vertexMatch3D.Load("../../ExampleImages/VertexMatch3D/Example FLSM Data.flsm")).IsFail() :
 			ErrorPrint(res, "Failed to load the learnt data file.\n")
 			break		
@@ -82,57 +82,57 @@ def main():
 		floSampleObject = CFL3DObject()
 		res, floSampleObject = vertexMatch3D.GetSampledLearn3DObject(floSampleObject)
 
-		# Learn Object 출력 // Display the learn object
+		# Learn Object 출력 # Display the learn object
 		if(res := view3DLearn.PushObject(floLearnObject)).IsFail() :
 			ErrorPrint(res, "Failed to display the 3D object.\n")
 			break		
 
-		# Sampled data 출력 // Display the sampled data
+		# Sampled data 출력 # Display the sampled data
 		if(res := view3DLearn.PushObject(floSampleObject)).IsFail() :		
 			ErrorPrint(res, "Failed to display the 3D object.\n")
 			break		
 
-		# Source object 설정 // Set the source object
+		# Source object 설정 # Set the source object
 		vertexMatch3D.SetSourceObject(floSourceObject)
-		# Min score 설정 // Set the min score
+		# Min score 설정 # Set the min score
 		vertexMatch3D.SetMinScore(0.3)
-		# 최대 결과 개수 설정 // Set the max count of match result
+		# 최대 결과 개수 설정 # Set the max count of match result
 		vertexMatch3D.SetMaxObject(1)
-		# 학습 샘플링 거리 설정 // Set the learn sampling distance
+		# 학습 샘플링 거리 설정 # Set the learn sampling distance
 		vertexMatch3D.SetLearnSamplingDistance(0.03)
-		# 장면 샘플링 거리 설정 // Set the scene sampling distance
+		# 장면 샘플링 거리 설정 # Set the scene sampling distance
 		vertexMatch3D.SetSceneSamplingDistance(0.03)
-		# 키포인트 비율 설정 // Set the keypoint ratio.
+		# 키포인트 비율 설정 # Set the keypoint ratio.
 		vertexMatch3D.SetKeypointRatio(0.5)
-		# 엣지 학습 여부 설정 // Set the edge train
+		# 엣지 학습 여부 설정 # Set the edge train
 		vertexMatch3D.EnableTrainEdge(False)
-		# 배경 제거 여부 설정 // Set the background removal
+		# 배경 제거 여부 설정 # Set the background removal
 		vertexMatch3D.EnableBackgroundRemoval(False)
-		# 클러스터링 범위 설정 // Set the clustering range
+		# 클러스터링 범위 설정 # Set the clustering range
 		vertexMatch3D.SetClusterRange(0.02)
-		# 포즈 조정 반복 횟수 설정 // Set the iteration value of pose refinement
+		# 포즈 조정 반복 횟수 설정 # Set the iteration value of pose refinement
 		vertexMatch3D.SetIteration(15)
-		# 초기 점수 설정 // Set the initial score
+		# 초기 점수 설정 # Set the initial score
 		vertexMatch3D.SetInitialScore(0.1)
 
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if(res := vertexMatch3D.Execute()).IsFail() :	
 			ErrorPrint(res, "Failed to execute Vertex Match 3D.")
 			break
 
 
-		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately		
+		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately		
 		layer3DDst = view3DDst.GetLayer(0)
 		layer3DSource = view3DSource.GetLayer(0)
 		layer3DLearn = view3DLearn.GetLayer(0)
 		
-		# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
+		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
 		layer3DDst.Clear()
 		layer3DSource.Clear()
 		layer3DLearn.Clear()
 
-		# View 정보를 디스플레이 합니다. // Display View information.
+		# View 정보를 디스플레이 합니다. # Display View information.
 		# 아래 함수 DrawTextCanvas은 Screen좌표를 기준으로 하는 String을 Drawing 한다.# The function DrawTextCanvas below draws a String based on the screen coordinates.
 		# 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 ->
 		#                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
@@ -198,7 +198,7 @@ def main():
 			flpTrans.y = sResult.tp3TranslationVector.y
 			flpTrans.z = sResult.tp3TranslationVector.z
 
-			# 추정한 포즈 결과를 Console창에 출력한다 // Print the estimated pose matrix to the console window
+			# 추정한 포즈 결과를 Console창에 출력한다 # Print the estimated pose matrix to the console window
 			Console.WriteLine(" ▷ Pose Matrix 0", i)
 			Console.WriteLine("  1. R : Rotation, T : Translation\n")
 			Console.WriteLine("    Rx   : {0}", f64ArrRotX)
@@ -237,12 +237,12 @@ def main():
 		view3DLearn.ZoomFit()
 		view3DSource.ZoomFit()
 
-		# 이미지 뷰를 갱신 합니다. // Update image view
+		# 이미지 뷰를 갱신 합니다. # Update image view
 		view3DLearn.Invalidate(True)
 		view3DSource.Invalidate(True)
 		view3DDst.Invalidate(True)
 
-		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 // Wait for the image and 3D view to close
+		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 # Wait for the image and 3D view to close
 		while view3DSource.IsAvailable() and view3DLearn.IsAvailable() and view3DDst.IsAvailable() :
 			CThreadUtilities.Sleep(1)
 
@@ -250,7 +250,7 @@ def main():
 	
 	# End of main function
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

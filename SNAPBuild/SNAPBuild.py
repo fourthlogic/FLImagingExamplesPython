@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,25 +7,25 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-	# 스냅 빌드 객체 선언 // Declare SNAP Build
+	# 스냅 빌드 객체 선언 # Declare SNAP Build
 	buildSNAP = CSNAPBuild()
 
 	while True:
 
-		# 스냅 파일 로드 // Load SNAP file
+		# 스냅 파일 로드 # Load SNAP file
 		if (res := buildSNAP.Load('../../FLImagingExamplesSNAP/Advanced Functions/Object/Blob/Blob.flsf')).IsFail():
 			ErrorPrint(res, 'Failed to load the file.')
 			break
 
-		# 스냅 실행 // Run SNAP
+		# 스냅 실행 # Run SNAP
 		if (res := buildSNAP.Run()).IsFail():
 			ErrorPrint(res, 'Failed to run the SNAP.')
 			break
 
-		# 스냅이 종료될 때 까지 기다림 // Wait for the SNAP to close
+		# 스냅이 종료될 때 까지 기다림 # Wait for the SNAP to close
 		while buildSNAP.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
@@ -35,7 +35,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res: CResult, string: str):
 	if len(string) > 1:
 		print(string)

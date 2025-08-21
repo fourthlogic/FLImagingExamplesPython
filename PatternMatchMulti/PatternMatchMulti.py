@@ -11,17 +11,17 @@ def ErrorPrint(res, msg):
     print(f"Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n")
     input()
 
-# 이미지 객체 선언 // Declare the image object
+# 이미지 객체 선언 # Declare the image object
 fliLearnImage = [CFLImage(), CFLImage()]
 fliFindImage = CFLImage()
 
-# 이미지 뷰 선언 // Declare the image view
+# 이미지 뷰 선언 # Declare the image view
 viewImageLearn = [CGUIViewImage(), CGUIViewImage()]
 viewImageFind = CGUIViewImage()
 
 res = CResult()
 
-# Pattern Match Multi 객체 생성 // Create Pattern Match Multi object
+# Pattern Match Multi 객체 생성 # Create Pattern Match Multi object
 patternMatchMulti = CPatternMatchMulti()
 
 while True:
@@ -36,17 +36,17 @@ while True:
     ]
 
     for i64DataIdx in range(2):
-        # 이미지 로드 // Load image
+        # 이미지 로드 # Load image
         if (res := fliLearnImage[i64DataIdx].Load(arrPath[i64DataIdx])).IsFail():
             ErrorPrint(res, "Failed to load the image file.")
             break
 
-        # 이미지 뷰 생성 // Create image view
+        # 이미지 뷰 생성 # Create image view
         if (res := viewImageLearn[i64DataIdx].Create(400 + 512 * i64DataIdx, 0, 400 + 512 * (i64DataIdx + 1), 384)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
-        # 이미지 뷰에 이미지를 디스플레이 // Display the image in the image view
+        # 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
         if (res := viewImageLearn[i64DataIdx].SetImagePtr(fliLearnImage[i64DataIdx])[0]).IsFail():
             ErrorPrint(res, "Failed to set image object on the image view.")
             break
@@ -54,21 +54,21 @@ while True:
         layerLearn = viewImageLearn[i64DataIdx].GetLayer(0)
         layerLearn.Clear()
 
-        # 학습할 이미지 설정 // Set the image to learn
+        # 학습할 이미지 설정 # Set the image to learn
         patternMatchMulti.SetLearnImage(fliLearnImage[i64DataIdx])
 
-        # 학습할 영역을 설정합니다. // Set the area to learn.
+        # 학습할 영역을 설정합니다. # Set the area to learn.
         flpLearnPivot = CFLPoint[Double](arrLearnRegion[i64DataIdx].GetCenter())
         patternMatchMulti.SetLearnROI(arrLearnRegion[i64DataIdx])
         patternMatchMulti.SetLearnPivot(flpLearnPivot)
 
-        # 알고리즘 학습 수행 // Learn the Algoritm
+        # 알고리즘 학습 수행 # Learn the Algoritm
         res = patternMatchMulti.Learn(arrClassName[i64DataIdx])
         if res.IsFail():
             ErrorPrint(res, "Failed to Learn.")
             break
 
-        # 측정 영역이 어디인지 알기 위해 디스플레이 한다 // Display to know where the measurement area is
+        # 측정 영역이 어디인지 알기 위해 디스플레이 한다 # Display to know where the measurement area is
         res = layerLearn.DrawFigureImage(arrLearnRegion[i64DataIdx], EColor.BLACK, 3)
         if res.IsFail():
             ErrorPrint(res, "Failed to draw figure")
@@ -79,7 +79,7 @@ while True:
             ErrorPrint(res, "Failed to draw figure")
             break
 
-        # 설정된 중심점의 위치를 디스플레이 한다 // Display the position of the set center point
+        # 설정된 중심점의 위치를 디스플레이 한다 # Display the position of the set center point
         flfaPointPivot = flpLearnPivot.MakeCrossHair(3, False)
 
         res = layerLearn.DrawFigureImage(flfaPointPivot, EColor.BLACK, 3)
@@ -100,7 +100,7 @@ while True:
             ErrorPrint(res, "Failed to draw text")
             break
 
-        # 학습한 정보에 대해 Console창에 출력한다 // Print the learned information to the console window
+        # 학습한 정보에 대해 Console창에 출력한다 # Print the learned information to the console window
         print(f"  < LEARN CLASS {arrClassName[i64DataIdx]} > ")
         print("  1. ROI Shape Type : Rectangle")
         print(f"    left   : {arrLearnRegion[i64DataIdx].left}")
@@ -110,20 +110,20 @@ while True:
         print(f"    angle  : {arrLearnRegion[i64DataIdx].angle}")
         print(f"  2. Interest Pivot : ({flpLearnPivot.x}, {flpLearnPivot.y})\n")
 
-        # 이미지 뷰를 갱신 합니다. // Update the image view.
+        # 이미지 뷰를 갱신 합니다. # Update the image view.
         viewImageLearn[i64DataIdx].Invalidate(True)
 
-    # 이미지 로드 // Load image
+    # 이미지 로드 # Load image
     res = fliFindImage.Load("../../ExampleImages/Matching/Pattern Multi Find.flif")
     if res.IsFail():
         break
 
-    # 이미지 뷰 생성 // Create image view
+    # 이미지 뷰 생성 # Create image view
     if (res := viewImageFind.Create(400, 384, 1168, 960)).IsFail():
         ErrorPrint(res, "Failed to create the image view.")
         break
 
-    # 이미지 뷰에 이미지를 디스플레이 // display the image in the imageview
+    # 이미지 뷰에 이미지를 디스플레이 # display the image in the imageview
     if (res := viewImageFind.SetImagePtr(fliFindImage)[0]).IsFail():
         ErrorPrint(res, "Failed to set image object on the image view.")
         break
@@ -143,25 +143,25 @@ while True:
         break
 
     # 검출 설정들
-    # 찾을 이미지 설정 // Set the image to find
+    # 찾을 이미지 설정 # Set the image to find
     patternMatchMulti.SetSourceImage(fliFindImage)
-    # 스케일 범위 설정 // Set the scale range
+    # 스케일 범위 설정 # Set the scale range
     patternMatchMulti.SetScaleRange(1.0, 1.0)
-    # 각도 바이어스 설정 // Set the angle bias
+    # 각도 바이어스 설정 # Set the angle bias
     patternMatchMulti.SetAngleBias(0.0)
-    # 각도 허용 오차 설정 // Set the angle tolerance
+    # 각도 허용 오차 설정 # Set the angle tolerance
     patternMatchMulti.SetAngleTolerance(15.0)
-    # 정밀도 설정 // Set the accuracy
+    # 정밀도 설정 # Set the accuracy
     patternMatchMulti.SetAccuracy(0.5)
-    # 최소 점수 설정 // Set the minimum detection score
+    # 최소 점수 설정 # Set the minimum detection score
     patternMatchMulti.SetMinimumDetectionScore(0.7)
-    # 최대 객체 모드 설정 // Set the maximum object mode
+    # 최대 객체 모드 설정 # Set the maximum object mode
     patternMatchMulti.SetMaxObjectMode(CPatternMatchMulti.EMaxObjectMode.Total)
-    # 총 객체 최대 개수 설정 // Set the total maximum object count
+    # 총 객체 최대 개수 설정 # Set the total maximum object count
     patternMatchMulti.SetMaxObjectTotal(2)
-    # 보간 사용 설정 // Enable interpolation
+    # 보간 사용 설정 # Enable interpolation
     patternMatchMulti.EnableInterpolation(True)
-    # 충돌 감지 방법 설정 // Set the conflict detection method
+    # 충돌 감지 방법 설정 # Set the conflict detection method
     patternMatchMulti.SetConflictDetectionMethod(CPatternMatchMulti.EConflictDetectionMethod.HighestScore)
 
     res = patternMatchMulti.Execute()
@@ -186,7 +186,7 @@ while True:
         i64Idx = arrClassName.index(wstrClassName) if wstrClassName in arrClassName else 0
 
         print(f" < Instance : {i} >")
-        print(f" Class Name); : {wstrClassName}")
+        print(f" Class Name) : {wstrClassName}")
         print("  1. ROI Shape Type : Rectangle")
         print(f"    left   : {flrResultRegion.left}")
         print(f"    right  : {flrResultRegion.right}")
@@ -232,7 +232,7 @@ while True:
 
     viewImageFind.Invalidate(True)
 
-    # 이미지 뷰가 종료될 때 까지 기다림 // Wait for the imageview to close
+    # 이미지 뷰가 종료될 때 까지 기다림 # Wait for the imageview to close
     while viewImageLearn[0].IsAvailable():
         CThreadUtilities.Sleep(1)
 

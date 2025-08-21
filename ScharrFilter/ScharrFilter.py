@@ -25,7 +25,7 @@ def main():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination2 image as same as source image
+		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination2 image as same as source image
 		if (res := fliDestinationImage.Assign(fliSourceImage)).IsFail():
 			ErrorPrint(res, 'Failed to assign the image.')
 			break
@@ -64,7 +64,7 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
-		# ROI 설정을 위한 CFLRect 객체 생성 // Create a CFLRect object for setting ROI
+		# ROI 설정을 위한 CFLRect 객체 생성 # Create a CFLRect object for setting ROI
 		flrROI = CFLRect[int](200, 200, 500, 500)
 
 		# Scharr Filter 객체 생성 # Create Scharr Filter object
@@ -73,16 +73,16 @@ def main():
 		# Source 이미지 설정 # Set the source image
 		scharrFilter.SetSourceImage(fliSourceImage)
 
-		# Source ROI 설정 // Set the source ROI
+		# Source ROI 설정 # Set the source ROI
 		scharrFilter.SetSourceROI(flrROI)
 
 		# Destination 이미지 설정 # Set the destination image
 		scharrFilter.SetDestinationImage(fliDestinationImage)
 
-		# Destination ROI 설정 // Set the destination ROI
+		# Destination ROI 설정 # Set the destination ROI
 		scharrFilter.SetDestinationROI(flrROI)
 
-		# 커널 연산 방법 설정 // Set the kernel method
+		# 커널 연산 방법 설정 # Set the kernel method
 		scharrFilter.SetKernelMethod(CScharrFilter.EKernel.Scharr)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
@@ -99,11 +99,11 @@ def main():
 		layerSource.Clear()
 		layerDestination.Clear()
 
-		# ROI 영역을 디스플레이 한다 // Display ROI
-		# FLImaging의 Figure 객체들은 도형 모양에 상관없이 하나의 함수로 디스플레이가 가능 // FLimaging's Figure objects can be displayed with one function regardless of the shape
-		# 아래 함수 DrawFigureImage는 Image 좌표를 기준으로 하는 Figure를 Drawing 한다는 것을 의미하며 // The function DrawFigureImage below means drawing a picture based on the image coordinates
-		# 마지막 두 개의 파라미터는 불투명도 값이고 1일 경우 불투명, 0일 경우 투명을 의미한다. // The last two parameters are opacity values, which mean opacity for 1 and complete transparency for 0.
-		# 파라미터 순서 : 레이어 -> Figure 객체 -> 선 색 -> 선 두께 -> 면 색 -> 펜 스타일 -> 선 알파값(불투명도) -> 면 알파값 (불투명도) // Parameter order: Layer -> Figure object -> Line color -> Line thickness -> Face color -> Pen style -> Line alpha value (opacity) -> Area alpha value (opacity)
+		# ROI 영역을 디스플레이 한다 # Display ROI
+		# FLImaging의 Figure 객체들은 도형 모양에 상관없이 하나의 함수로 디스플레이가 가능 # FLimaging's Figure objects can be displayed with one function regardless of the shape
+		# 아래 함수 DrawFigureImage는 Image 좌표를 기준으로 하는 Figure를 Drawing 한다는 것을 의미하며 # The function DrawFigureImage below means drawing a picture based on the image coordinates
+		# 마지막 두 개의 파라미터는 불투명도 값이고 1일 경우 불투명, 0일 경우 투명을 의미한다. # The last two parameters are opacity values, which mean opacity for 1 and complete transparency for 0.
+		# 파라미터 순서 : 레이어 -> Figure 객체 -> 선 색 -> 선 두께 -> 면 색 -> 펜 스타일 -> 선 알파값(불투명도) -> 면 알파값 (불투명도) # Parameter order: Layer -> Figure object -> Line color -> Line thickness -> Face color -> Pen style -> Line alpha value (opacity) -> Area alpha value (opacity)
 		if (res := layerSource.DrawFigureImage(flrROI, EColor.LIME)).IsFail():
 			ErrorPrint(res, 'Falied to draw figure.')
 			break

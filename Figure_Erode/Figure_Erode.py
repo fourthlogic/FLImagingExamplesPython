@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,34 +7,34 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 	
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     viewImage = [CGUIViewImage(), CGUIViewImage(), CGUIViewImage(), CGUIViewImage()]
 
     while True:
-        # Source View 생성 // Create Source View
+        # Source View 생성 # Create Source View
         if (res := viewImage[0].Create(200, 0, 700, 500)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
-        # Erode result1 View 생성 // Create Erode result1 view
+        # Erode result1 View 생성 # Create Erode result1 view
         if (res := viewImage[1].Create(700, 0, 1200, 500)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
-        # Erode result2 View 생성 // Create Erode result2 view
+        # Erode result2 View 생성 # Create Erode result2 view
         if (res := viewImage[2].Create(200, 500, 700, 1000)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
-        # Erode result3 View 생성 // Create Erode result3 view
+        # Erode result3 View 생성 # Create Erode result3 view
         if (res := viewImage[3].Create(700, 500, 1200, 1000)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
         
-        # 각 이미지 뷰의 시점을 동기화 한다. // Synchronize the viewpoint of each image view.
+        # 각 이미지 뷰의 시점을 동기화 한다. # Synchronize the viewpoint of each image view.
         if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize view")
             break
@@ -45,7 +45,7 @@ def main():
             ErrorPrint(res, "Failed to synchronize view")
             break
 
-        # 각 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the position of each image view window
+        # 각 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the position of each image view window
         if (res := viewImage[0].SynchronizeWindow(viewImage[1])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize window.")
             break
@@ -56,8 +56,8 @@ def main():
             ErrorPrint(res, "Failed to synchronize window.")
             break
 
-        # 화면에 출력하기 위해 Image View 에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-        # 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
+        # 화면에 출력하기 위해 Image View 에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+        # 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
         layer = [viewImage[0].GetLayer(0), viewImage[1].GetLayer(0), viewImage[2].GetLayer(0), viewImage[3].GetLayer(0)]
 
         # 화면상 좌표(고정 좌표)에 Source Figure View 임을 표시
@@ -71,12 +71,12 @@ def main():
 
         flrgSourceFig = CFLRegion()
 
-        # Source Figure 불러오기 // Load source figure
+        # Source Figure 불러오기 # Load source figure
         if (res := flrgSourceFig.Load("../../ExampleImages/Figure/RegionForReduce.fig")).IsFail():
             ErrorPrint(res, "Failed to load the figure file.")
             break
 
-        # 각 Layer 에 Figure 를 출력 // Draw Figure to each Layers
+        # 각 Layer 에 Figure 를 출력 # Draw Figure to each Layers
         for i in range(4):
             layer[i].DrawFigureImage(flrgSourceFig, EColor.BLACK, 5)
             layer[i].DrawFigureImage(flrgSourceFig, EColor.LIME, 3)
@@ -122,7 +122,7 @@ def main():
             ErrorPrint(res, "Failed to calculate.")
             break
 
-        # View 에 결과 FigureArray 그리기 // Draw the resulting FigureArray in the View
+        # View 에 결과 FigureArray 그리기 # Draw the resulting FigureArray in the View
         layer[1].DrawFigureImage(flfaResult1, EColor.BLACK, 5)
         layer[1].DrawFigureImage(flfaResult1, EColor.CYAN, 3)
         layer[2].DrawFigureImage(flfaResult2, EColor.BLACK, 5)
@@ -134,7 +134,7 @@ def main():
         layer[3].DrawTextCanvas(CFLPoint[Int32](0, 40), "User Defined Kernel", EColor.YELLOW, EColor.BLACK, 20)
         layer[3].DrawFigureCanvas(fleForDrawing, EColor.LIGHTRED, 1, EColor.LIGHTRED, EGUIViewImagePenStyle.Solid, 1.0, 0.5)
 
-        # Console 출력 // Console output
+        # Console 출력 # Console output
         print("\n<Source Figure>\n\n")
         print(f"{CFigureUtilities.ConvertFigureObjectToString(flrgSourceFig)}")
 
@@ -149,11 +149,11 @@ def main():
         print(f"Result3 Figure : {CFigureUtilities.ConvertFigureObjectToString(flfaResult3)}")
 
 
-        # 이미지 뷰들을 갱신 합니다. // Update the image views.
+        # 이미지 뷰들을 갱신 합니다. # Update the image views.
         for i in range(4):
             viewImage[i].Invalidate(True)
 
-        # 이미지 뷰가 하나라도 꺼지면 종료로 간주 // Consider closed when any of image views are turned off
+        # 이미지 뷰가 하나라도 꺼지면 종료로 간주 # Consider closed when any of image views are turned off
         while all(view.IsAvailable() for view in viewImage):
             CThreadUtilities.Sleep(1)
         
@@ -163,7 +163,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

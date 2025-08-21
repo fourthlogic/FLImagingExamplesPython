@@ -5,27 +5,27 @@
 CLibraryUtilities.Initialize()
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res: CResult, string: str):
     if len(string) > 1:
         print(string)
     print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 def main():
-    # 이미지 객체 선언 // Declare the image object
+    # 이미지 객체 선언 # Declare the image object
     arrFliImage = [CFLImage() for _ in range(3)]
 
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     arrViewImage = [CGUIViewImage() for _ in range(3)]
 
     while True:
-        # 이미지 로드 // Load image
+        # 이미지 로드 # Load image
         res = arrFliImage[0].Load("../../ExampleImages/OperationHypotenuse/Sky.flif")
         if res.IsFail():
             ErrorPrint(res, "Failed to load the image file.")
             break
 
-        # 이미지 복사 // Assign images
+        # 이미지 복사 # Assign images
         res = arrFliImage[1].Assign(arrFliImage[0])
         if res.IsFail():
             ErrorPrint(res, "Failed to assign the image file.")
@@ -36,7 +36,7 @@ def main():
             ErrorPrint(res, "Failed to assign the image file.")
             break
 
-        # 이미지 뷰 생성 // Create image views
+        # 이미지 뷰 생성 # Create image views
         res = arrViewImage[0].Create(100, 0, 612, 512)
         if res.IsFail():
             ErrorPrint(res, "Failed to create the image view.")
@@ -51,7 +51,7 @@ def main():
             break
 
         bError = False
-        # 이미지 뷰에 이미지 설정 // Set images to views
+        # 이미지 뷰에 이미지 설정 # Set images to views
         for i in range(3):
             if (res := arrViewImage[i].SetImagePtr(arrFliImage[i])[0]).IsFail():
                 ErrorPrint(res, "Failed to set image object on the image view.")
@@ -60,7 +60,7 @@ def main():
         if bError:
             break
 
-        # 이미지 뷰 동기화 // Synchronize viewpoints and windows
+        # 이미지 뷰 동기화 # Synchronize viewpoints and windows
         if (res := arrViewImage[0].SynchronizePointOfView(arrViewImage[1])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize view")
             break
@@ -74,18 +74,18 @@ def main():
             ErrorPrint(res, "Failed to synchronize window")
             break
 
-        # CMultiVar<double> 생성 // Create CMultiVar objects for scalar values
+        # CMultiVar<double> 생성 # Create CMultiVar objects for scalar values
         mvScalar = CMultiVar[Double](100, 0, 0)
         mvScalar2 = CMultiVar[Double](0, 100, 0)
 
-        # COperationHypotenuse 객체 생성 // Create COperationHypotenuse object
+        # COperationHypotenuse 객체 생성 # Create COperationHypotenuse object
         operationHypotenuse = COperationHypotenuse()
         operationHypotenuse.SetSourceImage(arrFliImage[0])
         operationHypotenuse.SetDestinationImage(arrFliImage[1])
         operationHypotenuse.SetOperationSource(EOperationSource.Scalar)  # 단일 enum 값은 그대로 넘김
         operationHypotenuse.SetScalarValue(mvScalar)
 
-        # 알고리즘 수행 // Execute algorithm
+        # 알고리즘 수행 # Execute algorithm
         if (res := operationHypotenuse.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute operation hypotenuse.")
             break
@@ -98,15 +98,15 @@ def main():
             ErrorPrint(res, "Failed to execute operation hypotenuse.")
             break
 
-        # 레이어 획득 및 초기화 // Get and clear layers
+        # 레이어 획득 및 초기화 # Get and clear layers
         arrLayer = [arrViewImage[i].GetLayer(0) for i in range(3)]
         for layer in arrLayer:
             layer.Clear()
 
-        # 텍스트 위치 // Text position
+        # 텍스트 위치 # Text position
         tpPosition = TPoint[Double](0, 0)
 
-        # 텍스트 출력 // Draw text on layers
+        # 텍스트 출력 # Draw text on layers
         if (res := arrLayer[0].DrawTextCanvas(tpPosition, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
             ErrorPrint(res, "Failed to draw text.")
             break
@@ -117,11 +117,11 @@ def main():
             ErrorPrint(res, "Failed to draw text.")
             break
 
-        # 뷰 갱신 // Invalidate views
+        # 뷰 갱신 # Invalidate views
         for view in arrViewImage:
             view.Invalidate(True)
 
-        # 뷰 종료 대기 // Wait until all views are closed
+        # 뷰 종료 대기 # Wait until all views are closed
         while all(view.IsAvailable() for view in arrViewImage):
              CThreadUtilities.Sleep(1)
 

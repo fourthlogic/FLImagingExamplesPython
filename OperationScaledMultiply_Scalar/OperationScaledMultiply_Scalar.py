@@ -94,14 +94,14 @@ def main():
 		operationScaledMultiply.SetDestinationImage(fliDestination1Image)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		operationScaledMultiply.SetOperationSource(EOperationSource.Scalar);
+		operationScaledMultiply.SetOperationSource(EOperationSource.Scalar)
 
 		# 오버플로 처리 방법 설정 # Set the overflow handling method
-		operationScaledMultiply.SetOverflowMethod(EOverflowMethod.Clamping);
+		operationScaledMultiply.SetOverflowMethod(EOverflowMethod.Clamping)
 		
 		# 곱할 스칼라 값 지정 # Set the Scalar multiplier
-		mvScalar = CMultiVar[Double](128, 128, 128);
-		operationScaledMultiply.SetScalarValue(mvScalar);
+		mvScalar = CMultiVar[Double](128, 128, 128)
+		operationScaledMultiply.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationScaledMultiply.Execute()).IsFail():
@@ -113,8 +113,8 @@ def main():
 		operationScaledMultiply.SetDestinationImage(fliDestination2Image)
 		
 		# 곱할 스칼라 값 지정 # Set the Scalar multiplier
-		mvScalar = CMultiVar[Double](430, 430, 430);
-		operationScaledMultiply.SetScalarValue(mvScalar);
+		mvScalar = CMultiVar[Double](430, 430, 430)
+		operationScaledMultiply.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationScaledMultiply.Execute()).IsFail():

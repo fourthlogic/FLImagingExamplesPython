@@ -5,7 +5,7 @@
 CLibraryUtilities.Initialize()
 
 
-# 경고 코드 // Error print function
+# 경고 코드 # Error print function
 def ErrorPrint(res: CResult, msg: str):
     if len(msg) > 1:
         print(msg)
@@ -13,18 +13,18 @@ def ErrorPrint(res: CResult, msg: str):
     input()
 
 def main():
-    # 이미지 객체 선언 // Declare the image object
+    # 이미지 객체 선언 # Declare the image object
     fliLearnImage = CFLImage()
     fliFindImage = CFLImage()
 
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     viewImageLearn = CGUIViewImage()
     viewImageFind = CGUIViewImage()
 
     res = CResult()
 
     while True:
-        # 이미지 로드 // Load image
+        # 이미지 로드 # Load image
         if (res := fliLearnImage.Load("../../ExampleImages/Matching/Rectangle Array_0.flif")).IsFail():
             ErrorPrint(res, "Failed to load the image file.\n")
             break
@@ -33,7 +33,7 @@ def main():
             ErrorPrint(res, "Failed to load the image file.\n")
             break
 
-        # 이미지 뷰 생성 // Create image view
+        # 이미지 뷰 생성 # Create image view
         if (res := viewImageLearn.Create(400, 0, 912, 384)).IsFail():
             ErrorPrint(res, "Failed to create the image view.\n")
             break
@@ -42,7 +42,7 @@ def main():
             ErrorPrint(res, "Failed to create the image view.\n")
             break
 
-        # 이미지 뷰에 이미지를 디스플레이 // Display the image in the imageview
+        # 이미지 뷰에 이미지를 디스플레이 # Display the image in the imageview
         if (res := viewImageLearn.SetImagePtr(fliLearnImage)[0]).IsFail():
             ErrorPrint(res, "Failed to set image object on the image view.\n")
             break
@@ -51,7 +51,7 @@ def main():
             ErrorPrint(res, "Failed to set image object on the image view.\n")
             break
 
-        # 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
+        # 두 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the positions of the two image view windows
         if (res := viewImageLearn.SynchronizeWindow(viewImageFind)[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize window.\n")
             break
@@ -72,10 +72,10 @@ def main():
             ErrorPrint(res, "Failed to draw text.\n")
             break
 
-        # Rectangle Array Match 객체 생성 // Create Rectangle Array Match Object
+        # Rectangle Array Match 객체 생성 # Create Rectangle Array Match Object
         rectangleArrayMatch = CRectangleArrayMatch()
 
-        # 학습할 영역을 설정합니다. // Set the area to learn.
+        # 학습할 영역을 설정합니다. # Set the area to learn.
         flfaMeasurement = CFLFigureArray()
         flrRect00 = CFLRect[Double](587.479194, 364.452004, 929.550836, 616.575019)
         flrRect01 = CFLRect[Double](583.464651, 1215.493013, 924.560595, 1467.566788)
@@ -90,7 +90,7 @@ def main():
         flpCameraPivot = CFLPoint[Double](0, 0)
         eFitting = CRectangleArrayMatch.EFitting.Enable
 
-        # 검출 시 사용될 파라미터를 설정합니다 // Set the parameters to be used for detection
+        # 검출 시 사용될 파라미터를 설정합니다 # Set the parameters to be used for detection
         rectangleArrayMatch.SetSourceImage(fliFindImage)
         rectangleArrayMatch.SetArray(flfaMeasurement)
         rectangleArrayMatch.SetBaseAngle(0.0)
@@ -109,12 +109,12 @@ def main():
                 ErrorPrint(res, "Failed to draw figure.\n")
                 break
 
-        # 알고리즘 수행 // Execute the algorithm
+        # 알고리즘 수행 # Execute the algorithm
         if (res := rectangleArrayMatch.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute.")
             break
 
-        # 검출 결과 배열의 개수를 가져옵니다 // Get the number of detection result arrays
+        # 검출 결과 배열의 개수를 가져옵니다 # Get the number of detection result arrays
         i64ResultCount = rectangleArrayMatch.GetResultCount()
         f64Score = 0.0
         f64Angle = 0.0
@@ -170,11 +170,11 @@ def main():
             strDisplayResultElement = f"Array Element ID : {int(sResult.i64Index)} Score : {sResult.f64Score:.3f} Angle : {sResult.f64Angle:.3f}"
             print(f" - {strDisplayResultElement}")
 
-        # 이미지 뷰를 갱신 합니다 // Update the image view
+        # 이미지 뷰를 갱신 합니다 # Update the image view
         viewImageLearn.Invalidate(True)
         viewImageFind.Invalidate(True)
 
-        # 이미지 뷰가 종료될 때 까지 기다림 // Wait for the imageview to close
+        # 이미지 뷰가 종료될 때 까지 기다림 # Wait for the imageview to close
         while viewImageLearn.IsAvailable() and viewImageFind.IsAvailable():
             CThreadUtilities.Sleep(1)
 

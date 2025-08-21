@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,7 +7,7 @@ CLibraryUtilities.Initialize()
 
 from System.Collections.Generic import List
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
 	dictEulerString = {
@@ -37,20 +37,20 @@ def main():
 		EEulerSequence.Intrinsic_ZXZ : 'Int_ZXZ'
 				}
 	
-	# 3D 객체 선언 // Declare the 3d object
+	# 3D 객체 선언 # Declare the 3d object
 	floLearn = CFL3DObject()
 
-	# 이미지 뷰 선언 // Declare the image view	
+	# 이미지 뷰 선언 # Declare the image view	
 	view3D = CGUIView3D()
 
 	while True:
 		
 		match = CSurfaceMatch3D()
 
-		# 오일러 각 순서 설정 // Set the euler sequence
+		# 오일러 각 순서 설정 # Set the euler sequence
 		match.SetEulerSequence(EEulerSequence.Extrinsic_XYZ)
 
-		# Learn Object 로드 // Load learn object
+		# Learn Object 로드 # Load learn object
 
 		if(res :=floLearn.Load("../../ExampleImages/PointCloudBasedHandEyeCalibrator3D/Learn.ply")).IsFail() :		
 			ErrorPrint(res, "Failed to load the object.\n")
@@ -59,7 +59,7 @@ def main():
 
 		match.SetLearnObject(floLearn)
 
-		# 피벗 설정 // Set the pivot point.
+		# 피벗 설정 # Set the pivot point.
 		flpPivot = CFLPoint3[Double](-7.880958, -43.990047, 546.119202)
 		match.SetLearnPivot(flpPivot)
 
@@ -67,17 +67,17 @@ def main():
 			ErrorPrint(res, "Failed to learn.\n")
 			break		
 
-		# PointCloudBasedHandEyeCalibrator3D 객체 생성 // Create PointCloudBasedHandEyeCalibrator3D object
+		# PointCloudBasedHandEyeCalibrator3D 객체 생성 # Create PointCloudBasedHandEyeCalibrator3D object
 		pointCloudBasedHandEyeCalibrator3D = CPointCloudBasedHandEyeCalibrator3D()
 
-		# 엔드 이펙터 포즈 로드 // Load the end effector pose
+		# 엔드 이펙터 포즈 로드 # Load the end effector pose
 		if(res :=pointCloudBasedHandEyeCalibrator3D.LoadEndEffectorPose("../../ExampleImages/PointCloudBasedHandEyeCalibrator3D/EndEffectorPose.csv")).IsFail() :		
 			ErrorPrint(res, "Failed to load the file.\n")
 			break		
 
 		pointCloudBasedHandEyeCalibrator3D.Set3DMatchModel(match)
 
-		# Source object 로드 // load the source object			
+		# Source object 로드 # load the source object			
 		i32SourceCount = 9
 
 		for i in range(0, i32SourceCount) :		
@@ -90,27 +90,27 @@ def main():
 		
 			pointCloudBasedHandEyeCalibrator3D.AddSourceObject(floSource)		
 
-		# 캘리브레이션 모드 설정 // Set the calibration mode
+		# 캘리브레이션 모드 설정 # Set the calibration mode
 		pointCloudBasedHandEyeCalibrator3D.SetCalibrationMode(CHandEyeCalibrator3D.ECalibrationMode.EyeInHand)
 
-		# 최적화 방법 설정 // Set the optimization method
+		# 최적화 방법 설정 # Set the optimization method
 		pointCloudBasedHandEyeCalibrator3D.SetOptimizationMethod(EOptimizationMethod.Nonlinear)
 
-		# 회전 타입 설정 // Set the rotation type
+		# 회전 타입 설정 # Set the rotation type
 		pointCloudBasedHandEyeCalibrator3D.SetRotationType(ERotationType.EulerAngle)
 
-		# 엔드 이펙터 각 단위 설정 // Set the end effector angle unit
+		# 엔드 이펙터 각 단위 설정 # Set the end effector angle unit
 		pointCloudBasedHandEyeCalibrator3D.SetEndEffectorAngleUnit(EAngleUnit.Degree)
 
-		# 오일러 각 순서 설정 // Set the euler sequence
+		# 오일러 각 순서 설정 # Set the euler sequence
 		pointCloudBasedHandEyeCalibrator3D.SetEulerSequence(EEulerSequence.Extrinsic_XYZ)
 
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if(res :=pointCloudBasedHandEyeCalibrator3D.Calibrate()).IsFail() :		
 			ErrorPrint(res, "Failed to execute Point Cloud Based Hand Eye Calibrator 3D.")
 			break		
 
-		# 결과 3D 뷰 생성 // Create result 3D view
+		# 결과 3D 뷰 생성 # Create result 3D view
 		if(res :=view3D.Create(612, 0, 1124, 512)).IsFail() :		
 			ErrorPrint(res, "Failed to create the Result 3D view.\n")
 			break		
@@ -123,14 +123,14 @@ def main():
 			listResultEulerAngle = List[Double]()
 			f64RotationError = 0
 			f64TranslationError = 0
-			# 캘리브레이션 결과 얻어오기 // Get the calibration result
+			# 캘리브레이션 결과 얻어오기 # Get the calibration result
 			pointCloudBasedHandEyeCalibrator3D.GetResultHandToEyeRotationVector(matResultRotationVector)
 			pointCloudBasedHandEyeCalibrator3D.GetResultHandToEyeTranslationVector(tp3ResultTranslationVector)
 			pointCloudBasedHandEyeCalibrator3D.GetResultHandToEyeEulerAngle(listResultEulerAngle)
 			res, f64RotationError = pointCloudBasedHandEyeCalibrator3D.GetResultRotationError(f64RotationError)
 			res, f64TranslationError = pointCloudBasedHandEyeCalibrator3D.GetResultTranslationError(f64TranslationError)
 
-			# 3D View의 canvas rect 영역 얻어오기 // Get the canvas rect region
+			# 3D View의 canvas rect 영역 얻어오기 # Get the canvas rect region
 			flrCanvasRegion = view3D.GetClientRectCanvasRegion()
 
 			flpImageSize = CFLPoint[Double](flrCanvasRegion.GetWidth(), flrCanvasRegion.GetHeight())
@@ -161,11 +161,11 @@ def main():
 				tp3Cam = TPoint3[Single]()
 				tp3Board = TPoint3[Single]()
 
-		 		# 결과 3D 객체 얻어오기 // Get the result 3D object
+		 		# 결과 3D 객체 얻어오기 # Get the result 3D object
 				res, fl3DCam, tp3CamCenter = pointCloudBasedHandEyeCalibrator3D.GetResultCamera3DObject(i, fl3DCam, tp3CamCenter)
 
 				if res.IsOK() :
-					# 카메라 포즈 추정에 실패할 경우 NOK 출력 // NOK output if camera pose estimation fails
+					# 카메라 포즈 추정에 실패할 경우 NOK 출력 # NOK output if camera pose estimation fails
 					res, tp3Cam, tp3Board = pointCloudBasedHandEyeCalibrator3D.GetResultReprojectionPoint(i, tp3Cam, tp3Board)
 
 					if res.IsFail() :
@@ -198,7 +198,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

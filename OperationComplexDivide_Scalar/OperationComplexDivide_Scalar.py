@@ -74,14 +74,14 @@ def main():
 		operationComplexDivide.SetDestinationImage(fliDestinationImage)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		operationComplexDivide.SetOperationSource(EOperationSource.Scalar);
+		operationComplexDivide.SetOperationSource(EOperationSource.Scalar)
 
 		# 오버플로 처리 방법 설정 # Set the overflow handling method
-		operationComplexDivide.SetOverflowMethod(EOverflowMethod.Clamping);
+		operationComplexDivide.SetOverflowMethod(EOverflowMethod.Clamping)
 		
 		# 곱할 스칼라 값 지정 # Set the Scalar multiplier
-		mvScalar = CMultiVar[Double](5, 1);
-		operationComplexDivide.SetScalarValue(mvScalar);
+		mvScalar = CMultiVar[Double](5, 1)
+		operationComplexDivide.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationComplexDivide.Execute()).IsFail():

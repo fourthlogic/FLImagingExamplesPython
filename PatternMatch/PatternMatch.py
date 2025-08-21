@@ -5,7 +5,7 @@
 CLibraryUtilities.Initialize()
 
 
-# 경고 코드 // Error print function
+# 경고 코드 # Error print function
 def ErrorPrint(res: CResult, msg: str):
     if len(msg) > 1:
         print(msg)
@@ -13,17 +13,17 @@ def ErrorPrint(res: CResult, msg: str):
     input()
 
 def main():
-    # 이미지 객체 선언 // Declare the image object
+    # 이미지 객체 선언 # Declare the image object
     fliLearnImage = CFLImage()
     fliFindImage = CFLImage()
 
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     viewImageLearn = CGUIViewImage()
     viewImageFind = CGUIViewImage()
 
     res = CResult()
 
-    # 이미지 로드 // Load image
+    # 이미지 로드 # Load image
     if (res := fliLearnImage.Load("../../ExampleImages/Matching/Pattern Single Learn.flif")).IsFail():
         ErrorPrint(res, "Failed to load the image file.")
         return
@@ -32,7 +32,7 @@ def main():
         ErrorPrint(res, "Failed to load the image file.")
         return
 
-    # 이미지 뷰 생성 // Create image view
+    # 이미지 뷰 생성 # Create image view
     if (res := viewImageLearn.Create(400, 0, 912, 384)).IsFail():
         ErrorPrint(res, "Failed to create the image view.")
         return
@@ -41,7 +41,7 @@ def main():
         ErrorPrint(res, "Failed to create the image view.")
         return
 
-    # 이미지 뷰에 이미지를 디스플레이 // display the image in the imageview 
+    # 이미지 뷰에 이미지를 디스플레이 # display the image in the imageview 
     if (res := viewImageLearn.SetImagePtr(fliLearnImage)[0]).IsFail():
         ErrorPrint(res, "Failed to set image object on the image view.")
         return
@@ -50,7 +50,7 @@ def main():
         ErrorPrint(res, "Failed to set image object on the image view.")
         return
 
-    # 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
+    # 두 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the positions of the two image view windows
     if (res := viewImageLearn.SynchronizeWindow(viewImageFind)[0]).IsFail():
         ErrorPrint(res, "Failed to set image object on the image view.")
         return
@@ -71,24 +71,24 @@ def main():
         ErrorPrint(res, "Failed to draw text")
         return
 
-    # Pattern Match 객체 생성 // Create Pattern Match object
+    # Pattern Match 객체 생성 # Create Pattern Match object
     patternMatch = CPatternMatch()
 
-    # 학습할 이미지 설정 // Set the image to learn
+    # 학습할 이미지 설정 # Set the image to learn
     patternMatch.SetLearnImage(fliLearnImage)
 
-    # 학습할 영역을 설정합니다. // Set the area to learn.
+    # 학습할 영역을 설정합니다. # Set the area to learn.
     learnRegion = CFLRect[Double](174.7086, 272.2204, 799.0551, 601.3228)
     flpLearnPivot = CFLPoint[Double](learnRegion.GetCenter())
     patternMatch.SetLearnROI(learnRegion)
     patternMatch.SetLearnPivot(flpLearnPivot)
 
-    # 알고리즘 학습 // Learn the Algoritm
+    # 알고리즘 학습 # Learn the Algoritm
     if (res := patternMatch.Learn()).IsFail():
         ErrorPrint(res, "Failed to Learn.")
         return
 
-    # 측정 영역이 어떻게 되는지 알기 위해 디스플레이 한다 // Display to know where the measurement area is
+    # 측정 영역이 어떻게 되는지 알기 위해 디스플레이 한다 # Display to know where the measurement area is
     if (res := layerLearn.DrawFigureImage(learnRegion, EColor.BLACK, 3)).IsFail():
         ErrorPrint(res, "Failed to draw figure")
         return
@@ -97,7 +97,7 @@ def main():
         ErrorPrint(res, "Failed to draw figure")
         return
 
-    # 설정된 중심점의 위치를 디스플레이 한다 // Display the position of the set center point
+    # 설정된 중심점의 위치를 디스플레이 한다 # Display the position of the set center point
     flfaPointPivot = flpLearnPivot.MakeCrossHair(3, False)
 
     if (res := layerLearn.DrawFigureImage(flfaPointPivot, EColor.BLACK, 3)).IsFail():
@@ -108,7 +108,7 @@ def main():
         ErrorPrint(res, "Failed to draw figure")
         return
 
-    # 학습한 정보에 대해 Console창에 출력한다 // Print the learned information to the console window
+    # 학습한 정보에 대해 Console창에 출력한다 # Print the learned information to the console window
     print(" ▷ Learn Information")
     print("  1. ROI Shape Type : Rectangle")
     print("    left   : {}".format(learnRegion.left))
@@ -119,10 +119,10 @@ def main():
     print("  2. Interest Pivot : ({}, {})".format(flpLearnPivot.x, flpLearnPivot.y))
     print("")
 
-    # 검출할 이미지 설정 // Set image to detect
+    # 검출할 이미지 설정 # Set image to detect
     patternMatch.SetSourceImage(fliFindImage)
 
-    # 검출 시 사용될 파라미터를 설정합니다. // Set the parameters to be used for detection.
+    # 검출 시 사용될 파라미터를 설정합니다. # Set the parameters to be used for detection.
     patternMatch.SetScaleRange(0.95, 1.05)
     patternMatch.SetAngleBias(0.0)
     patternMatch.SetAngleTolerance(10.0)
@@ -131,7 +131,7 @@ def main():
     patternMatch.SetMaxObject(1)
     patternMatch.EnableInterpolation(True)
 
-    # 알고리즘 수행 // Execute the Algoritm 
+    # 알고리즘 수행 # Execute the Algoritm 
     if (res := patternMatch.Execute()).IsFail():
         ErrorPrint(res, "Failed to execute")
         return
@@ -193,11 +193,11 @@ def main():
             ErrorPrint(res, "Failed to draw text")
             return
 
-    # 이미지 뷰를 갱신 합니다. // Update the image view.
+    # 이미지 뷰를 갱신 합니다. # Update the image view.
     viewImageLearn.Invalidate(True)
     viewImageFind.Invalidate(True)
 
-    # 이미지 뷰가 종료될 때 까지 기다린 // Wait for the imageview to close
+    # 이미지 뷰가 종료될 때 까지 기다린 # Wait for the imageview to close
     while viewImageLearn.IsAvailable():
         CThreadUtilities.Sleep(1)
 

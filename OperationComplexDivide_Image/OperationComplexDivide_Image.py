@@ -82,14 +82,14 @@ def main():
 		operationComplexDivide.SetDestinationImage(fliDestinationImage)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to image
-		operationComplexDivide.SetOperationSource(EOperationSource.Image);
+		operationComplexDivide.SetOperationSource(EOperationSource.Image)
 
 		# 오버플로 처리 방법 설정 # Set the overflow handling method
-		operationComplexDivide.SetOverflowMethod(EOverflowMethod.Wrapping);
+		operationComplexDivide.SetOverflowMethod(EOverflowMethod.Wrapping)
 
-		# 공백 색상 칠하기 모드 해제 // Set the Fill blank color mode false
-		# 결과 이미지가 이미 존재할 경우 연산되지 않은 영역을 공백 색상으로 칠하지 않고 원본 그대로 둔다. // If the destination image already exists, the uncomputed area is left intact without being painted in a blank color.
-		operationComplexDivide.EnableFillBlankColorMode(False);
+		# 공백 색상 칠하기 모드 해제 # Set the Fill blank color mode false
+		# 결과 이미지가 이미 존재할 경우 연산되지 않은 영역을 공백 색상으로 칠하지 않고 원본 그대로 둔다. # If the destination image already exists, the uncomputed area is left intact without being painted in a blank color.
+		operationComplexDivide.EnableFillBlankColorMode(False)
 		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationComplexDivide.Execute()).IsFail():

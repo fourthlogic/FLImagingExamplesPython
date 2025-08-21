@@ -30,8 +30,8 @@ def main():
     for i in range(len(viewIndex)):
         arrImage[i].Load("../../ExampleImages/Blob/Blob Sort {}.flif".format(i + 1))
         
-        x = i % 2;
-        y = int(i / 2);
+        x = i % 2
+        y = int(i / 2)
 
         # 이미지 뷰 생성 # Create image view
         if (res := arrViewImage[i].Create(x * 400 + 400, y * 400, x * 400 + 400 + 400, y * 400 + 400)).IsFail():
@@ -95,7 +95,7 @@ def main():
         # 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
         layer.Clear()
     
-        flp = CFLPoint[Double]();
+        flp = CFLPoint[Double]()
 
         if (res := layer.DrawTextCanvas(flp, ("SortClusterMode (Y Asc, X Asc)"), EColor.YELLOW, EColor.BLACK, 30)).IsFail():
             ErrorPrint(res, "Failed to draw text on the image view.\n")

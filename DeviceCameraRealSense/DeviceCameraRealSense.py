@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -60,16 +60,16 @@ class CDeviceEventImageEx(CDeviceEventImageBase):
 
 			break
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-	# CResult 객체 선언 // Declare the CRessult object
+	# CResult 객체 선언 # Declare the CRessult object
 	er = CResult(EResult.UnknownError)
 
-	# 3D 뷰 선언 // Declare the 3D view
+	# 3D 뷰 선언 # Declare the 3D view
 	view3D = CGUIView3D()
 
-	# RealSense 카메라 선언 // Declare the RealSense camera
+	# RealSense 카메라 선언 # Declare the RealSense camera
 	camRealSense = CDeviceCameraRealSense()
 
 	while True:
@@ -85,7 +85,7 @@ def main():
 			strPatch = input("Enter Patch Version: ")
 
 			if(strMajor.isdigit() and strMinor.isdigit() and strPatch.isdigit()):
-				bValid = True;
+				bValid = True
 
 				i32Major = int(strMajor)
 				i32Minor = int(strMinor)
@@ -101,7 +101,7 @@ def main():
 			else:
 				print("Incorrect input. Please enter again.\n")
 
-		# 카메라 인식 방법 선택 // Select Detection Method
+		# 카메라 인식 방법 선택 # Select Detection Method
 		while True:
 
 			print("1. Auto Detect")
@@ -128,7 +128,7 @@ def main():
 		if(bAutoDetect):
 			listSerialNumbers = List[String]()
 
-			# 연결되어 있는 카메라의 시리얼 번호를 가져온다. // Get serial numbers of connected cameras
+			# 연결되어 있는 카메라의 시리얼 번호를 가져온다. # Get serial numbers of connected cameras
 			er = camRealSense.GetAutoDetectCameraSerialNumbers(listSerialNumbers)
 
 			if(er[0].IsFail() or listSerialNumbers.Count == 0):
@@ -136,7 +136,7 @@ def main():
 				print("Not Found Device.\n")
 				break
 
-			# 연결할 카메라를 선택한다. // Select camera to be connected.
+			# 연결할 카메라를 선택한다. # Select camera to be connected.
 			while(True):
 				for i in range(listSerialNumbers.Count):
 					strElement = String.Format("{0}. ", i + 1)
@@ -155,29 +155,29 @@ def main():
 
 				print("Incorrect input. Please select again.\n\n")
 		else:
-			# 시리얼 번호를 입력 받는다. // Enter the serial number.
+			# 시리얼 번호를 입력 받는다. # Enter the serial number.
 			strConnection = input("Input Serial Number: ")
 
-		# 이벤트를 받을 객체 선언 // Declare the object that receives events
+		# 이벤트를 받을 객체 선언 # Declare the object that receives events
 		eventImage = CDeviceEventImageEx()
 
-		# 카메라에 이벤트 객체 설정 // Set event object on Camera 
+		# 카메라에 이벤트 객체 설정 # Set event object on Camera 
 		camRealSense.RegisterDeviceEvent(eventImage)
 
 		if(bAutoDetect):
-			# 연결할 인덱스에 해당하는 카메라를 설정한다. // Set the camera corresponding to the index to be connected.
+			# 연결할 인덱스에 해당하는 카메라를 설정한다. # Set the camera corresponding to the index to be connected.
 			if((er := camRealSense.AutoDetectCamera(i32SelectDevice)).IsFail()):
 				print("Failed to Select Device.\n")
 		else:
-			# 카메라에 연결할 시리얼 번호를 설정한다. // Set the serial number to camera
+			# 카메라에 연결할 시리얼 번호를 설정한다. # Set the serial number to camera
 			camRealSense.SetSerialNumber(strConnection)
 
-		# 카메라 초기화 // Initialize the camera
+		# 카메라 초기화 # Initialize the camera
 		if((er := camRealSense.Initialize()).IsFail()):
 			print("Failed to initialize the camera.\n")
 			break
 
-		# 3D지 뷰 생성 // Create 3D view
+		# 3D지 뷰 생성 # Create 3D view
 		if((er := view3D.Create(0,0,1000,1000)).IsFail()):
 			er = EResult.FailedToCreateObject
 			print("Failed to create the 3D view.\n")
@@ -185,25 +185,25 @@ def main():
 
 		eventImage.SetView3D(view3D)
 
-		# 카메라 Live // Live the camera
+		# 카메라 Live # Live the camera
 		if((er := camRealSense.Live()).IsFail()):
 			print("Failed to live the camera\n")
 			break
 
-		# 3D지 뷰가 종료될 때 까지 기다림 // Wait for the 3D view to close.
+		# 3D지 뷰가 종료될 때 까지 기다림 # Wait for the 3D view to close.
 		while(view3D.IsAvailable()):
 			CThreadUtilities.Sleep(1)
 
 		break
 	
-	# 카메라의 초기화를 해제 // Terminate the camera
+	# 카메라의 초기화를 해제 # Terminate the camera
 	camRealSense.Terminate()
-	# 카메라에 연결된 이벤트 객체 삭제 // Clear the object that receives events.
+	# 카메라에 연결된 이벤트 객체 삭제 # Clear the object that receives events.
 	camRealSense.ClearDeviceEvents()
 
 	# End of main function
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res: CResult, string: str):
 	if len(string) > 1:
 		print(string)

@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -8,22 +8,22 @@ CLibraryUtilities.Initialize()
 from System.Collections.Generic import List
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-	# 3D 객체 선언 // Declare 3D object
+	# 3D 객체 선언 # Declare 3D object
 	fl3DODestinationObject = CFL3DObject()
 	fl3DOSourceObject = CFL3DObject()
 
-	# 3D 뷰 선언 // Declare 3D view	
+	# 3D 뷰 선언 # Declare 3D view	
 	view3DDst = CGUIView3D()
 	view3DSource = CGUIView3D()
 
-	# 알고리즘 동작 결과 // Algorithm execution result
+	# 알고리즘 동작 결과 # Algorithm execution result
 	res = CResult()
 
 	while True:		
-		# Source Object 로드 // Load the Source object
+		# Source Object 로드 # Load the Source object
 		if(res := fl3DOSourceObject.Load("../../ExampleImages/EdgeDetector3D/Sample.ply")).IsFail() :		
 			ErrorPrint(res, "Failed to load the object file.\n")
 			break
@@ -41,39 +41,39 @@ def main():
 			break
 		
 
-		# Source Object 3D 뷰 생성 // Create the source object 3D view
+		# Source Object 3D 뷰 생성 # Create the source object 3D view
 		if(res := view3DSource.PushObject(fl3DOSourceObject)).IsFail() :		
 			ErrorPrint(res, "Failed to display the 3D object.\n")
 			break
 		
-		# EdgeDetector3D 객체 생성 // Create EdgeDetector3D object
+		# EdgeDetector3D 객체 생성 # Create EdgeDetector3D object
 		edgeDetector3D = CEdgeDetector3D()
 
-		# Destination object 설정 // Set the learn object
+		# Destination object 설정 # Set the learn object
 		edgeDetector3D.SetDestinationObject(fl3DODestinationObject)
-		# Source object 설정 // Set the source object
+		# Source object 설정 # Set the source object
 		edgeDetector3D.SetSourceObject(fl3DOSourceObject)
-		# Min score 설정 // Set the min score
+		# Min score 설정 # Set the min score
 		edgeDetector3D.SetEdgeThreshold(0.01)
-		# 장면 샘플링 거리 설정 // Set the scene sampling distance
+		# 장면 샘플링 거리 설정 # Set the scene sampling distance
 		edgeDetector3D.SetNearestNeighborCount(32)
 
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if(res := edgeDetector3D.Execute()).IsFail() :	
 			ErrorPrint(res, "Failed to execute Edge Detector 3D.")
 			break
 		
 
-		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately		
+		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately		
 		layer3DDst = view3DDst.GetLayer(0)
 		layer3DSource = view3DSource.GetLayer(0)
 		
-		# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
+		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
 		layer3DDst.Clear()
 		layer3DSource.Clear()
 
-		# View 정보를 디스플레이 합니다. // Display View information.
+		# View 정보를 디스플레이 합니다. # Display View information.
 		# 아래 함수 DrawTextCanvas은 Screen좌표를 기준으로 하는 String을 Drawing 한다.# The function DrawTextCanvas below draws a String based on the screen coordinates.
 		# 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 ->
 		#                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
@@ -105,11 +105,11 @@ def main():
 		view3DDst.ZoomFit()
 		view3DSource.ZoomFit()
             	
-		# 이미지 뷰를 갱신 합니다. // Update image view
+		# 이미지 뷰를 갱신 합니다. # Update image view
 		view3DSource.Invalidate(True)
 		view3DDst.Invalidate(True)
 
-		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 // Wait for the image and 3D view to close
+		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 # Wait for the image and 3D view to close
 		while view3DSource.IsAvailable() and view3DDst.IsAvailable() :
 			CThreadUtilities.Sleep(1)
 
@@ -117,7 +117,7 @@ def main():
 	
 	# End of main function
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

@@ -198,7 +198,7 @@ class FigureOperationApp(tk.Tk):
         # Create a Figure object in the image view.
         self.m_viewImage.PushBackFigureObject(flFigure, EAvailableFigureContextMenu.All)
 
-        # 이미지 뷰를 갱신한다. // Update the image view.
+        # 이미지 뷰를 갱신한다. # Update the image view.
         self.m_viewImage.Invalidate(True)
 
         # 콤보 박스에 Figure Object 항목을 설정한다.
@@ -215,10 +215,10 @@ class FigureOperationApp(tk.Tk):
         # Removes Figure Objects currently in the image view.
         self.m_viewImage.ClearFigureObject()
 
-        layer = self.m_viewImage.GetLayer(0);
+        layer = self.m_viewImage.GetLayer(0)
         layer.Clear()
 
-        # 이미지 뷰를 갱신한다. // Update the image view.
+        # 이미지 뷰를 갱신한다. # Update the image view.
         self.m_viewImage.Invalidate(True)
         # 콤보 박스에 Figure Object 항목을 설정한다.
         # Sets the Figure Object items in the combo box.
@@ -250,16 +250,16 @@ class FigureOperationApp(tk.Tk):
             selected_index = self.comboBoxOperation.current()
 
             if selected_index == 0:
-                # Intersection Operation 수행 // Execute intersection operation
+                # Intersection Operation 수행 # Execute intersection operation
                 res = flFigure1.GetRegionOfIntersection(flFigure2, flfaRes)[0]
             elif selected_index == 1:
-                # Union Operation 수행 // Execute union operation
+                # Union Operation 수행 # Execute union operation
                 res = flFigure1.GetRegionOfUnion(flFigure2, flfaRes)[0]
             elif selected_index == 2:
-                # Subtraction Operation 수행 // Execute subtraction operation
+                # Subtraction Operation 수행 # Execute subtraction operation
                 res = flFigure1.GetRegionOfSubtraction(flFigure2, flfaRes)[0]
             elif selected_index == 3:
-                # Exclusive Or Operation 수행 // Execute exclusive or operation
+                # Exclusive Or Operation 수행 # Execute exclusive or operation
                 res = flFigure1.GetRegionOfExclusiveOr(flFigure2, flfaRes)[0]
 
             if res.IsFail():
@@ -350,7 +350,7 @@ class FigureOperationApp(tk.Tk):
         flFigure1 = self.GetSelectedFigure1()
         flFigure2 = self.GetSelectedFigure2()
 
-        layer = self.m_viewImage.GetLayer(0);
+        layer = self.m_viewImage.GetLayer(0)
         layer.Clear()
 
         if (flFigure1 is None) and (flFigure2 is None):
@@ -466,7 +466,7 @@ class FigureOperationApp(tk.Tk):
             if i32Selected < 0:
                 break
 
-            # 해당 인덱스의 Figure Object 를 얻어온다. // Get the Figure Object of the corresponding index
+            # 해당 인덱스의 Figure Object 를 얻어온다. # Get the Figure Object of the corresponding index
             flfReturn = self.m_viewImage.GetFigureObject(i32Selected)
 
             break
@@ -486,7 +486,7 @@ class FigureOperationApp(tk.Tk):
             if i32Selected < 0:
                 break
 
-            # 해당 인덱스의 Figure Object 를 얻어온다. // Get the Figure Object of the corresponding index
+            # 해당 인덱스의 Figure Object 를 얻어온다. # Get the Figure Object of the corresponding index
             flfReturn = self.m_viewImage.GetFigureObject(i32Selected)
 
             break

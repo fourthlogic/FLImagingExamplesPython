@@ -129,25 +129,25 @@ def main():
 
                 for k in range(flrgExclusive.GetCount()):
                     if k != 0:
-                        print(",");
+                        print(",")
 
                     if isinstance(flrgExclusive.GetAt(k), CFLPoint[Double]):
                         flpVertex = flrgExclusive.GetAt(k)
                     else:
                         flpVertex  = None
             
-                    print("({}, {})", flpVertex.x, flpVertex.y);
+                    print("({}, {})", flpVertex.x, flpVertex.y)
 
-                print("]\n");
+                print("]\n")
             
 
-            print(" }\n");
+            print(" }\n")
             
-        print("]\n\n");
+        print("]\n\n")
 
-        flr = CFLRect[Double]();
+        flr = CFLRect[Double]()
 
-        flrgContour.GetBoundaryRect(flr);
+        flrgContour.GetBoundaryRect(flr)
 
         layer.DrawTextImage(CFLPoint[Double](flr.left, flr.top), f"{i}", EColor.BLACK, EColor.YELLOW, 12, False, 0, EGUIViewImageTextAlignment.CENTER, None, 1.0, 1.0, EGUIViewImageFontWeight.BOLD, False)
        

@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,23 +7,23 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 	
-    # Figure 객체 선언 // Declare figure object
+    # Figure 객체 선언 # Declare figure object
     flfaSource = CFLFigureArray()
 
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     viewImageCenterFirst = CGUIViewImage()
     viewImageAreaFirst = CGUIViewImage()
 
     while True:
-        # Figure 로드 // Load figure
+        # Figure 로드 # Load figure
         if (res := flfaSource.Load("../../ExampleImages/Figure/various shapes2.fig")).IsFail():
             ErrorPrint(res, "Failed to load the figure file.")
             break
 
-        # 이미지 뷰 생성 // Create image view
+        # 이미지 뷰 생성 # Create image view
         if (res := viewImageCenterFirst.Create(200, 0, 968, 576)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
@@ -32,19 +32,19 @@ def main():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
-        # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
+        # 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
         if (res := viewImageCenterFirst.SynchronizePointOfView(viewImageAreaFirst)[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize view")
             break
 
-        # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
+        # 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
         if (res := viewImageCenterFirst.SynchronizeWindow(viewImageAreaFirst)[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize window.")
             break
 
-        # 화면상에 잘 보이도록 좌표 1.5배율을 적용 // Apply 1.5 magnification to the coordinates so that they can be seen clearly on the screen
+        # 화면상에 잘 보이도록 좌표 1.5배율을 적용 # Apply 1.5 magnification to the coordinates so that they can be seen clearly on the screen
         f64Scale = 1.5
-        # 화면상에 잘 보이도록 시점 Offset 조정 // Adjust the viewpoint offset so that it can be seen clearly on the screen
+        # 화면상에 잘 보이도록 시점 Offset 조정 # Adjust the viewpoint offset so that it can be seen clearly on the screen
         f64CenterCoordX = 200.0
         f64CenterCoordY = 180.0
 
@@ -65,12 +65,12 @@ def main():
             ErrorPrint(res, "Failed to sort.")
             break
 
-        # 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-        # 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
+        # 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+        # 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
         layerCenterFirst = viewImageCenterFirst.GetLayer(0)
         layerAreaFirst = viewImageAreaFirst.GetLayer(0)
 
-        # 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
+        # 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
         layerCenterFirst.Clear()
         layerAreaFirst.Clear()
 
@@ -103,7 +103,7 @@ def main():
             ErrorPrint(res, "Failed to draw figure objects on the image view.")
             break
 
-        # 정보값을 각각 확인하는 코드 // Code to check each information value
+        # 정보값을 각각 확인하는 코드 # Code to check each information value
         for i in range(flfaCenterFirst.GetCount()):
             flf = flfaCenterFirst.GetAt(i)
 
@@ -124,11 +124,11 @@ def main():
 
             layerAreaFirst.DrawTextImage(flpCenter, f"{i}", EColor.CYAN, EColor.BLACK, 12, False, 0.0, EGUIViewImageTextAlignment.CENTER_CENTER)
 
-        # 이미지 뷰를 갱신 합니다. // Update image view
+        # 이미지 뷰를 갱신 합니다. # Update image view
         viewImageCenterFirst.RedrawWindow()
         viewImageAreaFirst.RedrawWindow()
 
-        # 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
+        # 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close
         while viewImageCenterFirst.IsAvailable() and viewImageAreaFirst.IsAvailable():
             CThreadUtilities.Sleep(1)
         
@@ -138,7 +138,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

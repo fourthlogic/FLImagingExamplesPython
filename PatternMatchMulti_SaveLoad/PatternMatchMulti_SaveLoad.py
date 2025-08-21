@@ -5,26 +5,26 @@
 CLibraryUtilities.Initialize()
 
 
-# 경고 코드 // Error print function
+# 경고 코드 # Error print function
 def ErrorPrint(res: CResult, msg: str):
     if len(msg) > 1:
         print(msg)
     print(f"Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n")
     input()
 
-# 메인 함수 시작 // Main function start
+# 메인 함수 시작 # Main function start
 def main():
-    # 이미지 객체 선언 // Declare the image object
+    # 이미지 객체 선언 # Declare the image object
     fliLearnImage = [CFLImage(), CFLImage()]
     fliFindImage = CFLImage()
 
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     viewImageLearn = [CGUIViewImage(), CGUIViewImage()]
     viewImageFind = CGUIViewImage()
 
     res = CResult()
 
-    # Pattern Match Multi 객체 생성 // Create Pattern Match Multi object
+    # Pattern Match Multi 객체 생성 # Create Pattern Match Multi object
     patternMatchMultiSave = CPatternMatchMulti()
     patternMatchMultiLoad = CPatternMatchMulti()
 
@@ -38,17 +38,17 @@ def main():
         ]
 
         for i64DataIdx in range(2):
-            # 이미지 로드 // Load image
+            # 이미지 로드 # Load image
             if (res := fliLearnImage[i64DataIdx].Load(arrPath[i64DataIdx])).IsFail():
                 ErrorPrint(res, "Failed to load the image file.")
                 break
 
-            # 이미지 뷰 생성 // Create image view
+            # 이미지 뷰 생성 # Create image view
             if (res := viewImageLearn[i64DataIdx].Create(400 + 512 * i64DataIdx, 0, 400 + 512 * (i64DataIdx + 1), 384)).IsFail():
                 ErrorPrint(res, "Failed to create the image view.")
                 break
 
-            # 이미지 뷰에 이미지를 디스플레이 // display the image in the imageview
+            # 이미지 뷰에 이미지를 디스플레이 # display the image in the imageview
             if (res := viewImageLearn[i64DataIdx].SetImagePtr(fliLearnImage[i64DataIdx])[0]).IsFail():
                 ErrorPrint(res, "Failed to set image object on the image view.")
                 break
@@ -56,20 +56,20 @@ def main():
             layerLearn = viewImageLearn[i64DataIdx].GetLayer(0)
             layerLearn.Clear()
 
-            # 학습할 이미지 설정 // Set the image to learn
+            # 학습할 이미지 설정 # Set the image to learn
             patternMatchMultiSave.SetLearnImage(fliLearnImage[i64DataIdx])[0]
 
-            # 학습할 영역 설정 // Set the area to learn
+            # 학습할 영역 설정 # Set the area to learn
             flpLearnPivot = CFLPoint[Double](arrLearnRegion[i64DataIdx].GetCenter())
             patternMatchMultiSave.SetLearnROI(arrLearnRegion[i64DataIdx])
             patternMatchMultiSave.SetLearnPivot(flpLearnPivot)
 
-            # 알고리즘 수행 // Execute the Algoritm
+            # 알고리즘 수행 # Execute the Algoritm
             if patternMatchMultiSave.Learn(arrClassName[i64DataIdx]).IsFail():
                 ErrorPrint(res, "Failed to Learn.")
                 break
 
-            # 측정 영역 디스플레이 // Display learning region
+            # 측정 영역 디스플레이 # Display learning region
             if (res := layerLearn.DrawFigureImage(arrLearnRegion[i64DataIdx], EColor.BLACK, 3)).IsFail():
                 ErrorPrint(res, "Failed to draw figure")
                 break
@@ -77,7 +77,7 @@ def main():
                 ErrorPrint(res, "Failed to draw figure")
                 break
 
-            # 중심점 디스플레이 // Display pivot point
+            # 중심점 디스플레이 # Display pivot point
             flfaPointPivot = flpLearnPivot.MakeCrossHair(3, False)
             if (res := layerLearn.DrawFigureImage(flfaPointPivot, EColor.BLACK, 3)).IsFail():
                 ErrorPrint(res, "Failed to draw figure")
@@ -93,7 +93,7 @@ def main():
                 ErrorPrint(res, "Failed to draw text")
                 break
 
-            # 학습한 정보 출력 // Print learned info
+            # 학습한 정보 출력 # Print learned info
             print(f"  < LEARN CLASS {arrClassName[i64DataIdx]} > ")
             print("  1. ROI Shape Type : Rectangle")
             print(f"    left   : {arrLearnRegion[i64DataIdx].left:.3f}")
@@ -103,31 +103,31 @@ def main():
             print(f"    angle  : {arrLearnRegion[i64DataIdx].angle:.3f}")
             print(f"  2. Interest Pivot : ({flpLearnPivot.x:.3f}, {flpLearnPivot.y:.3f})\n")
 
-            # 이미지 뷰 갱신 // Update image view
+            # 이미지 뷰 갱신 # Update image view
             viewImageLearn[i64DataIdx].Invalidate(True)
 
-        # 학습 정보 저장 // Save learning data
+        # 학습 정보 저장 # Save learning data
         if (res := patternMatchMultiSave.Save("../../ExampleImages/Matching/Pattern Multi Learn")).IsFail():
             ErrorPrint(res, "Failed to save\n")
             break
 
-        # 이미지 로드 // Load image
+        # 이미지 로드 # Load image
         if (res := fliFindImage.Load("../../ExampleImages/Matching/Pattern Multi Find.flif")).IsFail():
             ErrorPrint(res, "Failed to load\n")
             break
 
-        # 이미지 뷰 생성 // Create image view
+        # 이미지 뷰 생성 # Create image view
         if (res := viewImageFind.Create(400, 384, 1168, 960)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
-        # 이미지 뷰에 이미지 설정 // Set image on image view
+        # 이미지 뷰에 이미지 설정 # Set image on image view
         if (res := viewImageFind.SetImagePtr(fliFindImage)[0]).IsFail():
             ErrorPrint(res, "Failed to set image object on the image view.")
             break
 
         for i64DataIdx in range(2):
-            # 윈도우 동기화 // Synchronize window
+            # 윈도우 동기화 # Synchronize window
             if (res := viewImageFind.SynchronizeWindow(viewImageLearn[i64DataIdx])[0]).IsFail():
                 ErrorPrint(res, "Failed to synchronize window.")
                 break
@@ -144,29 +144,29 @@ def main():
             ErrorPrint(res, "Failed to load\n")
             break
 
-        # 검출 이미지 설정 및 파라미터 설정 // Set detection parameters
-        # 찾을 이미지 설정 // Set the image to find
+        # 검출 이미지 설정 및 파라미터 설정 # Set detection parameters
+        # 찾을 이미지 설정 # Set the image to find
         patternMatchMultiLoad.SetSourceImage(fliFindImage)
-        # 스케일 범위 설정 // Set the scale range
+        # 스케일 범위 설정 # Set the scale range
         patternMatchMultiLoad.SetScaleRange(1.0, 1.0)
-        # 각도 바이어스 설정 // Set the angle bias
+        # 각도 바이어스 설정 # Set the angle bias
         patternMatchMultiLoad.SetAngleBias(0.0)
-        # 각도 허용 오차 설정 // Set the angle tolerance
+        # 각도 허용 오차 설정 # Set the angle tolerance
         patternMatchMultiLoad.SetAngleTolerance(15.0)
-        # 정밀도 설정 // Set the accuracy
+        # 정밀도 설정 # Set the accuracy
         patternMatchMultiLoad.SetAccuracy(0.5)
-        # 최소 점수 설정 // Set the minimum detection score
+        # 최소 점수 설정 # Set the minimum detection score
         patternMatchMultiLoad.SetMinimumDetectionScore(0.7)
-        # 최대 객체 모드 설정 // Set the maximum object mode
+        # 최대 객체 모드 설정 # Set the maximum object mode
         patternMatchMultiLoad.SetMaxObjectMode(CPatternMatchMulti.EMaxObjectMode.Total)
-        # 총 객체 최대 개수 설정 // Set the total maximum object count
+        # 총 객체 최대 개수 설정 # Set the total maximum object count
         patternMatchMultiLoad.SetMaxObjectTotal(2)
-        # 보간 사용 설정 // Enable interpolation
+        # 보간 사용 설정 # Enable interpolation
         patternMatchMultiLoad.EnableInterpolation(True)
-        # 충돌 감지 방법 설정 // Set the conflict detection method
+        # 충돌 감지 방법 설정 # Set the conflict detection method
         patternMatchMultiLoad.SetConflictDetectionMethod(CPatternMatchMulti.EConflictDetectionMethod.HighestScore)
 
-        # 알고리즘 수행 // Execute the Algoritm
+        # 알고리즘 수행 # Execute the Algoritm
         if (res := patternMatchMultiLoad.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute")
             break
@@ -191,7 +191,7 @@ def main():
                     i64Idx = idx
                     break
 
-            # 검출 결과 출력 // Output result
+            # 검출 결과 출력 # Output result
             print(f" < Instance : {i} >")
             print(f" Class Name : {wstrClassName}")
             print("  1. ROI Shape Type : Rectangle")
@@ -237,7 +237,7 @@ def main():
 
         viewImageFind.Invalidate(True)
 
-        # 이미지 뷰가 종료될 때 까지 기다림 // Wait for the imageview to close
+        # 이미지 뷰가 종료될 때 까지 기다림 # Wait for the imageview to close
         while viewImageLearn[0].IsAvailable():
             CThreadUtilities.Sleep(1)
         break

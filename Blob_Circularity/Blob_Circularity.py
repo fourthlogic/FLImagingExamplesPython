@@ -73,7 +73,7 @@ def main():
     
     # Blob 결과를 얻어오기 위한 객체 선언 # Declare an object to retrieve Blob results
     flfaContours = CFLFigureArray()
-    flaCircularity = List[Double]();
+    flaCircularity = List[Double]()
     
     # Blob 결과들 중 Contours 을 얻어옴 # Get contours from the set of Blob results
     if (res := blob.GetResultContours(flfaContours)[0]).IsFail():
@@ -107,11 +107,11 @@ def main():
         strIndex = f"[{i}]\n"
         flsTextResult = f"\nCircularity {flaCircularity[i]:.2f}"
 
-        flpCenter = CFLPoint[Double](flfaContours.GetAt(i));
+        flpCenter = CFLPoint[Double](flfaContours.GetAt(i))
 
         # Image View 결과 출력
-        layer.DrawTextImage(flpCenter, strIndex, EColor.LIME, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER);
-        layer.DrawTextImage(flpCenter, flsTextResult, EColor.YELLOW, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER);
+        layer.DrawTextImage(flpCenter, strIndex, EColor.LIME, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
+        layer.DrawTextImage(flpCenter, flsTextResult, EColor.YELLOW, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
 
         # 콘솔 결과 출력
         print(f"[{i}] Circularity {flaCircularity[i]:.2f}\n")

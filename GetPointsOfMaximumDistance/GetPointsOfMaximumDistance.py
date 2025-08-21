@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,15 +7,15 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 	
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     viewImage = [CGUIViewImage() for _ in range(4)]
 
     while True:
 
-        # 이미지 뷰 생성 // Create image view
+        # 이미지 뷰 생성 # Create image view
         if (res := viewImage[0].Create(400, 0, 812, 384)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
@@ -32,7 +32,7 @@ def main():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
-        # SourceView, DstView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, DstView
+        # SourceView, DstView 의 0번 레이어 가져오기 # Get Layer 0 of SourceView, DstView
         layerSrc1 = viewImage[0].GetLayer(0)
         layerDst1 = viewImage[1].GetLayer(0)
         layerSrc2 = viewImage[2].GetLayer(0)
@@ -46,7 +46,7 @@ def main():
         layerDst1.DrawTextCanvas(CFLPoint[Double](0, 20), "Maximum Distance", EColor.CYAN, EColor.BLACK)
         layerDst2.DrawTextCanvas(CFLPoint[Double](0, 20), "Maximum Distance", EColor.CYAN, EColor.BLACK)
 
-        # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
+        # 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
         if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize view")
             break
@@ -55,7 +55,7 @@ def main():
             ErrorPrint(res, "Failed to synchronize view")
             break
 
-        # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
+        # 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
         for i in range(1, 4):
             if (res := viewImage[0].SynchronizeWindow(viewImage[i])[0]).IsFail():
                 ErrorPrint(res, "Failed to synchronize window.")
@@ -64,13 +64,13 @@ def main():
         if res.IsFail():
             break
 
-        # Figure 생성 // Create figure
+        # Figure 생성 # Create figure
         flcSource1 = CFLCircle[Double]()
         flqOperand1 = CFLQuad[Double]()
         flfaSource2 = CFLFigureArray()
         flfaOperand2 = CFLFigureArray()
 
-        # Source Figure 불러오기 // Load source figure
+        # Source Figure 불러오기 # Load source figure
         if (res := flcSource1.Load("../../ExampleImages/Figure/Circle1.fig")).IsFail():
             ErrorPrint(res, "Failed to load the figure file.")
             break
@@ -79,7 +79,7 @@ def main():
             ErrorPrint(res, "Failed to load the figure file.")
             break
 
-        # Operand Figure 불러오기 // Load Operand Figure
+        # Operand Figure 불러오기 # Load Operand Figure
         if (res := flqOperand1.Load("../../ExampleImages/Figure/Quad1.fig")).IsFail():
             ErrorPrint(res, "Failed to load the figure file.")
             break
@@ -88,7 +88,7 @@ def main():
             ErrorPrint(res, "Failed to load the figure file.")
             break
 
-        # Figure 사이의 최대 거리를 나타내는 점을 추출 // Get the point representing the maximum distance between figures
+        # Figure 사이의 최대 거리를 나타내는 점을 추출 # Get the point representing the maximum distance between figures
         flpaResult1 = CFLPointArray()
 
         res, flpaResult1 = flcSource1.GetPointsOfMaximumDistance(flqOperand1, flpaResult1)
@@ -106,7 +106,7 @@ def main():
             ErrorPrint(res, "Failed to process.")
             break
 
-        # Figure 사이의 최대 거리를 계산 // Calculate the maximum distance between figures
+        # Figure 사이의 최대 거리를 계산 # Calculate the maximum distance between figures
         f64MaximumDistance1 = 0.0
 
         res, f64MaximumDistance1 = flcSource1.GetMaximumDistance(flqOperand1, f64MaximumDistance1)
@@ -124,17 +124,17 @@ def main():
             ErrorPrint(res, "Failed to process.")
             break
 
-        # 두 Point를 잇는 Line을 생성 // Create a line connecting two points
+        # 두 Point를 잇는 Line을 생성 # Create a line connecting two points
         fllMax1 = CFLLine[Double](flpaResult1.GetAt(0), flpaResult1.GetAt(1))
         fllMax2 = CFLLine[Double](flpaResult2.GetAt(0), flpaResult2.GetAt(1))
 
-        # SourceView1의 0번 레이어에 Source, Operand Figure 그리기 // Draw Source and Operand Figure on Layer 0 of SourceView1
+        # SourceView1의 0번 레이어에 Source, Operand Figure 그리기 # Draw Source and Operand Figure on Layer 0 of SourceView1
         layerSrc1.DrawFigureImage(flcSource1, EColor.BLACK, 3)
         layerSrc1.DrawFigureImage(flcSource1, EColor.KHAKI)
         layerSrc1.DrawFigureImage(flqOperand1, EColor.BLACK, 3)
         layerSrc1.DrawFigureImage(flqOperand1, EColor.LIME)
 
-        # DstView1의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView1
+        # DstView1의 0번 레이어에 결과 그리기 # Draw the result on layer 0 of DstView1
         layerDst1.DrawFigureImage(flcSource1, EColor.BLACK, 3)
         layerDst1.DrawFigureImage(flcSource1, EColor.KHAKI)
         layerDst1.DrawFigureImage(flqOperand1, EColor.BLACK, 3)
@@ -143,13 +143,13 @@ def main():
         layerDst1.DrawFigureImage(fllMax1, EColor.CYAN)
         layerDst1.DrawTextImage(fllMax1.GetCenter(), f"{f64MaximumDistance1:.3f}", EColor.CYAN, EColor.BLACK, 12, False, 0.0, EGUIViewImageTextAlignment.RIGHT_TOP)
 
-        # SourceView2의 0번 레이어에 Source, Operand Figure 그리기 // Draw Source and Operand Figure on Layer 0 of SourceView2
+        # SourceView2의 0번 레이어에 Source, Operand Figure 그리기 # Draw Source and Operand Figure on Layer 0 of SourceView2
         layerSrc2.DrawFigureImage(flfaSource2, EColor.BLACK, 3)
         layerSrc2.DrawFigureImage(flfaSource2, EColor.KHAKI)
         layerSrc2.DrawFigureImage(flfaOperand2, EColor.BLACK, 3)
         layerSrc2.DrawFigureImage(flfaOperand2, EColor.LIME)
 
-        # DstView2의 0번 레이어에 결과 그리기 // Draw the result on layer 0 of DstView2
+        # DstView2의 0번 레이어에 결과 그리기 # Draw the result on layer 0 of DstView2
         layerDst2.DrawFigureImage(flfaSource2, EColor.BLACK, 3)
         layerDst2.DrawFigureImage(flfaSource2, EColor.KHAKI)
         layerDst2.DrawFigureImage(flfaOperand2, EColor.BLACK, 3)
@@ -158,7 +158,7 @@ def main():
         layerDst2.DrawFigureImage(fllMax2, EColor.CYAN)
         layerDst2.DrawTextImage(fllMax2.GetCenter(), f"{f64MaximumDistance2:.3f}", EColor.CYAN, EColor.BLACK, 12, False, 0.0, EGUIViewImageTextAlignment.LEFT_BOTTOM)
 
-        # Console 출력 // Console output
+        # Console 출력 # Console output
         print("Source1 CFLCircle<double>\n")
         print(f"{CFigureUtilities.ConvertFigureObjectToString(flcSource1)}\n\n")
 
@@ -185,11 +185,11 @@ def main():
         print("Result2 Maximum distance\n")
         print(f"{f64MaximumDistance2:.3f}\n\n")
 
-        # 이미지 뷰를 갱신 합니다. // Update image view
+        # 이미지 뷰를 갱신 합니다. # Update image view
         for i in range(4):
             viewImage[i].Invalidate(True)
 
-        # 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
+        # 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close
         while all(view.IsAvailable() for view in viewImage):
             CThreadUtilities.Sleep(1)
 
@@ -199,7 +199,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

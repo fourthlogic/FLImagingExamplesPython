@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -6,13 +6,13 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-	# CResult 객체 선언 // Declare the CRessult object
+	# CResult 객체 선언 # Declare the CRessult object
 	er = CResult(EResult.UnknownError)
 
-	# 조명 컨트롤러 WordopPD5_6024 선언 // Declare the WordopPD5_6024 Light Controller
+	# 조명 컨트롤러 WordopPD5_6024 선언 # Declare the WordopPD5_6024 Light Controller
 	lightController = CDeviceLightControllerWordopPD5_6024()
 
 	bExit = False
@@ -23,7 +23,7 @@ def main():
 		i32ConnectionType = 0
 		
 		while True:
-			# 조명 컨트롤러 연결 방식을 선택합니다. // Select the connection method for the light controller.
+			# 조명 컨트롤러 연결 방식을 선택합니다. # Select the connection method for the light controller.
 			print("1. RS232C")
 			print("2. TCP Server")
 			print("3. TCP Client")
@@ -59,11 +59,11 @@ def main():
 		elif i32ConnectionType == 4:
 			eConnectionMethod = CDeviceLightControllerWordopPD5_6024.EConnectionMethod.UDP
 
-		# 연결 방식을 설정합니다. // Set the connection method.
+		# 연결 방식을 설정합니다. # Set the connection method.
 		lightController.SetConnectionMethod(eConnectionMethod)
 
 		if i32ConnectionType == 1:
-			# 컴포트 번호 설정 // Set the COM port number.
+			# 컴포트 번호 설정 # Set the COM port number.
 			strInput = input("Port Number: ")
 	
 			if strInput.isdigit():
@@ -74,7 +74,7 @@ def main():
 			strInput = input("Port Number: ")
 
 			if strInput.isdigit():
-				# IP 주소, Port 설정 // Set the IP address and port.
+				# IP 주소, Port 설정 # Set the IP address and port.
 				lightController.SetConnectionIPAddress(strIPAddress)
 				lightController.SetConnectionComPortNumber(int(strInput))
 
@@ -84,11 +84,11 @@ def main():
 		i32ChannelCount  = 0
 
 		while True:
-			# 채널 갯수를 선택합니다. // Select the number of channels.
-			print("1. Channel 4");
-			print("2. Channel 8");
-			print("0. Exit");
-			strInput = input("Input Channel Count: ");
+			# 채널 갯수를 선택합니다. # Select the number of channels.
+			print("1. Channel 4")
+			print("2. Channel 8")
+			print("0. Exit")
+			strInput = input("Input Channel Count: ")
 
 			if strInput.isdigit():
 				i32ChannelCount = int(strInput)
@@ -110,13 +110,13 @@ def main():
 		if i32ChannelCount == 2 :
 			eLightChannel = CDeviceLightControllerWordopPD5_6024.ELightChannel.Port_8
 
-		# 채널 갯수를 설정합니다. // Set the number of channels.
+		# 채널 갯수를 설정합니다. # Set the number of channels.
 		lightController.SetLightChannel(eLightChannel)
 
 		i32CommunicationType = 0
 
 		while True:
-			# 통신 방식을 선택합니다. // Select the communication method.
+			# 통신 방식을 선택합니다. # Select the communication method.
 			print("1. ASCII Code")
 			print("2. Hexadecimal")
 			print("0. Exit")
@@ -142,11 +142,11 @@ def main():
 		if i32CommunicationType == 2:
 			eCommType = CDeviceLightControllerWordopPD5_6024.ECommunicationType.Hexadecimal
 
-		# 통신 방식을 설정합니다. // Set the communication type.
+		# 통신 방식을 설정합니다. # Set the communication type.
 		lightController.SetCommunicationType(eCommType)
 
 		while True:
-			# 작업 모드를 선택합니다. // Select the operation mode.
+			# 작업 모드를 선택합니다. # Select the operation mode.
 			print("1. Light On/Off")
 			print("2. Light Value")
 			print("3. Strobe Time")
@@ -169,13 +169,13 @@ def main():
 				i32TriggerMethod = 0
 
 				while True:
-					# 트리거 방식을 선택합니다. // Select the trigger method.
-					print("1. Low Level");
-					print("2. High Level");
-					print("3. Falling Edge");
-					print("4. Rising Edge");
-					print("0. Exit");
-					strInput = input("Input Trigger Method: ");
+					# 트리거 방식을 선택합니다. # Select the trigger method.
+					print("1. Low Level")
+					print("2. High Level")
+					print("3. Falling Edge")
+					print("4. Rising Edge")
+					print("0. Exit")
+					strInput = input("Input Trigger Method: ")
 
 					if strInput.isdigit():
 						i32TriggerMethod = int(strInput)
@@ -214,9 +214,9 @@ def main():
 						strInput = input("Enter On/Off: ")
 
 						if strInput == '1':
-							lightController.SetChannelState(i32Channel, True);
+							lightController.SetChannelState(i32Channel, True)
 						elif strInput == '2':
-							lightController.SetChannelState(i32Channel, False);
+							lightController.SetChannelState(i32Channel, False)
 
 					elif i32OperationMode == 2:
 						strInput = input("Input Light Value (0 ~ 255): ")
@@ -233,10 +233,10 @@ def main():
 							lightController.SetLightValue(i32Channel, UInt16(i32LightValue & 0xffff))
 
 
-			# 입력된 파라미터를 적용합니다. // Apply the configured parameters.
+			# 입력된 파라미터를 적용합니다. # Apply the configured parameters.
 			if (er := lightController.Apply()).IsFail():
-				print("Failed to apply the light controller.");
-				break;
+				print("Failed to apply the light controller.")
+				break
 
 		if bExit:
 			break
@@ -245,7 +245,7 @@ def main():
 
 	# End of main function
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res: CResult, string: str):
 	if len(string) > 1:
 		print(string)

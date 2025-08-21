@@ -50,10 +50,10 @@ def main():
     blob.SetSourceImage(fliImage)
     
 	# ROI 범위 설정
-    flrROI = CFLRect[Double](450, 425, 1024, 800);
+    flrROI = CFLRect[Double](450, 425, 1024, 800)
 
 	# 처리할 ROI 설정
-    blob.SetSourceROI(flrROI);
+    blob.SetSourceROI(flrROI)
     
     # 논리 조건 설정 # Set logical conditions
     blob.SetLogicalCondition(ELogicalCondition.GreaterEqual)
@@ -121,10 +121,10 @@ def main():
             flrgContour = None
             
         strIndex = f"[{i}]\n"
-        flpCenter = CFLPoint[Double](flfaContours.GetAt(i));
+        flpCenter = CFLPoint[Double](flfaContours.GetAt(i))
 
         # Image View 결과 출력
-        layer.DrawTextImage(flpCenter, strIndex, EColor.CYAN);
+        layer.DrawTextImage(flpCenter, strIndex, EColor.CYAN)
        
 
     # 이미지 뷰를 갱신 합니다. # Update image view

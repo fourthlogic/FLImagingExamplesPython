@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -8,26 +8,26 @@ CLibraryUtilities.Initialize()
 from System.Collections.Generic import List
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-	# 이미지 객체 선언 // Declare the image object
+	# 이미지 객체 선언 # Declare the image object
 	fliSource = CFLImage()
 	fliTexture = CFLImage()
 
-	# 3D 객체 선언 // Declare 3D object
+	# 3D 객체 선언 # Declare 3D object
 	floDestination = CFL3DObject()
 
-	# 3D 뷰 선언 // Declare 3D view	
+	# 3D 뷰 선언 # Declare 3D view	
 	view3D = CGUIView3D()
 	viewDepthImage = CGUIViewImage()
 	viewTextureImage = CGUIViewImage()
 
-	# 알고리즘 동작 결과 // Algorithm execution result
+	# 알고리즘 동작 결과 # Algorithm execution result
 	res = CResult()
 
 	while True:		
-		# 이미지 로드 // Load the image
+		# 이미지 로드 # Load the image
 		if(res := fliSource.Load("../../ExampleImages/DepthMapToPointCloudConverter3D/Depth.flif")).IsFail() :		
 			ErrorPrint(res, "Failed to load the image.\n")
 			break
@@ -37,7 +37,7 @@ def main():
 			break
 		
 
-		# 이미지 뷰 생성 // Create image view
+		# 이미지 뷰 생성 # Create image view
 		if(res := viewDepthImage.Create(100, 0, 612, 512)).IsFail() :		
 			ErrorPrint(res, "Failed to create the Source image view.\n")
 			break		
@@ -46,29 +46,29 @@ def main():
 			ErrorPrint(res, "Failed to create the Texture image view.\n")
 			break
 		
-		# 결과 3D 뷰 생성 // Create result 3D view
+		# 결과 3D 뷰 생성 # Create result 3D view
 		if(res := view3D.Create(100, 512, 612, 1024)).IsFail() :		
 			ErrorPrint(res, "Failed to create the Result 3D view.\n")
 			break		
 
-		# 이미지 포인터 설정 // Set image pointer
+		# 이미지 포인터 설정 # Set image pointer
 		viewDepthImage.SetImagePtr(fliSource)
 		viewTextureImage.SetImagePtr(fliTexture)
 
-		# DepthMapToPointCloudConverter 객체 생성 // Create DepthMapToPointCloudConverter object
+		# DepthMapToPointCloudConverter 객체 생성 # Create DepthMapToPointCloudConverter object
 		depthMapToPointCloudConverter3D = CDepthMapToPointCloudConverter3D()
 
-		# SourceROI 설정 // Set the source roi.
+		# SourceROI 설정 # Set the source roi.
 		flfSourceROI = CFLQuad[Double](236.258951, 137.611646, 247.605353, 273.171284, 355.694756, 268.393852, 339.570922, 130.445497)
 		depthMapToPointCloudConverter3D.SetSourceROI(flfSourceROI)
 
-		# Source 이미지 설정 // Set the source image.
+		# Source 이미지 설정 # Set the source image.
 		depthMapToPointCloudConverter3D.SetSourceImage(fliSource)
 
-		# Texture 이미지 설정 // Set the texture image.
+		# Texture 이미지 설정 # Set the texture image.
 		depthMapToPointCloudConverter3D.SetTextureImage(fliTexture)
 
-		# Camera Matrix 설정 // Set the camera matrix
+		# Camera Matrix 설정 # Set the camera matrix
 		flpFocalLength = CFLPoint[Single]()
 		flpPrincipalPoint = CFLPoint[Single]()
 
@@ -79,7 +79,7 @@ def main():
 
 		depthMapToPointCloudConverter3D.SetIntrinsicParameter(flpFocalLength, flpPrincipalPoint)
 
-		#왜곡 계수 설정 // Set the distortion coefficient
+		#왜곡 계수 설정 # Set the distortion coefficient
 		flaDistortionCoefficient = List[Double]()
 
 		flaDistortionCoefficient.Add(-0.2333453150000)
@@ -90,31 +90,31 @@ def main():
 
 		depthMapToPointCloudConverter3D.SetDistortionCoefficient(flaDistortionCoefficient)
 
-		# 법선 벡터 추정 여부 설정 // Set whether to estimate the normal vector
+		# 법선 벡터 추정 여부 설정 # Set whether to estimate the normal vector
 		depthMapToPointCloudConverter3D.EnableIncludingNormalVector(False)
 
-		# Z축 방향 설정 // Set z-axis direction.
+		# Z축 방향 설정 # Set z-axis direction.
 		depthMapToPointCloudConverter3D.SetDirectionType(EDirectionType.Increment)
 
-		# Destination 3D Object 설정 // Set the destination 3D object
+		# Destination 3D Object 설정 # Set the destination 3D object
 		depthMapToPointCloudConverter3D.SetDestinationObject(floDestination)
 
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if(res := depthMapToPointCloudConverter3D.Execute()).IsFail() :	
 			ErrorPrint(res, "Failed to execute Depth Map To Point Cloud Converter 3D.")
 			break
 		
 
-		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately		
+		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately		
 		layerViewDepth = viewDepthImage.GetLayer(0)
 		layerViewTexture = viewTextureImage.GetLayer(0)
 		
-		# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
+		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
 		layerViewDepth.Clear()
 		layerViewTexture.Clear()
 
-		# View 정보를 디스플레이 합니다. // Display View information.
+		# View 정보를 디스플레이 합니다. # Display View information.
 		# 아래 함수 DrawTextCanvas은 Screen좌표를 기준으로 하는 String을 Drawing 한다.# The function DrawTextCanvas below draws a String based on the screen coordinates.
 		# 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 ->
 		#                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
@@ -144,13 +144,13 @@ def main():
 		viewDepthImage.ZoomFit()
 		viewTextureImage.ZoomFit()
             	
-		# 이미지 뷰를 갱신 합니다. // Update image view
+		# 이미지 뷰를 갱신 합니다. # Update image view
 		viewTextureImage.Invalidate(True)
 		viewDepthImage.Invalidate(True)
 
 		viewDepthImage.SynchronizePointOfView(viewTextureImage)
 
-		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 // Wait for the image and 3D view to close
+		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 # Wait for the image and 3D view to close
 		while viewTextureImage.IsAvailable() and viewDepthImage.IsAvailable() :
 			CThreadUtilities.Sleep(1)
 
@@ -158,7 +158,7 @@ def main():
 	
 	# End of main function
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

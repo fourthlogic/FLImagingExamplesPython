@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from asyncio.windows_events import NULL
 from FLImagingClrPy import *
 
@@ -7,46 +7,46 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
 
 	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
-	# 이미지 객체 선언 // Declare the image object
+	# 이미지 객체 선언 # Declare the image object
 	fliImage = CFLImage()
 
-	# 이미지 뷰 선언 // Declare the image view
+	# 이미지 뷰 선언 # Declare the image view
 	viewImage = CGUIViewImage()
 
 	res = CResult()
 
 	while True:
-		# 이미지 로드 // Load the image
+		# 이미지 로드 # Load the image
 		if (res := fliImage.Load('../../ExampleImages/GridOfRectangleDetector/GridOfRectangle.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# 이미지 뷰 생성 // Create the image view
+		# 이미지 뷰 생성 # Create the image view
 		if (res := viewImage.Create(400, 0, 1040, 480)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# 이미지 뷰에 이미지를 디스플레이 // Display the image in the image view
+		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
 		if (res := viewImage.SetImagePtr(fliImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# GridOfRectangle Detector 객체 생성 // Create a GridOfRectangle Detector object
-		gridofRectangle = CGridOfRectangleDetector();
+		# GridOfRectangle Detector 객체 생성 # Create a GridOfRectangle Detector object
+		gridofRectangle = CGridOfRectangleDetector()
 
-		# 처리할 이미지 설정 // Set the image to process
+		# 처리할 이미지 설정 # Set the image to process
 		gridofRectangle.SetSourceImage(fliImage)
 
-		# 알고리즘 수행 // Execute the Algoritm
+		# 알고리즘 수행 # Execute the Algoritm
 		if (res := gridofRectangle.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute GridOfRectangle Detector.\n')
 			break
@@ -135,13 +135,13 @@ def main():
 			i32LineTransition = 0
 
 			for j in range(flaPoints.Count):
-				fla2 = flaPoints[j];
-				fla2Point0 = CFLPoint[Double]();
-				fla2Point1 = CFLPoint[Double]();
-				fla2Point0.x = fla2[0].x;
-				fla2Point0.y = fla2[0].y;
-				fla2Point1.x = fla2[1].x;
-				fla2Point1.y = fla2[1].y;
+				fla2 = flaPoints[j]
+				fla2Point0 = CFLPoint[Double]()
+				fla2Point1 = CFLPoint[Double]()
+				fla2Point0.x = fla2[0].x
+				fla2Point0.y = fla2[0].y
+				fla2Point1.x = fla2[1].x
+				fla2Point1.y = fla2[1].y
 
 				f64Angle = fla2Point0.GetAngle(fla2Point1)
 
@@ -185,7 +185,7 @@ def main():
 
 		viewImage.Invalidate()
 
-		# 이미지 뷰가 종료될 때 까지 기다림 // Wait for the imageview to close
+		# 이미지 뷰가 종료될 때 까지 기다림 # Wait for the imageview to close
 		while viewImage.IsAvailable():
 			CThreadUtilities.Sleep(1)
 

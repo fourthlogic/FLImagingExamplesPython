@@ -59,10 +59,10 @@ def main():
 		xyzImageToPointCloudConverter3D = CXYZImageToPointCloudConverter3D()
 		
 		# Scale 설정 # Set the scale
-		xyzImageToPointCloudConverter3D.SetCoordinateAdjustmentScale(1, -1, -1);
+		xyzImageToPointCloudConverter3D.SetCoordinateAdjustmentScale(1, -1, -1)
 
 		# Offset 설정 # Set the offset
-		xyzImageToPointCloudConverter3D.SetCoordinateAdjustmentOffset(-41, -5, 900);
+		xyzImageToPointCloudConverter3D.SetCoordinateAdjustmentOffset(-41, -5, 900)
 
 		# Source 이미지 설정 # Set the source image.
 		xyzImageToPointCloudConverter3D.SetSourceImage(fliSource)

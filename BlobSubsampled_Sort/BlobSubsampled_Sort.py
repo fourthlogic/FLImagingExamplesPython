@@ -68,10 +68,10 @@ def main():
     blob.SetSourceImage(fliImage)
     
     # ROI 범위 설정
-    flrROI = CFLRect[Double](450, 425, 1024, 800);
+    flrROI = CFLRect[Double](450, 425, 1024, 800)
 
     # 처리할 ROI 설정
-    blob.SetSourceROI(flrROI);
+    blob.SetSourceROI(flrROI)
     
     # 논리 조건 설정 # Set logical conditions
     blob.SetLogicalCondition(ELogicalCondition.GreaterEqual)
@@ -146,7 +146,7 @@ def main():
     layer.Clear()
     layerRecover.Clear()
     
-    flp = CFLPoint[Double]();
+    flp = CFLPoint[Double]()
 
     if (res := layer.DrawTextCanvas(flp, ("Sort"), EColor.YELLOW, EColor.BLACK, 30)).IsFail():
         ErrorPrint(res, "Failed to draw text on the image view.\n")
@@ -189,7 +189,7 @@ def main():
         if flrSortedRect is not None:
             print("Sorted No. {} : ({},{},{},{})\n".format(i, flrSortedRect.left, flrSortedRect.top, flrSortedRect.right, flrSortedRect.bottom))
 
-        layer.DrawTextImage(flrSortedRect.GetCenter(), f"{i}", EColor.CYAN);
+        layer.DrawTextImage(flrSortedRect.GetCenter(), f"{i}", EColor.CYAN)
 
         if isinstance(flfaRecoverBoundaryRects.GetAt(i), CFLRect[Double]):
             flrRect = flfaRecoverBoundaryRects.GetAt(i)
@@ -199,7 +199,7 @@ def main():
         if flrRect is not None:
             print("Sorted No. {} : ({},{},{},{})\n".format(i, flrRect.left, flrRect.top, flrRect.right, flrRect.bottom))
 
-        layerRecover.DrawTextImage(flrRect.GetCenter(), f"{i}", EColor.CYAN);
+        layerRecover.DrawTextImage(flrRect.GetCenter(), f"{i}", EColor.CYAN)
 
 
     # 이미지 뷰를 갱신 합니다. # Update image view

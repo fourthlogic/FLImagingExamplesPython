@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,29 +7,29 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 	
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     viewImage = [CGUIViewImage(), CGUIViewImage(), CGUIViewImage()]
 
     while True:
-        # Source Coordinate View 생성 // Create Source Coordinate View
+        # Source Coordinate View 생성 # Create Source Coordinate View
         if (res := viewImage[0].Create(200, 0, 700, 500)).IsFail():
             ErrorPrint(res, "Failed to create the image view.\n")
             break
 
-        # Destination Coordinate View 생성 // Create Destination Coordinate View
+        # Destination Coordinate View 생성 # Create Destination Coordinate View
         if (res := viewImage[1].Create(700, 0, 1200, 500)).IsFail():
             ErrorPrint(res, "Failed to create the image view.\n")
             break
 
-        # Restore Coordinate View 생성 // Create Restore Coordinate View
+        # Restore Coordinate View 생성 # Create Restore Coordinate View
         if (res := viewImage[2].Create(1200, 0, 1700, 500)).IsFail():
             ErrorPrint(res, "Failed to create the image view.\n")
             break
 
-        # 각 이미지 뷰의 시점을 동기화 한다. // Synchronize the viewpoint of each image view.
+        # 각 이미지 뷰의 시점을 동기화 한다. # Synchronize the viewpoint of each image view.
         if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize view\n")
             break
@@ -37,7 +37,7 @@ def main():
             ErrorPrint(res, "Failed to synchronize view\n")
             break
 
-        # 각 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the position of each image view window
+        # 각 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the position of each image view window
         if (res := viewImage[0].SynchronizeWindow(viewImage[1])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize window.\n")
             break
@@ -45,15 +45,15 @@ def main():
             ErrorPrint(res, "Failed to synchronize window.\n")
             break
 
-        # 화면상에 잘 보이도록 좌표 90배율을 적용 // Apply 90 magnification to the coordinates so that they can be seen clearly on the screen
+        # 화면상에 잘 보이도록 좌표 90배율을 적용 # Apply 90 magnification to the coordinates so that they can be seen clearly on the screen
         f64Scale = 90.0
-        # 화면상에 잘 보이도록 시점 Offset 조정 // Adjust the viewpoint offset so that it can be seen clearly on the screen
+        # 화면상에 잘 보이도록 시점 Offset 조정 # Adjust the viewpoint offset so that it can be seen clearly on the screen
         f64CenterCoordX = 2.007
         f64CenterCoordY = 1.865
         viewImage[0].SetViewCenterAndScale(CFLPoint[Double](f64CenterCoordX, f64CenterCoordY), f64Scale)
 
-        # 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-        # 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
+        # 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+        # 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
         layer = [viewImage[0].GetLayer(0), viewImage[1].GetLayer(0), viewImage[2].GetLayer(0)]
 
         # 화면상 좌표(고정 좌표)에 Source 좌표 View 임을 표시
@@ -64,12 +64,12 @@ def main():
         layer[2].DrawTextCanvas(CFLPoint[Int32](0, 0), "Restore Coordinate (from Destination)", EColor.YELLOW, EColor.BLACK, 30)
 
 
-        # 좌표 매핑용 클래스 선언 // Class declaration for coordinate mapping
+        # 좌표 매핑용 클래스 선언 # Class declaration for coordinate mapping
         lanczosSplineMapping = CLanczosSplineMapping()
 
-        # 만약 기존 저장된 매핑 데이터가 있다면 해당 데이터를 로드합니다. // If there is previously saved mapping data, load the data.
-        # 두번째 실행부터는 파일이 생성될 것이기 때문에 아래 세팅과정을 수행하지 않고 지나가게 됩니다. // Since the file will be created from the second execution, the setting process below will be skipped.
-        # 계속 새로 데이터를 생성하는것을 테스트 하려 한다면 아래 Load함수와 관련된 if문 1줄을 삭제하면 됩니다. // If you want to test continuously creating new data, you can delete one line of the if statement related to the Load function below.
+        # 만약 기존 저장된 매핑 데이터가 있다면 해당 데이터를 로드합니다. # If there is previously saved mapping data, load the data.
+        # 두번째 실행부터는 파일이 생성될 것이기 때문에 아래 세팅과정을 수행하지 않고 지나가게 됩니다. # Since the file will be created from the second execution, the setting process below will be skipped.
+        # 계속 새로 데이터를 생성하는것을 테스트 하려 한다면 아래 Load함수와 관련된 if문 1줄을 삭제하면 됩니다. # If you want to test continuously creating new data, you can delete one line of the if statement related to the Load function below.
         if (res := lanczosSplineMapping.Load("MappingData.fllcz")).IsFail():
             # 그리드를 (5,5)로 초기화하면서, 가상 확장 영역을 3으로 지정
             # 확장영역 밖으로 값을 변환하려고 하면 값이 나오지 않기때문에 적절한 크기로 확장을 해야 하며,
@@ -88,9 +88,9 @@ def main():
                 for x in range(flpGridSize.x):
                     flpGridIndex.x = x
 
-                    # Grid Index와 같은 좌표로 Source 좌표를 설정 // Set the source coordinates to the same coordinates as the Grid Index
+                    # Grid Index와 같은 좌표로 Source 좌표를 설정 # Set the source coordinates to the same coordinates as the Grid Index
                     flpSource = CFLPoint[Double](flpGridIndex.x, flpGridIndex.y)
-                    # Grid Index와 같은 좌표에서 미세한 랜덤 값을 부여해서 좌표를 왜곡 // Distort the coordinates by giving fine random values at the same coordinates as the Grid Index
+                    # Grid Index와 같은 좌표에서 미세한 랜덤 값을 부여해서 좌표를 왜곡 # Distort the coordinates by giving fine random values at the same coordinates as the Grid Index
                     flpDistortion = CFLPoint[Double](flpGridIndex.x + CRandomGenerator.Double(-0.1, 0.1), flpGridIndex.y + CRandomGenerator.Double(-0.1, 0.1))
 
                     # 위에서 설정한 좌표들을 바탕으로 LanczosSplineMapping 클래스에 하나의 Vertex를 설정
@@ -130,12 +130,12 @@ def main():
                 flpDestination = CFLPoint[Double](vertex.tpDestination.x, vertex.tpDestination.y)
 
                 for i in range(3):
-                    # Destination Vertex를 각 View Layer에 Drawing // Drawing the destination vertex to each view layer
+                    # Destination Vertex를 각 View Layer에 Drawing # Drawing the destination vertex to each view layer
                     if (res := layer[i].DrawFigureImage(flpDestination, EColor.BLUE, 3)).IsFail():
                         ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
                         break
 
-                    # Source Vertex를 각 View Layer에 Drawing // Drawing source vertex to each view layer
+                    # Source Vertex를 각 View Layer에 Drawing # Drawing source vertex to each view layer
                     if (res := layer[i].DrawFigureImage(flpSource, EColor.RED, 3)).IsFail():
                         ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
                         break
@@ -159,10 +159,10 @@ def main():
         # Divide the vertices into approximately 10 equal parts, that is, test 100 interpolation areas in one area
         f64Slice = 10.0
         
-        flpdSource = CFLPoint[Double]() # Source 좌표 // Source coordinates
-        flpaSource = CFLPointArray() # Source 좌표 (PointArray) // Source coordinates (PointArray)
-        flpaDestination = CFLPointArray() # Destination 좌표 // Destination coordinates
-        flpaConvertedSource = CFLPointArray() # Destination 좌표를 다시 Source로 변환, 검증 용도의 좌표 // Convert destination coordinates back to source, coordinates for verification purposes
+        flpdSource = CFLPoint[Double]() # Source 좌표 # Source coordinates
+        flpaSource = CFLPointArray() # Source 좌표 (PointArray) # Source coordinates (PointArray)
+        flpaDestination = CFLPointArray() # Destination 좌표 # Destination coordinates
+        flpaConvertedSource = CFLPointArray() # Destination 좌표를 다시 Source로 변환, 검증 용도의 좌표 # Convert destination coordinates back to source, coordinates for verification purposes
 
         for y in range(int((lanczosSplineMapping.GetRow() - 1) * f64Slice) + 1):
             flpdSource.y = y / f64Slice
@@ -171,16 +171,16 @@ def main():
                 flpdSource.x = x / f64Slice
                 flpaSource.PushBack(flpdSource)
 
-        # 연산을 수행할 Source 좌표를 View에 Display // Display the source coordinates to perform the operation on the View
+        # 연산을 수행할 Source 좌표를 View에 Display # Display the source coordinates to perform the operation on the View
         if (res := layer[0].DrawFigureImage(flpaSource, EColor.YELLOW)).IsFail():
             ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
             break
 
-        # Source 좌표의 공간을 Destination 좌표 공간으로 변환 // Convert the space of source coordinates to destination coordinate space
+        # Source 좌표의 공간을 Destination 좌표 공간으로 변환 # Convert the space of source coordinates to destination coordinate space
         if (resConvertSrcToDst := lanczosSplineMapping.ConvertSourceToDestination(flpaSource, flpaDestination))[0].IsOK():
             flpaDestination = resConvertSrcToDst[1]
 
-        # Source 좌표에서 Destination 좌표로 변환된 좌표를 View에 Display // Display coordinates converted from source coordinates to destination coordinates on the View
+        # Source 좌표에서 Destination 좌표로 변환된 좌표를 View에 Display # Display coordinates converted from source coordinates to destination coordinates on the View
         if (res := layer[1].DrawFigureImage(flpaDestination, EColor.LIME)).IsFail():
             ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
             break
@@ -188,9 +188,9 @@ def main():
         # 변환된 Destination 좌표를 그대로 Source 좌표로 변환해서 자신의 위치로 제대로 돌아오는지 검증
         # Verify that the converted destination coordinates are converted to source coordinates as they are and return to their own position properly
         if (resConvertDstToSrc := lanczosSplineMapping.ConvertDestinationToSource(flpaDestination, flpaConvertedSource))[0].IsOK():
-            flpaConvertedSource = resConvertDstToSrc[1] # ref 파라미터 결과 할당 // Assign ref parameter result
+            flpaConvertedSource = resConvertDstToSrc[1] # ref 파라미터 결과 할당 # Assign ref parameter result
 
-        # 변환된 좌표를 View에 Display // Display the converted coordinates in the View
+        # 변환된 좌표를 View에 Display # Display the converted coordinates in the View
         if (res := layer[2].DrawFigureImage(flpaConvertedSource, EColor.CYAN)).IsFail():
             ErrorPrint(res, "Failed to draw figure objects on the image view.\n")
             break
@@ -204,11 +204,11 @@ def main():
             print(f"Source ({flpdSource.x:.3f},{flpdSource.y:.3f}) -> Destination ({flpdDestination.x:.3f},{flpdDestination.y:.3f}) -> Source ({flpdConvertedSource.x:.3f},{flpdConvertedSource.y:.3f})")
         
 
-        # 이미지 뷰들을 갱신 합니다. // Update the image views.
+        # 이미지 뷰들을 갱신 합니다. # Update the image views.
         for i in range(3):
             viewImage[i].Invalidate(True)
 
-        # 이미지 뷰가 셋중에 하나라도 꺼지면 종료로 간주 // Consider closed when any of the three image views are turned off
+        # 이미지 뷰가 셋중에 하나라도 꺼지면 종료로 간주 # Consider closed when any of the three image views are turned off
         while all(view.IsAvailable() for view in viewImage):
             CThreadUtilities.Sleep(1)
         
@@ -218,7 +218,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

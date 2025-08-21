@@ -25,7 +25,7 @@ def main():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
+		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination image as same as source image
 		if (res := fliDestination1Image.Assign(fliSourceImage)).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
@@ -73,17 +73,17 @@ def main():
 		# Destination 이미지 설정 # Set the destination image
 		operationLogicalNand.SetDestinationImage(fliDestination1Image)
 
-		# ROI 범위 설정 // Set the ROI value
+		# ROI 범위 설정 # Set the ROI value
 		flcSourceROI = CFLCircle[Double](128, 128, 80, 0, 0, 360, EArcClosingMethod.EachOther)
 
-		# Source 이미지의 ROI 지정 // Set the Source ROI
+		# Source 이미지의 ROI 지정 # Set the Source ROI
 		operationLogicalNand.SetSourceROI(flcSourceROI)
 
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		operationLogicalNand.SetOperationSource(EOperationSource.Scalar);
+		operationLogicalNand.SetOperationSource(EOperationSource.Scalar)
 		
-		# 스칼라 값 지정 // Set the Scalar value
-		operationLogicalNand.SetScalarValue(111);
+		# 스칼라 값 지정 # Set the Scalar value
+		operationLogicalNand.SetScalarValue(111)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationLogicalNand.Execute()).IsFail():

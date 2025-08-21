@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,7 +7,7 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 	# 이미지 객체 선언 # Declare the image object
 	fliSrcImage = CFLImage()
@@ -20,12 +20,12 @@ def main():
 	viewImageDst1 = CGUIViewImage()
 
 	while True:
-		# Source 이미지 로드 // Load the source image
+		# Source 이미지 로드 # Load the source image
 		if (res := fliSrcImage.Load("../../ExampleImages/OperationLeastCommonMultiple/Gradient.flif")).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
-		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
+		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination image as same as source image
 		if ((res := fliDstImage0.Assign(fliSrcImage)).IsFail() or
 			(res := fliDstImage1.Assign(fliSrcImage)).IsFail()):
 			ErrorPrint(res, 'Failed to assign.')
@@ -39,21 +39,21 @@ def main():
 			break
 
 		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views. .
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if ((res := viewImageSrc.SynchronizePointOfView(viewImageDst0)[0]).IsFail() or
 			(res := viewImageSrc.SynchronizePointOfView(viewImageDst1)[0]).IsFail()):
 			ErrorPrint(res, "Failed to synchronize view. \n")
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if ((res := viewImageSrc.SynchronizeWindow(viewImageDst0)[0]).IsFail() or
 			(res := viewImageSrc.SynchronizeWindow(viewImageDst1)[0]).IsFail()):
 			ErrorPrint(res, "Failed to synchronize window. \n")
 			break
 
 		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if ((res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail() or
 			(res := viewImageDst0.SetImagePtr(fliDstImage0)[0]).IsFail() or
 			(res := viewImageDst1.SetImagePtr(fliDstImage1)[0]).IsFail()):
@@ -125,7 +125,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -6,28 +6,28 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res: CResult, string: str):
     if len(string) > 1:
         print(string)
     print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
-    # 이미지 객체 선언 // Declare the image object
+    # 이미지 객체 선언 # Declare the image object
     fliISrcImage = CFLImage()
     fliIDstImage = CFLImage()
 
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     viewImage = [CGUIViewImage(), CGUIViewImage()]
 
     while True:
-        # 이미지 로드 // Load image
+        # 이미지 로드 # Load image
         if (res := fliISrcImage.Load("../../ExampleImages/Threshold/Mountain.flif")).IsFail():
             ErrorPrint(res, "Failed to load the image file.")
             break
 
-        # 이미지 뷰 생성 // Create image view
+        # 이미지 뷰 생성 # Create image view
         if (res := viewImage[0].Create(300, 0, 300 + 520, 430)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
@@ -36,17 +36,17 @@ def main():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
-        # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
+        # 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
         if (res := viewImage[0].SynchronizePointOfView(viewImage[1])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize view")
             break
 
-        # 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
+        # 두 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the positions of the two image view windows
         if (res := viewImage[0].SynchronizeWindow(viewImage[1])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize window")
             break
 
-        # 이미지 뷰에 이미지를 디스플레이 // Display the image in the image view
+        # 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
         if (res := viewImage[0].SetImagePtr(fliISrcImage)[0]).IsFail():
             ErrorPrint(res, "Failed to set image object on the image view.")
             break
@@ -55,24 +55,24 @@ def main():
             ErrorPrint(res, "Failed to set image object on the image view.")
             break
 
-        # Auto Threshold 객체 생성 // Create Auto Threshold object
+        # Auto Threshold 객체 생성 # Create Auto Threshold object
         autoThreshold = CAutoThreshold()
 
-        # Source 이미지 설정 // Set source image
+        # Source 이미지 설정 # Set source image
         autoThreshold.SetSourceImage(fliISrcImage)
 
-        # Destination 이미지 설정 // Set destination image
+        # Destination 이미지 설정 # Set destination image
         autoThreshold.SetDestinationImage(fliIDstImage)
 
-        # Sigma 값 설정 // Set the sigma value
-        autoThreshold.SetSigma(2);
+        # Sigma 값 설정 # Set the sigma value
+        autoThreshold.SetSigma(2)
 
-        # 알고리즘 수행 // Execute the algorithm
+        # 알고리즘 수행 # Execute the algorithm
         if (res := autoThreshold.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute AutoThreshold.")
             break
 
-        # 레이어 가져오기 // Get image layers
+        # 레이어 가져오기 # Get image layers
         layer1 = viewImage[0].GetLayer(0)
         if res.IsFail():
             ErrorPrint(res, "Failed to get layer from source view.")
@@ -83,7 +83,7 @@ def main():
             ErrorPrint(res, "Failed to get layer from destination view.")
             break
 
-        # Text 출력 // Display text
+        # Text 출력 # Display text
         flpPoint = CFLPoint[float](0, 0)
         if (res := layer1.DrawTextImage(flpPoint, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
             ErrorPrint(res, "Failed to draw text on source layer.")
@@ -93,11 +93,11 @@ def main():
             ErrorPrint(res, "Failed to draw text on destination layer.")
             break
 
-        # 이미지 뷰 갱신 // Update image view
+        # 이미지 뷰 갱신 # Update image view
         viewImage[0].Invalidate(True)
         viewImage[1].Invalidate(True)
 
-        # 이미지 뷰가 종료될 때까지 대기 // Wait for image view to close
+        # 이미지 뷰가 종료될 때까지 대기 # Wait for image view to close
         while viewImage[0].IsAvailable():
             CThreadUtilities.Sleep(1)
 

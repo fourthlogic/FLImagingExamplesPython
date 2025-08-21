@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -6,7 +6,7 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
 	view3DSrc0 = CGUIView3D()
@@ -19,7 +19,7 @@ def main():
 	fl3DObjectDst = CFL3DObject()
 
 	while True:
-		# 데이터 로드 // Load data
+		# 데이터 로드 # Load data
 		floSource0.Load("../../ExampleImages/CoordinateFrameUnification3D/Office_mosaicked(Left).ply")
 		floWorld.Load("../../ExampleImages/CoordinateFrameUnification3D/Office_mosaicked(Middle).ply")
 		floSource1.Load("../../ExampleImages/CoordinateFrameUnification3D/Office_mosaicked(Right).ply")
@@ -65,12 +65,12 @@ def main():
 		floDestination = CFL3DObject()
 		coordinateFrameUnification3D.SetDestinationObject(floDestination)
 
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := coordinateFrameUnification3D.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute.\n")
 			break
 
-		# 3D 뷰 생성 // Create the 3D views
+		# 3D 뷰 생성 # Create the 3D views
 		if (res := view3DSrc0.Create(100, 250, 600, 750)).IsFail() or \
 			(res := view3DWorld.Create(600, 0, 1100, 500)).IsFail() or \
 			(res := view3DSrc1.Create(1100, 250, 1600, 750)).IsFail() or \
@@ -78,9 +78,9 @@ def main():
 			ErrorPrint(res, "Failed to create the 3d view.\n")
 			break
 
-		view3DDst.SynchronizeWindow(view3DSrc0);
-		view3DDst.SynchronizeWindow(view3DWorld);
-		view3DDst.SynchronizeWindow(view3DSrc1);
+		view3DDst.SynchronizeWindow(view3DSrc0)
+		view3DDst.SynchronizeWindow(view3DWorld)
+		view3DDst.SynchronizeWindow(view3DSrc1)
 
 		view3DSrc0.PushObject(floSource0)
 		view3DWorld.PushObject(floWorld)
@@ -92,7 +92,7 @@ def main():
 		view3DDst.SynchronizePointOfView(view3DSrc1)
 
 
-		# 3D 뷰에 카메라 위치 직접 세팅 // Set 3d view camera pose manually
+		# 3D 뷰에 카메라 위치 직접 세팅 # Set 3d view camera pose manually
 		cam = CFL3DCamera()
 
 		if (res := cam.SetProjectionType(E3DCameraProjectionType.Perspective)).IsFail() or \
@@ -104,15 +104,15 @@ def main():
 			ErrorPrint(res, "Failed to set camera.\n")
 			break
 		
-		view3DDst.DesynchronizePointOfView(view3DSrc0);
-		view3DDst.DesynchronizePointOfView(view3DSrc1);
+		view3DDst.DesynchronizePointOfView(view3DSrc0)
+		view3DDst.DesynchronizePointOfView(view3DSrc1)
 
 		layer3DSrc0 = view3DSrc0.GetLayer(0)
 		layer3DSrc1 = view3DSrc1.GetLayer(0)
 		layer3DWorld = view3DWorld.GetLayer(0)
 		layer3DDst = view3DDst.GetLayer(0)
 
-		flpTopLeft =  CFLPoint[Double](0, 0);
+		flpTopLeft =  CFLPoint[Double](0, 0)
 
 		if (res := layer3DSrc0.DrawTextCanvas(flpTopLeft, "Scene 0", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or \
 			(res := layer3DWorld.DrawTextCanvas(flpTopLeft, "World(Reference)", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or \
@@ -121,13 +121,13 @@ def main():
 			ErrorPrint(res, "Failed to draw text.\n")
 			break
 
-		# 뷰를 갱신 // Update view
+		# 뷰를 갱신 # Update view
 		view3DSrc0.Invalidate(True)
 		view3DWorld.Invalidate(True)
 		view3DSrc1.Invalidate(True)
 		view3DDst.Invalidate(True)
 
-		# 뷰가 종료될 때까지 기다림 // Wait for the view to close
+		# 뷰가 종료될 때까지 기다림 # Wait for the view to close
 		while(view3DSrc0.IsAvailable() and view3DSrc1.IsAvailable() and view3DWorld.IsAvailable() and view3DDst.IsAvailable()):
 			CThreadUtilities.Sleep(1)
 
@@ -135,7 +135,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res: CResult, string: str):
 	if len(string) > 1:
 		print(string)

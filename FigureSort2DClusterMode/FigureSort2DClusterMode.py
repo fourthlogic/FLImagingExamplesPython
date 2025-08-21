@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,23 +7,23 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 	
-    # Figure 객체 선언 // Declare figure object
+    # Figure 객체 선언 # Declare figure object
     flfaSource = CFLFigureArray()
 
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     viewImageNormalSort2D = CGUIViewImage()
     viewImageSort2DClusterMode = CGUIViewImage()
 
     while True:
-        # Figure 로드 // Load figure
+        # Figure 로드 # Load figure
         if (res := flfaSource.Load("../../ExampleImages/Figure/RectangleArray.fig")).IsFail():
             ErrorPrint(res, "Failed to load the figure file.")
             break
 
-        # 이미지 뷰 생성 // Create image view
+        # 이미지 뷰 생성 # Create image view
         if (res := viewImageNormalSort2D.Create(200, 0, 968, 576)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
@@ -32,12 +32,12 @@ def main():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
-        # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
+        # 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
         if (res := viewImageNormalSort2D.SynchronizePointOfView(viewImageSort2DClusterMode)[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize view")
             break
 
-        # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
+        # 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
         if (res := viewImageNormalSort2D.SynchronizeWindow(viewImageSort2DClusterMode)[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize window.")
             break
@@ -57,12 +57,12 @@ def main():
             ErrorPrint(res, "Failed to process Sort2DClusterMode.")
             break
 
-        # 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-        # 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
+        # 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+        # 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
         layerNormalSort2D = viewImageNormalSort2D.GetLayer(0)
         layerSort2DClusterMode = viewImageSort2DClusterMode.GetLayer(0)
 
-        # 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
+        # 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
         layerNormalSort2D.Clear()
         layerSort2DClusterMode.Clear()
         flp = CFLPoint[Double]()
@@ -88,7 +88,7 @@ def main():
             ErrorPrint(res, "Failed to draw figure objects on the image view.")
             break
 
-        # 정보값을 각각 확인하는 코드 // Code to check each information value
+        # 정보값을 각각 확인하는 코드 # Code to check each information value
         for i in range(flfaNormalSort2D.GetCount()):
             flrg = CFLRegion(flfaNormalSort2D.GetAt(i))
 
@@ -100,7 +100,7 @@ def main():
 
         print("\n")
 
-        # 정보값을 각각 확인하는 코드 // Code to check each information value
+        # 정보값을 각각 확인하는 코드 # Code to check each information value
         for i in range(flfaSort2DClusterMode.GetCount()):
             flfaCluster = CFLFigureArray(flfaSort2DClusterMode.GetAt(i))
 
@@ -123,15 +123,15 @@ def main():
 
                 layerSort2DClusterMode.DrawTextImage(flpCenter, f"{i},{j}", EColor.CYAN, EColor.BLACK, 12, False, 0.0, EGUIViewImageTextAlignment.CENTER_CENTER)
         
-        # 이전 루프에서 break가 발생했는지 다시 확인 // Check again if a break occurred in the previous loop
+        # 이전 루프에서 break가 발생했는지 다시 확인 # Check again if a break occurred in the previous loop
         if 'res' in locals() and res.IsFail():
             break
 
-        # 이미지 뷰를 갱신 합니다. // Update image view
+        # 이미지 뷰를 갱신 합니다. # Update image view
         viewImageNormalSort2D.RedrawWindow()
         viewImageSort2DClusterMode.RedrawWindow()
 
-        # 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
+        # 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close
         while viewImageNormalSort2D.IsAvailable() and viewImageSort2DClusterMode.IsAvailable():
             CThreadUtilities.Sleep(1)
         
@@ -141,7 +141,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

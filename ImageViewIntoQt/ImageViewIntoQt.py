@@ -16,45 +16,45 @@ class ImageViewIntoQt(QWidget):
         self.setWindowTitle("ImageViewIntoQt")
         self.resize(740, 500)
 
-        # 메인 레이아웃 생성 // Create the main layout
+        # 메인 레이아웃 생성 # Create the main layout
         self.layoutMain = QHBoxLayout()
         self.setLayout(self.layoutMain)
 
-        # 뷰의 프레임 생성 // Create the view frame
+        # 뷰의 프레임 생성 # Create the view frame
         self.frameView = QFrame()
         self.frameView.setFrameShape(QFrame.StyledPanel)
         self.layoutMain.addWidget(self.frameView, stretch=4)
 
-        # 컨트롤들의 프레임 생성 // Create a frame for the controls
+        # 컨트롤들의 프레임 생성 # Create a frame for the controls
         self.frameControls = QFrame()
         self.frameControls.setFrameShape(QFrame.StyledPanel)
         self.layoutMain.addWidget(self.frameControls, stretch=1)
         
-        # 컨트롤들의 레이아웃 생성 // Create a layout for the controls
+        # 컨트롤들의 레이아웃 생성 # Create a layout for the controls
         self.layoutControls = QVBoxLayout()
-        self.frameControls.setLayout(self.layoutControls);
+        self.frameControls.setLayout(self.layoutControls)
 
-        # 라벨 생성 // Create a label
+        # 라벨 생성 # Create a label
         self.labelTitle = QLabel("RectFigure Object")
         self.labelTitle.setAlignment(Qt.AlignCenter)
         self.layoutControls.addWidget(self.labelTitle)
 
-        # 생성 버튼 생성 // Create a 'Create' button
+        # 생성 버튼 생성 # Create a 'Create' button
         self.buttonCreate = QPushButton("Create")
         self.buttonCreate.clicked.connect(self.OnCreateButtonClick)
         self.layoutControls.addWidget(self.buttonCreate)
 
-        # 제거 버튼 생성 // Create a 'Pop Front' button
+        # 제거 버튼 생성 # Create a 'Pop Front' button
         self.buttonPopFront = QPushButton("Pop Front")
         self.buttonPopFront.clicked.connect(self.OnPopFrontButtonClick)
         self.layoutControls.addWidget(self.buttonPopFront)
 
-        # 인포메이션 텍스트 에디트 생성 // Create an information text editor
+        # 인포메이션 텍스트 에디트 생성 # Create an information text editor
         self.textInfo = QTextEdit()
         self.textInfo.setReadOnly(True)
         self.layoutControls.addWidget(self.textInfo)
 
-        # 이미지 뷰 생성 // Create an image view
+        # 이미지 뷰 생성 # Create an image view
         self.m_viewImage = CGUIViewImage()
         if (res := self.m_viewImage.CreateAndFitParent(int(self.frameView.winId()))).IsFail():
             ErrorPrint(res, 'Failed to create the image view.')
@@ -145,7 +145,7 @@ if __name__ == "__main__":
     sys.exit(app.exec_()) 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res: CResult, string: str):
 	if len(string) > 1:
 		print(string)

@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -8,7 +8,7 @@ CLibraryUtilities.Initialize()
 from System.Collections.Generic import List
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
 	dictEulerString = {
@@ -38,34 +38,34 @@ def main():
 		EEulerSequence.Intrinsic_ZXZ : 'Int_ZXZ'
 				}
 	
-	# 이미지 뷰 선언 // Declare the image view	
+	# 이미지 뷰 선언 # Declare the image view	
 	view3D = CGUIView3D()
 
-	# 이미지 선언 // Declare the image
+	# 이미지 선언 # Declare the image
 	fliSource = CFLImage()
 
 	while True:
 		
-		# 이미지 로드 // Load the image
+		# 이미지 로드 # Load the image
 		if(res := fliSource.Load("../../ExampleImages/CameraPose3D/ChessBoard(4p).flif")).IsFail() :				
 			ErrorPrint(res, "Failed to load the object file.\n")
 			break
 		
-		# CameraPose3D 객체 생성 // Create CameraPose3D object
+		# CameraPose3D 객체 생성 # Create CameraPose3D object
 		cameraPose3D = CCameraPose3D()
 
-		# Camera Matrix 설정 // Set the camera matrix
+		# Camera Matrix 설정 # Set the camera matrix
 		flpFocalLength = CFLPoint[Double](617.8218, 618.2815)
 		flpPrincipalPoint = CFLPoint[Double](319.05237, 243.0472)
 		cameraPose3D.SetCameraMatrix(flpFocalLength, flpPrincipalPoint)
 
-		# 셀 간격 설정 // Set the board cell pitch
+		# 셀 간격 설정 # Set the board cell pitch
 		cameraPose3D.SetBoardCellPitch(5, 5)
 
-		# 캘리브레이션 객체 타입 설정 // Set the calibration object type
+		# 캘리브레이션 객체 타입 설정 # Set the calibration object type
 		cameraPose3D.SetCalibrationObjectType(ECalibrationObjectType.ChessBoard)
 
-		# 이미지 전처리 타입 설정 // Set the image preprocessing method
+		# 이미지 전처리 타입 설정 # Set the image preprocessing method
 		cameraPose3D.SetPreprocessingMethod(ECalibrationPreprocessingMethod.ShadingCorrection)
 
 		i32PageCount = fliSource.GetPageCount()
@@ -98,24 +98,24 @@ def main():
 			# 처리할 이미지 설정
 			cameraPose3D.SetSourceImage(pagePtr[i])
 
-			# 이미지 포인터 설정 // Set image pointer
+			# 이미지 포인터 설정 # Set image pointer
 			arrViewWrap[i].SetImagePtr(pagePtr[i])
 
-			# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+			# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 			if(res := cameraPose3D.Execute()).IsFail() :			
 				ErrorPrint(res, "Failed to execute Camera Pose 3D.")
 				break			
 
-			# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-			# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately		
+			# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+			# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately		
 			layerViewSource = arrViewWrap[i].GetLayer(0)
 
-			# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
+			# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
 			layerViewSource.Clear()
 
-			# View 정보를 디스플레이 한다. // Display view information
-			# 아래 함수 DrawTextCanvas 는 Screen좌표를 기준으로 하는 String을 Drawing 한다. // The function DrawTextCanvas below draws a String based on the screen coordinates.
-			# 색상 파라미터를 EGUIViewImageLayerTransparencyColor 으로 넣어주게되면 배경색으로 처리함으로 불투명도를 0으로 한것과 같은 효과가 있다. // If the color parameter is added as EGUIViewImageLayerTransparencyColor, it has the same effect as setting the opacity to 0 by processing it as a background color.
+			# View 정보를 디스플레이 한다. # Display view information
+			# 아래 함수 DrawTextCanvas 는 Screen좌표를 기준으로 하는 String을 Drawing 한다. # The function DrawTextCanvas below draws a String based on the screen coordinates.
+			# 색상 파라미터를 EGUIViewImageLayerTransparencyColor 으로 넣어주게되면 배경색으로 처리함으로 불투명도를 0으로 한것과 같은 효과가 있다. # If the color parameter is added as EGUIViewImageLayerTransparencyColor, it has the same effect as setting the opacity to 0 by processing it as a background color.
 			# 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 ->
 			#                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
 			# Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
@@ -124,27 +124,27 @@ def main():
 				ErrorPrint(res, "Failed to draw text.\n")
 				break			
 
-			# 결과 객체 영역 가져오기 // Get the result board region
+			# 결과 객체 영역 가져오기 # Get the result board region
 			flqBoardRegion = CFLQuad[Double]()
 			cameraPose3D.GetResultBoardRegion(flqBoardRegion)
 
-			# 결과 코너점 가져오기 // Get the result corner points
+			# 결과 코너점 가져오기 # Get the result corner points
 			flfaCornerPoints = CFLFigureArray()
 			cameraPose3D.GetResultCornerPoints(flfaCornerPoints)
 
-			# 결과 객체 영역 그리기 // Draw the result board region
+			# 결과 객체 영역 그리기 # Draw the result board region
 			layerViewSource.DrawFigureImage(flqBoardRegion, EColor.BLUE, 3)
 
-			# 결과 코너점 그리기 // Draw the result corner points
+			# 결과 코너점 그리기 # Draw the result corner points
 			flfaCornerPoints.Flatten()
 
 			for k in range(0, flfaCornerPoints.GetCount()) :
 				layerViewSource.DrawFigureImage(flfaCornerPoints.GetAt(k).GetCenter().MakeCrossHair(5, True), EColor.ORANGE, 1)
 
-			# 오일러 각 순서 설정 // Set the euler sequence
+			# 오일러 각 순서 설정 # Set the euler sequence
 			eEulerSequence = EEulerSequence.Extrinsic_XYZ
 
-			# 결과 가져오기 // Get the results
+			# 결과 가져오기 # Get the results
 			listResultRotationVector = List[Double]()
 			listResultTranslationVector = List[Double]()
 			listResultEulerAngle = List[Double]()
@@ -178,7 +178,7 @@ def main():
 	
 	# End of main function
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

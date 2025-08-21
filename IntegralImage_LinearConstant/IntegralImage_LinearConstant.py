@@ -6,7 +6,7 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-# Error 출력 함수 import // Import Error Output Function
+# Error 출력 함수 import # Import Error Output Function
 import sys
 import os
 
@@ -85,7 +85,7 @@ def main():
 		# 적분합 자료형 타입을 설정합니다. # Set integralImage data type.
 		integralImage.SetDataType(CIntegralImage.EDataType.Uint32)
 
-		# Integral 누적합 연산 모드 설정 // Set integration operation method.
+		# Integral 누적합 연산 모드 설정 # Set integration operation method.
 		# ECalculationMode_Sum : ax + c 형태의 선형 누적합 
 		# ECalculationMode_Sum : Linear sum with constant (ax + c)
 		integralImage.SetCalculationMode(CIntegralImage.ECalculationMode.LinearConstant)

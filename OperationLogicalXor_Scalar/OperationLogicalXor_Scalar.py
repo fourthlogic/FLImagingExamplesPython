@@ -94,11 +94,11 @@ def main():
 		operationLogicalXor.SetDestinationImage(fliDestination1Image)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		operationLogicalXor.SetOperationSource(EOperationSource.Scalar);
+		operationLogicalXor.SetOperationSource(EOperationSource.Scalar)
 		
 		# Logical Xor 값 지정 # Set the Logical Xor value
-		mvScalar = CMultiVar[Double](0, 0, 0);
-		operationLogicalXor.SetScalarValue(mvScalar);
+		mvScalar = CMultiVar[Double](0, 0, 0)
+		operationLogicalXor.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationLogicalXor.Execute()).IsFail():
@@ -110,8 +110,8 @@ def main():
 		operationLogicalXor.SetDestinationImage(fliDestination2Image)
 		
 		# Logical Xor 값 지정 # Set the Logical Xor value
-		mvScalar = CMultiVar[Double](255, 255, 255);
-		operationLogicalXor.SetScalarValue(mvScalar);
+		mvScalar = CMultiVar[Double](255, 255, 255)
+		operationLogicalXor.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationLogicalXor.Execute()).IsFail():

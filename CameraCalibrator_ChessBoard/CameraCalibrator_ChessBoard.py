@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from asyncio.windows_events import NULL
 from FLImagingClrPy import *
 
@@ -7,7 +7,7 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
@@ -19,17 +19,17 @@ def Calibration(cameraCalibrator, fliLearnImage):
 	res = CResult()
 
 	while True:
-		# Learn 이미지 설정 // Learn image settings
+		# Learn 이미지 설정 # Learn image settings
 		if (res := cameraCalibrator.SetCalibrationImage(fliLearnImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
-		# Calibator할 대상 종류를 설정합니다. // Set the target type for Calibator.
+		# Calibator할 대상 종류를 설정합니다. # Set the target type for Calibator.
 		cameraCalibrator.SetGridType(CCameraCalibrator.EGridType.ChessBoard)
 		# 결과에 대한 학습률을 설정합니다.
 		cameraCalibrator.SetOptimalSolutionAccuracy(1e-5)
 
-		# Calibration 실행 // Execute Calibration
+		# Calibration 실행 # Execute Calibration
 		if (res := cameraCalibrator.Calibrate()).IsFail():
 			ErrorPrint(res, 'Calibration failed')
 			break
@@ -44,22 +44,22 @@ def Undistortion(cameraCalibrator, fliSourceImage, fliDestinationImage):
 	res = CResult()
 
 	while True:
-		# Source 이미지 설정 // Set Source image
+		# Source 이미지 설정 # Set Source image
 		if (res := cameraCalibrator.SetSourceImage(fliSourceImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
-		# Destination 이미지 설정 // Set Destination image
+		# Destination 이미지 설정 # Set Destination image
 		if (res := cameraCalibrator.SetDestinationImage(fliDestinationImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
-		# Interpolation 알고리즘 설정 // Set the Interpolation Algorithm
+		# Interpolation 알고리즘 설정 # Set the Interpolation Algorithm
 		if (res := cameraCalibrator.SetInterpolationMethod(EInterpolationMethod.Bilinear)).IsFail():
 			ErrorPrint(res, 'Failed to set interpolation method')
 			break
 
-		# Undistortion 실행 // Execute Undistortion
+		# Undistortion 실행 # Execute Undistortion
 		if (res := cameraCalibrator.Execute()).IsFail():
 			ErrorPrint(res, 'Undistortion failed')
 			break
@@ -69,9 +69,9 @@ def Undistortion(cameraCalibrator, fliSourceImage, fliDestinationImage):
 
 	return bResult
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
-	# 이미지 객체 선언 // Declare the image object
+	# 이미지 객체 선언 # Declare the image object
 	fliLearnImage = CFLImage()
 	fliSourceImage = CFLImage()
 	fliDestinationImage = CFLImage()
@@ -79,17 +79,17 @@ def main():
 	fliDisplay = CFLImage()
 	arrFliDisplay = [CFLImage(), CFLImage(), CFLImage()]
 
-	# 이미지 뷰 선언 // Declare the image view
+	# 이미지 뷰 선언 # Declare the image view
 	viewImageLearn = [CGUIViewImage(), CGUIViewImage(), CGUIViewImage()]
 	viewImageSource = CGUIViewImage()
 	viewImageDestination = CGUIViewImage()
 
-	# Camera Calibrator 객체 생성 // Create Camera Calibrator object
+	# Camera Calibrator 객체 생성 # Create Camera Calibrator object
 	cameraCalibrator = CCameraCalibrator()
 	res = CResult()
 
 	while True:
-		# Learn 이미지 로드 // Load the Learn image
+		# Learn 이미지 로드 # Load the Learn image
 		if (res := fliLearnImage.Load('../../ExampleImages/CameraCalibrator/ChessBoard/Multiple ChessBoard.flif')).IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
@@ -103,12 +103,12 @@ def main():
 		arrFliDisplay[2].SwapPage(fliDisplay, 2)
 
 		for i in range(3):
-			# Learn 이미지 뷰 생성 // Create the Learn image view
+			# Learn 이미지 뷰 생성 # Create the Learn image view
 			if (res := viewImageLearn[i].Create(300 + 480 * i, 0, 300 + 480 * (i + 1), 360)).IsFail():
 				ErrorPrint(res, 'Failed to create the image view.')
 				break
 
-			# Learn 이미지 뷰에 이미지를 디스플레이 // Display the image in the Learn image view
+			# Learn 이미지 뷰에 이미지를 디스플레이 # Display the image in the Learn image view
 			if (res := viewImageLearn[i].SetImagePtr(arrFliDisplay[i])[0]).IsFail():
 				ErrorPrint(res, 'Failed to set image object on the image view.')
 				break
@@ -116,14 +116,14 @@ def main():
 		if not Calibration(cameraCalibrator, fliLearnImage):
 			break
 		
-		# Source 이미지 로드 // Load the Source image
+		# Source 이미지 로드 # Load the Source image
 		if (res := fliSourceImage.Load('../../ExampleImages/CameraCalibrator/ChessBoard/UndistortionImage/Undistortion_Image.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
 		mvBlank = CMultiVar[Int64](0)
 
-		# Destination 이미지 생성 // Create the Destination image
+		# Destination 이미지 생성 # Create the Destination image
 		if (res := fliDestinationImage.Create(fliSourceImage.GetWidth(), fliSourceImage.GetHeight(), mvBlank, fliSourceImage.GetPixelFormat())).IsFail():
 			ErrorPrint(res, 'Failed to create the image file.')
 			break
@@ -246,43 +246,43 @@ def main():
 
 			viewImageLearn[i].Invalidate()
 
-		# Source 이미지 뷰 생성 // Create the Source image view
+		# Source 이미지 뷰 생성 # Create the Source image view
 		if (res := viewImageSource.Create(300, 360, 780, 720)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# Destination 이미지 뷰 생성 // Create the Destination image view
+		# Destination 이미지 뷰 생성 # Create the Destination image view
 		if (res := viewImageDestination.Create(780, 360, 1260, 720)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the Source ImageView
+		# Source 이미지 뷰에 이미지를 디스플레이 # Display the image in the Source ImageView
 		if (res := viewImageSource.SetImagePtr(fliSourceImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the Destination image view
+		# Destination 이미지 뷰에 이미지를 디스플레이 # Display the image in the Destination image view
 		if (res := viewImageDestination.SetImagePtr(fliDestinationImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
 		for i in range(3):
-			# 두 이미지 뷰의 시점을 동기화 한다. // Synchronize the viewpoints of the two image views.
+			# 두 이미지 뷰의 시점을 동기화 한다. # Synchronize the viewpoints of the two image views.
 			if (res := viewImageLearn[i].SynchronizePointOfView(viewImageSource)[0]).IsFail():
 				ErrorPrint(res, 'Failed to synchronize view')
 				break
 
-			# 두 이미지 뷰의 시점을 동기화 한다. // Synchronize the viewpoints of the two image views.
+			# 두 이미지 뷰의 시점을 동기화 한다. # Synchronize the viewpoints of the two image views.
 			if (res := viewImageLearn[i].SynchronizePointOfView(viewImageDestination)[0]).IsFail():
 				ErrorPrint(res, 'Failed to synchronize view')
 				break
 
-			# 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
+			# 두 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the positions of the two image view windows
 			if (res := viewImageLearn[i].SynchronizeWindow(viewImageSource)[0]).IsFail():
 				ErrorPrint(res, 'Failed to synchronize window.')
 				break
 
-			# 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
+			# 두 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the positions of the two image view windows
 			if (res := viewImageLearn[i].SynchronizeWindow(viewImageDestination)[0]).IsFail():
 				ErrorPrint(res, 'Failed to synchronize window.')
 				break
@@ -335,7 +335,7 @@ def main():
 		viewImageSource.Invalidate()
 		viewImageDestination.Invalidate()
 
-		# 이미지 뷰가 종료될 때 까지 기다림 // Wait for the imageview to close
+		# 이미지 뷰가 종료될 때 까지 기다림 # Wait for the imageview to close
 		while viewImageLearn[0].IsAvailable() and viewImageLearn[1].IsAvailable() and viewImageLearn[2].IsAvailable() and viewImageSource.IsAvailable() and viewImageDestination.IsAvailable():
 			CThreadUtilities.Sleep(1)
 

@@ -33,7 +33,7 @@ def main():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
-		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
+		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination image as same as source image
 		if (res := fliDestinationImage.Assign(fliSourceImage)).IsFail():
 			ErrorPrint(res, 'Failed to assign the image.')
 			break
@@ -80,7 +80,7 @@ def main():
 		operationBinaryComplement.SetDestinationImage(fliDestinationImage)
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		operationBinaryComplement.SetOperationSource(EOperationSource.Image);
+		operationBinaryComplement.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationBinaryComplement.Execute()).IsFail():
@@ -120,7 +120,7 @@ def main():
 	# End of main function
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res: CResult, string: str):
 	if len(string) > 1:
 		print(string)

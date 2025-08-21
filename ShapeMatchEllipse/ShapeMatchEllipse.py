@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -6,7 +6,7 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-# Error 출력 함수 import // Import Error Output Function
+# Error 출력 함수 import # Import Error Output Function
 import sys
 import os
 
@@ -14,69 +14,69 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
 
 from ErrorPrint import *
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
-    # 이미지 객체 선언 // Declare the image object
+    # 이미지 객체 선언 # Declare the image object
     fliImage = CFLImage()
 
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     viewImage = CGUIViewImage()
     res = CResult()
 
-    # 이미지 로드 // Load image
+    # 이미지 로드 # Load image
     if (res := fliImage.Load("../../ExampleImages/ShapeMatch/Ellipse Match.flif")).IsFail():
         ErrorPrint(res, "Failed to load the image file.")
         return
 
-    # 이미지 뷰 생성 // Create image view
+    # 이미지 뷰 생성 # Create image view
     if (res := viewImage.Create(200, 0, 968, 576)).IsFail():
         ErrorPrint(res, "Failed to create the image view.")
         return
 
-    # 이미지 뷰에 이미지를 디스플레이 // Display an image in an image view
+    # 이미지 뷰에 이미지를 디스플레이 # Display an image in an image view
     if (res := viewImage.SetImagePtr(fliImage)[0]).IsFail():
         ErrorPrint(res, "Failed to set image object on the image view.")
         return
 
-    # Image 크기에 맞게 view의 크기를 조정 // Zoom the view to fit the image size
+    # Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
     if (res := viewImage.ZoomFit()).IsFail():
         ErrorPrint(res, "Failed to zoom fit")
         return
     
-    # Shape Match 객체 생성 // Create Shape Match object
+    # Shape Match 객체 생성 # Create Shape Match object
     shapeMatch = CShapeMatchEllipse()
     
-    # 학습할 타원의 반지름 설정 // Set the radius of the ellipse to learn
+    # 학습할 타원의 반지름 설정 # Set the radius of the ellipse to learn
     shapeMatch.SetRadius(15, 30)
     
-    # 학습할 타원의 각도 설정 // Set the angle of the ellipse to learn
+    # 학습할 타원의 각도 설정 # Set the angle of the ellipse to learn
     shapeMatch.SetAngle(15)
 
-    # 검출할 객체의 색상을 설정합니다. // Sets the color of the object to be detected.
+    # 검출할 객체의 색상을 설정합니다. # Sets the color of the object to be detected.
     shapeMatch.SetObjectColor(EShapeMatchObjectColor.Bright)
     
-    # 도형 학습 // Learn shape
+    # 도형 학습 # Learn shape
     if (res := shapeMatch.Learn()).IsFail():
         ErrorPrint(res, "Failed to Learn.")
         return
 
-    # 처리할 이미지 설정 // Set the image to process
+    # 처리할 이미지 설정 # Set the image to process
     shapeMatch.SetSourceImage(fliImage)
 
-    # 검출 시 사용될 유효 변경 크기범위를 설정합니다. // Set the effective change size range to be used for detection.
+    # 검출 시 사용될 유효 변경 크기범위를 설정합니다. # Set the effective change size range to be used for detection.
     shapeMatch.SetScaleRange(0.9, 1.1)
 
     # 검출할 객체 개수 설정. 0이하의 값을 입력 시 모든 객체 검출
     # Set the number of objects to detect. If a value less than or equal to 0 is entered, all objects will be detected.
     shapeMatch.SetMaxObject(0)
 
-    # 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+    # 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
     if (res := shapeMatch.Execute()).IsFail():
         ErrorPrint(res, "Failed to Execute.")
         return
 
-    # 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-    # 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
+    # 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+    # 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
     layer = viewImage.GetLayer(0)
 
     i64ResultCount = shapeMatch.GetResultCount()
@@ -85,7 +85,7 @@ def main():
         matchResult = CShapeMatchEllipseResult()
         shapeMatch.GetResult(i, matchResult)
 
-        # 도형 검출 결과를 Console창에 출력합니다. // Output the shape detection result to the console window.
+        # 도형 검출 결과를 Console창에 출력합니다. # Output the shape detection result to the console window.
         print(" < Instance : {} >".format(i))
         print("  1. Shape Type : Ellipse")
         print("    Pivot X: {:.2f}".format(matchResult.flpPivot.x))
@@ -105,7 +105,7 @@ def main():
             ErrorPrint(res, "Failed to draw text.")
             return
 
-    # 이미지 뷰를 갱신 합니다. // Update image view
+    # 이미지 뷰를 갱신 합니다. # Update image view
     viewImage.Invalidate()
 
     while viewImage.IsAvailable():

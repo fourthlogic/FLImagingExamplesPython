@@ -5,24 +5,24 @@
 CLibraryUtilities.Initialize()
 
 
-# 경고 코드 // Error print function
+# 경고 코드 # Error print function
 def ErrorPrint(res: CResult, msg: str):
     if len(msg) > 1:
         print(msg)
     print(f"Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n")
     input()
 
-# 이미지 객체 선언 // Declare the image object
+# 이미지 객체 선언 # Declare the image object
 fliLearnImage = [CFLImage(), CFLImage()]
 fliFindImage = CFLImage()
 
-# 이미지 뷰 선언 // Declare the image view
+# 이미지 뷰 선언 # Declare the image view
 viewImageLearn = [CGUIViewImage(), CGUIViewImage()]
 viewImageFind = CGUIViewImage()
 
 res = CResult()
 
-# Pattern Match Multi 객체 생성 // Create Pattern Match Multi object
+# Pattern Match Multi 객체 생성 # Create Pattern Match Multi object
 patternMatchMultiSparseSave = CPatternMatchMultiSparse()
 FLPatternMatchMultiSparseLoad = CPatternMatchMultiSparse()
 
@@ -37,17 +37,17 @@ while True:
                       CFLRect[Double](586.7185, 566.3427, 763.2982, 672.1134)]
 
     for i64DataIdx in range(2):
-        # 이미지 로드 // Load image
+        # 이미지 로드 # Load image
         if (res := fliLearnImage[i64DataIdx].Load(arrPath[i64DataIdx])).IsFail():
             ErrorPrint(res, "Failed to load the image file.")
             break
 
-        # 이미지 뷰 생성 // Create image view
+        # 이미지 뷰 생성 # Create image view
         if (res := viewImageLearn[i64DataIdx].Create(int(400 + 512 * i64DataIdx), 0, int(400 + 512 * (i64DataIdx + 1)), 384)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
 
-        # 이미지 뷰에 이미지를 디스플레이 // display the image in the imageview
+        # 이미지 뷰에 이미지를 디스플레이 # display the image in the imageview
         if (res := viewImageLearn[i64DataIdx].SetImagePtr(fliLearnImage[i64DataIdx])[0]).IsFail():
             ErrorPrint(res, "Failed to set image object on the image view.")
             break
@@ -55,21 +55,21 @@ while True:
         layerLearn = viewImageLearn[i64DataIdx].GetLayer(0)
         layerLearn.Clear()
 
-        # 학습할 이미지 설정 // Set the image to learn
+        # 학습할 이미지 설정 # Set the image to learn
         patternMatchMultiSparseSave.SetLearnImage(fliLearnImage[i64DataIdx])
 
-        # 학습할 영역을 설정합니다. // Set the area to learn.
+        # 학습할 영역을 설정합니다. # Set the area to learn.
         flpLearnPivot = CFLPoint[Double](arrLearnRegion[i64DataIdx].GetCenter())
         patternMatchMultiSparseSave.SetLearnROI(arrLearnRegion[i64DataIdx])
         patternMatchMultiSparseSave.SetLearnPivot(flpLearnPivot)
         patternMatchMultiSparseSave.SetSampleCount(256)
 
-        # 알고리즘 수행 // Execute the Algorithm
+        # 알고리즘 수행 # Execute the Algorithm
         if (res := patternMatchMultiSparseSave.Learn(arrClassName[i64DataIdx])).IsFail():
             ErrorPrint(res, "Failed to Learn.")
             break
 
-        # 측정 영역 디스플레이 // Display measurement area
+        # 측정 영역 디스플레이 # Display measurement area
         if (res := layerLearn.DrawFigureImage(arrLearnRegion[i64DataIdx], EColor.BLACK, 3)).IsFail():
             ErrorPrint(res, "Failed to draw figure")
             break
@@ -77,7 +77,7 @@ while True:
             ErrorPrint(res, "Failed to draw figure")
             break
 
-        # 중심점 디스플레이 // Display pivot point
+        # 중심점 디스플레이 # Display pivot point
         flfaPointPivot = flpLearnPivot.MakeCrossHair(3, False)
         if (res := layerLearn.DrawFigureImage(flfaPointPivot, EColor.BLACK, 3)).IsFail():
             ErrorPrint(res, "Failed to draw figure")
@@ -92,7 +92,7 @@ while True:
             ErrorPrint(res, "Failed to draw text")
             break
 
-        # 학습한 정보 출력 // Print learned info
+        # 학습한 정보 출력 # Print learned info
         print(f"  < LEARN CLASS {arrClassName[i64DataIdx]} > ")
         print("  1. ROI Shape Type : Rectangle")
         print(f"    left   : {arrLearnRegion[i64DataIdx].left}")
@@ -102,25 +102,25 @@ while True:
         print(f"    angle  : {arrLearnRegion[i64DataIdx].angle}")
         print(f"  2. Interest Pivot : ({flpLearnPivot.x}, {flpLearnPivot.y})\n")
 
-        # 이미지 뷰 갱신 // Update image view
+        # 이미지 뷰 갱신 # Update image view
         viewImageLearn[i64DataIdx].Invalidate(True)
 
-    # Save 학습 데이터 저장 // Save learned data
+    # Save 학습 데이터 저장 # Save learned data
     if (res := patternMatchMultiSparseSave.Save("../../ExampleImages/Matching/Pattern Multi Learn")).IsFail():
         ErrorPrint(res, "Failed to save\n")
         break
 
-    # 이미지 로드 // Load image
+    # 이미지 로드 # Load image
     if (res := fliFindImage.Load("../../ExampleImages/Matching/Pattern2 Single Find2.flif")).IsFail():
         ErrorPrint(res, "Failed to load\n")
         break
 
-    # 이미지 뷰 생성 // Create image view
+    # 이미지 뷰 생성 # Create image view
     if (res := viewImageFind.Create(400, 384, 1168, 960)).IsFail():
         ErrorPrint(res, "Failed to create the image view.")
         break
 
-    # 이미지 뷰에 이미지를 디스플레이 // display the image in the imageview
+    # 이미지 뷰에 이미지를 디스플레이 # display the image in the imageview
     if (res := viewImageFind.SetImagePtr(fliFindImage)[0]).IsFail():
         ErrorPrint(res, "Failed to set image object on the image view.")
         break
@@ -142,28 +142,28 @@ while True:
         ErrorPrint(res, "Failed to load\n")
         break
 
-    # 검출할 이미지 설정 // Set image to detect
+    # 검출할 이미지 설정 # Set image to detect
     FLPatternMatchMultiSparseLoad.SetSourceImage(fliFindImage)
-    # 검출 시 사용될 파라미터를 설정합니다. // Set the parameters to be used for detection.
-    # 검출 시 사용될 기본 각도를 설정합니다. // Set the default angle to be used for detection.
+    # 검출 시 사용될 파라미터를 설정합니다. # Set the parameters to be used for detection.
+    # 검출 시 사용될 기본 각도를 설정합니다. # Set the default angle to be used for detection.
     FLPatternMatchMultiSparseLoad.SetAngleBias(0.0)
-    # 검출 시 사용될 각도의 탐색범위를 설정합니다. // Set the search range of the angle to be used for detection.
-    # 각도는 기본 각도를 기준으로 (기본 각도 - AngleTolerance, 기본 각도 + AngleTolerance)가 최종 탐색범위 // The angle is based on the basic angle (default angle - AngleTolerance, basic angle + AngleTolerance) is the final search range
+    # 검출 시 사용될 각도의 탐색범위를 설정합니다. # Set the search range of the angle to be used for detection.
+    # 각도는 기본 각도를 기준으로 (기본 각도 - AngleTolerance, 기본 각도 + AngleTolerance)가 최종 탐색범위 # The angle is based on the basic angle (default angle - AngleTolerance, basic angle + AngleTolerance) is the final search range
     FLPatternMatchMultiSparseLoad.SetAngleTolerance(15.0)
-    # 검출 시 최적화 정도를 설정합니다. // Set the degree of optimization for detection.
-    # 검출 시 사용될 최소 탐색점수를 설정합니다. // Set the minimum search score to be used for detection.
+    # 검출 시 최적화 정도를 설정합니다. # Set the degree of optimization for detection.
+    # 검출 시 사용될 최소 탐색점수를 설정합니다. # Set the minimum search score to be used for detection.
     FLPatternMatchMultiSparseLoad.SetMinimumDetectionScore(0.7)
-    # 검출 시 사용될 탐색 방식을 설정합니다. // Set the search method to be used for detection.
+    # 검출 시 사용될 탐색 방식을 설정합니다. # Set the search method to be used for detection.
     FLPatternMatchMultiSparseLoad.SetMaxObjectMode(CPatternMatchMultiSparse.EMaxObjectMode.Total)
-    # 검출 시 사용될 최대 탐색객체 수를 설정합니다. // Set the maximum number of search objects to be used for detection.
+    # 검출 시 사용될 최대 탐색객체 수를 설정합니다. # Set the maximum number of search objects to be used for detection.
     FLPatternMatchMultiSparseLoad.SetMaxObjectTotal(2)
-    # 검출 시 보간법 사용 유무에 대해 설정합니다. // Set whether to use interpolation when detecting.
+    # 검출 시 보간법 사용 유무에 대해 설정합니다. # Set whether to use interpolation when detecting.
     FLPatternMatchMultiSparseLoad.EnableInterpolation(True)
-    # 검출 시 서로 다른 클래스에 대해 영역 중복을 허용 유무에 대해 설정합니다. // Set whether to allow area overlap for different classes during detection.
+    # 검출 시 서로 다른 클래스에 대해 영역 중복을 허용 유무에 대해 설정합니다. # Set whether to allow area overlap for different classes during detection.
     FLPatternMatchMultiSparseLoad.SetConflictDetectionMethod(CPatternMatchMultiSparse.EConflictDetectionMethod.HighestScore)
 
 
-    # 알고리즘 수행 // Execute the Algorithm
+    # 알고리즘 수행 # Execute the Algorithm
     if (res := FLPatternMatchMultiSparseLoad.Execute()).IsFail():
         ErrorPrint(res, "Failed to execute")
         break
@@ -188,7 +188,7 @@ while True:
                 i64Idx = i64ResultIndex
                 break
 
-        # 결과 출력 // Print results
+        # 결과 출력 # Print results
         print(f" < Instance : {i} >")
         print(f" Class Name : {wstrClassName}")
         print("  1. ROI Shape Type : Rectangle")
@@ -232,7 +232,7 @@ while True:
 
     viewImageFind.Invalidate(True)
 
-    # 이미지 뷰 종료 대기 // Wait for the imageview to close
+    # 이미지 뷰 종료 대기 # Wait for the imageview to close
     while viewImageLearn[0].IsAvailable():
         CThreadUtilities.Sleep(1)
 

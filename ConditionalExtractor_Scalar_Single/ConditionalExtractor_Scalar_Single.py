@@ -68,25 +68,25 @@ def main():
 		# Destination 이미지 설정 # Set the destination image
 		conditionalExtractor.SetDestinationImage(fliDestinationImage)
 
-		# Operation Source 설정 // Set the Operation Source
+		# Operation Source 설정 # Set the Operation Source
 		conditionalExtractor.SetOperationSource(EOperationSource.Scalar)
 
-		# Threshold Mode 설정 // Set the threshold mode
+		# Threshold Mode 설정 # Set the threshold mode
 		conditionalExtractor.SetThresholdMode(EThresholdMode.Single)
 
-		# Threshold value 설정 // Set the threshold value
+		# Threshold value 설정 # Set the threshold value
 		conditionalExtractor.SetThreshold(128)
 
-		# 논리조건 설정 // Set the logical condition
+		# 논리조건 설정 # Set the logical condition
 		conditionalExtractor.SetLogicalCondition(ELogicalCondition.Greater)
 
-		# 조건이 거짓일 경우 Out of Range 값 설정 여부 결정 // Determine the Out of Range value if the condition is false
+		# 조건이 거짓일 경우 Out of Range 값 설정 여부 결정 # Determine the Out of Range value if the condition is false
 		conditionalExtractor.EnableOutOfRange(True)
 
-		# 조건이 거짓일 경우 Out of range 값 설정하기 위한 MultiVar 객체 생성 // Create the MultiVar object that sets the Out of Range value if the condition is false
+		# 조건이 거짓일 경우 Out of range 값 설정하기 위한 MultiVar 객체 생성 # Create the MultiVar object that sets the Out of Range value if the condition is false
 		mvOutOfRange = CMultiVar[Double](0)
 
-		# Out of Range 값 설정 // Set Out of Range value
+		# Out of Range 값 설정 # Set Out of Range value
 		conditionalExtractor.SetOutOfRangeValue(mvOutOfRange)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters

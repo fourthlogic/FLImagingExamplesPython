@@ -94,11 +94,11 @@ def main():
 		operationLogicalOr.SetDestinationImage(fliDestination1Image)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		operationLogicalOr.SetOperationSource(EOperationSource.Scalar);
+		operationLogicalOr.SetOperationSource(EOperationSource.Scalar)
 		
 		# Logical Or 값 지정 # Set the Logical Or value
-		mvScalar = CMultiVar[Double](0, 0, 0);
-		operationLogicalOr.SetScalarValue(mvScalar);
+		mvScalar = CMultiVar[Double](0, 0, 0)
+		operationLogicalOr.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationLogicalOr.Execute()).IsFail():
@@ -110,8 +110,8 @@ def main():
 		operationLogicalOr.SetDestinationImage(fliDestination2Image)
 		
 		# Logical Or 값 지정 # Set the Logical Or value
-		mvScalar = CMultiVar[Double](255, 255, 255);
-		operationLogicalOr.SetScalarValue(mvScalar);
+		mvScalar = CMultiVar[Double](255, 255, 255)
+		operationLogicalOr.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationLogicalOr.Execute()).IsFail():

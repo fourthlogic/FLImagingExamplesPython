@@ -32,7 +32,7 @@ def main():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
-		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
+		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination image as same as source image
 		if (res := fliDestinationImage.Assign(fliSourceImage)).IsFail():
 			ErrorPrint(res, 'Failed to create the image file.')
 			break
@@ -107,7 +107,7 @@ def main():
 		operationLogicalOr.SetDestinationImage(fliDestinationImage)
 		
 		# 연산 방식 이미지로 설정 # Set operation source to image
-		operationLogicalOr.SetOperationSource(EOperationSource.Image);
+		operationLogicalOr.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationLogicalOr.Execute()).IsFail():

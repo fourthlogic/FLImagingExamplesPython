@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from asyncio.windows_events import NULL
 from FLImagingClrPy import *
 
@@ -7,7 +7,7 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
@@ -19,54 +19,54 @@ def Undistortion(cameraCalibrator, fliSourceImage, fliDestinationImage, viewImag
 	res = CResult()
 
 	while True:
-		# Source 이미지 로드 // Load the Source image
+		# Source 이미지 로드 # Load the Source image
 		if (res := fliSourceImage.Load('../../ExampleImages/CameraCalibrator/Undistortion.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
 		mvBlank = CMultiVar[Int64](0)
 
-		# Destination 이미지 생성 // Create the Destination image
+		# Destination 이미지 생성 # Create the Destination image
 		if (res := fliDestinationImage.Create(fliSourceImage.GetWidth(), fliSourceImage.GetHeight(), mvBlank, fliSourceImage.GetPixelFormat())).IsFail():
 			ErrorPrint(res, 'Failed to create the image file.')
 			break
 
-		# Source 이미지 뷰 생성 // Create the Source image view
+		# Source 이미지 뷰 생성 # Create the Source image view
 		if (res := viewImageSource.Create(400, 480, 1040, 960)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# Destination 이미지 뷰 생성 // Create the Destination image view
+		# Destination 이미지 뷰 생성 # Create the Destination image view
 		if (res := viewImageDestination.Create(1040, 480, 1680, 960)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
-		# Source 이미지 뷰에 이미지를 디스플레이 // Display the image in the Source ImageView
+		# Source 이미지 뷰에 이미지를 디스플레이 # Display the image in the Source ImageView
 		if (res := viewImageSource.SetImagePtr(fliSourceImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# Destination 이미지 뷰에 이미지를 디스플레이 // Display the image in the Destination image view
+		# Destination 이미지 뷰에 이미지를 디스플레이 # Display the image in the Destination image view
 		if (res := viewImageDestination.SetImagePtr(fliDestinationImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		# 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
+		# 두 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the positions of the two image view windows
 		if (res := viewImageSource.SynchronizeWindow(viewImageDestination)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
-		# Source 이미지 설정 // Set Source image
+		# Source 이미지 설정 # Set Source image
 		if (res := cameraCalibrator.SetSourceImage(fliSourceImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
-		# Destination 이미지 설정 // Set Destination image
+		# Destination 이미지 설정 # Set Destination image
 		if (res := cameraCalibrator.SetDestinationImage(fliDestinationImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image')
 			break
 
-		# Interpolation 알고리즘 설정 // Set the Interpolation Algorithm
+		# Interpolation 알고리즘 설정 # Set the Interpolation Algorithm
 		if (res := cameraCalibrator.SetInterpolationMethod(EInterpolationMethod.Bilinear)).IsFail():
 			ErrorPrint(res, 'Failed to set interpolation method')
 			break
@@ -74,7 +74,7 @@ def Undistortion(cameraCalibrator, fliSourceImage, fliDestinationImage, viewImag
 		sPC = CPerformanceCounter()
 		sPC.Start()
 
-		# Undistortion 실행 // Execute Undistortion
+		# Undistortion 실행 # Execute Undistortion
 		if (res := cameraCalibrator.Execute()).IsFail():
 			ErrorPrint(res, 'Undistortion failed')
 			break
@@ -102,24 +102,24 @@ def Undistortion(cameraCalibrator, fliSourceImage, fliDestinationImage, viewImag
 			ErrorPrint(res, "Failed to draw text")
 			break
 
-		viewImageDestination.Invalidate(False);
+		viewImageDestination.Invalidate(False)
 
 		bResult = True
 		break
 
 	return bResult
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
-	# 이미지 객체 선언 // Declare the image object
+	# 이미지 객체 선언 # Declare the image object
 	fliSourceImage = CFLImage()
 	fliDestinationImage = CFLImage()
 
-	# 이미지 뷰 선언 // Declare the image view
+	# 이미지 뷰 선언 # Declare the image view
 	viewImageSource = CGUIViewImage()
 	viewImageDestination = CGUIViewImage()
 
-	# Camera Calibrator 객체 생성 // Create Camera Calibrator object
+	# Camera Calibrator 객체 생성 # Create Camera Calibrator object
 	cameraCalibrator = CCameraCalibrator()
 
 	res = CResult()
@@ -191,10 +191,10 @@ def main():
 
 		viewImageSource.Invalidate()
 
-		print("Intrinsic parameters :", strMatrix);
-		print("Distortion Coefficients :", strDistVal);
+		print("Intrinsic parameters :", strMatrix)
+		print("Distortion Coefficients :", strDistVal)
 
-		# 이미지 뷰가 종료될 때 까지 기다림 // Wait for the imageview to close
+		# 이미지 뷰가 종료될 때 까지 기다림 # Wait for the imageview to close
 		while viewImageSource.IsAvailable() and viewImageDestination.IsAvailable():
 			CThreadUtilities.Sleep(1)
 

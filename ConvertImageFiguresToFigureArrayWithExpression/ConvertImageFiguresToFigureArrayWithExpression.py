@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -7,15 +7,15 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 	
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     viewImage = [CGUIViewImage() for _ in range(4)]
 
     while True:
 
-        # 이미지 뷰 생성 // Create image view
+        # 이미지 뷰 생성 # Create image view
         if (res := viewImage[0].Create(400, 0, 812, 384)).IsFail():
             ErrorPrint(res, "Failed to create the image view.")
             break
@@ -34,7 +34,7 @@ def main():
 
         fliSource = CFLImage()
 
-        # Source 이미지 로드 // Load the source image
+        # Source 이미지 로드 # Load the source image
         if (res := fliSource.Load("../../ExampleImages/Figure/ImageWithFigure.flif")).IsFail():
             ErrorPrint(res, "Failed to load the image file.")
             break
@@ -42,13 +42,13 @@ def main():
         fliCopy = CFLImage(fliSource, False)
         fliCopy.ClearFigures()
 
-        # 이미지 뷰에 이미지를 디스플레이 // Display an image in an image view
+        # 이미지 뷰에 이미지를 디스플레이 # Display an image in an image view
         if (res := viewImage[0].SetImagePtr(fliSource)[0]).IsFail():
             ErrorPrint(res, "Failed to set image object on the image view.")
             break
 
         for i in range(1, 4):
-            # 이미지 뷰에 이미지를 디스플레이 // Display an image in an image view
+            # 이미지 뷰에 이미지를 디스플레이 # Display an image in an image view
             if (res := viewImage[i].SetImagePtr(fliCopy)[0]).IsFail():
                 ErrorPrint(res, "Failed to set image object on the image view.")
                 break
@@ -56,7 +56,7 @@ def main():
         if (res := viewImage[3].SetImagePtr(fliCopy)[0]).IsFail():
             break
 
-        # SourceView, ResultView 의 0번 레이어 가져오기 // Get Layer 0 of SourceView, ResultView
+        # SourceView, ResultView 의 0번 레이어 가져오기 # Get Layer 0 of SourceView, ResultView
         layerSource = viewImage[0].GetLayer(0)
         layerResult1 = viewImage[1].GetLayer(0)
         layerResult2 = viewImage[2].GetLayer(0)
@@ -68,7 +68,7 @@ def main():
         layerResult3.DrawTextCanvas(CFLPoint[Double](0, 0), "Result 3", EColor.YELLOW, EColor.BLACK, 15)
 
         for i in range(1, 4):
-            # 두 이미지 뷰의 시점을 동기화 한다 // Synchronize the viewpoints of the two image views
+            # 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
             if (res := viewImage[0].SynchronizePointOfView(viewImage[i])[0]).IsFail():
                 ErrorPrint(res, "Failed to synchronize view")
                 break
@@ -77,7 +77,7 @@ def main():
             break
 
 
-        # 두 이미지 뷰 윈도우의 위치를 맞춤 // Synchronize the positions of the two image view windows
+        # 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
         for i in range(1, 4):
             if (res := viewImage[0].SynchronizeWindow(viewImage[i])[0]).IsFail():
                 ErrorPrint(res, "Failed to synchronize window.")
@@ -230,50 +230,50 @@ def main():
         # 	variance                                               : Variance or Var
         # 	standard deviation                                     : Stdev or Stddev
 
-        # 조건식 문자열 // Condition string
+        # 조건식 문자열 # Condition string
         strExpression1 = "Name == '1 Flux'"
 
-        # 조건식을 View에 표기 // Draw the conditional expression in the View
+        # 조건식을 View에 표기 # Draw the conditional expression in the View
         layerResult1.DrawTextCanvas(CFLPoint[Double](0, 20), strExpression1, EColor.YELLOW, EColor.BLACK, 13)
 
         flfaResult1 = CFLFigureArray()
-        # 조건식을 만족하는 Figure를 flfaResult1에 추출 // Extract the figure that satisfies the conditional expression to flfaResult1
+        # 조건식을 만족하는 Figure를 flfaResult1에 추출 # Extract the figure that satisfies the conditional expression to flfaResult1
         res, flfaResult1 = CFigureUtilities.ConvertImageFiguresToFigureArrayWithExpression(strExpression1, fliSource, flfaResult1)
         
         if res.IsFail():
             ErrorPrint(res, "Failed to process.")
             break
 
-        # 조건식 문자열 // Condition string
+        # 조건식 문자열 # Condition string
         strExpression2 = "Name == '2 Rubber' && Width > 90"
 
-        # 조건식을 View에 표기 // Draw the conditional expression in the View
+        # 조건식을 View에 표기 # Draw the conditional expression in the View
         layerResult2.DrawTextCanvas(CFLPoint[Double](0, 20), strExpression2, EColor.YELLOW, EColor.BLACK, 13)
 
         flfaResult2 = CFLFigureArray()
-        # 조건식을 만족하는 Figure를 flfaResult2에 추출 // Get the figure that satisfies the conditional expression to flfaResult2
+        # 조건식을 만족하는 Figure를 flfaResult2에 추출 # Get the figure that satisfies the conditional expression to flfaResult2
         res, flfaResult2 = CFigureUtilities.ConvertImageFiguresToFigureArrayWithExpression(strExpression2, fliSource, flfaResult2)
 
         if res.IsFail():
             ErrorPrint(res, "Failed to process.")
             break
 
-        # 조건식 문자열 // Condition string
+        # 조건식 문자열 # Condition string
         strExpression3 = "Center.x > mean('Center.x')"
 
-        # 조건식을 View에 표기 // Draw the conditional expression in the View
+        # 조건식을 View에 표기 # Draw the conditional expression in the View
         layerResult3.DrawTextCanvas(CFLPoint[Double](0, 20), strExpression3, EColor.YELLOW, EColor.BLACK, 13)
 
         flfaResult3 = CFLFigureArray()
-        # 조건식을 만족하는 Figure를 flfaResult3에 추출 // Get the figure that satisfies the conditional expression to flfaResult3
+        # 조건식을 만족하는 Figure를 flfaResult3에 추출 # Get the figure that satisfies the conditional expression to flfaResult3
         res, flfaResult3 = CFigureUtilities.ConvertImageFiguresToFigureArrayWithExpression(strExpression3, fliSource, flfaResult3)
 
-        # res는 (CResult, 변경된 flfaResult3) 튜플을 반환 // res returns a (CResult, modified flfaResult3) tuple
+        # res는 (CResult, 변경된 flfaResult3) 튜플을 반환 # res returns a (CResult, modified flfaResult3) tuple
         if res.IsFail():
             ErrorPrint(res, "Failed to process.")
             break
 
-        # ResultView의 0번 레이어에 Result Figure 그리기 // Draw the Result Figure on Layer 0 of the ResultView
+        # ResultView의 0번 레이어에 Result Figure 그리기 # Draw the Result Figure on Layer 0 of the ResultView
         layerResult1.DrawFigureImage(flfaResult1, EColor.BLACK, 3)
         layerResult1.DrawFigureImage(flfaResult1, EColor.LIME)
         layerResult2.DrawFigureImage(flfaResult2, EColor.BLACK, 3)
@@ -281,7 +281,7 @@ def main():
         layerResult3.DrawFigureImage(flfaResult3, EColor.BLACK, 3)
         layerResult3.DrawFigureImage(flfaResult3, EColor.LIME)
 
-        # Console 출력 // Console output
+        # Console 출력 # Console output
         print("Result1 Figure that Name == '1 Flux'\n")
         print(f"{CFigureUtilities.ConvertFigureObjectToString(flfaResult1)}\n\n")
 
@@ -291,12 +291,12 @@ def main():
         print("Result3 Figure that Center.x > mean('Center.x')\n")
         print(f"{CFigureUtilities.ConvertFigureObjectToString(flfaResult3)}\n\n")
 
-        # 이미지 뷰를 갱신 합니다. // Update image view
+        # 이미지 뷰를 갱신 합니다. # Update image view
         for i in range(4):
             viewImage[i].Invalidate(True)
             viewImage[i].RedrawWindow()
 
-        # 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close
+        # 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close
         while all(view.IsAvailable() for view in viewImage):
             CThreadUtilities.Sleep(1)
         
@@ -306,7 +306,7 @@ def main():
 
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

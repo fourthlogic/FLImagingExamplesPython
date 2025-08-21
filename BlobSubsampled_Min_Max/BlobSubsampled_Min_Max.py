@@ -83,8 +83,8 @@ def main():
     # Blob 결과를 얻어오기 위한 객체 선언 # Declare an object to retrieve Blob results
     flfaContours = CFLFigureArray()
     
-    flaItem = List[Int32]();
-    flaOrder = List[Int32]();
+    flaItem = List[Int32]()
+    flaOrder = List[Int32]()
     
     # Blob 결과들 중 Contours 을 얻어옴 # Get contours from the set of Blob results
     if (res := blob.GetResultContours(flfaContours)[0]).IsFail():
@@ -107,7 +107,7 @@ def main():
     
     # Image View에 정보 출력 # Display information on the Image View
     for i in range(flfaContours.GetCount()):
-        imgStatistics.SetSourceROI(flfaContours.GetAt(i));
+        imgStatistics.SetSourceROI(flfaContours.GetAt(i))
                 
         mvMin = CMultiVar[Double]()
         mvMax = CMultiVar[Double]()
@@ -126,7 +126,7 @@ def main():
         strMax = "Max : {:.3f}".format(mvMax.GetAt(0))
         print("No. {} ".format(i) + strMax)
         
-        flpContoursCenter = CFLPoint[Double](flfaContours.GetAt(i));        
+        flpContoursCenter = CFLPoint[Double](flfaContours.GetAt(i))        
         strIndex = "[{}]\n\n\n".format(i)
         strResult = "\n" + strMin + "\n" + strMax + "\n"
 

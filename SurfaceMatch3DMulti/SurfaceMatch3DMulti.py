@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -8,19 +8,19 @@ CLibraryUtilities.Initialize()
 
 
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-	# 3D 객체 선언 // Declare 3D object
+	# 3D 객체 선언 # Declare 3D object
 	arrLearnObject = [CFL3DObject() for _ in range(3)]
 	floSourceObject = CFL3DObject()
 
-	# 3D 뷰 선언 // Declare 3D view	
+	# 3D 뷰 선언 # Declare 3D view	
 	view3DDst = CGUIView3D()
 	arrView3DLearn = [CGUIView3D() for _ in range(3)]
 	view3DSource = CGUIView3D()
 
-	# 알고리즘 동작 결과 // Algorithm execution result
+	# 알고리즘 동작 결과 # Algorithm execution result
 	res = CResult()
 
 	while True:		
@@ -56,7 +56,7 @@ def main():
 			break
 
 		for i in range(3):
-			# Source Object 로드 // Load the Source object
+			# Source Object 로드 # Load the Source object
 			if(res := arrLearnObject[i].Load(arrPath[i])).IsFail() :		
 				ErrorPrint(res, "Failed to load the object file.\n")
 				break
@@ -73,10 +73,10 @@ def main():
 
 			arrView3DLearn[i].SetShadingType(EShadingType3D.Flat)
 
-			# Learn object 설정 // Set the learn object
+			# Learn object 설정 # Set the learn object
 			surfaceMatch3DMulti.SetLearnObject(arrLearnObject[i])
 
-			# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+			# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 			if(res := surfaceMatch3DMulti.Learn(arrClassName[i])).IsFail() :			
 				ErrorPrint(res, "Failed to learn Surface Match 3D Multi.")
 				break			
@@ -94,49 +94,49 @@ def main():
 			ErrorPrint(res, "Failed to display the 3D object.\n")
 			break
 		
-		# Source object 설정 // Set the source object
+		# Source object 설정 # Set the source object
 		surfaceMatch3DMulti.SetSourceObject(floSourceObject)
-		# Min score 설정 // Set the min score
+		# Min score 설정 # Set the min score
 		surfaceMatch3DMulti.SetMinScore(0.3)
-		# 최대 결과 개수 설정 // Set the max count of match result
+		# 최대 결과 개수 설정 # Set the max count of match result
 		surfaceMatch3DMulti.SetMaxObject(4)
-		# 학습 샘플링 거리 설정 // Set the learn sampling distance
+		# 학습 샘플링 거리 설정 # Set the learn sampling distance
 		surfaceMatch3DMulti.SetLearnSamplingDistance(0.03)
-		# 장면 샘플링 거리 설정 // Set the scene sampling distance
+		# 장면 샘플링 거리 설정 # Set the scene sampling distance
 		surfaceMatch3DMulti.SetSceneSamplingDistance(0.03)
-		# 키포인트 비율 설정 // Set the keypoint ratio.
+		# 키포인트 비율 설정 # Set the keypoint ratio.
 		surfaceMatch3DMulti.SetKeypointRatio(0.5)
-		# 엣지 학습 여부 설정 // Set the edge train
+		# 엣지 학습 여부 설정 # Set the edge train
 		surfaceMatch3DMulti.EnableTrainEdge(False)
-		# 배경 제거 여부 설정 // Set the background removal
+		# 배경 제거 여부 설정 # Set the background removal
 		surfaceMatch3DMulti.EnableBackgroundRemoval(False)
-		# 클러스터링 범위 설정 // Set the clustering range
+		# 클러스터링 범위 설정 # Set the clustering range
 		surfaceMatch3DMulti.SetClusterRange(0.02)
-		# 포즈 조정 반복 횟수 설정 // Set the iteration value of pose refinement
+		# 포즈 조정 반복 횟수 설정 # Set the iteration value of pose refinement
 		surfaceMatch3DMulti.SetIteration(5)
-		# 검출 시 사용될 탐색 방식을 설정합니다. // Set the search method to be used for detection.
+		# 검출 시 사용될 탐색 방식을 설정합니다. # Set the search method to be used for detection.
 		surfaceMatch3DMulti.SetMaxObjectMode(CMatchBase3DMulti.EMaxObjectMode.Class)
 
-		# 최대 결과 개수 설정 // Set the max count of match result
+		# 최대 결과 개수 설정 # Set the max count of match result
 		for i in range(3):
 			surfaceMatch3DMulti.SetMaxObject(arrClassName[i], arrMaxObject[i])
 
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 // Execute algorithm according to previously set parameters
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if(res := surfaceMatch3DMulti.Execute()).IsFail() :	
 			ErrorPrint(res, "Failed to execute Surface Match 3D Multi.")
 			break
 
 
-		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
-		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately		
+		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately		
 		layer3DDst = view3DDst.GetLayer(0)
 		layer3DSource = view3DSource.GetLayer(0)
 		
-		# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
+		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
 		layer3DDst.Clear()
 		layer3DSource.Clear()
 
-		# View 정보를 디스플레이 합니다. // Display View information.
+		# View 정보를 디스플레이 합니다. # Display View information.
 		# 아래 함수 DrawTextCanvas은 Screen좌표를 기준으로 하는 String을 Drawing 한다.# The function DrawTextCanvas below draws a String based on the screen coordinates.
 		# 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 ->
 		#                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
@@ -168,11 +168,11 @@ def main():
 		listColors = floSourceObject.GetVertexColors()
 
 		for i in range(listColors.Count) :		
-			listColors[i].x = 127;
-			listColors[i].y = 127;
-			listColors[i].z = 127;		
+			listColors[i].x = 127
+			listColors[i].y = 127
+			listColors[i].z = 127		
 
-		floSourceObject.SetVertexColors(listColors);
+		floSourceObject.SetVertexColors(listColors)
 
 		# 3D 오브젝트 뷰에 결과 Object와 비교를 위한 Source 오브젝트 디스플레이
 		if(res := view3DDst.PushObject(surfaceMatch3DMulti.GetSourceObject())).IsFail():
@@ -206,7 +206,7 @@ def main():
 			f64Residual = sResult.f64Residual
 			f64Score = sResult.f64Score
 
-			# 추정한 포즈 결과를 Console창에 출력한다 // Print the estimated pose matrix to the console window
+			# 추정한 포즈 결과를 Console창에 출력한다 # Print the estimated pose matrix to the console window
 			Console.WriteLine(" ▷ Pose Matrix 0", i)
 			Console.WriteLine("  1. R : Rotation, T : Translation\n")
 			Console.WriteLine("    Class Name : {0}", sResult.strClassName)
@@ -249,11 +249,11 @@ def main():
 
 		view3DDst.SynchronizePointOfView(view3DSource)
 
-		# 이미지 뷰를 갱신 합니다. // Update image view
+		# 이미지 뷰를 갱신 합니다. # Update image view
 		view3DSource.Invalidate(True)
 		view3DDst.Invalidate(True)
 
-		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 // Wait for the image and 3D view to close
+		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 # Wait for the image and 3D view to close
 		while arrView3DLearn[0].IsAvailable() and arrView3DLearn[1].IsAvailable() and arrView3DLearn[2].IsAvailable() and view3DSource.IsAvailable() and view3DDst.IsAvailable() :
 			CThreadUtilities.Sleep(1)
 
@@ -261,7 +261,7 @@ def main():
 	
 	# End of main function
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)

@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 import time
 
@@ -11,19 +11,19 @@ CLibraryUtilities.Initialize()
 # 소켓 이벤트를 수신하기 위해 CDeviceEventSocketBase에서 상속받아 구현
 # Inherit from CDeviceEventSocketBase to receive socket events
 class CDeviceEventSocketServerASCIIEx(CDeviceEventSocketASCII):
-    # 생성자 // Constructor
+    # 생성자 # Constructor
     def __init__(self, pSocketServerASCII):
         super().__init__()
         self.m_pSocketServerASCII = pSocketServerASCII
         self.RegisterOnReceived(CDeviceEventSocketServerASCIIEx.Delegate_OnReceived(self.OnReceived))
 
-    # 수신 이벤트 함수 재정의 // Override receive event function
+    # 수신 이벤트 함수 재정의 # Override receive event function
     def OnReceived(self, pDeviceSocketClientASCII, pSocketPacket):
-        # 받은 데이터를 문자열로 출력 // Print received data
+        # 받은 데이터를 문자열로 출력 # Print received data
         if pSocketPacket is not None:
             print("[Server] Recv " + pSocketPacket)
 
-        # 재전송(echo) // Send string(echo)
+        # 재전송(echo) # Send string(echo)
         if pDeviceSocketClientASCII is not None and pSocketPacket is not None:
             # Obtain Client Manager Objects
             pDeviceSocketClientASCIIManager = self.m_pSocketServerASCII.GetSocketClientManager()
@@ -31,7 +31,7 @@ class CDeviceEventSocketServerASCIIEx(CDeviceEventSocketASCII):
             if pDeviceSocketClientASCIIManager is not None:
                 print("[Server] Send " + pSocketPacket)
 
-                # 연결이 살아있고 연결 상태라면 데이터 전송 // Send if connection is alive
+                # 연결이 살아있고 연결 상태라면 데이터 전송 # Send if connection is alive
                 if pDeviceSocketClientASCIIManager.IsClientAlive(pDeviceSocketClientASCII):
                     pDeviceSocketClientASCII.Send(pSocketPacket)
 
@@ -41,7 +41,7 @@ class CDeviceEventSocketServerASCIIEx(CDeviceEventSocketASCII):
 # 클라이언트 소켓 이벤트 클래스
 # Client socket event class
 class CDeviceEventSocketClientASCIIEx(CDeviceEventSocketASCII):
-    # 생성자 // Constructor
+    # 생성자 # Constructor
     def __init__(self):
         super().__init__()
         self.m_bConnect = False
@@ -49,28 +49,28 @@ class CDeviceEventSocketClientASCIIEx(CDeviceEventSocketASCII):
         self.RegisterOnDisconnected(CDeviceEventSocketClientASCIIEx.Delegate_OnDisconnected(self.OnDisconnected))
         self.RegisterOnReceived(CDeviceEventSocketClientASCIIEx.Delegate_OnReceived(self.OnReceived))
 
-    # 연결 이벤트 함수 재정의 // Override connection event functions
+    # 연결 이벤트 함수 재정의 # Override connection event functions
     def OnConnected(self, pDeviceSocketClientASCII):
         self.m_bConnect = True
 
-    # 연결 해제 이벤트 함수 재정의 // Override disconnection event functions
+    # 연결 해제 이벤트 함수 재정의 # Override disconnection event functions
     def OnDisconnected(self, pDeviceSocketClientASCII):
         self.m_bConnect = False
 
-    # 수신 이벤트 함수 재정의 // Override receive event function
+    # 수신 이벤트 함수 재정의 # Override receive event function
     def OnReceived(self, pDeviceSocketClientASCII, pSocketPacket):
-        # 받은 데이터를 문자열로 출력 // Print received data
+        # 받은 데이터를 문자열로 출력 # Print received data
         if pSocketPacket is not None:
             print("[Client] Recv " + pSocketPacket)
 
-        # 재전송(echo) // Send string(echo)
+        # 재전송(echo) # Send string(echo)
         if self.m_bConnect and pDeviceSocketClientASCII is not None and pSocketPacket is not None:
             print("[Client] Send " + pSocketPacket)
             pDeviceSocketClientASCII.Send(pSocketPacket)
             CThreadUtilities.Sleep(500)
 
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res: CResult, string: str):
 	if len(string) > 1:
 		print(string)
@@ -79,11 +79,11 @@ def ErrorPrint(res: CResult, string: str):
 
 def main():
 
-        # 소켓 서버, 클라이언트 선언 // Declare socket server and client
+        # 소켓 서버, 클라이언트 선언 # Declare socket server and client
         deviceSocketServerASCII = CDeviceSocketServerASCII()
         deviceSocketClientASCII = CDeviceSocketClientASCII()
 
-        # 이벤트 객체 생성 및 등록 // Create and register event handlers
+        # 이벤트 객체 생성 및 등록 # Create and register event handlers
         deviceEventSocketServerASCII = CDeviceEventSocketServerASCIIEx(deviceSocketServerASCII)
         deviceEventSocketClientASCII = CDeviceEventSocketClientASCIIEx()
 
@@ -101,34 +101,34 @@ def main():
             deviceSocketServerASCII.SetSocketMode(ESocketMode.NoProtocol_Passive)
             deviceSocketClientASCII.SetSocketMode(ESocketMode.NoProtocol_Passive)
 
-            # IP 주소와 포트 설정 // Set IP and port
+            # IP 주소와 포트 설정 # Set IP and port
             flsIPAddress = "127.0.0.1"
             u16Port = 4444
 
             deviceSocketServerASCII.SetConnectionIPAddress(flsIPAddress, u16Port)
             deviceSocketClientASCII.SetConnectionIPAddress(flsIPAddress, u16Port)
 
-            # 소켓 서버 초기화 // Initialize socket server
+            # 소켓 서버 초기화 # Initialize socket server
             if((res := deviceSocketServerASCII.Initialize()).IsFail()):
 	            ErrorPrint(res, "Failed to initialize server.")
 	            break
 
-            # 소켓 클라이언트 초기화 (서버에 연결) // Initialize client (connect to server)
+            # 소켓 클라이언트 초기화 (서버에 연결) # Initialize client (connect to server)
             if((res := deviceSocketClientASCII.Initialize()).IsFail()):
 	            ErrorPrint(res, "Failed to initialize client.")
 	            break
 
-            # 테스트용 데이터 생성 // Create test data
+            # 테스트용 데이터 생성 # Create test data
             flsData = "Socket echo test. [Enter any key if you want to exit]"
 
-            # 클라이언트에서 서버로 데이터 송신 // Send data from client to server
+            # 클라이언트에서 서버로 데이터 송신 # Send data from client to server
             if((res := deviceSocketClientASCII.Send(flsData)).IsFail()):
 	            ErrorPrint(res, "Failed to send.")
 	            break
 
             input("Press any key to exit...\n")
 
-            # 소켓 해제 및 이벤트 해제 // Terminate sockets and clear events
+            # 소켓 해제 및 이벤트 해제 # Terminate sockets and clear events
             deviceSocketServerASCII.Terminate()
             deviceSocketClientASCII.Terminate()
             break

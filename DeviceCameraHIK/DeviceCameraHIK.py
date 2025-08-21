@@ -1,4 +1,4 @@
-﻿# FLImagingClrPy 선언 // Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -26,16 +26,16 @@ class CDeviceEventImageEx(CDeviceEventImageBase):
 
 			self.m_viewImage.Invalidate()
 
-# 메인 함수 // Main function
+# 메인 함수 # Main function
 def main():
 
-	# CResult 객체 선언 // Declare the CRessult object
+	# CResult 객체 선언 # Declare the CRessult object
 	er = CResult(EResult.UnknownError)
 
-	# 이미지 뷰 선언 // Declare the image view
+	# 이미지 뷰 선언 # Declare the image view
 	viewImage = CGUIViewImage()
 
-	# HIK 카메라 선언 // Declare the HIK camera
+	# HIK 카메라 선언 # Declare the HIK camera
 	camHik = CDeviceCameraHIK()
 
 	while True:
@@ -48,7 +48,7 @@ def main():
 		eConnectionMethod = CDeviceGenICamTypeBase.EConnectionMethod.SerialNumber
 		strConnection = ""
 		
-		# 장치 타입 선택 // Set Device Type
+		# 장치 타입 선택 # Set Device Type
 		while True:
 			print("1. GigE")
 			print("2. IEEE1394")
@@ -77,7 +77,7 @@ def main():
 
 		print()
 
-		# 카메라 인식 방법 선택 // Select Detection Method
+		# 카메라 인식 방법 선택 # Select Detection Method
 		while True:
 
 			print("1. Auto Detect")
@@ -104,7 +104,7 @@ def main():
 		if(bAutoDetect):
 			listSerialNumbers = List[String]()
 
-			# 연결되어 있는 카메라의 시리얼 번호를 가져온다. // Get serial numbers of connected cameras
+			# 연결되어 있는 카메라의 시리얼 번호를 가져온다. # Get serial numbers of connected cameras
 			
 			if(eDeviceType == CDeviceGenICamTypeBase.EDeviceType.GigE):
 				er = camHik.GetAutoDetectGigECameraSerialNumbers(listSerialNumbers)
@@ -120,7 +120,7 @@ def main():
 				print("Not Found Device.\n")
 				break
 
-			# 연결할 카메라를 선택한다. // Select camera to be connected.
+			# 연결할 카메라를 선택한다. # Select camera to be connected.
 			while(True):
 				for i in range(listSerialNumbers.Count):
 					strElement = String.Format("{0}. ", i + 1)
@@ -146,7 +146,7 @@ def main():
 					strInput = input("Select Connection Method: ")
 
 					if(strInput.isdigit()):
-						bSelected = True;
+						bSelected = True
 
 						if(strInput == "1"):
 							eConnectionMethod = CDeviceGenICamTypeBase.EConnectionMethod.SerialNumber
@@ -163,22 +163,22 @@ def main():
 				eConnectionMethod = CDeviceGenICamTypeBase.EConnectionMethod.SerialNumber
 
 			if(eConnectionMethod == CDeviceGenICamTypeBase.EConnectionMethod.SerialNumber):
-				# 시리얼 번호를 입력 받는다. // Enter the serial number.
+				# 시리얼 번호를 입력 받는다. # Enter the serial number.
 				strConnection = input("Input Serial Number: ")
 			else:
 				strConnection = input("Input IP Address: ")
 
-		# 이벤트를 받을 객체 선언 // Declare the object that receives events
+		# 이벤트를 받을 객체 선언 # Declare the object that receives events
 		eventImage = CDeviceEventImageEx()
 
-		# 카메라에 이벤트 객체 설정 // Set event object on Camera 
+		# 카메라에 이벤트 객체 설정 # Set event object on Camera 
 		camHik.RegisterDeviceEvent(eventImage)
 
-		# 카메라에 장치 타입 설정 // Set device type on Camera
+		# 카메라에 장치 타입 설정 # Set device type on Camera
 		camHik.SetDeviceType(eDeviceType)
 		
 		if(bAutoDetect):
-			# 연결할 인덱스에 해당하는 카메라를 설정한다. // Set the camera corresponding to the index to be connected.
+			# 연결할 인덱스에 해당하는 카메라를 설정한다. # Set the camera corresponding to the index to be connected.
 			if(eDeviceType == CDeviceGenICamTypeBase.EDeviceType.GigE):
 				er = camHik.AutoDetectGigECamera(i32SelectDevice)
 			elif(eDeviceType == CDeviceGenICamTypeBase.EDeviceType.IEEE1394):
@@ -195,18 +195,18 @@ def main():
 			camHik.SetConnectionMethod(eConnectionMethod)
 			
 			if(eConnectionMethod == CDeviceGenICamBase.EConnectionMethod.SerialNumber):
-				# 카메라에 연결할 시리얼 번호를 설정한다. // Set the serial number to camera
+				# 카메라에 연결할 시리얼 번호를 설정한다. # Set the serial number to camera
 				camHik.SetSerialNumber(strConnection)
 			else:
-				# 카메라에 연결할 IP 주소를 설정한다. // Set the IP address to camera
+				# 카메라에 연결할 IP 주소를 설정한다. # Set the IP address to camera
 				camHik.SetIPAddress(strConnection)
 
-		# 카메라 초기화 // Initialize the camera
+		# 카메라 초기화 # Initialize the camera
 		if((er := camHik.Initialize()).IsFail()):
 			print("Failed to initialize the camera.\n")
 			break
 
-		# 이미지 뷰 생성 // Create image view
+		# 이미지 뷰 생성 # Create image view
 		if((er := viewImage.Create(0,0,1000,1000)).IsFail()):
 			er = EResult.FailedToCreateObject
 			print("Failed to create the image view.\n")
@@ -214,25 +214,25 @@ def main():
 
 		eventImage.SetViewImage(viewImage)
 
-		# 카메라 Live // Live the camera
+		# 카메라 Live # Live the camera
 		if((er := camHik.Live()).IsFail()):
 			print("Failed to live the camera\n")
 			break
 
-		# 이미지 뷰가 종료될 때 까지 기다림 // Wait for the image view to close.
+		# 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close.
 		while(viewImage.IsAvailable()):
 			CThreadUtilities.Sleep(1)
 
 		break
 	
-	# 카메라의 초기화를 해제 // Terminate the camera
+	# 카메라의 초기화를 해제 # Terminate the camera
 	camHik.Terminate()
-	# 카메라에 연결된 이벤트 객체 삭제 // Clear the object that receives events.
+	# 카메라에 연결된 이벤트 객체 삭제 # Clear the object that receives events.
 	camHik.ClearDeviceEvents()
 
 	# End of main function
 
-# 에러 출력 함수 // Error printing function
+# 에러 출력 함수 # Error printing function
 def ErrorPrint(res: CResult, string: str):
 	if len(string) > 1:
 		print(string)

@@ -94,11 +94,11 @@ def main():
 		operationScaledSubtract.SetDestinationImage(fliDestination1Image)
 		
 		# 연산 방식 스칼라로 설정 # Set operation source to scalar
-		operationScaledSubtract.SetOperationSource(EOperationSource.Scalar);
+		operationScaledSubtract.SetOperationSource(EOperationSource.Scalar)
 		
 		# 스칼라 값 지정 # Set the Scalar value
-		mvScalar = CMultiVar[Double](30, 0, 0);
-		operationScaledSubtract.SetScalarValue(mvScalar);
+		mvScalar = CMultiVar[Double](30, 0, 0)
+		operationScaledSubtract.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationScaledSubtract.Execute()).IsFail():
@@ -109,8 +109,8 @@ def main():
 		operationScaledSubtract.SetDestinationImage(fliDestination2Image)
 		
 		# 스칼라 값 지정 # Set the Scalar value
-		mvScalar = CMultiVar[Double](0, 0, 30);
-		operationScaledSubtract.SetScalarValue(mvScalar);
+		mvScalar = CMultiVar[Double](0, 0, 30)
+		operationScaledSubtract.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationScaledSubtract.Execute()).IsFail():

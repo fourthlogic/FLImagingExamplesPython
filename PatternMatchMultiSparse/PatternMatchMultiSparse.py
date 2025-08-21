@@ -6,7 +6,7 @@ CLibraryUtilities.Initialize()
 
 import sys
 
-# 경고 코드 // Error print function
+# 경고 코드 # Error print function
 def ErrorPrint(res: CResult, msg: str):
     if len(msg) > 1:
         print(msg)
@@ -15,17 +15,17 @@ def ErrorPrint(res: CResult, msg: str):
 
 
 def main():
-    # 이미지 객체 선언 // Declare the image object
+    # 이미지 객체 선언 # Declare the image object
     fliLearnImage = [CFLImage() for _ in range(2)]
     fliFindImage = CFLImage()
 
-    # 이미지 뷰 선언 // Declare the image view
+    # 이미지 뷰 선언 # Declare the image view
     viewImageLearn = [CGUIViewImage() for _ in range(2)]
     viewImageFind = CGUIViewImage()
 
     res = CResult()
 
-    # Pattern Match Multi 객체 생성 // Create Pattern Match Multi object
+    # Pattern Match Multi 객체 생성 # Create Pattern Match Multi object
     patternMatchMultiSparse = CPatternMatchMultiSparse()
 
     while True:  # do~while(false) 구조
@@ -40,12 +40,12 @@ def main():
         ]
 
         for i64DataIdx in range(2):
-            # 이미지 로드 // Load image
+            # 이미지 로드 # Load image
             if (res := fliLearnImage[i64DataIdx].Load(arrPath[i64DataIdx])).IsFail():
                 ErrorPrint(res, "Failed to load the image file.")
                 break
 
-            # 이미지 뷰 생성 // Create image view
+            # 이미지 뷰 생성 # Create image view
             left = int(400 + 512 * i64DataIdx)
             top = 0
             right = int(400 + 512 * (i64DataIdx + 1))
@@ -54,7 +54,7 @@ def main():
                 ErrorPrint(res, "Failed to create the image view.")
                 break
 
-            # 이미지 뷰에 이미지를 디스플레이 // display the image in the imageview
+            # 이미지 뷰에 이미지를 디스플레이 # display the image in the imageview
             if (res := viewImageLearn[i64DataIdx].SetImagePtr(fliLearnImage[i64DataIdx])[0]).IsFail():
                 ErrorPrint(res, "Failed to set image object on the image view.")
                 break
@@ -62,21 +62,21 @@ def main():
             layerLearn = viewImageLearn[i64DataIdx].GetLayer(0)
             layerLearn.Clear()
 
-            # 학습할 이미지 설정 // Set the image to learn
+            # 학습할 이미지 설정 # Set the image to learn
             patternMatchMultiSparse.SetLearnImage(fliLearnImage[i64DataIdx])
 
-            # 학습할 영역을 설정합니다. // Set the area to learn.
+            # 학습할 영역을 설정합니다. # Set the area to learn.
             flpLearnPivot = CFLPoint[Double](arrLearnRegion[i64DataIdx].GetCenter())
             patternMatchMultiSparse.SetLearnROI(arrLearnRegion[i64DataIdx])
             patternMatchMultiSparse.SetLearnPivot(flpLearnPivot)
             patternMatchMultiSparse.SetSampleCount(256)
 
-            # 알고리즘 학습 수행 // Learn the Algoritm
+            # 알고리즘 학습 수행 # Learn the Algoritm
             if (res := patternMatchMultiSparse.Learn(arrClassName[i64DataIdx])).IsFail():
                 ErrorPrint(res, "Failed to Learn.")
                 break
 
-            # 측정 영역이 어디인지 알기 위해 디스플레이 한다 // Display to know where the measurement area is
+            # 측정 영역이 어디인지 알기 위해 디스플레이 한다 # Display to know where the measurement area is
             if (res := layerLearn.DrawFigureImage(arrLearnRegion[i64DataIdx], EColor.BLACK, 3)).IsFail():
                 ErrorPrint(res, "Failed to draw figure")
                 break
@@ -85,7 +85,7 @@ def main():
                 ErrorPrint(res, "Failed to draw figure")
                 break
 
-            # 설정된 중심점의 위치를 디스플레이 한다 // Display the position of the set center point
+            # 설정된 중심점의 위치를 디스플레이 한다 # Display the position of the set center point
             flfaPointPivot = flpLearnPivot.MakeCrossHair(3, False)
 
             if (res := layerLearn.DrawFigureImage(flfaPointPivot, EColor.BLACK, 3)).IsFail():
@@ -103,7 +103,7 @@ def main():
                 ErrorPrint(res, "Failed to draw text")
                 break
 
-            # 학습한 정보에 대해 Console창에 출력한다 // Print the learned information to the console window
+            # 학습한 정보에 대해 Console창에 출력한다 # Print the learned information to the console window
             print(f"  < LEARN CLASS {arrClassName[i64DataIdx]} > ")
             print("  1. ROI Shape Type : Rectangle")
             print(f"    left   : {arrLearnRegion[i64DataIdx].left}")
@@ -114,27 +114,27 @@ def main():
             print(f"  2. Interest Pivot : ({flpLearnPivot.x}, {flpLearnPivot.y})")
             print("")
 
-            # 이미지 뷰를 갱신 합니다. // Update the image view.
+            # 이미지 뷰를 갱신 합니다. # Update the image view.
             viewImageLearn[i64DataIdx].Invalidate(True)
         else:
             # 위 for문이 break 없이 끝난 경우에만 아래 실행됨
-            # 이미지 로드 // Load image
+            # 이미지 로드 # Load image
             if (res := fliFindImage.Load("../../ExampleImages/Matching/Pattern2 Single Find2.flif")).IsFail():
                 ErrorPrint(res, "Failed to load\n")
                 break
 
-            # 이미지 뷰 생성 // Create image view
+            # 이미지 뷰 생성 # Create image view
             if (res := viewImageFind.Create(400, 384, 1168, 960)).IsFail():
                 ErrorPrint(res, "Failed to create the image view.")
                 break
 
-            # 이미지 뷰에 이미지를 디스플레이 // display the image in the imageview
+            # 이미지 뷰에 이미지를 디스플레이 # display the image in the imageview
             if (res := viewImageFind.SetImagePtr(fliFindImage)[0]).IsFail():
                 ErrorPrint(res, "Failed to set image object on the image view.")
                 break
 
             for i64DataIdx in range(2):
-                # 두 이미지 뷰 윈도우의 위치를 동기화 한다 // Synchronize the positions of the two image view windows
+                # 두 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the positions of the two image view windows
                 if (res := viewImageFind.SynchronizeWindow(viewImageLearn[i64DataIdx])[0]).IsFail():
                     ErrorPrint(res, "Failed to synchronize window.")
                     break
@@ -148,32 +148,32 @@ def main():
                     ErrorPrint(res, "Failed to draw text")
                     break
 
-                # 검출할 이미지 설정 // Set image to detect
+                # 검출할 이미지 설정 # Set image to detect
                 patternMatchMultiSparse.SetSourceImage(fliFindImage)
-                # 검출 시 사용될 파라미터를 설정합니다. // Set the parameters to be used for detection.
-                # 검출 시 사용될 기본 각도를 설정합니다. // Set the default angle to be used for detection.
+                # 검출 시 사용될 파라미터를 설정합니다. # Set the parameters to be used for detection.
+                # 검출 시 사용될 기본 각도를 설정합니다. # Set the default angle to be used for detection.
                 patternMatchMultiSparse.SetAngleBias(0.0)
-                # 검출 시 사용될 각도의 탐색범위를 설정합니다. // Set the search range of the angle to be used for detection.
-                # 각도는 기본 각도를 기준으로 (기본 각도 - AngleTolerance, 기본 각도 + AngleTolerance)가 최종 탐색범위 // The angle is based on the basic angle (default angle - AngleTolerance, basic angle + AngleTolerance) is the final search range
+                # 검출 시 사용될 각도의 탐색범위를 설정합니다. # Set the search range of the angle to be used for detection.
+                # 각도는 기본 각도를 기준으로 (기본 각도 - AngleTolerance, 기본 각도 + AngleTolerance)가 최종 탐색범위 # The angle is based on the basic angle (default angle - AngleTolerance, basic angle + AngleTolerance) is the final search range
                 patternMatchMultiSparse.SetAngleTolerance(15.0)
-                # 검출 시 최적화 정도를 설정합니다. // Set the degree of optimization for detection.
-                # 검출 시 사용될 최소 탐색점수를 설정합니다. // Set the minimum search score to be used for detection.
+                # 검출 시 최적화 정도를 설정합니다. # Set the degree of optimization for detection.
+                # 검출 시 사용될 최소 탐색점수를 설정합니다. # Set the minimum search score to be used for detection.
                 patternMatchMultiSparse.SetMinimumDetectionScore(0.7)
-                # 검출 시 사용될 탐색 방식을 설정합니다. // Set the search method to be used for detection.
+                # 검출 시 사용될 탐색 방식을 설정합니다. # Set the search method to be used for detection.
                 patternMatchMultiSparse.SetMaxObjectMode(CPatternMatchMultiSparse.EMaxObjectMode.Total)
-                # 검출 시 사용될 최대 탐색객체 수를 설정합니다. // Set the maximum number of search objects to be used for detection.
+                # 검출 시 사용될 최대 탐색객체 수를 설정합니다. # Set the maximum number of search objects to be used for detection.
                 patternMatchMultiSparse.SetMaxObjectTotal(2)
-                # 검출 시 보간법 사용 유무에 대해 설정합니다. // Set whether to use interpolation when detecting.
+                # 검출 시 보간법 사용 유무에 대해 설정합니다. # Set whether to use interpolation when detecting.
                 patternMatchMultiSparse.EnableInterpolation(True)
-                # 검출 시 서로 다른 클래스에 대해 영역 중복을 허용 유무에 대해 설정합니다. // Set whether to allow area overlap for different classes during detection.
+                # 검출 시 서로 다른 클래스에 대해 영역 중복을 허용 유무에 대해 설정합니다. # Set whether to allow area overlap for different classes during detection.
                 patternMatchMultiSparse.SetConflictDetectionMethod(CPatternMatchMultiSparse.EConflictDetectionMethod.HighestScore)
 
-                # 알고리즘 수행 // Execute the Algoritm
+                # 알고리즘 수행 # Execute the Algoritm
                 if (res := patternMatchMultiSparse.Execute()).IsFail():
                     ErrorPrint(res, "Failed to execute")
                     break
 
-                # 패턴 검출 결과를 가져옵니다. // Get the pattern detection result.
+                # 패턴 검출 결과를 가져옵니다. # Get the pattern detection result.
                 i64ResultCount = patternMatchMultiSparse.GetResultCount()
 
                 print(" ▶ Find Information")
@@ -242,12 +242,12 @@ def main():
 
         viewImageFind.Invalidate(True)
 
-        # 이미지 뷰가 종료될 때 까지 기다림 // Wait for the imageview to close
+        # 이미지 뷰가 종료될 때 까지 기다림 # Wait for the imageview to close
         while viewImageLearn[0].IsAvailable():
             CThreadUtilities.Sleep(1)
 
         break
 
-# 메인 호출 // Main call
+# 메인 호출 # Main call
 if __name__ == "__main__":
     main()

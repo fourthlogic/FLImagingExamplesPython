@@ -32,7 +32,7 @@ def main():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 		
-		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 // Create destination image as same as source image
+		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination image as same as source image
 		if (res := fliDestinationImage.Assign(fliSourceImage)).IsFail():
 			ErrorPrint(res, 'Failed to assign the image.')
 			break
@@ -137,17 +137,17 @@ def main():
 		layerOperand.Clear()
 		layerDestination.Clear()
 
-		# ROI 영역을 Source Image View에 출력 // Display the ROI area to Source Image View
+		# ROI 영역을 Source Image View에 출력 # Display the ROI area to Source Image View
 		if (res := layerSource.DrawFigureImage(flrROI, EColor.LIME)).IsFail():
 			ErrorPrint(res, 'Failed to draw Source ROI.')
 			break
 
-		# ROI 영역을 Operand Image View에 출력 // Display the ROI area to Operand Image View
+		# ROI 영역을 Operand Image View에 출력 # Display the ROI area to Operand Image View
 		if (res := layerOperand.DrawFigureImage(flrROI, EColor.LIME)).IsFail():
 			ErrorPrint(res, 'Failed to draw Operand ROI.')
 			break
 
-		# ROI 영역을 Destination Image View에 출력 // Display the ROI area to Destination Image View
+		# ROI 영역을 Destination Image View에 출력 # Display the ROI area to Destination Image View
 		if (res := layerDestination.DrawFigureImage(flrROI, EColor.LIME)).IsFail():
 			ErrorPrint(res, 'Failed to draw Destination ROI.')
 			break	

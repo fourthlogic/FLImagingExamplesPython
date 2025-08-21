@@ -32,19 +32,19 @@ def main():
 			break
 
 		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SynchronizePointOfView(viewImageDst)[0]).IsFail():
 			ErrorPrint(res, "Failed to synchronize view. \n")
 			break
 
 		# 두 이미지 뷰 윈도우의 위치를 동기화 한다 # Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if (res := viewImageSrc.SynchronizeWindow(viewImageDst)[0]).IsFail():
 			ErrorPrint(res, "Failed to synchronize window. \n")
 			break
 		
 		# 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. // A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if ((res := viewImageSrc.SetImagePtr(fliSrcImage)[0]).IsFail() or
 			(res := viewImageDst.SetImagePtr(fliDstImage)[0]).IsFail()):
 			ErrorPrint(res, "Failed to set image object on the image view.\n")
@@ -56,22 +56,22 @@ def main():
 
 		# Source 이미지 설정 # Set source image 
 		if (res := msf.SetSourceImage(fliSrcImage)[0]).IsFail():
-			break;
+			break
 		# Destination 이미지 설정 # Set destination image
 		if (res := msf.SetDestinationImage(fliDstImage)[0]).IsFail():
-			break;
+			break
 		# Max iteration 설정 # Set max iteration
 		if (res := msf.SetMaxIteration(2)).IsFail():
-			break;
+			break
 		# Tolerance 설정 # Set tolerance
 		if (res := msf.SetTolerance(0)).IsFail():
-			break;
+			break
 		# Spatial bandwidth 설정 # Set spatial bandwidth
 		if (res := msf.SetSpatialBandwidth(2)).IsFail():
-			break;
+			break
 		# Range bandwidth 설정 # Set range bandwidth
 		if (res := msf.SetRangeBandwidth(128)).IsFail():
-			break;
+			break
 
 		# 알고리즘 수행 # Execute the algorithm
 		if (res := (msf.Execute())).IsFail():
