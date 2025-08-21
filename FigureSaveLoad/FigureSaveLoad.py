@@ -66,12 +66,12 @@ def main():
         layerSrc.DrawFigureImage(flfa, EColor.BLUE)
 
         # 경로 없이 파일명만 넣고 저장하는 것도 가능 # It is also possible to put only the file name without path and save it
-        if (res := flr.Save("FLRect.fig")).IsFail():
+        if (res := flr.Save("FigureSaveLoad_FLRect.fig")).IsFail():
             ErrorPrint(res, "Failed to save FLRect.fig.")
             break
 
         # 확장자명 없이 저장하는 것도 가능 # It is also possible to save without an extension name
-        if (res := flfa.Save("FigureArray")).IsFail():
+        if (res := flfa.Save("FigureSaveLoad_FigureArray")).IsFail():
             ErrorPrint(res, "Failed to save FigureArray.")
             break
 
@@ -81,12 +81,12 @@ def main():
         flrLoad = CFLRect[Double]()
 
         # Rect 에 FigureArray 로드했으므로 실패 # Failed because we loaded FigureArray into Rect
-        res = flrLoad.Load("FigureArray")
+        res = flrLoad.Load("FigureSaveLoad_FigureArray")
         # print(f"Attempting to load FigureArray into CFLRect. Result: {res.GetString()}") # 디버깅용 # For debugging
 
         # Rect 에 Rect 파일을 로드했으므로 파일을 로드했으므로 성공 EResult_OK 반환
         # Loaded the Rect file into Rect, so we loaded the file, so return EResult_OK
-        res = flrLoad.Load("FLRect")
+        res = flrLoad.Load("FigureSaveLoad_FLRect")
         # print(f"Attempting to load FLRect into CFLRect. Result: {res.GetString()}") # 디버깅용 # For debugging
 
         # 다른 DeclType 인 파일을 Load할 경우 반환값이 EResult_OK 가 아닌 다른 반환값을 반환
@@ -94,12 +94,12 @@ def main():
         flfaLoad = CFLFigureArray()
 
         # FigureArray 에 Rect 파일을 로드했으므로 실패 # Failed because Rect file was loaded into FigureArray
-        res = flfaLoad.Load("FLRect")
+        res = flfaLoad.Load("FigureSaveLoad_FLRect")
         # print(f"Attempting to load FLRect into CFLFigureArray. Result: {res.GetString()}") # 디버깅용 # For debugging
 
         # FigureArray 에 FigureArray 파일을 로드했으므로 성공 EResult_OK 반환
         # Success returned EResult_OK because FigureArray file was loaded into FigureArray
-        res = flfaLoad.Load("FigureArray")
+        res = flfaLoad.Load("FigureSaveLoad_FigureArray")
         # print(f"Attempting to load FigureArray into CFLFigureArray. Result: {res.GetString()}") # 디버깅용 # For debugging
 
         print("Loaded Figure\n")
