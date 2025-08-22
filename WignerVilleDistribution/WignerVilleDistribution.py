@@ -52,34 +52,34 @@ def main():
 
 
 		# 알고리즘 객체 생성 # Create algorithm object
-		wvd = CWignerVilleDistribution()
+		wignerVilleDistribution = CWignerVilleDistribution()
 
 		# Source 이미지 설정 # Set source image 
-		if (res := wvd.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := wignerVilleDistribution.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
 		# Destination 이미지 설정 # Set destination image
-		if (res := wvd.SetDestinationImage(fliDstImage)[0]).IsFail():
+		if (res := wignerVilleDistribution.SetDestinationImage(fliDstImage)[0]).IsFail():
 			break
 		# Scale 설정 # Set Scale
-		if (res := wvd.SetScale(0.00004)).IsFail():
+		if (res := wignerVilleDistribution.SetScale(0.00004)).IsFail():
 			break
 		# Self Correlation Half Size 설정 # Set Self Correlation Half Size
-		if (res := wvd.SetSelfCorrelationHalfSize(511)).IsFail():
+		if (res := wignerVilleDistribution.SetSelfCorrelationHalfSize(511)).IsFail():
 			break
 		# Self Correlation Window 설정 # Set Self Correlation Window
-		if (res := wvd.SetSelfCorrelationWindow(CWignerVilleDistribution.ESelfCorrelationWindow.Gaussian)).IsFail():
+		if (res := wignerVilleDistribution.SetSelfCorrelationWindow(CWignerVilleDistribution.ESelfCorrelationWindow.Gaussian)).IsFail():
 			break
 		# Sigma 설정 # Set Sigma
-		if (res := wvd.SetSigma(0.3)).IsFail():
+		if (res := wignerVilleDistribution.SetSigma(0.3)).IsFail():
 			break
 		# Output Mode 설정 # Set Output Mode
-		if (res := wvd.SetOutputMode(CWignerVilleDistribution.EOutputMode.L2Norm)).IsFail():
+		if (res := wignerVilleDistribution.SetOutputMode(CWignerVilleDistribution.EOutputMode.L2Norm)).IsFail():
 			break
 		# Output Direction 설정 # Set Output Direction
-		if (res := wvd.SetOutputDirection(CWignerVilleDistribution.EOutputDirection.Horizontal)).IsFail():
+		if (res := wignerVilleDistribution.SetOutputDirection(CWignerVilleDistribution.EOutputDirection.Horizontal)).IsFail():
 			break
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := (wvd.Execute())).IsFail():
+		if (res := (wignerVilleDistribution.Execute())).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 
