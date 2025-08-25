@@ -4,13 +4,13 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{ba8eb3c5-d56a-4f9e-8e20-3f2b700bb3f0}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>StationaryConeBeamTranslateCT3D.py</StartupFile>
+    <StartupFile>StationaryConeBeamTranslationCT.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>StationaryConeBeamTranslateCT3D</Name>
-    <RootNamespace>StationaryConeBeamTranslateCT3D</RootNamespace>
+    <Name>StationaryConeBeamTranslationCT</Name>
+    <RootNamespace>StationaryConeBeamTranslationCT</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="StationaryConeBeamTranslateCT3D.py" />
+    <Compile Include="StationaryConeBeamTranslationCT.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
