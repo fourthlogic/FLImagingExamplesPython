@@ -1830,6 +1830,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "XYZImageToPointCloudConvert
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ImageGridSplitter", "ImageGridSplitter\ImageGridSplitter.pyproj", "{E65B5F45-35A6-4444-A6F0-28901C7994F3}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PointCloudToXYZImageConverter3D", "PointCloudToXYZImageConverter3D\PointCloudToXYZImageConverter3D.pyproj", "{FD306A40-3D73-482B-9C6D-4ACEB9039B1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3056,6 +3058,8 @@ Global
 		{A8A1B929-99F5-48E3-9BEE-D8AA4E7117DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E65B5F45-35A6-4444-A6F0-28901C7994F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E65B5F45-35A6-4444-A6F0-28901C7994F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD306A40-3D73-482B-9C6D-4ACEB9039B1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD306A40-3D73-482B-9C6D-4ACEB9039B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3962,6 +3966,7 @@ Global
 		{E05A81E2-CE84-43C2-9750-C026CA86AC22} = {ECFF483A-9E41-42AD-94A1-09F2D3E62F83}
 		{A8A1B929-99F5-48E3-9BEE-D8AA4E7117DF} = {185B9BAD-D8C3-481B-BE2A-1F170F876A39}
 		{E65B5F45-35A6-4444-A6F0-28901C7994F3} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
+		{FD306A40-3D73-482B-9C6D-4ACEB9039B1B} = {185B9BAD-D8C3-481B-BE2A-1F170F876A39}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
