@@ -1830,6 +1830,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stationary Cone Beam Transl
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "StationaryConeBeamTranslationCT", "StationaryConeBeamTranslationCT\StationaryConeBeamTranslationCT.pyproj", "{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F0}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ImageGridSplitter", "ImageGridSplitter\ImageGridSplitter.pyproj", "{E65B5F45-35A6-4444-A6F0-28901C7994F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3056,6 +3058,8 @@ Global
 		{E1A10252-1FBB-4561-BD88-2D2062CC7695}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E65B5F45-35A6-4444-A6F0-28901C7994F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E65B5F45-35A6-4444-A6F0-28901C7994F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3962,6 +3966,7 @@ Global
 		{E1A10252-1FBB-4561-BD88-2D2062CC7695} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 		{E05A81E2-CE84-43C2-9750-C026CA86AC22} = {ECFF483A-9E41-42AD-94A1-09F2D3E62F83}
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F0} = {E05A81E2-CE84-43C2-9750-C026CA86AC22}
+		{E65B5F45-35A6-4444-A6F0-28901C7994F3} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
