@@ -124,7 +124,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Channel Swap", "Channel Swa
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ChannelSwap", "ChannelSwap\ChannelSwap.pyproj", "{07BAA9BD-6C80-45C6-874D-8E0BF2A7BE47}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "StationaryConeBeamTranslateCT3D", "StationaryConeBeamTranslateCT3D\StationaryConeBeamTranslateCT3D.pyproj", "{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F0}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "StationaryConeBeamTranslationCT", "StationaryConeBeamTranslationCT\StationaryConeBeamTranslationCT.pyproj", "{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Transforms", "Transforms", "{C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}"
 EndProject
