@@ -593,10 +593,6 @@
     - SuperResolution
        - Example of an algorithm for SuperResolution validation images using models learned through high resolution for training images with figures.
        - SuperResolution을 통하여 학습한 모델을 사용하여 고화질 이미지를 만다는 알고리즘 예제.
- 
-    - OCR
-       - Examples of optical character recognition algorithms based on deep learning.
-       - 딥러닝 기반의 광학 문자 인식 알고리즘 예제.
 
     - ObjectDetection
        - Example of finding a desired object using a Bounding Box based on deep learning
@@ -619,6 +615,10 @@
     - LabelRenamer
        - Algorithm example that replaces specific label names in a dataset with user-defined names.
        - 입력받은 이미지의 특정한 이름을 가진 라벨들을 사용자가 설정한 이름으로 치환하는 알고리즘 예제
+
+    - RandomTextImageGenerator
+       - Algorithm example that randomly generate and label strings from images based on user-defined parameters.
+       - 입력받은 이미지에서 사용자가 설정한 파라미터에 따라 무작위적으로 문자열을 생성하고 라벨링하는 알고리즘 예제
 
     - UnnamedLabelRemover
        - Algorithm example that removes labels (figures) without names in an image.
