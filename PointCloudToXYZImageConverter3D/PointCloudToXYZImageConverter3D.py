@@ -39,7 +39,7 @@ def main():
 		pointCloudToXYZImageConverter3D.SetSourceObject(floSource)
 
 		# Texture 결과 이미지 설정 # Set the destination texture image.
-		pointCloudToXYZImageConverter3D.SetDestinationImageTexture(fliTexture)
+		pointCloudToXYZImageConverter3D.SetDestinationTextureImage(fliTexture)
 
 		# Destination 이미지 설정 # Set the destination image
 		pointCloudToXYZImageConverter3D.SetDestinationImage(fliDestination)
