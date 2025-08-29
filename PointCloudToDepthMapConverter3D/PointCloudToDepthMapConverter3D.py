@@ -53,7 +53,7 @@ def main():
 		pointCloudToDepthMapConverter3D.SetDestinationImage(fliDestination)
 
 		# Destination Texture 이미지 설정 # Set the texture image.
-		pointCloudToDepthMapConverter3D.SetDestinationImageTexture(fliDestinationTexture)
+		pointCloudToDepthMapConverter3D.SetDestinationTextureImage(fliDestinationTexture)
 
 		# 이미지 크기 설정 # Set the image size.
 		pointCloudToDepthMapConverter3D.SetImageSize(2064, 1544)
