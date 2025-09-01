@@ -1838,6 +1838,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stationary Cone Beam Rotati
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "StationaryConeBeamRotationCT", "StationaryConeBeamRotationCT\StationaryConeBeamRotationCT.pyproj", "{BADDB00C-451F-462D-A2D7-DFF324547EE4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interpolation", "Interpolation", "{53C93702-F00A-424A-B910-8B7E70E39DFA}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DepthImageLinearInterpolation3D", "DepthImageLinearInterpolation3D\DepthImageLinearInterpolation3D.pyproj", "{B8E5D1BC-7096-4D56-A8DD-517DA1DA8312}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3070,6 +3074,8 @@ Global
 		{779A3AB0-9A74-41F5-A8B3-FB1AFD54EE15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BADDB00C-451F-462D-A2D7-DFF324547EE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BADDB00C-451F-462D-A2D7-DFF324547EE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8E5D1BC-7096-4D56-A8DD-517DA1DA8312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8E5D1BC-7096-4D56-A8DD-517DA1DA8312}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3980,6 +3986,8 @@ Global
 		{779A3AB0-9A74-41F5-A8B3-FB1AFD54EE15} = {6ADA489A-01EB-47E3-830F-2F572C2880BE}
 		{E602B84A-ACAC-463B-8AF0-80FDBA305181} = {ECFF483A-9E41-42AD-94A1-09F2D3E62F83}
 		{BADDB00C-451F-462D-A2D7-DFF324547EE4} = {E602B84A-ACAC-463B-8AF0-80FDBA305181}
+		{53C93702-F00A-424A-B910-8B7E70E39DFA} = {D47009F2-EEC1-474D-8DA5-E83F27AE7622}
+		{B8E5D1BC-7096-4D56-A8DD-517DA1DA8312} = {53C93702-F00A-424A-B910-8B7E70E39DFA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
