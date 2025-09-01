@@ -65,20 +65,20 @@ def main():
 			break
 
 		# Intensity Clamping 객체 생성 # Create Intensity Clamping object
-		IntensityClamping = CIntensityClamping()
+		intensityClamping = CIntensityClamping()
 
 		# Source 이미지 설정 # Set the source image
-		IntensityClamping.SetSourceImage(arrFliImage[0])
+		intensityClamping.SetSourceImage(arrFliImage[0])
 		# Destination 이미지 설정 # Set the destination image
-		IntensityClamping.SetDestinationImage(arrFliImage[1])
+		intensityClamping.SetDestinationImage(arrFliImage[1])
 
 		# IntensityClamping Scalar 값 설정 # Set comparsion value of IntensityClamping operation
 		mvMinScalar = CMultiVar[Double](150, 150, 150)
 		mvMaxScalar = CMultiVar[Double](200, 200, 200)
-		IntensityClamping.SetIntensity(mvMinScalar, mvMaxScalar)
+		intensityClamping.SetIntensity(mvMinScalar, mvMaxScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := IntensityClamping.Execute()).IsFail():
+		if (res := intensityClamping.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Intensity Clamping.')
 			break
 
@@ -97,7 +97,7 @@ def main():
 		flpPoint = CFLPoint[Double](0, 0)
 
 		if (res := arrLayer[0].DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail() or \
-			(res := arrLayer[1].DrawTextCanvas(flpPoint, 'Destination Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+			(res := arrLayer[1].DrawTextCanvas(flpPoint, 'Destination Image(IntensityClamping Min 150 Max 200)', EColor.YELLOW, EColor.BLACK, 15)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
