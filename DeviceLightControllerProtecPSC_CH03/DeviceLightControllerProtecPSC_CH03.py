@@ -29,6 +29,7 @@ def main():
 
 		if (er := lightController.Initialize()).IsFail():
 			ErrorPrint(er, "Failed to initialize the light controller.")
+			break
 
 		while True:
 			# 작업 모드를 선택합니다. # Select the operation mode.

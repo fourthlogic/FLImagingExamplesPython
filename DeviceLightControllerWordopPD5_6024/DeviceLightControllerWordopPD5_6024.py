@@ -80,6 +80,7 @@ def main():
 
 		if (er := lightController.Initialize()).IsFail():
 			ErrorPrint(er, "Failed to initialize the light controller.")
+			break
 
 		i32ChannelCount  = 0
 
