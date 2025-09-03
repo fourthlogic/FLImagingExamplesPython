@@ -69,10 +69,10 @@ def main():
 		depthImageLinearInterpolation3D.SetDestinationImage(fliDestinationImage)
 
 		# Page Position 설정 # Set page position
-		flaPagePosition = CFLArray[Double]()
-		flaPagePosition.PushBack(0)
-		flaPagePosition.PushBack(1)
-		flaPagePosition.PushBack(2)
+		flaPagePosition = List[Double]()
+		flaPagePosition.Add(0)
+		flaPagePosition.Add(1)
+		flaPagePosition.Add(2)
 
 		depthImageLinearInterpolation3D.SetPagePosition(flaPagePosition)
 
