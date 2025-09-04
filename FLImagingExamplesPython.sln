@@ -1842,6 +1842,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interpolation", "Interpolat
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DepthImageLinearInterpolation3D", "DepthImageLinearInterpolation3D\DepthImageLinearInterpolation3D.pyproj", "{B8E5D1BC-7096-4D56-A8DD-517DA1DA8312}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DepthImageNearestNeighborInterpolation3D", "DepthImageNearestNeighborInterpolation3D\DepthImageNearestNeighborInterpolation3D.pyproj", "{6FB720A2-AEDE-4BAD-89A8-3EE02599FFD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3076,6 +3078,8 @@ Global
 		{BADDB00C-451F-462D-A2D7-DFF324547EE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8E5D1BC-7096-4D56-A8DD-517DA1DA8312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B8E5D1BC-7096-4D56-A8DD-517DA1DA8312}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FB720A2-AEDE-4BAD-89A8-3EE02599FFD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FB720A2-AEDE-4BAD-89A8-3EE02599FFD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3988,6 +3992,7 @@ Global
 		{BADDB00C-451F-462D-A2D7-DFF324547EE4} = {E602B84A-ACAC-463B-8AF0-80FDBA305181}
 		{53C93702-F00A-424A-B910-8B7E70E39DFA} = {D47009F2-EEC1-474D-8DA5-E83F27AE7622}
 		{B8E5D1BC-7096-4D56-A8DD-517DA1DA8312} = {53C93702-F00A-424A-B910-8B7E70E39DFA}
+		{6FB720A2-AEDE-4BAD-89A8-3EE02599FFD8} = {53C93702-F00A-424A-B910-8B7E70E39DFA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
