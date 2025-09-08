@@ -1480,7 +1480,7 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GenerativeAdversarialNetwor
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "IntensityClamping", "IntensityClamping\IntensityClamping.pyproj", "{E97D659D-1ADA-4307-A63D-5643BA849D5C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Emdge Enhancement", "Emdge Enhancement", "{2C4A766B-8327-41E5-B5A8-BF40F5C0DB69}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Edge Enhancement", "Edge Enhancement", "{2C4A766B-8327-41E5-B5A8-BF40F5C0DB69}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Emphasize Filter", "Emphasize Filter", "{28A1E14C-DD25-48FA-8ABE-45513328BC1F}"
 EndProject
