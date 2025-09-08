@@ -66,12 +66,12 @@ def main():
         ErrorPrint(res, "Failed to execute Blob.")
         return
     
-	# 50보다 같거나 큰 장변 길이를 가진 객체들을 제거 # Filter out objects with a major axis length equal to or exceeding 50
+	# 너비가 50보다 같거나 큰 객체들을 제거 # Filter out objects with width greater than or equal to 50
     if (res := blob.Filter(CBlob.EFilterItem.BoundaryRectWidth, 50, ELogicalCondition.GreaterEqual)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
     
-	# 50보다 같거나 큰 단변 길이를 가진 객체들을 제거 # Filter out objects with a minor axis length equal to or exceeding 50
+	# 높이가 50보다 같거나 큰 객체들을 제거 # Filter out objects with height greater than or equal to 50
     if (res := blob.Filter(CBlob.EFilterItem.BoundaryRectHeight, 50, ELogicalCondition.GreaterEqual)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
