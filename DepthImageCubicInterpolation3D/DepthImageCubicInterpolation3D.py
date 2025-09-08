@@ -59,14 +59,14 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 
-		# Depth Image Nearest Neighbor Interpolation 3D 객체 생성 # Create Depth Image Nearest Neighbor Interpolation 3D object
-		depthImageNearestNeighborInterpolation3D = CDepthImageNearestNeighborInterpolation3D()
+		# Depth Image Cubic Interpolation 3D 객체 생성 # Create Depth Image Cubic Interpolation 3D object
+		depthImageCubicInterpolation3D = CDepthImageCubicInterpolation3D()
 
 		# Source 이미지 설정 # Set the source image
-		depthImageNearestNeighborInterpolation3D.SetSourceImage(fliSourceImage)
+		depthImageCubicInterpolation3D.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		depthImageNearestNeighborInterpolation3D.SetDestinationImage(fliDestinationImage)
+		depthImageCubicInterpolation3D.SetDestinationImage(fliDestinationImage)
 
 		# Page Position 설정 # Set page position
 		flaPagePosition = List[Double]()
@@ -76,20 +76,20 @@ def main():
 		flaPagePosition.Add(3)
 		flaPagePosition.Add(4)
 
-		depthImageNearestNeighborInterpolation3D.SetPagePosition(flaPagePosition)
+		depthImageCubicInterpolation3D.SetPagePosition(flaPagePosition)
 
 		# Interval 설정 # Set interval
-		depthImageNearestNeighborInterpolation3D.SetInterval(0.1)
+		depthImageCubicInterpolation3D.SetInterval(0.1)
 
 		# Start Position 설정 # Set start position
-		depthImageNearestNeighborInterpolation3D.SetStartPosition(1)
+		depthImageCubicInterpolation3D.SetStartPosition(1)
 
 		# End Position 설정 # Set end position
-		depthImageNearestNeighborInterpolation3D.SetEndPosition(3)
+		depthImageCubicInterpolation3D.SetEndPosition(3)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := depthImageNearestNeighborInterpolation3D.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Depth Image Nearest Neighbor Interpolation 3D.')
+		if (res := depthImageCubicInterpolation3D.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute Depth Image Cubic Interpolation 3D.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display

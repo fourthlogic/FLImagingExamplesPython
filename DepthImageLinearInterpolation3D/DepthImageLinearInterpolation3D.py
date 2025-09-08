@@ -21,7 +21,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 # Load the source image
-		if (res := fliSourceImage.Load('../../ExampleImages/DepthImageLinearInterpolation3D/Source.flif')).IsFail():
+		if (res := fliSourceImage.Load('../../ExampleImages/DepthImageInterpolation3D/Source.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
@@ -73,6 +73,8 @@ def main():
 		flaPagePosition.Add(0)
 		flaPagePosition.Add(1)
 		flaPagePosition.Add(2)
+		flaPagePosition.Add(3)
+		flaPagePosition.Add(4)
 
 		depthImageLinearInterpolation3D.SetPagePosition(flaPagePosition)
 
@@ -80,10 +82,10 @@ def main():
 		depthImageLinearInterpolation3D.SetInterval(0.1)
 
 		# Start Position 설정 # Set start position
-		depthImageLinearInterpolation3D.SetStartPosition(0)
+		depthImageLinearInterpolation3D.SetStartPosition(1)
 
 		# End Position 설정 # Set end position
-		depthImageLinearInterpolation3D.SetEndPosition(2)
+		depthImageLinearInterpolation3D.SetEndPosition(3)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := depthImageLinearInterpolation3D.Execute()).IsFail():

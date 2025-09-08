@@ -1854,6 +1854,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DeviceLightControllerLVS_PN
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DeviceLightControllerLVS_PN_40", "DeviceLightControllerLVS_PN_40\DeviceLightControllerLVS_PN_40.pyproj", "{65237755-F251-48AB-87A5-A00A68EEDCD7}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DepthImageCubicInterpolation3D", "DepthImageCubicInterpolation3D\DepthImageCubicInterpolation3D.pyproj", "{684DF81A-6C86-4D15-ACA7-6A4B2348B0D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3094,6 +3096,8 @@ Global
 		{06E63318-BEB2-4429-ACAC-F124835E3D16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65237755-F251-48AB-87A5-A00A68EEDCD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{65237755-F251-48AB-87A5-A00A68EEDCD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{684DF81A-6C86-4D15-ACA7-6A4B2348B0D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{684DF81A-6C86-4D15-ACA7-6A4B2348B0D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4012,6 +4016,7 @@ Global
 		{4C965F52-7F75-4D9F-8EAC-537911731426} = {D314E97E-2CD0-47F7-BA2B-11C9CB0EA549}
 		{06E63318-BEB2-4429-ACAC-F124835E3D16} = {4C965F52-7F75-4D9F-8EAC-537911731426}
 		{65237755-F251-48AB-87A5-A00A68EEDCD7} = {4C965F52-7F75-4D9F-8EAC-537911731426}
+		{684DF81A-6C86-4D15-ACA7-6A4B2348B0D1} = {53C93702-F00A-424A-B910-8B7E70E39DFA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
