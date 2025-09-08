@@ -99,11 +99,11 @@ def main():
             flrgContour = None
             
         # Region의 정점 정보를 콘솔에 출력 # Print the vertex information of the region to the console
-        print(f"No. {i} : [\n")
+        strTmp = f"No. {i} : ["
 
         for j in range(flrgContour.GetCount()):            
             if j != 0:
-                print(",")
+                strTmp += ","
 
             if isinstance(flrgContour.GetAt(j), CFLPoint[Double]):
                 flpVertex = flrgContour.GetAt(j)
@@ -111,7 +111,9 @@ def main():
                 flpVertex = None
             
             if flpVertex is not None:
-                print("({}, {})".format(flpVertex.x, flpVertex.y))
+                strTmp += f"({flpVertex.x}, {flpVertex.y})"
+
+        print(strTmp)
 
         if flrgContour.GetExclusiveRegion() is not None:            
             print("\nExclusive region\n{ ")
@@ -125,25 +127,24 @@ def main():
                 else:
                     flrgExclusive  = None
             
-                print(f"No. {j} : [")
+                strTmp = f"No. {j} : ["
 
                 for k in range(flrgExclusive.GetCount()):
                     if k != 0:
-                        print(",")
+                        strTmp += ","
 
                     if isinstance(flrgExclusive.GetAt(k), CFLPoint[Double]):
                         flpVertex = flrgExclusive.GetAt(k)
                     else:
                         flpVertex  = None
-            
-                    print("({}, {})", flpVertex.x, flpVertex.y)
 
-                print("]\n")
-            
+                    strTmp += f"({flpVertex.x}, {flpVertex.y})"
 
-            print(" }\n")
+                strTmp += "]"
+                print(strTmp)
+            print(" }")
             
-        print("]\n\n")
+        print("]\n")
 
         flr = CFLRect[Double]()
 

@@ -101,12 +101,12 @@ def main():
             flrRect = None
             
         if flrRect is not None:
-            print("No. [{}]\n".format(i))
-            print("LeftTop     : ({},{})\n".format(flrRect.left, flrRect.top))
-            print("RightBottom : ({},{})\n".format(flrRect.right, flrRect.bottom))
-            print("Width  : {}\n".format(flrRect.GetWidth()))
-            print("Height : {}\n".format(flrRect.GetHeight()))
-            print("Center : ({},{})\n\n".format(flrRect.GetCenter().x, flrRect.GetCenter().y))
+            print("No. [{}]".format(i))
+            print("LeftTop     : ({},{})".format(flrRect.left, flrRect.top))
+            print("RightBottom : ({},{})".format(flrRect.right, flrRect.bottom))
+            print("Width  : {}".format(flrRect.GetWidth()))
+            print("Height : {}".format(flrRect.GetHeight()))
+            print("Center : ({},{})\n".format(flrRect.GetCenter().x, flrRect.GetCenter().y))
 
             strNumber = "[{}]".format(i)
             strLeftTop = "(LT :{}, {})".format(flrRect.left, flrRect.top)

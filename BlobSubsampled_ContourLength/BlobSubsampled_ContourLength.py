@@ -43,33 +43,33 @@ def main():
         ErrorPrint(res, "Failed to zoom fit\n")
         return
 
-    # Blob 객체 생성 # Create Blob object
-    blob = CBlobSubsampled()
+    # Blob subsampled 객체 생성 # Create Blob subsampled object
+    blobSubsampled = CBlobSubsampled()
 
     # 처리할 이미지 설정 # Set the image to process
-    blob.SetSourceImage(fliImage)
+    blobSubsampled.SetSourceImage(fliImage)
     
     # 논리 조건 설정 # Set logical conditions
-    blob.SetLogicalCondition(ELogicalCondition.Less)
+    blobSubsampled.SetLogicalCondition(ELogicalCondition.Less)
     
     # 임계값 설정  위의 조건과 아래의 조건이 합쳐지면 50보다 작은 객체를 검출 # Set a threshold: detect objects when the combined result of the above and below conditions is less than 50.
-    blob.SetThreshold(50)
+    blobSubsampled.SetThreshold(50)
     
     # Subsampling 수준 설정 # Set Subsampling Level
-    blob.SetSubsamplingLevel(3)
+    blobSubsampled.SetSubsamplingLevel(3)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-    if (res := blob.Execute()).IsFail():
+    if (res := blobSubsampled.Execute()).IsFail():
         ErrorPrint(res, "Failed to execute Blob.")
         return
     
     # 면적이 50보다 작은 객체들을 제거 # Filter out objects whose area is smaller than 50
-    if (res := blob.Filter(CBlob.EFilterItem.Area, 50, ELogicalCondition.Less)).IsFail():
+    if (res := blobSubsampled.Filter(CBlob.EFilterItem.Area, 50, ELogicalCondition.Less)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
     
     # Circularity가 0.7 보다 작은 객체들을 제거(원형에 가깝지 않은 객체 제거, 최대값 : 1.0) # Remove objects with circularity less than 0.7 (filtering out objects that are not close to circular, max value: 1.0)
-    if (res := blob.Filter(CBlob.EFilterItem.Circularity, 0.7, ELogicalCondition.Less)).IsFail():
+    if (res := blobSubsampled.Filter(CBlob.EFilterItem.Circularity, 0.7, ELogicalCondition.Less)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
 
@@ -77,7 +77,7 @@ def main():
     flfaContours = CFLFigureArray()
     
     # Blob 결과들 중 Contours 을 얻어옴 # Get contours from the set of Blob results
-    if (res := blob.GetResultContours(flfaContours)[0]).IsFail():
+    if (res := blobSubsampled.GetResultContours(flfaContours)[0]).IsFail():
         ErrorPrint(res, "Failed to get contours from the Blob object.")
         return
 
@@ -112,7 +112,7 @@ def main():
         layer.DrawTextImage(flpCenter, flsTextResult, EColor.YELLOW, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
 
         # 콘솔 결과 출력
-        print(f"[{i}] Contour Length {flfaContours.GetAt(i).GetPerimeter():.2f}\n")
+        print(f"[{i}] Contour Length {flfaContours.GetAt(i).GetPerimeter():.2f}")
 
     # 이미지 뷰를 갱신 합니다. # Update image view
     viewImage.Invalidate()

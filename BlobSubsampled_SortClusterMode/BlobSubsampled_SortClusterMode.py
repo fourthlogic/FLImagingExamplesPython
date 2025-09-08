@@ -55,23 +55,23 @@ def main():
             return
     
     for k in range(len(viewIndex)):
-        # Blob 객체 생성 # Create Blob object
-        blob = CBlobSubsampled()
+        # Blob subsampled 객체 생성 # Create Blob subsampled object
+        blobSubsampled = CBlobSubsampled()
 
         # 처리할 이미지 설정 # Set the image to process
-        blob.SetSourceImage(arrImage[k])
+        blobSubsampled.SetSourceImage(arrImage[k])
     
         # 논리 조건 설정 # Set logical conditions
-        blob.SetLogicalCondition(ELogicalCondition.GreaterEqual)
+        blobSubsampled.SetLogicalCondition(ELogicalCondition.GreaterEqual)
         
         # 임계값 설정  위의 조건과 아래의 조건이 합쳐지면 100이상 객체를 검출 # Set a threshold: detect objects when the combined result of the above and below conditions is greater than or equal to 100.
-        blob.SetThreshold(100)
+        blobSubsampled.SetThreshold(100)
 
         # Subsampling 수준 설정 # Set Subsampling Level
-        blob.SetSubsamplingLevel(3)
+        blobSubsampled.SetSubsamplingLevel(3)
 
         # 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-        if (res := blob.Execute()).IsFail():
+        if (res := blobSubsampled.Execute()).IsFail():
             ErrorPrint(res, "Failed to execute Blob.")
             return
     
@@ -79,12 +79,12 @@ def main():
         flfaSortClusterModeBoundaryRects = CFLFigureArray()
     
         # 우선순위를 y, x축 순서로 클러스터 정렬 # Sort clusters by Y-axis first, then by X-axis
-        if (res := blob.SortClusterMode(CBlob.ESortClusterModeMethod.Center_Y_Asc_X_Asc)).IsFail():
+        if (res := blobSubsampled.SortClusterMode(CBlob.ESortClusterModeMethod.Center_Y_Asc_X_Asc)).IsFail():
             ErrorPrint(res, "Failed to sort from the Blob object.")
             return
     
         # Blob 결과들 중 Boundary Rect를 얻어옴 # Get boundary rect from the set of Blob results
-        if (res := blob.GetResultBoundaryRects(flfaSortClusterModeBoundaryRects)[0]).IsFail():
+        if (res := blobSubsampled.GetResultBoundaryRects(flfaSortClusterModeBoundaryRects)[0]).IsFail():
             ErrorPrint(res, "Failed to get boundary rects from the Blob object.")
             return
     
@@ -125,7 +125,7 @@ def main():
                         flrRect = None
 
                     if flrRect is not None:
-                        print("Recover No. [{}][{}] : ({},{},{},{})\n".format(i, j, flrRect.left, flrRect.top, flrRect.right, flrRect.bottom))
+                        print("Recover No. [{}][{}] : ({},{},{},{})".format(i, j, flrRect.left, flrRect.top, flrRect.right, flrRect.bottom))
 
                     layer.DrawTextImage(flrRect.GetCenter(), f"({i},{j})", EColor.CYAN, EColor.BLACK, 12, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
 

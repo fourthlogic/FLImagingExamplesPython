@@ -123,7 +123,7 @@ def main():
         layer.DrawFigureImage(flfCrossHair, EColor.ORANGERED, 1, EColor.ORANGERED, EGUIViewImagePenStyle.Solid, 1, 0.25)
 
         # 콘솔에 출력
-        print("[{}] Gravity Center x : {:.2f}\ty : {:.2f} \n".format(i, flpfGravityCenter.x, flpfGravityCenter.y))
+        print("[{}] Gravity Center x : {:.2f}\ty : {:.2f} ".format(i, flpfGravityCenter.x, flpfGravityCenter.y))
         
 
     # 이미지 뷰를 갱신 합니다. # Update image view

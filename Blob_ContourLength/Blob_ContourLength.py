@@ -104,7 +104,7 @@ def main():
         layer.DrawTextImage(flpCenter, flsTextResult, EColor.YELLOW, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
 
         # 콘솔 결과 출력
-        print(f"[{i}] Contour Length {flfaContours.GetAt(i).GetPerimeter():.2f}\n")
+        print(f"[{i}] Contour Length {flfaContours.GetAt(i).GetPerimeter():.2f}")
 
     # 이미지 뷰를 갱신 합니다. # Update image view
     viewImage.Invalidate()

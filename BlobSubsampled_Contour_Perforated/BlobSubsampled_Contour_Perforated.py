@@ -43,30 +43,30 @@ def main():
         ErrorPrint(res, "Failed to zoom fit\n")
         return
 
-    # Blob 객체 생성 # Create Blob object
-    blob = CBlobSubsampled()
+    # Blob subsampled 객체 생성 # Create Blob subsampled object
+    blobSubsampled = CBlobSubsampled()
 
     # 처리할 이미지 설정 # Set the image to process
-    blob.SetSourceImage(fliImage)
+    blobSubsampled.SetSourceImage(fliImage)
     
     # Threshold 모드 설정. 여기서는 2중 Threshold에 두개의 조건의 And 조건을 참으로 설정한다.
-    blob.SetThresholdMode(EThresholdMode.Dual_And)
+    blobSubsampled.SetThresholdMode(EThresholdMode.Dual_And)
     
     # 논리 조건 설정 # Set logical conditions
-    blob.SetLogicalCondition(ELogicalCondition.Greater, ELogicalCondition.Less)
+    blobSubsampled.SetLogicalCondition(ELogicalCondition.Greater, ELogicalCondition.Less)
 
     # 임계값 설정, 위의 조건과 아래의 조건이 합쳐지면 127보다 크고 240보다 작은 객체를 검출 # Set a threshold: detect objects that satisfy both the above and below conditions, with values greater than 127 and less than 240.
-    blob.SetThreshold(127, 240)
+    blobSubsampled.SetThreshold(127, 240)
 
     # 가운데 구멍난 Contour를 지원하기 위해 Perforated 모드 설정 # Enable Perforated mode to support contours with holes
-    blob.SetResultType(CBlob.EBlobResultType.Contour)
-    blob.SetContourResultType(CBlob.EContourResultType.Perforated)
+    blobSubsampled.SetResultType(CBlob.EBlobResultType.Contour)
+    blobSubsampled.SetContourResultType(CBlob.EContourResultType.Perforated)
 
     # Subsampling 수준 설정 # Set Subsampling Level
-    blob.SetSubsamplingLevel(3)
+    blobSubsampled.SetSubsamplingLevel(3)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-    if (res := blob.Execute()).IsFail():
+    if (res := blobSubsampled.Execute()).IsFail():
         ErrorPrint(res, "Failed to execute Blob.")
         return
     
@@ -74,7 +74,7 @@ def main():
     flfaContours = CFLFigureArray()
     
     # Blob 결과들 중 Contours 을 얻어옴 # Get contours from the set of Blob results
-    if (res := blob.GetResultContours(flfaContours)[0]).IsFail():
+    if (res := blobSubsampled.GetResultContours(flfaContours)[0]).IsFail():
         ErrorPrint(res, "Failed to get contours from the Blob object.")
         return
     
@@ -102,11 +102,11 @@ def main():
             flrgContour = None
             
         # Region의 정점 정보를 콘솔에 출력 # Print the vertex information of the region to the console
-        print(f"No. {i} : [\n")
+        strTmp = f"No. {i} : ["
 
         for j in range(flrgContour.GetCount()):            
             if j != 0:
-                print(",")
+                strTmp += ","
 
             if isinstance(flrgContour.GetAt(j), CFLPoint[Double]):
                 flpVertex = flrgContour.GetAt(j)
@@ -114,7 +114,9 @@ def main():
                 flpVertex = None
             
             if flpVertex is not None:
-                print("({}, {})".format(flpVertex.x, flpVertex.y))
+                strTmp += f"({flpVertex.x}, {flpVertex.y})"
+
+        print(strTmp)
 
         if flrgContour.GetExclusiveRegion() is not None:            
             print("\nExclusive region\n{ ")
@@ -127,26 +129,24 @@ def main():
                     flrgExclusive = flfaExclusive.GetAt(j)
                 else:
                     flrgExclusive  = None
-            
-                print(f"No. {j} : [")
+
+                strTmp = f"No. {j} : ["
 
                 for k in range(flrgExclusive.GetCount()):
                     if k != 0:
-                        print(",")
+                        strTmp += ","
 
                     if isinstance(flrgExclusive.GetAt(k), CFLPoint[Double]):
                         flpVertex = flrgExclusive.GetAt(k)
                     else:
                         flpVertex  = None
-            
-                    print("({}, {})", flpVertex.x, flpVertex.y)
 
-                print("]\n")
-            
+                    strTmp += f"({flpVertex.x}, {flpVertex.y})"
 
-            print(" }\n")
-            
-        print("]\n\n")
+                strTmp += "]"
+                print(strTmp)
+            print(" }")            
+        print("]\n")
 
         flr = CFLRect[Double]()
 

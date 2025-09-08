@@ -122,7 +122,7 @@ def main():
                         flrRect = None
 
                     if flrRect is not None:
-                        print("Recover No. [{}][{}] : ({},{},{},{})\n".format(i, j, flrRect.left, flrRect.top, flrRect.right, flrRect.bottom))
+                        print("Recover No. [{}][{}] : ({},{},{},{})".format(i, j, flrRect.left, flrRect.top, flrRect.right, flrRect.bottom))
 
                     layer.DrawTextImage(flrRect.GetCenter(), f"({i},{j})", EColor.CYAN, EColor.BLACK, 12, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
 

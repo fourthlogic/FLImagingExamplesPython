@@ -184,7 +184,7 @@ def main():
             flrSortedRect = None
 
         if flrSortedRect is not None:
-            print("Sorted No. {} : ({},{},{},{})\n".format(i, flrSortedRect.left, flrSortedRect.top, flrSortedRect.right, flrSortedRect.bottom))
+            print("Sorted No. {} : ({},{},{},{})".format(i, flrSortedRect.left, flrSortedRect.top, flrSortedRect.right, flrSortedRect.bottom))
 
         layer.DrawTextImage(flrSortedRect.GetCenter(), f"{i}", EColor.CYAN)
 
@@ -194,7 +194,7 @@ def main():
             flrRect = None
 
         if flrRect is not None:
-            print("Sorted No. {} : ({},{},{},{})\n".format(i, flrRect.left, flrRect.top, flrRect.right, flrRect.bottom))
+            print("Sorted No. {} : ({},{},{},{})".format(i, flrRect.left, flrRect.top, flrRect.right, flrRect.bottom))
 
         layerRecover.DrawTextImage(flrRect.GetCenter(), f"{i}", EColor.CYAN)
 

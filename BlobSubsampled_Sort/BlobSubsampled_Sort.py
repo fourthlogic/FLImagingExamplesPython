@@ -61,44 +61,44 @@ def main():
         ErrorPrint(res, "Failed to zoom fit\n")
         return
 
-    # Blob 객체 생성 # Create Blob object
-    blob = CBlobSubsampled()
+    # Blob subsampled 객체 생성 # Create Blob subsampled object
+    blobSubsampled = CBlobSubsampled()
 
     # 처리할 이미지 설정 # Set the image to process
-    blob.SetSourceImage(fliImage)
+    blobSubsampled.SetSourceImage(fliImage)
     
     # ROI 범위 설정
     flrROI = CFLRect[Double](450, 425, 1024, 800)
 
     # 처리할 ROI 설정
-    blob.SetSourceROI(flrROI)
+    blobSubsampled.SetSourceROI(flrROI)
     
     # 논리 조건 설정 # Set logical conditions
-    blob.SetLogicalCondition(ELogicalCondition.GreaterEqual)
+    blobSubsampled.SetLogicalCondition(ELogicalCondition.GreaterEqual)
     
     # 임계값 설정  위의 조건과 아래의 조건이 합쳐지면 100이상 객체를 검출 # Set a threshold: detect objects when the combined result of the above and below conditions is greater than or equal to 100.
-    blob.SetThreshold(100)
+    blobSubsampled.SetThreshold(100)
 
     # Subsampling 수준 설정 # Set Subsampling Level
-    blob.SetSubsamplingLevel(3)
+    blobSubsampled.SetSubsamplingLevel(3)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-    if (res := blob.Execute()).IsFail():
+    if (res := blobSubsampled.Execute()).IsFail():
         ErrorPrint(res, "Failed to execute Blob.")
         return
     
 	# 50보다 같거나 큰 장변 길이를 가진 객체들을 제거 # Filter out objects with a major axis length equal to or exceeding 50
-    if (res := blob.Filter(CBlob.EFilterItem.BoundaryRectWidth, 50, ELogicalCondition.GreaterEqual)).IsFail():
+    if (res := blobSubsampled.Filter(CBlob.EFilterItem.BoundaryRectWidth, 50, ELogicalCondition.GreaterEqual)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
     
 	# 50보다 같거나 큰 단변 길이를 가진 객체들을 제거 # Filter out objects with a minor axis length equal to or exceeding 50
-    if (res := blob.Filter(CBlob.EFilterItem.BoundaryRectHeight, 50, ELogicalCondition.GreaterEqual)).IsFail():
+    if (res := blobSubsampled.Filter(CBlob.EFilterItem.BoundaryRectHeight, 50, ELogicalCondition.GreaterEqual)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
 
     # 면적이 50보다 작은 객체들을 제거 # Filter out objects whose area is smaller than 50
-    if (res := blob.Filter(CBlob.EFilterItem.Area, 50, ELogicalCondition.LessEqual)).IsFail():
+    if (res := blobSubsampled.Filter(CBlob.EFilterItem.Area, 50, ELogicalCondition.LessEqual)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
     
@@ -118,22 +118,22 @@ def main():
     flaOrder.Add(int(CBlob.EOrder.Descending))
     
     # Blob 결과를 정렬 # Sort the Blob results
-    if (res := blob.Sort(flaItem, flaOrder)).IsFail():
+    if (res := blobSubsampled.Sort(flaItem, flaOrder)).IsFail():
         ErrorPrint(res, "Failed to sort from the Blob object.")
         return
     
     # Blob 결과들 중 Boundary Rect를 얻어옴 # Get boundary rect from the set of Blob results
-    if (res := blob.GetResultBoundaryRects(flfaSortedBoundaryRects)[0]).IsFail():
+    if (res := blobSubsampled.GetResultBoundaryRects(flfaSortedBoundaryRects)[0]).IsFail():
         ErrorPrint(res, "Failed to get boundary rects from the Blob object.")
         return
     
     # Blob 정렬 상태를 초기 상태로 복구 # Restore the Blob results to their initial order
-    if (res := blob.Sort(CBlob.EFilterItem.Unselected, CBlob.EOrder.Ascending)).IsFail():
+    if (res := blobSubsampled.Sort(CBlob.EFilterItem.Unselected, CBlob.EOrder.Ascending)).IsFail():
         ErrorPrint(res, "Failed to sort from the Blob object.")
         return
     
     # 복구된 Blob 결과들 중 Boundary Rectangle 을 얻어옴 # Get the bounding rectangles of the restored Blob results
-    if (res := blob.GetResultBoundaryRects(flfaRecoverBoundaryRects)[0]).IsFail():
+    if (res := blobSubsampled.GetResultBoundaryRects(flfaRecoverBoundaryRects)[0]).IsFail():
         ErrorPrint(res, "Failed to get boundary rects from the Blob object.")
         return
     
@@ -187,7 +187,7 @@ def main():
             flrSortedRect = None
 
         if flrSortedRect is not None:
-            print("Sorted No. {} : ({},{},{},{})\n".format(i, flrSortedRect.left, flrSortedRect.top, flrSortedRect.right, flrSortedRect.bottom))
+            print("Sorted No. {} : ({},{},{},{})".format(i, flrSortedRect.left, flrSortedRect.top, flrSortedRect.right, flrSortedRect.bottom))
 
         layer.DrawTextImage(flrSortedRect.GetCenter(), f"{i}", EColor.CYAN)
 
@@ -197,7 +197,7 @@ def main():
             flrRect = None
 
         if flrRect is not None:
-            print("Sorted No. {} : ({},{},{},{})\n".format(i, flrRect.left, flrRect.top, flrRect.right, flrRect.bottom))
+            print("Sorted No. {} : ({},{},{},{})".format(i, flrRect.left, flrRect.top, flrRect.right, flrRect.bottom))
 
         layerRecover.DrawTextImage(flrRect.GetCenter(), f"{i}", EColor.CYAN)
 

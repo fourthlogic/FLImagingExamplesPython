@@ -80,7 +80,7 @@ def main():
     flfaBoundaryRects = CFLFigureArray()
     
     # Blob 결과들 중 Boundary Rect를 얻어옴 # Get boundary rect from the set of Blob results
-    if (res := blob.GetResultBoundaryRects(flfaSortedBoundaryRects)[0]).IsFail():
+    if (res := blob.GetResultBoundaryRects(flfaBoundaryRects)[0]).IsFail():
         ErrorPrint(res, "Failed to get boundary rects from the Blob object.")
         return
     
@@ -115,7 +115,7 @@ def main():
             flrRect = None
             
         if flrRect is not None:
-            print("No. {} : ({},{},{},{})\n".format(i, flrRect.left, flrRect.top, flrRect.right, flrRect.bottom))
+            print("No. {} : ({},{},{},{})".format(i, flrRect.left, flrRect.top, flrRect.right, flrRect.bottom))
 
         strIndex = f"{i}"
         

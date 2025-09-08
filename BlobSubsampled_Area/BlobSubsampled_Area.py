@@ -43,34 +43,34 @@ def main():
         ErrorPrint(res, "Failed to zoom fit\n")
         return
 
-    # Blob 객체 생성 # Create Blob object
-    blob = CBlobSubsampled()
+    # Blob subsampled 객체 생성 # Create Blob subsampled object
+    blobSubsampled = CBlobSubsampled()
 
     # 처리할 이미지 설정 # Set the image to process
-    blob.SetSourceImage(fliImage)
+    blobSubsampled.SetSourceImage(fliImage)
     
     # 논리 조건 설정 # Set logical conditions
-    blob.SetLogicalCondition(ELogicalCondition.Less)
+    blobSubsampled.SetLogicalCondition(ELogicalCondition.Less)
 
     # 임계값 설정  위의 조건과 아래의 조건이 합쳐지면 50보다 작은 객체를 검출 # Set a threshold: detect objects when the combined result of the above and below conditions is less than 50.
-    blob.SetThreshold(50)
+    blobSubsampled.SetThreshold(50)
 
     # Blob Result Type mask 생성 (Contour, Area) # Generate a mask of Blob result type (Contour, Area)
     resultTypeMask = Enum.ToObject(CBlob.EBlobResultType, int(CBlob.EBlobResultType.Contour) | int(CBlob.EBlobResultType.Area))
 
     # 결과 타입 설정 # Set result type
-    blob.SetResultType(resultTypeMask)
+    blobSubsampled.SetResultType(resultTypeMask)
 
     # Subsampling 수준 설정 # Set Subsampling Level
-    blob.SetSubsamplingLevel(3)
+    blobSubsampled.SetSubsamplingLevel(3)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-    if (res := blob.Execute()).IsFail():
+    if (res := blobSubsampled.Execute()).IsFail():
         ErrorPrint(res, "Failed to execute Blob.")
         return
 
     # 면적이 100보다 작은 객체들을 제거
-    if (res := blob.Filter(CBlob.EFilterItem.Area, 100, ELogicalCondition.Less)).IsFail():
+    if (res := blobSubsampled.Filter(CBlob.EFilterItem.Area, 100, ELogicalCondition.Less)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
     
@@ -79,12 +79,12 @@ def main():
     flaArea = List[Double]()
     
     # Blob 결과들 중 Contours 을 얻어옴 # Get contours from the set of Blob results
-    if (res := blob.GetResultContours(flfaContours)[0]).IsFail():
+    if (res := blobSubsampled.GetResultContours(flfaContours)[0]).IsFail():
         ErrorPrint(res, "Failed to get contours from the Blob object.")
         return
     
     # Blob 결과들 중 Area 을 얻어옴 # Get Area from the set of Blob results
-    if (res := blob.GetResultAreas(flaArea)[0]).IsFail():
+    if (res := blobSubsampled.GetResultAreas(flaArea)[0]).IsFail():
         ErrorPrint(res, "Failed to get area from the Blob object.")
         return
 
@@ -119,7 +119,7 @@ def main():
         layer.DrawTextImage(flpCenter, flsTextResult, EColor.YELLOW, EColor.BLACK, 10, False, 0, EGUIViewImageTextAlignment.CENTER_CENTER)
 
         # 콘솔 결과 출력
-        print(f"[{i}] Area {flaArea[i]}\n")
+        print(f"[{i}] Area {flaArea[i]}")
 
     # 이미지 뷰를 갱신 합니다. # Update image view
     viewImage.Invalidate()

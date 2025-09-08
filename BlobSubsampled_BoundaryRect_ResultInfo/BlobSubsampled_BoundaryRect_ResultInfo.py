@@ -43,28 +43,28 @@ def main():
         ErrorPrint(res, "Failed to zoom fit\n")
         return
 
-    # Blob 객체 생성 # Create Blob object
-    blob = CBlobSubsampled()
+    # Blob subsampled 객체 생성 # Create Blob subsampled object
+    blobSubsampled = CBlobSubsampled()
 
     # 처리할 이미지 설정 # Set the image to process
-    blob.SetSourceImage(fliImage)
+    blobSubsampled.SetSourceImage(fliImage)
     
     # 논리 조건 설정 # Set logical conditions
-    blob.SetLogicalCondition(ELogicalCondition.Less)
+    blobSubsampled.SetLogicalCondition(ELogicalCondition.Less)
     
     # 임계값 설정  위의 조건과 아래의 조건이 합쳐지면 127보다 작은 객체를 검출 # Set a threshold: detect objects when the combined result of the above and below conditions is less than 127.
-    blob.SetThreshold(127)
+    blobSubsampled.SetThreshold(127)
 
     # Subsampling 수준 설정 # Set Subsampling Level
-    blob.SetSubsamplingLevel(3)
+    blobSubsampled.SetSubsamplingLevel(3)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-    if (res := blob.Execute()).IsFail():
+    if (res := blobSubsampled.Execute()).IsFail():
         ErrorPrint(res, "Failed to execute Blob.")
         return
     
     # 면적이 500보다 작은 객체들을 제거 # Filter out objects whose area is smaller than 500
-    if (res := blob.Filter(CBlob.EFilterItem.Area, 500, ELogicalCondition.Less)).IsFail():
+    if (res := blobSubsampled.Filter(CBlob.EFilterItem.Area, 500, ELogicalCondition.Less)).IsFail():
         ErrorPrint(res, "Blob filtering algorithm error occurred.")
         return
     
@@ -72,7 +72,7 @@ def main():
     flfaBoundaryRects = CFLFigureArray()
     
     # Blob 결과들 중 Boundary Rect 을 얻어옴 # Get boundary rect from the set of Blob results
-    if (res := blob.GetResultBoundaryRects(flfaBoundaryRects)[0]).IsFail():
+    if (res := blobSubsampled.GetResultBoundaryRects(flfaBoundaryRects)[0]).IsFail():
         ErrorPrint(res, "Failed to get boundary rect from the Blob object.")
         return
 
@@ -104,12 +104,12 @@ def main():
             flrRect = None
             
         if flrRect is not None:
-            print("No. [{}]\n".format(i))
-            print("LeftTop     : ({:.2f},{:.2f})\n".format(flrRect.left, flrRect.top))
-            print("RightBottom : ({:.2f},{:.2f})\n".format(flrRect.right, flrRect.bottom))
-            print("Width  : {:.2f}\n".format(flrRect.GetWidth()))
-            print("Height : {:.2f}\n".format(flrRect.GetHeight()))
-            print("Center : ({:.2f},{:.2f})\n\n".format(flrRect.GetCenter().x, flrRect.GetCenter().y))
+            print("No. [{}]".format(i))
+            print("LeftTop     : ({:.2f},{:.2f})".format(flrRect.left, flrRect.top))
+            print("RightBottom : ({:.2f},{:.2f})".format(flrRect.right, flrRect.bottom))
+            print("Width  : {:.2f}".format(flrRect.GetWidth()))
+            print("Height : {:.2f}".format(flrRect.GetHeight()))
+            print("Center : ({:.2f},{:.2f})\n".format(flrRect.GetCenter().x, flrRect.GetCenter().y))
 
             strNumber = "[{}]".format(i)
             strLeftTop = "(LT :{:.2f}, {:.2f})".format(flrRect.left, flrRect.top)
