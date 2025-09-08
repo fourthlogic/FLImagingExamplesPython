@@ -269,7 +269,7 @@ def main():
 		colorizedPointCloudGenerator3D.SetDestinationColorImage(fliExecDstColorImage)
 		
 		# Destination Sampled Color 이미지 설정 # Set the destination sampled color image
-		colorizedPointCloudGenerator3D.SetSampledColorImage(fliSampDstColorImage)
+		colorizedPointCloudGenerator3D.SetDestinationSampledColorImage(fliSampDstColorImage)
 		
 		# Sampled 픽셀 표시 BGR 설정 # Set the color of the sampled pixels in BGR
 		colorizedPointCloudGenerator3D.SetSampledBGRValue(255, 255, 0)
@@ -378,4 +378,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+	main()
