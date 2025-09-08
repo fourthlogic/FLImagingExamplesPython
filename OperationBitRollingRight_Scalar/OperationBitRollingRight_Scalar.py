@@ -138,8 +138,8 @@ def main():
 		flpPoint = CFLPoint[Double](0, 0)
 
 		if (res := layerSource.DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail() or \
-			(res := layerDestination1.DrawTextCanvas(flpPoint, 'Destination Image1(Scalar 1)', EColor.YELLOW, EColor.BLACK, 30)).IsFail() or \
-			(res := layerDestination2.DrawTextCanvas(flpPoint, 'Destination Image2(Scalar 7)', EColor.YELLOW, EColor.BLACK, 30)).IsFail() :
+			(res := layerDestination1.DrawTextCanvas(flpPoint, 'Destination Image1(Scalar 1)', EColor.YELLOW, EColor.BLACK, 25)).IsFail() or \
+			(res := layerDestination2.DrawTextCanvas(flpPoint, 'Destination Image2(Scalar 7)', EColor.YELLOW, EColor.BLACK, 25)).IsFail() :
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
