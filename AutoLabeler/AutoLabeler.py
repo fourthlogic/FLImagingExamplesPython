@@ -25,7 +25,7 @@ def main():
 	# 이미지 뷰 선언 # Declare the image view
 	viewImageLearn = CGUIViewImage()
 	viewImageValidation = CGUIViewImage()
-	viewImagresAutoLabel = CGUIViewImage()
+	viewImagesAutoLabel = CGUIViewImage()
 	
 	# 그래프 뷰 선언 # Declare the graph view
 	viewGraph = CGUIViewGraph()
@@ -56,7 +56,7 @@ def main():
 			ErrorPrint(res, "Failed to create the image view.")
 			break
 
-		if((res := viewImagresAutoLabel.Create(100, 500, 600, 1000)).IsFail()):
+		if((res := viewImagesAutoLabel.Create(100, 500, 600, 1000)).IsFail()):
 			ErrorPrint(res, "Failed to create the image view.")
 			break
 
@@ -77,7 +77,7 @@ def main():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
-		if (res := viewImagresAutoLabel.SetImagePtr(fliResultAutotLabelImage)[0]).IsFail():
+		if (res := viewImagesAutoLabel.SetImagePtr(fliResultAutotLabelImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
@@ -85,13 +85,25 @@ def main():
 
 		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
 		# 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [0], ... [n-1] 형태로 tuple 을 반환한다. # A function that receives parameters returns a tuple structured as [return], [0], ... [n-1].
-		if (res := viewImageLearn.SynchronizePointOfView(viewImageValidation)[0]).IsFail():
+		if (res := viewImageValidation.SynchronizePointOfView(viewImagesAutoLabel)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 		
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
 		# 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [0], ... [n-1] 형태로 tuple 을 반환한다. # A function that receives parameters returns a tuple structured as [return], [0], ... [n-1].
-		if (res := viewImageLearn.SynchronizeWindow(viewImagresAutoLabel)[0]).IsFail():
+		if (res := viewImageLearn.SynchronizeWindow(viewImagesAutoLabel)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window.')
+			break
+
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		# 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [0], ... [n-1] 형태로 tuple 을 반환한다. # A function that receives parameters returns a tuple structured as [return], [0], ... [n-1].
+		if (res := viewImageLearn.SynchronizeWindow(viewImageValidation)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window.')
+			break
+
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		# 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [0], ... [n-1] 형태로 tuple 을 반환한다. # A function that receives parameters returns a tuple structured as [return], [0], ... [n-1].
+		if (res := viewImageLearn.SynchronizeWindow(viewGraph)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
@@ -99,7 +111,7 @@ def main():
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
 		layerLearn = viewImageLearn.GetLayer(0)
 		layerValidation = viewImageValidation.GetLayer(0)
-		layerResultLabel = viewImagresAutoLabel.GetLayer(0)
+		layerResultLabel = viewImagesAutoLabel.GetLayer(0)
 	
 		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
 		layerLearn.Clear()
@@ -129,7 +141,7 @@ def main():
 		# 이미지 뷰를 갱신 # Update the image view.
 		viewImageLearn.Invalidate(True)
 		viewImageValidation.Invalidate(True)
-		viewImagresAutoLabel.Invalidate(True)
+		viewImagesAutoLabel.Invalidate(True)
 		
 		# SemanticSegmentation 객체 생성 # Create SemanticSegmentation object
 		semanticSegmentationDL = CSemanticSegmentationDL()
@@ -251,7 +263,7 @@ def main():
 					viewGraph.Plot(listCostHistory, EChartType.Line, EColor.RED, "Cost")
 					# Graph View 데이터 입력 # Input Graph View Data
 					viewGraph.Plot(listX, listValidationHistory, EChartType.Line, EColor.CYAN, "Validation")
-					viewGraph.Plot(listX, listMeanIoUHistory, EChartType.Line, EColor.CYAN, "mIoU")
+					viewGraph.Plot(listX, listMeanIoUHistory, EChartType.Line, EColor.BLUE, "mIoU")
 					viewGraph.UnlockUpdate()
 
 					viewGraph.UpdateWindow()
@@ -296,18 +308,18 @@ def main():
 			break
 
 		# 결과 이미지를 이미지 뷰에 맞게 조정합니다. # Fit the result image to the image view.
-		viewImagresAutoLabel.ZoomFit()
+		viewImagesAutoLabel.ZoomFit()
 
 		# 이미지 뷰를 갱신 # Update the image view.
 		viewImageLearn.RedrawWindow()
 		viewImageValidation.RedrawWindow()
-		viewImagresAutoLabel.RedrawWindow()
+		viewImagesAutoLabel.RedrawWindow()
 		
 		# 그래프 뷰를 갱신 # Update the Graph view.
 		viewGraph.Invalidate(True)
 
 		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
-		while viewImageLearn.IsAvailable() and viewImageValidation.IsAvailable() and viewImagresAutoLabel.IsAvailable() and viewGraph.IsAvailable():
+		while viewImageLearn.IsAvailable() and viewImageValidation.IsAvailable() and viewImagesAutoLabel.IsAvailable() and viewGraph.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
 		break

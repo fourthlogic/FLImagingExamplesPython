@@ -90,10 +90,22 @@ def main():
 
 		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
 		# 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [0], ... [n-1] 형태로 tuple 을 반환한다. # A function that receives parameters returns a tuple structured as [return], [0], ... [n-1].
-		if (res := viewImageLearn.SynchronizePointOfView(viewImageValidation)[0]).IsFail():
+		if (res := viewImageValidation.SynchronizePointOfView(viewImagesLabel)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize view.')
+			break
+
+			# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
+		# 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [0], ... [n-1] 형태로 tuple 을 반환한다. # A function that receives parameters returns a tuple structured as [return], [0], ... [n-1].
+		if (res := viewImageValidation.SynchronizePointOfView(viewImagesLabelFigure)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 		
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		# 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [0], ... [n-1] 형태로 tuple 을 반환한다. # A function that receives parameters returns a tuple structured as [return], [0], ... [n-1].
+		if (res := viewImageLearn.SynchronizeWindow(viewImageValidation)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window.')
+			break
+
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
 		# 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [0], ... [n-1] 형태로 tuple 을 반환한다. # A function that receives parameters returns a tuple structured as [return], [0], ... [n-1].
 		if (res := viewImageLearn.SynchronizeWindow(viewImagesLabel)[0]).IsFail():
@@ -103,6 +115,12 @@ def main():
 		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
 		# 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [0], ... [n-1] 형태로 tuple 을 반환한다. # A function that receives parameters returns a tuple structured as [return], [0], ... [n-1].
 		if (res := viewImageLearn.SynchronizeWindow(viewImagesLabelFigure)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window.')
+			break
+
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		# 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [0], ... [n-1] 형태로 tuple 을 반환한다. # A function that receives parameters returns a tuple structured as [return], [0], ... [n-1].
+		if (res := viewImageLearn.SynchronizeWindow(viewGraph)[0]).IsFail():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
@@ -286,7 +304,7 @@ def main():
 					viewGraph.Plot(listCostHistory, EChartType.Line, EColor.RED, "Cost")
 					# Graph View 데이터 입력 # Input Graph View Data
 					viewGraph.Plot(listX, listValidationHistory, EChartType.Line, EColor.CYAN, "Validation")
-					viewGraph.Plot(listX, listMeanIoUHistory, EChartType.Line, EColor.CYAN, "mIoU")
+					viewGraph.Plot(listX, listMeanIoUHistory, EChartType.Line, EColor.BLUE, "mIoU")
 					viewGraph.UnlockUpdate()
 
 					viewGraph.UpdateWindow()
