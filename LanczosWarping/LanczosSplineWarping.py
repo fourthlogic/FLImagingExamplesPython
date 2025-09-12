@@ -21,7 +21,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 # Load the source image
-		if (res := fliSourceImage[0].Load('../../ExampleImages/LanczosSplineWarping/chess.flif')).IsFail():
+		if (res := fliSourceImage[0].Load('../../ExampleImages/LanczosWarping/chess.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
