@@ -4,13 +4,13 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{b4c5a2d2-1f5d-4ded-95ec-f08e67ccd726}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>ColorAdjustment.py</StartupFile>
+    <StartupFile>ColorSpaceAdjustment.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>ColorAdjustment</Name>
-    <RootNamespace>ColorAdjustment</RootNamespace>
+    <Name>ColorSpaceAdjustment</Name>
+    <RootNamespace>ColorSpaceAdjustment</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ColorAdjustment.py" />
+    <Compile Include="ColorSpaceAdjustment.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

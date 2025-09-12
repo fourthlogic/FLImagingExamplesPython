@@ -21,7 +21,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 # Load the source image
-		if (res := fliSourceImage.Load('../../ExampleImages/ColorAdjustment/ColorExample.flif')).IsFail():
+		if (res := fliSourceImage.Load('../../ExampleImages/ColorSpaceAdjustment/ColorExample.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
@@ -64,24 +64,24 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
-		# Color Adjustment 객체 생성 # Create Color Adjustment object
-		colorAdjustment = CColorAdjustment()
+		# 객체 생성 # Create object
+		colorSpaceAdjustment = CColorSpaceAdjustment()
 
 		# Source 이미지 설정 # Set the source image
-		colorAdjustment.SetSourceImage(fliSourceImage)
+		colorSpaceAdjustment.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		colorAdjustment.SetDestinationImage(fliDestinationImage)
+		colorSpaceAdjustment.SetDestinationImage(fliDestinationImage)
 
 		# Color Space 설정 # Set Color Space
-		colorAdjustment.SetColorSpace(CColorAdjustment.EColorSpace.CIELCh)
+		colorSpaceAdjustment.SetColorSpace(CColorSpaceAdjustment.EColorSpace.CIELCh)
 
 		# Offset 설정 # Set Offset
-		colorAdjustment.SetOffset(CMultiVar[Double](-10, 20, -50))
+		colorSpaceAdjustment.SetOffset(CMultiVar[Double](-10, 20, -50))
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := colorAdjustment.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Color Adjustment.')
+		if (res := colorSpaceAdjustment.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
