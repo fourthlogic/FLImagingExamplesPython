@@ -81,11 +81,13 @@ def main():
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately		
-		layerViewDepth = viewDepthImage.GetLayer(0)
+		layerView3D = view3D.GetLayer(0)
+		layerViewXYZ = viewDepthImage.GetLayer(0)
 		layerViewTexture = viewTextureImage.GetLayer(0)
 		
 		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
-		layerViewDepth.Clear()
+		layerView3D.Clear()
+		layerViewXYZ.Clear()
 		layerViewTexture.Clear()
 
 		# View 정보를 디스플레이 합니다. # Display View information.
@@ -95,13 +97,16 @@ def main():
 		# Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
 		#                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
 		flp = CFLPoint[Double]()
-
+		
+		if(res := layerViewXYZ.DrawTextCanvas(flp, "XYZV Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() :		
+			ErrorPrint(res, "Failed to draw text.\n")
+			break
+		
 		if(res := layerViewTexture.DrawTextCanvas(flp, "Texture Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() :		
 			ErrorPrint(res, "Failed to draw text.\n")
 			break
 		
-
-		if(res := layerViewDepth.DrawTextCanvas(flp, "Depth Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() :		
+		if(res := layerView3D.DrawTextCanvas(flp, "Destination Point Cloud", EColor.YELLOW, EColor.BLACK, 20)).IsFail() :		
 			ErrorPrint(res, "Failed to draw text.\n")
 			break
 		
@@ -110,10 +115,18 @@ def main():
 			ErrorPrint(res, "Failed to set object on the 3D View.\n")
 			break
 		
+		# 3D View 카메라 설정 # Set 3D view camera
+		fl3DCam = CFL3DCamera()
+
+		fl3DCam.SetDirection(CFLPoint3[Single](0, 0, -1))
+		fl3DCam.SetDirectionUp(CFLPoint3[Single](0, 1, 0))
+		fl3DCam.SetPosition(CFLPoint3[Single](10, -20, 750))
+
+		view3D.SetCamera(fl3DCam)
+
 		view3D.PushObject(floDestination)
 		view3D.UpdateObject(-1)
 		view3D.UpdateScreen()
-		view3D.ZoomFit()
 
 		viewDepthImage.ZoomFit()
 		viewTextureImage.ZoomFit()
@@ -125,7 +138,7 @@ def main():
 		viewDepthImage.SynchronizePointOfView(viewTextureImage)
 
 		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 # Wait for the image and 3D view to close
-		while viewTextureImage.IsAvailable() and viewDepthImage.IsAvailable() :
+		while viewTextureImage.IsAvailable() and viewDepthImage.IsAvailable() and view3D.IsAvailable() :
 			CThreadUtilities.Sleep(1)
 
 		break
