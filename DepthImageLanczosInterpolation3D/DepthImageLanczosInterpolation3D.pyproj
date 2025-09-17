@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{b8e5d1bc-7096-4d56-a8dd-517da1da8312}</ProjectGuid>
+    <ProjectGuid>{c7325788-12a2-41f6-b60e-cf6b6341fc88}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>DepthImageLanczosInterpolation3D.py</StartupFile>
     <SearchPath>
