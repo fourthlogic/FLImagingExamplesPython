@@ -104,7 +104,7 @@ def ErrorPrint(res: CResult, string: str):
 	if len(string) > 1:
 		print(string)
 
-	print(f'Error code : res.GetResultCode()\nError name : res.GetString()\n')
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 
 if __name__ == '__main__':
