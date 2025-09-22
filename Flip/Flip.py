@@ -117,7 +117,7 @@ def main():
 			# Destination 이미지 설정 # Set the destination image
 			flip.SetDestinationImage(fliDestinationImage[i])
 	
-			# 측정 방식 지정 # Set Measure Method
+			# 뒤집을 방향을 지정 # Set Flip Direction
 			flip.SetDirection(eDirection[i])
 
 			# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters

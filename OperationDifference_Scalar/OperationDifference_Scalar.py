@@ -66,23 +66,23 @@ def main():
 			break
 
 		# Difference 객체 생성 # Create Difference object
-		difference = COperationDifference()
+		operationDifference = COperationDifference()
 
 		# Source 이미지 설정 # Set the source image
-		difference.SetSourceImage(fliDestinationImage)
+		operationDifference.SetSourceImage(fliDestinationImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		difference.SetDestinationImage(fliDestinationImage)
+		operationDifference.SetDestinationImage(fliDestinationImage)
 
 		# Scalar Operation 모드로 설정 # Set operation mode to scalar
-		difference.SetOperationSource(EOperationSource.Scalar)
+		operationDifference.SetOperationSource(EOperationSource.Scalar)
 
 		# Difference Scalar 값 설정 # Set comparsion value of difference operation
 		mvScalar = CMultiVar[Double](255)
-		difference.SetScalarValue(mvScalar)
+		operationDifference.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := difference.Execute()).IsFail():
+		if (res := operationDifference.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Difference.')
 			break
 

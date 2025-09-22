@@ -94,22 +94,22 @@ def main():
 			break
 
 		# Log 객체 생성 # Create Log object
-		log = COperationLog()
+		operationLog = COperationLog()
 
 		# Source 이미지 설정 # Set the source image
-		log.SetSourceImage(fliSourceImage)
+		operationLog.SetSourceImage(fliSourceImage)
 
 		# Operand 이미지 설정 # Set the operand image
-		log.SetOperandImage(fliOperandImage)
+		operationLog.SetOperandImage(fliOperandImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		log.SetDestinationImage(fliDestinationImage)
+		operationLog.SetDestinationImage(fliDestinationImage)
 
 		# Image Operation 모드로 설정 # Set operation mode to image
-		log.SetOperationSource(EOperationSource.Image)
+		operationLog.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := log.Execute()).IsFail():
+		if (res := operationLog.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Log.')
 			break
 

@@ -128,20 +128,20 @@ def main():
 			break
 
 		# Distance Transform 객체 생성 # Create Distance Transform object
-		distance = CDistanceTransform()
+		distanceTransform = CDistanceTransform()
 
 		# Source 이미지 설정 # Set the source image
-		distance.SetSourceImage(fliSourceImage)
+		distanceTransform.SetSourceImage(fliSourceImage)
 
 		for i in range(4):
 			# Destination 이미지 설정 # Set the destination image
-			distance.SetDestinationImage(fliDestinationImage[i])
+			distanceTransform.SetDestinationImage(fliDestinationImage[i])
 	
 			# 측정 방식 지정 # Set Measure Method
-			distance.SetMeasurementMethod(eMeasurementMethod[i])
+			distanceTransform.SetMeasurementMethod(eMeasurementMethod[i])
 
 			# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-			if (res := distance.Execute()).IsFail():
+			if (res := distanceTransform.Execute()).IsFail():
 				ErrorPrint(res, 'Failed to execute Distance Transform.')
 				break
 

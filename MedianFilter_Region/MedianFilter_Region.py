@@ -71,26 +71,26 @@ def main():
 			break
 
 		# Median Filter 객체 생성 # Create Median Filter object
-		median = CMedianFilter()
+		medianFilter = CMedianFilter()
 
 		# Source 이미지 설정 # Set the source image
-		median.SetSourceImage(fliDestinationImage)
+		medianFilter.SetSourceImage(fliDestinationImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		median.SetDestinationImage(fliDestinationImage)
+		medianFilter.SetDestinationImage(fliDestinationImage)
 		
 		# ROI 설정을 위한 CFLRect 객체 생성 # Create a CFLRect object for setting ROI
 		flrROI = CFLRect[Int32](100, 190, 500, 590)
 
 		# Source ROI 설정 # Set the source roi
-		median.SetSourceROI(flrROI)
+		medianFilter.SetSourceROI(flrROI)
 		
 		# 처리할 Median Filter Kernel 의 (95, 75, 100, 80, 45.000000) 설정 # Set Median Filter Kernel to L(95, 75, 100, 80, 45.000000)
 		flrRegion = CFLRect[Int32](95, 75, 100, 80, 45.000000)
-		median.SetKernel(flrRegion)
+		medianFilter.SetKernel(flrRegion)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := median.Execute()).IsFail():
+		if (res := medianFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Filter Median.')
 			break
 

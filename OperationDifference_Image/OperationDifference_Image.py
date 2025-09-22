@@ -94,22 +94,22 @@ def main():
 			break
 
 		# Difference 객체 생성 # Create Difference object
-		difference = COperationDifference()
+		operationDifference = COperationDifference()
 
 		# Source 이미지 설정 # Set the source image
-		difference.SetSourceImage(fliSourceImage)
+		operationDifference.SetSourceImage(fliSourceImage)
 
 		# Operand 이미지 설정 # Set the operand image
-		difference.SetOperandImage(fliOperandImage)
+		operationDifference.SetOperandImage(fliOperandImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		difference.SetDestinationImage(fliDestinationImage)
+		operationDifference.SetDestinationImage(fliDestinationImage)
 
 		# Image Operation 모드로 설정 # Set operation mode to image
-		difference.SetOperationSource(EOperationSource.Image)
+		operationDifference.SetOperationSource(EOperationSource.Image)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := difference.Execute()).IsFail():
+		if (res := operationDifference.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Difference.')
 			break
 

@@ -65,29 +65,29 @@ def main():
 			break
 
 		# Median Weighted Filter 객체 생성 # Create Median Weighted Filter object
-		filterMedianWeighted = CMedianWeightedFilter()
+		medianWeightedFilter = CMedianWeightedFilter()
 
 		# Source 이미지 설정 # Set the source image
-		filterMedianWeighted.SetSourceImage(fliDestinationImage)
+		medianWeightedFilter.SetSourceImage(fliDestinationImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		filterMedianWeighted.SetDestinationImage(fliDestinationImage)
+		medianWeightedFilter.SetDestinationImage(fliDestinationImage)
 		
 		# ROI 설정을 위한 CFLRect 객체 생성 # Create a CFLRect object for setting ROI
 		flrROI = CFLRect[Int32](100, 190, 360, 420)
 		
 		# Source ROI 설정 # Set the source roi
-		filterMedianWeighted.SetSourceROI(flrROI)
+		medianWeightedFilter.SetSourceROI(flrROI)
 		
 		# Weighted Method 설정 # Set Weighted Method
-		filterMedianWeighted.SetWeightedMethod(CMedianWeightedFilter.EWeightedMethod.Gauss)
+		medianWeightedFilter.SetWeightedMethod(CMedianWeightedFilter.EWeightedMethod.Gauss)
 		
-		# 처리할 filterMedianWeighted의 Kernel Size 설정 (KernelSize = 11 일 경우, Kernel Size : 11x11, 홀수만 설정가능)
-		filterMedianWeighted.SetKernelShape(EKernelShape.Circle)
-		filterMedianWeighted.SetKernel(11)
+		# 처리할 medianWeightedFilter의 Kernel Size 설정 (KernelSize = 11 일 경우, Kernel Size : 11x11, 홀수만 설정가능)
+		medianWeightedFilter.SetKernelShape(EKernelShape.Circle)
+		medianWeightedFilter.SetKernel(11)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := filterMedianWeighted.Execute()).IsFail():
+		if (res := medianWeightedFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Median Weighted.')
 			break
 

@@ -66,23 +66,23 @@ def main():
 			break
 
 		# Log 객체 생성 # Create Log object
-		log = COperationLog()
+		operationLog = COperationLog()
 
 		# Source 이미지 설정 # Set the source image
-		log.SetSourceImage(fliDestinationImage)
+		operationLog.SetSourceImage(fliDestinationImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		log.SetDestinationImage(fliDestinationImage)
+		operationLog.SetDestinationImage(fliDestinationImage)
 
 		# Scalar Operation 모드로 설정 # Set operation mode to scalar
-		log.SetOperationSource(EOperationSource.Scalar)
+		operationLog.SetOperationSource(EOperationSource.Scalar)
 
 		# Log Scalar 값 설정 # Set comparsion value of log operation
 		mvScalar = CMultiVar[Double](2)
-		log.SetScalarValue(mvScalar)
+		operationLog.SetScalarValue(mvScalar)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := log.Execute()).IsFail():
+		if (res := operationLog.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Log.')
 			break
 

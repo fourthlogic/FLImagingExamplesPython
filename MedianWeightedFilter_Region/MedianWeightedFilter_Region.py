@@ -71,29 +71,29 @@ def main():
 			break
 
 		# Denoising 객체 생성 # Create Denoising object
-		medianWeighted = CMedianWeightedFilter()
+		medianWeightedFilter = CMedianWeightedFilter()
 
 		# Source 이미지 설정 # Set the source image
-		medianWeighted.SetSourceImage(fliDestinationImage)
+		medianWeightedFilter.SetSourceImage(fliDestinationImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		medianWeighted.SetDestinationImage(fliDestinationImage)
+		medianWeightedFilter.SetDestinationImage(fliDestinationImage)
 		
 		# ROI 설정을 위한 CFLRect 객체 생성 # Create a CFLRect object for setting ROI
 		flrROI = CFLRect[Int32](100, 190, 500, 590)
 
 		# Source ROI 설정 # Set the source roi
-		medianWeighted.SetSourceROI(flrROI)
+		medianWeightedFilter.SetSourceROI(flrROI)
 		
 		# Weighted Method 설정 # Set Weighted Method
-		filterMedianWeighted.SetWeightedMethod(CMedianWeightedFilter.EWeightedMethod.Gauss)
+		medianWeightedFilter.SetWeightedMethod(CMedianWeightedFilter.EWeightedMethod.Gauss)
 		
 		# 처리할 Denoising Kernel 의 (95, 75, 100, 80, 45.000000) 설정 # Set Denoising Kernel to L(95, 75, 100, 80, 45.000000)
 		flrRegion = CFLRect[Int32](95, 75, 100, 80, 45.000000)
-		medianWeighted.SetKernel(flrRegion)
+		medianWeightedFilter.SetKernel(flrRegion)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := medianWeighted.Execute()).IsFail():
+		if (res := medianWeightedFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Denoising.')
 			break
 
