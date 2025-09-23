@@ -246,7 +246,7 @@ def main():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 		
-		if (res := layerTexture.DrawTextCanvas(flpPoint, 'Destination Curvature Image', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+		if (res := layerCurvature.DrawTextCanvas(flpPoint, 'Destination Curvature Image', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 		
