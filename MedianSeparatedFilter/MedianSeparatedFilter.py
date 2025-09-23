@@ -67,25 +67,25 @@ def main():
 			break
 
 		# Median Separated Filter 객체 생성 # Create Median Separated Filter object
-		medianSeparateFilter = CMedianSeparatedFilter()
+		medianSeparatedFilter = CMedianSeparatedFilter()
 
 		# Source 이미지 설정 # Set the source image
-		medianSeparateFilter.SetSourceImage(fliDestinationImage)
+		medianSeparatedFilter.SetSourceImage(fliDestinationImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		medianSeparateFilter.SetDestinationImage(fliDestinationImage)
+		medianSeparatedFilter.SetDestinationImage(fliDestinationImage)
 		
 		# ROI 설정을 위한 CFLRect 객체 생성 # Create a CFLRect object for setting ROI
 		flrROI = CFLRect[Int32](100, 190, 360, 420)
 
 		# Source ROI 설정 # Set the source roi
-		medianSeparateFilter.SetSourceROI(flrROI)
+		medianSeparatedFilter.SetSourceROI(flrROI)
 		
-		# 처리할 medianSeparateFilter의 Kernel Size 설정 (KernelSize = 11 일 경우, Kernel Size : 11x11, 홀수만 설정가능)
-		medianSeparateFilter.SetKernel(11)
+		# 처리할 Median Separated Filter의 Kernel Size 설정 (KernelSize = 11 일 경우, Kernel Size : 11x11, 홀수만 설정가능)
+		medianSeparatedFilter.SetKernel(11)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := medianSeparateFilter.Execute()).IsFail():
+		if (res := medianSeparatedFilter.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Median Separated.')
 			break
 
