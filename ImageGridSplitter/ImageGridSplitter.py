@@ -96,7 +96,9 @@ def main():
 			ErrorPrint(res, "Failed to draw figure. \n")
 
 		# 이미지 뷰를 갱신 # Update image view
+		viewImageSrc.ZoomFit()
 		viewImageSrc.Invalidate(True)
+		viewImageDst.ZoomFit()
 		viewImageDst.Invalidate(True)
 
 		# 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close
