@@ -27,13 +27,13 @@ def main():
 
 	# 3D 뷰 선언 # Declare 3D view	
 	view3D = CGUIView3D()
-	viewXYZImage = CGUIViewImage()
+	viewXYZVImage = CGUIViewImage()
 	viewTextureImage = CGUIViewImage()
 
 	# 알고리즘 동작 결과 # Algorithm execution result
 	res = CResult()
 
-	while True:		
+	while True:	
 		# Point Cloud 로드 # Load the point cloud
 		if(res := floSource.Load("../../ExampleImages/PointCloudToXYZImageConverter3D/3DSrc.ply")).IsFail() :		
 			ErrorPrint(res, "Failed to load the point cloud.\n")
@@ -61,7 +61,7 @@ def main():
 			break		
 
 		# 이미지 뷰 생성 # Create image view
-		if(res := viewXYZImage.Create(100, 512, 612, 1024)).IsFail() :		
+		if(res := viewXYZVImage.Create(100, 512, 612, 1024)).IsFail() :		
 			ErrorPrint(res, "Failed to create the Destination image view.\n")
 			break		
 
@@ -70,19 +70,19 @@ def main():
 			break
 		
 		# 이미지 포인터 설정 # Set image pointer
-		viewXYZImage.SetImagePtr(fliTexture)
-		viewTextureImage.SetImagePtr(fliDestination)
+		viewXYZVImage.SetImagePtr(fliDestination)
+		viewTextureImage.SetImagePtr(fliTexture)
 
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately		
 		layerView3D = view3D.GetLayer(0)
-		layerViewDepth = viewXYZImage.GetLayer(0)
+		layerViewXYZV = viewXYZVImage.GetLayer(0)
 		layerViewTexture = viewTextureImage.GetLayer(0)
 		
 		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
 		layerView3D.Clear()
-		layerViewDepth.Clear()
+		layerViewXYZV.Clear()
 		layerViewTexture.Clear()
 
 		# View 정보를 디스플레이 합니다. # Display View information.
@@ -97,11 +97,11 @@ def main():
 			ErrorPrint(res, "Failed to draw text.\n")
 			break
 		
-		if(res := layerViewTexture.DrawTextCanvas(flp, "Destination XYZV Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() :		
+		if(res := layerViewXYZV.DrawTextCanvas(flp, "Destination XYZV Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() :		
 			ErrorPrint(res, "Failed to draw text.\n")
 			break
 		
-		if(res := layerViewDepth.DrawTextCanvas(flp, "Destination Texture Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() :		
+		if(res := layerViewTexture.DrawTextCanvas(flp, "Destination Texture Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() :		
 			ErrorPrint(res, "Failed to draw text.\n")
 			break
 		
@@ -124,15 +124,15 @@ def main():
 		view3D.UpdateObject(-1)
 		view3D.UpdateScreen()
 
-		viewXYZImage.ZoomFit()
+		viewXYZVImage.ZoomFit()
 		viewTextureImage.ZoomFit()
         
 		# 이미지 뷰를 갱신 합니다. # Update image view
 		viewTextureImage.Invalidate(True)
-		viewXYZImage.Invalidate(True)
+		viewXYZVImage.Invalidate(True)
 
 		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 # Wait for the image and 3D view to close
-		while viewTextureImage.IsAvailable() and viewXYZImage.IsAvailable() and view3D.IsAvailable():
+		while viewTextureImage.IsAvailable() and viewXYZVImage.IsAvailable() and view3D.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
 		break
