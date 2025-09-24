@@ -70,8 +70,8 @@ def main():
 			break
 		
 		# 이미지 포인터 설정 # Set image pointer
-		viewXYZImage.SetImagePtr(fliDestination)
-		viewTextureImage.SetImagePtr(fliTexture)
+		viewXYZImage.SetImagePtr(fliTexture)
+		viewTextureImage.SetImagePtr(fliDestination)
 
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
