@@ -20,11 +20,11 @@ class SGridDisplay:
 		self.i64ImageIdx = i64ImageIdx
 		self.sGridData = sGridData
 
-def DrawGridPoints(SGridDisplay, layer):
+def DrawGridPoints(SGridDisplay, layerDraw):
 	bOK = False
 
-	# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
-	layer.Clear()
+	# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layerDraw
+	layerDraw.Clear()
 
 	# 그리기 색상 설정 # Set drawing color
 	colorPool = [EColor.RED, EColor.LIME, EColor.CYAN]
@@ -40,12 +40,12 @@ def DrawGridPoints(SGridDisplay, layer):
 			flpGridPoint2 = SGridDisplay.sGridData.arrGridData[i64Row][i64Col + 1]
 			fllDrawLine = CFLLine[Double](flpGridPoint1, flpGridPoint2)
 
-			if (res := layer.DrawFigureImage(fllDrawLine, EColor.BLACK, 5)).IsFail():
-				ErrorPrint(res, "Failed to draw figure.\n")
+			if (res := layerDraw.DrawFigureImage(fllDrawLine, EColor.BLACK, 5)).IsFail():
+				ErrorPrint(res, "Failed to draw figure.")
 				break
 			
-			if (res := layer.DrawFigureImage(fllDrawLine, colorPool[i64GridIdx % 3], 3)).IsFail():
-				ErrorPrint(res, "Failed to draw figure.\n")
+			if (res := layerDraw.DrawFigureImage(fllDrawLine, colorPool[i64GridIdx % 3], 3)).IsFail():
+				ErrorPrint(res, "Failed to draw figure.")
 				break
 
 		if i64Row < i64GridRow - 1:
@@ -54,12 +54,12 @@ def DrawGridPoints(SGridDisplay, layer):
 			fllDrawLine = CFLLine[Double]()
 			fllDrawLine.Set(flpGridPoint1, flpGridPoint2)
 			
-			if (res := layer.DrawFigureImage(fllDrawLine, EColor.BLACK, 5)).IsFail():
-				ErrorPrint(res, "Failed to draw figure.\n")
+			if (res := layerDraw.DrawFigureImage(fllDrawLine, EColor.BLACK, 5)).IsFail():
+				ErrorPrint(res, "Failed to draw figure.")
 				break
 			
-			if (res := layer.DrawFigureImage(fllDrawLine, EColor.YELLOW, 3)).IsFail():
-				ErrorPrint(res, "Failed to draw figure.\n")
+			if (res := layerDraw.DrawFigureImage(fllDrawLine, EColor.YELLOW, 3)).IsFail():
+				ErrorPrint(res, "Failed to draw figure.")
 				break
 
 	colorText = EColor.YELLOW
@@ -109,8 +109,8 @@ def DrawGridPoints(SGridDisplay, layer):
 			if i64Col == i64GridCol - 1:
 				colorText = EColor.YELLOW
 
-			if (res := layer.DrawTextImage(tpGridPoint1, wstrGridIdx, colorText, EColor.BLACK, int(f64PointDist / 2), True, f64AngleIner)).IsFail():
-				ErrorPrint(res, "Failed to draw figure.\n")
+			if (res := layerDraw.DrawTextImage(tpGridPoint1, wstrGridIdx, colorText, EColor.BLACK, int(f64PointDist / 2), True, f64AngleIner)).IsFail():
+				ErrorPrint(res, "Failed to draw figure.")
 				break
 
 	# Board Region 그리기 # Draw Board Region
@@ -120,11 +120,11 @@ def DrawGridPoints(SGridDisplay, layer):
 	f64Angle = flpPoint1.GetAngle(flpPoint2)
 	wstringData = f"({SGridDisplay.sGridData.i64Columns} X {SGridDisplay.sGridData.i64Rows})"
 
-	if (res := layer.DrawFigureImage(flqBoardRegion, EColor.YELLOW, 3)).IsFail():
-		ErrorPrint(res, "Failed to draw figure.\n")
+	if (res := layerDraw.DrawFigureImage(flqBoardRegion, EColor.YELLOW, 3)).IsFail():
+		ErrorPrint(res, "Failed to draw figure.")
 
-	if (res := layer.DrawTextImage(flpPoint1, wstringData, EColor.YELLOW, EColor.BLACK, 15, False, f64Angle, EGUIViewImageTextAlignment.LEFT_BOTTOM)).IsFail():
-		ErrorPrint(res, "Failed to draw text.\n")
+	if (res := layerDraw.DrawTextImage(flpPoint1, wstringData, EColor.YELLOW, EColor.BLACK, 15, False, f64Angle, EGUIViewImageTextAlignment.LEFT_BOTTOM)).IsFail():
+		ErrorPrint(res, "Failed to draw text.")
 
 	return bOK
 
@@ -137,13 +137,12 @@ class CMessageReceiver(CFLBase):
 
 		self.m_vctGridDisplay = SGridDisplay(0, CStereoCalibrator3D.SGridResult())
 
-		# 메세지를 전달 받기 위해 CBroadcastManager 에 구독 등록 #Subscribe to CBroadcast Manager to receive messages
+		# 메세지를 전달 받기 위해 CBroadcastManager 에 구독 등록 # Subscribe to CBroadcast Manager to receive messages
 		CBroadcastManager.Subscribe(self, CBroadcastManager.Delegate_OnReceiveBroadcast(self.OnReceiveBroadcast))
-		#CBroadcastManager.Subscribe(self)
 		
 	def __del__(self):
-		# CMessageReceiver destructor
-		# Unsubscribe to stop receiving messages when the object is deleted
+		# CMessageReceiver 소멸자 # CMessageReceiver destructor
+		# 메시지를 그만 받도록 객체가 소멸시 Unsubscribe 실행 # Unsubscribe to stop receiving messages when the object is deleted
 		CBroadcastManager.Unsubscribe(self)
 	
 	def SetGrid(self, sGridDisplay):
@@ -176,50 +175,50 @@ class CMessageReceiver(CFLBase):
 
 				i64CurPage = fliTmp.GetSelectedPageIndex()
 
-				# 이미지뷰의 0번 레이어 가져오기 # Get layer 0th of image view
-				layer = viewImage.GetLayer(int(i64CurPage % 10))
+				# 이미지뷰의 0번 레이어 가져오기 # Get layerDraw 0th of image view
+				layerDraw = viewImage.GetLayer(int(i64CurPage % 10))
 
 				for i in range(10):
 					viewImage.GetLayer(int(i)).Clear()
 
 				for i64Idx in range(fliTmp.GetPageCount()):
 					if self.m_vctGridDisplay[int(i64Idx)].i64ImageIdx == i64CurPage:
-						DrawGridPoints(self.m_vctGridDisplay[int(i64Idx)], layer)
+						DrawGridPoints(self.m_vctGridDisplay[int(i64Idx)], layerDraw)
 
 				# 이미지뷰를 갱신 # Update the image view.
 				viewImage.Invalidate()
 
 			break
 
-def Calibration(sSC, fliLearnImage, fliLearnImage2):
+def Calibration(stereoCalibrator, fliLearnImage, fliLearnImage2):
 	bResult = False
 
 	while(True):
 		# Learn 이미지 설정 # Set learn image
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := sSC.SetLearnImage(fliLearnImage)[0]).IsFail():
-			ErrorPrint(res, "Failed to set image.\n")
+		if (res := stereoCalibrator.SetLearnImage(fliLearnImage)[0]).IsFail():
+			ErrorPrint(res, "Failed to set image.")
 			break
 
 		# Learn 이미지 설정 # Set learn image 2
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := sSC.SetLearnImage2(fliLearnImage2)[0]).IsFail():
-			ErrorPrint(res, "Failed to set image.\n")
+		if (res := stereoCalibrator.SetLearnImage2(fliLearnImage2)[0]).IsFail():
+			ErrorPrint(res, "Failed to set image.")
 			break
 
 		# Optimal Solution Accuracy 설정 # Set the optical solution accuracy
-		if (res := sSC.SetOptimalSolutionAccuracy(1e-5)).IsFail():
-			ErrorPrint(res, "Failed to set Optimal Solution Accuracy.\n")
+		if (res := stereoCalibrator.SetOptimalSolutionAccuracy(1e-5)).IsFail():
+			ErrorPrint(res, "Failed to set Optimal Solution Accuracy.")
 			break
 
 		# Grid Type 설정 # Set the grid type
-		if (res := sSC.SetGridType(CStereoCalibrator3D.EGridType.ChessBoard)).IsFail():
-			ErrorPrint(res, "Failed to set Grid Type.\n")
+		if (res := stereoCalibrator.SetGridType(CStereoCalibrator3D.EGridType.ChessBoard)).IsFail():
+			ErrorPrint(res, "Failed to set Grid Type.")
 			break
 
 		# Calibration 실행 # Execute calibration
-		if (res := sSC.Calibrate()).IsFail():
-			ErrorPrint(res, "Calibration failed.\n")
+		if (res := stereoCalibrator.Calibrate()).IsFail():
+			ErrorPrint(res, "Calibration failed.")
 			break
 
 		bResult = True
@@ -228,38 +227,38 @@ def Calibration(sSC, fliLearnImage, fliLearnImage2):
 
 	return bResult
 
-def Undistortion(sSC, fliSourceImage, fliSourceImage2, fliDestinationImage, fliDestinationImage2):
+def Undistortion(stereoCalibrator, fliSourceImage, fliSourceImage2, fliDestinationImage, fliDestinationImage2):
 	bResult = False
 
 	while(True):
 		# Source 이미지 설정 # Set source image
-		if (res := sSC.SetSourceImage(fliSourceImage)[0]).IsFail():
-			ErrorPrint(res, "Failed to load image.\n")
+		if (res := stereoCalibrator.SetSourceImage(fliSourceImage)[0]).IsFail():
+			ErrorPrint(res, "Failed to load image.")
 			break
 
 		# Source 이미지 2 설정 # Set source image 2
-		if (res := sSC.SetSourceImage2(fliSourceImage2)[0]).IsFail():
-			ErrorPrint(res, "Failed to load image.\n")
+		if (res := stereoCalibrator.SetSourceImage2(fliSourceImage2)[0]).IsFail():
+			ErrorPrint(res, "Failed to load image.")
 			break
 
 		# Destination 이미지 설정 # Set the destination image
-		if (res := sSC.SetDestinationImage(fliDestinationImage)[0]).IsFail():
-			ErrorPrint(res, "Failed to load image.\n")
+		if (res := stereoCalibrator.SetDestinationImage(fliDestinationImage)[0]).IsFail():
+			ErrorPrint(res, "Failed to load image.")
 			break
 
 		# Destination 이미지 2 설정 # Set destination image 2
-		if(res := sSC.SetDestinationImage2(fliDestinationImage2)[0]).IsFail():
-			ErrorPrint(res, "Failed to load image.\n")
+		if(res := stereoCalibrator.SetDestinationImage2(fliDestinationImage2)[0]).IsFail():
+			ErrorPrint(res, "Failed to load image.")
 			break
 
 		# Interpolation 알고리즘 설정 # Set interpolation algorithm
-		if(res := sSC.SetInterpolationMethod(EInterpolationMethod.Bilinear)).IsFail():
-			ErrorPrint(res, "Failed to set interpolation method.\n")
+		if(res := stereoCalibrator.SetInterpolationMethod(EInterpolationMethod.Bilinear)).IsFail():
+			ErrorPrint(res, "Failed to set interpolation method.")
 			break
 
 		# Undistortion 실행 # Execute undistortion
-		if (res := sSC.Execute()).IsFail():
-			ErrorPrint(res, "Undistortion failed.\n")
+		if (res := stereoCalibrator.Execute()).IsFail():
+			ErrorPrint(res, "Undistortion failed.")
 			break
 
 		bResult = True
@@ -327,12 +326,12 @@ def main():
 
 		# Destination 이미지 생성 # Create destination image
 		if (res := fliDestinationImage.Create(fliSourceImage.GetWidth(), fliSourceImage.GetHeight(), mvBlank, fliSourceImage.GetPixelFormat())).IsFail():
-			ErrorPrint(res, "Failed to create the image file.\n")
+			ErrorPrint(res, "Failed to create the image file.")
 			break
 
 		# Destination 2 이미지 생성 # Create destination 2 image
 		if (res := fliDestinationImage2.Create(fliSourceImage.GetWidth(), fliSourceImage.GetHeight(), mvBlank, fliSourceImage.GetPixelFormat())).IsFail():
-			ErrorPrint(res, "Failed to create the image file.\n")
+			ErrorPrint(res, "Failed to create the image file.")
 			break
 
 		# Undistortion 수행 # Execute undistortion

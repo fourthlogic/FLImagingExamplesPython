@@ -130,9 +130,9 @@ def main():
 		photometricStereo3D.SetCalibrationImage(fliCalibrationImage)
 
 		# Calibration 데이터 설정 # Set Calibration Settings
-		cFLCircle = CFLCircle[Double](117.210526, 104.842105, 78.736842, 0.000000, 0.000000, 360.000000, EArcClosingMethod.EachOther)
+		flcCalibROI = CFLCircle[Double](117.210526, 104.842105, 78.736842, 0.000000, 0.000000, 360.000000, EArcClosingMethod.EachOther)
 
-		photometricStereo3D.SetCalibrationCircleROI(cFLCircle)
+		photometricStereo3D.SetCalibrationCircleROI(flcCalibROI)
 
 		# Source 이미지 설정 # Set source image
 		photometricStereo3D.SetSourceImage(fliSourceImage)
@@ -156,9 +156,9 @@ def main():
 		photometricStereo3D.EnableCurvatureNormalization(True)
 
 		# Angle Degrees 동작 방식으로 설정 # Set operation method as angle degrees
-		cMatTemp = CMatrix[Double](3, 3)
+		matTemp = CMatrix[Double](3, 3)
 
-		photometricStereo3D.SetLightAngleDegrees(cMatTemp)
+		photometricStereo3D.SetLightAngleDegrees(matTemp)
 		
 		# 앞서 설정된 파라미터 대로 Calibration 수행 # Calibrate algorithm according to previously set parameters
 		if (res := photometricStereo3D.Calibrate()).IsFail():
@@ -172,7 +172,7 @@ def main():
 		res, cMulVarSlant, cMulVarTilt = photometricStereo3D.GetLightAngleDegrees(cMulVarSlant, cMulVarTilt)
 
 		# 위치 데이터 동작 방식으로 설정 # Set operation method as positions
-		photometricStereo3D.SetLightPositions(cMatTemp)
+		photometricStereo3D.SetLightPositions(matTemp)
 		
 		# 앞서 설정된 파라미터 대로 Calibration 수행 # Calibrate algorithm according to previously set parameters
 		if (res := photometricStereo3D.Calibrate()).IsFail():
@@ -180,9 +180,9 @@ def main():
 			break
 
 		# Calibrate 된 위치 데이터 저장 # Save calibrated position data
-		cMatdPosition = CMatrix[Double]()
+		matdPosition = CMatrix[Double]()
 
-		photometricStereo3D.GetLightPositions(cMatdPosition)
+		photometricStereo3D.GetLightPositions(matdPosition)
 
 		# Calibrate를 실행한 결과를 Console창에 출력합니다. # Output the calibration result to the console window.
 		i32CalibPageNum = fliCalibrationImage.GetPageCount()
@@ -199,7 +199,7 @@ def main():
 		print(" < Calibration Positions >")
 
 		for i in range(i32CalibPageNum):
-			print(f"Image {i} ->\tX: {cMatdPosition.GetValue(i, 0):.5}\tY: {cMatdPosition.GetValue(i, 1):.5} \tZ: {cMatdPosition.GetValue(i, 2):.5}")
+			print(f"Image {i} ->\tX: {matdPosition.GetValue(i, 0):.5}\tY: {matdPosition.GetValue(i, 1):.5} \tZ: {matdPosition.GetValue(i, 2):.5}")
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := photometricStereo3D.Execute()).IsFail():
@@ -263,11 +263,11 @@ def main():
 		for i in range(i32CalibPageNum):
 			strText = ""
 
-			strText += f"X: {cMatdPosition.GetValue(i, 0):.5}    \nY: {cMatdPosition.GetValue(i, 1):.5}    \nZ: {cMatdPosition.GetValue(i, 2):.5}\n"
+			strText += f"X: {matdPosition.GetValue(i, 0):.5}    \nY: {matdPosition.GetValue(i, 1):.5}    \nZ: {matdPosition.GetValue(i, 2):.5}\n"
 
-			tp3dTo = TPoint3[Single](f64MulNum * cMatdPosition.GetValue(i, 0) + f64CenterX, f64MulNum * cMatdPosition.GetValue(i, 1) + f64CenterY, f64MulNum * cMatdPosition.GetValue(i, 2) + f64CenterZ)
+			tp3dTo = TPoint3[Single](f64MulNum * matdPosition.GetValue(i, 0) + f64CenterX, f64MulNum * matdPosition.GetValue(i, 1) + f64CenterY, f64MulNum * matdPosition.GetValue(i, 2) + f64CenterZ)
 
-			tp3dTod = TPoint3[Double](f64MulNum * cMatdPosition.GetValue(i, 0) + f64CenterX, f64MulNum * cMatdPosition.GetValue(i, 1) + f64CenterY, f64MulNum * cMatdPosition.GetValue(i, 2) + f64CenterZ)
+			tp3dTod = TPoint3[Double](f64MulNum * matdPosition.GetValue(i, 0) + f64CenterX, f64MulNum * matdPosition.GetValue(i, 1) + f64CenterY, f64MulNum * matdPosition.GetValue(i, 2) + f64CenterZ)
 
 			cgui3dlineTemp = CGUIView3DObjectLine(tp3dFrom, tp3dTo, EColor.YELLOW, 1)
 

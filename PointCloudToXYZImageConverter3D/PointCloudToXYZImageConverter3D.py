@@ -131,7 +131,7 @@ def main():
 		viewTextureImage.Invalidate(True)
 		viewXYZVImage.Invalidate(True)
 
-		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 # Wait for the image and 3D view to close
+		# 이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 # Wait for the image and 3D view to close
 		while viewTextureImage.IsAvailable() and viewXYZVImage.IsAvailable() and view3D.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
