@@ -69,6 +69,11 @@ def main():
 			break
 		if((res := stationaryConeBeamRotationCT.SetObjectRotationAngleDistanceDegree(360.00)).IsFail()):
 			break
+		
+		if((res := stationaryConeBeamRotationCT.SetMergeXCoefficient(1.00)).IsFail()):
+			break;
+		if((res := stationaryConeBeamRotationCT.SetMergeYCoefficient(1.00)).IsFail()):
+			break;
 
 		tpObjectRotationPivotUnit = TPoint3[Double]()
 		tpObjectRotationPivotUnit.x = 0.00
