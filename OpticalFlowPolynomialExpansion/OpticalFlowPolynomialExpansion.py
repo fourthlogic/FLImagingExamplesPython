@@ -37,16 +37,16 @@ def main():
         opticalFlowPolynomialExpansion.SetSourceImage(arrFliImage[0])
         # Destination 이미지 설정 # Set the destination image
         opticalFlowPolynomialExpansion.SetDestinationImage(arrFliImage[1])
-		# Pyramid Level 설정 # Set Pyramid Level
-		opticalFlowPolynomialExpansion.SetPyramidLevel(2);
-		# Iteration 설정 # Set Iteration
-		opticalFlowPolynomialExpansion.SetIteration(3);
-		# Window Size 설정 # Set Window Size
-		opticalFlowPolynomialExpansion.SetWindowSize(15);
-		# Binning Size 설정 # Set Binning Size
-		opticalFlowPolynomialExpansion.SetBinningSize(8);
-		# Minimum Vector Size 설정 # Set  Minimum Vector Size
-		opticalFlowPolynomialExpansion.SetMinimumVectorSize(5.000000);
+        # Pyramid Level 설정 # Set Pyramid Level
+        opticalFlowPolynomialExpansion.SetPyramidLevel(2);
+        # Iteration 설정 # Set Iteration
+        opticalFlowPolynomialExpansion.SetIteration(3);
+        # Window Size 설정 # Set Window Size
+        opticalFlowPolynomialExpansion.SetWindowSize(15);
+        # Binning Size 설정 # Set Binning Size
+        opticalFlowPolynomialExpansion.SetBinningSize(8);
+        # Minimum Vector Size 설정 # Set  Minimum Vector Size
+        opticalFlowPolynomialExpansion.SetMinimumVectorSize(5.000000);
 
         print("Processing....")
 
@@ -117,13 +117,13 @@ def main():
 
         # Layer 1 그리기 수동 모드 설정 # Set layer 1 drawing method to Manual
         arrViewImage[0].GetLayer(1).SetLayerDrawingMethod(ELayerDrawingMethod.Manual)
-
-		i32PageIndex = 0
-		performanceCounter = CPerformanceCounter()
-		flfaResultArrow = CFLFigureArray()
-
-		opticalFlowPolynomialExpansion.GetResultMotionVectorsArrowShapeAllScenes(flfaResultArrow)
-		performanceCounter.Start()
+        
+        i32PageIndex = 0
+        performanceCounter = CPerformanceCounter()
+        flfaResultArrow = CFLFigureArray()
+        
+        opticalFlowPolynomialExpansion.GetResultMotionVectorsArrowShapeAllScenes(flfaResultArrow)
+        performanceCounter.Start()
 
         # Optical Flow Vector 출력 루프 # Loop to draw optical flow vectors
         while arrViewImage[0].IsAvailable() and arrViewImage[1].IsAvailable():
@@ -132,25 +132,26 @@ def main():
                 arrViewImage[1].MoveToPage(0)
                 i32PageIndex = 0
                 continue
-
+            
             arrViewImage[0].MoveToPage(i32PageIndex)
             arrViewImage[1].MoveToPage(i32PageIndex)
             arrViewImage[0].GetLayer(1).Clear()
-            arrViewImage[0].GetLayer(1).DrawFigureImage(flfaResultArrow.GetAt(i32PageIndex), EColor.BLACK, 3)
-            arrViewImage[0].GetLayer(1).DrawFigureImage(flfaResultArrow.GetAt(i32PageIndex), EColor.YELLOW, 1)
+            arrViewImage[1].GetLayer(1).DrawFigureImage(flfaResultArrow.GetAt(i32PageIndex), EColor.BLACK, 3)
+            arrViewImage[1].GetLayer(1).DrawFigureImage(flfaResultArrow.GetAt(i32PageIndex), EColor.YELLOW, 1)
             arrViewImage[0].GetLayer(1).Update()
             arrViewImage[0].RedrawWindow()
-
+            
             if not arrViewImage[0].IsAvailable() or not arrViewImage[1].IsAvailable():
                 break
-
+            
             while performanceCounter.GetElapsedTimeFromStartInMilliSecond() <= 40.0:
                 CThreadUtilities.Sleep(1)
-
-			performanceCounter.Start()
-			i32PageIndex += 1
+                
+            performanceCounter.Start()
+            i32PageIndex += 1
 
         break
+
 
 if __name__ == "__main__":
     main()
