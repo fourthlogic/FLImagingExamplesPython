@@ -32,17 +32,26 @@ def main():
             break
 
         # OpticalFlowPolynomialExpansion 객체 생성 # Create OpticalFlowPolynomialExpansion object
-        opticalFlow = COpticalFlowPolynomialExpansion()
-        opticalFlow.SetSourceImage(arrFliImage[0])
-        opticalFlow.SetDestinationImage(arrFliImage[1])
-        opticalFlow.SetPyramidLevel(2)
-        opticalFlow.SetIteration(3)
-        opticalFlow.SetWindowSize(15)
+        opticalFlowPolynomialExpansion = COpticalFlowPolynomialExpansion()
+        # Source 이미지 설정 # Set the source image
+        opticalFlowPolynomialExpansion.SetSourceImage(arrFliImage[0])
+        # Destination 이미지 설정 # Set the destination image
+        opticalFlowPolynomialExpansion.SetDestinationImage(arrFliImage[1])
+		# Pyramid Level 설정 # Set Pyramid Level
+		opticalFlowPolynomialExpansion.SetPyramidLevel(2);
+		# Iteration 설정 # Set Iteration
+		opticalFlowPolynomialExpansion.SetIteration(3);
+		# Window Size 설정 # Set Window Size
+		opticalFlowPolynomialExpansion.SetWindowSize(15);
+		# Binning Size 설정 # Set Binning Size
+		opticalFlowPolynomialExpansion.SetBinningSize(8);
+		# Minimum Vector Size 설정 # Set  Minimum Vector Size
+		opticalFlowPolynomialExpansion.SetMinimumVectorSize(5.000000);
 
         print("Processing....")
 
         # 알고리즘 수행 # Execute algorithm
-        res = opticalFlow.Execute()
+        res = opticalFlowPolynomialExpansion.Execute()
         if res.IsFail():
             ErrorPrint(res, "Failed to execute OpticalFlow Polynomial Expansion.")
             break
@@ -68,10 +77,7 @@ def main():
         if bError:
             break
 
-        # 이미지 뷰 동기화 # Synchronize viewpoints, pages, and windows
-        if (res := arrViewImage[0].SynchronizePointOfView(arrViewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
-            break
+        # 이미지 뷰 동기화 # Synchronize pages, and windows
         if (res := arrViewImage[0].SynchronizePageIndex(arrViewImage[1]))[0].IsFail():
             ErrorPrint(res[0], "Failed to synchronize view")
             break
@@ -100,20 +106,6 @@ def main():
         arrViewImage[0].Invalidate(True)
         arrViewImage[1].Invalidate(True)
 
-        # Optical Flow 벡터 출력 준비 변수 선언 # Prepare variables for optical flow vector drawing
-        m_flpStart = CFLPoint[Single]()
-        m_flpEnd = CFLPoint[Single]()
-        m_fllDisplay = CFLLine[Single]()
-
-        # Optical Flow Vector 크기 최소값 설정 # Minimum vector length to display
-        f64MinVectorSize = 1.0
-
-        i32FlowWidth = int(arrFliImage[0].GetWidth())
-        i32FlowHeight = int(arrFliImage[0].GetHeight())
-
-        # Optical Flow Vector 간격 설정 # Vector grid step
-        i32GridStep = i32FlowWidth // 50 if i32FlowWidth > i32FlowHeight else i32FlowHeight // 50
-
         # Auto Clear Mode 비활성화 (페이지 변경 시) # Disable auto clear mode on page change
         arrViewImage[0].SetLayerAutoClearMode(0, ELayerAutoClearMode.PageChanged, False)
         arrViewImage[1].SetLayerAutoClearMode(0, ELayerAutoClearMode.PageChanged, False)
@@ -126,56 +118,37 @@ def main():
         # Layer 1 그리기 수동 모드 설정 # Set layer 1 drawing method to Manual
         arrViewImage[0].GetLayer(1).SetLayerDrawingMethod(ELayerDrawingMethod.Manual)
 
-        flfaArrow1 = CFLFigureArray()
-        flfaArrow2 = CFLFigureArray()
+		i32PageIndex = 0
+		performanceCounter = CPerformanceCounter()
+		flfaResultArrow = CFLFigureArray()
+
+		opticalFlowPolynomialExpansion.GetResultMotionVectorsArrowShapeAllScenes(flfaResultArrow)
+		performanceCounter.Start()
 
         # Optical Flow Vector 출력 루프 # Loop to draw optical flow vectors
         while arrViewImage[0].IsAvailable() and arrViewImage[1].IsAvailable():
             if arrFliImage[0].GetPageCount() - 1 == arrFliImage[0].GetSelectedPageIndex():
                 arrViewImage[0].MoveToPage(0)
                 arrViewImage[1].MoveToPage(0)
+                i32PageIndex = 0
                 continue
 
+            arrViewImage[0].MoveToPage(i32PageIndex)
+            arrViewImage[1].MoveToPage(i32PageIndex)
             arrViewImage[0].GetLayer(1).Clear()
-            flfaArrow1.Clear()
-            flfaArrow2.Clear()
-
-            # Destination 이미지 버퍼 얻기 # Get destination image buffer for pixel access
-            dstImgBuffer = List[Single]()
-            arrFliImage[1].GetBuffer(dstImgBuffer)
-
-            for i32Width in range(0, i32FlowWidth, i32GridStep):
-                for i32Height in range(0, i32FlowHeight, i32GridStep):
-                    m_flpStart.x = i32Width
-                    m_flpStart.y = i32Height
-
-                    index = i32Height * i32FlowWidth * 2 + i32Width * 2
-                    m_flpEnd.x = i32Width + dstImgBuffer[index]
-                    m_flpEnd.y = i32Height + dstImgBuffer[index + 1]
-
-                    #flfaArrow.PushBack(CFLLine[Double](m_flpStart, m_flpEnd))
-                    # Line 객체에 시작점, 끝점 설정 # Set start and end points of line
-                    #m_fllDisplay.Set(m_flpStart.x, m_flpEnd.y)
-                    m_fllDisplay.flpPoints[0].x = m_flpStart.x
-                    m_fllDisplay.flpPoints[0].y = m_flpStart.y
-                    m_fllDisplay.flpPoints[1].x = m_flpEnd.x
-                    m_fllDisplay.flpPoints[1].y = m_flpEnd.y
-
-                    # 벡터 길이가 최소값 이상인 경우 그리기 # Draw arrow if vector length is greater than minimum
-                    if m_fllDisplay.GetLength() > f64MinVectorSize:
-                        flfaArrow1.PushBack(m_fllDisplay.MakeArrowWithRatio(0.4, True, 30))
-                        flfaArrow2.PushBack(m_fllDisplay.MakeArrowWithRatio(0.4, True, 30))
-
-            arrViewImage[0].GetLayer(1).DrawFigureImage(flfaArrow1, EColor.BLACK, 3)
-            arrViewImage[0].GetLayer(1).DrawFigureImage(flfaArrow2, EColor.YELLOW, 1)
+            arrViewImage[0].GetLayer(1).DrawFigureImage(flfaResultArrow.GetAt(i32PageIndex), EColor.BLACK, 3)
+            arrViewImage[0].GetLayer(1).DrawFigureImage(flfaResultArrow.GetAt(i32PageIndex), EColor.YELLOW, 1)
+            arrViewImage[0].GetLayer(1).Update()
+            arrViewImage[0].RedrawWindow()
 
             if not arrViewImage[0].IsAvailable() or not arrViewImage[1].IsAvailable():
                 break
 
-            arrViewImage[0].MoveToNextPage()
-            arrViewImage[1].MoveToNextPage()
-            arrViewImage[0].GetLayer(1).Update()
-            arrViewImage[0].RedrawWindow()
+            while performanceCounter.GetElapsedTimeFromStartInMilliSecond() <= 40.0:
+                CThreadUtilities.Sleep(1)
+
+			performanceCounter.Start()
+			i32PageIndex += 1
 
         break
 
