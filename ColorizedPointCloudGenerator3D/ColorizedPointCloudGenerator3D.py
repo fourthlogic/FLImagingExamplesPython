@@ -18,7 +18,7 @@ from ErrorPrint import *
 # 메인 함수 # Main function
 def main():
 
-	# 이미지 객체 선언 # Declare the image object
+	# 이미지 객체 선언 # Declare image object
 	fliCaliSrcXYZVImage = CFLImage()
 	fliCaliSrcColorImage = CFLImage()
 	fliExecSrcXYZVImage = CFLImage()
@@ -26,350 +26,394 @@ def main():
 	fliExecDstColorImage = CFLImage()
 	fliSampDstColorImage = CFLImage()
 
-	# 이미지 뷰 선언 # Declare the image view
-	viewImageCaliSrcXYZV = CGUIViewImage()
-	viewImageCaliSrcColor = CGUIViewImage()
-	viewImageExecSrcXYZV = CGUIViewImage()
-	viewImageExecSrcColor = CGUIViewImage()
-	viewImageExecDstColor = CGUIViewImage()
-	viewImageSampDstColor = CGUIViewImage()
+	# 이미지 뷰 선언 # Declare image view
+	viewCaliSrcXYZVImage = CGUIViewImage()
+	viewCaliSrcColorImage = CGUIViewImage()
+	viewExecSrcXYZVImage = CGUIViewImage()
+	viewExecSrcColorImage = CGUIViewImage()
+	viewExecDstColorImage = CGUIViewImage()
+	viewSampDstColorImage = CGUIViewImage()
+
+	# 3D 뷰 선언 # Declare 3D view
 	view3DDst = CGUIView3D()
 
 	while True:
-		
-		# Calibrate XYZV 이미지 로드 # Load the calibrate XYZV image
+
+		# 수행 결과 객체 선언 # Declare execution result object
+		res = CResult(EResult.UnknownError)
+
+		# Calibration Source XYZV 이미지 로드 # Load Calibration Source XYZV image
 		if (res := fliCaliSrcXYZVImage.Load('../../ExampleImages/ColorizedPointCloudGenerator3D/CalibXYZV.flif')).IsFail():
-			ErrorPrint(res, 'Failed to load the image file.')
+			ErrorPrint(res, 'Failed to load the image file.\n')
 			break
 
-		# Calibrate XYZV 이미지 뷰 생성 # Create calibrate XYZV image view
-		if (res := viewImageCaliSrcXYZV.Create(100, 0, 400, 300)).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.')
+		# Calibration Source XYZV 이미지 뷰 생성 # Create Calibration Source XYZV image view
+		if (res := viewCaliSrcXYZVImage.Create(100, 0, 400, 300)).IsFail():
+			ErrorPrint(res, 'Failed to create the image view.\n')
 			break
 
-		# Calibrate XYZV 이미지 뷰에 이미지를 디스플레이 # Display the image in the calibrate XYZV image view
+		# Calibration Source XYZV 이미지 뷰에 이미지를 디스플레이 # Display image in Calibration Source XYZV image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcXYZV.SetImagePtr(fliCaliSrcXYZVImage)[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
+		if (res := viewCaliSrcXYZVImage.SetImagePtr(fliCaliSrcXYZVImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.\n')
 			break
 
-		# Calibrate Color 이미지 로드 # Load the calibrate Color image
+
+		# Calibration Source Color 이미지 로드 # Load Calibration Source Color image
 		if (res := fliCaliSrcColorImage.Load('../../ExampleImages/ColorizedPointCloudGenerator3D/CalibRGB.flif')).IsFail():
-			ErrorPrint(res, 'Failed to load the image file.')
+			ErrorPrint(res, 'Failed to load the image file.\n')
 			break
 
-		# Calibrate Color 이미지 뷰 생성 # Create calibrate Color image view
-		if (res := viewImageCaliSrcColor.Create(100, 300, 400, 600)).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.')
+		# Calibration Source Color 이미지 뷰 생성 # Create Calibration Source Color image view
+		if (res := viewCaliSrcColorImage.Create(100, 300, 400, 600)).IsFail():
+			ErrorPrint(res, 'Failed to create the image view.\n')
 			break
 
-		# Calibrate Color 이미지 뷰에 이미지를 디스플레이 # Display the image in the calibrate Color image view
+		# Calibration Source Color 이미지 뷰에 이미지를 디스플레이 # Display image in Calibration Source Color image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcColor.SetImagePtr(fliCaliSrcColorImage)[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
+		if (res := viewCaliSrcColorImage.SetImagePtr(fliCaliSrcColorImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.\n')
 			break
 
-		# Execute XYZV 이미지 로드 # Load the execute XYZV image
+
+		# Execution Source XYZV 이미지 로드 # Load Execution Source XYZV image
 		if (res := fliExecSrcXYZVImage.Load('../../ExampleImages/ColorizedPointCloudGenerator3D/ExecXYZV.flif')).IsFail():
-			ErrorPrint(res, 'Failed to load the image file.')
+			ErrorPrint(res, 'Failed to load the image file.\n')
 			break
 
-		# Execute XYZV 이미지 뷰 생성 # Create execute XYZV image view
-		if (res := viewImageExecSrcXYZV.Create(400, 0, 700, 300)).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.')
+		# Execution Source XYZV 이미지 뷰 생성 # Create Execution Source XYZV image view
+		if (res := viewExecSrcXYZVImage.Create(400, 0, 700, 300)).IsFail():
+			ErrorPrint(res, 'Failed to create the image view.\n')
 			break
 
-		# Execute XYZV 이미지 뷰에 이미지를 디스플레이 # Display the image in the execute XYZV image view
+		# Execution Source XYZV 이미지 뷰에 이미지를 디스플레이 # Display image in Execution Source XYZV image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageExecSrcXYZV.SetImagePtr(fliExecSrcXYZVImage)[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
+		if (res := viewExecSrcXYZVImage.SetImagePtr(fliExecSrcXYZVImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.\n')
 			break
 
-		# Execute Color 이미지 로드 # Load the execute Color image
+
+		# Execution Source Color 이미지 로드 # Load Execution Source Color image
 		if (res := fliExecSrcColorImage.Load('../../ExampleImages/ColorizedPointCloudGenerator3D/ExecRGB.flif')).IsFail():
-			ErrorPrint(res, 'Failed to load the image file.')
+			ErrorPrint(res, 'Failed to load the image file.\n')
 			break
 
-		# Execute Color 이미지 뷰 생성 # Create execute Color image view
-		if (res := viewImageExecSrcColor.Create(400, 300, 700, 600)).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.')
+		# Execution Source Color 이미지 뷰 생성 # Create Execution Source Color image view
+		if (res := viewExecSrcColorImage.Create(400, 300, 700, 600)).IsFail():
+			ErrorPrint(res, 'Failed to create the image view.\n')
 			break
 
-		# Execute Color 이미지 뷰에 이미지를 디스플레이 # Display the image in the execute Color image view
+		# Execution Source Color 이미지 뷰에 이미지를 디스플레이 # Display image in Execution Source Color image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageExecSrcColor.SetImagePtr(fliExecSrcColorImage)[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
+		if (res := viewExecSrcColorImage.SetImagePtr(fliExecSrcColorImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.\n')
 			break
 
-		# Destination Color 이미지 뷰 생성 # Create destination color image view
-		if (res := viewImageExecDstColor.Create(700, 0, 1000, 300)).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.')
+
+		# Execution Destination Color 이미지 뷰 생성 # Create Execution Destination Color image view
+		if (res := viewExecDstColorImage.Create(700, 0, 1000, 300)).IsFail():
+			ErrorPrint(res, 'Failed to create the image view.\n')
 			break
 
-		# Destination Color 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination color image view
+		# Execution Destination Color 이미지 뷰에 이미지를 디스플레이 # Display image in Execution Destination Color image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageExecDstColor.SetImagePtr(fliExecDstColorImage)[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
+		if (res := viewExecDstColorImage.SetImagePtr(fliExecDstColorImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.\n')
 			break
 		
-		# Execution Sampled Color 이미지 뷰 생성 # Create destination sampled color image view
-		if (res := viewImageSampDstColor.Create(700, 300, 1000, 600)).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.')
-			break
 
-		# Destination Sampled Color 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination sampled color image view
+		# Execution Sampled Destination 이미지 뷰 생성 # Create Execution Sampled Destination image view
+		if (res := viewSampDstColorImage.Create(700, 300, 1000, 600)).IsFail():
+			ErrorPrint(res, 'Failed to create the image view.\n')
+			break
+		
+		# Execution Sampled Destination 이미지 뷰에 이미지를 디스플레이 # Display image in Execution Sampled Destination image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSampDstColor.SetImagePtr(fliSampDstColorImage)[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
+		if (res := viewSampDstColorImage.SetImagePtr(fliSampDstColorImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.\n')
 			break
+		
 
-		# Destination 3D 이미지 뷰 생성 # Create destination 3D image view
+		# Destination 3D 뷰 생성 # Create Destination 3D view
 		if (res := view3DDst.Create(1000, 0, 1600, 600)).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.')
-			break
-
-		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(viewImageCaliSrcColor)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize window.')
-			break
-
-		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(viewImageExecSrcColor)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize window.')
-			break
-
-		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(viewImageExecSrcXYZV)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize window.')
-			break
-
-		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(viewImageExecDstColor)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize window.')
-			break
-
-		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(viewImageSampDstColor)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize window.')
+			ErrorPrint(res, 'Failed to create the 3D view.\n')
 			break
 		
-		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcXYZV.SynchronizeWindow(view3DDst)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize window.')
-			break
 
-		# 두 이미지 뷰의 페이지를 동기화 한다. # Synchronize the page of the two image views. 
+		# 두 뷰 윈도우의 위치를 동기화 # Synchronize positions of two views
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCaliSrcXYZV.SynchronizePageIndex(viewImageCaliSrcColor)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize window.')
+		if (res := viewCaliSrcXYZVImage.SynchronizeWindow(viewCaliSrcColorImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window between views.\n')
 			break
+		
+		# 두 뷰 윈도우의 위치를 동기화 # Synchronize positions of two views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewCaliSrcXYZVImage.SynchronizeWindow(viewExecSrcColorImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window between views.\n')
+			break
+		
+		# 두 뷰 윈도우의 위치를 동기화 # Synchronize positions of two views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewCaliSrcXYZVImage.SynchronizeWindow(viewExecSrcXYZVImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window between views.\n')
+			break
+		
+		# 두 뷰 윈도우의 위치를 동기화 # Synchronize positions of two views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewCaliSrcXYZVImage.SynchronizeWindow(viewExecDstColorImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window between views.\n')
+			break
+		
+		# 두 뷰 윈도우의 위치를 동기화 # Synchronize positions of two views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewCaliSrcXYZVImage.SynchronizeWindow(viewSampDstColorImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window between views.\n')
+			break
+		
+		# 두 뷰 윈도우의 위치를 동기화 # Synchronize positions of two views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewCaliSrcXYZVImage.SynchronizeWindow(view3DDst)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window between views.\n')
+			break
+		
 
-		# Colorized Point Cloud Generator 3D 객체 생성 # Colorized Point Cloud Generator 3D object
+		# 두 이미지 뷰 윈도우의 Page를 동기화 한다 # Synchronize pages of two image views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewCaliSrcXYZVImage.SynchronizePageIndex(viewCaliSrcColorImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize page index between image views.\n')
+			break
+		
+
+		# Colorized Point Cloud Generator 3D 객체 생성 # Create Colorized Point Cloud Generator 3D object
 		colorizedPointCloudGenerator3D = CColorizedPointCloudGenerator3D()
-		
-		# Calibration XYZV 이미지 설정 # Set calibration XYZV image
-		colorizedPointCloudGenerator3D.SetCalibrationXYZVImage(fliCaliSrcXYZVImage)
-		
-		# Calibration Color 이미지 설정 # Set calibration color image
-		colorizedPointCloudGenerator3D.SetCalibrationColorImage(fliCaliSrcColorImage)
-		
-		# Calibration의 Grid Type 설정 # Set the grid type of the calibration
-		colorizedPointCloudGenerator3D.SetGridType(CCameraCalibrator.EGridType.ChessBoard)
-		
-		# Calibration의 최적해 정확도 값 설정 # Set the optimal solution accuracy of the calibration
-		colorizedPointCloudGenerator3D.SetOptimalSolutionAccuracy(0.00001)
-		
-		# Coordinate Adjustment 자동 설정 # Coordinate Adjustment Auto Set Flag
-		colorizedPointCloudGenerator3D.EnableAutoCoordinateAdjustment(True)
-		
-		# 앞서 설정된 파라미터 대로 Calibration 동작 # Calibrate algorithm according to previously set parameters
-		if (res := colorizedPointCloudGenerator3D.Calibrate()).IsFail():
-			ErrorPrint(res, 'Failed to calibrate Colorized Point Cloud Generator 3D.')
-			break
 
+		# Calibration Source XYZV 이미지 설정 # Set Calibration Source XYZV image
+		if (res := colorizedPointCloudGenerator3D.SetCalibrationXYZVImage(fliCaliSrcXYZVImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set Calibration Source XYZV image.\n')
+			break
 		
+		# Calibration Source Color 이미지 설정 # Set Calibration Source Color image
+		if (res := colorizedPointCloudGenerator3D.SetCalibrationColorImage(fliCaliSrcColorImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set Calibration Source Color image.\n')
+			break
+		
+		# Calibration에 사용되는 Grid Type 설정 # Set grid type used in calibration
+		if (res := colorizedPointCloudGenerator3D.SetGridType(CCameraCalibrator.EGridType.ChessBoard)).IsFail():
+			ErrorPrint(res, 'Failed to set calibration grid type.\n')
+			break
+		
+		# Calibration의 최적해 정확도 값 설정 # Set optimal solution accuracy of calibration
+		if (res := colorizedPointCloudGenerator3D.SetOptimalSolutionAccuracy(0.00001)).IsFail():
+			ErrorPrint(res, 'Failed to set calibration optimal solution accuracy.\n')
+			break
+		
+		# 자동 Coordinate Adjustment 사용 여부 설정 # Set auto coordinate adjustment flag
+		if (res := colorizedPointCloudGenerator3D.EnableAutoCoordinateAdjustment(True)).IsFail():
+			ErrorPrint(res, 'Failed to set coordinate adjustment flag.\n')
+			break
+		
+		# 앞서 설정된 파라미터 대로 Calibration 수행 # Calibration algorithm according to previously set parameters
+		if (res := colorizedPointCloudGenerator3D.Calibrate()).IsFail():
+			ErrorPrint(res, 'Failed to calibrate Colorized Point Cloud Generator 3D.\n')
+			break
+		
+
 		# Calibration 결과 출력 # Print calibration results
 		print(f' < Calibration Result >\n')
 
-		# Color 카메라의 Intrinsic Parameter 출력 # Print the intrinsic parameters of the color camera
-		cCalibIntrinsic = colorizedPointCloudGenerator3D.GetIntrinsicParameters()
+		# Color 카메라의 Intrinsic Parameter 출력 # Print intrinsic parameters of color camera
+		calibIntrinsic = colorizedPointCloudGenerator3D.GetIntrinsicParameters()
 
-		print(f' < Intrinsic Parameters >\n')
+		print(f' < Intrinsic Parameters >')
 
-		print(f'Focal Length X ->\t{cCalibIntrinsic.f64FocalLengthX:.7}')
-		print(f'Focal Length Y ->\t{cCalibIntrinsic.f64FocalLengthY:.7}')
-		print(f'Principal Point X ->\t{cCalibIntrinsic.f64PrincipalPointX:.7}')
-		print(f'Principal Point Y ->\t{cCalibIntrinsic.f64PrincipalPointY:.7}')
-		print(f'Skew ->\t{cCalibIntrinsic.f64Skew:.7}')
+		print(f'Focal Length X ->\t{calibIntrinsic.f64FocalLengthX:.7}')
+		print(f'Focal Length Y ->\t{calibIntrinsic.f64FocalLengthY:.7}')
+		print(f'Principal Point X ->\t{calibIntrinsic.f64PrincipalPointX:.7}')
+		print(f'Principal Point Y ->\t{calibIntrinsic.f64PrincipalPointY:.7}')
+		print(f'Skew ->\t{calibIntrinsic.f64Skew:.7}')
 
-		print()
+		print(f'')
 
-		# Color 카메라의 Distortion Coefficient 출력 # Print the distortion coefficients of the color camera
-		cCalibDistortion = colorizedPointCloudGenerator3D.GetDistortionCoefficients()
+		# Color 카메라의 Distortion Coefficient 출력 # Print distortion coefficients of color camera
+		calibDistortion = colorizedPointCloudGenerator3D.GetDistortionCoefficients()
 
-		print(f' < Distortion Coefficients >\n')
+		print(f' < Distortion Coefficients >')
 
-		print(f'K1 ->\t{cCalibDistortion.f64K1:.7}')
-		print(f'K2 ->\t{cCalibDistortion.f64K2:.7}')
-		print(f'P1 ->\t{cCalibDistortion.f64P1:.7}')
-		print(f'P2 ->\t{cCalibDistortion.f64P2:.7}')
-		print(f'K3 ->\t{cCalibDistortion.f64K3:.7}')
+		print(f'K1 ->\t{calibDistortion.f64K1:.7}')
+		print(f'K2 ->\t{calibDistortion.f64K2:.7}')
+		print(f'P1 ->\t{calibDistortion.f64P1:.7}')
+		print(f'P2 ->\t{calibDistortion.f64P2:.7}')
+		print(f'K3 ->\t{calibDistortion.f64K3:.7}')
+
+		print(f'')
+
+		# 두 카메라 간의 회전 행렬 출력 # Print relative rotation matrix between both cameras
+		matRotation = CMatrix[Double]()
+
+		if (res := colorizedPointCloudGenerator3D.GetRelativeRotation(matRotation)[0]).IsFail():
+			ErrorPrint(res, 'Failed to get relative rotation.\n')
+			break
 		
-		print()
+		print(f' < Relative Rotation >')
 
-		# 두 카메라 간의 회전 행렬 출력 # Print the relative rotation matrix between both cameras
-		cMatRotation = CMatrix[Double]()
+		print(f'R00 ->\t{matRotation.GetValue(0, 0):.7}')
+		print(f'R01 ->\t{matRotation.GetValue(0, 1):.7}')
+		print(f'R02 ->\t{matRotation.GetValue(0, 2):.7}')
+		print(f'R10 ->\t{matRotation.GetValue(1, 0):.7}')
+		print(f'R11 ->\t{matRotation.GetValue(1, 1):.7}')
+		print(f'R12 ->\t{matRotation.GetValue(1, 2):.7}')
+		print(f'R20 ->\t{matRotation.GetValue(2, 0):.7}')
+		print(f'R21 ->\t{matRotation.GetValue(2, 1):.7}')
+		print(f'R22 ->\t{matRotation.GetValue(2, 2):.7}')
 
-		colorizedPointCloudGenerator3D.GetRelativeRotation(cMatRotation)
+		print(f'')
 
-		print(f' < Relative Rotation >\n')
+		# 두 카메라 간의 변환 행렬 출력 # Print relative translation matrix between both cameras
+		matTranslation = CMatrix[Double]()
 
-		print(f'R00 ->\t{cMatRotation.GetValue(0, 0):.7}')
-		print(f'R01 ->\t{cMatRotation.GetValue(0, 1):.7}')
-		print(f'R02 ->\t{cMatRotation.GetValue(0, 2):.7}')
-		print(f'R10 ->\t{cMatRotation.GetValue(1, 0):.7}')
-		print(f'R11 ->\t{cMatRotation.GetValue(1, 1):.7}')
-		print(f'R12 ->\t{cMatRotation.GetValue(1, 2):.7}')
-		print(f'R20 ->\t{cMatRotation.GetValue(2, 0):.7}')
-		print(f'R21 ->\t{cMatRotation.GetValue(2, 1):.7}')
-		print(f'R22 ->\t{cMatRotation.GetValue(2, 2):.7}')
+		if (res := colorizedPointCloudGenerator3D.GetRelativeTranslation(matTranslation)[0]).IsFail():
+			ErrorPrint(res, 'Failed to get relative translation.\n')
+			break
 		
-		print()
-
-		# 두 카메라 간의 변환 행렬 출력 # Print the relative translation matrix between both cameras
-		cMatTranslation = CMatrix[Double]()
-
-		colorizedPointCloudGenerator3D.GetRelativeTranslation(cMatTranslation)
-
 		print(f' < Relative Translation >\n')
 
-		print(f'TX ->\t{cMatTranslation.GetValue(0, 0):.7}', )
-		print(f'TY ->\t{cMatTranslation.GetValue(1, 0):.7}', )
-		print(f'TZ ->\t{cMatTranslation.GetValue(2, 0):.7}', )
-		
-		print()
+		print(f'TX ->\t{matTranslation.GetValue(0, 0):.7}')
+		print(f'TY ->\t{matTranslation.GetValue(1, 0):.7}')
+		print(f'TZ ->\t{matTranslation.GetValue(2, 0):.7}')
+
+		print(f'')
 
 
 		# 출력에 사용되는 3D 객채 생성 # Create 3D object used as output
-		fli3DDstObj = CFL3DObject()
+		fl3DDstObj = CFL3DObject()
 
-		# Execution XYZV 이미지 설정 # Set execution XYZV image
-		colorizedPointCloudGenerator3D.SetSourceXYZVImage(fliExecSrcXYZVImage)
+		# Execution Source XYZV 이미지 설정 # Set Execution Source XYZV image
+		if (res := colorizedPointCloudGenerator3D.SetSourceXYZVImage(fliExecSrcXYZVImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set Execution Source XYZV image.\n')
+			break
 		
-		# Execution Color 이미지 설정 # Set execution color image
-		colorizedPointCloudGenerator3D.SetSourceColorImage(fliExecSrcColorImage)
+		# Execution Source Color 이미지 설정 # Set Execution Source Color image
+		if (res := colorizedPointCloudGenerator3D.SetSourceColorImage(fliExecSrcColorImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set Execution Source Color image.\n')
+			break
 		
-		# Destination Color 이미지 설정 # Set destination color image
-		colorizedPointCloudGenerator3D.SetDestinationColorImage(fliExecDstColorImage)
+		# Execution Destination Color 이미지 설정 # Set Execution Destination Color image
+		if (res := colorizedPointCloudGenerator3D.SetDestinationColorImage(fliExecDstColorImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set Execution Destination Color image.\n')
+			break
 		
-		# Destination Sampled Color 이미지 설정 # Set the destination sampled color image
-		colorizedPointCloudGenerator3D.SetDestinationSampledColorImage(fliSampDstColorImage)
+		# Execution Destination Sampled Color 이미지 설정 # Set Execution Destination Sampled Color image
+		if (res := colorizedPointCloudGenerator3D.SetDestinationSampledColorImage(fliSampDstColorImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set Execution Destination Sampled Color image.\n')
+			break
 		
-		# Sampled 픽셀 표시 BGR 설정 # Set the color of the sampled pixels in BGR
-		colorizedPointCloudGenerator3D.SetSampledBGRValue(255, 255, 0)
-
-		# Destination 3D Object 설정 # Set the destination 3D object
-		colorizedPointCloudGenerator3D.SetDestination3DObject(fli3DDstObj)
-
+		# Sampled 픽셀 표시 Color 설정 # Set color of the sampled pixels in BGR
+		if (res := colorizedPointCloudGenerator3D.SetSampledBGRValue(255, 255, 0)).IsFail():
+			ErrorPrint(res, 'Failed to set sampled pixel BGR value.\n')
+			break
+		
+		# Execution Destination 3D Object 설정 # Set Execution Destination 3D Object
+		if (res := colorizedPointCloudGenerator3D.SetDestination3DObject(fl3DDstObj)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set Execution Destination 3D Object.\n')
+			break
+		
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := colorizedPointCloudGenerator3D.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Colorized Point Cloud Generator 3D.')
+			ErrorPrint(res, 'Failed to execute Colorized Point Cloud Generator 3D.\n')
 			break
+		
 
-		# 결과 3D 객체 출력 # Print 3D Object
-		if (res := view3DDst.PushObject(fli3DDstObj)).IsFail():
-			ErrorPrint(res, 'Failed to display the 3D object.')
+		# 결과 3D 객체 출력 # Print resulting 3D Object
+		if (res := view3DDst.PushObject(fl3DDstObj)).IsFail():
+			ErrorPrint(res, 'Failed to display the 3D Object.\n')
 			break
-
+		
 		# 3D View 카메라 설정 # Set 3D view camera
-		fli3DCam = CFL3DCamera()
+		fl3DCam = CFL3DCamera()
 
-		flP3Dir = CFLPoint3[Single](0, 0, 1)
-		flP3DirUp = CFLPoint3[Single](0, -1, 0)
-		flP3Pos = CFLPoint3[Single](0, 0, -1000)
-		
-		fli3DCam.SetDirection(flP3Dir)
-		fli3DCam.SetDirectionUp(flP3DirUp)
-		fli3DCam.SetPosition(flP3Pos)
+		fl3DCam.SetDirection(CFLPoint3[Single](0, 0, 1))
+		fl3DCam.SetDirectionUp(CFLPoint3[Single](0, -1, 0))
+		fl3DCam.SetPosition(CFLPoint3[Single](0, 0, -1000))
 
-		view3DDst.SetCamera(fli3DCam)
-		
-		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
-		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
-		layerImageCaliSrcXYZV = viewImageCaliSrcXYZV.GetLayer(0);
-		layerImageCaliSrcColor = viewImageCaliSrcColor.GetLayer(0);
-		layerImageExecSrcXYZV = viewImageExecSrcXYZV.GetLayer(0);
-		layerImageExecSrcColor = viewImageExecSrcColor.GetLayer(0);
-		layerImageExecDstColor = viewImageExecDstColor.GetLayer(0);
-		layerImageSampDstColor = viewImageSampDstColor.GetLayer(0);
-		layer3DDst = view3DDst.GetLayer(0);
+		view3DDst.SetCamera(fl3DCam)
 
-		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
-		layerImageCaliSrcXYZV.Clear();
-		layerImageCaliSrcColor.Clear();
-		layerImageExecSrcXYZV.Clear();
-		layerImageExecSrcColor.Clear();
-		layerImageExecDstColor.Clear();
-		layerImageSampDstColor.Clear();
-		layer3DDst.Clear();
+		# 화면에 출력하기 위해 이미지 뷰에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+	    # 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released
+		layerImageCaliSrcXYZV = viewCaliSrcXYZVImage.GetLayer(0)
+		layerImageCaliSrcColor = viewCaliSrcColorImage.GetLayer(0)
+		layerImageExecSrcXYZV = viewExecSrcXYZVImage.GetLayer(0)
+		layerImageExecSrcColor = viewExecSrcColorImage.GetLayer(0)
+		layerImageExecDstColor = viewExecDstColorImage.GetLayer(0)
+		layerImageSampDstColor = viewSampDstColorImage.GetLayer(0)
+
+		# 화면에 출력하기 위해 3D 뷰에서 레이어 0번을 얻어옴 # Obtain layer 0 number from 3D view for display
+		# 이 객체는 3D 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an 3D view and does not need to be released
+		layer3DDst = view3DDst.GetLayer(0)
+
+		# 기존에 Layer에 그려진 도형들을 삭제 # Clear figures drawn on existing layer
+		layerImageCaliSrcXYZV.Clear()
+		layerImageCaliSrcColor.Clear()
+		layerImageExecSrcXYZV.Clear()
+		layerImageExecSrcColor.Clear()
+		layerImageExecDstColor.Clear()
+		layerImageSampDstColor.Clear()
+		layer3DDst.Clear()
 
 		# 이미지 뷰 정보 표시 # Display image view information
-		flpPoint = CFLPoint[Double](0, 0)
+		if (res := layerImageCaliSrcXYZV.DrawTextCanvas(CFLPoint[Double](0, 0), 'Calibration Source XYZV Image', EColor.YELLOW, EColor.BLACK, 15)).IsFail():
+			ErrorPrint(res, 'Failed to draw text.\n')
+			break
+		
+		if (res := layerImageCaliSrcColor.DrawTextCanvas(CFLPoint[Double](0, 0), 'Calibration Source Color Image', EColor.YELLOW, EColor.BLACK, 15)).IsFail():
+			ErrorPrint(res, 'Failed to draw text.\n')
+			break
+		
+		if (res := layerImageExecSrcXYZV.DrawTextCanvas(CFLPoint[Double](0, 0), 'Execution Source XYZV Image', EColor.YELLOW, EColor.BLACK, 15)).IsFail():
+			ErrorPrint(res, 'Failed to draw text.\n')
+			break
+		
+		if (res := layerImageExecSrcColor.DrawTextCanvas(CFLPoint[Double](0, 0), 'Execution Source Color Image', EColor.YELLOW, EColor.BLACK, 15)).IsFail():
+			ErrorPrint(res, 'Failed to draw text.\n')
+			break
+		
+		if (res := layerImageExecDstColor.DrawTextCanvas(CFLPoint[Double](0, 0), 'Destination Color Image', EColor.YELLOW, EColor.BLACK, 15)).IsFail():
+			ErrorPrint(res, 'Failed to draw text.\n')
+			break
+		
+		if (res := layerImageSampDstColor.DrawTextCanvas(CFLPoint[Double](0, 0), 'Destination Sampled Color Image', EColor.YELLOW, EColor.BLACK, 15)).IsFail():
+			ErrorPrint(res, 'Failed to draw text.\n')
+			break
+		
+		# 3D 뷰 정보 표시 # Display 3D view information
+		if (res := layer3DDst.DrawTextCanvas(CFLPoint[Double](0, 0), '3D Destination Colored Point Cloud', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+			ErrorPrint(res, 'Failed to draw text.\n')
+			break
+		
 
-		if (res := layerImageCaliSrcXYZV.DrawTextCanvas(flpPoint, 'Calibration Source XYZV Image', EColor.YELLOW, EColor.BLACK, 15)).IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
-			break
-
-		if (res := layerImageCaliSrcColor.DrawTextCanvas(flpPoint, 'Calibration Source Color Image', EColor.YELLOW, EColor.BLACK, 15)).IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
+		# 새로 생성한 이미지를 가지는 뷰 Zoom Fit 실행 # Activate Zoom Fit for view with newly created image
+		if (res := viewExecDstColorImage.ZoomFit()).IsFail():
+			ErrorPrint(res, 'Failed to zoom fit image view.\n')
 			break
 		
-		if (res := layerImageExecSrcXYZV.DrawTextCanvas(flpPoint, 'Execution Source XYZV Image', EColor.YELLOW, EColor.BLACK, 15)).IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
-			break
-
-		if (res := layerImageExecSrcColor.DrawTextCanvas(flpPoint, 'Execution Source Color Image', EColor.YELLOW, EColor.BLACK, 15)).IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
-			break
-		
-		if (res := layerImageExecDstColor.DrawTextCanvas(flpPoint, 'Execution Destination Color Image', EColor.YELLOW, EColor.BLACK, 15)).IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
-			break
-
-		if (res := layerImageSampDstColor.DrawTextCanvas(flpPoint, 'Execution Sampled Color Image', EColor.YELLOW, EColor.BLACK, 15)).IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
-			break
-		
-		if (res := layer3DDst.DrawTextCanvas(flpPoint, '3D Colored Point Cloud', EColor.YELLOW, EColor.BLACK, 15)).IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
-			break
-		
-		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
-		if (res := viewImageExecDstColor.ZoomFit()).IsFail():
-			ErrorPrint(res, 'Failed to Zoom Fit.')
-			break
-		
-		if (res := viewImageSampDstColor.ZoomFit()).IsFail():
-			ErrorPrint(res, 'Failed to Zoom Fit.')
+		# 새로 생성한 이미지를 가지는 뷰 Zoom Fit 실행 # Activate Zoom Fit for view with newly created image
+		if (res := viewSampDstColorImage.ZoomFit()).IsFail():
+			ErrorPrint(res, 'Failed to zoom fit image view.\n')
 			break
 		
 		# 이미지 뷰를 갱신 # Update image view
-		viewImageCaliSrcXYZV.Invalidate(True)
-		viewImageCaliSrcColor.Invalidate(True)
-		viewImageExecSrcXYZV.Invalidate(True)
-		viewImageExecSrcColor.Invalidate(True)
-		viewImageExecDstColor.Invalidate(True)
-		viewImageSampDstColor.Invalidate(True)
-		view3DDst.Invalidate(True)
+		viewCaliSrcXYZVImage.Invalidate(True)
+		viewCaliSrcColorImage.Invalidate(True)
+		viewExecSrcXYZVImage.Invalidate(True)
+		viewExecSrcColorImage.Invalidate(True)
+		viewExecDstColorImage.Invalidate(True)
+		viewSampDstColorImage.Invalidate(True)
 
-		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
-		while viewImageCaliSrcXYZV.IsAvailable() and viewImageCaliSrcColor.IsAvailable() and viewImageExecSrcXYZV.IsAvailable() and viewImageExecSrcColor.IsAvailable() and viewImageExecDstColor.IsAvailable() and viewImageSampDstColor.IsAvailable() and view3DDst.IsAvailable():
+		# 3D 뷰를 갱신 # Update 3D view
+		view3DDst.Invalidate(True)
+		
+
+		# 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until a view is closed before exiting
+		while viewCaliSrcXYZVImage.IsAvailable() and viewCaliSrcColorImage.IsAvailable() and viewExecSrcXYZVImage.IsAvailable() and viewExecSrcColorImage.IsAvailable() and viewExecDstColorImage.IsAvailable() and viewSampDstColorImage.IsAvailable() and view3DDst.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
 		break
