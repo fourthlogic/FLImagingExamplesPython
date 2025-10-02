@@ -161,11 +161,7 @@ def main():
 			break
 		
 		# 3D 뷰 정보 표시 # Display 3D view information
-<<<<<<< HEAD
 		if (res := layer3DDestination.DrawTextCanvas(CFLPoint[Double](0, 0), 'Destination 3D Height Map', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
-=======
-		if (res := layer3DDestination.DrawTextCanvas(CFLPoint[Double](0, 0), 'Destination Image', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
->>>>>>> a5e89a2 (Fix variable values and comments (Channel Swap, Colorized Point Cloud Generator 3D, Laser Triangulation 3D, Operation Complex Multiply, Operation Scaled Divide, Operation Trailing Ones))
 			ErrorPrint(res, 'Failed to draw text.\n')
 			break
 		
