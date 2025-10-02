@@ -4,13 +4,13 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{5edd631b-cd63-4d99-b242-fa2f1255737d}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>LaserTriangulation_Image.py</StartupFile>
+    <StartupFile>LaserTriangulation3D_Image.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>LaserTriangulation_Image</Name>
-    <RootNamespace>LaserTriangulation_Image</RootNamespace>
+    <Name>LaserTriangulation3D_Image</Name>
+    <RootNamespace>LaserTriangulation3D_Image</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="LaserTriangulation_Image.py" />
+    <Compile Include="LaserTriangulation3D_Image.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
