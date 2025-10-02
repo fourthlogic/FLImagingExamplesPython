@@ -20,137 +20,127 @@ class SGridDisplay:
 		self.i64ImageIdx = i64ImageIdx
 		self.sGridData = sGridData
 
-def DrawGridPoints(SGridDisplay, layerDraw):
-	bOK = False
+def DrawGridPoints(sGridDisplay, layer):
 
-	# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layerDraw
-	layerDraw.Clear()
+	res = CResult(EResult.UnknownError)
 
-	# 그리기 색상 설정 # Set drawing color
-	colorPool = [EColor.RED, EColor.LIME, EColor.CYAN]
+	while True:
 
-	i64GridRow = SGridDisplay.sGridData.i64Rows
-	i64GridCol = SGridDisplay.sGridData.i64Columns
+		if sGridDisplay.sGridResult.arrGridData.Count == 0:
+			res = CResult(EResult.NoData)
+			break
+		
+		# 그리기 색상 설정 # Set drawing color
+		u32ArrColor = [ EColor.RED, EColor.LIME, EColor.CYAN ]
+		i64GridRow = sGridDisplay.sGridResult.i64Rows
+		i64GridCol = sGridDisplay.sGridResult.i64Columns
+		f64AvgDistance = sGridDisplay.sGridResult.f64AvgDistance
+		flqBoardRegion = sGridDisplay.sGridResult.pFlqBoardRegion
+		f64Angle = flqBoardRegion.flpPoints[0].GetAngle(flqBoardRegion.flpPoints[1])
+		f64Width = flqBoardRegion.flpPoints[0].GetDistance(flqBoardRegion.flpPoints[1])
 
-	# Grid 그리기 # Draw grid
-	for i64Row in range(i64GridRow):
-		for i64Col in range(i64GridCol - 1):
-			i64GridIdx = i64Row * i64GridCol + i64Col
-			flpGridPoint1 = SGridDisplay.sGridData.arrGridData[i64Row][i64Col]
-			flpGridPoint2 = SGridDisplay.sGridData.arrGridData[i64Row][i64Col + 1]
-			fllDrawLine = CFLLine[Double](flpGridPoint1, flpGridPoint2)
+		# Grid 그리기 # Draw grid
+		for i64Row in range(i64GridRow):
+			for i64Col in range(i64GridCol - 1):
+				i64GridIdx = i64Row * i64GridCol + i64Col
 
-			if (res := layerDraw.DrawFigureImage(fllDrawLine, EColor.BLACK, 5)).IsFail():
-				ErrorPrint(res, "Failed to draw figure.")
-				break
+				flpGridPoint1 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][i64Col])
+				flpGridPoint2 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][i64Col + 1])
+				fllDrawLine = CFLLine[Double](flpGridPoint1, flpGridPoint2)
+				layer.DrawFigureImage(fllDrawLine, EColor.BLACK, 5)
+				layer.DrawFigureImage(fllDrawLine, u32ArrColor[i64GridIdx % 3], 3)
 			
-			if (res := layerDraw.DrawFigureImage(fllDrawLine, colorPool[i64GridIdx % 3], 3)).IsFail():
-				ErrorPrint(res, "Failed to draw figure.")
-				break
+			if i64Row < i64GridRow - 1:
+				flpGridPoint1 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][i64GridCol - 1])
+				flpGridPoint2 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row + 1][0])
+				fllDrawLine = CFLLine[Double](flpGridPoint1, flpGridPoint2)
+				layer.DrawFigureImage(fllDrawLine, EColor.BLACK, 5)
+				layer.DrawFigureImage(fllDrawLine, EColor.YELLOW, 3)
+					
+		u32ColorText = EColor.YELLOW
+		f64PointDist = 0
+		f64Dx = 0
+		f64Dy = 0
 
-		if i64Row < i64GridRow - 1:
-			flpGridPoint1 = SGridDisplay.sGridData.arrGridData[i64Row][i64GridCol - 1]
-			flpGridPoint2 = SGridDisplay.sGridData.arrGridData[i64Row + 1][0]
-			fllDrawLine = CFLLine[Double]()
-			fllDrawLine.Set(flpGridPoint1, flpGridPoint2)
-			
-			if (res := layerDraw.DrawFigureImage(fllDrawLine, EColor.BLACK, 5)).IsFail():
-				ErrorPrint(res, "Failed to draw figure.")
-				break
-			
-			if (res := layerDraw.DrawFigureImage(fllDrawLine, EColor.YELLOW, 3)).IsFail():
-				ErrorPrint(res, "Failed to draw figure.")
-				break
+		# Grid Point 인덱싱 # Index Grid Point
+		for i64Row in range(i64GridRow):
+			flpGridPoint1 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][0])
+			flpGridPoint2 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][1])
+			f64TempAngle = flpGridPoint1.GetAngle(flpGridPoint2)
 
-	colorText = EColor.YELLOW
-	colorPool[2] = EColor.CYAN
-	f64PointDist = 0
-	f64Dx = 0
-	f64Dy = 0
+			for i64Col in range(i64GridCol):
+				i64GridIdx = i64Row * i64GridCol + i64Col
 
-	# Grid Point 인덱싱 # Index Grid Point
-	for i64Row in range(i64GridRow):
-		tpGridPoint1 = SGridDisplay.sGridData.arrGridData[i64Row][0]
-		tpGridPoint2 = SGridDisplay.sGridData.arrGridData[i64Row][1]
-		flpGridPoint1 = CFLPoint[Double](tpGridPoint1.x, tpGridPoint1.y)
-		flpGridPoint2 = CFLPoint[Double](tpGridPoint2.x, tpGridPoint2.y)
+				if i64Col < i64GridCol - 1:
+					flpGridPoint1 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][i64Col])
+					flpGridPoint2 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][i64Col + 1])
 
-		f64AngleIner = flpGridPoint1.GetAngle(flpGridPoint2)
+					f64Dx = flpGridPoint2.x - flpGridPoint1.x
+					f64Dy = flpGridPoint2.y - flpGridPoint1.y
+					f64PointDist = Math.Sqrt(f64Dx * f64Dx + f64Dy * f64Dy)
+				
+				if i64Row != 0:
+					flpGridPoint1 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][i64Col])
+					flpGridPoint2 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row - 1][i64Col])
 
-		for i64Col in range(i64GridCol):
-			i64GridIdx = i64Row * i64GridCol + i64Col
+					f64Dx = flpGridPoint2.x - flpGridPoint1.x
+					f64Dy = flpGridPoint2.y - flpGridPoint1.y
+					f64PointDist = Math.Min(f64PointDist, Math.Sqrt(f64Dx * f64Dx + f64Dy * f64Dy))
+				else:
+					flpGridPoint1 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[0][i64Col])
+					flpGridPoint2 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[1][i64Col])
 
-			if i64Col < i64GridCol - 1:
-				tpGridPoint1 = SGridDisplay.sGridData.arrGridData[i64Row][i64Col]
-				tpGridPoint2 = SGridDisplay.sGridData.arrGridData[i64Row][i64Col + 1]
+					f64Dx = flpGridPoint2.x - flpGridPoint1.x
+					f64Dy = flpGridPoint2.y - flpGridPoint1.y
+					f64PointDist = Math.Min(f64PointDist, Math.Sqrt(f64Dx * f64Dx + f64Dy * f64Dy))
+				
+				strGridIdx = "{0}".format(i64GridIdx)
+				u32ColorText = u32ArrColor[i64GridIdx % 3]
+				if i64Col == i64GridCol - 1:
+					u32ColorText = EColor.YELLOW
 
-				f64Dx = tpGridPoint2.x - tpGridPoint1.x
-				f64Dy = tpGridPoint2.y - tpGridPoint1.y
-				f64PointDist = (f64Dx * f64Dx + f64Dy * f64Dy) ** 0.5
+				layer.DrawTextImage(flpGridPoint1, strGridIdx, u32ColorText, EColor.BLACK, (int)(f64PointDist / 2), True, f64TempAngle)
+					
+		# Board Region 그리기 # Draw Board Region
+		stringData = "({0} X {1})".format(i64GridCol, i64GridRow)
+		layer.DrawFigureImage(flqBoardRegion, EColor.BLACK, 3)
+		layer.DrawFigureImage(flqBoardRegion, EColor.YELLOW, 1)
+		layer.DrawTextImage(flqBoardRegion.flpPoints[0], stringData, EColor.YELLOW, EColor.BLACK, (int)(f64Width / 16), True, f64Angle, EGUIViewImageTextAlignment.LEFT_BOTTOM, None, 1, 1, EGUIViewImageFontWeight.EXTRABOLD)
 
-			if i64Row > 0:
-				tpGridPoint1 = SGridDisplay.sGridData.arrGridData[i64Row][i64Col]
-				tpGridPoint2 = SGridDisplay.sGridData.arrGridData[i64Row - 1][i64Col]
+		res = CResult(EResult.OK)
 
-				f64Dx = tpGridPoint2.x - tpGridPoint1.x
-				f64Dy = tpGridPoint2.y - tpGridPoint1.y
-				f64PointDist = min(f64PointDist, Math.Sqrt(f64Dx * f64Dx + f64Dy * f64Dy))
-			else:
-				tpGridPoint1 = SGridDisplay.sGridData.arrGridData[0][i64Col]
-				tpGridPoint2 = SGridDisplay.sGridData.arrGridData[1][i64Col]
+		break
 
-				f64Dx = tpGridPoint2.x - tpGridPoint1.x
-				f64Dy = tpGridPoint2.y - tpGridPoint1.y
-				f64PointDist = min(f64PointDist, Math.Sqrt(f64Dx * f64Dx + f64Dy * f64Dy))
-
-			wstrGridIdx = f"{i64GridIdx}"
-			colorText = colorPool[i64GridIdx % 3]
-
-			if i64Col == i64GridCol - 1:
-				colorText = EColor.YELLOW
-
-			if (res := layerDraw.DrawTextImage(tpGridPoint1, wstrGridIdx, colorText, EColor.BLACK, int(f64PointDist / 2), True, f64AngleIner)).IsFail():
-				ErrorPrint(res, "Failed to draw figure.")
-				break
-
-	# Board Region 그리기 # Draw Board Region
-	flqBoardRegion = SGridDisplay.sGridData.pFlqBoardRegion
-	flpPoint1 = CFLPoint[Double](flqBoardRegion.flpPoints[0])
-	flpPoint2 = CFLPoint[Double](flqBoardRegion.flpPoints[1])
-	f64Angle = flpPoint1.GetAngle(flpPoint2)
-	wstringData = f"({SGridDisplay.sGridData.i64Columns} X {SGridDisplay.sGridData.i64Rows})"
-
-	if (res := layerDraw.DrawFigureImage(flqBoardRegion, EColor.YELLOW, 3)).IsFail():
-		ErrorPrint(res, "Failed to draw figure.")
-
-	if (res := layerDraw.DrawTextImage(flpPoint1, wstringData, EColor.YELLOW, EColor.BLACK, 15, False, f64Angle, EGUIViewImageTextAlignment.LEFT_BOTTOM)).IsFail():
-		ErrorPrint(res, "Failed to draw text.")
-
-	return bOK
+	return res
 
 class CMessageReceiver(CFLBase):
+
 	# CMessageReceiver 생성자 # CMessageReceiver constructor
 	def __init__(self, viewImage):
 		super().__init__()
 
 		self.m_viewImage = viewImage
 
-		self.m_vctGridDisplay = SGridDisplay(0, CStereoCalibrator3D.SGridResult())
+		self.m_vctGridDisplay = [SGridDisplay(0, CStereoCalibrator3D.SGridResult())]
 
 		# 메세지를 전달 받기 위해 CBroadcastManager 에 구독 등록 # Subscribe to CBroadcast Manager to receive messages
 		CBroadcastManager.Subscribe(self, CBroadcastManager.Delegate_OnReceiveBroadcast(self.OnReceiveBroadcast))
 		
 	def __del__(self):
+
 		# CMessageReceiver 소멸자 # CMessageReceiver destructor
 		# 메시지를 그만 받도록 객체가 소멸시 Unsubscribe 실행 # Unsubscribe to stop receiving messages when the object is deleted
 		CBroadcastManager.Unsubscribe(self)
 	
 	def SetGrid(self, sGridDisplay):
+
 		self.m_vctGridDisplay = sGridDisplay
 
 	# 메세지가 들어오면 호출되는 함수 OnReceiveBroadcast 오버라이드하여 구현 # Implemented by overriding the function OnReceive Broadcast that is invoked when a message is received
 	def OnReceiveBroadcast(self, message):
+
 		while(True):
+
 			# message 가 null 인지 확인 # Verify message is null
 			if message is None:
 				break
@@ -161,6 +151,7 @@ class CMessageReceiver(CFLBase):
 
 			# 메세지의 채널을 확인 # Check the channel of the message
 			if message.GetChannel() == int(EGUIBroadcast.ViewImage_PostPageChange):
+
 				# 메세지를 호출한 객체를 CGUIViewImage 로 캐스팅 # Casting the object that called the message as CGUIViewImage
 				viewImage = message.GetCaller()
 
@@ -175,288 +166,273 @@ class CMessageReceiver(CFLBase):
 
 				i64CurPage = fliTmp.GetSelectedPageIndex()
 
-				# 이미지뷰의 0번 레이어 가져오기 # Get layerDraw 0th of image view
-				layerDraw = viewImage.GetLayer(int(i64CurPage % 10))
+				# 이미지뷰의 0번 레이어 가져오기 # Get layer 0th of image view
+				layer = viewImage.GetLayer(i64CurPage % 10)
 
 				for i in range(10):
-					viewImage.GetLayer(int(i)).Clear()
+					viewImage.GetLayer(i).Clear()
 
 				for i64Idx in range(fliTmp.GetPageCount()):
-					if self.m_vctGridDisplay[int(i64Idx)].i64ImageIdx == i64CurPage:
-						DrawGridPoints(self.m_vctGridDisplay[int(i64Idx)], layerDraw)
+					if self.m_vctGridDisplay[i64Idx].i64ImageIdx == i64CurPage:
+						DrawGridPoints(self.m_vctGridDisplay[i64Idx], layer)
 
 				# 이미지뷰를 갱신 # Update the image view.
-				viewImage.Invalidate()
+				viewImage.Invalidate(True)
 
 			break
 
-def Calibration(stereoCalibrator, fliLearnImage, fliLearnImage2):
-	bResult = False
+def Calibration(stereoCalibrator3D, fliLearnImage, fliLearn2Image):
 
-	while(True):
-		# Learn 이미지 설정 # Set learn image
+	# 수행 결과 객체 선언 # Declare execution result object
+	res = CResult(EResult.UnknownError)
+
+	while True:
+
+		# Learn 이미지 설정 # Set Learn image
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := stereoCalibrator.SetLearnImage(fliLearnImage)[0]).IsFail():
-			ErrorPrint(res, "Failed to set image.")
+		if (res := stereoCalibrator3D.SetLearnImage(fliLearnImage)[0]).IsFail():
+			ErrorPrint(res, "Failed to set Learn image.\n")
 			break
-
-		# Learn 이미지 설정 # Set learn image 2
+		
+		# Learn 2 이미지 설정 # Set Learn 2 image
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := stereoCalibrator.SetLearnImage2(fliLearnImage2)[0]).IsFail():
-			ErrorPrint(res, "Failed to set image.")
+		if (res := stereoCalibrator3D.SetLearnImage2(fliLearn2Image)[0]).IsFail():
+			ErrorPrint(res, "Failed to set Learn 2 image.\n")
 			break
-
-		# Optimal Solution Accuracy 설정 # Set the optical solution accuracy
-		if (res := stereoCalibrator.SetOptimalSolutionAccuracy(1e-5)).IsFail():
-			ErrorPrint(res, "Failed to set Optimal Solution Accuracy.")
+		
+		# Calibration의 최적해 정확도 값 설정 # Set optimal solution accuracy of calibration
+		if (res := stereoCalibrator3D.SetOptimalSolutionAccuracy(1e-5)).IsFail():
+			ErrorPrint(res, "Failed to set calibration optimal solution accuracy.\n")
 			break
-
-		# Grid Type 설정 # Set the grid type
-		if (res := stereoCalibrator.SetGridType(CStereoCalibrator3D.EGridType.ChessBoard)).IsFail():
-			ErrorPrint(res, "Failed to set Grid Type.")
+		
+		# Calibration에 사용되는 Grid Type 설정 # Set grid type used in calibration
+		if (res := stereoCalibrator3D.SetGridType(CStereoCalibrator3D.EGridType.ChessBoard)).IsFail():
+			ErrorPrint(res, "Failed to set calibration grid type.\n")
 			break
-
-		# Calibration 실행 # Execute calibration
-		if (res := stereoCalibrator.Calibrate()).IsFail():
-			ErrorPrint(res, "Calibration failed.")
+		
+		# 앞서 설정된 파라미터 대로 Calibration 수행 # Calibration algorithm according to previously set parameters
+		if (res := stereoCalibrator3D.Calibrate()).IsFail():
+			ErrorPrint(res, "Failed to calibrate Stereo Calibrator 3D.\n")
 			break
-
-		bResult = True
 
 		break
 
-	return bResult
+	return res
 
-def Undistortion(stereoCalibrator, fliSourceImage, fliSourceImage2, fliDestinationImage, fliDestinationImage2):
-	bResult = False
+def Undistortion(stereoCalibrator3D, fliSourceImage, fliSource2Image, fliDestinationImage, fliDestination2Image):
 
-	while(True):
-		# Source 이미지 설정 # Set source image
-		if (res := stereoCalibrator.SetSourceImage(fliSourceImage)[0]).IsFail():
-			ErrorPrint(res, "Failed to load image.")
+	# 수행 결과 객체 선언 # Declare execution result object
+	res = CResult(EResult.UnknownError)
+
+	while True:
+
+		# Source 이미지 설정 # Set Source image
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := stereoCalibrator3D.SetSourceImage(fliSourceImage)[0]).IsFail():
+			ErrorPrint(res, "Failed to set Source image.\n")
 			break
-
-		# Source 이미지 2 설정 # Set source image 2
-		if (res := stereoCalibrator.SetSourceImage2(fliSourceImage2)[0]).IsFail():
-			ErrorPrint(res, "Failed to load image.")
+		
+		# Source 이미지 2 설정 # Set Source 2 image
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := stereoCalibrator3D.SetSourceImage2(fliSource2Image)[0]).IsFail():
+			ErrorPrint(res, "Failed to set Source 2 image.\n")
 			break
-
-		# Destination 이미지 설정 # Set the destination image
-		if (res := stereoCalibrator.SetDestinationImage(fliDestinationImage)[0]).IsFail():
-			ErrorPrint(res, "Failed to load image.")
+		
+		# Destination 이미지 설정 # Set Destination image
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := stereoCalibrator3D.SetDestinationImage(fliDestinationImage)[0]).IsFail():
+			ErrorPrint(res, "Failed to set Destination image.\n")
 			break
-
-		# Destination 이미지 2 설정 # Set destination image 2
-		if(res := stereoCalibrator.SetDestinationImage2(fliDestinationImage2)[0]).IsFail():
-			ErrorPrint(res, "Failed to load image.")
+		
+		# Destination 이미지 2 설정 # Set Destination 2 image
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := stereoCalibrator3D.SetDestinationImage2(fliDestination2Image)[0]).IsFail():
+			ErrorPrint(res, "Failed to set Destination 2 image.\n")
 			break
-
-		# Interpolation 알고리즘 설정 # Set interpolation algorithm
-		if(res := stereoCalibrator.SetInterpolationMethod(EInterpolationMethod.Bilinear)).IsFail():
-			ErrorPrint(res, "Failed to set interpolation method.")
+		
+		# Interpolation 메소드 설정 # Set interpolation method
+		if (res := stereoCalibrator3D.SetInterpolationMethod(EInterpolationMethod.Bilinear)).IsFail():
+			ErrorPrint(res, "Failed to set interpolation method.\n")
 			break
-
-		# Undistortion 실행 # Execute undistortion
-		if (res := stereoCalibrator.Execute()).IsFail():
-			ErrorPrint(res, "Undistortion failed.")
+		
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
+		if (res := stereoCalibrator3D.Execute()).IsFail():
+			ErrorPrint(res, "Failed to execute Stereo Calibrator 3D.\n")
 			break
-
-		bResult = True
-
+		
 		break
 
-	return bResult
+	return res
 
 # 메인 함수 # Main function
 def main():
 
-	# 이미지 객체 선언 # Declare the image object
+	# 이미지 객체 선언 # Declare image object
 	fliLearnImage = CFLImage()
-	fliLearnImage2 = CFLImage()
 	fliSourceImage = CFLImage()
-	fliSourceImage2 = CFLImage()
 	fliDestinationImage = CFLImage()
-	fliDestinationImage2 = CFLImage()
+	fliLearn2Image = CFLImage()
+	fliSource2Image = CFLImage()
+	fliDestination2Image = CFLImage()
 
-	# 이미지 뷰 선언 # Declare the image view
-	viewImageLearn = CGUIViewImage()
-	viewImageLearn2 = CGUIViewImage()
-	viewImageDestination = CGUIViewImage()
-	viewImageDestination2 = CGUIViewImage()
-	
-	# Stereo Calibrator 3D 객체 생성 # Create Stereo Calibrator 3D object
-	stereoCalibrator3D = CStereoCalibrator3D()
-	
-	# MessageReceiver 객체 생성 # Create MessageReceiver object
-	msgReceiver = CMessageReceiver(viewImageLearn)
-	msgReceiver2 = CMessageReceiver(viewImageLearn2)
+	# 이미지 뷰 선언 # Declare image view
+	viewLearnImage = CGUIViewImage()
+	viewDestinationImage = CGUIViewImage()
+	viewLearn2Image = CGUIViewImage()
+	viewDestination2Image = CGUIViewImage()
+
+	# 수행 결과 객체 선언 # Declare execution result object
+	res = CResult(EResult.UnknownError)
 
 	while True:
-		
-		# Learn 이미지 로드 # Load the learn image
-		if (res := fliLearnImage.Load('../../ExampleImages/StereoCalibrator3D/Left.flif')).IsFail():
-			ErrorPrint(res, 'Failed to load the image file.')
-			break
-		
-		# Learn 2 이미지 로드 # Load the learn 2 image
-		if (res := fliLearnImage2.Load('../../ExampleImages/StereoCalibrator3D/Right.flif')).IsFail():
-			ErrorPrint(res, 'Failed to load the image file.')
-			break
-		
-		# Page 0 선택 # Select page 0
-		fliLearnImage.SelectPage(0)
-		fliLearnImage2.SelectPage(0)
-		
-		print("Processing....")
 
-		if not Calibration(stereoCalibrator3D, fliLearnImage, fliLearnImage2):
+		# Learn 이미지 로드 # Load Learn image
+		if (res := fliLearnImage.Load("../../ExampleImages/StereoCalibrator3D/Left.flif")).IsFail():
+			ErrorPrint(res, "Failed to load the image file.\n")
 			break
 		
-		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination image as same as source image
+		# Learn2 이미지 로드 # Load Learn2 image
+		if (res := fliLearn2Image.Load("../../ExampleImages/StereoCalibrator3D/Right.flif")).IsFail():
+			ErrorPrint(res, "Failed to load the image file.\n")
+			break
+		
+		# Learn 이미지 뷰 생성 # Create Learn image view
+		if (res := viewLearnImage.Create(300, 0, 300 + 480 * 1, 360)).IsFail():
+			ErrorPrint(res, "Failed to create the image view.\n")
+			break
+		
+		# Learn 2 이미지 뷰 생성 # Create Learn 2 image view
+		if (res := viewLearn2Image.Create(300 + 480, 0, 300 + 480 * 2, 360)).IsFail():
+			ErrorPrint(res, "Failed to create the image view.\n")
+			break
+		
+		# Destination 이미지 뷰 생성 # Create Destination image view
+		if (res := viewDestinationImage.Create(300, 360, 780, 720)).IsFail():
+			ErrorPrint(res, "Failed to create the image view.\n")
+			break
+		
+		# Destination 2 이미지 뷰 생성 # Create Destination 2 image view
+		if (res := viewDestination2Image.Create(780, 360, 1260, 720)).IsFail():
+			ErrorPrint(res, "Failed to create the image view.\n")
+			break
+		
+		# Learn 이미지 뷰에 이미지를 디스플레이 # Display image in Learn image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewLearnImage.SetImagePtr(fliLearnImage)[0]).IsFail():
+			ErrorPrint(res, "Failed to set image object on the image view.\n")
+			break
+		
+		# Learn 2 이미지 뷰에 이미지를 디스플레이 # Display image in Learn 2 image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewLearn2Image.SetImagePtr(fliLearn2Image)[0]).IsFail():
+			ErrorPrint(res, "Failed to set image object on the image view.\n")
+			break
+		
+		# Destination 이미지 뷰에 이미지를 디스플레이 # Display image in Destination image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewDestinationImage.SetImagePtr(fliDestinationImage)[0]).IsFail():
+			ErrorPrint(res, "Failed to set image object on the image view.\n")
+			break
+		
+		# Destination 2 이미지 뷰에 이미지를 디스플레이 # Display image in Destination 2 image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewDestination2Image.SetImagePtr(fliDestination2Image)[0]).IsFail():
+			ErrorPrint(res, "Failed to set image object on the image view.\n")
+			break
+		
+		# 두 뷰 윈도우의 위치를 동기화 # Synchronize positions of two views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewLearnImage.SynchronizeWindow(viewLearn2Image)[0]).IsFail():
+			ErrorPrint(res, "Failed to synchronize window between views.\n")
+			break
+		
+		# 두 뷰 윈도우의 위치를 동기화 # Synchronize positions of two views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewLearnImage.SynchronizeWindow(viewDestinationImage)[0]).IsFail():
+			ErrorPrint(res, "Failed to synchronize window between views.\n")
+			break
+		
+		# 두 뷰 윈도우의 위치를 동기화 # Synchronize positions of two views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewLearnImage.SynchronizeWindow(viewDestination2Image)[0]).IsFail():
+			ErrorPrint(res, "Failed to synchronize window between views.\n")
+			break
+		
+		# 두 이미지 뷰 윈도우의 Page를 동기화 한다 # Synchronize pages of two image views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewLearnImage.SynchronizePageIndex(viewLearn2Image)[0]).IsFail():
+			ErrorPrint(res, "Failed to synchronize page index between image views.\n")
+			break
+		
+		# 두 이미지 뷰 윈도우의 Page를 동기화 한다 # Synchronize pages of two image views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewLearnImage.SynchronizePageIndex(viewDestinationImage)[0]).IsFail():
+			ErrorPrint(res, "Failed to synchronize page index between image views.\n")
+			break
+		
+		# 두 이미지 뷰 윈도우의 Page를 동기화 한다 # Synchronize pages of two image views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewLearnImage.SynchronizePageIndex(viewDestination2Image)[0]).IsFail():
+			ErrorPrint(res, "Failed to synchronize page index between image views.\n")
+			break
+		
+		Console.WriteLine("Processing.....\n")
+
+		# Stereo Calibrator 3D 객체 생성 # Create Stereo Calibrator 3D object
+		stereoCalibrator3D = CStereoCalibrator3D()
+
+		# Stereo Calibrator 3D Calibration 수행 # Calibrate Stereo Calibrator 3D
+		if Calibration(stereoCalibrator3D, fliLearnImage, fliLearn2Image).IsFail():
+			break
+
+		# Source 이미지를 Learn 이미지와 동일하도록 설정 (얕은 복사) # Assign Learn image to Source image (Shallow Copy)
 		if (res := fliSourceImage.Assign(fliLearnImage, False)).IsFail():
-			ErrorPrint(res, 'Failed to assign the image.')
+			ErrorPrint(res, "Failed to assign the image.\n")
 			break
 		
-		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination image as same as source image
-		if (res := fliSourceImage2.Assign(fliLearnImage2, False)).IsFail():
-			ErrorPrint(res, 'Failed to assign the image.')
+		# Source 2 이미지를 Learn 2 이미지와 동일하도록 설정 (얕은 복사) # Assign Learn 2 image to Source 2 image (Shallow Copy)
+		if (res := fliSource2Image.Assign(fliLearn2Image, False)).IsFail():
+			ErrorPrint(res, "Failed to assign the image.\n")
 			break
 		
-		mvBlank = CMultiVar[int](0)
-
-		# Destination 이미지 생성 # Create destination image
-		if (res := fliDestinationImage.Create(fliSourceImage.GetWidth(), fliSourceImage.GetHeight(), mvBlank, fliSourceImage.GetPixelFormat())).IsFail():
-			ErrorPrint(res, "Failed to create the image file.")
+		# Stereo Calibrator 3D Undistortion 수행 # Undistort Stereo Calibrator 3D
+		if Undistortion(stereoCalibrator3D, fliSourceImage, fliSource2Image, fliDestinationImage, fliDestination2Image).IsFail():
 			break
 
-		# Destination 2 이미지 생성 # Create destination 2 image
-		if (res := fliDestinationImage2.Create(fliSourceImage.GetWidth(), fliSourceImage.GetHeight(), mvBlank, fliSourceImage.GetPixelFormat())).IsFail():
-			ErrorPrint(res, "Failed to create the image file.")
-			break
-
-		# Undistortion 수행 # Execute undistortion
-		if not Undistortion(stereoCalibrator3D, fliSourceImage, fliSourceImage2, fliDestinationImage, fliDestinationImage2):
-			break
-
-		
-		# 화면에 격자 탐지 결과 출력 # Display the result of grid detection
+		# 뷰에 격자 탐지 결과 출력 # Display grid detection result in view
 		sArrGridDisplay = [SGridDisplay(0, CStereoCalibrator3D.SGridResult()) for i in range(5)]
-		sArrGridDisplay2 = [SGridDisplay(0, CStereoCalibrator3D.SGridResult()) for i in range(5)]
 
 		for i64ImgIdx in range(fliLearnImage.GetPageCount()):
-			sArrGridDisplay[i64ImgIdx].sGridData = CStereoCalibrator3D.SGridResult()
-			stereoCalibrator3D.GetResultGridPoints(sArrGridDisplay[i64ImgIdx].sGridData, i64ImgIdx)
+			sArrGridDisplay[i64ImgIdx].sGridResult = CStereoCalibrator3D.SGridResult()
+			stereoCalibrator3D.GetResultGridPoints(sArrGridDisplay[i64ImgIdx].sGridResult, i64ImgIdx)
 			sArrGridDisplay[i64ImgIdx].i64ImageIdx = i64ImgIdx
-			
-		for i64ImgIdx in range(fliLearnImage2.GetPageCount()):
-			sArrGridDisplay2[i64ImgIdx].sGridData = CStereoCalibrator3D.SGridResult()
-			stereoCalibrator3D.GetResultGridPoints2(sArrGridDisplay2[i64ImgIdx].sGridData, i64ImgIdx)
+
+		sArrGridDisplay2 = [SGridDisplay(0, CStereoCalibrator3D.SGridResult()) for i in range(5)]
+
+		for i64ImgIdx in range(fliLearn2Image.GetPageCount()):
+			sArrGridDisplay2[i64ImgIdx].sGridResult = CStereoCalibrator3D.SGridResult()
+			stereoCalibrator3D.GetResultGridPoints2(sArrGridDisplay2[i64ImgIdx].sGridResult, i64ImgIdx)
 			sArrGridDisplay2[i64ImgIdx].i64ImageIdx = i64ImgIdx
+		
+		# Message Receiver 객체 생성 # Create Message Receiver object
+		msgReceiver = CMessageReceiver(viewLearnImage)
+		msgReceiver2 = CMessageReceiver(viewLearn2Image)
 
-		msgReceiver.SetGrid(sArrGridDisplay)
-		msgReceiver2.SetGrid(sArrGridDisplay2)
+		msgReceiver.m_vctGridDisplay = sArrGridDisplay
+		msgReceiver2.m_vctGridDisplay = sArrGridDisplay2
 
-		# Learn 이미지 뷰 생성 # Create learn image view
-		if (res := viewImageLearn.Create(300, 0, 300 + 480 * 1, 360)).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.')
-			break
+		# 화면에 출력하기 위해 이미지 뷰에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released
+		layerLearn = viewLearnImage.GetLayer(0)
+		layerLearn2 = viewLearn2Image.GetLayer(0)
+		layerDestination = viewDestinationImage.GetLayer(0)
+		layerDestination2 = viewDestination2Image.GetLayer(0)
 
-		# Learn 2 이미지 뷰 생성 # Create learn 2 image view
-		if (res := viewImageLearn2.Create(300 + 480, 0, 300 + 480 * 2, 360)).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.')
-			break
-		
-		# Learn 이미지 뷰에 이미지를 디스플레이 # Display the image in the learn image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageLearn.SetImagePtr(fliLearnImage)[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
-			break
-		
-		# Learn 2 이미지 뷰에 이미지를 디스플레이 # Display the image in the learn 2 image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageLearn2.SetImagePtr(fliLearnImage2)[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
-			break
-		
-		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
-		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
-		layerLearn = viewImageLearn.GetLayer(0)
-		layerLearn2 = viewImageLearn2.GetLayer(0)
-		
+		# Chess Board Grid 출력 # Display chess board grid
 		DrawGridPoints(sArrGridDisplay[0], layerLearn)
 		DrawGridPoints(sArrGridDisplay2[0], layerLearn2)
 
-		# Destination 이미지 뷰 생성 # Create destination image view
-		if (res := viewImageDestination.Create(300, 360, 300 + 480 * 1, 720)).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.')
-			break
-
-		# Destination 2 이미지 뷰 생성 # Create destination 2 image view
-		if (res := viewImageDestination2.Create(300 + 480, 360, 300 + 480 * 2, 720)).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.')
-			break
-
-		# Destination 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageDestination.SetImagePtr(fliDestinationImage)[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
-			break
-		
-		# Destination 2 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination 2 image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageDestination2.SetImagePtr(fliDestinationImage2)[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
-			break
-		
-		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageLearn.SynchronizePointOfView(viewImageDestination)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize view.')
-			break
-		
-		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageLearn2.SynchronizePointOfView(viewImageDestination2)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize view.')
-			break
-		
-		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageLearn.SynchronizeWindow(viewImageLearn2)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize view.')
-			break
-		
-		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageLearn.SynchronizeWindow(viewImageDestination)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize view.')
-			break
-		
-		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageLearn.SynchronizeWindow(viewImageDestination2)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize view.')
-			break
-		
-		# 두 이미지 뷰의 페이지를 동기화 한다. # Synchronize the page of the two image views. 
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageLearn.SynchronizePageIndex(viewImageLearn2)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize window.')
-			break
-		
-		# 두 이미지 뷰의 페이지를 동기화 한다. # Synchronize the page of the two image views. 
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageLearn.SynchronizePageIndex(viewImageDestination)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize window.')
-			break
-		
-		# 두 이미지 뷰의 페이지를 동기화 한다. # Synchronize the page of the two image views. 
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageLearn.SynchronizePageIndex(viewImageDestination2)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize window.')
-			break
-		
-		# calibration data 출력 # Display the calibration data
+		# Calibration data 출력 # Display calibration data
 		sIntrinsicParam = stereoCalibrator3D.GetResultIntrinsicParameters()
 		sDistortCoeef = stereoCalibrator3D.GetResultDistortionCoefficients()
 
@@ -470,80 +446,160 @@ def main():
 		sTranslationParam2 = stereoCalibrator3D.GetResultTranslationParameters2()
 
 		f64ReprojError = stereoCalibrator3D.GetResultReProjectionError()
-		
-		print(f"Intrinsic Parameters")
-		print(f"\tFocal Length X: {sIntrinsicParam.f64FocalLengthX}")
-		print(f"\tFocal Length Y: {sIntrinsicParam.f64FocalLengthY}")
-		print(f"\tPrincipal Point X: {sIntrinsicParam.f64PrincipalPointX}")
-		print(f"\tPrincipal Point Y: {sIntrinsicParam.f64PrincipalPointY}")
-		print("")
-		print(f"Distortion Coefficients")
-		print(f"\tK1: {sDistortCoeef.f64K1}")
-		print(f"\tK2: {sDistortCoeef.f64K2}")
-		print(f"\tP1: {sDistortCoeef.f64P1}")
-		print(f"\tP2: {sDistortCoeef.f64P2}")
-		print(f"\tK3: {sDistortCoeef.f64K3}")
-		print(f"Rotation Parameters")
-		print(f"\t{sRotationParam.f64R0:3}\t{sRotationParam.f64R1:3}\t{sRotationParam.f64R2:3}")
-		print(f"\t{sRotationParam.f64R3:3}\t{sRotationParam.f64R4:3}\t{sRotationParam.f64R5:3}")
-		print(f"\t{sRotationParam.f64R6:3}\t{sRotationParam.f64R7:3}\t{sRotationParam.f64R8:3}")
-		print("")
-		print(f"Translation Parameters")
-		print(f"\t{sTranslationParam.f64T3:3}\t{sTranslationParam.f64T7:3}\t{sTranslationParam.f64T11:3}")
-		print("")
-		print(f"Intrinsic Parameters 2")
-		print(f"\tFocal Length X: {sIntrinsicParam2.f64FocalLengthX}")
-		print(f"\tFocal Length Y: {sIntrinsicParam2.f64FocalLengthY}")
-		print(f"\tPrincipal Point X: {sIntrinsicParam2.f64PrincipalPointX}")
-		print(f"\tPrincipal Point Y: {sIntrinsicParam2.f64PrincipalPointY}")
-		print("")
-		print(f"Distortion Coefficients 2")
-		print(f"\tK1: {sDistortCoeef2.f64K1}")
-		print(f"\tK2: {sDistortCoeef2.f64K2}")
-		print(f"\tP1: {sDistortCoeef2.f64P1}")
-		print(f"\tP2: {sDistortCoeef2.f64P2}")
-		print(f"\tK3: {sDistortCoeef2.f64K3}")
-		print("")
-		print(f"Rotation Parameters 2")
-		print(f"\t{sRotationParam2.f64R0:3}\t{sRotationParam2.f64R1:3}\t{sRotationParam2.f64R2:3}")
-		print(f"\t{sRotationParam2.f64R3:3}\t{sRotationParam2.f64R4:3}\t{sRotationParam2.f64R5:3}")
-		print(f"\t{sRotationParam2.f64R6:3}\t{sRotationParam2.f64R7:3}\t{sRotationParam2.f64R8:3}")
-		print("")
-		print(f"Translation Parameters 2")
-		print(f"\t{sTranslationParam2.f64T3:3}\t{sTranslationParam2.f64T7:3}\t{sTranslationParam2.f64T11:3}")
-		print("")
-		print(f"Re-Projection Error: {f64ReprojError}")
 
-		i64Height = fliDestinationImage.GetHeight()
-		i64Width = fliDestinationImage.GetWidth()
+		strMatrix = ""
+		strDistVal = ""
+		strMatrix2 = ""
+		strDistVal2 = ""
+		strRotatMatrix = ""
+		strTranslVal = ""
+		strRotatMatrix2 = ""
+		strTranslVal2 = ""
+	
+		strMatrix += "{0:.13f}, ".format(sIntrinsicParam.f64FocalLengthX)
+		strMatrix += "{0:.13f}, ".format(sIntrinsicParam.f64Skew)
+		strMatrix += "{0:.13f}, ".format(sIntrinsicParam.f64PrincipalPointX)
+		strMatrix += "{0:.13f}, ".format(0)
+		strMatrix += "{0:.13f}, ".format(sIntrinsicParam.f64FocalLengthY)
+		strMatrix += "{0:.13f}, ".format(sIntrinsicParam.f64PrincipalPointY)
+		strMatrix += "{0:.13f}, ".format(0)
+		strMatrix += "{0:.13f}, ".format(0)
+		strMatrix += "{0:.13f}".format(1)
 
-		for i32Iter in range(2):
-			for i32Index in range(20):
-				fllHorizonLine = CFLLine[Double](0, i64Height / 20 * i32Index, i64Width, i64Height / 20 * i32Index)
+		strMatrix2 += "{0:.13f}, ".format(sIntrinsicParam2.f64FocalLengthX)
+		strMatrix2 += "{0:.13f}, ".format(sIntrinsicParam2.f64Skew)
+		strMatrix2 += "{0:.13f}, ".format(sIntrinsicParam2.f64PrincipalPointX)
+		strMatrix2 += "{0:.13f}, ".format(0)
+		strMatrix2 += "{0:.13f}, ".format(sIntrinsicParam2.f64FocalLengthY)
+		strMatrix2 += "{0:.13f}, ".format(sIntrinsicParam2.f64PrincipalPointY)
+		strMatrix2 += "{0:.13f}, ".format(0)
+		strMatrix2 += "{0:.13f}, ".format(0)
+		strMatrix2 += "{0:.13f}".format(1)
 
-				layerDst = viewImageDestination.GetLayer(0) if i32Iter == 0 else viewImageDestination2.GetLayer(0)
-				layerDst.DrawFigureImage(fllHorizonLine, EColor.LIME, 1)
+		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64K1)
+		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64K2)
+		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64P1)
+		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64P2)
+		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64K3)
+		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64K4)
+		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64K5)
+		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64K6)
+		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64S1)
+		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64S2)
+		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64S3)
+		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64S4)
+		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64Gx)
+		strDistVal += "{0:.13f}".format(sDistortCoeef.f64Gy)
 
-		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
-		if (res := viewImageDestination.ZoomFit()).IsFail():
-			ErrorPrint(res, 'Failed to Zoom Fit.')
+		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64K1)
+		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64K2)
+		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64P1)
+		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64P2)
+		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64K3)
+		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64K4)
+		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64K5)
+		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64K6)
+		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64S1)
+		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64S2)
+		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64S3)
+		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64S4)
+		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64Gx)
+		strDistVal2 += "{0:.13f}".format(sDistortCoeef2.f64Gy)
+
+		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R0)
+		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R1)
+		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R2)
+		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R3)
+		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R4)
+		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R5)
+		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R6)
+		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R7)
+		strRotatMatrix += "{0:.13f}".format(sRotationParam.f64R8)
+
+		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R0)
+		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R1)
+		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R2)
+		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R3)
+		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R4)
+		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R5)
+		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R6)
+		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R7)
+		strRotatMatrix2 += "{0:.13f}".format(sRotationParam2.f64R8)
+
+		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T0)
+		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T1)
+		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T2)
+		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T3)
+		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T4)
+		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T5)
+		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T6)
+		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T7)
+		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T8)
+		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T9)
+		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T10)
+		strTranslVal += "{0:.8f}".format(sTranslationParam.f64T11)
+
+		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T0)
+		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T1)
+		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T2)
+		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T3)
+		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T4)
+		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T5)
+		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T6)
+		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T7)
+		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T8)
+		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T9)
+		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T10)
+		strTranslVal2 += "{0:.8f}".format(sTranslationParam2.f64T11)
+
+		print("Intrinsic parameters : {0}\n".format(strMatrix))
+		print("Distortion Coefficients : {0}\n".format(strDistVal))
+		print("Rotation parameters : {0}\n".format(strRotatMatrix))
+		print("Translation parameters : {0}\n\n".format(strTranslVal))
+		print("Intrinsic parameters 2 : {0}\n".format(strMatrix2))
+		print("Distortion Coefficients 2 : {0}\n".format(strDistVal2))
+		print("Rotation parameters 2 : {0}\n".format(strRotatMatrix2))
+		print("Translation parameters 2 : {0}\n\n".format(strTranslVal2))
+		print("Re-Projection Error : {0:8}".format(f64ReprojError))
+
+		if (res := layerLearn.DrawTextCanvas(CFLPoint[Double](0, 0), "Learn Image", EColor.YELLOW, EColor.BLACK, 15)).IsFail():
+			ErrorPrint(res, "Failed to draw text.\n")
 			break
 		
-		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
-		if (res := viewImageDestination2.ZoomFit()).IsFail():
-			ErrorPrint(res, 'Failed to Zoom Fit.')
+		# 이미지 뷰 정보 표시 # Display image view information
+		if (res := layerLearn2.DrawTextCanvas(CFLPoint[Double](0, 0), "Learn 2 Image", EColor.YELLOW, EColor.BLACK, 15)).IsFail():
+			ErrorPrint(res, "Failed to draw text.\n")
+			break
+		
+		if (res := layerDestination.DrawTextCanvas(CFLPoint[Double](0, 0), "Destination Image", EColor.YELLOW, EColor.BLACK, 15)).IsFail():
+			ErrorPrint(res, "Failed to draw text.\n")
+			break
+		
+		if (res := layerDestination2.DrawTextCanvas(CFLPoint[Double](0, 0), "Destination 2 Image", EColor.YELLOW, EColor.BLACK, 15)).IsFail():
+			ErrorPrint(res, "Failed to draw text.\n")
+			break
+		
+
+		# 새로 생성한 이미지를 가지는 뷰 Zoom Fit 실행 # Activate Zoom Fit for view with newly created image
+		if (res := viewDestinationImage.ZoomFit()).IsFail():
+			ErrorPrint(res, "Failed to zoom fit image view.\n")
+			break
+		
+		# 새로 생성한 이미지를 가지는 뷰 Zoom Fit 실행 # Activate Zoom Fit for view with newly created image
+		if (res := viewDestination2Image.ZoomFit()).IsFail():
+			ErrorPrint(res, "Failed to zoom fit image view.\n")
 			break
 		
 		# 이미지 뷰를 갱신 # Update image view
-		viewImageLearn.Invalidate(True)
-		viewImageLearn2.Invalidate(True)
-		viewImageDestination.Invalidate(True)
-		viewImageDestination2.Invalidate(True)
+		viewLearnImage.Invalidate(True)
+		viewLearn2Image.Invalidate(True)
+		viewDestinationImage.Invalidate(True)
+		viewDestination2Image.Invalidate(True)
 
-		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
-		while viewImageLearn.IsAvailable() and viewImageLearn2.IsAvailable() and viewImageDestination.IsAvailable() and viewImageDestination2.IsAvailable():
+		# 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until a view is closed before exiting
+		while viewLearnImage.IsAvailable() and viewLearn2Image.IsAvailable() and viewDestinationImage.IsAvailable() and viewDestination2Image.IsAvailable():
 			CThreadUtilities.Sleep(1)
-
+		
 		break
 	
 	# End of main function

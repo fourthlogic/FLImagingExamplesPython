@@ -18,109 +18,150 @@ from ErrorPrint import *
 # 메인 함수 # Main function
 def main():
 
-	# 이미지 객체 선언 # Declare the image object
+	# 이미지 객체 선언 # Declare image object
 	fliSourceImage = CFLImage()
 	fliDestinationImage = CFLImage()
 	fliCurvatureImage = CFLImage()
 	fliTextureImage = CFLImage()
 
-	# 이미지 뷰 선언 # Declare the image view
-	viewImageSource = CGUIViewImage()
-	viewImageCurvature = CGUIViewImage()
-	viewImageTexture = CGUIViewImage()
-	viewImage3D = CGUIView3D()
+	# 이미지 뷰 선언 # Declare image view
+	viewSourceImage = CGUIViewImage()
+	viewTextureImage = CGUIViewImage()
+	viewCurvatureImage = CGUIViewImage()
+
+	# 3D 뷰 선언 # Declare 3D view
+	view3DDst = CGUIView3D()
 
 	while True:
-		
-		# Source 이미지 로드 # Load the source image
+
+		# 수행 결과 객체 선언 # Declare execution result object
+		res = CResult(EResult.UnknownError)
+
+		# Source 이미지 로드 # Load Source image
 		if (res := fliSourceImage.Load('../../ExampleImages/PhotometricStereo3D/Source.flif')).IsFail():
-			ErrorPrint(res, 'Failed to load the image file.')
+			ErrorPrint(res, 'Failed to load the image file.\n')
 			break
 		
-		# Page 0 선택 # Select page 0
-		fliSourceImage.SelectPage(0)
-		
-		# Source 이미지 뷰 생성 # Create source image view
-		if (res := viewImageSource.Create(100, 0, 548, 448)).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.')
-			break
-
-		# Source 이미지 뷰에 이미지를 디스플레이 # Display the image in the source image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSource.SetImagePtr(fliSourceImage)[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
+		# Source 이미지 뷰 생성 # Create Source image view
+		if (res := viewSourceImage.Create(100, 0, 548, 448)).IsFail():
+			ErrorPrint(res, 'Failed to create the image view.\n')
 			break
 		
-		# Destination curvature 이미지 뷰 생성 # Create destination curvature image view
-		if (res := viewImageCurvature.Create(100, 448, 548, 896)).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.')
-			break
-
-		# Destination curvature 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination curvature image view
+		# Source 이미지 뷰에 이미지를 디스플레이 # Display image in Source image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageCurvature.SetImagePtr(fliCurvatureImage)[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
+		if (res := viewSourceImage.SetImagePtr(fliSourceImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.\n')
 			break
 		
-		# Destination texture 이미지 뷰 생성 # Create destination texture image view
-		if (res := viewImageTexture.Create(548, 0, 996, 448)).IsFail():
-			ErrorPrint(res, 'Failed to create the image view.')
-			break
-
-		# Destination texture 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination texture image view
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageTexture.SetImagePtr(fliTextureImage)[0]).IsFail():
-			ErrorPrint(res, 'Failed to set image object on the image view.')
+		# Texture 이미지 뷰 생성 # Create Texture image view
+		if (res := viewTextureImage.Create(100, 448, 548, 896)).IsFail():
+			ErrorPrint(res, 'Failed to create the image view.\n')
 			break
 		
-		# Destination 3D 이미지 뷰 생성 # Create destination 3D image view
-		if (res := viewImage3D.Create(548, 448, 996, 896)).IsFail():
-			ErrorPrint(res, 'Failed to create the 3D view.')
+		# Texture 이미지 뷰에 이미지를 디스플레이 # Display image in Texture image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewTextureImage.SetImagePtr(fliTextureImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.\n')
 			break
 		
-		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
-		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSource.SynchronizeWindow(viewImageCurvature)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize view.')
+		# Curvature 이미지 뷰 생성 # Create Curvature image view
+		if (res := viewCurvatureImage.Create(548, 0, 996, 448)).IsFail():
+			ErrorPrint(res, 'Failed to create the image view.\n')
 			break
-
-		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		
+		# Curvature 이미지 뷰에 이미지를 디스플레이 # Display image in Curvature image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSource.SynchronizeWindow(viewImageTexture)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize view.')
+		if (res := viewCurvatureImage.SetImagePtr(fliCurvatureImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.\n')
 			break
-
-		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		
+		# Destination 3D 뷰 생성 # Create Destination 3D view
+		if (res := view3DDst.Create(548, 448, 996, 896)).IsFail():
+			ErrorPrint(res, 'Failed to create the 3D view.\n')
+			break
+		
+		# 두 이미지 뷰의 시점을 동기화 # Synchronize viewpoints of two image views
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSource.SynchronizeWindow(viewImage3D)[0]).IsFail():
-			ErrorPrint(res, 'Failed to synchronize view.')
+		if (res := viewSourceImage.SynchronizePointOfView(viewTextureImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize point of view between image views.\n')
 			break
-
+		
+		# 두 이미지 뷰의 시점을 동기화 # Synchronize viewpoints of two image views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewSourceImage.SynchronizePointOfView(viewCurvatureImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize point of view between image views.\n')
+			break
+		
+		# 두 뷰 윈도우의 위치를 동기화 # Synchronize positions of two views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewSourceImage.SynchronizeWindow(viewTextureImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window between views.\n')
+			break
+		
+		# 두 뷰 윈도우의 위치를 동기화 # Synchronize positions of two views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewSourceImage.SynchronizeWindow(viewCurvatureImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window between views.\n')
+			break
+		
+		# 두 뷰 윈도우의 위치를 동기화 # Synchronize positions of two views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewSourceImage.SynchronizeWindow(view3DDst)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window between views.\n')
+			break
+		
 		# Photometric Stereo 3D 객체 생성 # Create Photometric Stereo 3D object
 		photometricStereo3D = CPhotometricStereo3D()
-		
-		# Source 이미지 설정 # Set source image
-		photometricStereo3D.SetSourceImage(fliSourceImage)
-		
-		# Destination 이미지 설정 # Set destination image
-		photometricStereo3D.SetDestinationHeightMapImage(fliDestinationImage)
-		
-		# Texture 이미지 설정 # Set texture image
-		photometricStereo3D.SetDestinationTextureImage(fliTextureImage)
 
-		# Destination Curvature 이미지 설정 # Set the destination curvature image
-		photometricStereo3D.SetCurvatureImage(fliCurvatureImage)
+		# 출력에 사용되는 3D Height Map 객채 생성 # Create 3D height map used as output
+		fl3DOHM = CFL3DObjectHeightMap()
 
-		# 동작 방식 설정 # Set Operation Mode
-		photometricStereo3D.SetReconstructionMode(CPhotometricStereo3D.EReconstructionMode.Poisson_FP32)
-
+		# Source 이미지 설정 # Set Source image
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := photometricStereo3D.SetSourceImage(fliSourceImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set Source image.\n')
+			break
+		
+		# Destination Height Map 이미지 설정 # Set Destination Height Map image
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := photometricStereo3D.SetDestinationHeightMapImage(fliDestinationImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set Destination Height Map image.\n')
+			break
+		
+		# Destination Texture 이미지 설정 # Set Destination Texture image
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := photometricStereo3D.SetDestinationTextureImage(fliTextureImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set Destination Texture image.\n')
+			break
+		
+		# Destination Curvature 이미지 설정 # Set Destination Curvature image
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := photometricStereo3D.SetCurvatureImage(fliCurvatureImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set Destination Curvature image.\n')
+			break
+		
+		# Destination 3D Object 설정 # Set Destination 3D Object 
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := photometricStereo3D.SetDestinationObject(fl3DOHM)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set Destination 3D Object.\n')
+			break
+		
+		# 동작 방식 설정 # Set reconstruction mode
+		if (res := photometricStereo3D.SetReconstructionMode(CPhotometricStereo3D.EReconstructionMode.Poisson_FP32)).IsFail():
+			ErrorPrint(res, 'Failed to set reconstruction mode.\n')
+			break
+		
 		# Valid 픽셀의 기준 설정 # Set valid pixel ratio
-		photometricStereo3D.SetValidPixelThreshold(0.25)
-
+		if (res := photometricStereo3D.SetValidPixelThreshold(0.25)).IsFail():
+			ErrorPrint(res, 'Failed to set valid pixel threshold.\n')
+			break
+		
 		# Curvature 이미지 Normalization 여부 설정 # Set curvature image normalization option
-		photometricStereo3D.EnableCurvatureNormalization(True)
-
-		# 각 이미지의 광원 Slant 값 입력
+		if (res := photometricStereo3D.EnableCurvatureNormalization(True)).IsFail():
+			ErrorPrint(res, 'Failed to set curvature normalization flag.\n')
+			break
+		
+		# 각 이미지의 광원 Slant 값 입력 # Set light's slant angle
 		mvdSlant = CMultiVar[Double]()
 
 		mvdSlant.PushBack(39.831506)
@@ -144,7 +185,7 @@ def main():
 		mvdSlant.PushBack(26.067657)
 		mvdSlant.PushBack(26.126303)
 
-		# 각 이미지의 광원 Tilt 값 입력
+		# 각 이미지의 광원 Tilt 값 입력 # Set light's tilt angle
 		mvdTilt = CMultiVar[Double]()
 
 		mvdTilt.PushBack(123.359091)
@@ -168,71 +209,89 @@ def main():
 		mvdTilt.PushBack(13.056294)
 		mvdTilt.PushBack(-5.976723)
 
-		photometricStereo3D.SetLightAngleDegrees(mvdSlant, mvdTilt)
-
-
-		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := photometricStereo3D.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Photometric Stereo 3D.')
-			break
-
-		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
-		if (res := viewImageCurvature.ZoomFit()).IsFail():
-			ErrorPrint(res, 'Failed to Zoom Fit.')
+		# 각 광원의 Slant, Tilt 값 입력 # Insert light's slant, tilt location
+		if (res := photometricStereo3D.SetLightAngleDegrees(mvdSlant, mvdTilt)).IsFail():
+			ErrorPrint(res, 'Failed to set light angle in degrees.\n')
 			break
 		
-		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
-		if (res := viewImageTexture.ZoomFit()).IsFail():
-			ErrorPrint(res, 'Failed to Zoom Fit.')
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
+		if (res := photometricStereo3D.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute Photometric Stereo 3D.\n')
 			break
+		
+		# 화면에 출력하기 위해 이미지 뷰에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released
+		layerSource = viewSourceImage.GetLayer(0)
+		layerTexture = viewTextureImage.GetLayer(0)
+		layerCurvature = viewCurvatureImage.GetLayer(0)
 
-		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
-		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
-		layerSource = viewImageSource.GetLayer(0)
-		layerTexture = viewImageTexture.GetLayer(0)
-		layerCurvature = viewImageCurvature.GetLayer(0)
+		# 화면에 출력하기 위해 3D 뷰에서 레이어 0번을 얻어옴 # Obtain layer 0 number from 3D view for display
+		# 이 객체는 3D 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an 3D view and does not need to be released
+		layer3DDestination = view3DDst.GetLayer(0)
 
-		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
+		# 기존에 Layer에 그려진 도형들을 삭제 # Clear figures drawn on existing layer
 		layerSource.Clear()
 		layerTexture.Clear()
 		layerCurvature.Clear()
-		
+		layer3DDestination.Clear()
+
 		# 이미지 뷰 정보 표시 # Display image view information
-		flpPoint = CFLPoint[Double](0, 0)
+		if (res := layerSource.DrawTextCanvas(CFLPoint[Double](0, 0), 'Source Image', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+			ErrorPrint(res, 'Failed to draw text.\n')
+			break
+		
+		if (res := layerTexture.DrawTextCanvas(CFLPoint[Double](0, 0), 'Destination Texture Image', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+			ErrorPrint(res, 'Failed to draw text.\n')
+			break
+		
+		if (res := layerCurvature.DrawTextCanvas(CFLPoint[Double](0, 0), 'Destination Curvature Image', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+			ErrorPrint(res, 'Failed to draw text.\n')
+			break
+		
+		# 3D 뷰 정보 표시 # Display 3D view information
+		if (res := layer3DDestination.DrawTextCanvas(CFLPoint[Double](0, 0), 'Destination 3D Height Map', EColor.YELLOW, EColor.BLACK, 20)).IsFail():
+			ErrorPrint(res, 'Failed to draw text.\n')
+			break
+		
+		# 3D Height Map에 Texture 적용 # Apply texture to 3D height map
+		if (res := fl3DOHM.SetTextureImage(fliTextureImage)).IsFail():
+			ErrorPrint(res, "Failed to apply texture to height map.\n")
+			break
 
-		if (res := layerSource.DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 18)).IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
-			break
-		
-		if (res := layerTexture.DrawTextCanvas(flpPoint, 'Destination Texture Image', EColor.YELLOW, EColor.BLACK, 18)).IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
-			break
-		
-		if (res := layerCurvature.DrawTextCanvas(flpPoint, 'Destination Curvature Image', EColor.YELLOW, EColor.BLACK, 18)).IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
-			break
-		
-		# 3D 뷰 결과 출력 # Display 3D view result
-		fl3DObject = CFL3DObjectHeightMap(fliDestinationImage)
-		fl3DObject.SetTextureImage(fliTextureImage)
+		res = fl3DOHM.ActivateVertexColorTexture(True)
 
-		viewImage3D.PushObject(fl3DObject)
-		
-		# Image 크기에 맞게 view의 크기를 조정 # Zoom the view to fit the image size
-		if (res := viewImage3D.ZoomFit()).IsFail():
-			ErrorPrint(res, 'Failed to draw text.')
+		# 결과 3D 객체 출력 # Print resulting 3D Object
+		if (res := view3DDst.PushObject(fl3DOHM)).IsFail():
+			ErrorPrint(res, 'Failed to display the 3D Object.\n')
 			break
 		
-		# 이미지 뷰를 갱신 # Update image view
-		viewImageSource.Invalidate(True)
-		viewImageTexture.Invalidate(True)
-		viewImageCurvature.Invalidate(True)
-		viewImage3D.Invalidate(True)
+		# 새로 생성한 이미지를 가지는 뷰 Zoom Fit 실행 # Activate Zoom Fit for view with newly created image
+		if (res := viewTextureImage.ZoomFit()).IsFail():
+			ErrorPrint(res, 'Failed to zoom fit image view.\n')
+			break
+		
+		# 새로 생성한 이미지를 가지는 뷰 Zoom Fit 실행 # Activate Zoom Fit for view with newly created image
+		if (res := viewCurvatureImage.ZoomFit()).IsFail():
+			ErrorPrint(res, 'Failed to zoom fit image view.\n')
+			break
+		
+		# 새로 생성한 3D Object를 가지는 뷰 Zoom Fit 실행 # Activate Zoom Fit for view with newly created 3D object
+		if (res := view3DDst.ZoomFit()).IsFail():
+			ErrorPrint(res, 'Failed to zoom fit 3D view.\n')
+			break
+		
+		# 이미지 뷰를 갱신 합니다. # Update image view
+		viewSourceImage.Invalidate(True)
+		viewTextureImage.Invalidate(True)
+		viewCurvatureImage.Invalidate(True)
 
-		# 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
-		while viewImageSource.IsAvailable() and viewImageCurvature.IsAvailable() and viewImageTexture.IsAvailable() and viewImage3D.IsAvailable():
+		# 3D 뷰를 갱신 # Update 3D view
+		view3DDst.Invalidate(True)
+
+		# 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until a view is closed before exiting
+		while viewSourceImage.IsAvailable() and viewTextureImage.IsAvailable() and viewCurvatureImage.IsAvailable() and view3DDst.IsAvailable():
 			CThreadUtilities.Sleep(1)
-
+		
 		break
 	
 	# End of main function
