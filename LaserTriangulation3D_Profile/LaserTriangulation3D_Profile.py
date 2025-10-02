@@ -82,11 +82,7 @@ def main():
 		laserTriangulation3D = CLaserTriangulation3D()
 
 		# 출력에 사용되는 3D Height Map 객채 생성 # Create 3D height map used as output
-<<<<<<< HEAD
 		fl3DOHM = CFL3DObjectHeightMap()
-=======
-		fl3DOHM = CFL3DObject()
->>>>>>> a5e89a2 (Fix variable values and comments (Channel Swap, Colorized Point Cloud Generator 3D, Laser Triangulation 3D, Operation Complex Multiply, Operation Scaled Divide, Operation Trailing Ones))
 
 		# Source 이미지 설정 # Set Source image
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].

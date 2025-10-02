@@ -82,11 +82,7 @@ def main():
 		laserTriangulation3D = CLaserTriangulation3D()
 
 		# 출력에 사용되는 3D Height Map 객채 생성 # Create 3D height map used as output
-<<<<<<< HEAD
 		fl3DOHM = CFL3DObjectHeightMap()
-=======
-		fl3DOHM = CFL3DObject()
->>>>>>> a5e89a2 (Fix variable values and comments (Channel Swap, Colorized Point Cloud Generator 3D, Laser Triangulation 3D, Operation Complex Multiply, Operation Scaled Divide, Operation Trailing Ones))
 
 		# 레이저의 Baseline 생성 # Set base line of laser
 		fllBaseLine = CFLLine[Double](0, 61, 1216, 61)
