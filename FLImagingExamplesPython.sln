@@ -1866,6 +1866,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LaserTriangulation3D_Image"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LaserTriangulation3D_Profile", "LaserTriangulation3D_Profile\LaserTriangulation3D_Profile.pyproj", "{8DF0682B-BB1E-414E-A76E-DF2D4675944F}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RadonTransform", "RadonTransform\RadonTransform.pyproj", "{874F428A-E485-4142-9B0F-ED4D6EFA5507}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3116,6 +3118,8 @@ Global
 		{5EDD631B-CD63-4D99-B242-FA2F1255737D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DF0682B-BB1E-414E-A76E-DF2D4675944F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8DF0682B-BB1E-414E-A76E-DF2D4675944F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{874F428A-E485-4142-9B0F-ED4D6EFA5507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{874F428A-E485-4142-9B0F-ED4D6EFA5507}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4039,6 +4043,7 @@ Global
 		{C1AA632A-68DE-424A-B9C0-0CF83A6CFED1} = {D47009F2-EEC1-474D-8DA5-E83F27AE7622}
 		{5EDD631B-CD63-4D99-B242-FA2F1255737D} = {C0CAC405-F86C-4ADC-BD0E-5E0F98720F2B}
 		{8DF0682B-BB1E-414E-A76E-DF2D4675944F} = {C0CAC405-F86C-4ADC-BD0E-5E0F98720F2B}
+		{874F428A-E485-4142-9B0F-ED4D6EFA5507} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
