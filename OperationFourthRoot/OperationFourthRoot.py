@@ -99,7 +99,7 @@ def main():
 		viewImageSrc.Invalidate(True)
 		viewImageDst.Invalidate(True)
 
-		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
+		# 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewImageSrc.IsAvailable() and viewImageDst.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
