@@ -15,7 +15,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
 from ErrorPrint import *
 
 
-class SGridDisplay:
+class CGridDisplay:
 	def __init__(self, i64ImageIdx, sGridData):
 		self.i64ImageIdx = i64ImageIdx
 		self.sGridData = sGridData
@@ -121,7 +121,7 @@ class CMessageReceiver(CFLBase):
 
 		self.m_viewImage = viewImage
 
-		self.m_vctGridDisplay = [SGridDisplay(0, CStereoCalibrator3D.SGridResult())]
+		self.m_vctGridDisplay = [CGridDisplay(0, CStereoCalibrator3D.SGridResult())]
 
 		# 메세지를 전달 받기 위해 CBroadcastManager 에 구독 등록 # Subscribe to CBroadcast Manager to receive messages
 		CBroadcastManager.Subscribe(self, CBroadcastManager.Delegate_OnReceiveBroadcast(self.OnReceiveBroadcast))
@@ -400,26 +400,26 @@ def main():
 			break
 
 		# 뷰에 격자 탐지 결과 출력 # Display grid detection result in view
-		sArrGridDisplay = [SGridDisplay(0, CStereoCalibrator3D.SGridResult()) for i in range(5)]
+		cArrGridDisplay = [CGridDisplay(0, CStereoCalibrator3D.SGridResult()) for i in range(5)]
 
 		for i64ImgIdx in range(fliLearnImage.GetPageCount()):
-			sArrGridDisplay[i64ImgIdx].sGridResult = CStereoCalibrator3D.SGridResult()
-			stereoCalibrator3D.GetResultGridPoints(sArrGridDisplay[i64ImgIdx].sGridResult, i64ImgIdx)
-			sArrGridDisplay[i64ImgIdx].i64ImageIdx = i64ImgIdx
+			cArrGridDisplay[i64ImgIdx].sGridResult = CStereoCalibrator3D.SGridResult()
+			stereoCalibrator3D.GetResultGridPoints(cArrGridDisplay[i64ImgIdx].sGridResult, i64ImgIdx)
+			cArrGridDisplay[i64ImgIdx].i64ImageIdx = i64ImgIdx
 
-		sArrGridDisplay2 = [SGridDisplay(0, CStereoCalibrator3D.SGridResult()) for i in range(5)]
+		cArrGridDisplay2 = [CGridDisplay(0, CStereoCalibrator3D.SGridResult()) for i in range(5)]
 
 		for i64ImgIdx in range(fliLearn2Image.GetPageCount()):
-			sArrGridDisplay2[i64ImgIdx].sGridResult = CStereoCalibrator3D.SGridResult()
-			stereoCalibrator3D.GetResultGridPoints2(sArrGridDisplay2[i64ImgIdx].sGridResult, i64ImgIdx)
-			sArrGridDisplay2[i64ImgIdx].i64ImageIdx = i64ImgIdx
+			cArrGridDisplay2[i64ImgIdx].sGridResult = CStereoCalibrator3D.SGridResult()
+			stereoCalibrator3D.GetResultGridPoints2(cArrGridDisplay2[i64ImgIdx].sGridResult, i64ImgIdx)
+			cArrGridDisplay2[i64ImgIdx].i64ImageIdx = i64ImgIdx
 		
 		# Message Receiver 객체 생성 # Create Message Receiver object
 		msgReceiver = CMessageReceiver(viewLearnImage)
 		msgReceiver2 = CMessageReceiver(viewLearn2Image)
 
-		msgReceiver.m_vctGridDisplay = sArrGridDisplay
-		msgReceiver2.m_vctGridDisplay = sArrGridDisplay2
+		msgReceiver.m_vctGridDisplay = cArrGridDisplay
+		msgReceiver2.m_vctGridDisplay = cArrGridDisplay2
 
 		# 화면에 출력하기 위해 이미지 뷰에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released
@@ -429,8 +429,8 @@ def main():
 		layerDestination2 = viewDestination2Image.GetLayer(0)
 
 		# Chess Board Grid 출력 # Display chess board grid
-		DrawGridPoints(sArrGridDisplay[0], layerLearn)
-		DrawGridPoints(sArrGridDisplay2[0], layerLearn2)
+		DrawGridPoints(cArrGridDisplay[0], layerLearn)
+		DrawGridPoints(cArrGridDisplay2[0], layerLearn2)
 
 		# Calibration data 출력 # Display calibration data
 		sIntrinsicParam = stereoCalibrator3D.GetResultIntrinsicParameters()
