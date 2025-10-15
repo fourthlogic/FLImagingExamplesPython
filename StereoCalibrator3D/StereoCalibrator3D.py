@@ -400,26 +400,26 @@ def main():
 			break
 
 		# 뷰에 격자 탐지 결과 출력 # Display grid detection result in view
-		cArrGridDisplay = [CGridDisplay(0, CStereoCalibrator3D.SGridResult()) for i in range(5)]
+		arrGridDisplay = [CGridDisplay(0, CStereoCalibrator3D.SGridResult()) for i in range(5)]
 
 		for i64ImgIdx in range(fliLearnImage.GetPageCount()):
-			cArrGridDisplay[i64ImgIdx].sGridResult = CStereoCalibrator3D.SGridResult()
-			stereoCalibrator3D.GetResultGridPoints(cArrGridDisplay[i64ImgIdx].sGridResult, i64ImgIdx)
-			cArrGridDisplay[i64ImgIdx].i64ImageIdx = i64ImgIdx
+			arrGridDisplay[i64ImgIdx].sGridResult = CStereoCalibrator3D.SGridResult()
+			stereoCalibrator3D.GetResultGridPoints(arrGridDisplay[i64ImgIdx].sGridResult, i64ImgIdx)
+			arrGridDisplay[i64ImgIdx].i64ImageIdx = i64ImgIdx
 
-		cArrGridDisplay2 = [CGridDisplay(0, CStereoCalibrator3D.SGridResult()) for i in range(5)]
+		arrGridDisplay2 = [CGridDisplay(0, CStereoCalibrator3D.SGridResult()) for i in range(5)]
 
 		for i64ImgIdx in range(fliLearn2Image.GetPageCount()):
-			cArrGridDisplay2[i64ImgIdx].sGridResult = CStereoCalibrator3D.SGridResult()
-			stereoCalibrator3D.GetResultGridPoints2(cArrGridDisplay2[i64ImgIdx].sGridResult, i64ImgIdx)
-			cArrGridDisplay2[i64ImgIdx].i64ImageIdx = i64ImgIdx
+			arrGridDisplay2[i64ImgIdx].sGridResult = CStereoCalibrator3D.SGridResult()
+			stereoCalibrator3D.GetResultGridPoints2(arrGridDisplay2[i64ImgIdx].sGridResult, i64ImgIdx)
+			arrGridDisplay2[i64ImgIdx].i64ImageIdx = i64ImgIdx
 		
 		# Message Receiver 객체 생성 # Create Message Receiver object
 		msgReceiver = CMessageReceiver(viewLearnImage)
 		msgReceiver2 = CMessageReceiver(viewLearn2Image)
 
-		msgReceiver.m_vctGridDisplay = cArrGridDisplay
-		msgReceiver2.m_vctGridDisplay = cArrGridDisplay2
+		msgReceiver.m_vctGridDisplay = arrGridDisplay
+		msgReceiver2.m_vctGridDisplay = arrGridDisplay2
 
 		# 화면에 출력하기 위해 이미지 뷰에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released
@@ -429,8 +429,8 @@ def main():
 		layerDestination2 = viewDestination2Image.GetLayer(0)
 
 		# Chess Board Grid 출력 # Display chess board grid
-		DrawGridPoints(cArrGridDisplay[0], layerLearn)
-		DrawGridPoints(cArrGridDisplay2[0], layerLearn2)
+		DrawGridPoints(arrGridDisplay[0], layerLearn)
+		DrawGridPoints(arrGridDisplay2[0], layerLearn2)
 
 		# Calibration data 출력 # Display calibration data
 		sIntrinsicParam = stereoCalibrator3D.GetResultIntrinsicParameters()
