@@ -196,10 +196,8 @@ def main():
 			ErrorPrint(res, 'Failed to set curvature normalization flag.\n')
 			break
 		
-		matEmpty = CMatrix[Double](3, 3)
-
 		# Angle Degrees 동작 방식으로 설정 # Set operation method as angle degrees
-		if (res := photometricStereo3D.SetLightAngleDegrees(matEmpty)).IsFail():
+		if (res := photometricStereo3D.SetCalibrationMode(CPhotometricStereo3D.ECalibrationMode.Angle_Degrees)).IsFail():
 			ErrorPrint(res, 'Failed to set light angle in degrees.\n')
 			break
 		
@@ -218,7 +216,7 @@ def main():
 			break
 		
 		# 위치 데이터 동작 방식으로 설정 # Set operation method as positions
-		if (res := photometricStereo3D.SetLightPositions(matEmpty)).IsFail():
+		if (res := photometricStereo3D.SetCalibrationMode(CPhotometricStereo3D.ECalibrationMode.Positions)).IsFail():
 			ErrorPrint(res, 'Failed to set light positions.\n')
 			break
 		
