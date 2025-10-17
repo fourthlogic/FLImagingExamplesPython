@@ -1870,6 +1870,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LaserTriangulation3D_Profil
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DenoisingDiffusion", "DenoisingDiffusion\DenoisingDiffusion.pyproj", "{A193ECAB-4A78-42FA-9406-929160FE36BE}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CorrelationCoefficient", "CorrelationCoefficient\CorrelationCoefficient.pyproj", "{3479C453-BC6E-4020-BE3F-E7F62E74B7E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3124,6 +3126,8 @@ Global
 		{8DF0682B-BB1E-414E-A76E-DF2D4675944F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A193ECAB-4A78-42FA-9406-929160FE36BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A193ECAB-4A78-42FA-9406-929160FE36BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3479C453-BC6E-4020-BE3F-E7F62E74B7E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3479C453-BC6E-4020-BE3F-E7F62E74B7E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4049,6 +4053,7 @@ Global
 		{874F428A-E485-4142-9B0F-ED4D6EFA5507} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
 		{8DF0682B-BB1E-414E-A76E-DF2D4675944F} = {C0CAC405-F86C-4ADC-BD0E-5E0F98720F2B}
 		{A193ECAB-4A78-42FA-9406-929160FE36BE} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
+		{3479C453-BC6E-4020-BE3F-E7F62E74B7E4} = {9269FEB9-9F08-40B0-87AC-6EB222A916D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
