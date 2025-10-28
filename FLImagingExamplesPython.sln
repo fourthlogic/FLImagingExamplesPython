@@ -1874,6 +1874,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CorrelationCoefficient", "C
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DenoisingDiffusion_Inpainting", "DenoisingDiffusion_Inpainting\DenoisingDiffusion_Inpainting.pyproj", "{B3CB982A-5D70-4325-993E-CCC2EA37E7E3}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PlaneDetector3D", "PlaneDetector3D\PlaneDetector3D.pyproj", "{056E1093-5FEF-43FD-A9C8-2E204D41B849}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3132,6 +3134,8 @@ Global
 		{3479C453-BC6E-4020-BE3F-E7F62E74B7E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3CB982A-5D70-4325-993E-CCC2EA37E7E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B3CB982A-5D70-4325-993E-CCC2EA37E7E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{056E1093-5FEF-43FD-A9C8-2E204D41B849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{056E1093-5FEF-43FD-A9C8-2E204D41B849}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4059,6 +4063,7 @@ Global
 		{A193ECAB-4A78-42FA-9406-929160FE36BE} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
 		{3479C453-BC6E-4020-BE3F-E7F62E74B7E4} = {9269FEB9-9F08-40B0-87AC-6EB222A916D5}
 		{B3CB982A-5D70-4325-993E-CCC2EA37E7E3} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
+		{056E1093-5FEF-43FD-A9C8-2E204D41B849} = {6A8EBDEC-1656-4BD2-B077-70083281C5D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
