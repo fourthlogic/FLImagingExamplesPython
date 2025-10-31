@@ -1,0 +1,181 @@
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
+from FLImagingClrPy import *
+
+# You must call the following function once
+# before using any features of the FLImaging(R) library
+CLibraryUtilities.Initialize()
+
+
+
+# 메인 함수 # Main function
+def main():
+
+	# 이미지 객체 선언 # Declare the image object
+	fliSourceImage = CFLImage()
+	fliDestinationImageBandpass = CFLImage()
+	fliDestinationImageGaussian = CFLImage()
+
+	# 이미지 뷰 선언 # Declare the image view
+	viewImageSrc = CGUIViewImage()
+	viewImageDstBandpass = CGUIViewImage()
+	viewImageDstGaussian = CGUIViewImage()
+
+	while True:
+		
+		# Source 이미지 로드 # Load the source image
+		if (res := fliSourceImage.Load('../../ExampleImages/ConvolutionFD/Sun.flif')).IsFail():
+			ErrorPrint(res, 'Failed to load the image file.')
+			break
+
+		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination image as same as source image
+		if (res := fliDestinationImageBandpass.Assign(fliSourceImage)).IsFail():
+			ErrorPrint(res, 'Failed to load the image file.')
+			break
+
+		# Destination 이미지를 Source 이미지와 동일한 이미지로 생성 # Create destination image as same as source image
+		if (res := fliDestinationImageGaussian.Assign(fliSourceImage)).IsFail():
+			ErrorPrint(res, 'Failed to load the image file.')
+			break
+
+		# Source 이미지 뷰 생성 # Create source image view
+		if (res := viewImageSrc.Create(100, 0, 612, 512)).IsFail():
+			ErrorPrint(res, 'Failed to create the image view.')
+			break
+
+		# Operand 이미지 뷰 생성 # Create the operand image view
+		if (res := viewImageDstBandpass.Create(612, 0, 1124, 512)).IsFail():
+			ErrorPrint(res, 'Failed to create the image view.')
+			break
+
+		# Destination 이미지 뷰 생성 # Create the destination image view
+		if (res := viewImageDstGaussian.Create(1124, 0, 1636, 512)).IsFail():
+			ErrorPrint(res, 'Failed to create the image view.')
+			break
+
+		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageSrc.SynchronizePointOfView(viewImageDstBandpass)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize view.')
+			break
+
+		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageSrc.SynchronizePointOfView(viewImageDstGaussian)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize view.')
+			break
+
+		# Source 이미지 뷰에 이미지를 디스플레이 # Display the image in the source image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageSrc.SetImagePtr(fliSourceImage)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.')
+			break
+
+		# Operand 이미지 뷰에 이미지를 디스플레이 # Display the image in the operand image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageDstBandpass.SetImagePtr(fliDestinationImageBandpass)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.')
+			break
+
+		# Destination 이미지 뷰에 이미지를 디스플레이 # Display the image in the destination image view
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageDstGaussian.SetImagePtr(fliDestinationImageGaussian)[0]).IsFail():
+			ErrorPrint(res, 'Failed to set image object on the image view.')
+			break
+
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageSrc.SynchronizeWindow(viewImageDstBandpass)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window.')
+			break
+
+		# 두 이미지 뷰 윈도우의 위치를 맞춤 # Synchronize the positions of the two image view windows
+		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
+		if (res := viewImageSrc.SynchronizeWindow(viewImageDstGaussian)[0]).IsFail():
+			ErrorPrint(res, 'Failed to synchronize window.')
+			break
+
+		# Convolution FD 객체 생성 # Create Convolution FD object
+		convolutionFD = CConvolutionFD()
+
+		# Source 이미지 설정 # Set the source image
+		convolutionFD.SetSourceImage(fliSourceImage)
+
+		# Destination 이미지 설정 # Set the destination image
+		convolutionFD.SetDestinationImage(fliDestinationImageBandpass)
+
+		# Filter Generator 설정 # Set Filter Generator
+		filterGeneratorBandpassFD = CFilterGeneratorBandpassFD()
+		filterGeneratorBandpassFD.SetMaxFrequency(0.500000)
+		filterGeneratorBandpassFD.SetFilterShape(CFilterGeneratorBandpassFD.EFilterShape.EFilterShape_Butterworth)
+		filterGeneratorBandpassFD.SetDistance(50.000000)
+		filterGeneratorBandpassFD.SetDegree(7.000000)
+
+		filterGeneratorBaseFD = filterGeneratorBandpassFD
+		convolutionFD.SetFilterGenerator(filterGeneratorBaseFD)
+
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
+		if (res := convolutionFD.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute Convolution FD.')
+			break
+
+		# Destination 이미지 설정 # Set the destination image
+		convolutionFD.SetDestinationImage(fliDestinationImageGaussian)
+
+		# Filter Generator 설정 # Set Filter Generator
+		filterGeneratorGaussFD = CFilterGeneratorGaussFD()
+		filterGeneratorGaussFD.SetSigma1(5.000000)
+		filterGeneratorGaussFD.SetSigma2(5.000000)
+
+		filterGeneratorBaseFD = filterGeneratorGaussFD
+		convolutionFD.SetFilterGenerator(filterGeneratorBaseFD)
+
+		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
+		if (res := convolutionFD.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute Convolution FD.')
+			break
+
+		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
+		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
+		layerSource = viewImageSrc.GetLayer(0)
+		layerDestinationBandpass = viewImageDstBandpass.GetLayer(0)
+		layerDestinationGaussian = viewImageDstGaussian.GetLayer(0)
+
+		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
+		layerSource.Clear()
+		layerDestinationBandpass.Clear()
+		layerDestinationGaussian.Clear()
+
+		# 이미지 뷰 정보 표시 # Display image view information
+		flpPoint = CFLPoint[Double](0, 0)
+
+		if (res := layerSource.DrawTextCanvas(flpPoint, 'Source Image', EColor.YELLOW, EColor.BLACK, 30)).IsFail() or \
+			(res := layerDestinationBandpass.DrawTextCanvas(flpPoint, 'Destination Image(Bandpass)', EColor.YELLOW, EColor.BLACK, 30)).IsFail() or \
+			(res := layerDestinationGaussian.DrawTextCanvas(flpPoint, 'Destination Image(Gaussian)', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+			ErrorPrint(res, 'Failed to draw text.')
+			break
+
+		# 이미지 뷰를 갱신 # Update image view
+		viewImageSrc.Invalidate(True)
+		viewImageDstBandpass.Invalidate(True)
+		viewImageDstGaussian.Invalidate(True)
+
+		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
+		while viewImageSrc.IsAvailable() and viewImageDstBandpass.IsAvailable() and viewImageDstGaussian.IsAvailable():
+			CThreadUtilities.Sleep(1)
+
+		break
+	
+	# End of main function
+
+
+
+# 에러 출력 함수 # Error printing function
+def ErrorPrint(res, str):
+	if len(str) > 1:
+		print(str)
+
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
+
+
+if __name__ == '__main__':
+    main()
