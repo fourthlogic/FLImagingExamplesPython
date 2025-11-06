@@ -25,7 +25,7 @@ class CDeviceEventImageEx(CDeviceEventImageBase):
 			if(not self.m_view3D.IsAvailable()):
 				break
 
-			if(not isinstance(deviceImage, CDeviceCameraMechEye)):
+			if(not isinstance(deviceImage, CDeviceCameraMechEye_2_5_2)):
 				break
 
 			camera = deviceImage
@@ -70,7 +70,7 @@ def main():
 	view3D = CGUIView3D()
 
 	# MechEye 카메라 선언 # Declare the MechEye camera
-	camMechEye = CDeviceCameraMechEye()
+	camMechEye = CDeviceCameraMechEye_2_5_2()
 
 	while True:
 		
