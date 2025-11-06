@@ -16,9 +16,9 @@ from ErrorPrint import *
 
 
 class CGridDisplay:
-	def __init__(self, i64ImageIdx, sGridData):
+	def __init__(self, i64ImageIdx, gridData):
 		self.i64ImageIdx = i64ImageIdx
-		self.sGridData = sGridData
+		self.gridData = gridData
 
 def DrawGridPoints(sGridDisplay, layer):
 
@@ -26,16 +26,16 @@ def DrawGridPoints(sGridDisplay, layer):
 
 	while True:
 
-		if sGridDisplay.sGridResult.arrGridData.Count == 0:
+		if sGridDisplay.gridResult.flaGridData.Count == 0:
 			res = CResult(EResult.NoData)
 			break
 		
 		# 그리기 색상 설정 # Set drawing color
 		u32ArrColor = [ EColor.RED, EColor.LIME, EColor.CYAN ]
-		i64GridRow = sGridDisplay.sGridResult.i64Rows
-		i64GridCol = sGridDisplay.sGridResult.i64Columns
-		f64AvgDistance = sGridDisplay.sGridResult.f64AvgDistance
-		flqBoardRegion = sGridDisplay.sGridResult.pFlqBoardRegion
+		i64GridRow = sGridDisplay.gridResult.i64Rows
+		i64GridCol = sGridDisplay.gridResult.i64Columns
+		f64AvgDistance = sGridDisplay.gridResult.f64AvgDistance
+		flqBoardRegion = sGridDisplay.gridResult.pFlqBoardRegion
 		f64Angle = flqBoardRegion.flpPoints[0].GetAngle(flqBoardRegion.flpPoints[1])
 		f64Width = flqBoardRegion.flpPoints[0].GetDistance(flqBoardRegion.flpPoints[1])
 
@@ -44,15 +44,15 @@ def DrawGridPoints(sGridDisplay, layer):
 			for i64Col in range(i64GridCol - 1):
 				i64GridIdx = i64Row * i64GridCol + i64Col
 
-				flpGridPoint1 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][i64Col])
-				flpGridPoint2 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][i64Col + 1])
+				flpGridPoint1 = CFLPoint[Double](sGridDisplay.gridResult.flaGridData[i64Row][i64Col])
+				flpGridPoint2 = CFLPoint[Double](sGridDisplay.gridResult.flaGridData[i64Row][i64Col + 1])
 				fllDrawLine = CFLLine[Double](flpGridPoint1, flpGridPoint2)
 				layer.DrawFigureImage(fllDrawLine, EColor.BLACK, 5)
 				layer.DrawFigureImage(fllDrawLine, u32ArrColor[i64GridIdx % 3], 3)
 			
 			if i64Row < i64GridRow - 1:
-				flpGridPoint1 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][i64GridCol - 1])
-				flpGridPoint2 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row + 1][0])
+				flpGridPoint1 = CFLPoint[Double](sGridDisplay.gridResult.flaGridData[i64Row][i64GridCol - 1])
+				flpGridPoint2 = CFLPoint[Double](sGridDisplay.gridResult.flaGridData[i64Row + 1][0])
 				fllDrawLine = CFLLine[Double](flpGridPoint1, flpGridPoint2)
 				layer.DrawFigureImage(fllDrawLine, EColor.BLACK, 5)
 				layer.DrawFigureImage(fllDrawLine, EColor.YELLOW, 3)
@@ -64,31 +64,31 @@ def DrawGridPoints(sGridDisplay, layer):
 
 		# Grid Point 인덱싱 # Index Grid Point
 		for i64Row in range(i64GridRow):
-			flpGridPoint1 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][0])
-			flpGridPoint2 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][1])
+			flpGridPoint1 = CFLPoint[Double](sGridDisplay.gridResult.flaGridData[i64Row][0])
+			flpGridPoint2 = CFLPoint[Double](sGridDisplay.gridResult.flaGridData[i64Row][1])
 			f64TempAngle = flpGridPoint1.GetAngle(flpGridPoint2)
 
 			for i64Col in range(i64GridCol):
 				i64GridIdx = i64Row * i64GridCol + i64Col
 
 				if i64Col < i64GridCol - 1:
-					flpGridPoint1 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][i64Col])
-					flpGridPoint2 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][i64Col + 1])
+					flpGridPoint1 = CFLPoint[Double](sGridDisplay.gridResult.flaGridData[i64Row][i64Col])
+					flpGridPoint2 = CFLPoint[Double](sGridDisplay.gridResult.flaGridData[i64Row][i64Col + 1])
 
 					f64Dx = flpGridPoint2.x - flpGridPoint1.x
 					f64Dy = flpGridPoint2.y - flpGridPoint1.y
 					f64PointDist = Math.Sqrt(f64Dx * f64Dx + f64Dy * f64Dy)
 				
 				if i64Row != 0:
-					flpGridPoint1 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row][i64Col])
-					flpGridPoint2 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[i64Row - 1][i64Col])
+					flpGridPoint1 = CFLPoint[Double](sGridDisplay.gridResult.flaGridData[i64Row][i64Col])
+					flpGridPoint2 = CFLPoint[Double](sGridDisplay.gridResult.flaGridData[i64Row - 1][i64Col])
 
 					f64Dx = flpGridPoint2.x - flpGridPoint1.x
 					f64Dy = flpGridPoint2.y - flpGridPoint1.y
 					f64PointDist = Math.Min(f64PointDist, Math.Sqrt(f64Dx * f64Dx + f64Dy * f64Dy))
 				else:
-					flpGridPoint1 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[0][i64Col])
-					flpGridPoint2 = CFLPoint[Double](sGridDisplay.sGridResult.arrGridData[1][i64Col])
+					flpGridPoint1 = CFLPoint[Double](sGridDisplay.gridResult.flaGridData[0][i64Col])
+					flpGridPoint2 = CFLPoint[Double](sGridDisplay.gridResult.flaGridData[1][i64Col])
 
 					f64Dx = flpGridPoint2.x - flpGridPoint1.x
 					f64Dy = flpGridPoint2.y - flpGridPoint1.y
@@ -121,7 +121,7 @@ class CMessageReceiver(CFLBase):
 
 		self.m_viewImage = viewImage
 
-		self.m_vctGridDisplay = [CGridDisplay(0, CStereoCalibrator3D.SGridResult())]
+		self.m_vctGridDisplay = [CGridDisplay(0, CStereoCalibrator3D.CGridResult())]
 
 		# 메세지를 전달 받기 위해 CBroadcastManager 에 구독 등록 # Subscribe to CBroadcast Manager to receive messages
 		CBroadcastManager.Subscribe(self, CBroadcastManager.Delegate_OnReceiveBroadcast(self.OnReceiveBroadcast))
@@ -400,18 +400,18 @@ def main():
 			break
 
 		# 뷰에 격자 탐지 결과 출력 # Display grid detection result in view
-		arrGridDisplay = [CGridDisplay(0, CStereoCalibrator3D.SGridResult()) for i in range(5)]
+		arrGridDisplay = [CGridDisplay(0, CStereoCalibrator3D.CGridResult()) for i in range(5)]
 
 		for i64ImgIdx in range(fliLearnImage.GetPageCount()):
-			arrGridDisplay[i64ImgIdx].sGridResult = CStereoCalibrator3D.SGridResult()
-			stereoCalibrator3D.GetResultGridPoints(arrGridDisplay[i64ImgIdx].sGridResult, i64ImgIdx)
+			arrGridDisplay[i64ImgIdx].gridResult = CStereoCalibrator3D.CGridResult()
+			stereoCalibrator3D.GetResultGridPoints(arrGridDisplay[i64ImgIdx].gridResult, i64ImgIdx)
 			arrGridDisplay[i64ImgIdx].i64ImageIdx = i64ImgIdx
 
-		arrGridDisplay2 = [CGridDisplay(0, CStereoCalibrator3D.SGridResult()) for i in range(5)]
+		arrGridDisplay2 = [CGridDisplay(0, CStereoCalibrator3D.CGridResult()) for i in range(5)]
 
 		for i64ImgIdx in range(fliLearn2Image.GetPageCount()):
-			arrGridDisplay2[i64ImgIdx].sGridResult = CStereoCalibrator3D.SGridResult()
-			stereoCalibrator3D.GetResultGridPoints2(arrGridDisplay2[i64ImgIdx].sGridResult, i64ImgIdx)
+			arrGridDisplay2[i64ImgIdx].gridResult = CStereoCalibrator3D.CGridResult()
+			stereoCalibrator3D.GetResultGridPoints2(arrGridDisplay2[i64ImgIdx].gridResult, i64ImgIdx)
 			arrGridDisplay2[i64ImgIdx].i64ImageIdx = i64ImgIdx
 		
 		# Message Receiver 객체 생성 # Create Message Receiver object
@@ -433,116 +433,248 @@ def main():
 		DrawGridPoints(arrGridDisplay2[0], layerLearn2)
 
 		# Calibration data 출력 # Display calibration data
-		sIntrinsicParam = stereoCalibrator3D.GetResultIntrinsicParameters()
-		sDistortCoeef = stereoCalibrator3D.GetResultDistortionCoefficients()
+		intrinsicOptimizedParam = stereoCalibrator3D.GetResultCalibratedIntrinsicParameters();
+		intrinsicOptimizedParam2 = stereoCalibrator3D.GetResultCalibratedIntrinsicParameters2();
 
-		sIntrinsicParam2 = stereoCalibrator3D.GetResultIntrinsicParameters2()
-		sDistortCoeef2 = stereoCalibrator3D.GetResultDistortionCoefficients2()
+		distortOptimizedCoeef = stereoCalibrator3D.GetResultCalibratedDistortionCoefficients();
+		distortOptimizedCoeef2 = stereoCalibrator3D.GetResultCalibratedDistortionCoefficients2();
 
-		sRotationParam = stereoCalibrator3D.GetResultRotationParameters()
-		sRotationParam2 = stereoCalibrator3D.GetResultRotationParameters2()
+		rotationOptimizedParam = stereoCalibrator3D.GetResultCalibratedRotationParameters();
 
-		sTranslationParam = stereoCalibrator3D.GetResultTranslationParameters()
-		sTranslationParam2 = stereoCalibrator3D.GetResultTranslationParameters2()
+		translationOptimizedParam = stereoCalibrator3D.GetResultCalibratedTranslationParameters();
 
-		f64ReprojError = stereoCalibrator3D.GetResultReProjectionError()
 
-		strMatrix = ""
-		strDistVal = ""
-		strMatrix2 = ""
-		strDistVal2 = ""
-		strRotatMatrix = ""
-		strTranslVal = ""
-		strRotatMatrix2 = ""
-		strTranslVal2 = ""
-	
-		strMatrix += "{0:.13f}, ".format(sIntrinsicParam.f64FocalLengthX)
-		strMatrix += "{0:.13f}, ".format(sIntrinsicParam.f64Skew)
-		strMatrix += "{0:.13f}, ".format(sIntrinsicParam.f64PrincipalPointX)
-		strMatrix += "{0:.13f}, ".format(0)
-		strMatrix += "{0:.13f}, ".format(sIntrinsicParam.f64FocalLengthY)
-		strMatrix += "{0:.13f}, ".format(sIntrinsicParam.f64PrincipalPointY)
-		strMatrix += "{0:.13f}, ".format(0)
-		strMatrix += "{0:.13f}, ".format(0)
-		strMatrix += "{0:.13f}".format(1)
+		intrinsicRectifiedParam = stereoCalibrator3D.GetResultRectifiedIntrinsicParameters();
+		intrinsicRectifiedParam2 = stereoCalibrator3D.GetResultRectifiedIntrinsicParameters2();
 
-		strMatrix2 += "{0:.13f}, ".format(sIntrinsicParam2.f64FocalLengthX)
-		strMatrix2 += "{0:.13f}, ".format(sIntrinsicParam2.f64Skew)
-		strMatrix2 += "{0:.13f}, ".format(sIntrinsicParam2.f64PrincipalPointX)
-		strMatrix2 += "{0:.13f}, ".format(0)
-		strMatrix2 += "{0:.13f}, ".format(sIntrinsicParam2.f64FocalLengthY)
-		strMatrix2 += "{0:.13f}, ".format(sIntrinsicParam2.f64PrincipalPointY)
-		strMatrix2 += "{0:.13f}, ".format(0)
-		strMatrix2 += "{0:.13f}, ".format(0)
-		strMatrix2 += "{0:.13f}".format(1)
+		rotationRectifiedParam = stereoCalibrator3D.GetResultRectifiedRotationParameters();
+		rotationRectifiedParam2 = stereoCalibrator3D.GetResultRectifiedRotationParameters2();
 
-		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64K1)
-		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64K2)
-		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64P1)
-		strDistVal += "{0:.13f}, ".format(sDistortCoeef.f64P2)
-		strDistVal += "{0:.13f}".format(sDistortCoeef.f64K3)
+		translationRectifiedParam = stereoCalibrator3D.GetResultRectifiedTranslationParameters();
+		translationRectifiedParam2 = stereoCalibrator3D.GetResultRectifiedTranslationParameters2();
 
-		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64K1)
-		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64K2)
-		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64P1)
-		strDistVal2 += "{0:.13f}, ".format(sDistortCoeef2.f64P2)
-		strDistVal2 += "{0:.13f}".format(sDistortCoeef2.f64K3)
+		f64ReprojError = stereoCalibrator3D.GetResultReProjectionError();
 
-		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R0)
-		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R1)
-		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R2)
-		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R3)
-		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R4)
-		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R5)
-		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R6)
-		strRotatMatrix += "{0:.13f}, ".format(sRotationParam.f64R7)
-		strRotatMatrix += "{0:.13f}".format(sRotationParam.f64R8)
+		strFocalLengthX = "";
+		strFocalLengthY = "";
+		strPrincipalPointX = "";
+		strPrincipalPointY = "";
+		strDistortionK1 = "";
+		strDistortionK2 = "";
+		strDistortionP1 = "";
+		strDistortionP2 = "";
+		strDistortionK3 = "";
+		strRotation0 = "";
+		strRotation1 = "";
+		strRotation2 = "";
+		strTranslationX = "";
+		strTranslationY = "";
+		strTranslationZ = "";
 
-		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R0)
-		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R1)
-		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R2)
-		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R3)
-		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R4)
-		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R5)
-		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R6)
-		strRotatMatrix2 += "{0:.13f}, ".format(sRotationParam2.f64R7)
-		strRotatMatrix2 += "{0:.13f}".format(sRotationParam2.f64R8)
 
-		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T0)
-		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T1)
-		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T2)
-		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T3)
-		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T4)
-		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T5)
-		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T6)
-		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T7)
-		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T8)
-		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T9)
-		strTranslVal += "{0:.8f}, ".format(sTranslationParam.f64T10)
-		strTranslVal += "{0:.8f}".format(sTranslationParam.f64T11)
+		print("\n\n", end='');
 
-		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T0)
-		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T1)
-		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T2)
-		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T3)
-		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T4)
-		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T5)
-		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T6)
-		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T7)
-		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T8)
-		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T9)
-		strTranslVal2 += "{0:.8f}, ".format(sTranslationParam2.f64T10)
-		strTranslVal2 += "{0:.8f}".format(sTranslationParam2.f64T11)
+		print("**************************** Calibration ****************************", end='');
 
-		print("Intrinsic parameters : {0}\n".format(strMatrix))
-		print("Distortion Coefficients : {0}\n".format(strDistVal))
-		print("Rotation parameters : {0}\n".format(strRotatMatrix))
-		print("Translation parameters : {0}\n\n".format(strTranslVal))
-		print("Intrinsic parameters 2 : {0}\n".format(strMatrix2))
-		print("Distortion Coefficients 2 : {0}\n".format(strDistVal2))
-		print("Rotation parameters 2 : {0}\n".format(strRotatMatrix2))
-		print("Translation parameters 2 : {0}\n\n".format(strTranslVal2))
-		print("Re-Projection Error : {0:8}".format(f64ReprojError))
+		print("\n\n\n", end='');
+
+		print("---------------------------- Camera 0 ----------------------------", end='');
+
+		print("\n\n", end='');
+
+		strFocalLengthX = "{0:.13f}".format(intrinsicOptimizedParam.f64FocalLengthX)
+		strFocalLengthY = "{0:.13f}".format(intrinsicOptimizedParam.f64FocalLengthY)
+		strPrincipalPointX = "{0:.13f}".format(intrinsicOptimizedParam.f64PrincipalPointX)
+		strPrincipalPointY = "{0:.13f}".format(intrinsicOptimizedParam.f64PrincipalPointY)
+
+		print("Calibrated Intrinsic Parameters:\n", end='');
+		print("\tFocal Length X: " + strFocalLengthX + "\n", end='');
+		print("\tFocal Length Y: " + strFocalLengthY + "\n", end='');
+		print("\tPrincipal Point X: " + strPrincipalPointX + "\n", end='');
+		print("\tPrincipal Point Y: " + strPrincipalPointY + "\n", end='');
+
+		print("\n", end='');
+
+		strDistortionK1 = "{0:.13f}".format(distortOptimizedCoeef.f64K1)
+		strDistortionK2 = "{0:.13f}".format(distortOptimizedCoeef.f64K2)
+		strDistortionP1 = "{0:.13f}".format(distortOptimizedCoeef.f64P1)
+		strDistortionP2 = "{0:.13f}".format(distortOptimizedCoeef.f64P2)
+		strDistortionK3 = "{0:.13f}".format(distortOptimizedCoeef.f64K3)
+
+		print("Calibrated Distortion Coefficients:\n", end='');
+		print("\tK1: " + strDistortionK1 + "\n", end='');
+		print("\tK2: " + strDistortionK2 + "\n", end='');
+		print("\tP1: " + strDistortionP1 + "\n", end='');
+		print("\tP2: " + strDistortionP2 + "\n", end='');
+		print("\tK3: " + strDistortionK3 + "\n", end='');
+
+		print("\n", end='');
+
+
+		print("---------------------------- Camera 1 ----------------------------", end='');
+
+		print("\n\n", end='');
+
+		strFocalLengthX = "{0:.13f}".format(intrinsicOptimizedParam2.f64FocalLengthX)
+		strFocalLengthY = "{0:.13f}".format(intrinsicOptimizedParam2.f64FocalLengthY)
+		strPrincipalPointX = "{0:.13f}".format(intrinsicOptimizedParam2.f64PrincipalPointX)
+		strPrincipalPointY = "{0:.13f}".format(intrinsicOptimizedParam2.f64PrincipalPointY)
+
+		print("Calibrated Intrinsic Parameters:\n", end='');
+		print("\tFocal Length X: " + strFocalLengthX + "\n", end='');
+		print("\tFocal Length Y: " + strFocalLengthY + "\n", end='');
+		print("\tPrincipal Point X: " + strPrincipalPointX + "\n", end='');
+		print("\tPrincipal Point Y: " + strPrincipalPointY + "\n", end='');
+
+		print("\n", end='');
+
+		strDistortionK1 = "{0:.13f}".format(distortOptimizedCoeef2.f64K1)
+		strDistortionK2 = "{0:.13f}".format(distortOptimizedCoeef2.f64K2)
+		strDistortionP1 = "{0:.13f}".format(distortOptimizedCoeef2.f64P1)
+		strDistortionP2 = "{0:.13f}".format(distortOptimizedCoeef2.f64P2)
+		strDistortionK3 = "{0:.13f}".format(distortOptimizedCoeef2.f64K3)
+
+		print("Calibrated Distortion Coefficients:\n", end='');
+		print("\tK1: " + strDistortionK1 + "\n", end='');
+		print("\tK2: " + strDistortionK2 + "\n", end='');
+		print("\tP1: " + strDistortionP1 + "\n", end='');
+		print("\tP2: " + strDistortionP2 + "\n", end='');
+		print("\tK3: " + strDistortionK3 + "\n", end='');
+
+		print("\n", end='');
+
+
+		print("---------------------------- Common ----------------------------", end='');
+
+		print("\n\n", end='');
+
+		strRotation0 = "{0:.13f}, ".format(rotationOptimizedParam.f64R0)
+		strRotation0 += "{0:.13f}, ".format(rotationOptimizedParam.f64R1)
+		strRotation0 += "{0:.13f}".format(rotationOptimizedParam.f64R2)
+		strRotation1 = "{0:.13f}, ".format(rotationOptimizedParam.f64R3)
+		strRotation1 += "{0:.13f}, ".format(rotationOptimizedParam.f64R4)
+		strRotation1 += "{0:.13f}".format(rotationOptimizedParam.f64R5)
+		strRotation2 = "{0:.13f}, ".format(rotationOptimizedParam.f64R6)
+		strRotation2 += "{0:.13f}, ".format(rotationOptimizedParam.f64R7)
+		strRotation2 += "{0:.13f}".format(rotationOptimizedParam.f64R8)
+
+		print("Relative Rotation Parameters:\n", end='');
+		print("\t" + strRotation0 + "\n", end='');
+		print("\t" + strRotation1 + "\n", end='');
+		print("\t" + strRotation2 + "\n", end='');
+
+		print("\n", end='');
+
+		strTranslationX = "{0:.13f}".format(translationOptimizedParam.f64X)
+		strTranslationY = "{0:.13f}".format(translationOptimizedParam.f64Y)
+		strTranslationZ = "{0:.13f}".format(translationOptimizedParam.f64Z)
+
+		print("Relative Translation Parameters:\n", end='');
+		print("\tX: " + strTranslationX + "\n", end='');
+		print("\tY: " + strTranslationY + "\n", end='');
+		print("\tZ: " + strTranslationZ + "\n", end='');
+
+		print("\n\n", end='');
+
+
+		print("**************************** Rectification ****************************", end='');
+
+		print("\n\n\n", end='');
+
+		print("---------------------------- Camera 0 ----------------------------", end='');
+
+		print("\n\n", end='');
+
+		strFocalLengthX = "{0:.13f}".format(intrinsicRectifiedParam.f64FocalLengthX)
+		strFocalLengthY = "{0:.13f}".format(intrinsicRectifiedParam.f64FocalLengthY)
+		strPrincipalPointX = "{0:.13f}".format(intrinsicRectifiedParam.f64PrincipalPointX)
+		strPrincipalPointY = "{0:.13f}".format(intrinsicRectifiedParam.f64PrincipalPointY)
+
+		print("Rectified Intrinsic Parameters:\n", end='');
+		print("\tFocal Length X: " + strFocalLengthX + "\n", end='');
+		print("\tFocal Length Y: " + strFocalLengthY + "\n", end='');
+		print("\tPrincipal Point X: " + strPrincipalPointX + "\n", end='');
+		print("\tPrincipal Point Y: " + strPrincipalPointY + "\n", end='');
+
+		print("\n", end='');
+
+		strRotation0 = "{0:.13f}, ".format(rotationRectifiedParam.f64R0)
+		strRotation0 += "{0:.13f}, ".format(rotationRectifiedParam.f64R1)
+		strRotation0 += "{0:.13f}".format(rotationRectifiedParam.f64R2)
+		strRotation1 = "{0:.13f}, ".format(rotationRectifiedParam.f64R3)
+		strRotation1 += "{0:.13f}, ".format(rotationRectifiedParam.f64R4)
+		strRotation1 += "{0:.13f}".format(rotationRectifiedParam.f64R5)
+		strRotation2 = "{0:.13f}, ".format(rotationRectifiedParam.f64R6)
+		strRotation2 += "{0:.13f}, ".format(rotationRectifiedParam.f64R7)
+		strRotation2 += "{0:.13f}".format(rotationRectifiedParam.f64R8)
+
+		print("Rectified Rotation Parameters:\n", end='');
+		print("\t" + strRotation0 + "\n", end='');
+		print("\t" + strRotation1 + "\n", end='');
+		print("\t" + strRotation2 + "\n", end='');
+
+		print("\n", end='');
+
+		strTranslationX = "{0:.13f}".format(translationRectifiedParam.f64X)
+		strTranslationY = "{0:.13f}".format(translationRectifiedParam.f64Y)
+		strTranslationZ = "{0:.13f}".format(translationRectifiedParam.f64Z)
+
+		print("Rectified Translation Parameters:\n", end='');
+		print("\tX: " + strTranslationX + "\n", end='');
+		print("\tY: " + strTranslationY + "\n", end='');
+		print("\tZ: " + strTranslationZ + "\n", end='');
+
+		print("\n", end='');
+
+
+		print("---------------------------- Camera 1 ----------------------------", end='');
+
+		print("\n\n", end='');
+
+		strFocalLengthX = "{0:.13f}".format(intrinsicRectifiedParam2.f64FocalLengthX)
+		strFocalLengthY = "{0:.13f}".format(intrinsicRectifiedParam2.f64FocalLengthY)
+		strPrincipalPointX = "{0:.13f}".format(intrinsicRectifiedParam2.f64PrincipalPointX)
+		strPrincipalPointY = "{0:.13f}".format(intrinsicRectifiedParam2.f64PrincipalPointY)
+
+		print("Rectified Intrinsic Parameters:\n", end='');
+		print("\tFocal Length X: " + strFocalLengthX + "\n", end='');
+		print("\tFocal Length Y: " + strFocalLengthY + "\n", end='');
+		print("\tPrincipal Point X: " + strPrincipalPointX + "\n", end='');
+		print("\tPrincipal Point Y: " + strPrincipalPointY + "\n", end='');
+
+		print("\n", end='');
+
+		strRotation0 = "{0:.13f}, ".format(rotationRectifiedParam2.f64R0)
+		strRotation0 += "{0:.13f}, ".format(rotationRectifiedParam2.f64R1)
+		strRotation0 += "{0:.13f}".format(rotationRectifiedParam2.f64R2)
+		strRotation1 = "{0:.13f}, ".format(rotationRectifiedParam2.f64R3)
+		strRotation1 += "{0:.13f}, ".format(rotationRectifiedParam2.f64R4)
+		strRotation1 += "{0:.13f}".format(rotationRectifiedParam2.f64R5)
+		strRotation2 = "{0:.13f}, ".format(rotationRectifiedParam2.f64R6)
+		strRotation2 += "{0:.13f}, ".format(rotationRectifiedParam2.f64R7)
+		strRotation2 += "{0:.13f}".format(rotationRectifiedParam2.f64R8)
+
+		print("Rectified Rotation Parameters:\n", end='');
+		print("\t" + strRotation0 + "\n", end='');
+		print("\t" + strRotation1 + "\n", end='');
+		print("\t" + strRotation2 + "\n", end='');
+
+		print("\n", end='');
+
+		strTranslationX = "{0:.13f}".format(translationRectifiedParam2.f64X)
+		strTranslationY = "{0:.13f}".format(translationRectifiedParam2.f64Y)
+		strTranslationZ = "{0:.13f}".format(translationRectifiedParam2.f64Z)
+
+		print("Rectified Translation Parameters:\n", end='');
+		print("\tX: " + strTranslationX + "\n", end='');
+		print("\tY: " + strTranslationY + "\n", end='');
+		print("\tZ: " + strTranslationZ + "\n", end='');
+
+		print("\n", end='');
+
+		print("Re-Projection Error : {0:.13f}\n".format(f64ReprojError), end='');
+
+		print("\n", end='');
 
 		if (res := layerLearn.DrawTextCanvas(CFLPoint[Double](0, 0), "Learn Image", EColor.YELLOW, EColor.BLACK, 15)).IsFail():
 			ErrorPrint(res, "Failed to draw text.\n")
