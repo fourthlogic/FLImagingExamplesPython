@@ -431,27 +431,39 @@ def main():
 		# Chess Board Grid 출력 # Display chess board grid
 		DrawGridPoints(arrGridDisplay[0], layerLearn)
 		DrawGridPoints(arrGridDisplay2[0], layerLearn2)
-
+		
 		# Calibration data 출력 # Display calibration data
-		intrinsicOptimizedParam = stereoCalibrator3D.GetResultCalibratedIntrinsicParameters();
-		intrinsicOptimizedParam2 = stereoCalibrator3D.GetResultCalibratedIntrinsicParameters2();
+		intrinsicOptimizedParam = CStereoCalibrator3D.CIntrinsicParameters();
+		stereoCalibrator3D.GetResultCalibratedIntrinsicParameters(intrinsicOptimizedParam);
+		intrinsicOptimizedParam2 = CStereoCalibrator3D.CIntrinsicParameters();
+		stereoCalibrator3D.GetResultCalibratedIntrinsicParameters2(intrinsicOptimizedParam2);
 
-		distortOptimizedCoeef = stereoCalibrator3D.GetResultCalibratedDistortionCoefficients();
-		distortOptimizedCoeef2 = stereoCalibrator3D.GetResultCalibratedDistortionCoefficients2();
+		distortOptimizedCoeef = CStereoCalibrator3D.CDistortionCoefficients();
+		stereoCalibrator3D.GetResultCalibratedDistortionCoefficients(distortOptimizedCoeef);
+		distortOptimizedCoeef2 = CStereoCalibrator3D.CDistortionCoefficients();
+		stereoCalibrator3D.GetResultCalibratedDistortionCoefficients2(distortOptimizedCoeef2);
 
-		rotationOptimizedParam = stereoCalibrator3D.GetResultCalibratedRotationParameters();
+		rotationOptimizedParam = CStereoCalibrator3D.CRotationParameters();
+		stereoCalibrator3D.GetResultCalibratedRotationParameters(rotationOptimizedParam);
 
-		translationOptimizedParam = stereoCalibrator3D.GetResultCalibratedTranslationParameters();
+		translationOptimizedParam = CStereoCalibrator3D.CTranslationParameters();
+		stereoCalibrator3D.GetResultCalibratedTranslationParameters(translationOptimizedParam);
 
 
-		intrinsicRectifiedParam = stereoCalibrator3D.GetResultRectifiedIntrinsicParameters();
-		intrinsicRectifiedParam2 = stereoCalibrator3D.GetResultRectifiedIntrinsicParameters2();
+		intrinsicRectifiedParam = CStereoCalibrator3D.CIntrinsicParameters();
+		stereoCalibrator3D.GetResultRectifiedIntrinsicParameters(intrinsicRectifiedParam);
+		intrinsicRectifiedParam2 = CStereoCalibrator3D.CIntrinsicParameters();
+		stereoCalibrator3D.GetResultRectifiedIntrinsicParameters2(intrinsicRectifiedParam2);
 
-		rotationRectifiedParam = stereoCalibrator3D.GetResultRectifiedRotationParameters();
-		rotationRectifiedParam2 = stereoCalibrator3D.GetResultRectifiedRotationParameters2();
+		rotationRectifiedParam = CStereoCalibrator3D.CRotationParameters();
+		stereoCalibrator3D.GetResultRectifiedRotationParameters(rotationRectifiedParam);
+		rotationRectifiedParam2 = CStereoCalibrator3D.CRotationParameters();
+		stereoCalibrator3D.GetResultRectifiedRotationParameters2(rotationRectifiedParam2);
 
-		translationRectifiedParam = stereoCalibrator3D.GetResultRectifiedTranslationParameters();
-		translationRectifiedParam2 = stereoCalibrator3D.GetResultRectifiedTranslationParameters2();
+		translationRectifiedParam = CStereoCalibrator3D.CTranslationParameters();
+		stereoCalibrator3D.GetResultRectifiedTranslationParameters(translationRectifiedParam);
+		translationRectifiedParam2 = CStereoCalibrator3D.CTranslationParameters();
+		stereoCalibrator3D.GetResultRectifiedTranslationParameters2(translationRectifiedParam2);
 
 		f64ReprojError = stereoCalibrator3D.GetResultReProjectionError();
 
