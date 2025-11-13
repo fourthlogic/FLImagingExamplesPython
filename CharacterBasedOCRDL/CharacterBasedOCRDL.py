@@ -246,17 +246,23 @@ def main():
 				f32CurrCost = characterBasedOCRDL.GetLearningResultLastCost()
 				# 마지막 평균 학습 결과 비용 받기 # Get the last cost of the learning result
 				f32ValidationMeanAP = characterBasedOCRDL.GetLearningResultLastMeanAP()
-	
+				# 마지막 Recall 결과 받기 # Get the last recall result
+				f32Recall = characterBasedOCRDL.GetLearningResultLastRecall();
+				# 마지막 검증 결과 받기 # Get the last validation result
+				f32Precision = characterBasedOCRDL.GetLearningResultLastPrecision();
+
 				# 해당 epoch의 비용과 검증 결과 값 출력 # Prcost and validation value for the relevant epoch
-				print("Cost : {:6f} mAP : {:6f} Epoch {} / {}".format(f32CurrCost, f32ValidationMeanAP, i32Epoch, i32MaxEpoch))
+				print("Cost : {:6f} mAP : {:6f} Recall : {:6f} Precision : {:6f} Epoch {} / {}".format(f32CurrCost, f32ValidationMeanAP, f32Recall, f32Precision, i32Epoch, i32MaxEpoch))
 			
 				# 학습 결과 비용과 검증 결과 기록을 받아 그래프 뷰에 출력  
 				# Get the history of cost and validation and prit at graph view
 				listCostHistory = List[Single]()
 				listMeanAPHistory = List[Single]()
-				vctValidationEpoch = List[Int32]()
+				listRecall = List[Single]()
+				listPrecision = List[Single]()
+				listValidationEpoch = List[Int32]()
 
-				characterBasedOCRDL.GetLearningResultAllHistory(listCostHistory, listMeanAPHistory, vctValidationEpoch)
+				characterBasedOCRDL.GetLearningResultAllHistory(listCostHistory, listMeanAPHistory, listValidationEpoch, listRecall, listPrecision)
 
 				# 비용 기록이나 검증 결과 기록이 있다면 출력 # Prresults if cost or validation history exists
 				if((listCostHistory.Count != 0 and i32PrevCostCount != listCostHistory.Count) or (listMeanAPHistory.Count != 0 and i32PrevValidationCount != listMeanAPHistory.Count)):
@@ -276,6 +282,8 @@ def main():
 					viewGraph.Plot(listCostHistory, EChartType.Line, EColor.RED, "Cost")
 					# Graph View 데이터 입력 # Input Graph View Data
 					viewGraph.Plot(listX, listMeanAPHistory, EChartType.Line, EColor.CYAN, "mAP")
+					viewGraph.Plot(listX, listRecall, EChartType.Line, EColor.GREEN, "recall");
+					viewGraph.Plot(listX, listPrecision, EChartType.Line, EColor.PURPLE, "precision");
 					viewGraph.UnlockUpdate()
 
 					viewGraph.UpdateWindow()
