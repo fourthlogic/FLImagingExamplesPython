@@ -23,7 +23,7 @@ def main():
 			break
 
 		#알고리즘 객체 생성 # declare algorithm instance
-		pointCloudDownsamplerStochastic3D = CPointCloudDownsamplerStochastic3D()
+		pointCloudDownsamplerFarthest3D = CPointCloudDownsamplerFarthest3D()
 		
 		view3DSrc.SetTopologyType(ETopologyType3D.PointCloud)
 		view3DDst.SetTopologyType(ETopologyType3D.PointCloud)
@@ -43,15 +43,14 @@ def main():
 			break
 
 		# 파라미터 설정 # Set parameter
-		pointCloudDownsamplerStochastic3D.SetSourceObject(floSrc)
-		pointCloudDownsamplerStochastic3D.SetDestinationObject(floDst)
-		pointCloudDownsamplerStochastic3D.SetSamplingSize(20000)
-		pointCloudDownsamplerStochastic3D.EnableNormalRetainment(True)
-		pointCloudDownsamplerStochastic3D.EnableColorRetainment(True)
-		pointCloudDownsamplerStochastic3D.EnableFaceRetainment(False)
+		pointCloudDownsamplerFarthest3D.SetSourceObject(floSrc)
+		pointCloudDownsamplerFarthest3D.SetDestinationObject(floDst)
+		pointCloudDownsamplerFarthest3D.SetSamplingSize(5000)
+		pointCloudDownsamplerFarthest3D.EnableNormalRetainment(True)
+		pointCloudDownsamplerFarthest3D.EnableColorRetainment(True)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := pointCloudDownsamplerStochastic3D.Execute()).IsFail():
+		if (res := pointCloudDownsamplerFarthest3D.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 		
