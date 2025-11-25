@@ -40,7 +40,7 @@ def main():
 		flaWorld0.Add(TPoint3[Single](0.339934, -0.020669, -0.646000))
 		flaScene0.Add(TPoint3[Single](0.189541, -0.046209, -0.589000))
 
-		coordinateFrameUnification3D.AddSourceObject(floSource0, flaWorld0, flaScene0)
+		coordinateFrameUnification3D.AddCameraCorrespondence(flaWorld0, flaScene0)
 
 		# Scene 1과 World 좌표 간 점 대응을 추가
 		# Add point correpondence between Scene 1 & World
@@ -60,9 +60,16 @@ def main():
 		flaWorld1.Add(TPoint3[Single](-0.016503, -0.275241, -1.050700))
 		flaScene1.Add(TPoint3[Single](0.568925, -0.122618, -0.588000))
 
-		coordinateFrameUnification3D.AddSourceObject(floSource1, flaWorld1, flaScene1)
+		coordinateFrameUnification3D.AddCameraCorrespondence(flaWorld1, flaScene1)
+
+		if (res := coordinateFrameUnification3D.Calibrate()).IsFail():
+			ErrorPrint(res, "Failed to calibrate.\n")
+
+		coordinateFrameUnification3D.AddSourceObject(floSource0)
+		coordinateFrameUnification3D.AddSourceObject(floSource1)
 
 		floDestination = CFL3DObject()
+
 		coordinateFrameUnification3D.SetDestinationObject(floDestination)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
