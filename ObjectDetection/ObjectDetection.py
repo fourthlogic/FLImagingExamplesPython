@@ -160,8 +160,6 @@ def main():
 		objectDetectionDL.SetInterpolationMethod(EInterpolationMethod.Bilinear)
 		# 검증을 진행 할 최소 평균 Cost값 설정 # Set the minimum average cost value at which verification will be triggered
 		objectDetectionDL.SetLearningRequiredAvgCostForValidation(5)
-		# 모델의 최적의 상태를 추적 후 마지막에 최적의 상태로 적용할 지 여부 설정 # Set whether to track the optimal state of the model and apply it as the optimal state at the end.
-		objectDetectionDL.EnableOptimalLearningStatePreservation(True)
 		# 학습을 종료할 조건식 설정. miou.ze값이 0.85 이상인 경우 학습 종료한다. metric.ze와 동일한 값입니다.
 		# Set Conditional Expression to End Learning. If the miou.ze value is 0.85 or higher, end the learning. Same value as metric.ze.
 		objectDetectionDL.SetLearningStopCondition("mAP >= 0.85")

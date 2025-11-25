@@ -173,8 +173,6 @@ def main():
 		denoisingDiffusionDL.SetLearningEpoch(500)
 		# 학습 이미지 Interpolation 방식 설정 # Set Interpolation method of learn image
 		denoisingDiffusionDL.SetInterpolationMethod(EInterpolationMethod.Bilinear)
-		# 모델의 최적의 상태를 추적 후 마지막에 최적의 상태로 적용할 지 여부 설정 # Set whether to track the optimal state of the model and apply it as the optimal state at the end.
-		denoisingDiffusionDL.EnableOptimalLearningStatePreservation(True)
 
 		# OptimizerSpec 객체 생성 # Create OptimizerSpec object
 		optSpec = COptimizerSpecAdamGradientDescent()
