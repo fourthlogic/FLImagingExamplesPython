@@ -1886,6 +1886,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ConvolutionFD_FilterGenerat
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PointCloudDownsamplerFarthest3D", "PointCloudDownsamplerFarthest3D\PointCloudDownsamplerFarthest3D.pyproj", "{7A88CB2D-F86D-460E-928A-ED1409C2B553}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mode Filter", "Mode Filter", "{6830D6ED-39C8-4459-A4C6-4DC677755B08}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ModeFilter", "ModeFilter\ModeFilter.pyproj", "{86D804C3-2508-45FB-A3B4-647365232EDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3154,6 +3158,8 @@ Global
 		{9A571E1B-BA4C-4925-B4A6-F985BC45833B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A88CB2D-F86D-460E-928A-ED1409C2B553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7A88CB2D-F86D-460E-928A-ED1409C2B553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86D804C3-2508-45FB-A3B4-647365232EDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86D804C3-2508-45FB-A3B4-647365232EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4087,6 +4093,8 @@ Global
 		{C46B9919-23EB-4AE3-908B-E3D0B1F0DE23} = {73C7EED8-5BDF-4BD4-B9FF-0DECC525A244}
 		{9A571E1B-BA4C-4925-B4A6-F985BC45833B} = {73C7EED8-5BDF-4BD4-B9FF-0DECC525A244}
 		{7A88CB2D-F86D-460E-928A-ED1409C2B553} = {EAF838D2-3CE6-4185-927B-5CA0F07E48A5}
+		{6830D6ED-39C8-4459-A4C6-4DC677755B08} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
+		{86D804C3-2508-45FB-A3B4-647365232EDE} = {6830D6ED-39C8-4459-A4C6-4DC677755B08}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
