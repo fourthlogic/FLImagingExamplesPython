@@ -19,9 +19,9 @@ def main():
 	viewImageDst = CGUIViewImage()
 
 	while True:
-
+		
 		# Source 이미지 로드 # Load the source image
-		if (res := fliSourceImage.Load('../../ExampleImages/NoiseImage/Cat_Noise.flif')).IsFail():
+		if (res := fliSourceImage.Load('../../ExampleImages/NoiseImage/NoiseImage1.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
@@ -73,11 +73,14 @@ def main():
 		# Destination 이미지 설정 # Set the destination image
 		modeFilter.SetDestinationImage(fliDestinationImage)
 		
-		# Kernel Size 설정 # Set Kernel Size
-		modeFilter.SetKernel(11)
+		# ROI 설정을 위한 CFLRect 객체 생성 # Create a CFLRect object for setting ROI
+		flrROI = CFLRect[Int32](100, 190, 360, 420)
 
-		# 가장자리 처리 방식 설정 # Set Padding Method
-		modeFilter.SetPaddingMethod(EPaddingMethod.Interpolation)
+		# Source ROI 설정 # Set the source roi
+		modeFilter.SetSourceROI(flrROI)
+		
+		# 처리할 modeFilter의 Kernel Size 설정 (KernelSize = 11 일 경우, Kernel Size : 11x11)
+		modeFilter.SetKernel(11)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := modeFilter.Execute()).IsFail():
@@ -93,6 +96,17 @@ def main():
 		layerSource.Clear()
 		layerDestination.Clear()
 		
+		# ROI영역이 어디인지 알기 위해 디스플레이 한다 # Display to find out where ROI is
+		# FLImaging의 Figure 객체들은 어떤 도형모양이든 상관없이 하나의 함수로 디스플레이가 가능 # FLimaging's Figure objects can be displayed as a function regardless of the shape
+		# 아래 함수 DrawFigureImage는 Image좌표를 기준으로 하는 Figure를 Drawing 한다는 것을 의미하며 # The function DrawFigureImage below means drawing a picture based on the image coordinates
+		# 맨 마지막 두개의 파라미터는 불투명도 값이고 1일경우 불투명, 0일경우 완전 투명을 의미한다. # The last two parameters are opacity values, which mean opacity for 1 day and complete transparency for 0 day.
+		# 파라미터 순서 : 레이어 -> Figure 객체 -> 선 색 -> 선 두께 -> 면 색 -> 펜 스타일 -> 선 알파값(불투명도) -> 면 알파값 (불투명도) # Parameter order: Layer -> Figure object -> Line color -> Line thickness -> Face color -> Pen style -> Line alpha value (opacity) -> Area alpha value (opacity)
+		if((res := (layerSource.DrawFigureImage(flrROI, EColor.LIME))).IsFail()):
+			ErrorPrint(res, "Failed to draw figure.")
+		
+		if((res := (layerDestination.DrawFigureImage(flrROI, EColor.LIME))).IsFail()):
+			ErrorPrint(res, "Failed to draw figure.")
+
 		# 이미지 뷰 정보 표시 # Display image view information
 		flpPoint = CFLPoint[Double](0, 0)
 
