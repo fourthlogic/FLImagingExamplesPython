@@ -1896,6 +1896,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Alignment", "Alignment", "{
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "IterativeClosestPoint3D", "IterativeClosestPoint3D\IterativeClosestPoint3D.pyproj", "{2E1F9DDE-AD64-4D53-9447-0FE2E8A29BFA}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RandomPageShuffle", "RandomPageShuffle\RandomPageShuffle.pyproj", "{5601C296-C423-4144-9A29-FA9235545C49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3170,6 +3172,8 @@ Global
 		{86D804C3-2508-45FB-A3B4-647365232EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E1F9DDE-AD64-4D53-9447-0FE2E8A29BFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2E1F9DDE-AD64-4D53-9447-0FE2E8A29BFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5601C296-C423-4144-9A29-FA9235545C49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5601C296-C423-4144-9A29-FA9235545C49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4108,6 +4112,7 @@ Global
 		{86D804C3-2508-45FB-A3B4-647365232EDE} = {6830D6ED-39C8-4459-A4C6-4DC677755B08}
 		{A8E66BEA-F927-400C-86F5-F166DA6A7BEE} = {D47009F2-EEC1-474D-8DA5-E83F27AE7622}
 		{2E1F9DDE-AD64-4D53-9447-0FE2E8A29BFA} = {A8E66BEA-F927-400C-86F5-F166DA6A7BEE}
+		{5601C296-C423-4144-9A29-FA9235545C49} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
