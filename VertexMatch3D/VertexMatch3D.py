@@ -69,10 +69,10 @@ def main():
 		vertexMatch3D.SetMinScore(0.3)
 		# 최대 결과 개수 설정 # Set the max count of match result
 		vertexMatch3D.SetMaxObject(1)
-		# 학습 샘플링 거리 설정 # Set the learn sampling distance
-		vertexMatch3D.SetLearnSamplingDistance(0.03)
+		# 샘플링 하지 않도록 설정 # Disable Sampling
+		vertexMatch3D.EnableLearnSamplingPointCloud(False);
 		# 장면 샘플링 거리 설정 # Set the scene sampling distance
-		vertexMatch3D.SetSceneSamplingDistance(0.03)
+		vertexMatch3D.SetSceneSamplingDistance(0.01)
 		# 키포인트 비율 설정 # Set the keypoint ratio.
 		vertexMatch3D.SetKeypointRatio(0.5)
 		# 엣지 학습 여부 설정 # Set the edge train
