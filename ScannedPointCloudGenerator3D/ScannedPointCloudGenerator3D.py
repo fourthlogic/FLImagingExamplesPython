@@ -143,6 +143,7 @@ def main():
 		view3DDst.Invalidate(True)
 
 		view3DDst.SynchronizePointOfView(view3DSource)
+		view3DDst.SetShadingType(EShadingType3D.Shadeless)
 
 		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 # Wait for the image and 3D view to close
 		while view3DSource.IsAvailable() and view3DDst.IsAvailable() :
