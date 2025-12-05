@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7919c7a2-42ea-444f-ac25-2962c4ffa54b}</ProjectGuid>
+    <ProjectGuid>58bd62c0-908c-4b61-87b3-99e9c20da314</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>ImageConcatenator.py</StartupFile>
+    <StartupFile>SeamInsertion.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>ImageInsertion</Name>
-    <RootNamespace>ImageInsertion</RootNamespace>
+    <Name>SeamInsertion</Name>
+    <RootNamespace>SeamInsertion</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ImageConcatenator.py" />
+    <Compile Include="SeamInsertion.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
