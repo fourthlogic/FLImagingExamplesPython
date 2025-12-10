@@ -50,7 +50,7 @@ class GraphViewContextMenu(tk.Tk):
             (EAvailableViewGraphContextMenu.Copy, "Copy"),
             (EAvailableViewGraphContextMenu.ClearThenPaste, "ClearThenPaste"),
             (EAvailableViewGraphContextMenu.Paste, "Paste"),
-            (EAvailableViewGraphContextMenu.ClearDisplayedValue, "ClearDisplayedValue"),
+            (EAvailableViewGraphContextMenu.ClearPointAnnotation, "ClearPointAnnotation"),
             (EAvailableViewGraphContextMenu.ChangeChartType, "ChangeChartType"),
             (EAvailableViewGraphContextMenu.ShowToolBar, "ShowToolbar"),
             (EAvailableViewGraphContextMenu.Zoom, "Zoom"),
@@ -64,6 +64,7 @@ class GraphViewContextMenu(tk.Tk):
             (EAvailableViewGraphContextMenu.EditChartName, "EditChartName"),
             (EAvailableViewGraphContextMenu.ShowCrosshair, "ShowCrosshair"),
             (EAvailableViewGraphContextMenu.ShowLegend, "ShowLegend"),
+            (EAvailableViewGraphContextMenu.ShowPointAnnotation, "ShowPointAnnotation"),
             (EAvailableViewGraphContextMenu.MagnetCrosshair, "MagnetCrosshair"),
             (EAvailableViewGraphContextMenu.ChangeGraphOrder, "ChangeGraphOrder"),
             (EAvailableViewGraphContextMenu.GetTrendline, "GetTrendline"),
@@ -80,6 +81,14 @@ class GraphViewContextMenu(tk.Tk):
             (EAvailableViewGraphContextMenu.IndicateMinMax, "IndicateMin/Max"),
             (EAvailableViewGraphContextMenu.SetRange, "SetRange"),
             (EAvailableViewGraphContextMenu.SetOpacityOfLegend, "SetOpacityOfLegend"),
+			(EAvailableViewGraphContextMenu.ShowAxis_Horz, "Show Axis_Horz"),
+			(EAvailableViewGraphContextMenu.ShowAxis_Vert, "Show Axis_Vert"),
+			(EAvailableViewGraphContextMenu.ShowAxisLabel_Horz, "Show AxisLabel_Horz"),
+			(EAvailableViewGraphContextMenu.ShowAxisLabel_Vert, "Show AxisLabel_Vert"),
+			(EAvailableViewGraphContextMenu.ShowAxisTick_Horz, "Show AxisTick_Horz"),
+			(EAvailableViewGraphContextMenu.ShowAxisTick_Vert, "Show AxisTick_Vert"),
+			(EAvailableViewGraphContextMenu.ShowAxisTickLabel_Horz, "Show AxisTickLabel_Horz"),
+			(EAvailableViewGraphContextMenu.ShowAxisTickLabel_Vert, "Show AxisTickLabel_Vert")
         ]
 
         self._create_right_controls()
