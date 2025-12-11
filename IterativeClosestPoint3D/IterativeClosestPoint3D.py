@@ -69,9 +69,9 @@ def main():
 
 		# 샘플링 거리 설정 // Set the sampling distance
 		IterativeClosestPoint3D.SetSamplingDistance(0.01)
-
+		
 		# 이상치 판정 배율 설정 // Set the outlier scale
-		IterativeClosestPoint3D.SetOutlierScale(3)
+		IterativeClosestPoint3D.SetOutlierScale(2)
 
 		# 최적해 정확도 값 설정 // Set the optimal solution accuracy
 		IterativeClosestPoint3D.SetOptimalSolutionAccuracy(0.00001)
