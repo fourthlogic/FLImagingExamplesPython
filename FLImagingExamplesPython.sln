@@ -1902,6 +1902,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Statistics3D", "Statistics3
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ImageConcatenator", "ImageConcatenator\ImageConcatenator.pyproj", "{C4069F8E-0B9D-4F3E-88A6-7AFA2F092107}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OrientedbjectDetection", "OrientedObjectDetection\OrientedbjectDetection.pyproj", "{405F0EBB-4F02-4152-8046-963D8A3BBA60}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3182,6 +3184,8 @@ Global
 		{E4C60A20-5CBA-4848-A07F-682FC9F616ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4069F8E-0B9D-4F3E-88A6-7AFA2F092107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C4069F8E-0B9D-4F3E-88A6-7AFA2F092107}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{405F0EBB-4F02-4152-8046-963D8A3BBA60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{405F0EBB-4F02-4152-8046-963D8A3BBA60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4123,6 +4127,7 @@ Global
 		{58BD62C0-908C-4B61-87B3-99E9C20DA314} = {D841000D-6A23-43C0-80ED-F3A4CCAC6C97}
 		{E4C60A20-5CBA-4848-A07F-682FC9F616ED} = {185B9BAD-D8C3-481B-BE2A-1F170F876A39}
 		{C4069F8E-0B9D-4F3E-88A6-7AFA2F092107} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
+		{405F0EBB-4F02-4152-8046-963D8A3BBA60} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
