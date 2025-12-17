@@ -1904,6 +1904,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ImageConcatenator", "ImageC
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OrientedbjectDetection", "OrientedObjectDetection\OrientedbjectDetection.pyproj", "{405F0EBB-4F02-4152-8046-963D8A3BBA60}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DeviceCameraZivid", "DeviceCameraZivid\DeviceCameraZivid.pyproj", "{5F984068-8579-47A8-9CE1-B65EAFB8A30D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3186,6 +3188,8 @@ Global
 		{C4069F8E-0B9D-4F3E-88A6-7AFA2F092107}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{405F0EBB-4F02-4152-8046-963D8A3BBA60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{405F0EBB-4F02-4152-8046-963D8A3BBA60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F984068-8579-47A8-9CE1-B65EAFB8A30D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F984068-8579-47A8-9CE1-B65EAFB8A30D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4128,6 +4132,7 @@ Global
 		{E4C60A20-5CBA-4848-A07F-682FC9F616ED} = {185B9BAD-D8C3-481B-BE2A-1F170F876A39}
 		{C4069F8E-0B9D-4F3E-88A6-7AFA2F092107} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 		{405F0EBB-4F02-4152-8046-963D8A3BBA60} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
+		{5F984068-8579-47A8-9CE1-B65EAFB8A30D} = {6726DB7A-84EC-42E8-9F3B-0409AAF8CADE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
