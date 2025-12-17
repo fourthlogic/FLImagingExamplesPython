@@ -144,7 +144,7 @@ def main():
 			# 연결되어 있는 카메라의 시리얼 번호를 가져온다. # Get serial numbers of connected cameras
 			er, listSerialNumbers = camZivid.GetAutoDetectCameraSerialNumbers(listSerialNumbers)
 
-			if(er[0].IsFail() or listSerialNumbers.Count == 0):
+			if(er.IsFail() or listSerialNumbers.Count == 0):
 				er = EResult.FailedToRead
 				print("Not Found Device.\n")
 				break
