@@ -42,8 +42,7 @@ def main():
 
 		# 두 이미지 뷰의 시점을 동기화 한다 # Synchronize the viewpoints of the two image views. .
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if ((res := viewImageSrc.SynchronizePointOfView(viewImageOpr)[0]).IsFail() or
-			(res := viewImageSrc.SynchronizePointOfView(viewImageDst)[0]).IsFail()):
+		if ((res := viewImageSrc.SynchronizePointOfView(viewImageOpr)[0]).IsFail()):
 			ErrorPrint(res, "Failed to synchronize view. \n")
 			break
 
@@ -93,6 +92,8 @@ def main():
 		
 		# 이미지 뷰를 갱신 # Update image view		
 		viewImageSrc.ZoomFit()
+		viewImageOpr.ZoomFit()
+		viewImageDst.ZoomFit()
 		viewImageSrc.Invalidate(True)
 		viewImageOpr.Invalidate(True)
 		viewImageDst.Invalidate(True)
