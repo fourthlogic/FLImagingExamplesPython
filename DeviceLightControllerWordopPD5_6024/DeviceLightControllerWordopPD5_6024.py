@@ -5,7 +5,6 @@ from FLImagingClrPy import *
 # before using any features of the FLImaging(R) library
 CLibraryUtilities.Initialize()
 
-
 # 메인 함수 # Main function
 def main():
 
@@ -100,6 +99,7 @@ def main():
 
 			if i32ChannelCount == 0:
 				bExit = True
+				break
 
 			break
 
@@ -132,6 +132,7 @@ def main():
 
 			if i32CommunicationType == 0:
 				bExit = True
+				break
 
 			break
 
@@ -165,6 +166,7 @@ def main():
 
 			if i32OperationMode == 0:
 				bExit = True
+				break
 
 			if i32OperationMode == 4:
 				i32TriggerMethod = 0
@@ -195,11 +197,11 @@ def main():
 
 				eTriggerMethod = CDeviceLightControllerWordopPD5_6024.ETriggerMethod.LowLevel
 
-				if triggerMethod == 2:
+				if i32TriggerMethod == 2:
 					eTriggerMethod = CDeviceLightControllerWordopPD5_6024.ETriggerMethod.HighLevel
-				elif triggerMethod == 3:
+				elif i32TriggerMethod == 3:
 					eTriggerMethod = CDeviceLightControllerWordopPD5_6024.ETriggerMethod.FallingEdge
-				elif triggerMethod == 4:
+				elif i32TriggerMethod == 4:
 					eTriggerMethod = CDeviceLightControllerWordopPD5_6024.ETriggerMethod.RisingEdge
 
 				lightController.SetTriggerMethod(eTriggerMethod)
@@ -231,7 +233,7 @@ def main():
 
 						if strInput.isdigit():
 							i32LightValue = int(strInput)
-							lightController.SetLightValue(i32Channel, UInt16(i32LightValue & 0xffff))
+							lightController.SetStrobeTime(i32Channel, UInt16(i32LightValue & 0xffff))
 
 
 			# 입력된 파라미터를 적용합니다. # Apply the configured parameters.
