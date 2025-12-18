@@ -114,7 +114,7 @@ def main():
 		# View 정보를 디스플레이 합니다. # Display View information.
 		# 아래 함수 DrawTextCanvas은 Screen좌표를 기준으로 하는 String을 Drawing 한다.# The function DrawTextCanvas below draws a String based on the screen coordinates.
 		# 파라미터 순서 : 레이어 -> 기준 좌표 Figure 객체 -> 문자열 -> 폰트 색 -> 면 색 -> 폰트 크기 -> 실제 크기 유무 -> 각도 ->
-		#                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도) -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
+		#                 얼라인 -> 폰트 이름 -> 폰트 알파값(불투명도)  -> 면 알파값 (불투명도) -> 폰트 두께 -> 폰트 이텔릭
 		# Parameter order: layer -> reference coordinate Figure object -> string -> font color -> Area color -> font size -> actual size -> angle ->
 		#                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
 		flpPoint = CFLPoint[Double](0, 0)
@@ -137,7 +137,7 @@ def main():
 		viewImagesResult.Invalidate(True)
 		
 		# ObjectDetection 객체 생성 # Create ObjectDetection object
-		orientedObjectDetectionDL = COrientedObejctDetectionDL()
+		orientedObjectDetectionDL = COrientedObjectDetectionDL()
 
 		# OptimizerSpec 객체 생성 # Create OptimizerSpec object
 		optSpec = COptimizerSpecAdamGradientDescent()
@@ -151,18 +151,18 @@ def main():
 		orientedObjectDetectionDL.SetInferenceResultImage(fliResultImage)
 
 		# 학습할 ObjectDetection 모델 설정 # Set up the ObjectDetection model to learn
-		orientedObjectDetectionDL.SetModel(COrientedObejctDetectionDL.EModel.Oriented_R_FLNet)
+		orientedObjectDetectionDL.SetModel(COrientedObjectDetectionDL.EModel.Oriented_R_FLNet)
 		# 학습할 ObjectDetection 모델 Version 설정 # Set up the ObjectDetection model version to learn
-		orientedObjectDetectionDL.SetModelVersion(COrientedObejctDetectionDL.EModelVersion.Oriented_R_FLNet_V1_256)
+		orientedObjectDetectionDL.SetModelVersion(COrientedObjectDetectionDL.EModelVersion.Oriented_R_FLNet_V1_256)
 		# 학습 epoch 값을 설정 # Set the learn epoch value 
 		orientedObjectDetectionDL.SetLearningEpoch(1024)
 		# 학습 이미지 Interpolation 방식 설정 # Set Interpolation method of learn image
 		orientedObjectDetectionDL.SetInterpolationMethod(EInterpolationMethod.Bilinear)
 		# 검증을 진행 할 최소 평균 Cost값 설정 # Set the minimum average cost value at which verification will be triggered
 		orientedObjectDetectionDL.SetLearningRequiredAvgCostForValidation(5)
-		# 학습을 종료할 조건식 설정. miou.ze값이 0.9 이상인 경우 학습 종료한다. metric.ze와 동일한 값입니다.
-		# Set Conditional Expression to End Learning. If the miou.ze value is 0.9 or higher, end the learning. Same value as metric.ze.
-		orientedObjectDetectionDL.SetLearningStopCondition("mAP >= 0.9")
+		# 학습을 종료할 조건식 설정. miou.ze값이 1 이상인 경우 학습 종료한다. metric.ze와 동일한 값입니다.
+		# Set Conditional Expression to End Learning. If the miou.ze value is 1 or higher, end the learning. Same value as metric.ze.
+		orientedObjectDetectionDL.SetLearningStopCondition("mAP >= 1")
 
 		# Optimizer의 학습률 설정 # Set learning rate of Optimizer
 		optSpec.SetLearningRate(0.0001)
@@ -314,7 +314,7 @@ def main():
 		orientedObjectDetectionDL.SetInferenceResultImage(fliResultImage)
 		# 추론 결과 옵션 설정 # Set the inference result options
 		# Figure 옵션 설정 # Set the option of figures
-		orientedObjectDetectionDL.SetInferenceResultItemSettings(COrientedObejctDetectionDL.EInferenceResultItemSettings.ClassNum_ClassName_Objectness)
+		orientedObjectDetectionDL.SetInferenceResultItemSettings(COrientedObjectDetectionDL.EInferenceResultItemSettings.ClassNum_ClassName_Objectness)
 
 		# 알고리즘 수행 # Execute the algorithm
 		if((res := orientedObjectDetectionDL.Execute()).IsFail()):
