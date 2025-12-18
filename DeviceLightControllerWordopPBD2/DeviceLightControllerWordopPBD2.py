@@ -100,6 +100,7 @@ def main():
 
 			if i32ChannelCount == 0:
 				bExit = True
+				break
 
 			break
 
@@ -133,6 +134,7 @@ def main():
 
 			if i32OperationMode == 0:
 				bExit = True
+				break
 
 			if i32OperationMode == 4:
 				i32TriggerMethod = 0
@@ -158,6 +160,7 @@ def main():
 
 					if i32TriggerMethod == 0:
 						bExit = True
+						break
 
 					break
 
@@ -166,17 +169,17 @@ def main():
 
 				eTriggerMethod = CDeviceLightControllerWordopPBD2.ETriggerMethod.LowLevel
 
-				if triggerMethod == 2:
+				if i32TriggerMethod == 2:
 					eTriggerMethod = CDeviceLightControllerWordopPBD2.ETriggerMethod.HighLevel
-				elif triggerMethod == 3:
+				elif i32TriggerMethod == 3:
 					eTriggerMethod = CDeviceLightControllerWordopPBD2.ETriggerMethod.FallingEdge
-				elif triggerMethod == 4:
+				elif i32TriggerMethod == 4:
 					eTriggerMethod = CDeviceLightControllerWordopPBD2.ETriggerMethod.RisingEdge
-				elif triggerMethod == 5:
+				elif i32TriggerMethod == 5:
 					eTriggerMethod = CDeviceLightControllerWordopPBD2.ETriggerMethod.InternalHighLevel
-				elif triggerMethod == 6:
+				elif i32TriggerMethod == 6:
 					eTriggerMethod = CDeviceLightControllerWordopPBD2.ETriggerMethod.InternalRisingEdge
-				elif triggerMethod == 7:
+				elif i32TriggerMethod == 7:
 					eTriggerMethod = CDeviceLightControllerWordopPBD2.ETriggerMethod.ConstantlyOn
 
 				lightController.SetTriggerMethod(eTriggerMethod)
@@ -208,7 +211,7 @@ def main():
 
 						if strInput.isdigit():
 							i32LightValue = int(strInput)
-							lightController.SetLightValue(i32Channel, UInt16(i32LightValue & 0xffff))
+							lightController.SetStrobeTime(i32Channel, UInt16(i32LightValue & 0xffff))
 
 
 			# 입력된 파라미터를 적용합니다. # Apply the configured parameters.
