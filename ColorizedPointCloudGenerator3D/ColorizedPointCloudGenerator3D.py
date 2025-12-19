@@ -222,7 +222,7 @@ def main():
 		print(f' < Calibration Result >\n')
 
 		# Color 카메라의 Intrinsic Parameter 출력 # Print intrinsic parameters of color camera
-		calibIntrinsic = colorizedPointCloudGenerator3D.GetIntrinsicParameters()
+		calibIntrinsic = colorizedPointCloudGenerator3D.GetResultIntrinsicParameters()
 
 		print(f' < Intrinsic Parameters >')
 
@@ -235,7 +235,7 @@ def main():
 		print(f'')
 
 		# Color 카메라의 Distortion Coefficient 출력 # Print distortion coefficients of color camera
-		calibDistortion = colorizedPointCloudGenerator3D.GetDistortionCoefficients()
+		calibDistortion = colorizedPointCloudGenerator3D.GetResultDistortionCoefficients()
 
 		print(f' < Distortion Coefficients >')
 
@@ -250,7 +250,7 @@ def main():
 		# 두 카메라 간의 회전 행렬 출력 # Print relative rotation matrix between both cameras
 		matRotation = CMatrix[Double]()
 
-		if (res := colorizedPointCloudGenerator3D.GetRelativeRotation(matRotation)[0]).IsFail():
+		if (res := colorizedPointCloudGenerator3D.GetResultRelativeRotation(matRotation)[0]).IsFail():
 			ErrorPrint(res, 'Failed to get relative rotation.\n')
 			break
 		
@@ -271,7 +271,7 @@ def main():
 		# 두 카메라 간의 변환 행렬 출력 # Print relative translation matrix between both cameras
 		matTranslation = CMatrix[Double]()
 
-		if (res := colorizedPointCloudGenerator3D.GetRelativeTranslation(matTranslation)[0]).IsFail():
+		if (res := colorizedPointCloudGenerator3D.GetResultRelativeTranslation(matTranslation)[0]).IsFail():
 			ErrorPrint(res, 'Failed to get relative translation.\n')
 			break
 		
