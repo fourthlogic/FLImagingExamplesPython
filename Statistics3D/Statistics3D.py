@@ -277,10 +277,16 @@ def main():
 			break
 		
 		f64ColorCorrelationCoefficientGR = statistics3D.GetPointColorCorrelationCoefficient(f64ColorCorrelationCoefficientGR)[1]
-
+		
 		# 면 데이터 불러오기 # Get face data
-		f64SurfaceArea = statistics3D.GetSurfaceArea()
-
+		f64SurfaceArea = 0.0
+		
+		if (res := statistics3D.GetSurfaceArea(f64SurfaceArea)[0]).IsFail():
+			ErrorPrint(res, "Failed to get face's surface area")
+			break
+		
+		f64SurfaceArea = statistics3D.GetSurfaceArea(f64SurfaceArea)[1]
+		
 		# 콘솔에 데이터 출력 # Print data to console
 		print(" < Point Position Data >")
 
