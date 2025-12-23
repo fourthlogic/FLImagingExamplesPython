@@ -1912,6 +1912,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Denoising3D", "Denoising3D\
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FasterCharacterBasedOCRDL", "FasterCharacterBasedOCRDL\FasterCharacterBasedOCRDL.pyproj", "{72103084-875E-43CE-A3E6-4BF919AE6E69}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "StatisticalOutlierRemoval3D", "StatisticalOutlierRemoval3D\StatisticalOutlierRemoval3D.pyproj", "{DC48309A-3A92-42E7-B710-1996245EA934}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3202,6 +3204,8 @@ Global
 		{CD3C5347-7086-4E78-A493-D03E7345C1D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72103084-875E-43CE-A3E6-4BF919AE6E69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{72103084-875E-43CE-A3E6-4BF919AE6E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC48309A-3A92-42E7-B710-1996245EA934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC48309A-3A92-42E7-B710-1996245EA934}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4148,6 +4152,7 @@ Global
 		{330FAE3E-23D5-48B0-9519-B352E9EA4F74} = {053DF54D-3905-4ED2-8B39-06B752AF6824}
 		{CD3C5347-7086-4E78-A493-D03E7345C1D5} = {92C2395C-A753-48C3-BB80-B628503B9049}
 		{72103084-875E-43CE-A3E6-4BF919AE6E69} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
+		{DC48309A-3A92-42E7-B710-1996245EA934} = {92C2395C-A753-48C3-BB80-B628503B9049}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
