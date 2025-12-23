@@ -110,7 +110,7 @@ def main():
 		denoising3D.SetViewPoint(tp3ViewPoint)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if(res := Denoising3D.Execute()).IsFail() :	
+		if(res := denoising3D.Execute()).IsFail() :	
 			ErrorPrint(res, "Failed to execute Denoising 3D.")
 			break
 		
@@ -148,8 +148,8 @@ def main():
 		
 		# 3D 오브젝트 뷰에 결과 오브젝트 디스플레이
 		if (res := view3DNoiseResult.PushObject(floNoiseResult)).IsFail() or \
-			(res := layer3DDenoisingResult.PushObject(floDenoisingResult)).IsFail() or \
-			(res := layer3DSmoothingResult.PushObject(floSmoothingResult)).IsFail() :
+			(res := view3DDenoisingResult.PushObject(floDenoisingResult)).IsFail() or \
+			(res := view3DSmoothingResult.PushObject(floSmoothingResult)).IsFail() :
 			ErrorPrint(res, "Failed to set object on the 3D View.\n")
 			break
 
