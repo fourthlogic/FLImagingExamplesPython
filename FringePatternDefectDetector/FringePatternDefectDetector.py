@@ -81,10 +81,10 @@ def main():
 		fringePatternDefectDetector.SetBrightnessCoefficient(1)
 
 		# Mura 탐지 모드 설정 # Set mura detecting mode
-		fringePatternDefectDetector.EnableMuraDetectingMode(False);
+		fringePatternDefectDetector.EnableMura(False);
 
 		# Mura 반복 횟수 설정 # Set mura iteration
-		fringePatternDefectDetector.SetMuraIteration(3);
+		fringePatternDefectDetector.SetMuraIteration(2);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := fringePatternDefectDetector.Execute()).IsFail():
