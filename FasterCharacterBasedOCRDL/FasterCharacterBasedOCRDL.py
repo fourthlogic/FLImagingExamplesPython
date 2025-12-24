@@ -254,7 +254,7 @@ def main():
 				fasterCharacterBasedOCRDL.GetLearningResultAllHistory(listCostHistory, listValidationHistory, listMeanIoUHistory, listValidationsZEHistory, listMeanIoUZEHistory, vctValidationEpoch)
 
 				# 비용 기록이나 검증 결과 기록이 있다면 출력 # Prresults if cost or validation history exists
-				if((listCostHistory.Count != 0 and i32PrevCostCount != listCostHistory.Count) or (listMeanAPHistory.Count != 0 and i32PrevValidationCount != listMeanAPHistory.Count)):
+				if((listCostHistory.Count != 0 and i32PrevCostCount != listCostHistory.Count) or (listMeanIoUHistory.Count != 0 and i32PrevValidationCount != listMeanIoUHistory.Count)):
 					i32Step = fasterCharacterBasedOCRDL.GetLearningValidationStep()
 					listX = List[Single]()
 
