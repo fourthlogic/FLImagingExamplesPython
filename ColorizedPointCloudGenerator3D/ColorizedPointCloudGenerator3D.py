@@ -198,7 +198,7 @@ def main():
 			break
 		
 		# Calibration에 사용되는 Grid Type 설정 # Set grid type used in calibration
-		if (res := colorizedPointCloudGenerator3D.SetGridType(CCameraCalibrator.EGridType.ChessBoard)).IsFail():
+		if (res := colorizedPointCloudGenerator3D.SetGridType(CColorizedPointCloudGenerator3D.EGridType.ChessBoard)).IsFail():
 			ErrorPrint(res, 'Failed to set calibration grid type.\n')
 			break
 		
