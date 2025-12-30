@@ -248,38 +248,30 @@ def main():
 		print(f'')
 
 		# 두 카메라 간의 회전 행렬 출력 # Print relative rotation matrix between both cameras
-		matRotation = CMatrix[Double]()
+		calibRotation = colorizedPointCloudGenerator3D.GetResultRelativeRotation()
 
-		if (res := colorizedPointCloudGenerator3D.GetResultRelativeRotation(matRotation)[0]).IsFail():
-			ErrorPrint(res, 'Failed to get relative rotation.\n')
-			break
-		
 		print(f' < Relative Rotation >')
 
-		print(f'R00 ->\t{matRotation.GetValue(0, 0):.7}')
-		print(f'R01 ->\t{matRotation.GetValue(0, 1):.7}')
-		print(f'R02 ->\t{matRotation.GetValue(0, 2):.7}')
-		print(f'R10 ->\t{matRotation.GetValue(1, 0):.7}')
-		print(f'R11 ->\t{matRotation.GetValue(1, 1):.7}')
-		print(f'R12 ->\t{matRotation.GetValue(1, 2):.7}')
-		print(f'R20 ->\t{matRotation.GetValue(2, 0):.7}')
-		print(f'R21 ->\t{matRotation.GetValue(2, 1):.7}')
-		print(f'R22 ->\t{matRotation.GetValue(2, 2):.7}')
+		print(f'R00 ->\t{calibRotation.f64R0:.7}')
+		print(f'R01 ->\t{calibRotation.f64R1:.7}')
+		print(f'R02 ->\t{calibRotation.f64R2:.7}')
+		print(f'R10 ->\t{calibRotation.f64R3:.7}')
+		print(f'R11 ->\t{calibRotation.f64R4:.7}')
+		print(f'R12 ->\t{calibRotation.f64R5:.7}')
+		print(f'R20 ->\t{calibRotation.f64R6:.7}')
+		print(f'R21 ->\t{calibRotation.f64R7:.7}')
+		print(f'R22 ->\t{calibRotation.f64R8:.7}')
 
 		print(f'')
 
 		# 두 카메라 간의 변환 행렬 출력 # Print relative translation matrix between both cameras
-		matTranslation = CMatrix[Double]()
+		calibTranslation = colorizedPointCloudGenerator3D.GetResultRelativeTranslation()
 
-		if (res := colorizedPointCloudGenerator3D.GetResultRelativeTranslation(matTranslation)[0]).IsFail():
-			ErrorPrint(res, 'Failed to get relative translation.\n')
-			break
-		
 		print(f' < Relative Translation >\n')
 
-		print(f'TX ->\t{matTranslation.GetValue(0, 0):.7}')
-		print(f'TY ->\t{matTranslation.GetValue(1, 0):.7}')
-		print(f'TZ ->\t{matTranslation.GetValue(2, 0):.7}')
+		print(f'TX ->\t{calibTranslation.f64X:.7}')
+		print(f'TY ->\t{calibTranslation.f64Y:.7}')
+		print(f'TZ ->\t{calibTranslation.f64Z:.7}')
 
 		print(f'')
 
