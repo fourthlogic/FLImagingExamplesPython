@@ -218,21 +218,27 @@ def main():
 				# Get the history of cost and validation and print it at graph view
 				listCosts = List[Single]()
 				listValidations = List[Single]()
-				listF1Score = List[Single]()
+				listF1 = List[Single]()
+				listMacroAccuracy = List[Single]()
+				listMetric = List[Single]()
 				listValidationEpoch = List[int]()
 
-				res, listCosts, listValidations, listF1Score, listValidationEpoch = classifierDL.GetLearningResultAllHistory(listCosts, listValidations, listF1Score, listValidationEpoch)
+				res, listCosts, listValidations, listF1, listMacroAccuracy, listMetric, listValidationEpoch = classifierDL.GetLearningResultAllHistory(listCosts, listValidations, listF1, listMacroAccuracy, listMetric, listValidationEpoch)
 				
 				if listCosts.Count != 0:
 					# 마지막 학습 결과 비용 받기 # Get the last cost of the learning result
 					f32CurrCost = listCosts[listCosts.Count - 1]
 					# 마지막 검증 결과 받기 # Get the last validation result
 					f32Validation = listValidations[listValidations.Count - 1] if listValidations.Count != 0 else 0
-					# 마지막 F1점수 결과 받기 # Get the last F1 Score result
-					f32F1Score = listF1Score[listF1Score.Count - 1] if listF1Score.Count != 0 else 0
+					# 마지막 MacroAccuracy 결과 받기 # Get the last MacroAccuracy result
+					f32MacroAccuracy = listMacroAccuracy[listF1.Count - 1] if listMacroAccuracy.Count != 0 else 0
+					# 마지막 F1 결과 받기 # Get the last F1 result
+					f32F1 = listF1[listF1.Count - 1] if listF1.Count != 0 else 0
+					# 마지막 Metric 결과 받기 # Get the last Metric result
+					f32Metric = listMetric[listF1.Count - 1] if listMetric.Count != 0 else 0
 
 					# 해당 epoch의 비용과 검증 결과 값 출력 # Print cost and validation value for the relevant epoch
-					print("Cost : {:.6f} Validation : {:.6f} F1 Score : {:.6f} Epoch {} / {}".format(f32CurrCost, f32Validation, f32F1Score, i32Epoch, i32MaxEpoch))
+					print("Cost : {:.6f} Validation : {:.6f} Macro Accuracy : {:.6f} F1 Score : {:.6f} Metric : {:.6f} Epoch {} / {}".format(f32CurrCost, f32Validation, f32MacroAccuracy, f32F1, f32Metric, i32Epoch, i32MaxEpoch))
 
 					# 비용 기록이나 검증 결과 기록이 있다면 출력 # Print results if cost or validation history exists
 					if (listCosts.Count != 0 and i32PrevCostCount != listCosts.Count) or (listValidations.Count != 0 and i32PrevValidationCount != listValidations.Count):
@@ -252,6 +258,9 @@ def main():
 						listX.Add((float)(listCosts.Count - 1))
 						# Graph View 데이터 입력 # Input Graph View Data
 						viewGraph.Plot(listX, listValidations, EChartType.Line, EColor.BLUE, "Validation")
+						viewGraph.Plot(listX, listF1, EChartType.Line, EColor.GREEN, "F1")
+						viewGraph.Plot(listX, listMacroAccuracy, EChartType.Line, EColor.PURPLE, "Macro Accuracy")
+						viewGraph.Plot(listX, listMetric, EChartType.Line, EColor.PINK, "Metric")
 
 						viewGraph.UnlockUpdate()
 						viewGraph.Invalidate()
