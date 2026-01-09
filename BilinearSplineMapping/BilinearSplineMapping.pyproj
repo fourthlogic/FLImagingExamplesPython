@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{15f5e5c4-96d2-43a7-8c45-f4c810ae5351}</ProjectGuid>
+    <ProjectGuid>{ce5a14a5-a0e4-4704-adf5-344a1ec73474}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>BilinearSplineMapping.py</StartupFile>
     <SearchPath>
