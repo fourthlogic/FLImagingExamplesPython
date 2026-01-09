@@ -80,7 +80,7 @@ def main():
 		# 점 재배치 반복 횟수 설정 # Set the point reposition iterations
 		pointCloudResamplerEdgePreserving3D.SetRepositionIterations(5)
 
-		tpPosition = TPoint[Double](0, 0)
+		tpPosition = CFLPoint[Double](0, 0)
 
 		for i in range(3):
 			# Destination object 설정 # Set the destination object
