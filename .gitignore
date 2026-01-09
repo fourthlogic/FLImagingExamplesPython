@@ -419,6 +419,7 @@ FodyWeavers.xsd
 
 # Mapping Data
 *.flbcs
+*.flbls
 *.fllcz
 *.fltps
 
