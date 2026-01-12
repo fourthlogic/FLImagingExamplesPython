@@ -100,7 +100,7 @@ def main():
 			break
 
 		# Inpainting을 위한 Painting region 설정 # Set painting region for Inpainting
-		inpaintingCoherenceTransport.SetPaintingRegion(flrInpaintingRegion)
+		inpaintingCoherenceTransport.SetInpaintingRegion(flrInpaintingRegion)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := inpaintingCoherenceTransport.Execute()).IsFail():
