@@ -140,6 +140,11 @@ def main():
 			ErrorPrint(res, 'Failed to set Destination 3D Object.\n')
 			break
 		
+		# 데이터 로드 # Load Data
+		if (res := stereoDisparity3D.Load("../../ExampleImages/StereoDisparity3D/StereoCalibratorData.flsc")).IsFail():
+			ErrorPrint(res, "Failed to load Calibrator Data.\n")
+			break;
+
 		# 최소 허용 Disparity 값 설정 # Set minimum allowed disparity value
 		if (res := stereoDisparity3D.SetMinimumDisparity(-20)).IsFail():
 			ErrorPrint(res, 'Failed to set the minimum allowed disparity value.\n')
@@ -176,10 +181,15 @@ def main():
 			break
 		
 		# Median Morphology 커널 사이즈 설정 # Set median morphology kernel size
-		if (res := stereoDisparity3D.SetFilterSize(5)).IsFail():
+		if (res := stereoDisparity3D.SetFilterSize(9)).IsFail():
 			ErrorPrint(res, 'Failed to set the median kernel size.\n')
 			break
 		
+		# Pixel Accuracy 설정 # Set pixel accuracy
+		if (res := stereoDisparity3D.SetPixelAccuracy(200)).IsFail():
+			ErrorPrint(res, "Failed to set pixel accuracy.\n")
+			break;
+
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := stereoDisparity3D.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Stereo Disparity 3D.\n')
