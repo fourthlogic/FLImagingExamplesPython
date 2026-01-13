@@ -249,6 +249,11 @@ def main():
 
 		for i in range(i32CalibPageNum):
 			print(f"Image {i} ->\tX: {matPosition.GetValue(i, 0):.5}\tY: {matPosition.GetValue(i, 1):.5} \tZ: {matPosition.GetValue(i, 2):.5}")
+			
+		# Pixel Accuracy 설정 # Set pixel accuracy
+		if (res := photometricStereo3D.SetPixelAccuracy(70)).IsFail():
+			ErrorPrint(res, "Failed to set valid pixel accuracy.\n")
+			break
 
 		if (res := photometricStereo3D.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Photometric Stereo 3D.\n')
@@ -294,9 +299,13 @@ def main():
 		f32CenterY = fliSourceImage.GetHeight() / 2
 		f32CenterZ = fliDestinationImage.GetBuffer()[int(f32CenterY * fliSourceImage.GetWidth() + f32CenterX)]
 
+		f32CenterX *= 70;
+		f32CenterY *= 70;
+		f32CenterZ *= 70;
+
 		tp3dFrom = TPoint3[Single](f32CenterX, f32CenterY, f32CenterZ)
 		
-		f64MulNum = 800
+		f64MulNum = 30000
 
 		for i in range(i32CalibPageNum):
 			strText = ""
