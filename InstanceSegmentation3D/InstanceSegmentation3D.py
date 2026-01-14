@@ -341,6 +341,9 @@ def main():
 		eFigureOption = Enum.ToObject(CInstanceSegmentation3DDL.EInferenceResultItemSettings, int(CInstanceSegmentation3DDL.EInferenceResultItemSettings.ClassNum) | int(CInstanceSegmentation3DDL.EInferenceResultItemSettings.ClassName) | int(CInstanceSegmentation3DDL.EInferenceResultItemSettings.Objectness) | int(CInstanceSegmentation3DDL.EInferenceResultItemSettings.BoundaryRect) | int(CInstanceSegmentation3DDL.EInferenceResultItemSettings.Contour))
 		instanceSegmentation3DDL.SetInferenceResultItemSettings(eFigureOption)
 
+		# 추론 시의 Camera Calibrator 설정 # Set the camera calibrator to inference
+		instanceSegmentation3DDL.SetInferenceCameraCalibrator(flpFocalLength, flpPrincipalPoint, 1.0, mvDistortionCoefficient, EDirectionType.Decrement);
+
 		# 알고리즘 수행 # Execute the algorithm
 		if((res := instanceSegmentation3DDL.Execute()).IsFail()):
 			ErrorPrint(res, "Failed to execute.")
@@ -351,24 +354,25 @@ def main():
 		i64ResultCount = flogResult.GetObjectCount();
 
 		for i in range(i64ResultCount):
-			floResult = flogResult.GetObjectByIndex(i)
+			if instanceSegmentation3DDL.IsInferenceResultPoseMatrixEnabled(0, i):
+				floResult = flogResult.GetObjectByIndex(i)
 
-			if((res := view3DResult.PushObject(floResult)).IsFail()):
-				ErrorPrint(res, "Failed to display the 3D object.")
-				break
+				if((res := view3DResult.PushObject(floResult)).IsFail()):
+					ErrorPrint(res, "Failed to display the 3D object.")
+					break
 
-			sResult = SPoseMatrixParametersMulti()
-			tp3Min = TPoint3[Single]()
-			tp3Max = TPoint3[Single]()
-			tp3Mid = TPoint3[Double]()
+				sResult = SPoseMatrixParametersMulti()
+				tp3Min = TPoint3[Single]()
+				tp3Max = TPoint3[Single]()
+				tp3Mid = TPoint3[Double]()
 
-			floResult.GetBoundingBox(tp3Min, tp3Max)
-			tp3Mid.x = (tp3Min.x + tp3Max.x) * .5
-			tp3Mid.y = (tp3Min.y + tp3Max.y) * .5
-			tp3Mid.z = (tp3Min.z + tp3Max.z) * .5
-			# Pose Matrix 정보를 Layer 에 출력합니다. # Outputs Pose Matrix information to Layer.
-			instanceSegmentation3DDL.GetInferenceResultPoseMatrix(0, i, sResult)
-			layer3DResult.DrawText3D(tp3Mid, "[{0}]\nName: {1}\nR({2}, {3}, {4})\nRVec({5}, {6}, {7})\nT({8}, {9}, {10})\nScore: {11}\nResidual: {12}".format(i, sResult.strClassName, sResult.tp3Angle.x, sResult.tp3Angle.y, sResult.tp3Angle.z, sResult.tp3RotationVector.x, sResult.tp3RotationVector.y, sResult.tp3RotationVector.z, sResult.tp3TranslationVector.x, sResult.tp3TranslationVector.y, sResult.tp3TranslationVector.z, sResult.f64Score, sResult.f64Residual), EColor.YELLOW, EColor.BLACK)
+				floResult.GetBoundingBox(tp3Min, tp3Max)
+				tp3Mid.x = (tp3Min.x + tp3Max.x) * .5
+				tp3Mid.y = (tp3Min.y + tp3Max.y) * .5
+				tp3Mid.z = (tp3Min.z + tp3Max.z) * .5
+				# Pose Matrix 정보를 Layer 에 출력합니다. # Outputs Pose Matrix information to Layer.
+				instanceSegmentation3DDL.GetInferenceResultPoseMatrix(0, i, sResult)
+				layer3DResult.DrawText3D(tp3Mid, "[{0}]\nName: {1}\nR({2}, {3}, {4})\nRVec({5}, {6}, {7})\nT({8}, {9}, {10})\nScore: {11}\nResidual: {12}".format(i, sResult.strClassName, sResult.tp3Angle.x, sResult.tp3Angle.y, sResult.tp3Angle.z, sResult.tp3RotationVector.x, sResult.tp3RotationVector.y, sResult.tp3RotationVector.z, sResult.tp3TranslationVector.x, sResult.tp3TranslationVector.y, sResult.tp3TranslationVector.z, sResult.f64Score, sResult.f64Residual), EColor.YELLOW, EColor.BLACK)
 		
 		# 결과 이미지를 이미지 뷰에 맞게 조정합니다. # Fit the result image to the image view.
 		viewImagesBoxContour.ZoomFit()
