@@ -21,12 +21,12 @@ def main():
 	while True:
 		
 		# 알고리즘을 수행할 Source 이미지 로드 # Load the source image to execute algorithm
-		if (res := fliAfterSrcImage.Load('../../ExampleImages/RandomPageShuffle/Landscape.flif')).IsFail():
+		if (res := fliAfterSrcImage.Load('../../ExampleImages/PageReorder/Landscape.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
 		# 알고리즘 수행 결과와 비교할 Source 이미지 로드 # Load the source image to compare executing result of algorithm
-		if (res := fliBeforeSrcImage.Load('../../ExampleImages/RandomPageShuffle/Landscape.flif')).IsFail():
+		if (res := fliBeforeSrcImage.Load('../../ExampleImages/PageReorder/Landscape.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
