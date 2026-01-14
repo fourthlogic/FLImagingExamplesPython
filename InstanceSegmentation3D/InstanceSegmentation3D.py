@@ -138,19 +138,19 @@ def main():
 		#                  Align -> Font Name -> Font Alpha Value (Opaqueness) -> Cotton Alpha Value (Opaqueness) -> Font Thickness -> Font Italic
 		flpPoint = CFLPoint[Double](0, 0)
 
-		if((res := layerLearn.DrawTextCanvas(flpPoint, "LEARN & VALIDATION & INFERENCE", EColor.YELLOW, EColor.BLACK, 30)).IsFail()):
+		if((res := layerLearn.DrawTextCanvas(flpPoint, "LEARN & VALIDATION & INFERENCE", EColor.YELLOW, EColor.BLACK, 25)).IsFail()):
 			ErrorPrint(res, "Failed to draw text")
 			break
 		
-		if((res := layerValidation.DrawTextCanvas(flpPoint, "LEARN & INFERENCE DEPTH MAP", EColor.YELLOW, EColor.BLACK, 30)).IsFail()):
+		if((res := layerValidation.DrawTextCanvas(flpPoint, "LEARN & INFERENCE DEPTH MAP", EColor.YELLOW, EColor.BLACK, 25)).IsFail()):
 			ErrorPrint(res, "Failed to draw text")
 			break
 
-		if((res := layerResultLabel.DrawTextCanvas(flpPoint, "RESULT BOX CONTOUR", EColor.YELLOW, EColor.BLACK, 30)).IsFail()):
+		if((res := layerResultLabel.DrawTextCanvas(flpPoint, "RESULT BOX CONTOUR", EColor.YELLOW, EColor.BLACK, 25)).IsFail()):
 			ErrorPrint(res, "Failed to draw text")
 			break
 
-		if((res := layer3DResult.DrawTextCanvas(flpPoint, "Match 3D RESULT", EColor.YELLOW, EColor.BLACK, 30)).IsFail()):
+		if((res := layer3DResult.DrawTextCanvas(flpPoint, "MATCH 3D RESULT", EColor.YELLOW, EColor.BLACK, 25)).IsFail()):
 			ErrorPrint(res, "Failed to draw text")
 			break
 
