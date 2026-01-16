@@ -309,7 +309,7 @@ def main():
 		characterBasedOCRDL.SetInferenceResultImage(fliResultImage)
 		# 추론 결과 옵션 설정 # Set the inference result options
 		# Figure 옵션 설정 # Set the option of figures
-		characterBasedOCRDL.SetInferenceResultItemSettings(CCharacterBasedOCRDL.EInferenceResultItemSettings.ClassName_Contour)
+		characterBasedOCRDL.SetInferenceResultItemSettings(CCharacterBasedOCRDL.EInferenceResultItemSettings.ClassName_Region)
 		# 추론 시 이미지당 최대 인스턴스 개수를 256개로 설정 # Set the maximum number of instances per image to 256 during inference
 		characterBasedOCRDL.SetInferenceMaximumInstanceCount(256)
 

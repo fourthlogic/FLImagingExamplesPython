@@ -335,7 +335,7 @@ def main():
 		instanceSegmentationDL.SetInferenceResultImage(fliResultBoxContourImage)
 		# 추론 결과 옵션 설정 # Set the inference result options
 		# Figure 옵션 설정 # Set the option of figures
-		eFigureOption = Enum.ToObject(CInstanceSegmentationDL.EInferenceResultItemSettings, int(CInstanceSegmentationDL.EInferenceResultItemSettings.ClassNum) | int(CInstanceSegmentationDL.EInferenceResultItemSettings.ClassName) | int(CInstanceSegmentationDL.EInferenceResultItemSettings.Objectness) | int(CInstanceSegmentationDL.EInferenceResultItemSettings.BoundaryRect) | int(CInstanceSegmentationDL.EInferenceResultItemSettings.Contour))
+		eFigureOption = Enum.ToObject(CInstanceSegmentationDL.EInferenceResultItemSettings, int(CInstanceSegmentationDL.EInferenceResultItemSettings.ClassNum) | int(CInstanceSegmentationDL.EInferenceResultItemSettings.ClassName) | int(CInstanceSegmentationDL.EInferenceResultItemSettings.Objectness) | int(CInstanceSegmentationDL.EInferenceResultItemSettings.BoundaryRect) | int(CInstanceSegmentationDL.EInferenceResultItemSettings.Region))
 
 		instanceSegmentationDL.SetInferenceResultItemSettings(eFigureOption)
 		# Objectness Threshold 설정 # Set the obectness threshold
@@ -356,7 +356,7 @@ def main():
 		instanceSegmentationDL.SetInferenceResultImage(fliResultContourImage)
 		# 추론 결과 옵션 설정 # Set the inference result options
 		# Figure 옵션 설정 # Set the option of figures
-		eFigureOption = Enum.ToObject(CInstanceSegmentationDL.EInferenceResultItemSettings, int(CInstanceSegmentationDL.EInferenceResultItemSettings.Contour))
+		eFigureOption = Enum.ToObject(CInstanceSegmentationDL.EInferenceResultItemSettings, int(CInstanceSegmentationDL.EInferenceResultItemSettings.Region))
 
 		instanceSegmentationDL.SetInferenceResultItemSettings(eFigureOption)
 		# Objectness Threshold 설정 # Set the obectness threshold

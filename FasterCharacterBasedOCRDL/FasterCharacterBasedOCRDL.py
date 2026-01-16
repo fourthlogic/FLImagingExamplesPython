@@ -299,9 +299,8 @@ def main():
 		fasterCharacterBasedOCRDL.SetInferenceImage(fliValidationImage)
 		# 추론 결과 이미지 설정 # Set the inference result Image
 		fasterCharacterBasedOCRDL.SetInferenceResultImage(fliResultImage)
-		# 추론 결과 옵션 설정 # Set the inference result options
-		# Figure 옵션 설정 # Set the option of figures
-		fasterCharacterBasedOCRDL.SetInferenceResultItemSettings(CFasterCharacterBasedOCRDL.EInferenceResultItemSettings.ClassName_RegionType_Contour)
+		# 결과 도형 타입 설정 # Set the result figure type
+		fasterCharacterBasedOCRDL.SetInferenceResultRegionFigureType(CFasterCharacterBasedOCRDL.EInferenceResultRegionFigureType.Region)
 
 		# 알고리즘 수행 # Execute the algorithm
 		if((res := fasterCharacterBasedOCRDL.Execute()).IsFail()):
