@@ -77,7 +77,7 @@ def main():
         flrgResult1 = CFLRegion()
         f64Epsilon1 = 10.0
 
-        res, flrgResult1 = flrgSourceFig.Reduce(f64Epsilon1, True, flrgResult1)
+        res, flrgResult1 = flrgSourceFig.Reduce(f64Epsilon1, EReduceCriterion.Epsilon, flrgResult1)
 
         if res.IsFail():
             ErrorPrint(res, "Failed to calculate.")
@@ -87,7 +87,7 @@ def main():
         flrgResult2 = CFLRegion()
         f64Epsilon2 = 15.0
 
-        res, flrgResult2 = flrgSourceFig.Reduce(f64Epsilon2, True, flrgResult2)
+        res, flrgResult2 = flrgSourceFig.Reduce(f64Epsilon2, EReduceCriterion.Epsilon, flrgResult2)
 
         if res.IsFail():
             ErrorPrint(res, "Failed to calculate.")
@@ -112,12 +112,12 @@ def main():
         print(f"\n\nResult1 Region Points : \nepsilon = {f64Epsilon1:.0f}\nvertex count = {flrgResult1.GetCount()}\n\n")
 
         for i in range(flrgResult1.GetCount()):
-            print(f"[{i}] ({flrgResult1.GetAt(i).x:.3f},{flrgResult1.GetAt(i).y:.3f}\n")
+            print(f"[{i}] ({flrgResult1.GetAt(i).x:.3f},{flrgResult1.GetAt(i).y:.3f})\n")
 
         print(f"\n\nResult2 Region Points : \nepsilon = {f64Epsilon2:.0f}\nvertex count = {flrgResult2.GetCount()}\n\n")
 
         for i in range(flrgResult2.GetCount()):
-            print(f"[{i}] ({flrgResult2.GetAt(i).x:.3f},{flrgResult2.GetAt(i).y:.3f}\n")
+            print(f"[{i}] ({flrgResult2.GetAt(i).x:.3f},{flrgResult2.GetAt(i).y:.3f})\n")
 
 
         # 이미지 뷰들을 갱신 합니다. # Update the image views.
