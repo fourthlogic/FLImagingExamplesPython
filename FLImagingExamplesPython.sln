@@ -1932,6 +1932,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reorder", "Reorder", "{DCF8
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PageReverse", "PageReverse\PageReverse.pyproj", "{06C1DFF6-2C96-450E-8455-47383EC3AFCF}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Retinex", "Retinex\Retinex.pyproj", "{BF1787E9-63EA-465F-ADE3-671BBD379EFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3236,6 +3238,8 @@ Global
 		{35587E19-729C-4612-B287-6FD590A78709}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06C1DFF6-2C96-450E-8455-47383EC3AFCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{06C1DFF6-2C96-450E-8455-47383EC3AFCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF1787E9-63EA-465F-ADE3-671BBD379EFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF1787E9-63EA-465F-ADE3-671BBD379EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4192,6 +4196,7 @@ Global
 		{35587E19-729C-4612-B287-6FD590A78709} = {150E90FF-FBA2-4BC6-9590-8A13DCEE2919}
 		{DCF880E9-654F-4B70-966D-A64058BB71EC} = {7874A461-77FC-415B-A072-4698DEEB8696}
 		{06C1DFF6-2C96-450E-8455-47383EC3AFCF} = {DCF880E9-654F-4B70-966D-A64058BB71EC}
+		{BF1787E9-63EA-465F-ADE3-671BBD379EFB} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
