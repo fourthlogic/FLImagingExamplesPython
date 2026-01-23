@@ -192,7 +192,7 @@ def main():
 		instanceSegmentationDL.SetLearningStopCondition("mAP >= 0.85")
 
 		# Optimizer의 학습률 설정 # Set learning rate of Optimizer
-		optSpec.SetLearningRate(0.001)
+		optSpec.SetLearningRate(0.0001)
 
 		# 설정한 Optimizer를 InstanceSegmentation에 적용 # Apply Optimizer that we set up to InstanceSegmentation
 		instanceSegmentationDL.SetLearningOptimizerSpec(optSpec)
@@ -208,6 +208,9 @@ def main():
 		augSpec.EnableVerticalFlip(True)
 		augSpec.EnableScale(True)
 		augSpec.SetScaleParam(0.91, 1.100000, 0.91, 1.1, True, 1.0)
+		objectAugSpec = CObjectAugmentationSpec();
+		objectAugSpec.EnableAugmentation(False);
+		augSpec.SetObjectAugmentationSpec(objectAugSpec);
 
 		instanceSegmentationDL.SetLearningAugmentationSpec(augSpec)
 
