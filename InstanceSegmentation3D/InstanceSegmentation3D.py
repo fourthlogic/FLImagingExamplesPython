@@ -338,8 +338,11 @@ def main():
 		instanceSegmentation3DDL.SetInferenceResultImage(fliResultBoxContourImage)
 		# 추론 결과 옵션 설정 # Set the inference result options
 		# Figure 옵션 설정 # Set the option of figures
-		eFigureOption = Enum.ToObject(CInstanceSegmentation3DDL.EInferenceResultItemSettings, int(CInstanceSegmentation3DDL.EInferenceResultItemSettings.ClassNum) | int(CInstanceSegmentation3DDL.EInferenceResultItemSettings.ClassName) | int(CInstanceSegmentation3DDL.EInferenceResultItemSettings.Objectness) | int(CInstanceSegmentation3DDL.EInferenceResultItemSettings.BoundaryRect) | int(CInstanceSegmentation3DDL.EInferenceResultItemSettings.Region))
+		eFigureOption = Enum.ToObject(CInstanceSegmentation3DDL.EInferenceResultItemSettings, int(CInstanceSegmentation3DDL.EInferenceResultItemSettings.ClassNum) | int(CInstanceSegmentation3DDL.EInferenceResultItemSettings.ClassName) | int(CInstanceSegmentation3DDL.EInferenceResultItemSettings.Objectness))
+		eFigureType = Enum.ToObject(CInstanceSegmentation3DDL.EInferenceResultRegionFigureType, int(CInstanceSegmentation3DDL.EInferenceResultRegionFigureType.Region) | int(CInstanceSegmentation3DDL.EInferenceResultRegionFigureType.BoundaryRectangle))
+		
 		instanceSegmentation3DDL.SetInferenceResultItemSettings(eFigureOption)
+		instanceSegmentation3DDL.SetInferenceResultRegionFigureType(eFigureType);
 
 		# 추론 시의 Camera Calibrator 설정 # Set the camera calibrator to inference
 		instanceSegmentation3DDL.SetInferenceCameraCalibrator(flpFocalLength, flpPrincipalPoint, 1.0, mvDistortionCoefficient, EDirectionType.Decrement);
