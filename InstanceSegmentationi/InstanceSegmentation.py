@@ -357,7 +357,7 @@ def main():
 		instanceSegmentationDL.SetInferenceResultImage(fliResultContourImage)
 		# 추론 결과 옵션 설정 # Set the inference result options
 		# Figure 옵션 설정 # Set the option of figures
-		eFigureOption = Enum.ToObject(CInstanceSegmentationDL.EInferenceResultItemSettings, int(CInstanceSegmentationDL.EInferenceResultItemSettings.None))
+		eFigureOption = Enum.ToObject(CInstanceSegmentationDL.EInferenceResultItemSettings, 0)
 		eFigureType = Enum.ToObject(CInstanceSegmentationDL.EInferenceResultRegionFigureType, int(CInstanceSegmentationDL.EInferenceResultRegionFigureType.Region))
 		instanceSegmentationDL.SetInferenceResultItemSettings(eFigureOption)
 		instanceSegmentationDL.SetInferenceResultRegionFigureType(eFigureType);
