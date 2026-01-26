@@ -295,7 +295,7 @@ def main():
 		autoLabelerDL.SetSourceImage(fliResultAutotLabelImage)
 		autoLabelerDL.EnableOverwriting(True)
 		autoLabelerDL.EnableBatchProcessing(True)
-		autoLabelerDL.SetLabelOptions(CAutoLabelerDL.ELabelOptions.None)
+		autoLabelerDL.SetLabelOptions(Enum.ToObject(CAutoLabelerDL.ERegionFigureType, 0))
 		autoLabelerDL.SetRegionFigureType(CAutoLabelerDL.ERegionFigureType.BoundaryRectangle)
 		autoLabelerDL.SetMinimumScore(0.5)
 		autoLabelerDL.SetMinimumArea(50.0)
