@@ -184,7 +184,12 @@ def main():
 		# 자동 저장 옵션 설정 # Set Auto-Save Options
 		classifierDL.SetLearningAutoSaveSpec(autoSaveSpec)
 
-		# Augmentation Preset 설정 # Set Augmentation Preset
+		# 공통 증강 스펙 설정 # Set common Augmentation Spec
+		augCommonSpec = CAugmentationSpec()
+		augCommonSpec.EnableAugmentation(False);
+		classifierDL.SetLearningAugmentationSpec(augCommonSpec);
+
+		# 클래스 0,1 번에 대한 증강 Preset 설정 # Setting the augmentation preset for classes 0 and 1
 		augSpec1 = CAugmentationSpec()
 
 		augSpec1.EnableAugmentation(True)
@@ -203,6 +208,8 @@ def main():
 		augmentationPreset1.SetName("Class 0")
 		augmentationPreset1.SetAugmentationSpec(augSpec1)
 		classifierDL.AddLearningAugmentationPreset(augmentationPreset1)
+
+		# 클래스 2 번에 대한 증강 Preset 설정 # Setting the augmentation preset for class 2
 		augSpec2 = CAugmentationSpec()
 
 		augSpec2.EnableAugmentation(True)
@@ -230,6 +237,7 @@ def main():
 		augSpec3.EnableScale(True)
 		augSpec3.SetScaleParam(0.670000, 1.500000, 0.670000, 1.500000, True, 1.000000)
 
+		# 클래스 3 번에 대한 증강 Preset 설정 # Setting the augmentation preset for class 3
 		augmentationPreset3 = CAugmentationPreset()
 		flaClassNum3 = List[int]()
 		flaClassNum3.Add(3)
@@ -237,6 +245,8 @@ def main():
 		augmentationPreset3.SetName("Class 3")
 		augmentationPreset3.SetAugmentationSpec(augSpec3)
 		classifierDL.AddLearningAugmentationPreset(augmentationPreset3)
+
+		# 클래스 4,5 번에 대한 증강 Preset 설정 # Setting the augmentation preset for class 4
 		augSpec4 = CAugmentationSpec()
 
 		augSpec4.EnableAugmentation(True)
