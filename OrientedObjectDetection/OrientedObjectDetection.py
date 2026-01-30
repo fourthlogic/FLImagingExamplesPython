@@ -246,7 +246,7 @@ def main():
 				f32Validation = orientedObjectDetectionDL.GetLearningResultLastMeanAP()
 				# 마지막 Recall 결과 받기 # Get the last recall result
 				f32Recall = orientedObjectDetectionDL.GetLearningResultLastRecall();
-				# 마지막 검증 결과 받기 # Get the last validation result
+				# 마지막 Precision 결과 받기 # Get the last precision result
 				f32Precision = orientedObjectDetectionDL.GetLearningResultLastPrecision();
 				# 해당 epoch의 비용과 검증 결과 값 출력 # Prcost and validation value for the relevant epoch
 				if f32AvgCost < orientedObjectDetectionDL.GetLearningRequiredCostForValidation() :
@@ -282,6 +282,7 @@ def main():
 					# Graph View 데이터 입력 # Input Graph View Data
 					viewGraph.Plot(listCostHistory, EChartType.Line, EColor.RED, "Cost")
 					# Graph View 데이터 입력 # Input Graph View Data
+					viewGraph.Plot(listX, listAvgCostHistory, EChartType.Line, EColor.CYAN, "AvgCost")
 					viewGraph.Plot(listX, listMeanAPHistory, EChartType.Line, EColor.CYAN, "mAP")
 					viewGraph.Plot(listX, listRecallHistory, EChartType.Line, EColor.GREEN, "Recall")
 					viewGraph.Plot(listX, listPrecisionHistory, EChartType.Line, EColor.PURPLE, "Precision")
