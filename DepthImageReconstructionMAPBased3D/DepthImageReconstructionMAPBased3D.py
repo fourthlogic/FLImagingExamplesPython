@@ -66,6 +66,9 @@ def main():
 		# 결과 destination texture 이미지 설정 # Set the destination texture image
 		if (res := depthImageReconstructionMAPBased3D.SetDestinationTextureImage(fliTxtImage)[0]).IsFail():
 			break
+		# Destination 3D object 설정 # Set the Destination 3D object 
+		if (res := depthImageReconstructionMAPBased3D.SetDestinationObject(floDstObject)[0]).IsFail():
+			break
 
 		# Focus measure bias page index 설정 # Set the focus measure bias page index
 		if (res := depthImageReconstructionMAPBased3D.SetFMBiasPageIndex(0)).IsFail():
@@ -105,14 +108,7 @@ def main():
 		# Depth Pitch 설정 # Set the depth pitch
 		if (res := depthImageReconstructionMAPBased3D.SetDepthPitch(8.0)).IsFail():
 			break
-
-		# Destination 3D object 생성 활성화 # Enable the Destination 3D object generation
-		if (res := depthImageReconstructionMAPBased3D.Enable3DObjectGeneration(True)).IsFail():
-			break
-		# Destination 3D object 설정 # Set the Destination 3D object 
-		if (res := depthImageReconstructionMAPBased3D.SetDestinationObject(floDstObject)[0]).IsFail():
-			break
-		
+				
 		# 알고리즘 수행 # Execute the algorithm
 		if (res := depthImageReconstructionMAPBased3D.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
