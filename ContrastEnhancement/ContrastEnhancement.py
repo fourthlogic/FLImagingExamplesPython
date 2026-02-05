@@ -73,14 +73,17 @@ def main():
 		# Destination 이미지 설정 # Set the destination image
 		contrastEnhancement.SetDestinationImage(fliDestinationImage)
 
+		# Channel Method 설정 # Set the Channel Method
+		contrastEnhancement.SetChannelMethod(EChannelMethod.Combined)
+
 		# Intensity 설정 # Set the Intensity
 		contrastEnhancement.SetIntensity(10.0)
 
 		# Iteration 설정 # Set the Iteration
 		contrastEnhancement.SetIteration(10)
 
-		# Channel Method 설정 # Set the Channel Method
-		contrastEnhancement.SetChannelMethod(EChannelMethod.Combined)
+		# Gain 설정 # Set the Gain
+		contrastEnhancement.SetGain(1.0)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := contrastEnhancement.Execute()).IsFail():
