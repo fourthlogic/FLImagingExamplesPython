@@ -70,7 +70,7 @@ def main():
 			break
 
 		# ROI 설정을 위한 객체 생성 # Create ROI
-		fleROI = CFLEllipse[Double](370, 260, 100, 50, 34)
+		fleROI = CFLEllipse[Double](370, 300, 100, 130)
 
 		# Move 객체 생성 # Create Move object
 		move = CMove()
@@ -80,10 +80,12 @@ def main():
 		move.SetSourceROI(fleROI)
 		# Destination 이미지 설정 # Set the destination image
 		move.SetDestinationImage(arrFliImage[EType.Destination])
-		# Destination ROI 설정 # Set Destination ROI
-		move.SetDestinationROI(fleROI)
 		# 이동할 크기 설정 # Set movement parameter
-		move.SetMovement(15.0, 15.0)
+		move.SetMovement(-220.0, 15.0)
+		
+		# 결과를 확인하기 위한 Ellipse 객체 생성 및 위치 이동 # Create an Ellipse object and move its position to check the results
+		fleResult = CFLEllipse[Double](fleROI);
+		fleResult.Offset(-220.0, 15.0);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := move.Execute()).IsFail():
@@ -99,6 +101,10 @@ def main():
 			# ROI 디스플레이 # Display ROI
 			if (res := arrLayer[i].DrawFigureImage(fleROI, EColor.LIME)).IsFail():
 				ErrorPrint(res, 'Failed to draw figure.')
+			
+			if i == int(EType.Destination):
+				if (res := arrLayer[i].DrawFigureImage(fleResult, EColor.RED)).IsFail():
+					ErrorPrint(res, 'Failed to draw figure.')
 
 		# 텍스트 디스플레이 # Display text
 		flpZero = CFLPoint[Double](0, 0)
