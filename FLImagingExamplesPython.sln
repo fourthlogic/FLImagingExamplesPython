@@ -1942,6 +1942,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PolarTransform", "PolarTran
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "StationaryConeBeamGeneralizedCT", "StationaryConeBeamGeneralizedCT\StationaryConeBeamGeneralizedCT.pyproj", "{0DAF22C2-73B1-46CE-8E23-9A0A5454EA22}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MeasurementDL", "MeasurementDL\MeasurementDL.pyproj", "{E6BD2808-83A8-415A-8E5C-DB1A85B69E48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3256,6 +3258,8 @@ Global
 		{75BB4AF4-8B44-405E-B587-9E26CCE7FDE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DAF22C2-73B1-46CE-8E23-9A0A5454EA22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0DAF22C2-73B1-46CE-8E23-9A0A5454EA22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6BD2808-83A8-415A-8E5C-DB1A85B69E48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6BD2808-83A8-415A-8E5C-DB1A85B69E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4217,6 +4221,7 @@ Global
 		{3C441EBB-BB2E-4469-A9EB-21685EABCD1A} = {7874A461-77FC-415B-A072-4698DEEB8696}
 		{75BB4AF4-8B44-405E-B587-9E26CCE7FDE0} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
 		{0DAF22C2-73B1-46CE-8E23-9A0A5454EA22} = {C1AA632A-68DE-424A-B9C0-0CF83A6CFED1}
+		{E6BD2808-83A8-415A-8E5C-DB1A85B69E48} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
