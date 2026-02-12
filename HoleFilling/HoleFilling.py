@@ -124,7 +124,7 @@ def main():
 			ErrorPrint(res, "Failed to draw text.\n")
 			break
 		
-		flfHoleContour = holeFilling.GetSelectedPageFigureObject()
+		flfHoleContour = holeFilling.GetHoleFigure()
 		if (res := layerSrc.DrawFigureImage(flfHoleContour, EColor.CYAN)).IsFail():
 			ErrorPrint(res, "Failed to draw figure.\n")
 			break
