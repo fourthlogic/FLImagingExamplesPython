@@ -1944,6 +1944,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "StationaryConeBeamGeneraliz
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MeasurementDL", "MeasurementDL\MeasurementDL.pyproj", "{E6BD2808-83A8-415A-8E5C-DB1A85B69E48}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FLDepthImageReconstruction3D", "FLDepthImageReconstruction3D\FLDepthImageReconstruction3D.pyproj", "{76EE8B90-7CDA-43D9-93A6-0F41D0B298C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3260,6 +3262,8 @@ Global
 		{0DAF22C2-73B1-46CE-8E23-9A0A5454EA22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6BD2808-83A8-415A-8E5C-DB1A85B69E48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E6BD2808-83A8-415A-8E5C-DB1A85B69E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76EE8B90-7CDA-43D9-93A6-0F41D0B298C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76EE8B90-7CDA-43D9-93A6-0F41D0B298C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4222,6 +4226,7 @@ Global
 		{75BB4AF4-8B44-405E-B587-9E26CCE7FDE0} = {C6AFAF20-6BBB-41AA-8958-5D0515A1E3BC}
 		{0DAF22C2-73B1-46CE-8E23-9A0A5454EA22} = {C1AA632A-68DE-424A-B9C0-0CF83A6CFED1}
 		{E6BD2808-83A8-415A-8E5C-DB1A85B69E48} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
+		{76EE8B90-7CDA-43D9-93A6-0F41D0B298C0} = {8883401A-93A4-4A8D-ADCB-80D1BE5B0FAA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
