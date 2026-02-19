@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{61adbda5-0974-482b-a040-94faf68d7cb9}</ProjectGuid>
+    <ProjectGuid>{5782b3f2-7c8b-433e-a14f-7b988546ec01}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>LowLuminanceCorrectionType1.py</StartupFile>
+    <StartupFile>FLLowLuminanceCorrectionType2.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>LowLuminanceCorrectionType1</Name>
-    <RootNamespace>LowLuminanceCorrectionType1</RootNamespace>
+    <Name>FLLowLuminanceCorrectionType2</Name>
+    <RootNamespace>FLLowLuminanceCorrectionType2</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="LowLuminanceCorrectionType1.py" />
+    <Compile Include="FLLowLuminanceCorrectionType2.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

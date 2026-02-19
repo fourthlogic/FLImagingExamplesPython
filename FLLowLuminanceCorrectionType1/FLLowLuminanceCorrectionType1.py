@@ -21,7 +21,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 # Load the source image
-		if (res := fliSourceImage.Load('../../ExampleImages/LowLuminanceCorrectionType1/LowLuminanceCorrectionType1.flif')).IsFail():
+		if (res := fliSourceImage.Load('../../ExampleImages/FLLowLuminanceCorrectionType1/FLLowLuminanceCorrectionType1.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
@@ -64,21 +64,21 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
-		# Low Luminance Correction Type 1 객체 생성 # Create Low Luminance Correction Type 1 object
-		lowLuminanceCorrectionType1 = CLowLuminanceCorrectionType1()
+		# FL Low Luminance Correction Type 1 객체 생성 # Create FL Low Luminance Correction Type 1 object
+		flLowLuminanceCorrectionType1 = CFLLowLuminanceCorrectionType1()
 
 		# Source 이미지 설정 # Set the source image
-		lowLuminanceCorrectionType1.SetSourceImage(fliSourceImage)
+		flLowLuminanceCorrectionType1.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		lowLuminanceCorrectionType1.SetDestinationImage(fliDestinationImage)
+		flLowLuminanceCorrectionType1.SetDestinationImage(fliDestinationImage)
 
 		# Noise Reduction 설정 # Set noise reduction
-		lowLuminanceCorrectionType1.EnableNoiseReduction(True)
+		flLowLuminanceCorrectionType1.EnableNoiseReduction(True)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := lowLuminanceCorrectionType1.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Low Luminance Correction Type 1.')
+		if (res := flLowLuminanceCorrectionType1.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute FL Low Luminance Correction Type 1.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
