@@ -88,18 +88,18 @@ def main():
 		if (res := holeFilling.SetMaxIteration(100)).IsFail():
 			break
 		# 첫 번째 Threshold 의 채널 별 논리 연산자와 값 설정 # Set the logical operator and value for each channel of the first Threshold
-		mvThresholdCondition1 = CMultiVar[UInt64](Convert.ToUInt64(ELogicalCondition.GreaterEqual), Convert.ToUInt64(ELogicalCondition.GreaterEqual), Convert.ToUInt64(ELogicalCondition.GreaterEqual))
-		if (res := holeFilling.SetThresholdCondition(EThresholdIndex.First, mvThresholdCondition1)).IsFail():
+		mvThresholdCondition1 = CMultiVar[Int64](Convert.ToInt64(ELogicalCondition.GreaterEqual), Convert.ToInt64(ELogicalCondition.GreaterEqual), Convert.ToInt64(ELogicalCondition.GreaterEqual))
+		if (res := holeFilling.SetLogicalCondition(mvThresholdCondition1, EThresholdIndex.First)).IsFail():
 			break
-		mvThresholdValue1U64 = CMultiVar[UInt64](175, 230, 240)
-		if (res := holeFilling.SetThresholdValue(EThresholdIndex.First, mvThresholdValue1U64)).IsFail():
+		mvThresholdValue1 = CMultiVar[Double](175, 230, 240)
+		if (res := holeFilling.SetThreshold(mvThresholdValue1, EThresholdIndex.First)).IsFail():
 			break
 		# 두 번째 Threshold 의 채널 별 논리 연산자와 값 설정 # Set the logical operator and value for each channel of the second Threshold
-		mvThresholdCondition2 = CMultiVar[UInt64](Convert.ToUInt64(ELogicalCondition.Less), Convert.ToUInt64(ELogicalCondition.Less), Convert.ToUInt64(ELogicalCondition.Less))
-		if (res := holeFilling.SetThresholdCondition(EThresholdIndex.Second, mvThresholdCondition2)).IsFail():
+		mvThresholdCondition2 = CMultiVar[Int64](Convert.ToInt64(ELogicalCondition.Less), Convert.ToInt64(ELogicalCondition.Less), Convert.ToInt64(ELogicalCondition.Less))
+		if (res := holeFilling.SetLogicalCondition(mvThresholdCondition2, EThresholdIndex.Second)).IsFail():
 			break
-		mvThresholdValue2U64 = CMultiVar[UInt64](200, 240, 255)
-		if (res := holeFilling.SetThresholdValue(EThresholdIndex.Second, mvThresholdValue2U64)).IsFail():
+		mvThresholdValue2 = CMultiVar[Double](200, 240, 255)
+		if (res := holeFilling.SetThreshold(mvThresholdValue2, EThresholdIndex.Second)).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
