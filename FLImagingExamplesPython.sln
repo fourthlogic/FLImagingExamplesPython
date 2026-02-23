@@ -1946,6 +1946,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FLLowLuminanceCorrectionTyp
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FLLowLuminanceCorrectionType2", "FLLowLuminanceCorrectionType2\FLLowLuminanceCorrectionType2.pyproj", "{5782B3F2-7C8B-433E-A14F-7B988546EC01}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TiltedFocusPlaneScanReparameterization3D", "TiltedFocusPlaneScanReparameterization3D\TiltedFocusPlaneScanReparameterization3D.pyproj", "{ED65C2BA-9582-4B69-9154-407BE80F5619}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3264,6 +3266,8 @@ Global
 		{61ADBDA5-0974-482B-A040-94FAF68D7CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5782B3F2-7C8B-433E-A14F-7B988546EC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5782B3F2-7C8B-433E-A14F-7B988546EC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED65C2BA-9582-4B69-9154-407BE80F5619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED65C2BA-9582-4B69-9154-407BE80F5619}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4227,6 +4231,7 @@ Global
 		{76EE8B90-7CDA-43D9-93A6-0F41D0B298C0} = {8883401A-93A4-4A8D-ADCB-80D1BE5B0FAA}
 		{61ADBDA5-0974-482B-A040-94FAF68D7CB9} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
 		{5782B3F2-7C8B-433E-A14F-7B988546EC01} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
+		{ED65C2BA-9582-4B69-9154-407BE80F5619} = {8C1B856A-E1FA-490B-A88E-092CA27F4F51}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
