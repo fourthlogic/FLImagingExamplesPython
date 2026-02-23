@@ -361,7 +361,7 @@ def main():
 					if (listCosts.Count != 0 and i32PrevCostCount != listCosts.Count) or (listPSNRHistory.Count != 0 and i32PrevPSNRCount != listPSNRHistory.Count) or (listSSIMHistory.Count != 0 and i32PrevSSIMCount != listSSIMHistory.Count) or (listValidations.Count != 0 and i32PrevValidationCount != listValidations.Count):
 						viewGraph.LockUpdate()
 					
-						# 이전 그래프의 데이터를 삭제 # Clear previous grpah data
+						# 이전 그래프의 데이터를 삭제 # Clear previous graph data
 						viewGraph.Clear()
 						# Graph View 데이터 입력 # Input Graph View Data
 						viewGraph.Plot(listCosts, EChartType.Line, EColor.RED, "Cost")
@@ -381,7 +381,7 @@ def main():
 						# Graph View 데이터 입력 # Input Graph View Data
 						viewGraph.Plot(listX, listValidations, EChartType.Line, EColor.CYAN, "Accuracy")
 
-						# 이전 그래프의 데이터를 삭제 # Clear previous grpah data
+						# 이전 그래프의 데이터를 삭제 # Clear previous graph data
 						viewGraph.UnlockUpdate()
 						viewGraph.Invalidate()
 
