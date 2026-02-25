@@ -1950,6 +1950,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TiltedFocusPlaneScanReparam
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Pix2Pix", "Pix2Pix\Pix2Pix.pyproj", "{7BE173C5-61B9-4DC5-B597-30CFC5A9D7B9}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LinearInference", "LinearInference\LinearInference.pyproj", "{D2D640F7-7452-4712-93C5-D19423EDDAAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3272,6 +3274,8 @@ Global
 		{ED65C2BA-9582-4B69-9154-407BE80F5619}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BE173C5-61B9-4DC5-B597-30CFC5A9D7B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7BE173C5-61B9-4DC5-B597-30CFC5A9D7B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2D640F7-7452-4712-93C5-D19423EDDAAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2D640F7-7452-4712-93C5-D19423EDDAAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4237,6 +4241,7 @@ Global
 		{5782B3F2-7C8B-433E-A14F-7B988546EC01} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
 		{ED65C2BA-9582-4B69-9154-407BE80F5619} = {8C1B856A-E1FA-490B-A88E-092CA27F4F51}
 		{7BE173C5-61B9-4DC5-B597-30CFC5A9D7B9} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
+		{D2D640F7-7452-4712-93C5-D19423EDDAAB} = {9269FEB9-9F08-40B0-87AC-6EB222A916D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
