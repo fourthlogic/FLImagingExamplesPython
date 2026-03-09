@@ -77,10 +77,7 @@ def main():
         if bError:
             break
 
-        # 이미지 뷰 동기화 # Synchronize pages, and windows
-        if (res := arrViewImage[0].SynchronizePageIndex(arrViewImage[1]))[0].IsFail():
-            ErrorPrint(res[0], "Failed to synchronize view")
-            break
+        # 이미지 뷰 동기화 # Synchronize windows
         if (res := arrViewImage[0].SynchronizeWindow(arrViewImage[1]))[0].IsFail():
             ErrorPrint(res[0], "Failed to synchronize window")
             break
