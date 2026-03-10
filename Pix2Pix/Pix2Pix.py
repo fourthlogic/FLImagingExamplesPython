@@ -148,20 +148,29 @@ def main():
 			ErrorPrint(res, "Failed to synchronize window. ")
 			break
 
-		if((res := viewImageLearnInput.SynchronizeWindow(viewGraph)[0]).IsFail()):
-		
-			ErrorPrint(res, "Failed to synchronize window. ")
-			break
-		
 		# 이미지의 Page Index를 맞춤 # Synchronize the Page Index of the image view windows
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
 		if((res := viewImageLearnInput.SynchronizePageIndex(viewImageLearnTarget)[0]).IsFail()):
-		
 			ErrorPrint(res, "Failed to synchronize window. ")
 			break
 		
 		if((res := viewImageValidationInput.SynchronizePageIndex(viewImageValidationTarget)[0]).IsFail()):
+			ErrorPrint(res, "Failed to synchronize window. ")
+			break
+
+		if((res := viewImageValidationInput.SynchronizePageIndex(viewImagesSource)[0]).IsFail()):
+			ErrorPrint(res, "Failed to synchronize window. ")
+			break
+
+		if((res := viewImageLearnInput.SynchronizePointOfView(viewImageLearnTarget)[0]).IsFail()):
+			ErrorPrint(res, "Failed to synchronize window. ")
+			break
 		
+		if((res := viewImageValidationInput.SynchronizePointOfView(viewImageValidationTarget)[0]).IsFail()):
+			ErrorPrint(res, "Failed to synchronize window. ")
+			break
+
+		if((res := viewImageValidationInput.SynchronizePointOfView(viewImagesSource)[0]).IsFail()):
 			ErrorPrint(res, "Failed to synchronize window. ")
 			break
 		
