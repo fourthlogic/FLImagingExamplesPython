@@ -38,10 +38,10 @@ def main():
 		i32WindowWidth = 300
 		i32WindowHeight = 300
 
-		for i in range(i32SourceCount / 3):
+		for i in range(i32SourceCount // 3):
 			i32Height = i32WindowHeight * i
 			
-			for j in range(i32SourceCount / 2):
+			for j in range(i32SourceCount // 2):
 				i32Width = i32WindowWidth * j
 				arrSourceView[i * 3 + j].Create(10 + i32Width, 10 + i32Height, 10 + i32Width + i32WindowWidth, 10 + i32Height + i32WindowHeight)
 
