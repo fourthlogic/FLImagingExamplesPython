@@ -78,12 +78,8 @@ def main():
 		registration3D.SetDescriptorType(CRegistration3D.EDescriptorType.SHOT352)
 
 		# 반경 자동 계산 여부 설정 # Set to auto-calculate radius
-		registration3D.EnableNormalEstimationAutoRadius(False)
 		registration3D.EnableSHOTLRFAutoRadius(False)
 		registration3D.EnableSHOTAutoRadius(False)
-
-		# 법선 벡터 추정 반경 설정 # Set to normal vector estimation radius
-		registration3D.SetNormalEstimationRadius(30.000000)
 
 		# 지역 참조 프레임 추정 반경 설정 # Set to Local Reference Frame estimation radius
 		registration3D.SetSHOTLRFRadius(70.000000)
