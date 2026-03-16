@@ -62,6 +62,7 @@ def main():
 		# 피벗 설정 # Set the pivot point.
 		flpPivot = CFLPoint3[Double](-7.880958, -43.990047, 546.119202)
 		match.SetLearnPivot(flpPivot)
+		match.SetKeypointRatio(1)
 
 		if(res :=match.Learn()).IsFail() :	
 			ErrorPrint(res, "Failed to learn.\n")
