@@ -41,14 +41,56 @@ def main():
 	while True:
 		
 		strInput = ""
-
+		
+		eVendor = CDeviceCameraGenICam.EVendor.Undefined
 		eDeviceType = CDeviceGenICamTypeBase.EDeviceType.GigE
 		bAutoDetect = False
 		i32SelectDevice = -1
 		eConnectionMethod = CDeviceGenICamTypeBase.EConnectionMethod.SerialNumber
 		strConnection = ""
+
+		# 장치 벤더 선택 # Select Vendor
+		while True:
+			print("1. Basler");
+			print("2. Crevis");
+			print("3. FLIR Systems");
+			print("4. Huaray Technology");
+			print("5. Hikrobot");
+			print("6. Jai");
+			print("7. Lucid Vision Labs");
+			strInput = input("Select Vendor: ")
+
+			if(strInput.isdigit()):
+				bSelected = True
+
+				if(strInput == "1"):
+					eVendor = CDeviceCameraGenICam.EVendor.Basler
+				elif(strInput == "2"):
+					eVendor = CDeviceCameraGenICam.EVendor.Crevis
+				elif(strInput == "3"):
+					eVendor = CDeviceCameraGenICam.EVendor.FLIRSystems
+				elif(strInput == "4"):
+					eVendor = CDeviceCameraGenICam.EVendor.HuarayTechnology
+				elif(strInput == "5"):
+					eVendor = CDeviceCameraGenICam.EVendor.Hikrobot
+				elif(strInput == "6"):
+					eVendor = CDeviceCameraGenICam.EVendor.Jai
+				elif(strInput == "7"):
+					eVendor = CDeviceCameraGenICam.EVendor.LucidVisionLabs
+				else:
+					bSelected = False
+
+				if(bSelected):
+					break
+
+			print("Incorrect input. Please select again.\n")
+
+		print("")
+
+		# 장치 벤더 설정 # Set Vendor
+		camGenICam.SetVendor(eVendor)
 		
-		# 장치 타입 선택 # Set Device Type
+		# 장치 타입 선택 # Select Device Type
 		while True:
 			print("1. GigE")
 			print("2. IEEE1394")
