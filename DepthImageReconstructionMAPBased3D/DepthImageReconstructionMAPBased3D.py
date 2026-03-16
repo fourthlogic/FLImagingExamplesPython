@@ -103,10 +103,10 @@ def main():
 		if (res := depthImageReconstructionMAPBased3D.SetDirection(CDepthImageReconstructionMAPBased3D.EDirection.BottomToTop)).IsFail():
 			break
 		# Pixel Accuracy 설정 # Set the pixel accuracy
-		if (res := depthImageReconstructionMAPBased3D.SetPixelAccuracy(1.0)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetPixelAccuracy(0.10)).IsFail():
 			break
 		# Depth Pitch 설정 # Set the depth pitch
-		if (res := depthImageReconstructionMAPBased3D.SetDepthPitch(8.0)).IsFail():
+		if (res := depthImageReconstructionMAPBased3D.SetDepthPitch(0.80)).IsFail():
 			break
 				
 		# 알고리즘 수행 # Execute the algorithm
