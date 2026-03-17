@@ -184,6 +184,8 @@ def main():
 		# 학습을 종료할 조건식 설정. mAP, Precision값이 1 이상인 경우 학습 종료한다.mAP 와 metric는 동일한 값입니다.
 		# Set Conditional Expression to End Learning. If the mAP, Precision value is 1 or higher, end the learning. mAP is same value as metric.
 		instanceSegmentation3DDL.SetLearningStopCondition("epoch >= 300 & mAP >= 1 & Precision >= 1")
+		# 검증 IoU Threshold를 0.75로 설정 # Set IoU Threshold Of Validating to 0.75
+		instanceSegmentation3DDL.SetValidationIoUThreshold(0.75);
 
 		flpFocalLength = CFLPoint[Single](1000.0, 1000.0)
 		flpPrincipalPoint = CFLPoint[Single](0.0, 0.0)
@@ -222,7 +224,7 @@ def main():
 		# 저장 때문에 발생하는 속도 저하를 막기 위해 예제에서는 코드 사용법만 표시하고 옵션은 끔 # To prevent performance degradation caused by saving, the examples only demonstrate how to use the code, with the saving option disabled.
 		autoSaveSpec.EnableAutoSave(False)
 		# 저장할 모델 경로 설정 # Set Model path to save
-		autoSaveSpec.SetAutoSavePath("model.flis3")
+		autoSaveSpec.SetAutoSavePath("model.flis3ddl")
 		# 자동 저장 조건식 설정. 현재 cost값이 최소이고 accuracy값이 최대 값인 경우 저장 활성화
 		# Set auto-save conditional expressions. Enable save if the current cost value is minimum and the accumulation value is maximum
 		autoSaveSpec.SetAutoSaveCondition("map > max('map')")
