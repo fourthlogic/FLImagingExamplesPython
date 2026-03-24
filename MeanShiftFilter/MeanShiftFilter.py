@@ -52,29 +52,29 @@ def main():
 
 
 		# 알고리즘 객체 생성 # Create algorithm object
-		msf = CMeanShiftFilter()
+		meanShiftFilter = CMeanShiftFilter()
 
 		# Source 이미지 설정 # Set source image 
-		if (res := msf.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := meanShiftFilter.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
 		# Destination 이미지 설정 # Set destination image
-		if (res := msf.SetDestinationImage(fliDstImage)[0]).IsFail():
+		if (res := meanShiftFilter.SetDestinationImage(fliDstImage)[0]).IsFail():
 			break
 		# Max iteration 설정 # Set max iteration
-		if (res := msf.SetMaxIteration(1)).IsFail():
+		if (res := meanShiftFilter.SetMaxIteration(1)).IsFail():
 			break
 		# Tolerance 설정 # Set tolerance
-		if (res := msf.SetTolerance(0.0)).IsFail():
+		if (res := meanShiftFilter.SetTolerance(0.0)).IsFail():
 			break
 		# Spatial bandwidth 설정 # Set spatial bandwidth
-		if (res := msf.SetSpatialBandwidth(1)).IsFail():
+		if (res := meanShiftFilter.SetSpatialBandwidth(1)).IsFail():
 			break
 		# Range bandwidth 설정 # Set range bandwidth
-		if (res := msf.SetRangeBandwidth(200.0)).IsFail():
+		if (res := meanShiftFilter.SetRangeBandwidth(200.0)).IsFail():
 			break
 
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := (msf.Execute())).IsFail():
+		if (res := (meanShiftFilter.Execute())).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 
