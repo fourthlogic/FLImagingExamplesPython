@@ -1952,6 +1952,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ScannedObjectFusion3D", "Sc
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DeviceCameraGenICam", "DeviceCameraGenICam\DeviceCameraGenICam.pyproj", "{B37F7392-EC26-45FE-83E6-2E5E80BC6667}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PlaneEstimatorFromFeaturePoints3D", "PlaneEstimatorFromFeaturePoints3D\PlaneEstimatorFromFeaturePoints3D.pyproj", "{D4E32775-9F5A-4216-8387-96072BE75E92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3280,6 +3282,8 @@ Global
 		{5849DFD8-B5AA-4AE7-AA0E-4D5E1EFDCF41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B37F7392-EC26-45FE-83E6-2E5E80BC6667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B37F7392-EC26-45FE-83E6-2E5E80BC6667}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4E32775-9F5A-4216-8387-96072BE75E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4E32775-9F5A-4216-8387-96072BE75E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4244,6 +4248,7 @@ Global
 		{D2D640F7-7452-4712-93C5-D19423EDDAAB} = {9269FEB9-9F08-40B0-87AC-6EB222A916D5}
 		{5849DFD8-B5AA-4AE7-AA0E-4D5E1EFDCF41} = {E4D28A35-EC11-40E4-A025-1AE8E09527A2}
 		{B37F7392-EC26-45FE-83E6-2E5E80BC6667} = {6726DB7A-84EC-42E8-9F3B-0409AAF8CADE}
+		{D4E32775-9F5A-4216-8387-96072BE75E92} = {185B9BAD-D8C3-481B-BE2A-1F170F876A39}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
