@@ -54,36 +54,36 @@ def main():
 
 
 		# 알고리즘 객체 생성 # Create algorithm object
-		ac = CActiveContour()
+		activeContour = CActiveContour()
 
 		# Source 이미지 설정 # Set source image 
-		if (res := ac.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := activeContour.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
 		# Source ROI 설정 # Set Source ROI
 		flfSourceROI = CFigureUtilities.ConvertFigureStringToObject("RG[D(129.22800000000007, 126.67680000000001), D(731.22800000000007, 120.67680000000001), D(733.22800000000007, 262.67680000000001), D(253.22800000000007, 246.67680000000001), D(265.22800000000007, 600.67679999999996), D(603.22800000000007, 594.67679999999996), D(607.22800000000007, 400.67680000000001), D(403.22800000000007, 396.67680000000001), D(409.22800000000007, 448.67680000000001), D(565.22800000000007, 450.67680000000001), D(549.22800000000007, 556.67679999999996), D(289.22800000000007, 558.67679999999996), D(291.22800000000007, 292.67680000000001), D(721.22800000000007, 294.67680000000001), D(721.22800000000007, 720.67679999999996), D(119.22800000000007, 718.67679999999996), D(113.22800000000007, 142.67680000000001)]")
-		if (res := ac.SetSourceROI(flfSourceROI)).IsFail():
+		if (res := activeContour.SetSourceROI(flfSourceROI)).IsFail():
 			break
 		# Destination 이미지 설정 # Set destination image
-		if (res := ac.SetDestinationImage(fliDstImage)[0]).IsFail():
+		if (res := activeContour.SetDestinationImage(fliDstImage)[0]).IsFail():
 			break
 		# Point Count 설정 # Set Point Count
-		if (res := ac.SetPointCount(3000)).IsFail():
+		if (res := activeContour.SetPointCount(3000)).IsFail():
 			break
 		# Max Length 설정 # Set Max Length
-		if (res := ac.SetMaxLength(3)).IsFail():
+		if (res := activeContour.SetMaxLength(3)).IsFail():
 			break
 		# Low Threshold 설정 # Set Low Threshold
-		if (res := ac.SetLowThreshold(20)).IsFail():
+		if (res := activeContour.SetLowThreshold(20)).IsFail():
 			break
 		# High Threshold 설정 # Set High Threshold
-		if (res := ac.SetHighThreshold(50)).IsFail():
+		if (res := activeContour.SetHighThreshold(50)).IsFail():
 			break
 		# Fit Margin 설정 # Set Fit Margin
-		if (res := ac.SetFitMargin(3)).IsFail():
+		if (res := activeContour.SetFitMargin(3)).IsFail():
 			break
 
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := (ac.Execute())).IsFail():
+		if (res := (activeContour.Execute())).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 
@@ -92,31 +92,31 @@ def main():
 		viewImageDst.Invalidate(True)
 
 		for i32Iteration in range(0, 20):
-			ac.Fit()
-			ac.Fit()
-			ac.Fit()
-			ac.Fit()
-			ac.Fit()
-			ac.Fit()
-			ac.Fit()
-			ac.Fit()
-			ac.Fit()
-			ac.Fit()
-			ac.Spacing()
-			ac.Spacing()
-			ac.Spacing()
-			ac.Spacing()
-			ac.Spacing()
+			activeContour.Fit()
+			activeContour.Fit()
+			activeContour.Fit()
+			activeContour.Fit()
+			activeContour.Fit()
+			activeContour.Fit()
+			activeContour.Fit()
+			activeContour.Fit()
+			activeContour.Fit()
+			activeContour.Fit()
+			activeContour.Spacing()
+			activeContour.Spacing()
+			activeContour.Spacing()
+			activeContour.Spacing()
+			activeContour.Spacing()
 
 			# Push Back Figures
 			viewImageSrc.ClearFigureObject()
-			viewImageSrc.PushBackFigureObject(ac.GetContourFigure())
+			viewImageSrc.PushBackFigureObject(activeContour.GetContourFigure())
 			viewImageSrc.Invalidate(True)
 
 			CThreadUtilities.Sleep(50)
 
 
-		viewImageSrc.PushBackFigureObject(ac.GetSourceROI())
+		viewImageSrc.PushBackFigureObject(activeContour.GetSourceROI())
 		
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
