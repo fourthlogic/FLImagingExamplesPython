@@ -38,6 +38,9 @@ def main():
 		# FlatnessMeasurement3D 객체 생성 # Create FlatnessMeasurement3D object
 		flatnessMeasurement3D = CFlatnessMeasurement3D()
 
+		# Source object 설정 # Set the source object.		
+		flatnessMeasurement3D.SetSourceObject(floSourceObject)
+
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if(res := flatnessMeasurement3D.Execute()).IsFail() :	
 			ErrorPrint(res, "Failed to execute Flatness Measurement 3D.")
@@ -71,7 +74,7 @@ def main():
 		f32ResultAverageNormalAngle = flatnessMeasurement3D.GetAverageNormalAngle()
 		f32ResultNormalAngleVariance = flatnessMeasurement3D.GetNormalAngleVariance()
 
-		strResult = string.Format("Curvature : {0,6:0.000000}\nAverage Distance : {1,6:0.000000}\nDistance Variance : {2,6:0.000000}\nAverage Normal Angle : {3,6:0.000000}\nNormal Angle Variance : {4,6:0.000000}", f32ResultCurvature, f32ResultAverageDistance, f32ResultDistanceVariance, f32ResultAverageNormalAngle, f32ResultNormalAngleVariance)
+		strResult = String.Format("Curvature : {0,6:0.000000}\nAverage Distance : {1,6:0.000000}\nDistance Variance : {2,6:0.000000}\nAverage Normal Angle : {3,6:0.000000}\nNormal Angle Variance : {4,6:0.000000}", f32ResultCurvature, f32ResultAverageDistance, f32ResultDistanceVariance, f32ResultAverageNormalAngle, f32ResultNormalAngleVariance)
 
 		if(res := layer3DSource.DrawTextCanvas(flpResultPosition, strResult, EColor.YELLOW, EColor.BLACK, 15)).IsFail() :		
 			ErrorPrint(res, "Failed to draw text.\n")

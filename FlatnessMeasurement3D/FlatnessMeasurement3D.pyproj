@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{43f180db-e8f9-4844-944c-4257e60b9b65}</ProjectGuid>
+    <ProjectGuid>{c316d393-b85f-4011-ad38-9f67c659f7ff}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>FlatnessMeasurement3D.py</StartupFile>
     <SearchPath>
