@@ -86,8 +86,8 @@ def main():
 			ErrorPrint(res, "Failed to draw text.\n")
 			break
 		
-		tp3Start = TPoint3[Single]
-		tp3End = TPoint3[Single]
+		tp3Start = TPoint3[Single]()
+		tp3End = TPoint3[Single]()
 
 		heightMeasurement3D.GetResultIntersectionLine(tp3Start, tp3End)
 
@@ -105,7 +105,7 @@ def main():
 		f32ResultIntersectionLineLength = heightMeasurement3D.GetResultIntersectionLineLength()
 		tp3Increment = heightMeasurement3D.GetResultIncrement()
 
-		strResult = string.Format("Dihedral Angle : {0,6:0.000000}\nDistance : {1,6:0.000000}\nIncrement : {2,6:0.000000}, {3,6:0.000000}, {4,6:0.000000}\nIntersection Line Length : {5,6:0.000000}", f32ResultDihedralAngle, f32ResultDistance, tp3Increment.x, tp3Increment.y, tp3Increment.z, f32ResultIntersectionLineLength);
+		strResult = String.Format("Dihedral Angle : {0,6:0.000000}\nDistance : {1,6:0.000000}\nIncrement : {2,6:0.000000}, {3,6:0.000000}, {4,6:0.000000}\nIntersection Line Length : {5,6:0.000000}", f32ResultDihedralAngle, f32ResultDistance, tp3Increment.x, tp3Increment.y, tp3Increment.z, f32ResultIntersectionLineLength)
 
 		if(res := layer3DDst.DrawTextCanvas(flpResultPosition, strResult, EColor.YELLOW, EColor.BLACK, 15)).IsFail() :		
 			ErrorPrint(res, "Failed to draw text.\n")
