@@ -93,7 +93,7 @@ def main():
 			break
 
 		# 인식할 문자의 유니코드 여부를 설정
-		if (res := ocr.EnableRecognizingUnicodeByteCharacter(True)).IsFail():
+		if (res := ocr.EnableRecognizingUnicodeCharacter(True)).IsFail():
 			ErrorPrint(res, 'Failed to Enable unicode byte character.')
 			break
 

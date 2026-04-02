@@ -134,7 +134,7 @@ def main():
 		ocr.SetRecognizingMaximumCharacterCount(14)
 
 		# 인식할 문자의 유니코드 여부를 설정
-		ocr.EnableRecognizingUnicodeByteCharacter(True)
+		ocr.EnableRecognizingUnicodeCharacter(True)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := ocr.Execute()).IsFail():
