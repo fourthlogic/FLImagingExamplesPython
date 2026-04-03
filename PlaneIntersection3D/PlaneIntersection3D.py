@@ -14,7 +14,8 @@ def main():
 	floMeasurementObject = CFL3DObject()
 	floReferenceObject = CFL3DObject()
 
-	# 3D 뷰 선언 # Declare 3D view		
+	# 3D 뷰 선언 # Declare 3D view	
+	view3DDestination = CGUIView3D()
 	view3DReference = CGUIView3D()
 	view3DMeasurement = CGUIView3D()
 
@@ -31,7 +32,8 @@ def main():
 
 		# 3D 뷰 생성 # Create the 3D view
 		if(res := view3DReference.Create(0, 0, 512, 512)).IsFail() or \
-		   (res := view3DMeasurement.Create(512, 0, 1024, 512)).IsFail() :		
+		   (res := view3DMeasurement.Create(512, 0, 1024, 512)).IsFail() or \
+		   (res := view3DDestination.Create(1024, 0, 1536, 512)).IsFail() :		
 			ErrorPrint(res, "Failed to create the 3D view.\n")
 			break
 		
@@ -40,24 +42,26 @@ def main():
 			ErrorPrint(res, "Failed to display the 3D object.\n")
 			break
 		
-		# HeightMeasurement3D 객체 생성 # Create HeightMeasurement3D object
-		heightMeasurement3D = CHeightMeasurement3D()
+		# PlaneIntersection3D 객체 생성 # Create PlaneIntersection3D object
+		planeIntersection3D = CPlaneIntersection3D()
 		# Reference plane 설정 # Set the reference plane
-		heightMeasurement3D.SetReferencePlane(floReferenceObject)
+		planeIntersection3D.SetReferencePlane(floReferenceObject)
 		# Measurement plane 설정 # Set the measurement plane
-		heightMeasurement3D.SetMeasurementPlane(floMeasurementObject)
+		planeIntersection3D.SetMeasurementPlane(floMeasurementObject)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if(res := heightMeasurement3D.Execute()).IsFail() :	
-			ErrorPrint(res, "Failed to execute Height Measurement 3D.")
+		if(res := planeIntersection3D.Execute()).IsFail() :	
+			ErrorPrint(res, "Failed to execute Plane Intersection 3D.")
 			break
 		
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately		
+		layer3DDst = view3DDestination.GetLayer(0)
 		layer3DReference = view3DReference.GetLayer(0)
 		layer3DMeasurement = view3DMeasurement.GetLayer(0)
 		
 		# 기존에 Layer에 그려진 도형들을 삭제 # Clear the figures drawn on the existing layer
+		layer3DDst.Clear()
 		layer3DReference.Clear()
 		layer3DMeasurement.Clear()
 
@@ -70,37 +74,46 @@ def main():
 		flpLeftTop = CFLPoint[Double]()
 		flpResultPosition = CFLPoint[Double](0, 30)
 
-		if(res := layer3DReference.DrawTextCanvas(flpLeftTop, "Reference Object", EColor.YELLOW, EColor.BLACK, 20)).IsFail() :		
+		if(res := layer3DReference.DrawTextCanvas(flpLeftTop, "Reference Plane", EColor.YELLOW, EColor.BLACK, 20)).IsFail() :		
 			ErrorPrint(res, "Failed to draw text.\n")
 			break
 		
-		if(res := layer3DMeasurement.DrawTextCanvas(flpLeftTop, "Measurement Object", EColor.YELLOW, EColor.BLACK, 20)).IsFail() :		
+		if(res := layer3DMeasurement.DrawTextCanvas(flpLeftTop, "Measurement Plane", EColor.YELLOW, EColor.BLACK, 20)).IsFail() :		
+			ErrorPrint(res, "Failed to draw text.\n")
+			break
+
+		if(res := layer3DDst.DrawTextCanvas(flpLeftTop, "Destination 3D View", EColor.YELLOW, EColor.BLACK, 20)).IsFail() :		
 			ErrorPrint(res, "Failed to draw text.\n")
 			break
 		
-		f32ResultDihedralAngle = heightMeasurement3D.GetResultDihedralAngle()
-		f32ResultDistance = heightMeasurement3D.GetResultDistance()
-		f32ResultMeasurementToReference = heightMeasurement3D.GetResultReferenceToMeasurementDistance()
-		f32ResultReferenceToMeasurement = heightMeasurement3D.GetResultMeasurementToReferenceDistance()
-		tp3Increment = heightMeasurement3D.GetResultIncrement()
+		tp3Start = TPoint3[Single]()
+		tp3End = TPoint3[Single]()
 
-		strResult = String.Format("Dihedral Angle : {0,6:0.000000}\nDistance : {1,6:0.000000}\nIncrement : {2,6:0.000000}, {3,6:0.000000}, {4,6:0.000000}\nMeasurement To Reference : {5,6:0.000000}\nReference To Measurement : {6,6:0.000000}", f32ResultDihedralAngle, f32ResultDistance, tp3Increment.x, tp3Increment.y, tp3Increment.z, f32ResultMeasurementToReference, f32ResultReferenceToMeasurement)
+		planeIntersection3D.GetResultIntersectionLine(tp3Start, tp3End)
 
-		if(res := layer3DMeasurement.DrawTextCanvas(flpResultPosition, strResult, EColor.YELLOW, EColor.BLACK, 15)).IsFail() :		
-			ErrorPrint(res, "Failed to draw text.\n")
+		viewObjLine = CGUIView3DObjectLine(tp3Start, tp3End, EColor.LIGHTGREEN, 3, EGUIViewImagePenStyle.Solid)
+
+		# 3D 오브젝트 뷰에 결과 오브젝트 디스플레이
+		if(res := view3DDestination.PushObject(floReferenceObject)).IsFail() or \
+		   (res := view3DDestination.PushObject(floMeasurementObject)).IsFail() or \
+		   (res := view3DDestination.PushObject(viewObjLine)).IsFail():
+			ErrorPrint(res, "Failed to set object on the 3D View.\n")
 			break		
 
 		view3DMeasurement.ZoomFit()
+		view3DDestination.ZoomFit()
 		view3DReference.ZoomFit()
             	
 		# 3D 뷰를 갱신 합니다. # Update 3d view
 		view3DMeasurement.Invalidate(True)
 		view3DReference.Invalidate(True)
+		view3DDestination.Invalidate(True)
 
-		view3DReference.SynchronizePointOfView(view3DMeasurement)
+		view3DDestination.SynchronizePointOfView(view3DReference)
+		view3DDestination.SynchronizePointOfView(view3DMeasurement)
 
 		# 이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 # Wait for the image and 3D view to close
-		while view3DReference.IsAvailable() and view3DMeasurement.IsAvailable() :
+		while view3DReference.IsAvailable() and view3DDestination.IsAvailable() and view3DMeasurement.IsAvailable() :
 			CThreadUtilities.Sleep(1)
 
 		break
