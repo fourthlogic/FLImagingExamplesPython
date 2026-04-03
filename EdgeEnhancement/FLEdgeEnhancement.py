@@ -65,7 +65,7 @@ def main():
 			break
 
 		# Edge Enahcement 객체 생성 # Create Edge Enahcement object
-		edgeEnhancement = CEdgeEnhancement()
+		edgeEnhancement = CFLEdgeEnhancement()
 
 		# Source 이미지 설정 # Set the source image
 		edgeEnhancement.SetSourceImage(arrFliImage[0])
