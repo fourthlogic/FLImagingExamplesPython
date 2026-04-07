@@ -52,29 +52,29 @@ def main():
 
 
 		# 알고리즘 객체 생성 # Create algorithm object
-		nms = CNonMaximumSuppression()
+		nonMaximumSuppression = CNonMaximumSuppression()
 
 		# Source 이미지 설정 # Set source image 
-		if (res := nms.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := nonMaximumSuppression.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
 		# Destination 이미지 설정 # Set destination image
-		if (res := nms.SetDestinationImage(fliDstImage)[0]).IsFail():
+		if (res := nonMaximumSuppression.SetDestinationImage(fliDstImage)[0]).IsFail():
 			break
 		# Filter 설정 # Set Filter
-		if (res := nms.SetFilter(CNonMaximumSuppression.EFilter.Sobel)).IsFail():
+		if (res := nonMaximumSuppression.SetFilter(CNonMaximumSuppression.EFilter.Sobel)).IsFail():
 			break
 		# Grayscale 옵션 설정 # Set grayscale option
-		if (res := nms.EnableGrayscale(False)).IsFail():
+		if (res := nonMaximumSuppression.EnableGrayscale(False)).IsFail():
 			break
 		# Conflict Handling Method 설정 # Set conflict handling method
-		if (res := nms.SetConflictHandlingMethod(CNonMaximumSuppression.EConflictHandlingMethod.KeepAll)).IsFail():
+		if (res := nonMaximumSuppression.SetConflictHandlingMethod(CNonMaximumSuppression.EConflictHandlingMethod.KeepAll)).IsFail():
 			break
 		# NMS Interpolation Method 설정 # Set NMS interpolation method
-		if (res := nms.SetNMSInterpolationMethod(CNonMaximumSuppression.ENMSInterpolationMethod.NearestNeighbor)).IsFail():
+		if (res := nonMaximumSuppression.SetNMSInterpolationMethod(CNonMaximumSuppression.ENMSInterpolationMethod.NearestNeighbor)).IsFail():
 			break
 
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := (nms.Execute())).IsFail():
+		if (res := (nonMaximumSuppression.Execute())).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 				

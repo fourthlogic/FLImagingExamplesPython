@@ -57,26 +57,26 @@ def main():
 
 		
 		# 알고리즘 객체 생성 # Create algorithm object
-		bfg = CBilateralFilterGrid()
+		bilateralFilterGrid = CBilateralFilterGrid()
 
 		# Source 이미지 설정 # Set the source image
-		if (res := bfg.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := bilateralFilterGrid.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
 		# Destination 이미지 설정 # Set the destination image
-		if (res := bfg.SetDestinationImage(fliDstImage)[0]).IsFail():
+		if (res := bilateralFilterGrid.SetDestinationImage(fliDstImage)[0]).IsFail():
 			break
 		# Sampling Rate Spatial 설정 # Set the sampling rate spatial
-		if (res := bfg.SetSamplingRateSpatial(2)).IsFail():
+		if (res := bilateralFilterGrid.SetSamplingRateSpatial(2)).IsFail():
 			break
 		# Sampling Rate Range 설정 # Set the sampling rate range
-		if (res := bfg.SetSamplingRateRange(0.5)).IsFail():
+		if (res := bilateralFilterGrid.SetSamplingRateRange(0.5)).IsFail():
 			break
 		# Padding Method 설정 # Set the padding method
-		if (res := bfg.SetPaddingMethod(EPaddingMethod.DecreasingKernel)).IsFail():
+		if (res := bilateralFilterGrid.SetPaddingMethod(EPaddingMethod.DecreasingKernel)).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := bfg.Execute()).IsFail():
+		if (res := bilateralFilterGrid.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 

@@ -52,34 +52,34 @@ def main():
 
 		
 		# 알고리즘 객체 생성 # Create algorithm object
-		ht = CHysteresisThreshold()
+		hysteresisThreshold = CHysteresisThreshold()
 
 		# Source 이미지 설정 # Set source image 
-		if (res := ht.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := hysteresisThreshold.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
 		# Destination 이미지 설정 # Set destination image
-		if (res := ht.SetDestinationImage(fliDstImage)[0]).IsFail():
+		if (res := hysteresisThreshold.SetDestinationImage(fliDstImage)[0]).IsFail():
 			break
 		# Max Length 설정 # Set Max Length
-		if (res := ht.SetMaxLength(100)).IsFail():
+		if (res := hysteresisThreshold.SetMaxLength(100)).IsFail():
 			break
 		# Output Mode 설정 # Set Output Mode
-		if (res := ht.SetOutputMode(CHysteresisThreshold.EOutputMode.Binary)).IsFail():
+		if (res := hysteresisThreshold.SetOutputMode(CHysteresisThreshold.EOutputMode.Binary)).IsFail():
 			break
 		# Logical Condition Of Channels 설정 # Set Logical Condition Of Channels
-		if (res := ht.SetLogicalConditionOfChannels(ELogicalConditionOfChannels.And)).IsFail():
+		if (res := hysteresisThreshold.SetLogicalConditionOfChannels(ELogicalConditionOfChannels.And)).IsFail():
 			break
 		# Low Threshold 설정 # Set Low Threshold
 		mvLowThreshold = CMultiVar[Double](110)
-		if (res := ht.SetLowThreshold(mvLowThreshold)).IsFail():
+		if (res := hysteresisThreshold.SetLowThreshold(mvLowThreshold)).IsFail():
 			break
 		# High Threshold 설정 # Set High Threshold
 		mvHighThreshold = CMultiVar[Double](190)
-		if (res := ht.SetHighThreshold(mvHighThreshold)).IsFail():
+		if (res := hysteresisThreshold.SetHighThreshold(mvHighThreshold)).IsFail():
 			break
 
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := (ht.Execute())).IsFail():
+		if (res := (hysteresisThreshold.Execute())).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 
