@@ -1970,6 +1970,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PlaneIntersection3D", "Plan
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FL Edge Enhancement", "FL Edge Enhancement", "{28D08F94-F4C9-4D8F-AF66-F90049570E5B}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PointCloudClustering3D", "PointCloudClustering3D\PointCloudClustering3D.pyproj", "{BF5F8FAF-BEF3-461B-9532-E89D714D84A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3312,6 +3314,8 @@ Global
 		{A4AD9190-907D-44CD-BE69-640B95C762C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF9C7B3B-C5C4-4636-B090-156A19057A83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EF9C7B3B-C5C4-4636-B090-156A19057A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF5F8FAF-BEF3-461B-9532-E89D714D84A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF5F8FAF-BEF3-461B-9532-E89D714D84A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4285,6 +4289,7 @@ Global
 		{A4AD9190-907D-44CD-BE69-640B95C762C0} = {AB556765-01B7-48C6-9CAC-20D03284055D}
 		{EF9C7B3B-C5C4-4636-B090-156A19057A83} = {185B9BAD-D8C3-481B-BE2A-1F170F876A39}
 		{28D08F94-F4C9-4D8F-AF66-F90049570E5B} = {6CBBF795-4533-4B7D-B631-121591A38E26}
+		{BF5F8FAF-BEF3-461B-9532-E89D714D84A7} = {6A8EBDEC-1656-4BD2-B077-70083281C5D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
