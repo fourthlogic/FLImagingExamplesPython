@@ -1972,6 +1972,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PointCloudClustering3D", "P
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FLFringePatternDefectDetector", "FLFringePatternDefectDetector\FLFringePatternDefectDetector.pyproj", "{8B3DD104-6361-44A1-A089-A8A981182479}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DeviceLaserProfileSensorLMI", "DeviceLaserProfileSensorLMI\DeviceLaserProfileSensorLMI.pyproj", "{164DE951-C0EF-422A-9B2C-0EB7BAFD9A53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3316,6 +3318,8 @@ Global
 		{BF5F8FAF-BEF3-461B-9532-E89D714D84A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B3DD104-6361-44A1-A089-A8A981182479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8B3DD104-6361-44A1-A089-A8A981182479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{164DE951-C0EF-422A-9B2C-0EB7BAFD9A53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{164DE951-C0EF-422A-9B2C-0EB7BAFD9A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4290,6 +4294,7 @@ Global
 		{28D08F94-F4C9-4D8F-AF66-F90049570E5B} = {6CBBF795-4533-4B7D-B631-121591A38E26}
 		{BF5F8FAF-BEF3-461B-9532-E89D714D84A7} = {6A8EBDEC-1656-4BD2-B077-70083281C5D1}
 		{8B3DD104-6361-44A1-A089-A8A981182479} = {C173F22D-EE74-4BFD-9966-0C8282BF5BBD}
+		{164DE951-C0EF-422A-9B2C-0EB7BAFD9A53} = {F13892E2-1722-440D-956C-3502AC4FF174}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
