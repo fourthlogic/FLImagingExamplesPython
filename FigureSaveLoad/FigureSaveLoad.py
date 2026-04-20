@@ -44,9 +44,9 @@ def main():
         # Figure 생성 # Create figure
         flr = CFLRect[Double](50, 50, 100, 100)
 
-        flc = CFLCircle[Double](150.0, 100.0, 30.0, 0.0, 0.0, 80.0, EArcClosingMethod.Center)
+        flc = CFLCircle[Double](150.0, 100.0, 30.0, 0.0, 0.0, 80.0, ERadialShapeType.Sector)
 
-        fle = CFLEllipse[Double](300, 150, 100, 50, 0, 180, 60, EArcClosingMethod.EachOther)
+        fle = CFLEllipse[Double](300, 150, 100, 50, 0, 180, 60, ERadialShapeType.Segment)
 
         flfa = CFLFigureArray()
 

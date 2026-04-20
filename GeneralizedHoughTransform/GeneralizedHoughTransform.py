@@ -40,7 +40,7 @@ def main():
 		# Source 이미지 설정 # Set the source image
 		generalizedHoughTransform.SetSourceImage(fliSrcImage)
 
-		flfPatternROI = CFLCircle[int](575, 755, 71, 0, 0, 360, EArcClosingMethod.EachOther)
+		flfPatternROI = CFLCircle[int](575, 755, 71, 0, 0, 360, ERadialShapeType.Segment)
 		generalizedHoughTransform.SetPatternROI(flfPatternROI)
 
 		# Threshold 값 설정 # Set Threshold value

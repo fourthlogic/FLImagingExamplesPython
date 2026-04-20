@@ -177,7 +177,7 @@ def main():
 			break
 		
 		# Calibration Circle ROI 설정 # Set calibration circle ROI settings
-		if (res := photometricStereo3D.SetCalibrationCircleROI(CFLCircle[Double](117.210526, 104.842105, 78.736842, 0.000000, 0.000000, 360.000000, EArcClosingMethod.EachOther))).IsFail():
+		if (res := photometricStereo3D.SetCalibrationCircleROI(CFLCircle[Double](117.210526, 104.842105, 78.736842, 0.000000, 0.000000, 360.000000, ERadialShapeType.Segment))).IsFail():
 			ErrorPrint(res, 'Failed to set Calibration Circle ROI.\n')
 			break
 		

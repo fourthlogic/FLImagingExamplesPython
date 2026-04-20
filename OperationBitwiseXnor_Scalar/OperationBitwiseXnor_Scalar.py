@@ -74,7 +74,7 @@ def main():
 		operationBitwiseXnor.SetDestinationImage(fliDestinationImage)
 
 		# ROI 범위 설정 # Set the ROI value
-		flcSourceROI = CFLCircle[Double](128, 128, 80, 0, 0, 360, EArcClosingMethod.EachOther)
+		flcSourceROI = CFLCircle[Double](128, 128, 80, 0, 0, 360, ERadialShapeType.Segment)
 
 		# Source 이미지의 ROI 지정 # Set the Source ROI
 		operationBitwiseXnor.SetSourceROI(flcSourceROI)

@@ -38,7 +38,7 @@ def main():
 		fuzzyEntropy = CFuzzyEntropy()
 
 		# ROI 범위 설정 # Set the ROI value
-		flcROI = CFLCircle[Double](310.466830, 81.769042, 81.769042, 0.000000, 0.000000, 360.000000, EArcClosingMethod.EachOther)
+		flcROI = CFLCircle[Double](310.466830, 81.769042, 81.769042, 0.000000, 0.000000, 360.000000, ERadialShapeType.Segment)
 
 		# Source 이미지 설정 # Set the source image
 		fuzzyEntropy.SetSourceImage(fliSourceImage)

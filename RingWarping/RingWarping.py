@@ -66,7 +66,7 @@ def main():
 		ringWarping.SetSourceImage(fliSourceImage)
 
 		# Source 이미지 연산 영역 설정 # Set the source ROI
-		fldSourceROI = CFLDoughnut[Double](257.071130, 257.071130, 216.368201, 118.521494, 0.000000, -17.159659, 213.494067, EArcClosingMethod.Center)
+		fldSourceROI = CFLDoughnut[Double](257.071130, 257.071130, 216.368201, 118.521494, 0.000000, -17.159659, 213.494067, ERadialShapeType.Sector)
 		ringWarping.SetSourceROI(fldSourceROI)
 
 		# Destination 이미지 설정 # Set the destination image
