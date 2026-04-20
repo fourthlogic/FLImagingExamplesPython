@@ -21,7 +21,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 # Load the source image
-		if (res := fliSourceImage.Load('../../ExampleImages/FringePatternDefectDetector/Source.flif')).IsFail():
+		if (res := fliSourceImage.Load('../../ExampleImages/FLFringePatternDefectDetector/Source.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
@@ -59,36 +59,36 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize view.')
 			break
 
-		# Fringe Pattern Defect Detector 객체 생성 # Create Fringe Pattern Defect Detector object
-		fringePatternDefectDetector = CFringePatternDefectDetector()
+		# FL Fringe Pattern Defect Detector 객체 생성 # Create FL Fringe Pattern Defect Detector object
+		flFringePatternDefectDetector = CFLFringePatternDefectDetector()
 
 		# Source 이미지 설정 # Set the source image
-		fringePatternDefectDetector.SetSourceImage(fliSourceImage)
+		flFringePatternDefectDetector.SetSourceImage(fliSourceImage)
 
 		# Destination 이미지 설정 # Set the destination image
-		fringePatternDefectDetector.SetDestinationImage(fliDestinationImage)
+		flFringePatternDefectDetector.SetDestinationImage(fliDestinationImage)
 
 		# 대비 계수 설정 # Set contrast coefficient
-		fringePatternDefectDetector.SetContrastCoefficient(5)
+		flFringePatternDefectDetector.SetContrastCoefficient(5)
 
 		# 디노이징 진폭 설정 # Set denoising amplitude
-		fringePatternDefectDetector.SetDenoisingAmplitude(30)
+		flFringePatternDefectDetector.SetDenoisingAmplitude(30)
 
 		# 선명도 설정 # Set clearity
-		fringePatternDefectDetector.SetClearity(3)
+		flFringePatternDefectDetector.SetClearity(3)
 
 		# 밝기 계수 설정 # Set brightness coefficient
-		fringePatternDefectDetector.SetBrightnessCoefficient(1)
+		flFringePatternDefectDetector.SetBrightnessCoefficient(1)
 
 		# Mura 탐지 모드 설정 # Set mura detecting mode
-		fringePatternDefectDetector.EnableMura(False);
+		flFringePatternDefectDetector.EnableMura(False);
 
 		# Mura 반복 횟수 설정 # Set mura iteration
-		fringePatternDefectDetector.SetMuraIteration(2);
+		flFringePatternDefectDetector.SetMuraIteration(2)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := fringePatternDefectDetector.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute Fringe Pattern Defect Detector.')
+		if (res := flFringePatternDefectDetector.Execute()).IsFail():
+			ErrorPrint(res, 'Failed to execute FL Fringe Pattern Defect Detector.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
