@@ -118,9 +118,7 @@ def main():
 		validationImageExtractorDL.SetDatasetType(CValidationImageExtractorDL.EDatasetType.SemanticSegmentation)
 		# Validation Image 비율 설정 # Set ratio of validation image
 		validationImageExtractorDL.SetValidationRatio(0.4)
-		# Validation Set에 최소한 몇 개의 클래스가 1개 이상 씩 포함될 것인지 설정 # Set how many classes each will be included in the Validation Set
-		validationImageExtractorDL.SetMinimumClassesIncluded(2)
-
+	
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := validationImageExtractorDL.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Validation Image Extractor DL.')
