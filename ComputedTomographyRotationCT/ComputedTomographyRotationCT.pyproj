@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0daf22c2-73b1-46ce-8e23-9a0a5454ea22}</ProjectGuid>
+    <ProjectGuid>{baddb00c-451f-462d-a2d7-dff324547ee4}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>StationaryConeBeamGeneralizedCT.py</StartupFile>
+    <StartupFile>ComputedTomographyRotationCT.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>StationaryConeBeamGeneralizedCT</Name>
-    <RootNamespace>StationaryConeBeamGeneralizedCT</RootNamespace>
+    <Name>ComputedTomographyRotationCT</Name>
+    <RootNamespace>ComputedTomographyRotationCT</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="StationaryConeBeamGeneralizedCT.py" />
+    <Compile Include="ComputedTomographyRotationCT.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
