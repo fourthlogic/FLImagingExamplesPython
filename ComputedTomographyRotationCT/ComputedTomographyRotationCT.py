@@ -25,7 +25,7 @@ def main():
 
 	while True:
 		# 이미지 로드 # Load image
-		if (res := fliSrcImage.Load("../../ExampleImages/StationaryConeBeamRotationCT/")).IsFail():
+		if (res := fliSrcImage.Load("../../ExampleImages/ComputedTomographyRotationCT/")).IsFail():
 			ErrorPrint(res, "Failed to load the image file.\n")
 			break
 
@@ -46,84 +46,84 @@ def main():
 
 
 		# 알고리즘 객체 생성 # Create algorithm object
-		stationaryConeBeamRotationCT = CStationaryConeBeamRotationCT()
+		computedTomographyRotationCT = CComputedTomographyRotationCT()
 		
-		if (res := stationaryConeBeamRotationCT.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := computedTomographyRotationCT.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
-		if (res := stationaryConeBeamRotationCT.SetDestinationImage(fliDstImage)[0]).IsFail():
+		if (res := computedTomographyRotationCT.SetDestinationImage(fliDstImage)[0]).IsFail():
 			break
-		if (res := stationaryConeBeamRotationCT.SetDestinationObject(floDestination)[0]).IsFail():
+		if (res := computedTomographyRotationCT.SetDestinationObject(floDestination)[0]).IsFail():
 			break
 
-		if((res := stationaryConeBeamRotationCT.SetDetectorCellXSize(0.248046875)).IsFail()):
+		if((res := computedTomographyRotationCT.SetDetectorCellXSize(0.248046875)).IsFail()):
 			break
-		if((res := stationaryConeBeamRotationCT.SetDetectorCellYSize(0.248046875)).IsFail()):
+		if((res := computedTomographyRotationCT.SetDetectorCellYSize(0.248046875)).IsFail()):
 			break
-		if((res := stationaryConeBeamRotationCT.SetSourceDetectorDistance(597.00)).IsFail()):
+		if((res := computedTomographyRotationCT.SetSourceDetectorDistance(597.00)).IsFail()):
 			break
-		if((res := stationaryConeBeamRotationCT.SetObjectTotalRotationAngle(360.00)).IsFail()):
+		if((res := computedTomographyRotationCT.SetObjectTotalRotationAngle(360.00)).IsFail()):
 			break
 
 		tpObjectLocation = TPoint3[Double]()
 		tpObjectLocation.x = 0.00
 		tpObjectLocation.y = 0.00
 		tpObjectLocation.z = 28.6333
-		if((res := stationaryConeBeamRotationCT.SetObjectLocation(tpObjectLocation)).IsFail()):
+		if((res := computedTomographyRotationCT.SetObjectLocation(tpObjectLocation)).IsFail()):
 			break
 
 		tpObjectEulerAngle = TPoint3[Double]()
 		tpObjectEulerAngle.x = 35.00
 		tpObjectEulerAngle.y = 0.00
 		tpObjectEulerAngle.z = 0.00
-		if((res := stationaryConeBeamRotationCT.SetObjectEulerAngle(tpObjectEulerAngle)).IsFail()):
+		if((res := computedTomographyRotationCT.SetObjectEulerAngle(tpObjectEulerAngle)).IsFail()):
 			break
 
 		tpObjectVoxelSize = TPoint3[Double]()
 		tpObjectVoxelSize.x = 0.01
 		tpObjectVoxelSize.y = 0.01
 		tpObjectVoxelSize.z = 0.01
-		if((res := stationaryConeBeamRotationCT.SetObjectVoxelSize(tpObjectVoxelSize)).IsFail()):
+		if((res := computedTomographyRotationCT.SetObjectVoxelSize(tpObjectVoxelSize)).IsFail()):
 			break
 
 		tpObjectVoxelCount = TPoint3[int]()
 		tpObjectVoxelCount.x = 200
 		tpObjectVoxelCount.y = 60
 		tpObjectVoxelCount.z = 200
-		if((res := stationaryConeBeamRotationCT.SetObjectVoxelCount(tpObjectVoxelCount)).IsFail()):
+		if((res := computedTomographyRotationCT.SetObjectVoxelCount(tpObjectVoxelCount)).IsFail()):
 			break
 
-		if((res := stationaryConeBeamRotationCT.SetDetectorNormalizer(0.00483)).IsFail()):
+		if((res := computedTomographyRotationCT.SetDetectorNormalizer(0.00483)).IsFail()):
 			break
-		if((res := stationaryConeBeamRotationCT.EnableFrequencyRampFilter(True)).IsFail()):
+		if((res := computedTomographyRotationCT.EnableFrequencyRampFilter(True)).IsFail()):
 			break
-		if((res := stationaryConeBeamRotationCT.SetFrequencyWindow(CStationaryConeBeamRotationCT.EFrequencyWindow.Gaussian)).IsFail()):
+		if((res := computedTomographyRotationCT.SetFrequencyWindow(CComputedTomographyRotationCT.EFrequencyWindow.Gaussian)).IsFail()):
 			break
-		if((res := stationaryConeBeamRotationCT.SetSigma(0.50)).IsFail()):
+		if((res := computedTomographyRotationCT.SetSigma(0.50)).IsFail()):
 			break
 
-		if((res := stationaryConeBeamRotationCT.EnableCircularMask(True)).IsFail()):
+		if((res := computedTomographyRotationCT.EnableCircularMask(True)).IsFail()):
 			break
-		if((res := stationaryConeBeamRotationCT.SetCircularMaskRadius(1.00)).IsFail()):
+		if((res := computedTomographyRotationCT.SetCircularMaskRadius(1.00)).IsFail()):
 			break
-		if((res := stationaryConeBeamRotationCT.SetOutputFormat(CStationaryConeBeamRotationCT.EOutputFormat.U8)).IsFail()):
+		if((res := computedTomographyRotationCT.SetOutputFormat(CComputedTomographyRotationCT.EOutputFormat.U8)).IsFail()):
 			break
-		if((res := stationaryConeBeamRotationCT.SetSigmoidB(4000.00)).IsFail()):
+		if((res := computedTomographyRotationCT.SetSigmoidB(4000.00)).IsFail()):
 			break
-		if((res := stationaryConeBeamRotationCT.SetSigmoidM(0.00)).IsFail()):
+		if((res := computedTomographyRotationCT.SetSigmoidM(0.00)).IsFail()):
 			break
-		if((res := stationaryConeBeamRotationCT.SetIntensityThreshold(210)).IsFail()):
+		if((res := computedTomographyRotationCT.SetIntensityThreshold(210)).IsFail()):
 			break
-		if((res := stationaryConeBeamRotationCT.SetSlicingPlane(CStationaryConeBeamRotationCT.ESlicingPlane.Transverse)).IsFail()):
+		if((res := computedTomographyRotationCT.SetSlicingPlane(CComputedTomographyRotationCT.ESlicingPlane.Transverse)).IsFail()):
 			break
 
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := stationaryConeBeamRotationCT.Execute()).IsFail():
+		if (res := computedTomographyRotationCT.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 
 
 		# 3D 이미지 뷰에 Destination Object 를 디스플레이
-		floDestinationAlg = stationaryConeBeamRotationCT.GetDestinationObject()
+		floDestinationAlg = computedTomographyRotationCT.GetDestinationObject()
 		if (res := view3DDst.PushObject(floDestinationAlg)).IsFail():
 			ErrorPrint(res, "Failed to set image object on the image view.\n")
 			break

@@ -27,7 +27,7 @@ def main():
 
 	while True:
 		# 이미지 로드 # Load image
-		if (res := fliSrcImage.Load("../../ExampleImages/StationaryConeBeamTranslationCT/")).IsFail():
+		if (res := fliSrcImage.Load("../../ExampleImages/ComputedTomographyTranslationCT/")).IsFail():
 			ErrorPrint(res, "Failed to load the image file.\n")
 			break
 
@@ -50,71 +50,71 @@ def main():
 
 
 		# 알고리즘 객체 생성 # Create algorithm object
-		stationaryConeBeamTranslationCT = CStationaryConeBeamTranslationCT()
+		computedTomographyTranslationCT = CComputedTomographyTranslationCT()
 
-		if (res := stationaryConeBeamTranslationCT.SetSourceImage(fliSrcImage)[0]).IsFail():
+		if (res := computedTomographyTranslationCT.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
-		if (res := stationaryConeBeamTranslationCT.SetDestinationImage(fliDstImage)[0]).IsFail():
+		if (res := computedTomographyTranslationCT.SetDestinationImage(fliDstImage)[0]).IsFail():
 			break
-		if (res := stationaryConeBeamTranslationCT.SetDestinationSinogramImage(fliDstSinoImage)[0]).IsFail():
+		if (res := computedTomographyTranslationCT.SetDestinationSinogramImage(fliDstSinoImage)[0]).IsFail():
 			break
-		if (res := stationaryConeBeamTranslationCT.SetDestinationObject(floDestination)[0]).IsFail():
-			break
-
-		if (res := stationaryConeBeamTranslationCT.SetDestinationSinogramIndex(15)).IsFail():
+		if (res := computedTomographyTranslationCT.SetDestinationObject(floDestination)[0]).IsFail():
 			break
 
-		if (res := stationaryConeBeamTranslationCT.SetDetectorCellSizeUnit(0.16708)).IsFail():
-			break
-		if (res := stationaryConeBeamTranslationCT.SetObjectTranslateDirection(CStationaryConeBeamTranslationCT.EObjectTranslateDirection.RightToLeft)).IsFail():
-			break
-		if (res := stationaryConeBeamTranslationCT.SetSourceObjectDistanceUnit(13.60)).IsFail():
-			break
-		if (res := stationaryConeBeamTranslationCT.SetSourceDetectorDistanceUnit(60.00)).IsFail():
-			break
-		if (res := stationaryConeBeamTranslationCT.SetObjectTranslationDistanceUnit(24.00)).IsFail():
-			break
-		if (res := stationaryConeBeamTranslationCT.SetPrincipalDeltaXPixel(0.00)).IsFail():
+		if (res := computedTomographyTranslationCT.SetDestinationSinogramIndex(15)).IsFail():
 			break
 
-		if (res := stationaryConeBeamTranslationCT.SetNormalizedAirThreshold(0.60)).IsFail():
+		if (res := computedTomographyTranslationCT.SetDetectorCellSizeUnit(0.16708)).IsFail():
 			break
-		if (res := stationaryConeBeamTranslationCT.SetSinogramKeepRatio(0.30)).IsFail():
+		if (res := computedTomographyTranslationCT.SetObjectTranslateDirection(CComputedTomographyTranslationCT.EObjectTranslateDirection.RightToLeft)).IsFail():
 			break
-		if (res := stationaryConeBeamTranslationCT.SetInterpolationCoefficient(6)).IsFail():
+		if (res := computedTomographyTranslationCT.SetSourceObjectDistanceUnit(13.60)).IsFail():
 			break
-		if (res := stationaryConeBeamTranslationCT.SetMergeCoefficient(21)).IsFail():
+		if (res := computedTomographyTranslationCT.SetSourceDetectorDistanceUnit(60.00)).IsFail():
 			break
-		if (res := stationaryConeBeamTranslationCT.EnableFrequencyRampFilter(True)).IsFail():
+		if (res := computedTomographyTranslationCT.SetObjectTranslationDistanceUnit(24.00)).IsFail():
 			break
-		if (res := stationaryConeBeamTranslationCT.SetFrequencyWindow(CStationaryConeBeamTranslationCT.EFrequencyWindow.Gaussian)).IsFail():
-			break
-		if (res := stationaryConeBeamTranslationCT.SetSigma(0.30)).IsFail():
+		if (res := computedTomographyTranslationCT.SetPrincipalDeltaXPixel(0.00)).IsFail():
 			break
 
-		if (res := stationaryConeBeamTranslationCT.SetReconstructionPlaneCount(140)).IsFail():
+		if (res := computedTomographyTranslationCT.SetNormalizedAirThreshold(0.60)).IsFail():
 			break
-		if (res := stationaryConeBeamTranslationCT.EnableNegativeClip(True)).IsFail():
+		if (res := computedTomographyTranslationCT.SetSinogramKeepRatio(0.30)).IsFail():
 			break
-		if (res := stationaryConeBeamTranslationCT.EnableCircularMask(True)).IsFail():
+		if (res := computedTomographyTranslationCT.SetInterpolationCoefficient(6)).IsFail():
 			break
-		if (res := stationaryConeBeamTranslationCT.EnableSigmoid(True)).IsFail():
+		if (res := computedTomographyTranslationCT.SetMergeCoefficient(21)).IsFail():
 			break
-		if (res := stationaryConeBeamTranslationCT.SetSigmoidB(1.00)).IsFail():
+		if (res := computedTomographyTranslationCT.EnableFrequencyRampFilter(True)).IsFail():
 			break
-		if (res := stationaryConeBeamTranslationCT.SetSigmoidM(0.00)).IsFail():
+		if (res := computedTomographyTranslationCT.SetFrequencyWindow(CComputedTomographyTranslationCT.EFrequencyWindow.Gaussian)).IsFail():
 			break
-		if (res := stationaryConeBeamTranslationCT.SetIntensityThreshold(190)).IsFail():
+		if (res := computedTomographyTranslationCT.SetSigma(0.30)).IsFail():
+			break
+
+		if (res := computedTomographyTranslationCT.SetReconstructionPlaneCount(140)).IsFail():
+			break
+		if (res := computedTomographyTranslationCT.EnableNegativeClip(True)).IsFail():
+			break
+		if (res := computedTomographyTranslationCT.EnableCircularMask(True)).IsFail():
+			break
+		if (res := computedTomographyTranslationCT.EnableSigmoid(True)).IsFail():
+			break
+		if (res := computedTomographyTranslationCT.SetSigmoidB(1.00)).IsFail():
+			break
+		if (res := computedTomographyTranslationCT.SetSigmoidM(0.00)).IsFail():
+			break
+		if (res := computedTomographyTranslationCT.SetIntensityThreshold(190)).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
-		if (res := stationaryConeBeamTranslationCT.Execute()).IsFail():
+		if (res := computedTomographyTranslationCT.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 
 
 		# 3D 이미지 뷰에 Destination Object 를 디스플레이
-		floDestinationAlg = stationaryConeBeamTranslationCT.GetDestinationObject()
+		floDestinationAlg = computedTomographyTranslationCT.GetDestinationObject()
 		if (res := view3DDst.PushObject(floDestinationAlg)).IsFail():
 			ErrorPrint(res, "Failed to set image object on the image view.\n")
 			break
