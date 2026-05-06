@@ -149,6 +149,13 @@ def main():
 		# 설정한 Optimizer를 GenerativeAdversarialNetwork에 적용 # Apply Optimizer that we set up to GenerativeAdversarialNetwork
 		generativeAdversarialNetworkDL.SetLearningOptimizerSpec(optSpec)
 
+		# AugmentationSpec 설정 # Set the AugmentationSpec
+		augSpec = CAugmentationSpec()
+
+		augSpec.EnableAugmentation(False)
+
+		generativeAdversarialNetworkDL.SetLearningAugmentationSpec(augSpec)
+
 		# 자동 저장 옵션 설정 # Set Auto-Save Options
 		autoSaveSpec = CAutoSaveSpec()
 

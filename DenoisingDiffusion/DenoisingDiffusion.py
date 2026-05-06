@@ -170,7 +170,7 @@ def main():
 		# 학습할 DenoisingDiffusion 모델 버전 설정 # Set up the DenoisingDiffusion model version to learn
 		denoisingDiffusionDL.SetModelVersion(CDenoisingDiffusionDL.EModelVersion.FLGenNet_Diffusion_Label_V1_32)
 		# 학습 epoch 값을 설정 # Set the learn epoch value 
-		denoisingDiffusionDL.SetLearningEpoch(500)
+		denoisingDiffusionDL.SetLearningEpoch(1500)
 		# 학습 이미지 Interpolation 방식 설정 # Set Interpolation method of learn image
 		denoisingDiffusionDL.SetInterpolationMethod(EInterpolationMethod.Bilinear)
 
@@ -182,6 +182,13 @@ def main():
 		optSpec.SetWeightDecay(.0)
 		# 설정한 Optimizer를 DenoisingDiffusion에 적용 # Apply Optimizer that we set up to DenoisingDiffusion
 		denoisingDiffusionDL.SetLearningOptimizerSpec(optSpec)
+
+		# AugmentationSpec 설정 # Set the AugmentationSpec
+		augSpec = CAugmentationSpec()
+
+		augSpec.EnableAugmentation(False)
+
+		denoisingDiffusionDL.SetLearningAugmentationSpec(augSpec)
 
 		# 자동 저장 옵션 설정 # Set Auto-Save Options
 		autoSaveSpec = CAutoSaveSpec()
