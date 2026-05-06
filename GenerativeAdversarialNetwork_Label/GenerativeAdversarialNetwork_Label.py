@@ -281,6 +281,9 @@ def main():
 			ErrorPrint(eLearnResult, 'Failed to learn.')
 			break
 
+		# 클래스 가중치 모드 설정 # Set the class weight mode
+		generativeAdversarialNetworkDL.EnableInferenceClassWeightMode(True);
+
 		# 결과 이미지 개수 설정 # Set Result Image Count
 		generativeAdversarialNetworkDL.SetInferenceResultCount(10)
 

@@ -159,10 +159,10 @@ def main():
 		augSpec = CAugmentationSpec()
 
 		augSpec.EnableAugmentation(True)
-		augSpec.SetCommonActivationRate(0.8)
+		augSpec.SetCommonActivationRate(1.0)
 		augSpec.SetCommonIoUThreshold(0.8)
 		augSpec.EnableRotation(True)
-		augSpec.SetRotationParam(-10.0, 10.0, False, False, 1.0)
+		augSpec.SetRotationParam(-15.0, 15.0, False, False, 1.0)
 		augSpec.EnableScale(True)
 		augSpec.SetScaleParam(.8, 1.2, .8, 1.2, False, 1.0)
 		augSpec.EnableTranslation(True)
