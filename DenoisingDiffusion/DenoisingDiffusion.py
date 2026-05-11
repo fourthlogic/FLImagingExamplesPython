@@ -176,6 +176,9 @@ def main():
 
 		# OptimizerSpec 객체 생성 # Create OptimizerSpec object
 		optSpec = COptimizerSpecAdamGradientDescent()
+		# Mini Batch 크기 설정 # Set size of Mini Batch
+		optSpec.SetMiniBatchSizeMode(EMiniBatchSizeMode.UserDefinedSize);
+		optSpec.SetMiniBatchSize(128);
 		# Optimizer의 학습률 설정 # Set learning rate of Optimizer
 		optSpec.SetLearningRate(0.0001)
 		# Optimizer의 Weight Decay 설정 # Set weight decay of Optimizer
