@@ -60,7 +60,7 @@ def main():
 		if((res := computedTomographyGeneralizedCT.SetAngleUnit(EAngleUnit.Degree)).IsFail()):
 			break
 		
-		tpObjectVoxelSize = TPoint3[Double]()
+		tpObjectVoxelSize = TPoint3[Single]()
 		tpObjectVoxelSize.x = 0.02
 		tpObjectVoxelSize.y = 0.02
 		tpObjectVoxelSize.z = 0.02

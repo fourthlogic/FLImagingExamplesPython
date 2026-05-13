@@ -64,21 +64,21 @@ def main():
 		if((res := computedTomographyRotationCT.SetObjectTotalRotationAngle(360.00)).IsFail()):
 			break
 
-		tpObjectLocation = TPoint3[Double]()
+		tpObjectLocation = TPoint3[Single]()
 		tpObjectLocation.x = 0.00
 		tpObjectLocation.y = 0.00
 		tpObjectLocation.z = 28.6333
 		if((res := computedTomographyRotationCT.SetObjectLocation(tpObjectLocation)).IsFail()):
 			break
 
-		tpObjectEulerAngle = TPoint3[Double]()
+		tpObjectEulerAngle = TPoint3[Single]()
 		tpObjectEulerAngle.x = 35.00
 		tpObjectEulerAngle.y = 0.00
 		tpObjectEulerAngle.z = 0.00
 		if((res := computedTomographyRotationCT.SetObjectEulerAngle(tpObjectEulerAngle)).IsFail()):
 			break
 
-		tpObjectVoxelSize = TPoint3[Double]()
+		tpObjectVoxelSize = TPoint3[Single]()
 		tpObjectVoxelSize.x = 0.01
 		tpObjectVoxelSize.y = 0.01
 		tpObjectVoxelSize.z = 0.01
