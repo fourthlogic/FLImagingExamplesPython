@@ -1974,6 +1974,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ComputedTomographyRotationC
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ComputedTomographyTranslationCT", "ComputedTomographyTranslationCT\ComputedTomographyTranslationCT.pyproj", "{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChannelLinfNorm", "ChannelLinfNorm", "{43898A4C-A475-4041-A9B5-4E93B44704C9}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ChannelLinfNorm", "ChannelLinfNorm\ChannelLinfNorm.pyproj", "{676C5B88-A7EC-4EBB-A741-6515D22A9E48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3320,6 +3324,8 @@ Global
 		{BADDB00C-451F-462D-A2D7-DFF324547EE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{676C5B88-A7EC-4EBB-A741-6515D22A9E48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{676C5B88-A7EC-4EBB-A741-6515D22A9E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4295,6 +4301,8 @@ Global
 		{0DAF22C2-73B1-46CE-8E23-9A0A5454EA22} = {C1AA632A-68DE-424A-B9C0-0CF83A6CFED1}
 		{BADDB00C-451F-462D-A2D7-DFF324547EE4} = {C1AA632A-68DE-424A-B9C0-0CF83A6CFED1}
 		{BA8EB3C5-D56A-4F9E-8E20-3F2B700BB3F0} = {C1AA632A-68DE-424A-B9C0-0CF83A6CFED1}
+		{43898A4C-A475-4041-A9B5-4E93B44704C9} = {C7AE84F4-0805-49E9-8363-FD23EEC762CC}
+		{676C5B88-A7EC-4EBB-A741-6515D22A9E48} = {43898A4C-A475-4041-A9B5-4E93B44704C9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
