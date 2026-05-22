@@ -9,6 +9,8 @@ import time
 import random
 import tkinter as tk
 from tkinter import ttk, messagebox
+import clr
+from System.Collections.Generic import List
 
 def get_hwnd(widget):
     # 윈도우 핸들 얻기 (Tkinter 내부 식별자를 사용)
@@ -141,7 +143,6 @@ class GraphViewContextMenu(tk.Tk):
         # 폼 로드(초기화) 시퀀스 (C# FormGraphViewLoad 대응)
         self.dock_graph_view_to_this()
         self._create_right_controls()
-        self.apply_context_menu()
         self.initialize_controls()
         self.update_controls()
 
@@ -223,12 +224,12 @@ class GraphViewContextMenu(tk.Tk):
             return
 
         # 사용 가능한 그래프 뷰 메뉴 // Available Graph View Context Menu 
-        listAvailableMenu = []
+        listAvailableMenu = List[EViewGraphMenuItem]()
         for var, enum_val in self.check_vars:
             # 체크 선택된 메뉴 아이템을 추가
             # Add the checked menu item
             if var.get():
-                listAvailableMenu.append(enum_val)
+                listAvailableMenu.Add(enum_val)
 
         # 선택된 메뉴 아이템들을 그래프 뷰의 이용 가능한 메뉴에 적용
         # Apply the selected menu items to the available menu in the graph view
