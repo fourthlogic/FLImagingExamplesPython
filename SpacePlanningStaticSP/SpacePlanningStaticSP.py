@@ -1,5 +1,6 @@
-# FLImagingClrPy 선언 # Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
+import FLImagingCLR.ThreeDim.SpacePlanning as SP
 
 
 # You must call the following function once
@@ -16,6 +17,44 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "Common"))
 from ErrorPrint import *
 
 
+def InitializeCoordinateConverter(alg, converter):
+	res = CResult(EResult.UnknownError)
+
+	while True:
+		res, converter = alg.GetCoordinateConverter(converter)
+		if res.IsFail():
+			break
+
+		i32BinCount = alg.GetBinSpecCount()
+		bFailedInLoop = False
+		for i in range(i32BinCount):
+			tpWorldPivot = TPoint3[Single](16.0 * i, 0.0, 0.0)
+			tpBinPivot = TPoint3[Single](0.0, 0.0, 0.0)
+			tpDirectionZ = TPoint3[Single](0.03, 0.0, 1.0)
+			tpUpY = TPoint3[Single](0.0, 1.0, 0.3)
+
+			if (res := converter.SetBinTransform(i, tpWorldPivot, tpBinPivot, tpDirectionZ, tpUpY)).IsFail():
+				bFailedInLoop = True
+				break
+
+		if bFailedInLoop:
+			break
+
+		i32ItemCount = alg.GetItemSpecCount()
+		for i in range(i32ItemCount):
+			if (res := converter.SetItemPivotNormalized(i, TPoint3[Single](0.5, 0.5, 0.5))).IsFail():
+				bFailedInLoop = True
+				break
+
+		if bFailedInLoop:
+			break
+
+		res = converter.Learn()
+		break
+
+	return res, converter
+
+
 # 메인 함수 # Main function
 def main():
 	# 3D 뷰 선언 # Declare 3D views
@@ -28,16 +67,16 @@ def main():
 		alg = CSpacePlanningStaticSP()
 
 		# Bin spec 설정 # Set the bin spec
-		binSpec = CSpacePlanningBaseSP.SBinSpec[Single](12.0, 9.0, 10.0)
+		binSpec = SP.SBinSpec[Single](12.0, 9.0, 10.0)
 
 		if (res := alg.AddBinSpec(binSpec)).IsFail():
 			ErrorPrint(res, "Failed to add bin spec.")
 			break
 
 		# Item spec 설정 (회전 없음) # Set the item specs (no rotation)
-		itemSpec1 = CSpacePlanningBaseSP.SItemSpec[Single](3.0, 3.0, 4.0, 1.0, CSpacePlanningBaseSP.ERotationType.NoRotation)
-		itemSpec2 = CSpacePlanningBaseSP.SItemSpec[Single](4.0, 3.0, 3.0, 1.0, CSpacePlanningBaseSP.ERotationType.NoRotation)
-		itemSpec3 = CSpacePlanningBaseSP.SItemSpec[Single](5.0, 3.0, 2.0, 1.0, CSpacePlanningBaseSP.ERotationType.NoRotation)
+		itemSpec1 = SP.SItemSpec[Single](3.0, 3.0, 4.0, 1.0, SP.ERotationAllowance.NoRotation)
+		itemSpec2 = SP.SItemSpec[Single](4.0, 3.0, 3.0, 1.0, SP.ERotationAllowance.NoRotation)
+		itemSpec3 = SP.SItemSpec[Single](5.0, 3.0, 2.0, 1.0, SP.ERotationAllowance.NoRotation)
 
 		if (res := alg.AddItemSpec(itemSpec1)).IsFail() or \
 		   (res := alg.AddItemSpec(itemSpec2)).IsFail() or \
@@ -47,31 +86,66 @@ def main():
 
 		# Static list 파라미터 설정 # Set the static list parameters
 		itemCounts = List[Int32]()
+		itemCounts.Add(8)
+		itemCounts.Add(8)
 		itemCounts.Add(4)
-		itemCounts.Add(3)
-		itemCounts.Add(2)
 		parameters = CSpacePlanningBaseSP.SStaticListParameters(itemCounts)
 
 		if (res := alg.SetStaticListParameters(parameters)).IsFail():
 			ErrorPrint(res, "Failed to set static list parameters.")
 			break
 
+		print("Learning...", end='')
+
 		# 앞서 설정된 파라미터 대로 학습 수행 # Perform learning according to previously set parameters
 		if (res := alg.Learn()).IsFail():
 			ErrorPrint(res, "Failed to learn.")
 			break
 
-		# 배치 결과 3D 오브젝트 그룹 취득 # Get the placement result 3D object group
-		# 구조: [0, ItemCount) = 배치된 아이템, [ItemCount, end) = 빈(bin) * 2개씩 (속 채움, 외곽선)
-		# Structure: [0, ItemCount) = placed items, [ItemCount, end) = bins * 2 each (filled, wireframe)
-		flog = CFL3DObjectGroup()
-		res, flog = alg.Get3DObject(flog)
+		converter = CSpacePlanningCoordinateConverterSP()
+		res, converter = InitializeCoordinateConverter(alg, converter)
 		if res.IsFail():
-			ErrorPrint(res, "Failed to get 3D object.")
+			ErrorPrint(res, "Failed to initialize the coordinate converter.")
+			break
+
+		placementResults = List[CSpacePlanningBaseSP.SPlacementInfo]()
+		res, placementResults = alg.GetLearnedPlacements(placementResults)
+		if res.IsFail():
+			ErrorPrint(res, "Failed to get learned placements.")
+			break
+
+		flogBins = CFL3DObjectGroup()
+		flogItems = CFL3DObjectGroup()
+
+		res, flogBins = converter.MakeBinObjectGroup(flogBins)
+		if res.IsFail():
+			ErrorPrint(res, "Failed to build world-space 3D objects.")
+			break
+
+		res, flogItems = converter.MakeItemObjectGroup(placementResults, flogItems)
+		if res.IsFail():
+			ErrorPrint(res, "Failed to build world-space 3D objects.")
+			break
+
+		bConvertFailed = False
+		for i in range(placementResults.Count):
+			tpWorldPosition = TPoint3[Single]()
+			res, tpWorldPosition = converter.Convert(placementResults[i], tpWorldPosition)
+			if res.IsFail():
+				ErrorPrint(res, "Failed to convert placement coordinates.")
+				bConvertFailed = True
+				break
+
+			print(
+				f"Placement {i}: bin {placementResults[i].i32BinIndex}, item {placementResults[i].i32ItemIndex} "
+				f"-> world center [{tpWorldPosition.x:.1f}, {tpWorldPosition.y:.1f}, {tpWorldPosition.z:.1f}]"
+			)
+
+		if bConvertFailed:
 			break
 
 		i32BinCount = alg.GetBinSpecCount()
-		i32ItemCount = alg.GetItemSpecCount()
+		i32PlacedCount = placementResults.Count
 
 		if (res := view3DResult.Create(600, 0, 1100, 500)).IsFail():
 			ErrorPrint(res, "Failed to create the 3D view.")
@@ -80,10 +154,11 @@ def main():
 		view3DResult.SetRenderingTransparencyMode(ERenderingTransparencyMode.DepthPeelingOIT)
 		view3DResult.SetRenderingResolutionScale(2)
 
-		# 결과 뷰에 아이템 및 Bin 오브젝트 추가 # Push item and bin objects to the result view
+		# 결과 뷰에 world-space 아이템 및 bin 오브젝트 추가
+		# Push world-space item and bin objects to the result view
 		bPushFailed = False
-		for i in range(i32ItemCount):
-			res, i32ObjIndex = view3DResult.PushObject(flog.GetObjectByIndex(i), -1)
+		for i in range(i32PlacedCount):
+			res, i32ObjIndex = view3DResult.PushObject(flogItems.GetObjectByIndex(i), -1)
 			if res.IsFail():
 				ErrorPrint(res, "Failed to push 3D object.")
 				bPushFailed = True
@@ -97,7 +172,7 @@ def main():
 			break
 
 		for i in range(i32BinCount):
-			res, i32ObjIndex = view3DResult.PushObject(flog.GetObjectByIndex(i32ItemCount + 2 * i), -1)
+			res, i32ObjIndex = view3DResult.PushObject(flogBins.GetObjectByIndex(i), -1)
 			if res.IsFail():
 				ErrorPrint(res, "Failed to push 3D object.")
 				bPushFailed = True
@@ -106,16 +181,6 @@ def main():
 			objFilled = view3DResult.GetView3DObject(i32ObjIndex)
 			if objFilled is not None:
 				objFilled.SetOpacity(0.2)
-
-			res, i32ObjIndex = view3DResult.PushObject(flog.GetObjectByIndex(i32ItemCount + 2 * i + 1), -1)
-			if res.IsFail():
-				ErrorPrint(res, "Failed to push 3D object.")
-				bPushFailed = True
-				break
-
-			objWireframe = view3DResult.GetView3DObject(i32ObjIndex)
-			if objWireframe is not None:
-				objWireframe.SetOpacity(0.6)
 
 		if bPushFailed:
 			break
@@ -134,9 +199,11 @@ def main():
 			break
 
 		f32VolumeUsage = 100.0 * f32UsedVolume / f32TotalVolume if f32TotalVolume > 0.0 else 0.0
+		optimalStrategyId = alg.GetOptimalStrategyId()
 		strResultInfo = (
-			f"Optimal strategy index: {alg.GetOptimalStrategyIndex()}\n"
-			f"Volume Usage: {f32VolumeUsage:.1f}%({f32UsedVolume:.1f}/{f32TotalVolume:.1f})"
+			f"Optimal strategy: group={optimalStrategyId.eGroup}, id={optimalStrategyId.i32IDInStrategy}\n"
+			f"Volume Usage: {f32VolumeUsage:.1f}%({f32UsedVolume:.1f}/{f32TotalVolume:.1f})\n"
+			f"Coordinate converter: world-space center pivot"
 		)
 		layer3DResult.DrawTextCanvas(CFLPoint[Double](0, 25), strResultInfo, EColor.YELLOW, EColor.BLACK, 16)
 
