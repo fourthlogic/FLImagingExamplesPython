@@ -91,7 +91,7 @@ def main():
 		itemChances.Add(4.0)
 		itemChances.Add(3.0)
 		itemChances.Add(2.0)
-		parameters = CSpacePlanningBaseSP.SRandomSequenceParameters.CreateInfinite(itemChances, 1)
+		parameters = SP.SRandomSequenceParameters.CreateInfinite(itemChances, 1)
 
 		if (res := alg.SetRandomSequenceParameters(parameters)).IsFail():
 			ErrorPrint(res, "Failed to set random sequence parameters.")
@@ -148,7 +148,7 @@ def main():
 		# 아이템 도착 시뮬레이션 (컨베이어 벨트 상황) # Simulate item arrival (conveyor belt scenario)
 		# 아이템 타입을 무작위로 생성하여 빈이 꽉 찰 때까지 계속 배치
 		# Randomly generate item types and keep placing until the bin is full (EResult.FullOfCapacity)
-		placementResults = List[CSpacePlanningBaseSP.SPlacementInfo]()
+		placementResults = List[SP.SPlacementInfo]()
 
 		i32ArrivalIdx = 0
 		i32PlacedCount = 0

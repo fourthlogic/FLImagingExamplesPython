@@ -89,13 +89,13 @@ def main():
 		itemCounts.Add(8)
 		itemCounts.Add(8)
 		itemCounts.Add(4)
-		parameters = CSpacePlanningBaseSP.SStaticListParameters(itemCounts)
+		parameters = SP.SStaticListParameters(itemCounts)
 
 		if (res := alg.SetStaticListParameters(parameters)).IsFail():
 			ErrorPrint(res, "Failed to set static list parameters.")
 			break
 
-		print("Learning...", end='')
+		print("Learning...")
 
 		# 앞서 설정된 파라미터 대로 학습 수행 # Perform learning according to previously set parameters
 		if (res := alg.Learn()).IsFail():
@@ -108,7 +108,7 @@ def main():
 			ErrorPrint(res, "Failed to initialize the coordinate converter.")
 			break
 
-		placementResults = List[CSpacePlanningBaseSP.SPlacementInfo]()
+		placementResults = List[SP.SPlacementInfo]()
 		res, placementResults = alg.GetLearnedPlacements(placementResults)
 		if res.IsFail():
 			ErrorPrint(res, "Failed to get learned placements.")
