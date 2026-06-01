@@ -83,7 +83,7 @@ def main():
 		# 생성할 노이즈 타입 설정 # Set the noise type to generate
 		noiseGenerator.SetNoiseType(CNoiseGenerator.ENoiseType.PhotonNoise)
 		# 광자양 잡음의 광자 평균양 설정 # Set the average photon amount of photon noise
-		noiseGenerator.SetPhotonCount(100000000)
+		noiseGenerator.SetPhotonCount(1000)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := noiseGenerator.Execute()).IsFail():
