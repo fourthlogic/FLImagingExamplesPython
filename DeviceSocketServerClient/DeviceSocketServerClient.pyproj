@@ -4,13 +4,13 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{235dfb36-6086-44d4-8092-16b5459f4884}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>ServerClient.py</StartupFile>
+    <StartupFile>DeviceSocketServerClient.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>ServerClient</Name>
-    <RootNamespace>ServerClient</RootNamespace>
+    <Name>DeviceSocketServerClient</Name>
+    <RootNamespace>DeviceSocketServerClient</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ServerClient.py" />
+    <Compile Include="DeviceSocketServerClient.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
