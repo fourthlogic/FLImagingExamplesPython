@@ -1994,6 +1994,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Line Scan Camera Calibrator
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LineScanCameraCalibrator", "LineScanCameraCalibrator\LineScanCameraCalibrator.pyproj", "{68856F4E-B47D-4134-B50C-8C5B247E245A}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LaplacianVariance", "LaplacianVariance\LaplacianVariance.pyproj", "{DEAA2D83-DE9D-4117-945B-C07D3C77B9CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3352,6 +3354,8 @@ Global
 		{9C80014B-C4BA-4D2A-8DF8-AF86FB648049}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68856F4E-B47D-4134-B50C-8C5B247E245A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{68856F4E-B47D-4134-B50C-8C5B247E245A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEAA2D83-DE9D-4117-945B-C07D3C77B9CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEAA2D83-DE9D-4117-945B-C07D3C77B9CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4339,6 +4343,7 @@ Global
 		{9C80014B-C4BA-4D2A-8DF8-AF86FB648049} = {C173F22D-EE74-4BFD-9966-0C8282BF5BBD}
 		{0D636429-40FD-47FE-B1E1-3FA87EC77A7A} = {41041BF7-1B81-427E-AF70-C4F0FA98B9C2}
 		{68856F4E-B47D-4134-B50C-8C5B247E245A} = {0D636429-40FD-47FE-B1E1-3FA87EC77A7A}
+		{DEAA2D83-DE9D-4117-945B-C07D3C77B9CE} = {AF5DE478-4092-45A0-A140-EA89B71EEE64}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
