@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{a02c9769-294c-42f1-9afd-e4206c564a6c}</ProjectGuid>
+    <ProjectGuid>{26ce3c9e-15c7-49c4-9f14-8e71dc4af17a}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>SumModifiedLaplacian.py</StartupFile>
+    <StartupFile>WaveletFocusMeasurement.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>SumModifiedLaplacian</Name>
-    <RootNamespace>SumModifiedLaplacian</RootNamespace>
+    <Name>WaveletFocusMeasurement</Name>
+    <RootNamespace>WaveletFocusMeasurement</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="SumModifiedLaplacian.py" />
+    <Compile Include="WaveletFocusMeasurement.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
