@@ -16,8 +16,8 @@ def main():
 
     bExit = False
 
-    while True:  # do ~ while 구조
-        print("\033c", end="")  # Console.Clear() 대체
+    while True:  # do ~ while 구조 // do-while loop structure
+        print("\033c", end="")  # Console.Clear() 대체 // Alternative to Console.Clear()
         portNumber = input("Port Number: ")
 
         if portNumber.isdigit():
