@@ -140,14 +140,14 @@ class GraphViewContextMenu(tk.Tk):
             (EViewGraphMenuItem.MenuGroup_SelectZoomAxis, "Select Zoom Axis")
         ]
 
-        # 폼 로드(초기화) 시퀀스 (C# FormGraphViewLoad 대응)
+        # 폼 로드(초기화) 시퀀스 (C# FormGraphViewLoad 대응) # Form Load (Initialization) Sequence (Equivalent to C# FormGraphViewLoad)
         self.dock_graph_view_to_this()
         self._create_right_controls()
         self.initialize_controls()
         self.update_controls()
 
     def dock_graph_view_to_this(self):
-        # 그래프 뷰 생성
+        # 그래프 뷰 생성 # Create a graph view
         self.m_viewGraph = CGUIViewGraph()
         res = self.m_viewGraph.CreateAndFitParent(get_hwnd(self.left_panel))
 
@@ -219,7 +219,7 @@ class GraphViewContextMenu(tk.Tk):
             self.m_viewGraph.ShowUnavailableContextMenu(False)
 
     def apply_context_menu(self):
-        # 그래프 뷰 유효성 체크
+        # 그래프 뷰 유효성 체크 # Check the validity of the graph view.
         if not self.m_viewGraph.IsAvailable():
             return
 
@@ -275,6 +275,7 @@ class GraphViewContextMenu(tk.Tk):
 
             for var, enum_val in self.check_vars:
                 # m_viewGraph에서 받은 활성화 리스트에 현재 체크박스의 메뉴가 포함되어 있는지 확인
+                # Check whether the currently selected checkbox menu is included in the active list obtained from m_viewGraph
                 if enum_val in listAvailableMenu:
                     var.set(True)
                 else:
@@ -286,10 +287,10 @@ class GraphViewContextMenu(tk.Tk):
                 self.select_var.set("none")
 
     def update_controls(self):
-        # 그래프 뷰 유효성 체크
+        # 그래프 뷰 유효성 체크 # Check the validity of the graph view.
         self.apply_button.config(state="normal" if self.m_viewGraph.IsAvailable() else "disabled")
         
-        # TimerTick 100ms 반복 호출 (C# m_timer 대응)
+        # TimerTick 100ms 반복 호출 (C# m_timer 대응) # Invoke TimerTick every 100 ms (Equivalent to C# m_timer)
         self.after(100, self.update_controls)
 
     def on_select_toggle(self):

@@ -47,6 +47,7 @@ def main():
             f64PrevX = arrF64DataX[i]
             f64PrevY = arrF64DataY[i]
 
+        # 무작위 색상 생성 (3바이트로 RGB 생성)
         # Generate random color (equivalent to RGB from 3 bytes)
         r = random.randint(0, 255)
         g = random.randint(0, 255)
