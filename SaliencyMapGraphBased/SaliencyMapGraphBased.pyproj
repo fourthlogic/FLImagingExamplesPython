@@ -4,13 +4,13 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{61b38e6b-561d-4b0f-aa2b-58c6e71be1af}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>SaliencyMap.py</StartupFile>
+    <StartupFile>SaliencyMapGraphBased.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>SaliencyMap</Name>
-    <RootNamespace>SaliencyMap</RootNamespace>
+    <Name>SaliencyMapGraphBased</Name>
+    <RootNamespace>SaliencyMapGraphBased</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="SaliencyMap.py" />
+    <Compile Include="SaliencyMapGraphBased.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

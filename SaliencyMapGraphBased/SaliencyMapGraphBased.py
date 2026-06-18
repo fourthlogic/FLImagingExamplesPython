@@ -59,8 +59,8 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
-		# SaliencyMap 객체 생성 # Create SaliencyMap object
-		saliencyMap = CSaliencyMap()
+		# SaliencyMapGraphBased 객체 생성 # Create SaliencyMapGraphBased object
+		saliencyMap = CSaliencyMapGraphBased()
 
 		# Source 이미지 설정 # Set the source image
 		saliencyMap.SetSourceImage(fliSourceImage)
@@ -70,7 +70,7 @@ def main():
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := saliencyMap.Execute()).IsFail():
-			ErrorPrint(res, 'Failed to execute SaliencyMap.')
+			ErrorPrint(res, 'Failed to execute Saliency Map Graph Based.')
 			break
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
