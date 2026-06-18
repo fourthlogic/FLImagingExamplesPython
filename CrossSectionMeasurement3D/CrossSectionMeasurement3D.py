@@ -1,4 +1,4 @@
-# FLImagingClrPy 선언 # Declare FLImagingClrPy
+﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -100,6 +100,8 @@ def main():
 		if (res := view3D.PushObject(viewResultObject)).IsFail():
 			ErrorPrint(res, "Failed to display the result object.\n")
 			break
+
+		view3D.GetView3DObject(0).SetOpacity(0.5)
 
 		layer3D = view3D.GetLayer(0)
 		layer3D.Clear()
