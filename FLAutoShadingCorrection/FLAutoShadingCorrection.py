@@ -21,7 +21,7 @@ def main():
 	while True:
 		
 		# Source 이미지 로드 # Load the source image
-		if (res := fliSourceImage.Load('../../ExampleImages/FLAutoShadingCorrection/wall.flif')).IsFail():
+		if (res := fliSourceImage.Load('../../ExampleImages/FLAutoShadingCorrection/Source.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
