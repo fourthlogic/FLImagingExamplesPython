@@ -82,7 +82,7 @@ def main():
 			break
 
 		# 연산 방식 설정 # Set operation source
-		if (res := channelLpNorm.SetOperationSource(EOperationSource.Image)[0]).IsFail():
+		if (res := channelLpNorm.SetOperationSource(EOperationSource.Image)).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm

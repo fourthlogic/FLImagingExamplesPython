@@ -62,11 +62,11 @@ def main():
 			break
 
 		# 연산 방식 설정 # Set operation source
-		if (res := channelLpNorm.SetOperationSource(EOperationSource.Scalar)[0]).IsFail():
+		if (res := channelLpNorm.SetOperationSource(EOperationSource.Scalar)).IsFail():
 			break
 
 		# P Value 설정 # Set P Value 
-		if (res := channelLpNorm.SetPValue(3.0)[0]).IsFail():
+		if (res := channelLpNorm.SetPValue(3.0)).IsFail():
 			break
 		
 		# 알고리즘 수행 # Execute the algorithm
