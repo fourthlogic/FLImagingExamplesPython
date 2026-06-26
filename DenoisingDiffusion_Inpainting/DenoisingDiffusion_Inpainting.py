@@ -154,7 +154,7 @@ def main():
 		# 학습할 DenoisingDiffusionInpaintingDL 모델 설정 # Set up the DenoisingDiffusionInpaintingDL model to learn
 		denoisingDiffusionInpaintingDL.SetModel(CDenoisingDiffusionInpaintingDL.EModel.FLGenNet_Diffusion_Inpainting)
 		# 학습할 DenoisingDiffusionInpaintingDL 모델 버전 설정 # Set up the DenoisingDiffusionInpaintingDL model version to learn
-		denoisingDiffusionInpaintingDL.SetModelVersion(CDenoisingDiffusionInpaintingDL.EModelVersion.FLGenNet_Diffusion_Inpainting_V1_256)
+		denoisingDiffusionInpaintingDL.SetModelVersion(CDenoisingDiffusionInpaintingDL.EModelVersion.FLGenNet_Diffusion_Inpainting_256)
 		# 학습 epoch 값을 설정 # Set the learn epoch value 
 		denoisingDiffusionInpaintingDL.SetLearningEpoch(2500)
 		# 학습 이미지 Interpolation 방식 설정 # Set Interpolation method of learn image
