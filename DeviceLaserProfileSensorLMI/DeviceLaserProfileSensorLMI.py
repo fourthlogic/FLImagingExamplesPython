@@ -58,9 +58,9 @@ class CDeviceEventProfileEx(CDeviceEventProfileBase):
 
 				# 기존 이미지 정보를 얻어옵니다. # Retrieve the existing image information.
 				i64Width = self.m_fliImage.GetWidth()
-				i64Height = self.m_fliImage.GetHeight();
+				i64Height = self.m_fliImage.GetHeight()
 				i32SelectedPageIndex = self.m_fliImage.GetSelectedPageIndex()
-				bZoomFit = False;
+				bZoomFit = False
 
 				self.m_fliImage.Lock()
 
@@ -72,7 +72,7 @@ class CDeviceEventProfileEx(CDeviceEventProfileBase):
 
 				# 기존 이미지 정보와 비교합니다. # Compare with the existing image information.
 				if(i64Width != self.m_fliImage.GetWidth() or i64Height != self.m_fliImage.GetHeight()):
-					bZoomFit = True;
+					bZoomFit = True
 
 				self.m_fliImage.Unlock()
 
@@ -140,7 +140,7 @@ class CDeviceEventProfileEx(CDeviceEventProfileBase):
 				for i in range(flogData.GetObjectCount()):
 					self.m_view3D.PushObject(flogData.GetObjectByIndex(i))
 
-				self.m_view3D.UnlockUpdate();
+				self.m_view3D.UnlockUpdate()
 
 				if(i32ObjectCount == 0):
 					self.m_view3D.ZoomFit()
@@ -218,8 +218,8 @@ def main():
 		eventProfile.SetView3D(view3D)
 
 		# 서피스 컬러라이제이션 기능을 설정합니다. # Set the surface colorization feature.
-		devLaserProfile.EnableSurfaceColorization(True);
-		devLaserProfile.SetSurfaceColorizationRange(-5, 5);
+		devLaserProfile.EnableSurfaceColorization(True)
+		devLaserProfile.SetSurfaceColorizationRange(-5, 5)
 		
 		# 프로파일 센서를 Start 합니다. # Start the profile sensor.
 		if((res := devLaserProfile.Start()).IsFail()):

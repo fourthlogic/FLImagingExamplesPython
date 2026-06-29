@@ -433,79 +433,79 @@ def main():
 		DrawGridPoints(arrGridDisplay2[0], layerLearn2)
 		
 		# Calibration data 출력 # Display calibration data
-		intrinsicOptimizedParam = CStereoCalibrator3D.CIntrinsicParameters();
-		stereoCalibrator3D.GetResultCalibratedIntrinsicParameters(intrinsicOptimizedParam);
-		intrinsicOptimizedParam2 = CStereoCalibrator3D.CIntrinsicParameters();
-		stereoCalibrator3D.GetResultCalibratedIntrinsicParameters2(intrinsicOptimizedParam2);
+		intrinsicOptimizedParam = CStereoCalibrator3D.CIntrinsicParameters()
+		stereoCalibrator3D.GetResultCalibratedIntrinsicParameters(intrinsicOptimizedParam)
+		intrinsicOptimizedParam2 = CStereoCalibrator3D.CIntrinsicParameters()
+		stereoCalibrator3D.GetResultCalibratedIntrinsicParameters2(intrinsicOptimizedParam2)
 
-		distortOptimizedCoeef = CStereoCalibrator3D.CDistortionCoefficients();
-		stereoCalibrator3D.GetResultCalibratedDistortionCoefficients(distortOptimizedCoeef);
-		distortOptimizedCoeef2 = CStereoCalibrator3D.CDistortionCoefficients();
-		stereoCalibrator3D.GetResultCalibratedDistortionCoefficients2(distortOptimizedCoeef2);
+		distortOptimizedCoeef = CStereoCalibrator3D.CDistortionCoefficients()
+		stereoCalibrator3D.GetResultCalibratedDistortionCoefficients(distortOptimizedCoeef)
+		distortOptimizedCoeef2 = CStereoCalibrator3D.CDistortionCoefficients()
+		stereoCalibrator3D.GetResultCalibratedDistortionCoefficients2(distortOptimizedCoeef2)
 
-		rotationOptimizedParam = CStereoCalibrator3D.CRotationParameters();
-		stereoCalibrator3D.GetResultCalibratedRotationParameters(rotationOptimizedParam);
+		rotationOptimizedParam = CStereoCalibrator3D.CRotationParameters()
+		stereoCalibrator3D.GetResultCalibratedRotationParameters(rotationOptimizedParam)
 
-		translationOptimizedParam = CStereoCalibrator3D.CTranslationParameters();
-		stereoCalibrator3D.GetResultCalibratedTranslationParameters(translationOptimizedParam);
-
-
-		intrinsicRectifiedParam = CStereoCalibrator3D.CIntrinsicParameters();
-		stereoCalibrator3D.GetResultRectifiedIntrinsicParameters(intrinsicRectifiedParam);
-		intrinsicRectifiedParam2 = CStereoCalibrator3D.CIntrinsicParameters();
-		stereoCalibrator3D.GetResultRectifiedIntrinsicParameters2(intrinsicRectifiedParam2);
-
-		rotationRectifiedParam = CStereoCalibrator3D.CRotationParameters();
-		stereoCalibrator3D.GetResultRectifiedRotationParameters(rotationRectifiedParam);
-		rotationRectifiedParam2 = CStereoCalibrator3D.CRotationParameters();
-		stereoCalibrator3D.GetResultRectifiedRotationParameters2(rotationRectifiedParam2);
-
-		translationRectifiedParam = CStereoCalibrator3D.CTranslationParameters();
-		stereoCalibrator3D.GetResultRectifiedTranslationParameters(translationRectifiedParam);
-		translationRectifiedParam2 = CStereoCalibrator3D.CTranslationParameters();
-		stereoCalibrator3D.GetResultRectifiedTranslationParameters2(translationRectifiedParam2);
-
-		f64ReprojError = stereoCalibrator3D.GetResultReProjectionError();
-
-		strFocalLengthX = "";
-		strFocalLengthY = "";
-		strPrincipalPointX = "";
-		strPrincipalPointY = "";
-		strDistortionK1 = "";
-		strDistortionK2 = "";
-		strDistortionP1 = "";
-		strDistortionP2 = "";
-		strDistortionK3 = "";
-		strRotation0 = "";
-		strRotation1 = "";
-		strRotation2 = "";
-		strTranslationX = "";
-		strTranslationY = "";
-		strTranslationZ = "";
+		translationOptimizedParam = CStereoCalibrator3D.CTranslationParameters()
+		stereoCalibrator3D.GetResultCalibratedTranslationParameters(translationOptimizedParam)
 
 
-		print("\n\n", end='');
+		intrinsicRectifiedParam = CStereoCalibrator3D.CIntrinsicParameters()
+		stereoCalibrator3D.GetResultRectifiedIntrinsicParameters(intrinsicRectifiedParam)
+		intrinsicRectifiedParam2 = CStereoCalibrator3D.CIntrinsicParameters()
+		stereoCalibrator3D.GetResultRectifiedIntrinsicParameters2(intrinsicRectifiedParam2)
 
-		print("**************************** Calibration ****************************", end='');
+		rotationRectifiedParam = CStereoCalibrator3D.CRotationParameters()
+		stereoCalibrator3D.GetResultRectifiedRotationParameters(rotationRectifiedParam)
+		rotationRectifiedParam2 = CStereoCalibrator3D.CRotationParameters()
+		stereoCalibrator3D.GetResultRectifiedRotationParameters2(rotationRectifiedParam2)
 
-		print("\n\n\n", end='');
+		translationRectifiedParam = CStereoCalibrator3D.CTranslationParameters()
+		stereoCalibrator3D.GetResultRectifiedTranslationParameters(translationRectifiedParam)
+		translationRectifiedParam2 = CStereoCalibrator3D.CTranslationParameters()
+		stereoCalibrator3D.GetResultRectifiedTranslationParameters2(translationRectifiedParam2)
 
-		print("---------------------------- Camera 0 ----------------------------", end='');
+		f64ReprojError = stereoCalibrator3D.GetResultReProjectionError()
 
-		print("\n\n", end='');
+		strFocalLengthX = ""
+		strFocalLengthY = ""
+		strPrincipalPointX = ""
+		strPrincipalPointY = ""
+		strDistortionK1 = ""
+		strDistortionK2 = ""
+		strDistortionP1 = ""
+		strDistortionP2 = ""
+		strDistortionK3 = ""
+		strRotation0 = ""
+		strRotation1 = ""
+		strRotation2 = ""
+		strTranslationX = ""
+		strTranslationY = ""
+		strTranslationZ = ""
+
+
+		print("\n\n", end='')
+
+		print("**************************** Calibration ****************************", end='')
+
+		print("\n\n\n", end='')
+
+		print("---------------------------- Camera 0 ----------------------------", end='')
+
+		print("\n\n", end='')
 
 		strFocalLengthX = "{0:.13f}".format(intrinsicOptimizedParam.f64FocalLengthX)
 		strFocalLengthY = "{0:.13f}".format(intrinsicOptimizedParam.f64FocalLengthY)
 		strPrincipalPointX = "{0:.13f}".format(intrinsicOptimizedParam.f64PrincipalPointX)
 		strPrincipalPointY = "{0:.13f}".format(intrinsicOptimizedParam.f64PrincipalPointY)
 
-		print("Calibrated Intrinsic Parameters:\n", end='');
-		print("\tFocal Length X: " + strFocalLengthX + "\n", end='');
-		print("\tFocal Length Y: " + strFocalLengthY + "\n", end='');
-		print("\tPrincipal Point X: " + strPrincipalPointX + "\n", end='');
-		print("\tPrincipal Point Y: " + strPrincipalPointY + "\n", end='');
+		print("Calibrated Intrinsic Parameters:\n", end='')
+		print("\tFocal Length X: " + strFocalLengthX + "\n", end='')
+		print("\tFocal Length Y: " + strFocalLengthY + "\n", end='')
+		print("\tPrincipal Point X: " + strPrincipalPointX + "\n", end='')
+		print("\tPrincipal Point Y: " + strPrincipalPointY + "\n", end='')
 
-		print("\n", end='');
+		print("\n", end='')
 
 		strDistortionK1 = "{0:.13f}".format(distortOptimizedCoeef.f64K1)
 		strDistortionK2 = "{0:.13f}".format(distortOptimizedCoeef.f64K2)
@@ -513,32 +513,32 @@ def main():
 		strDistortionP2 = "{0:.13f}".format(distortOptimizedCoeef.f64P2)
 		strDistortionK3 = "{0:.13f}".format(distortOptimizedCoeef.f64K3)
 
-		print("Calibrated Distortion Coefficients:\n", end='');
-		print("\tK1: " + strDistortionK1 + "\n", end='');
-		print("\tK2: " + strDistortionK2 + "\n", end='');
-		print("\tP1: " + strDistortionP1 + "\n", end='');
-		print("\tP2: " + strDistortionP2 + "\n", end='');
-		print("\tK3: " + strDistortionK3 + "\n", end='');
+		print("Calibrated Distortion Coefficients:\n", end='')
+		print("\tK1: " + strDistortionK1 + "\n", end='')
+		print("\tK2: " + strDistortionK2 + "\n", end='')
+		print("\tP1: " + strDistortionP1 + "\n", end='')
+		print("\tP2: " + strDistortionP2 + "\n", end='')
+		print("\tK3: " + strDistortionK3 + "\n", end='')
 
-		print("\n", end='');
+		print("\n", end='')
 
 
-		print("---------------------------- Camera 1 ----------------------------", end='');
+		print("---------------------------- Camera 1 ----------------------------", end='')
 
-		print("\n\n", end='');
+		print("\n\n", end='')
 
 		strFocalLengthX = "{0:.13f}".format(intrinsicOptimizedParam2.f64FocalLengthX)
 		strFocalLengthY = "{0:.13f}".format(intrinsicOptimizedParam2.f64FocalLengthY)
 		strPrincipalPointX = "{0:.13f}".format(intrinsicOptimizedParam2.f64PrincipalPointX)
 		strPrincipalPointY = "{0:.13f}".format(intrinsicOptimizedParam2.f64PrincipalPointY)
 
-		print("Calibrated Intrinsic Parameters:\n", end='');
-		print("\tFocal Length X: " + strFocalLengthX + "\n", end='');
-		print("\tFocal Length Y: " + strFocalLengthY + "\n", end='');
-		print("\tPrincipal Point X: " + strPrincipalPointX + "\n", end='');
-		print("\tPrincipal Point Y: " + strPrincipalPointY + "\n", end='');
+		print("Calibrated Intrinsic Parameters:\n", end='')
+		print("\tFocal Length X: " + strFocalLengthX + "\n", end='')
+		print("\tFocal Length Y: " + strFocalLengthY + "\n", end='')
+		print("\tPrincipal Point X: " + strPrincipalPointX + "\n", end='')
+		print("\tPrincipal Point Y: " + strPrincipalPointY + "\n", end='')
 
-		print("\n", end='');
+		print("\n", end='')
 
 		strDistortionK1 = "{0:.13f}".format(distortOptimizedCoeef2.f64K1)
 		strDistortionK2 = "{0:.13f}".format(distortOptimizedCoeef2.f64K2)
@@ -546,19 +546,19 @@ def main():
 		strDistortionP2 = "{0:.13f}".format(distortOptimizedCoeef2.f64P2)
 		strDistortionK3 = "{0:.13f}".format(distortOptimizedCoeef2.f64K3)
 
-		print("Calibrated Distortion Coefficients:\n", end='');
-		print("\tK1: " + strDistortionK1 + "\n", end='');
-		print("\tK2: " + strDistortionK2 + "\n", end='');
-		print("\tP1: " + strDistortionP1 + "\n", end='');
-		print("\tP2: " + strDistortionP2 + "\n", end='');
-		print("\tK3: " + strDistortionK3 + "\n", end='');
+		print("Calibrated Distortion Coefficients:\n", end='')
+		print("\tK1: " + strDistortionK1 + "\n", end='')
+		print("\tK2: " + strDistortionK2 + "\n", end='')
+		print("\tP1: " + strDistortionP1 + "\n", end='')
+		print("\tP2: " + strDistortionP2 + "\n", end='')
+		print("\tK3: " + strDistortionK3 + "\n", end='')
 
-		print("\n", end='');
+		print("\n", end='')
 
 
-		print("---------------------------- Common ----------------------------", end='');
+		print("---------------------------- Common ----------------------------", end='')
 
-		print("\n\n", end='');
+		print("\n\n", end='')
 
 		strRotation0 = "{0:.13f}, ".format(rotationOptimizedParam.f64R0)
 		strRotation0 += "{0:.13f}, ".format(rotationOptimizedParam.f64R1)
@@ -570,45 +570,45 @@ def main():
 		strRotation2 += "{0:.13f}, ".format(rotationOptimizedParam.f64R7)
 		strRotation2 += "{0:.13f}".format(rotationOptimizedParam.f64R8)
 
-		print("Relative Rotation Parameters:\n", end='');
-		print("\t" + strRotation0 + "\n", end='');
-		print("\t" + strRotation1 + "\n", end='');
-		print("\t" + strRotation2 + "\n", end='');
+		print("Relative Rotation Parameters:\n", end='')
+		print("\t" + strRotation0 + "\n", end='')
+		print("\t" + strRotation1 + "\n", end='')
+		print("\t" + strRotation2 + "\n", end='')
 
-		print("\n", end='');
+		print("\n", end='')
 
 		strTranslationX = "{0:.13f}".format(translationOptimizedParam.f64X)
 		strTranslationY = "{0:.13f}".format(translationOptimizedParam.f64Y)
 		strTranslationZ = "{0:.13f}".format(translationOptimizedParam.f64Z)
 
-		print("Relative Translation Parameters:\n", end='');
-		print("\tX: " + strTranslationX + "\n", end='');
-		print("\tY: " + strTranslationY + "\n", end='');
-		print("\tZ: " + strTranslationZ + "\n", end='');
+		print("Relative Translation Parameters:\n", end='')
+		print("\tX: " + strTranslationX + "\n", end='')
+		print("\tY: " + strTranslationY + "\n", end='')
+		print("\tZ: " + strTranslationZ + "\n", end='')
 
-		print("\n\n", end='');
+		print("\n\n", end='')
 
 
-		print("**************************** Rectification ****************************", end='');
+		print("**************************** Rectification ****************************", end='')
 
-		print("\n\n\n", end='');
+		print("\n\n\n", end='')
 
-		print("---------------------------- Camera 0 ----------------------------", end='');
+		print("---------------------------- Camera 0 ----------------------------", end='')
 
-		print("\n\n", end='');
+		print("\n\n", end='')
 
 		strFocalLengthX = "{0:.13f}".format(intrinsicRectifiedParam.f64FocalLengthX)
 		strFocalLengthY = "{0:.13f}".format(intrinsicRectifiedParam.f64FocalLengthY)
 		strPrincipalPointX = "{0:.13f}".format(intrinsicRectifiedParam.f64PrincipalPointX)
 		strPrincipalPointY = "{0:.13f}".format(intrinsicRectifiedParam.f64PrincipalPointY)
 
-		print("Rectified Intrinsic Parameters:\n", end='');
-		print("\tFocal Length X: " + strFocalLengthX + "\n", end='');
-		print("\tFocal Length Y: " + strFocalLengthY + "\n", end='');
-		print("\tPrincipal Point X: " + strPrincipalPointX + "\n", end='');
-		print("\tPrincipal Point Y: " + strPrincipalPointY + "\n", end='');
+		print("Rectified Intrinsic Parameters:\n", end='')
+		print("\tFocal Length X: " + strFocalLengthX + "\n", end='')
+		print("\tFocal Length Y: " + strFocalLengthY + "\n", end='')
+		print("\tPrincipal Point X: " + strPrincipalPointX + "\n", end='')
+		print("\tPrincipal Point Y: " + strPrincipalPointY + "\n", end='')
 
-		print("\n", end='');
+		print("\n", end='')
 
 		strRotation0 = "{0:.13f}, ".format(rotationRectifiedParam.f64R0)
 		strRotation0 += "{0:.13f}, ".format(rotationRectifiedParam.f64R1)
@@ -620,41 +620,41 @@ def main():
 		strRotation2 += "{0:.13f}, ".format(rotationRectifiedParam.f64R7)
 		strRotation2 += "{0:.13f}".format(rotationRectifiedParam.f64R8)
 
-		print("Rectified Rotation Parameters:\n", end='');
-		print("\t" + strRotation0 + "\n", end='');
-		print("\t" + strRotation1 + "\n", end='');
-		print("\t" + strRotation2 + "\n", end='');
+		print("Rectified Rotation Parameters:\n", end='')
+		print("\t" + strRotation0 + "\n", end='')
+		print("\t" + strRotation1 + "\n", end='')
+		print("\t" + strRotation2 + "\n", end='')
 
-		print("\n", end='');
+		print("\n", end='')
 
 		strTranslationX = "{0:.13f}".format(translationRectifiedParam.f64X)
 		strTranslationY = "{0:.13f}".format(translationRectifiedParam.f64Y)
 		strTranslationZ = "{0:.13f}".format(translationRectifiedParam.f64Z)
 
-		print("Rectified Translation Parameters:\n", end='');
-		print("\tX: " + strTranslationX + "\n", end='');
-		print("\tY: " + strTranslationY + "\n", end='');
-		print("\tZ: " + strTranslationZ + "\n", end='');
+		print("Rectified Translation Parameters:\n", end='')
+		print("\tX: " + strTranslationX + "\n", end='')
+		print("\tY: " + strTranslationY + "\n", end='')
+		print("\tZ: " + strTranslationZ + "\n", end='')
 
-		print("\n", end='');
+		print("\n", end='')
 
 
-		print("---------------------------- Camera 1 ----------------------------", end='');
+		print("---------------------------- Camera 1 ----------------------------", end='')
 
-		print("\n\n", end='');
+		print("\n\n", end='')
 
 		strFocalLengthX = "{0:.13f}".format(intrinsicRectifiedParam2.f64FocalLengthX)
 		strFocalLengthY = "{0:.13f}".format(intrinsicRectifiedParam2.f64FocalLengthY)
 		strPrincipalPointX = "{0:.13f}".format(intrinsicRectifiedParam2.f64PrincipalPointX)
 		strPrincipalPointY = "{0:.13f}".format(intrinsicRectifiedParam2.f64PrincipalPointY)
 
-		print("Rectified Intrinsic Parameters:\n", end='');
-		print("\tFocal Length X: " + strFocalLengthX + "\n", end='');
-		print("\tFocal Length Y: " + strFocalLengthY + "\n", end='');
-		print("\tPrincipal Point X: " + strPrincipalPointX + "\n", end='');
-		print("\tPrincipal Point Y: " + strPrincipalPointY + "\n", end='');
+		print("Rectified Intrinsic Parameters:\n", end='')
+		print("\tFocal Length X: " + strFocalLengthX + "\n", end='')
+		print("\tFocal Length Y: " + strFocalLengthY + "\n", end='')
+		print("\tPrincipal Point X: " + strPrincipalPointX + "\n", end='')
+		print("\tPrincipal Point Y: " + strPrincipalPointY + "\n", end='')
 
-		print("\n", end='');
+		print("\n", end='')
 
 		strRotation0 = "{0:.13f}, ".format(rotationRectifiedParam2.f64R0)
 		strRotation0 += "{0:.13f}, ".format(rotationRectifiedParam2.f64R1)
@@ -666,27 +666,27 @@ def main():
 		strRotation2 += "{0:.13f}, ".format(rotationRectifiedParam2.f64R7)
 		strRotation2 += "{0:.13f}".format(rotationRectifiedParam2.f64R8)
 
-		print("Rectified Rotation Parameters:\n", end='');
-		print("\t" + strRotation0 + "\n", end='');
-		print("\t" + strRotation1 + "\n", end='');
-		print("\t" + strRotation2 + "\n", end='');
+		print("Rectified Rotation Parameters:\n", end='')
+		print("\t" + strRotation0 + "\n", end='')
+		print("\t" + strRotation1 + "\n", end='')
+		print("\t" + strRotation2 + "\n", end='')
 
-		print("\n", end='');
+		print("\n", end='')
 
 		strTranslationX = "{0:.13f}".format(translationRectifiedParam2.f64X)
 		strTranslationY = "{0:.13f}".format(translationRectifiedParam2.f64Y)
 		strTranslationZ = "{0:.13f}".format(translationRectifiedParam2.f64Z)
 
-		print("Rectified Translation Parameters:\n", end='');
-		print("\tX: " + strTranslationX + "\n", end='');
-		print("\tY: " + strTranslationY + "\n", end='');
-		print("\tZ: " + strTranslationZ + "\n", end='');
+		print("Rectified Translation Parameters:\n", end='')
+		print("\tX: " + strTranslationX + "\n", end='')
+		print("\tY: " + strTranslationY + "\n", end='')
+		print("\tZ: " + strTranslationZ + "\n", end='')
 
-		print("\n", end='');
+		print("\n", end='')
 
-		print("Re-Projection Error : {0:.13f}\n".format(f64ReprojError), end='');
+		print("Re-Projection Error : {0:.13f}\n".format(f64ReprojError), end='')
 
-		print("\n", end='');
+		print("\n", end='')
 
 		if (res := layerLearn.DrawTextCanvas(CFLPoint[Double](0, 0), "Learn Image", EColor.YELLOW, EColor.BLACK, 15)).IsFail():
 			ErrorPrint(res, "Failed to draw text.\n")

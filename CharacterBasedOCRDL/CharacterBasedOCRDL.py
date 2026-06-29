@@ -151,14 +151,14 @@ def main():
 		characterBasedOCRDL.SetInferenceResultImage(fliResultImage)
 
 		# 학습할 OCR 모델 Version 설정 # Set up the OCR model version to learn
-		characterBasedOCRDL.SetModel(CCharacterBasedOCRDL.EModel.R_FLSegNet_V2);
+		characterBasedOCRDL.SetModel(CCharacterBasedOCRDL.EModel.R_FLSegNet_V2)
 		characterBasedOCRDL.SetModelVersion(CCharacterBasedOCRDL.EModelVersion.R_FLSegNet_V2_512)
 		# 학습 epoch 값을 설정 # Set the learn epoch value 
 		characterBasedOCRDL.SetLearningEpoch(10000)
 		# 학습 이미지 Interpolation 방식 설정 # Set Interpolation method of learn image
 		characterBasedOCRDL.SetInterpolationMethod(EInterpolationMethod.Bilinear)
 		# 학습시 이미지당 최대 인스턴스 개수를 256개로 설정 # Set the maximum number of instances per image to 256 during learning
-		characterBasedOCRDL.SetLearningMaximumInstanceCount(256);
+		characterBasedOCRDL.SetLearningMaximumInstanceCount(256)
 
 		# Optimizer의 학습률 설정 # Set learning rate of Optimizer
 		optSpec.SetLearningRate(0.0001)
@@ -169,17 +169,17 @@ def main():
 		# AugmentationSpec 설정 # Set the AugmentationSpec
 		augSpec = CAugmentationSpec()
 
-		augSpec.EnableAugmentation(True);
-		augSpec.SetCommonActivationRate(0.5);
-		augSpec.SetCommonInterpolationMethod(EInterpolationMethod.Bilinear);
-		augSpec.EnableRotation(True);
-		augSpec.SetRotationParam(-45.0, 45.0, False, False, 1.0);
+		augSpec.EnableAugmentation(True)
+		augSpec.SetCommonActivationRate(0.5)
+		augSpec.SetCommonInterpolationMethod(EInterpolationMethod.Bilinear)
+		augSpec.EnableRotation(True)
+		augSpec.SetRotationParam(-45.0, 45.0, False, False, 1.0)
 
-		augSpec.EnableGaussianNoise(True);
-		augSpec.SetGaussianNoiseParam(0, 0, 0, 0.02, 1.0);
+		augSpec.EnableGaussianNoise(True)
+		augSpec.SetGaussianNoiseParam(0, 0, 0, 0.02, 1.0)
 
-		augSpec.EnableScale(True);
-		augSpec.SetScaleParam(0.95, 1.05, 0.95, 1.05, True, 1.0);
+		augSpec.EnableScale(True)
+		augSpec.SetScaleParam(0.95, 1.05, 0.95, 1.05, True, 1.0)
 
 		characterBasedOCRDL.SetLearningAugmentationSpec(augSpec)
 
@@ -244,9 +244,9 @@ def main():
 				# 마지막 평균 학습 결과 비용 받기 # Get the last cost of the learning result
 				f32ValidationMeanAP = characterBasedOCRDL.GetLearningResultLastMeanAP()
 				# 마지막 Recall 결과 받기 # Get the last recall result
-				f32Recall = characterBasedOCRDL.GetLearningResultLastRecall();
+				f32Recall = characterBasedOCRDL.GetLearningResultLastRecall()
 				# 마지막 검증 결과 받기 # Get the last validation result
-				f32Precision = characterBasedOCRDL.GetLearningResultLastPrecision();
+				f32Precision = characterBasedOCRDL.GetLearningResultLastPrecision()
 
 				# 해당 epoch의 비용과 검증 결과 값 출력 # Prcost and validation value for the relevant epoch
 				print("Cost : {:6f} mAP : {:6f} Recall : {:6f} Precision : {:6f} Epoch {} / {}".format(f32CurrCost, f32ValidationMeanAP, f32Recall, f32Precision, i32Epoch, i32MaxEpoch))
@@ -279,8 +279,8 @@ def main():
 					viewGraph.Plot(listCostHistory, EChartType.Line, EColor.RED, "Cost")
 					# Graph View 데이터 입력 # Input Graph View Data
 					viewGraph.Plot(listX, listMeanAPHistory, EChartType.Line, EColor.CYAN, "mAP")
-					viewGraph.Plot(listX, listRecall, EChartType.Line, EColor.GREEN, "recall");
-					viewGraph.Plot(listX, listPrecision, EChartType.Line, EColor.PURPLE, "precision");
+					viewGraph.Plot(listX, listRecall, EChartType.Line, EColor.GREEN, "recall")
+					viewGraph.Plot(listX, listPrecision, EChartType.Line, EColor.PURPLE, "precision")
 					viewGraph.UnlockUpdate()
 
 					viewGraph.UpdateWindow()

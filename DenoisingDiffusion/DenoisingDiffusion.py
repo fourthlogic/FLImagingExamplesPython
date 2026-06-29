@@ -177,8 +177,8 @@ def main():
 		# OptimizerSpec 객체 생성 # Create OptimizerSpec object
 		optSpec = COptimizerSpecAdamGradientDescent()
 		# Mini Batch 크기 설정 # Set size of Mini Batch
-		optSpec.SetMiniBatchSizeMode(EMiniBatchSizeMode.UserDefinedSize);
-		optSpec.SetMiniBatchSize(128);
+		optSpec.SetMiniBatchSizeMode(EMiniBatchSizeMode.UserDefinedSize)
+		optSpec.SetMiniBatchSize(128)
 		# Optimizer의 학습률 설정 # Set learning rate of Optimizer
 		optSpec.SetLearningRate(0.0001)
 		# Optimizer의 Weight Decay 설정 # Set weight decay of Optimizer
@@ -309,7 +309,7 @@ def main():
 			break
 
 		# 클래스 가중치 모드 설정 # Set the class weight mode
-		denoisingDiffusionDL.EnableInferenceClassWeightMode(True);
+		denoisingDiffusionDL.EnableInferenceClassWeightMode(True)
 
 		# 결과 이미지 개수 설정 # Set Result Image Count
 		denoisingDiffusionDL.SetInferenceResultCount(10)

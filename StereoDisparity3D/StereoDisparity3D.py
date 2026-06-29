@@ -143,7 +143,7 @@ def main():
 		# 데이터 로드 # Load Data
 		if (res := stereoDisparity3D.Load("../../ExampleImages/StereoDisparity3D/StereoCalibratorData.flsc")).IsFail():
 			ErrorPrint(res, "Failed to load Calibrator Data.\n")
-			break;
+			break
 
 		# 최소 허용 Disparity 값 설정 # Set minimum allowed disparity value
 		if (res := stereoDisparity3D.SetMinimumDisparity(-20)).IsFail():
@@ -188,7 +188,7 @@ def main():
 		# Pixel Accuracy 설정 # Set pixel accuracy
 		if (res := stereoDisparity3D.SetPixelAccuracy(200)).IsFail():
 			ErrorPrint(res, "Failed to set pixel accuracy.\n")
-			break;
+			break
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := stereoDisparity3D.Execute()).IsFail():

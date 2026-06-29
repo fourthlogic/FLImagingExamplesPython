@@ -84,8 +84,8 @@ def main():
 		move.SetMovement(-220.0, 15.0)
 		
 		# 결과를 확인하기 위한 Ellipse 객체 생성 및 위치 이동 # Create an Ellipse object and move its position to check the results
-		fleResult = CFLEllipse[Double](fleROI);
-		fleResult.Offset(-220.0, 15.0);
+		fleResult = CFLEllipse[Double](fleROI)
+		fleResult.Offset(-220.0, 15.0)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := move.Execute()).IsFail():

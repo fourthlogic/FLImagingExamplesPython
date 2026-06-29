@@ -140,7 +140,7 @@ def main():
 		inpaintingTexture.SetAnisotropy(1)
 
 		# Image figure 를 inpainting region으로 설정하지 않음 # Do not set image figure as inpainting region
-		inpaintingTexture.EnableImageFiguresAsInpaintingRegions(False);
+		inpaintingTexture.EnableImageFiguresAsInpaintingRegions(False)
 
 		flfaInpaintingRegion = CFLFigureArray()
 

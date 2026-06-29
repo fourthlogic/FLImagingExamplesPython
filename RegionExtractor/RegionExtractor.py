@@ -81,11 +81,11 @@ def main():
 		regionExtractor.SetBlankColor(mvBlankColor)
 		
 		# 이미지 Figure 를 추출 영역으로 설정 # Enable image figures as extraction regions
-		regionExtractor.EnableImageFiguresAsExtractionRegions(True);
+		regionExtractor.EnableImageFiguresAsExtractionRegions(True)
 		# 이미지 Figure 를 연산 결과에 반영 # Reflect the image figure in the computation results
-		regionExtractor.EnableImageFigureTransformation(True);
+		regionExtractor.EnableImageFigureTransformation(True)
 		# 이미지 Figure연산 결과 중 이미지를 벗어나는 figure를 제거 # Remove figures that extend beyond the image among the image figure computation results.
-		regionExtractor.EnableImageFigureTransformationRetainOutside(False);
+		regionExtractor.EnableImageFigureTransformationRetainOutside(False)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := regionExtractor.Execute()).IsFail():

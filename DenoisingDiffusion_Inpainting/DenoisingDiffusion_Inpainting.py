@@ -185,7 +185,7 @@ def main():
 		denoisingDiffusionInpaintingDL.SetLearningAutoSaveSpec(autoSaveSpec)
 
 		# 종료 조건 옵션 설정 // Set Stop Condition Options
-		denoisingDiffusionInpaintingDL.SetLearningStopCondition('');
+		denoisingDiffusionInpaintingDL.SetLearningStopCondition('')
 
 		# DenoisingDiffusionInpaintingDL learn function을 진행하는 스레드 생성 # Create the DenoisingDiffusionInpaintingDL Learn function thread
 		def Learn_thread():

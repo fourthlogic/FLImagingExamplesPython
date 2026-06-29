@@ -59,20 +59,20 @@ def main():
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 // Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 // This object belongs to an image view and does not need to be released separately
-		layer3DSrc = view3DSrc.GetLayer(0);
-		layer3DDst = view3DDst.GetLayer(0);
+		layer3DSrc = view3DSrc.GetLayer(0)
+		layer3DDst = view3DDst.GetLayer(0)
 
 		# 기존에 Layer에 그려진 도형들을 삭제 // Clear the figures drawn on the existing layer
-		layer3DSrc.Clear();
-		layer3DDst.Clear();
+		layer3DSrc.Clear()
+		layer3DDst.Clear()
 
-		flpTopLeft = CFLPoint[Double](0, 0);
+		flpTopLeft = CFLPoint[Double](0, 0)
 
 		if (res := layer3DSrc.DrawTextCanvas(flpTopLeft, "Source Object", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or \
 		   (res := layer3DDst.DrawTextCanvas(flpTopLeft, "Destination Object", EColor.YELLOW, EColor.BLACK, 20)).IsFail():
 		
-			ErrorPrint(res, "Failed to draw text.\n");
-			break;
+			ErrorPrint(res, "Failed to draw text.\n")
+			break
 		
 		viewObjectSrc.UpdateAll()
 		viewObjectDst.UpdateAll()

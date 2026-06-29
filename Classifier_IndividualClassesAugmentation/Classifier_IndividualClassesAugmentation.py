@@ -186,8 +186,8 @@ def main():
 
 		# 공통 증강 스펙 설정 # Set common Augmentation Spec
 		augCommonSpec = CAugmentationSpec()
-		augCommonSpec.EnableAugmentation(False);
-		classifierDL.SetLearningAugmentationSpec(augCommonSpec);
+		augCommonSpec.EnableAugmentation(False)
+		classifierDL.SetLearningAugmentationSpec(augCommonSpec)
 
 		# 클래스 0,1 번에 대한 증강 Preset 설정 # Setting the augmentation preset for classes 0 and 1
 		augSpec1 = CAugmentationSpec()

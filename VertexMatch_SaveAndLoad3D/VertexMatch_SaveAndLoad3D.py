@@ -71,7 +71,7 @@ def main():
 		# 최대 결과 개수 설정 # Set the max count of match result
 		vertexMatch3D.SetMaxObject(1)
 		# 샘플링 하지 않도록 설정 # Disable Sampling
-		vertexMatch3D.EnableLearnSamplingPointCloud(False);
+		vertexMatch3D.EnableLearnSamplingPointCloud(False)
 		# 장면 샘플링 거리 설정 # Set the scene sampling distance
 		vertexMatch3D.SetSceneSamplingDistance(0.01)
 		# 키포인트 비율 설정 # Set the keypoint ratio.

@@ -82,7 +82,7 @@ def main():
 		randomPageShuffle.SetSourceImage(fliAfterSrcImage)
 
 		# 랜덤하게 섞을 페이지의 시작 인덱스와 페이지 개수 설정 # Set the start page index and  page counts to shuffle pages
-		randomPageShuffle.SetSelection(0, 5);
+		randomPageShuffle.SetSelection(0, 5)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := randomPageShuffle.Execute()).IsFail():

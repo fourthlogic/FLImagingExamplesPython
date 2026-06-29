@@ -82,7 +82,7 @@ def main():
 		pageReverse.SetSourceImage(fliAfterSrcImage)
 
 		# 순서를 뒤집을 페이지의 시작 인덱스와 페이지 개수 설정 # Set the start page index and  page counts to reverse order
-		pageReverse.SetSelection(0, 5);
+		pageReverse.SetSelection(0, 5)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := pageReverse.Execute()).IsFail():

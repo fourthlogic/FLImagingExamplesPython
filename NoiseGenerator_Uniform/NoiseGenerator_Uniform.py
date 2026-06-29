@@ -84,8 +84,8 @@ def main():
 		noiseGenerator.SetNoiseType(CNoiseGenerator.ENoiseType.UniformNoise)
 		# 균등 분포 잡음의 범위 설정 # Set the range of uniformly distributed noise
 		# 범위 사이의 값에서 균등 분포로 잡음을 추출해 더해진다 # The noise is extracted and added in an uniform distribution from the values between the ranges
-		noiseGenerator.SetMinimumRange(-10);
-		noiseGenerator.SetMaximumRange(10);
+		noiseGenerator.SetMinimumRange(-10)
+		noiseGenerator.SetMaximumRange(10)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := noiseGenerator.Execute()).IsFail():

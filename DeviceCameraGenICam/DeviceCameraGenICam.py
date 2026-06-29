@@ -51,13 +51,13 @@ def main():
 
 		# 장치 벤더 선택 # Select Vendor
 		while True:
-			print("1. Basler");
-			print("2. Crevis");
-			print("3. FLIR Systems");
-			print("4. Huaray Technology");
-			print("5. Hikrobot");
-			print("6. Jai");
-			print("7. Lucid Vision Labs");
+			print("1. Basler")
+			print("2. Crevis")
+			print("3. FLIR Systems")
+			print("4. Huaray Technology")
+			print("5. Hikrobot")
+			print("6. Jai")
+			print("7. Lucid Vision Labs")
 			strInput = input("Select Vendor: ")
 
 			if(strInput.isdigit()):

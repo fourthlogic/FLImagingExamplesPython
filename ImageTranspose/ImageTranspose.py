@@ -132,7 +132,7 @@ def main():
 		imageTranspose.SetDestinationImage(fliDestinationImageXY)
 
 		# Transpose 후 사용자에게 보일 평면을 XY 평면으로 설정 # Set the plane to the XY plane to be visible to the user after Transpose
-		imageTranspose.SetResultPlane(CImageTranspose.EPlane.XY);
+		imageTranspose.SetResultPlane(CImageTranspose.EPlane.XY)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := imageTranspose.Execute()).IsFail():
@@ -143,7 +143,7 @@ def main():
 		imageTranspose.SetDestinationImage(fliDestinationImageXZ)
 
 		# Transpose 후 사용자에게 보일 평면을 XZ 평면으로 설정 # Set the plane to the XZ plane to be visible to the user after Transpose
-		imageTranspose.SetResultPlane(CImageTranspose.EPlane.XZ);
+		imageTranspose.SetResultPlane(CImageTranspose.EPlane.XZ)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := imageTranspose.Execute()).IsFail():
@@ -154,7 +154,7 @@ def main():
 		imageTranspose.SetDestinationImage(fliDestinationImageYX)
 
 		# Transpose 후 사용자에게 보일 평면을 YX 평면으로 설정 # Set the plane to the YX plane to be visible to the user after Transpose
-		imageTranspose.SetResultPlane(CImageTranspose.EPlane.YX);
+		imageTranspose.SetResultPlane(CImageTranspose.EPlane.YX)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := imageTranspose.Execute()).IsFail():
@@ -165,7 +165,7 @@ def main():
 		imageTranspose.SetDestinationImage(fliDestinationImageYZ)
 
 		# Transpose 후 사용자에게 보일 평면을 YZ 평면으로 설정 # Set the plane to the YZ plane to be visible to the user after Transpose
-		imageTranspose.SetResultPlane(CImageTranspose.EPlane.YZ);
+		imageTranspose.SetResultPlane(CImageTranspose.EPlane.YZ)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := imageTranspose.Execute()).IsFail():
@@ -176,7 +176,7 @@ def main():
 		imageTranspose.SetDestinationImage(fliDestinationImageZX)
 
 		# Transpose 후 사용자에게 보일 평면을 ZX 평면으로 설정 # Set the plane to the ZX plane to be visible to the user after Transpose
-		imageTranspose.SetResultPlane(CImageTranspose.EPlane.ZX);
+		imageTranspose.SetResultPlane(CImageTranspose.EPlane.ZX)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := imageTranspose.Execute()).IsFail():
@@ -187,7 +187,7 @@ def main():
 		imageTranspose.SetDestinationImage(fliDestinationImageZY)
 
 		# Transpose 후 사용자에게 보일 평면을 ZY 평면으로 설정 # Set the plane to the ZY plane to be visible to the user after Transpose
-		imageTranspose.SetResultPlane(CImageTranspose.EPlane.ZY);
+		imageTranspose.SetResultPlane(CImageTranspose.EPlane.ZY)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := imageTranspose.Execute()).IsFail():
@@ -195,12 +195,12 @@ def main():
 			break
 
 		# Destination 이미지가 새로 생성됨으로 Zoom fit 을 통해 디스플레이 되는 이미지 배율을 화면에 맞춰준다. # With the newly created Destination image, the image magnification displayed through Zoom fit is adjusted to the screen.
-		viewImageDestinationXY.ZoomFit();
-		viewImageDestinationXZ.ZoomFit();
-		viewImageDestinationYX.ZoomFit();
-		viewImageDestinationYZ.ZoomFit();
-		viewImageDestinationZX.ZoomFit();
-		viewImageDestinationZY.ZoomFit();
+		viewImageDestinationXY.ZoomFit()
+		viewImageDestinationXZ.ZoomFit()
+		viewImageDestinationYX.ZoomFit()
+		viewImageDestinationYZ.ZoomFit()
+		viewImageDestinationZX.ZoomFit()
+		viewImageDestinationZY.ZoomFit()
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately

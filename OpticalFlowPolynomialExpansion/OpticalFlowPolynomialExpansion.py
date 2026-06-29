@@ -38,15 +38,15 @@ def main():
         # Destination 이미지 설정 # Set the destination image
         opticalFlowPolynomialExpansion.SetDestinationImage(arrFliImage[1])
         # Pyramid Level 설정 # Set Pyramid Level
-        opticalFlowPolynomialExpansion.SetPyramidLevel(2);
+        opticalFlowPolynomialExpansion.SetPyramidLevel(2)
         # Iteration 설정 # Set Iteration
-        opticalFlowPolynomialExpansion.SetIteration(3);
+        opticalFlowPolynomialExpansion.SetIteration(3)
         # Window Size 설정 # Set Window Size
-        opticalFlowPolynomialExpansion.SetWindowSize(15);
+        opticalFlowPolynomialExpansion.SetWindowSize(15)
         # Binning Size 설정 # Set Binning Size
-        opticalFlowPolynomialExpansion.SetBinningSize(8);
+        opticalFlowPolynomialExpansion.SetBinningSize(8)
         # Minimum Vector Size 설정 # Set  Minimum Vector Size
-        opticalFlowPolynomialExpansion.SetMinimumVectorSize(5.000000);
+        opticalFlowPolynomialExpansion.SetMinimumVectorSize(5.000000)
 
         print("Processing....")
 

@@ -87,10 +87,10 @@ def main():
 		for i in range(0, i32SegmentCount):
 			listSegmentColors.Add(tp3Color)
 
-		floDestinationObject.SetSegmentColors(listSegmentColors);
+		floDestinationObject.SetSegmentColors(listSegmentColors)
 
 		viewObj = CGUIView3DObject(floDestinationObject)
-		viewObj.SetTopologyType(ETopologyType3D.Segment);
+		viewObj.SetTopologyType(ETopologyType3D.Segment)
 		
 		# 3D 오브젝트 뷰에 결과 오브젝트 디스플레이
 		if(res := view3DDst.PushObject(viewObj)).IsFail() :		

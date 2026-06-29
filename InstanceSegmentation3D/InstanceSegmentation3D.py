@@ -171,7 +171,7 @@ def main():
 		# 검증할 이미지 설정 # Set the image to validation
 		instanceSegmentation3DDL.SetLearningValidationImage(fliLearnImage)
 		# 학습할 Depth Map 설정 # Set the depth map to learn
-		instanceSegmentation3DDL.SetLearningDepthMap(fliDepthMapImage);
+		instanceSegmentation3DDL.SetLearningDepthMap(fliDepthMapImage)
 
 		# 학습할 InstanceSegmentation3D 모델 설정 # Set up the InstanceSegmentation3D model to learn
 		instanceSegmentation3DDL.SetModel(CInstanceSegmentation3DDL.EModel.R_FLSegNet)
@@ -185,20 +185,20 @@ def main():
 		# Set Conditional Expression to End Learning. If the mAP, Precision value is 1 or higher, end the learning. mAP is same value as metric.
 		instanceSegmentation3DDL.SetLearningStopCondition("epoch >= 300 & mAP >= 1 & Precision >= 1")
 		# 검증 IoU Threshold를 0.75로 설정 # Set IoU Threshold Of Validating to 0.75
-		instanceSegmentation3DDL.SetValidationIoUThreshold(0.75);
+		instanceSegmentation3DDL.SetValidationIoUThreshold(0.75)
 
 		flpFocalLength = CFLPoint[Single](1000.0, 1000.0)
 		flpPrincipalPoint = CFLPoint[Single](0.0, 0.0)
 		mvDistortionCoefficient = CMultiVar[Double]()
 
-		mvDistortionCoefficient.PushBack(0.0);
-		mvDistortionCoefficient.PushBack(0.0);
-		mvDistortionCoefficient.PushBack(0.0);
-		mvDistortionCoefficient.PushBack(0.0);
-		mvDistortionCoefficient.PushBack(0.0);
+		mvDistortionCoefficient.PushBack(0.0)
+		mvDistortionCoefficient.PushBack(0.0)
+		mvDistortionCoefficient.PushBack(0.0)
+		mvDistortionCoefficient.PushBack(0.0)
+		mvDistortionCoefficient.PushBack(0.0)
 
 		# 학습 시의 Camera Calibrator 설정 # Set the camera calibrator to learn
-		instanceSegmentation3DDL.SetLearningCameraCalibrator(flpFocalLength, flpPrincipalPoint, 1.0, mvDistortionCoefficient, EDirectionType.Decrement);
+		instanceSegmentation3DDL.SetLearningCameraCalibrator(flpFocalLength, flpPrincipalPoint, 1.0, mvDistortionCoefficient, EDirectionType.Decrement)
 
 		# Optimizer의 학습률 설정 # Set learning rate of Optimizer
 		optSpec.SetLearningRate(0.0001)
@@ -274,9 +274,9 @@ def main():
 				# 마지막 검증 결과 받기 # Get the last validation result
 				f32MeanAP = instanceSegmentation3DDL.GetLearningResultLastMeanAP()
 				# 마지막 Recall 결과 받기 # Get the last recall result
-				f32Recall = instanceSegmentation3DDL.GetLearningResultLastRecall();
+				f32Recall = instanceSegmentation3DDL.GetLearningResultLastRecall()
 				# 마지막 Precision 결과 받기 # Get the last precision result
-				f32Precision = instanceSegmentation3DDL.GetLearningResultLastPrecision();
+				f32Precision = instanceSegmentation3DDL.GetLearningResultLastPrecision()
 
 				# 해당 epoch의 비용과 검증 결과 값 출력 # Prcost and validation value for the relevant epoch
 				print("Cost : {:6f} mAP : {:6f} Recall : {:6f} Precision : {:6f} Epoch {} / {}".format(f32CurrCost, f32MeanAP, f32Recall, f32Precision, i32Epoch, i32MaxEpoch))
@@ -309,8 +309,8 @@ def main():
 					viewGraph.Plot(listCostHistory, EChartType.Line, EColor.RED, "Cost")
 					# Graph View 데이터 입력 # Input Graph View Data
 					viewGraph.Plot(listX, listMeanAPHistory, EChartType.Line, EColor.CYAN, "mAP")
-					viewGraph.Plot(listX, listRecall, EChartType.Line, EColor.GREEN, "recall");
-					viewGraph.Plot(listX, listPrecision, EChartType.Line, EColor.PURPLE, "precision");
+					viewGraph.Plot(listX, listRecall, EChartType.Line, EColor.GREEN, "recall")
+					viewGraph.Plot(listX, listPrecision, EChartType.Line, EColor.PURPLE, "precision")
 					viewGraph.UnlockUpdate()
 
 					viewGraph.UpdateWindow()
@@ -335,7 +335,7 @@ def main():
 		# 분류할 이미지 설정 # Set the image to classify
 		instanceSegmentation3DDL.SetInferenceImage(fliLearnImage)
 		# 3D Match에 필요한 Depth Map 이미지 설정 # Set the depth map image for 3D Match
-		instanceSegmentation3DDL.SetInferenceDepthMap(fliDepthMapImage);
+		instanceSegmentation3DDL.SetInferenceDepthMap(fliDepthMapImage)
 		# 추론 결과 이미지 설정 # Set the inference result Image
 		instanceSegmentation3DDL.SetInferenceResultImage(fliResultBoxContourImage)
 		# 추론 결과 옵션 설정 # Set the inference result options
@@ -344,10 +344,10 @@ def main():
 		eFigureType = Enum.ToObject(CInstanceSegmentation3DDL.EInferenceResultRegionFigureType, int(CInstanceSegmentation3DDL.EInferenceResultRegionFigureType.Region) | int(CInstanceSegmentation3DDL.EInferenceResultRegionFigureType.BoundaryRectangle))
 		
 		instanceSegmentation3DDL.SetInferenceResultItemSettings(eFigureOption)
-		instanceSegmentation3DDL.SetInferenceResultRegionFigureType(eFigureType);
+		instanceSegmentation3DDL.SetInferenceResultRegionFigureType(eFigureType)
 
 		# 추론 시의 Camera Calibrator 설정 # Set the camera calibrator to inference
-		instanceSegmentation3DDL.SetInferenceCameraCalibrator(flpFocalLength, flpPrincipalPoint, 1.0, mvDistortionCoefficient, EDirectionType.Decrement);
+		instanceSegmentation3DDL.SetInferenceCameraCalibrator(flpFocalLength, flpPrincipalPoint, 1.0, mvDistortionCoefficient, EDirectionType.Decrement)
 
 		# 알고리즘 수행 # Execute the algorithm
 		if((res := instanceSegmentation3DDL.Execute()).IsFail()):
@@ -356,7 +356,7 @@ def main():
 
 		instanceSegmentation3DDL.GetInferenceResultObjectGroup(0, flogResult)
 
-		i64ResultCount = flogResult.GetObjectCount();
+		i64ResultCount = flogResult.GetObjectCount()
 
 		for i in range(i64ResultCount):
 			if instanceSegmentation3DDL.IsInferenceResultPoseMatrixEnabled(0, i):

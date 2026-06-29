@@ -103,10 +103,10 @@ def main():
 			break
 
 		# Destination 이미지 설정 // Set destination image
-		randomTextImageGeneratorDL.SetDestinationImage(fliDestinationImage2);
+		randomTextImageGeneratorDL.SetDestinationImage(fliDestinationImage2)
 
 		# 파라미터 값 설정 // Set parameter value
-		randomTextImageGeneratorDL.SetLabelFigureType(CRandomTextImageGeneratorDL.ELabelFigureType.Character);
+		randomTextImageGeneratorDL.SetLabelFigureType(CRandomTextImageGeneratorDL.ELabelFigureType.Character)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := randomTextImageGeneratorDL.Execute()).IsFail():

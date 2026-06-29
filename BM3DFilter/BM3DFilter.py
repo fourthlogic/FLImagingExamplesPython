@@ -113,7 +113,7 @@ def main():
 		bm3dFilter.SetSigma(0.2)
 
 		# Processing Mode 설정 // Set the processing mode
-		bm3dFilter.SetProcessingMode(CBM3DFilter.EProcessingMode.BasicEstimate);
+		bm3dFilter.SetProcessingMode(CBM3DFilter.EProcessingMode.BasicEstimate)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := bm3dFilter.Execute()).IsFail():
@@ -124,7 +124,7 @@ def main():
 		bm3dFilter.SetDestinationImage(fliDestination2Image)
 
 		# Processing Mode 설정 // Set the processing mode
-		bm3dFilter.SetProcessingMode(CBM3DFilter.EProcessingMode.FinalEstimate);
+		bm3dFilter.SetProcessingMode(CBM3DFilter.EProcessingMode.FinalEstimate)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := bm3dFilter.Execute()).IsFail():

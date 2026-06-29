@@ -299,9 +299,9 @@ def main():
 		f32CenterY = fliSourceImage.GetHeight() / 2
 		f32CenterZ = fliDestinationImage.GetBuffer()[int(f32CenterY * fliSourceImage.GetWidth() + f32CenterX)]
 
-		f32CenterX *= 70;
-		f32CenterY *= 70;
-		f32CenterZ *= 70;
+		f32CenterX *= 70
+		f32CenterY *= 70
+		f32CenterZ *= 70
 
 		tp3dFrom = TPoint3[Single](f32CenterX, f32CenterY, f32CenterZ)
 		

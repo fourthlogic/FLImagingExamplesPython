@@ -81,7 +81,7 @@ def main():
 		flFringePatternDefectDetector.SetBrightnessCoefficient(1)
 
 		# Mura 탐지 모드 설정 # Set mura detecting mode
-		flFringePatternDefectDetector.EnableMura(False);
+		flFringePatternDefectDetector.EnableMura(False)
 
 		# Mura 반복 횟수 설정 # Set mura iteration
 		flFringePatternDefectDetector.SetMuraIteration(2)

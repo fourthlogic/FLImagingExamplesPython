@@ -69,7 +69,7 @@ def main():
 		# 정밀도 설정 # Set the precision value
 		harmonicInterpolation.SetPrecision(0.001)
 		# 이미지 Figure 를 보간 영역으로 설정 # Enable image figures as interpolation regions
-		harmonicInterpolation.EnableImageFiguresAsInterpolationRegions(True);
+		harmonicInterpolation.EnableImageFiguresAsInterpolationRegions(True)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := (harmonicInterpolation.Execute())).IsFail():

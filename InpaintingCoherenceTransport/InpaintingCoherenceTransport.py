@@ -90,7 +90,7 @@ def main():
 		inpaintingCoherenceTransport.SetWeightOfChannels(mvChannelWeight)
 
 		# Image figure 를 inpainting region으로 설정하지 않음 # Do not set image figure as inpainting region
-		inpaintingCoherenceTransport.EnableImageFiguresAsInpaintingRegions(False);
+		inpaintingCoherenceTransport.EnableImageFiguresAsInpaintingRegions(False)
 
 		# 미리 그려둔 Painting region Figure Array 불러오기 # Load Pre-drawn Painting Region Figure Array
 		flrInpaintingRegion = CFLRegion()

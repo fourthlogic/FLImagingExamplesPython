@@ -83,7 +83,7 @@ def main():
 		# 생성할 노이즈 타입 설정 # Set the noise type to generate
 		noiseGenerator.SetNoiseType(CNoiseGenerator.ENoiseType.SpeckleNoise)
 		# 간섭 잡음의 강도 설정 # Set the intensity of speckle noise
-		noiseGenerator.SetSpeckleIntensity(0.05);
+		noiseGenerator.SetSpeckleIntensity(0.05)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := noiseGenerator.Execute()).IsFail():

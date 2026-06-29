@@ -268,9 +268,9 @@ def main():
 				# 마지막 검증 결과 받기 # Get the last validation result
 				f32MeanAP = instanceSegmentationDL.GetLearningResultLastMeanAP()
 				# 마지막 Recall 결과 받기 # Get the last recall result
-				f32Recall = instanceSegmentationDL.GetLearningResultLastRecall();
+				f32Recall = instanceSegmentationDL.GetLearningResultLastRecall()
 				# 마지막 검증 결과 받기 # Get the last validation result
-				f32Precision = instanceSegmentationDL.GetLearningResultLastPrecision();
+				f32Precision = instanceSegmentationDL.GetLearningResultLastPrecision()
 
 				# 해당 epoch의 비용과 검증 결과 값 출력 # Prcost and validation value for the relevant epoch
 				print("Cost : {:6f} mAP : {:6f} Recall : {:6f} Precision : {:6f} Epoch {} / {}".format(f32CurrCost, f32MeanAP, f32Recall, f32Precision, i32Epoch, i32MaxEpoch))
@@ -304,8 +304,8 @@ def main():
 					viewGraph.Plot(listCostHistory, EChartType.Line, EColor.RED, "Cost")
 					# Graph View 데이터 입력 # Input Graph View Data
 					viewGraph.Plot(listX, listMeanAPHistory, EChartType.Line, EColor.CYAN, "mAP")
-					viewGraph.Plot(listX, listRecall, EChartType.Line, EColor.GREEN, "recall");
-					viewGraph.Plot(listX, listPrecision, EChartType.Line, EColor.PURPLE, "precision");
+					viewGraph.Plot(listX, listRecall, EChartType.Line, EColor.GREEN, "recall")
+					viewGraph.Plot(listX, listPrecision, EChartType.Line, EColor.PURPLE, "precision")
 					viewGraph.UnlockUpdate()
 
 					viewGraph.UpdateWindow()
@@ -338,7 +338,7 @@ def main():
 		eFigureOption = Enum.ToObject(CInstanceSegmentationDL.EInferenceResultItemSettings, int(CInstanceSegmentationDL.EInferenceResultItemSettings.ClassNum) | int(CInstanceSegmentationDL.EInferenceResultItemSettings.ClassName) | int(CInstanceSegmentationDL.EInferenceResultItemSettings.Objectness))
 		instanceSegmentationDL.SetInferenceResultItemSettings(eFigureOption)
 		eFigureType = Enum.ToObject(CInstanceSegmentationDL.EInferenceResultRegionFigureType, int(CInstanceSegmentationDL.EInferenceResultRegionFigureType.Region) | int(CInstanceSegmentationDL.EInferenceResultRegionFigureType.BoundaryRectangle))
-		instanceSegmentationDL.SetInferenceResultRegionFigureType(eFigureType);
+		instanceSegmentationDL.SetInferenceResultRegionFigureType(eFigureType)
 		# Objectness Threshold 설정 # Set the obectness threshold
 		instanceSegmentationDL.SetInferenceResultObjectnessThreshold(0.5)
 		# Mask Threshold 설정 # Set The mask threshold
@@ -360,7 +360,7 @@ def main():
 		eFigureOption = Enum.ToObject(CInstanceSegmentationDL.EInferenceResultItemSettings, 0)
 		eFigureType = Enum.ToObject(CInstanceSegmentationDL.EInferenceResultRegionFigureType, int(CInstanceSegmentationDL.EInferenceResultRegionFigureType.Region))
 		instanceSegmentationDL.SetInferenceResultItemSettings(eFigureOption)
-		instanceSegmentationDL.SetInferenceResultRegionFigureType(eFigureType);
+		instanceSegmentationDL.SetInferenceResultRegionFigureType(eFigureType)
 		# Objectness Threshold 설정 # Set the obectness threshold
 		instanceSegmentationDL.SetInferenceResultObjectnessThreshold(0.5)
 		# Mask Threshold 설정 # Set The mask threshold

@@ -166,14 +166,14 @@ def main():
 		# AugmentationSpec 설정 # Set the AugmentationSpec
 		augSpec = CAugmentationSpec()
 
-		augSpec.EnableAugmentation(True);
-		augSpec.SetCommonActivationRate(1.0);
-		augSpec.SetCommonInterpolationMethod(EInterpolationMethod.Bilinear);
-		augSpec.EnableRotation(True);
-		augSpec.SetRotationParam(-45.0, 45.0, False, False, 1.0);
+		augSpec.EnableAugmentation(True)
+		augSpec.SetCommonActivationRate(1.0)
+		augSpec.SetCommonInterpolationMethod(EInterpolationMethod.Bilinear)
+		augSpec.EnableRotation(True)
+		augSpec.SetRotationParam(-45.0, 45.0, False, False, 1.0)
 
-		augSpec.EnableGaussianNoise(True);
-		augSpec.SetGaussianNoiseParam(0, 0, 0, 0.02, 1.0);
+		augSpec.EnableGaussianNoise(True)
+		augSpec.SetGaussianNoiseParam(0, 0, 0, 0.02, 1.0)
 
 		fasterCharacterBasedOCRDL.SetLearningAugmentationSpec(augSpec)
 

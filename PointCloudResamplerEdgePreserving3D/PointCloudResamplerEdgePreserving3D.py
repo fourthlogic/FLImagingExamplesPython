@@ -84,10 +84,10 @@ def main():
 
 		for i in range(3):
 			# Destination object 설정 # Set the destination object
-			pointCloudResamplerEdgePreserving3D.SetDestinationObject(arrFloResult[i]);
+			pointCloudResamplerEdgePreserving3D.SetDestinationObject(arrFloResult[i])
 
 			# 에지 민감도 설정 # Set the edge sensitivity
-			pointCloudResamplerEdgePreserving3D.SetEdgeSensitivity(arrI32Sensitivity[i]);
+			pointCloudResamplerEdgePreserving3D.SetEdgeSensitivity(arrI32Sensitivity[i])
 
 			# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 			if(res := pointCloudResamplerEdgePreserving3D.Execute()).IsFail() :				

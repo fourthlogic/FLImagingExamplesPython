@@ -63,19 +63,19 @@ def main():
 		tiltedFocusPlaneScanReparameterization3D.SetDestinationImage(fliDestinationImage)
 
 		# Destination 이미지 설정 # Set destination image
-		tiltedFocusPlaneScanReparameterization3D.SetDestinationImage(fliDestinationImage);
+		tiltedFocusPlaneScanReparameterization3D.SetDestinationImage(fliDestinationImage)
 
 		# Scroll Direction 설정 # Set scroll direction
-		tiltedFocusPlaneScanReparameterization3D.SetScrollDirection(CTiltedFocusPlaneScanReparameterization3D.EScrollDirection.TopToBottom);
+		tiltedFocusPlaneScanReparameterization3D.SetScrollDirection(CTiltedFocusPlaneScanReparameterization3D.EScrollDirection.TopToBottom)
 
 		# Pixel Accuracy 설정 # Set pixel accuracy
-		tiltedFocusPlaneScanReparameterization3D.SetPixelAccuracy(5.);
+		tiltedFocusPlaneScanReparameterization3D.SetPixelAccuracy(5.)
 
 		# Scan Accuracy 설정 # Set scan accuracy
-		tiltedFocusPlaneScanReparameterization3D.SetScanAccuracy(3.83);
+		tiltedFocusPlaneScanReparameterization3D.SetScanAccuracy(3.83)
 
 		# Depth Accuracy 설정 # Set depth accuracy
-		tiltedFocusPlaneScanReparameterization3D.SetDepthAccuracy(3.83);
+		tiltedFocusPlaneScanReparameterization3D.SetDepthAccuracy(3.83)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := tiltedFocusPlaneScanReparameterization3D.Execute()).IsFail():

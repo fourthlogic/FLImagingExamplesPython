@@ -87,7 +87,7 @@ def main():
 			break
 
 		# 결과 점수 획득 # Get Result Score
-		f64Score1 = tenengrad.GetResultScore();
+		f64Score1 = tenengrad.GetResultScore()
 
 		# Source 이미지 2 설정 # Set the source2 image
 		tenengrad.SetSourceImage(fliSourceImage2)
@@ -98,7 +98,7 @@ def main():
 			break
 
 		# 결과 점수 획득 # Get Result Score
-		f64Score2 = tenengrad.GetResultScore();
+		f64Score2 = tenengrad.GetResultScore()
 
 		# 화면에 출력하기 위해 Image View에서 레이어 0번을 얻어옴 # Obtain layer 0 number from image view for display
 		# 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately

@@ -245,9 +245,9 @@ def main():
 				# 마지막 검증 결과 받기 # Get the last validation result
 				f32Validation = objectDetectionDL.GetLearningResultLastMeanAP()
 				# 마지막 Recall 결과 받기 # Get the last recall result
-				f32Recall = objectDetectionDL.GetLearningResultLastRecall();
+				f32Recall = objectDetectionDL.GetLearningResultLastRecall()
 				# 마지막 검증 결과 받기 # Get the last validation result
-				f32Precision = objectDetectionDL.GetLearningResultLastPrecision();
+				f32Precision = objectDetectionDL.GetLearningResultLastPrecision()
 				# 해당 epoch의 비용과 검증 결과 값 출력 # Prcost and validation value for the relevant epoch
 				if f32AvgCost < objectDetectionDL.GetLearningRequiredCostForValidation() :
 					print("Cost : {:6f} Avg Cost : {:6f} mAP : {:6f} Recall : {:6f} Precision : {:6f} Epoch {} / {}".format(f32CurrCost, f32AvgCost, f32Validation, f32Recall, f32Precision, i32Epoch, i32MaxEpoch))

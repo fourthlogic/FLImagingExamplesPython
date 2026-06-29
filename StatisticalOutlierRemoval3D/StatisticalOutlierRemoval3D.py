@@ -53,9 +53,9 @@ def main():
 		# Source object 설정 # Set the source object
 		statisticalOutlierRemoval3D.SetSourceObject(floSourceObject)
 		# 탐색할 최근접 이웃 수 설정 3 Set the number of nearest neighbors to search
-		statisticalOutlierRemoval3D.SetNeighborCount(40);
+		statisticalOutlierRemoval3D.SetNeighborCount(40)
 		# 이상치 계수 설정 3 Set the outlier coefficient
-		statisticalOutlierRemoval3D.SetOutlierCoefficient(1);
+		statisticalOutlierRemoval3D.SetOutlierCoefficient(1)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if(res := statisticalOutlierRemoval3D.Execute()).IsFail() :	
