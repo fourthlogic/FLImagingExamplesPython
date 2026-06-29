@@ -58,7 +58,7 @@ def main():
 			ErrorPrint(res, "Failed to create the Destination 3D view.\n")
 			break
 				
-		# Vertex3D 객체 생성 # Create Vertex3D object
+		# Vertex Match 3D 객체 생성 # Create Vertex Match 3D object
 		vertexMatch3D = CVertexMatch3D()
 
 		# Learn object 설정 # Set the learn object

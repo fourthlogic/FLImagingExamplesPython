@@ -26,11 +26,11 @@ def main():
 
 	while True:		
 		# Source Object 로드 # Load the Source object
-		if(res := floLearnObject.Load("../../ExampleImages/VertexMatch3D/ResultPoints.ply")).IsFail() :		
+		if(res := floLearnObject.Load("../../ExampleImages/SurfaceMatch3D/Car wheel example.ply")).IsFail() :		
 			ErrorPrint(res, "Failed to load the object file.\n")
 			break
 		
-		if(res := floSourceObject.Load("../../ExampleImages/VertexMatch3D/ReferencePoints.ply")).IsFail() :		
+		if(res := floSourceObject.Load("../../ExampleImages/SurfaceMatch3D/Car example.ply")).IsFail() :		
 			ErrorPrint(res, "Failed to load the object file.\n")
 			break
 
@@ -58,52 +58,29 @@ def main():
 			ErrorPrint(res, "Failed to create the Destination 3D view.\n")
 			break
 				
-		# Vertex3D 객체 생성 # Create Vertex3D object
-		vertexMatch3D = CVertexMatch3D()
+		# Surface Match 3D 객체 생성 # Create Surface Match 3D object
+		surfaceMatch3D = CSurfaceMatch3D()
 
 		# Learn object 설정 # Set the learn object
-		vertexMatch3D.SetLearnObject(floLearnObject)
+		surfaceMatch3D.SetLearnObject(floLearnObject)
 		
-		# Source object 설정 # Set the source object
-		vertexMatch3D.SetSourceObject(floSourceObject)
-		# Min score 설정 # Set the min score
-		vertexMatch3D.SetMinScore(0.3)
-		# 최대 결과 개수 설정 # Set the max count of match result
-		vertexMatch3D.SetMaxObject(1)
-		# 샘플링 하지 않도록 설정 # Disable Sampling
-		vertexMatch3D.EnableLearnSamplingPointCloud(False)
-		# 장면 샘플링 거리 설정 # Set the scene sampling distance
-		vertexMatch3D.SetSceneSamplingDistance(0.01)
-		# 키포인트 비율 설정 # Set the keypoint ratio.
-		vertexMatch3D.SetKeypointRatio(0.5)
-		# 엣지 학습 여부 설정 # Set the edge train
-		vertexMatch3D.EnableTrainEdge(False)
-		# 배경 제거 여부 설정 # Set the background removal
-		vertexMatch3D.EnableBackgroundRemoval(False)
-		# 클러스터링 범위 설정 # Set the clustering range
-		vertexMatch3D.SetClusterRange(0.02)
-		# 포즈 조정 반복 횟수 설정 # Set the iteration value of pose refinement
-		vertexMatch3D.SetIteration(15)
-		# 초기 점수 설정 # Set the initial score
-		vertexMatch3D.SetInitialScore(0.1)
-
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if(res := vertexMatch3D.Learn()).IsFail() :	
-			ErrorPrint(res, "Failed to learn Vertex 3D.")
+		if(res := surfaceMatch3D.Learn()).IsFail() :	
+			ErrorPrint(res, "Failed to learn Surface 3D.")
 			break
 		
 		# 학습 데이터 저장 # Save the learnt data
-		if(res := vertexMatch3D.Save("../../ExampleImages/VertexMatch3D/Example FLSM Data.flsm")).IsFail() :
+		if(res := surfaceMatch3D.Save("../../ExampleImages/SurfaceMatch3D/Example FLSM Data.flsm")).IsFail() :
 			ErrorPrint(res, "Failed to save the learnt data file.\n")
 			break		
 
 		# 학습 데이터 불러오기 # Load the learnt data
-		if(res := vertexMatch3D.Load("../../ExampleImages/VertexMatch3D/Example FLSM Data.flsm")).IsFail() :
+		if(res := surfaceMatch3D.Load("../../ExampleImages/SurfaceMatch3D/Example FLSM Data.flsm")).IsFail() :
 			ErrorPrint(res, "Failed to load the learnt data file.\n")
 			break		
 
 		floSampleObject = CFL3DObject()
-		res, floSampleObject = vertexMatch3D.GetSampledLearn3DObject(floSampleObject)
+		res, floSampleObject = surfaceMatch3D.GetSampledLearn3DObject(floSampleObject)
 
 		# Learn Object 출력 # Display the learn object
 		if(res := view3DLearn.PushObject(floLearnObject)).IsFail() :
@@ -113,11 +90,32 @@ def main():
 		# Sampled data 출력 # Display the sampled data
 		if(res := view3DLearn.PushObject(floSampleObject)).IsFail() :		
 			ErrorPrint(res, "Failed to display the 3D object.\n")
-			break	
+			break		
+
+		# Source object 설정 # Set the source object
+		surfaceMatch3D.SetSourceObject(floSourceObject)
+		# Min score 설정 # Set the min score
+		surfaceMatch3D.SetMinScore(0.3)
+		# 최대 결과 개수 설정 # Set the max count of match result
+		surfaceMatch3D.SetMaxObject(4)
+		# 학습 샘플링 거리 설정 # Set the learn sampling distance
+		surfaceMatch3D.SetLearnSamplingDistance(0.03)
+		# 장면 샘플링 거리 설정 # Set the scene sampling distance
+		surfaceMatch3D.SetSceneSamplingDistance(0.03)
+		# 키포인트 비율 설정 # Set the keypoint ratio.
+		surfaceMatch3D.SetKeypointRatio(0.5)
+		# 엣지 학습 여부 설정 # Set the edge train
+		surfaceMatch3D.EnableTrainEdge(False)
+		# 배경 제거 여부 설정 # Set the background removal
+		surfaceMatch3D.EnableBackgroundRemoval(False)
+		# 클러스터링 범위 설정 # Set the clustering range
+		surfaceMatch3D.SetClusterRange(0.02)
+		# 포즈 조정 반복 횟수 설정 # Set the iteration value of pose refinement
+		surfaceMatch3D.SetIteration(5)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if(res := vertexMatch3D.Execute()).IsFail() :	
-			ErrorPrint(res, "Failed to execute Vertex Match 3D.")
+		if(res := surfaceMatch3D.Execute()).IsFail() :	
+			ErrorPrint(res, "Failed to execute Surface Match 3D.")
 			break
 
 
@@ -154,7 +152,7 @@ def main():
 			break
 		
 		# 3D 오브젝트 뷰에 결과 Object와 비교를 위한 Source 오브젝트 디스플레이
-		if(res := view3DDst.PushObject(vertexMatch3D.GetSourceObject())).IsFail():
+		if(res := view3DDst.PushObject(surfaceMatch3D.GetSourceObject())).IsFail():
 			ErrorPrint(res, "Failed to set object on the 3D View.\n")
 			break
 		
@@ -166,7 +164,7 @@ def main():
 		f64Score = 0.0
 		f64Residual = 0.0
 
-		i64ResultCount = vertexMatch3D.GetResultCount()
+		i64ResultCount = surfaceMatch3D.GetResultCount()
 
 		if i64ResultCount == 0 :		
 			ErrorPrint(res, "Failed to estimate pose matrix.\n")
@@ -179,7 +177,7 @@ def main():
 			tp3RotVec = TPoint3[Double]()
 
 			# 추정된 포즈 행렬 가져오기
-			res, sResult = vertexMatch3D.GetResultPoseMatrix(i, sResult)
+			res, sResult = surfaceMatch3D.GetResultPoseMatrix(i, sResult)
 
 			if res.IsFail():			
 				ErrorPrint(res, "Failed to estimate pose matrix.\n")
@@ -214,7 +212,7 @@ def main():
 			Console.WriteLine("    Residual : {0}", f64Residual)
 			Console.WriteLine("\n")
 
-			res, floLearnTransform, tp3Center = vertexMatch3D.GetResultObject(i, floLearnTransform, tp3Center)
+			res, floLearnTransform, tp3Center = surfaceMatch3D.GetResultObject(i, floLearnTransform, tp3Center)
 
 			if res.IsFail() :			
 				ErrorPrint(res, "Failed to set object on the 3d view.\n")

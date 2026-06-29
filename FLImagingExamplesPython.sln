@@ -302,11 +302,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Surface Match", "Surface Ma
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "SurfaceMatch3D", "SurfaceMatch3D\SurfaceMatch3D.pyproj", "{7138A047-DE6A-4313-B012-2594171E3519}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "SurfaceMatch_SaveAndLoad3D", "SurfaceMatch_SaveAndLoad3D\SurfaceMatch_SaveAndLoad3D.pyproj", "{B8D7AD5B-880D-462D-A651-AB3FB2E7E960}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "SurfaceMatch3D_SaveAndLoad", "SurfaceMatch_SaveAndLoad3D\SurfaceMatch3D_SaveAndLoad.pyproj", "{B8D7AD5B-880D-462D-A651-AB3FB2E7E960}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vertex Match", "Vertex Match", "{9C0A418B-A937-4B9C-A85F-7B1733C375F1}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "VertexMatch_SaveAndLoad3D", "VertexMatch_SaveAndLoad3D\VertexMatch_SaveAndLoad3D.pyproj", "{A6612E02-DFBC-411A-AC1B-F51F0ADE8BA8}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "VertexMatch3D_SaveAndLoad", "VertexMatch_SaveAndLoad3D\VertexMatch3D_SaveAndLoad.pyproj", "{A6612E02-DFBC-411A-AC1B-F51F0ADE8BA8}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "VertexMatch3D", "VertexMatch3D\VertexMatch3D.pyproj", "{C03FD84B-6631-4E65-B004-F254FF399C3F}"
 EndProject

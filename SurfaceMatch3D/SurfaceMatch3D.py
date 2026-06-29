@@ -58,7 +58,7 @@ def main():
 			ErrorPrint(res, "Failed to create the Destination 3D view.\n")
 			break
 				
-		# Surface3D 객체 생성 # Create Surface3D object
+		# Surface Match 3D 객체 생성 # Create Surface Match 3D object
 		surfaceMatch3D = CSurfaceMatch3D()
 
 		# Learn object 설정 # Set the learn object

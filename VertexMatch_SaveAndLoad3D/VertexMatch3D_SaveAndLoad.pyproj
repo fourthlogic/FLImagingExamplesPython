@@ -2,15 +2,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{b8d7ad5b-880d-462d-a651-ab3fb2e7e960}</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
-    <StartupFile>SurfaceMatch_SaveAndLoad3D.py</StartupFile>
+    <ProjectGuid>{a6612e02-dfbc-411a-ac1b-f51f0ade8ba8}</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>VertexMatch3D_SaveAndLoad.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>SurfaceMatch_SaveAndLoad3D</Name>
-    <RootNamespace>SurfaceMatch_SaveAndLoad3D</RootNamespace>
+    <Name>VertexMatch3D_SaveAndLoad</Name>
+    <RootNamespace>VertexMatch_SaveAndLoad3D</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="SurfaceMatch_SaveAndLoad3D.py" />
+    <Compile Include="VertexMatch3D_SaveAndLoad.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
