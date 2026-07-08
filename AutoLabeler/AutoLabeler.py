@@ -1,7 +1,5 @@
 ﻿# FLImagingClrPy 선언 # Declare FLImagingClrPy
-from tokenize import Single, String
 from FLImagingClrPy import *
-
 # You must call the following function once
 # before using any features of the FLImaging(R) library
 CLibraryUtilities.Initialize()
@@ -295,7 +293,7 @@ def main():
 		autoLabelerDL.SetSourceImage(fliResultAutotLabelImage)
 		autoLabelerDL.EnableOverwriting(True)
 		autoLabelerDL.EnableBatchProcessing(True)
-		autoLabelerDL.SetLabelOptions(Enum.ToObject(CAutoLabelerDL.ERegionFigureType, 0))
+		autoLabelerDL.SetLabelOptions(Enum.ToObject(CAutoLabelerDL.ELabelOptions, 0))
 		autoLabelerDL.SetRegionFigureType(CAutoLabelerDL.ERegionFigureType.BoundaryRectangle)
 		autoLabelerDL.SetMinimumScore(0.5)
 		autoLabelerDL.SetMinimumArea(50.0)
