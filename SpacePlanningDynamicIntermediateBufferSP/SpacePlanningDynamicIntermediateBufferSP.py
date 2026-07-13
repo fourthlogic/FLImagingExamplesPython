@@ -441,10 +441,28 @@ def InitializeDefaultSourceItemChances(itemChances):
 	itemChances.Add(2.0)
 
 
-def LearnDefaultModel(alg, itemChances):
+def IsCacheUpToDate(strCache, strReference):
+	if not os.path.exists(strCache):
+		return False
+
+	if not os.path.exists(strReference):
+		return False
+
+	return os.path.getmtime(strCache) > os.path.getmtime(strReference)
+
+
+def DescribeStrategy(alg, sStrategyId):
+	res, info = alg.GetStrategyInfo(sStrategyId, SP.SStrategyInfo())
+	strName = info.strStrategyName if (res.IsOK() and info.strStrategyName is not None) else "?"
+	return f'"{strName}" {{{sStrategyId.eGroup.ToString()}, {sStrategyId.i32IDInStrategy}}}'
+
+
+def ConfigureAndLearnDefaultModel(alg, itemChances):
 	res = CResult(EResult.UnknownError)
 
 	while True:
+		alg.Clear()
+
 		arrDefaultBinSpecs = [
 			SP.SBinSpec[Single](9.0, 12.0, 10.0),
 			SP.SBinSpec[Single](6.0, 5.0, 6.0)
@@ -474,16 +492,49 @@ def LearnDefaultModel(alg, itemChances):
 		if bFailed:
 			break
 
-		InitializeDefaultSourceItemChances(itemChances)
 		parameters = SP.SRandomSequenceParameters.CreateInfinite(itemChances, 2)
 		if (res := alg.SetRandomSequenceParameters(parameters)).IsFail():
 			break
 
-		if (res := alg.Learn()).IsFail():
-			break
-
-		res = alg.SelectStrategy(alg.GetOptimalStrategyId())
+		res = alg.Learn()
 		break
+
+	return res
+
+
+def LearnOrLoadDefaultModel(alg, itemChances, strCache, strSource):
+	res = CResult(EResult.UnknownError)
+
+	if IsCacheUpToDate(strCache, strSource):
+		res = alg.Load(strCache)
+
+		if res.IsOK() and alg.IsLearned():
+			res, parameters = alg.GetRandomSequenceParameters(SP.SRandomSequenceParameters.CreateInfinite(itemChances, 2))
+			if res.IsFail():
+				return res
+
+			itemChances.Clear()
+			for f32Chance in parameters.itemChances:
+				itemChances.Add(f32Chance)
+
+			sSelected = alg.GetSelectedStrategyId()
+			print(f"Loaded cached model: {strCache} (strategy {DescribeStrategy(alg, sSelected)})")
+			return res
+
+	InitializeDefaultSourceItemChances(itemChances)
+
+	if (res := ConfigureAndLearnDefaultModel(alg, itemChances)).IsFail():
+		return res
+
+	sOptimal = alg.GetOptimalStrategyId()
+	if (res := alg.SelectStrategy(sOptimal)).IsFail():
+		return res
+
+	resSave = alg.Save(strCache)
+	if resSave.IsFail():
+		print(f"Warning: failed to cache model ({strCache}): {resSave.GetString()}")
+	else:
+		print(f"Learned and cached model: {strCache} (strategy {DescribeStrategy(alg, sOptimal)})")
 
 	return res
 
@@ -898,9 +949,12 @@ def main():
 	while True:
 		alg = CSpacePlanningDynamicSP()
 
+		strSource = os.path.abspath(__file__)
+		strCache = f"SpacePlanningDynamicIntermediateBuffer.{alg.GetFileExtension()}"
+
 		itemChances = List[Single]()
-		if (res := LearnDefaultModel(alg, itemChances)).IsFail():
-			ErrorPrint(res, "Failed to learn the default model.")
+		if (res := LearnOrLoadDefaultModel(alg, itemChances, strCache, strSource)).IsFail():
+			ErrorPrint(res, "Failed to prepare the default model.")
 			break
 
 		modelSpecs = SRuntimeModelSpecs()

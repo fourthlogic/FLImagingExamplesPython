@@ -423,6 +423,10 @@ FodyWeavers.xsd
 *.fllcz
 *.fltps
 
+# Space Planning Files
+*.flsps
+*.flspd
+
 # FigureSaveLoad
 FigureSaveLoad_FigureArray.fig
 FigureSaveLoad_FLRect.fig
