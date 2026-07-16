@@ -140,7 +140,7 @@ def main():
 		objectDetectionDL = CObjectDetectionDL()
 
 		# OptimizerSpec 객체 생성 # Create OptimizerSpec object
-		optSpec = COptimizerSpecAdamGradientDescent()
+		optSpec = COptimizerSpecAdamGradientDescentDL()
 
 		# 학습할 이미지 설정 # Set the image to learn
 		objectDetectionDL.SetLearningImage(fliLearnImage)
@@ -172,7 +172,7 @@ def main():
 		objectDetectionDL.SetLearningOptimizerSpec(optSpec)
 		
 		# AugmentationSpec 설정 # Set the AugmentationSpec
-		augSpec = CAugmentationSpec()
+		augSpec = CAugmentationSpecDL()
 
 		augSpec.EnableAugmentation(True)
 		augSpec.SetCommonActivationRate(0.8)
@@ -187,7 +187,7 @@ def main():
 		objectDetectionDL.SetLearningAugmentationSpec(augSpec)
 
 		# 자동 저장 옵션 설정 # Set Auto-Save Options
-		autoSaveSpec = CAutoSaveSpec()
+		autoSaveSpec = CAutoSaveSpecDL()
 
 		# 자동 저장 활성화 # Enable Auto-Save
 		# 저장 때문에 발생하는 속도 저하를 막기 위해 예제에서는 코드 사용법만 표시하고 옵션은 끔 # To prevent performance degradation caused by saving, the examples only demonstrate how to use the code, with the saving option disabled.

@@ -145,7 +145,7 @@ def main():
 		semanticSegmentationDL = CSemanticSegmentationDL()
 
 		# OptimizerSpec 객체 생성 # Create OptimizerSpec object
-		optSpec = COptimizerSpecAdamGradientDescent()
+		optSpec = COptimizerSpecAdamGradientDescentDL()
 
 		# 학습할 이미지 설정 # Set the image to learn
 		semanticSegmentationDL.SetLearningImage(fliLearnImage)
@@ -171,7 +171,7 @@ def main():
 		semanticSegmentationDL.SetLearningOptimizerSpec(optSpec)
 		
 		# AugmentationSpec 설정 # Set the AugmentationSpec
-		augSpec = CAugmentationSpec()
+		augSpec = CAugmentationSpecDL()
 
 		augSpec.SetCommonActivationRate(0.5)
 		augSpec.SetCommonInterpolationMethod(EInterpolationMethod.Bilinear)

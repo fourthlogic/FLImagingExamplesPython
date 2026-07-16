@@ -139,7 +139,7 @@ def main():
 		classifierDL = CClassifierDL()
 
 		# OptimizerSpec 객체 생성 # Create OptimizerSpec object
-		optSpec = COptimizerSpecAdamGradientDescent()
+		optSpec = COptimizerSpecAdamGradientDescentDL()
 
 		# 학습할 이미지 설정 # Set the image to learn
 		classifierDL.SetLearningImage(fliLearnImage)
@@ -170,7 +170,7 @@ def main():
 		classifierDL.SetLearningStopCondition('f1score >= 0.999')
 
 		# 자동 저장 옵션 설정 # Set Auto-Save Options
-		autoSaveSpec = CAutoSaveSpec()
+		autoSaveSpec = CAutoSaveSpecDL()
 
 		# 자동 저장 활성화 # Enable Auto-Save
 		# 저장 때문에 발생하는 속도 저하를 막기 위해 예제에서는 코드 사용법만 표시하고 옵션은 끔 # To prevent performance degradation caused by saving, the examples only demonstrate how to use the code, with the saving option disabled.
@@ -185,12 +185,12 @@ def main():
 		classifierDL.SetLearningAutoSaveSpec(autoSaveSpec)
 
 		# 공통 증강 스펙 설정 # Set common Augmentation Spec
-		augCommonSpec = CAugmentationSpec()
+		augCommonSpec = CAugmentationSpecDL()
 		augCommonSpec.EnableAugmentation(False)
 		classifierDL.SetLearningAugmentationSpec(augCommonSpec)
 
 		# 클래스 0,1 번에 대한 증강 Preset 설정 # Setting the augmentation preset for classes 0 and 1
-		augSpec1 = CAugmentationSpec()
+		augSpec1 = CAugmentationSpecDL()
 
 		augSpec1.EnableAugmentation(True)
 		augSpec1.SetCommonActivationRate(1.000000)
@@ -210,7 +210,7 @@ def main():
 		classifierDL.AddLearningAugmentationPreset(augmentationPreset1)
 
 		# 클래스 2 번에 대한 증강 Preset 설정 # Setting the augmentation preset for class 2
-		augSpec2 = CAugmentationSpec()
+		augSpec2 = CAugmentationSpecDL()
 
 		augSpec2.EnableAugmentation(True)
 		augSpec2.SetCommonActivationRate(0.500000)
@@ -227,7 +227,7 @@ def main():
 		augmentationPreset2.SetName("Class 2")
 		augmentationPreset2.SetAugmentationSpec(augSpec2)
 		classifierDL.AddLearningAugmentationPreset(augmentationPreset2)
-		augSpec3 = CAugmentationSpec()
+		augSpec3 = CAugmentationSpecDL()
 
 		augSpec3.EnableAugmentation(True)
 		augSpec3.SetCommonActivationRate(1.000000)
@@ -247,7 +247,7 @@ def main():
 		classifierDL.AddLearningAugmentationPreset(augmentationPreset3)
 
 		# 클래스 4,5 번에 대한 증강 Preset 설정 # Setting the augmentation preset for class 4
-		augSpec4 = CAugmentationSpec()
+		augSpec4 = CAugmentationSpecDL()
 
 		augSpec4.EnableAugmentation(True)
 		augSpec4.SetCommonActivationRate(1.000000)
