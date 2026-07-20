@@ -200,7 +200,7 @@ def main():
 		augSpec1.EnableRotation(True)
 		augSpec1.SetRotationParam(-30.000000, 30.000000, False, False, 1.000000)
 
-		augmentationPreset1 = CAugmentationPreset()
+		augmentationPreset1 = CAugmentationPresetDL()
 		flaClassNum1 = List[int]()
 		flaClassNum1.Add(0)
 		flaClassNum1.Add(1)
@@ -220,7 +220,7 @@ def main():
 		augSpec2.EnableRotation(True)
 		augSpec2.SetRotationParam(-180.000000, 180.000000, False, False, 1.000000)
 
-		augmentationPreset2 = CAugmentationPreset()
+		augmentationPreset2 = CAugmentationPresetDL()
 		flaClassNum2 = List[int]()
 		flaClassNum2.Add(2)
 		augmentationPreset2.SetClassNumbers(flaClassNum2)
@@ -238,7 +238,7 @@ def main():
 		augSpec3.SetScaleParam(0.670000, 1.500000, 0.670000, 1.500000, True, 1.000000)
 
 		# 클래스 3 번에 대한 증강 Preset 설정 # Setting the augmentation preset for class 3
-		augmentationPreset3 = CAugmentationPreset()
+		augmentationPreset3 = CAugmentationPresetDL()
 		flaClassNum3 = List[int]()
 		flaClassNum3.Add(3)
 		augmentationPreset3.SetClassNumbers(flaClassNum3)
@@ -257,7 +257,7 @@ def main():
 		augSpec4.EnableQuarterRotation(True)
 		augSpec4.SetQuarterRotationParam(True, True, True, True, 1.000000)
 
-		augmentationPreset4 = CAugmentationPreset()
+		augmentationPreset4 = CAugmentationPresetDL()
 		flaClassNum4 = List[int]()
 		flaClassNum4.Add(4)
 		flaClassNum4.Add(5)
