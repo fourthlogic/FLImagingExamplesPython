@@ -83,8 +83,8 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
-		# CCOCOLabelParserDL 객체 생성 # Create CCOCOLabelParserDL object
-		cocoLabelParserDL = CCOCOLabelParserDL()
+		# CCocoLabelParserDL 객체 생성 # Create CCocoLabelParserDL object
+		cocoLabelParserDL = CCocoLabelParserDL()
 
 		# Source 이미지 폴더 경로 설정 // Set source image folder path
 		cocoLabelParserDL.SetSourceImageFolderPath('../../ExampleImages/COCOLabelParser/Source')
@@ -94,7 +94,7 @@ def main():
 		cocoLabelParserDL.SetDestinationImagePath('../../ExampleImages/COCOLabelParser/Destination/Result.flif')
 
 		# 파라미터 값 설정 # Set parameter value
-		cocoLabelParserDL.SetLabelShape(CCOCOLabelParserDL.ELabelShape.Rect)
+		cocoLabelParserDL.SetLabelShape(CCocoLabelParserDL.ELabelShape.Rect)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := cocoLabelParserDL.Execute()).IsFail():
@@ -107,7 +107,7 @@ def main():
 			break
 
 		# 파라미터 값 설정 // Set parameter value
-		cocoLabelParserDL.SetLabelShape(CCOCOLabelParserDL.ELabelShape.Segmentation)
+		cocoLabelParserDL.SetLabelShape(CCocoLabelParserDL.ELabelShape.Segmentation)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := cocoLabelParserDL.Execute()).IsFail():
