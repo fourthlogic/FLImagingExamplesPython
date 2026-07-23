@@ -297,6 +297,33 @@ def LerpArc(start, end, f32T, f32ArcHeight):
 	return pose
 
 
+def FindClosestEquivalentCuboidRotation(quatStart, quatTarget):
+	# A centered cuboid is invariant under a 180-degree rotation about any local principal axis.
+	arrLocalSymmetries = [
+		MakeQuaternionFromRotationVector(TPoint3[Single](0.0, 0.0, 0.0)),
+		MakeQuaternionFromRotationVector(TPoint3[Single](math.pi, 0.0, 0.0)),
+		MakeQuaternionFromRotationVector(TPoint3[Single](0.0, math.pi, 0.0)),
+		MakeQuaternionFromRotationVector(TPoint3[Single](0.0, 0.0, math.pi)),
+	]
+
+	quatClosest = quatTarget
+	f64ClosestDot = -1.0
+	for quatLocalSymmetry in arrLocalSymmetries:
+		quatCandidate = quatTarget * quatLocalSymmetry
+		quatCandidate.Normalize()
+
+		f64Dot = quatStart.Dot(quatCandidate)
+		if f64Dot < 0.0:
+			quatCandidate = CFLGeometry3DQuaternion[Single](-quatCandidate.x, -quatCandidate.y, -quatCandidate.z, -quatCandidate.w)
+			f64Dot = -f64Dot
+
+		if f64Dot > f64ClosestDot:
+			quatClosest = quatCandidate
+			f64ClosestDot = f64Dot
+
+	return quatClosest
+
+
 def GetRotatedItemSize(itemSpec, eRotation):
 	if eRotation == SP.EAxisRotation.XYZ:
 		return TPoint3[Single](itemSpec.width, itemSpec.height, itemSpec.depth)
@@ -1024,6 +1051,10 @@ def main():
 			if not view3DResult.IsAvailable():
 				return
 
+			poseEndMinimumMotion = SAnimationPose()
+			poseEndMinimumMotion.tpWorldCenter = poseEnd.tpWorldCenter
+			poseEndMinimumMotion.quatRotation = FindClosestEquivalentCuboidRotation(poseStart.quatRotation, poseEnd.quatRotation)
+
 			fnDraw()
 
 			view3DResult.Lock()
@@ -1043,7 +1074,7 @@ def main():
 			f64Start = time.perf_counter()
 			while view3DResult.IsAvailable():
 				f32T = Clamp01(((time.perf_counter() - f64Start) * 1000.0) / f64AnimationDurationMs)
-				poseNext = LerpArc(poseStart, poseEnd, f32T, f32AnimationArcHeight)
+				poseNext = LerpArc(poseStart, poseEndMinimumMotion, f32T, f32AnimationArcHeight)
 
 				view3DResult.LockUpdate()
 				resUpdate = UpdateItemObjectPose(view3DResult, i32InFlightObjIndex, listLocalVertices, poseNext)
