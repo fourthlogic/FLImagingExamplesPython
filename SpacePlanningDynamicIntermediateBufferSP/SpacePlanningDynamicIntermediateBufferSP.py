@@ -258,47 +258,6 @@ def DrawSourcePreviewLocalRotation(rng):
 	return MakeQuaternionFromRotationVector(tpRotationVector)
 
 
-def GetAxisRotationLocalQuaternion(eRotation):
-	if eRotation == SP.EAxisRotation.ZYX:
-		basis = MakeRotationBasis(
-			TPoint3[Single](0.0, 0.0, 1.0),
-			TPoint3[Single](0.0, 1.0, 0.0),
-			TPoint3[Single](-1.0, 0.0, 0.0)
-		)
-	elif eRotation == SP.EAxisRotation.XZY:
-		basis = MakeRotationBasis(
-			TPoint3[Single](1.0, 0.0, 0.0),
-			TPoint3[Single](0.0, 0.0, 1.0),
-			TPoint3[Single](0.0, -1.0, 0.0)
-		)
-	elif eRotation == SP.EAxisRotation.ZXY:
-		basis = MakeRotationBasis(
-			TPoint3[Single](0.0, 1.0, 0.0),
-			TPoint3[Single](0.0, 0.0, 1.0),
-			TPoint3[Single](1.0, 0.0, 0.0)
-		)
-	elif eRotation == SP.EAxisRotation.YXZ:
-		basis = MakeRotationBasis(
-			TPoint3[Single](0.0, 1.0, 0.0),
-			TPoint3[Single](-1.0, 0.0, 0.0),
-			TPoint3[Single](0.0, 0.0, 1.0)
-		)
-	elif eRotation == SP.EAxisRotation.YZX:
-		basis = MakeRotationBasis(
-			TPoint3[Single](0.0, 0.0, 1.0),
-			TPoint3[Single](1.0, 0.0, 0.0),
-			TPoint3[Single](0.0, 1.0, 0.0)
-		)
-	else:
-		basis = MakeRotationBasis(
-			TPoint3[Single](1.0, 0.0, 0.0),
-			TPoint3[Single](0.0, 1.0, 0.0),
-			TPoint3[Single](0.0, 0.0, 1.0)
-		)
-
-	return MakeQuaternionFromBasis(basis)
-
-
 def ApplyTransform(matRotation, tpOffset, tpLocal):
 	return TPoint3[Single](
 		tpOffset.x + matRotation[0, 0] * tpLocal.x + matRotation[0, 1] * tpLocal.y + matRotation[0, 2] * tpLocal.z,
@@ -762,7 +721,7 @@ def FindRecommendedPlacementInBin(alg, i32BinIndex):
 	return CResult(EResult.DoesNotExist), None
 
 
-def TryPlaceSourceInBuffer(alg, arrBins, listItemSpecs, binSpecBuffer, sourceSlot, fnOnStep, fnAnimateMove):
+def TryPlaceSourceInBuffer(alg, converter, arrBins, listItemSpecs, binSpecBuffer, sourceSlot, fnOnStep, fnAnimateMove):
 	res = CResult(EResult.UnknownError)
 	bPlaced = False
 	i32SourceItemType = sourceSlot.i32ItemType
@@ -788,17 +747,26 @@ def TryPlaceSourceInBuffer(alg, arrBins, listItemSpecs, binSpecBuffer, sourceSlo
 			res = CResult(EResult.OK)
 			break
 
-		if (res := alg.AddPlacement(placement)).IsFail():
-			break
-
+		poseStart = None
+		poseEnd = None
 		if fnAnimateMove is not None:
 			itemSpec = listItemSpecs[placement.i32ItemIndex]
 			poseStart = MakePoseFromBinLocalAabbMin(itemSpec, i32BinBuffer, GetSourcePreviewLocalPos(itemSpec, binSpecBuffer), sourceSlot.quatLocalRotation)
-			poseEnd = MakePoseFromBinLocalAabbMin(itemSpec, placement.i32BinIndex, placement.tpPosition, GetAxisRotationLocalQuaternion(placement.eRotation))
-			sourceSlot.eState = ESourceState.NeedNewSource
+			poseEnd = SAnimationPose()
+			res, poseEnd.tpWorldCenter, poseEnd.quatRotation = converter.ConvertPose(
+				placement,
+				TPoint3[Single](),
+				CFLGeometry3DQuaternion[Single]()
+			)
+			if res.IsFail():
+				break
+
+		if (res := alg.AddPlacement(placement)).IsFail():
+			break
+
+		sourceSlot.eState = ESourceState.NeedNewSource
+		if fnAnimateMove is not None:
 			fnAnimateMove(placement.i32ItemIndex, poseStart, poseEnd)
-		else:
-			sourceSlot.eState = ESourceState.NeedNewSource
 
 		arrBins[i32BinBuffer].AddInstance(item)
 
@@ -818,7 +786,7 @@ def TryPlaceSourceInBuffer(alg, arrBins, listItemSpecs, binSpecBuffer, sourceSlo
 	return res, bPlaced
 
 
-def MoveOnePendingItemToDestination(alg, arrBins, listItemSpecs, binSpecBuffer, sourceSlot, fnOnStep, fnAnimateMove):
+def MoveOnePendingItemToDestination(alg, converter, arrBins, listItemSpecs, binSpecBuffer, sourceSlot, fnOnStep, fnAnimateMove):
 	res = CResult(EResult.UnknownError)
 	i32SourceItemType = sourceSlot.i32ItemType
 	i32ArrivalIndex = sourceSlot.i32ArrivalIndex
@@ -848,34 +816,49 @@ def MoveOnePendingItemToDestination(alg, arrBins, listItemSpecs, binSpecBuffer, 
 				res = CResult(EResult.FullOfCapacity)
 			break
 
-		if (res := alg.AddPlacement(placement)).IsFail():
-			break
-
 		resPick, i32BufferPickIndex = arrBins[i32BinBuffer].GetFirstPickableIndexOfType(placement.i32ItemIndex)
 		bUseBufferedItem = resPick.IsOK()
 
-		i32StartBinIndex = i32BinBuffer
-		if bUseBufferedItem:
-			itemStart = arrBins[i32BinBuffer].listItems[i32BufferPickIndex]
-			tpStartMinBinLocal = itemStart.tpMin
-			quatStartLocal = GetAxisRotationLocalQuaternion(itemStart.eRotation)
+		if not bUseBufferedItem and placement.i32ItemIndex != i32SourceItemType:
+			res = CResult(EResult.DoesNotExist)
+			break
 
+		poseStart = None
+		poseEnd = None
+		if fnAnimateMove is not None:
+			if bUseBufferedItem:
+				placementStart = MakePlacementInfo(i32BinBuffer, arrBins[i32BinBuffer].listItems[i32BufferPickIndex])
+				poseStart = SAnimationPose()
+				res, poseStart.tpWorldCenter, poseStart.quatRotation = converter.ConvertPose(
+					placementStart,
+					TPoint3[Single](),
+					CFLGeometry3DQuaternion[Single]()
+				)
+				if res.IsFail():
+					break
+			else:
+				itemSpec = listItemSpecs[placement.i32ItemIndex]
+				poseStart = MakePoseFromBinLocalAabbMin(itemSpec, i32BinBuffer, GetSourcePreviewLocalPos(itemSpec, binSpecBuffer), sourceSlot.quatLocalRotation)
+
+			poseEnd = SAnimationPose()
+			res, poseEnd.tpWorldCenter, poseEnd.quatRotation = converter.ConvertPose(
+				placement,
+				TPoint3[Single](),
+				CFLGeometry3DQuaternion[Single]()
+			)
+			if res.IsFail():
+				break
+
+		if (res := alg.AddPlacement(placement)).IsFail():
+			break
+
+		if bUseBufferedItem:
 			if (res := arrBins[i32BinBuffer].RemovePickableAt(i32BufferPickIndex)).IsFail():
 				break
 		else:
-			if placement.i32ItemIndex != i32SourceItemType:
-				res = CResult(EResult.DoesNotExist)
-				break
-
-			itemSpec = listItemSpecs[placement.i32ItemIndex]
-			tpStartMinBinLocal = GetSourcePreviewLocalPos(itemSpec, binSpecBuffer)
-			quatStartLocal = sourceSlot.quatLocalRotation
 			sourceSlot.eState = ESourceState.NeedNewSource
 
 		if fnAnimateMove is not None:
-			itemSpec = listItemSpecs[placement.i32ItemIndex]
-			poseStart = MakePoseFromBinLocalAabbMin(itemSpec, i32StartBinIndex, tpStartMinBinLocal, quatStartLocal)
-			poseEnd = MakePoseFromBinLocalAabbMin(itemSpec, placement.i32BinIndex, placement.tpPosition, GetAxisRotationLocalQuaternion(placement.eRotation))
 			fnAnimateMove(placement.i32ItemIndex, poseStart, poseEnd)
 
 		arrBins[i32BinDestination].AddInstance(MakeItemInstance(listItemSpecs, placement))
@@ -899,17 +882,17 @@ def MoveOnePendingItemToDestination(alg, arrBins, listItemSpecs, binSpecBuffer, 
 	return res
 
 
-def ProcessSourceArrival(alg, arrBins, listItemSpecs, binSpecBuffer, sourceSlot, fnOnStep, fnAnimateMove):
+def ProcessSourceArrival(alg, converter, arrBins, listItemSpecs, binSpecBuffer, sourceSlot, fnOnStep, fnAnimateMove):
 	i32MaxAttemptCount = len(arrBins[i32BinBuffer].listItems) + 2
 	for _ in range(i32MaxAttemptCount):
-		res, bPlacedInBuffer = TryPlaceSourceInBuffer(alg, arrBins, listItemSpecs, binSpecBuffer, sourceSlot, fnOnStep, fnAnimateMove)
+		res, bPlacedInBuffer = TryPlaceSourceInBuffer(alg, converter, arrBins, listItemSpecs, binSpecBuffer, sourceSlot, fnOnStep, fnAnimateMove)
 		if res.IsFail():
 			return res
 
 		if bPlacedInBuffer:
 			return CResult(EResult.OK)
 
-		if (res := MoveOnePendingItemToDestination(alg, arrBins, listItemSpecs, binSpecBuffer, sourceSlot, fnOnStep, fnAnimateMove)).IsFail():
+		if (res := MoveOnePendingItemToDestination(alg, converter, arrBins, listItemSpecs, binSpecBuffer, sourceSlot, fnOnStep, fnAnimateMove)).IsFail():
 			return res
 
 		if sourceSlot.eState == ESourceState.NeedNewSource:
@@ -1099,7 +1082,7 @@ def main():
 				fnRender()
 				print(f"[source] arrival {sourceSlot.i32ArrivalIndex:2d}: item type {sourceSlot.i32ItemType}")
 
-			if (res := ProcessSourceArrival(alg, arrBins, modelSpecs.listItemSpecs, modelSpecs.arrBinSpecs[i32BinBuffer], sourceSlot, fnRender, fnAnimateMove)).IsFail():
+			if (res := ProcessSourceArrival(alg, converter, arrBins, modelSpecs.listItemSpecs, modelSpecs.arrBinSpecs[i32BinBuffer], sourceSlot, fnRender, fnAnimateMove)).IsFail():
 				if res == CResult(EResult.FullOfCapacity):
 					print(f"Arrival {sourceSlot.i32ArrivalIndex}: Destination and Buffer cannot accept the source item. Stopping.")
 				elif view3DResult.IsAvailable():
