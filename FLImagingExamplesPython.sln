@@ -2020,6 +2020,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FLDenoisingType2", "FLDenoi
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AdaptiveThresholdSauvola", "AdaptiveThresholdSauvola\AdaptiveThresholdSauvola.pyproj", "{C686C3BE-71F5-4AA7-A935-3E4732F5653B}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AdaptiveThresholdWolfJolion", "AdaptiveThresholdWolfJolion\AdaptiveThresholdWolfJolion.pyproj", "{B8B011F3-76F0-4B6E-84C2-6B16EFA75963}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3402,6 +3404,8 @@ Global
 		{BA5CEB13-2BC0-4B53-BA4F-C3B31416BFC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C686C3BE-71F5-4AA7-A935-3E4732F5653B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C686C3BE-71F5-4AA7-A935-3E4732F5653B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8B011F3-76F0-4B6E-84C2-6B16EFA75963}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8B011F3-76F0-4B6E-84C2-6B16EFA75963}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4402,6 +4406,7 @@ Global
 		{1DFDAD59-E159-4955-A598-7D012ED8EBE1} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
 		{BA5CEB13-2BC0-4B53-BA4F-C3B31416BFC6} = {1DFDAD59-E159-4955-A598-7D012ED8EBE1}
 		{C686C3BE-71F5-4AA7-A935-3E4732F5653B} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
+		{B8B011F3-76F0-4B6E-84C2-6B16EFA75963} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
