@@ -2320,6 +2320,10 @@
 	- SNAPBuild
       - The example of loading and running a snap file.
       - 스냅 파일 로드 및 실행 예제.
+      
+  - KDTree
+    - The example of KDTree class, which is a binary search tree of K dimensions.
+    - K 차원의 이진 탐색 트리인 KD Tree 클래스 예제.
 
   - Stencil
     - The example of a stencil class that converts a string to a figure shaped by the selected font.

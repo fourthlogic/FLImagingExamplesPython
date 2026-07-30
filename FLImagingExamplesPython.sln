@@ -2024,6 +2024,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AdaptiveThresholdWolfJolion
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LabelRemover", "LabelRemover\LabelRemover.pyproj", "{39D6943D-407D-4E4B-B03E-8BA8411F7B6A}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "KDTree", "KDTree\KDTree.pyproj", "{78D8172C-BF9C-462A-80DD-C00C5EEEB56C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3410,6 +3412,8 @@ Global
 		{B8B011F3-76F0-4B6E-84C2-6B16EFA75963}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39D6943D-407D-4E4B-B03E-8BA8411F7B6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{39D6943D-407D-4E4B-B03E-8BA8411F7B6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78D8172C-BF9C-462A-80DD-C00C5EEEB56C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78D8172C-BF9C-462A-80DD-C00C5EEEB56C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4412,6 +4416,7 @@ Global
 		{C686C3BE-71F5-4AA7-A935-3E4732F5653B} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
 		{B8B011F3-76F0-4B6E-84C2-6B16EFA75963} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
 		{39D6943D-407D-4E4B-B03E-8BA8411F7B6A} = {6ADA489A-01EB-47E3-830F-2F572C2880BE}
+		{78D8172C-BF9C-462A-80DD-C00C5EEEB56C} = {95D14068-F7EA-4884-B6EC-05524883BA64}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
