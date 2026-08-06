@@ -32,12 +32,10 @@ def main():
         if (res := viewImage[0].SynchronizeWindow(viewImage[1])[0]).IsFail():
             ErrorPrint(res, "Failed to synchronize window")
             break
-
         # 첫 번째 이미지 뷰에 모든 컨텍스트 메뉴 비활성화 설정
         # Disable all context menu options on the first image view
-        menuFlag = getattr(EAvailableViewImageContextMenu, "None")
-        viewImage[0].SetAvailableViewImageContextMenu(menuFlag)
-        
+        viewImage[0].EnableAvailableViewImageContextMenuAll(False)
+
         # 이미지뷰의 0번 레이어 가져오기
         # Get the 0th layer of the image view
         layer = viewImage[0].GetLayer(0)
@@ -47,28 +45,50 @@ def main():
         layer.Clear()
 
         strInformation = "RIGHT BUTTON CLICK ON MOUSE AND\nSEE THE CONTEXT MENU"
-        strInformation2 = "Option : EAvailableViewImageContextMenu.None"
-        
-		# 아래 함수 DrawTextCanvas는 스크린 좌표를 기준으로 문자열을 뷰어에 출력한다.
+        strInformation2 = "Option : EnableAvailableViewImageContextMenuAll(False)"
+
+        # 아래 함수 DrawTextCanvas는 스크린 좌표를 기준으로 문자열을 뷰어에 출력한다.
         # The function DrawTextCanvas displays a string on the viewer using screen coordinates.
-		# 파라미터 순서 : 기준 좌표 Figure 객체 -> 문자열 -> 텍스트 색 -> 텍스트 테두리 색 -> 폰트 크기 -> 실제 크기로 출력 유무 -> 각도 -> 정렬 -> 폰트 이름 -> 텍스트 알파값(불투명도) -> 텍스트 테두리 알파값 (불투명도) -> 폰트 두께 -> 폰트 이탤릭 여부
-		# Parameter order: reference coordinate (Figure object) -> text string -> text color -> text outline color -> font size -> render in real-world size (bool) -> angle -> alignment -> font name -> text alpha (opacity) -> text outline alpha (opacity) -> font thickness -> italic font (bool)
+        # 파라미터 순서 : 기준 좌표 Figure 객체 -> 문자열 -> 텍스트 색 -> 텍스트 테두리 색 -> 폰트 크기 -> 실제 크기로 출력 유무 -> 각도 -> 정렬 -> 폰트 이름 -> 텍스트 알파값(불투명도) -> 텍스트 테두리 알파값 (불투명도) -> 폰트 두께 -> 폰트 이탤릭 여부
+        # Parameter order: reference coordinate (Figure object) -> text string -> text color -> text outline color -> font size -> render in real-world size (bool) -> angle -> alignment -> font name -> text alpha (opacity) -> text outline alpha (opacity) -> font thickness -> italic font (bool)
         layer.DrawTextCanvas(CFLPoint[Double](10, 10), strInformation, EColor.LIME, EColor.BLACK, 15)
         layer.DrawTextCanvas(CFLPoint[Double](10, 50), strInformation2, EColor.CYAN, EColor.BLACK, 15)
 
         # 두 번째 이미지 뷰에서 특정 메뉴 비활성화
         # Disable specific context menu options on the second image view
-        ctxMenuOption = int(EAvailableViewImageContextMenu.All) & ~int(
-            int(EAvailableViewImageContextMenu.Load) |
-            int(EAvailableViewImageContextMenu.ClearFile) |
-            int(EAvailableViewImageContextMenu.Save) |
-            int(EAvailableViewImageContextMenu.CreateImage)
-        )
+        # 전체 메뉴를 활성화한 뒤, 아래 리스트에 나열한 항목들만 제외합니다.
+        # Enable all menu items first, then remove only the items listed below.
+        listAvailableMenuToRemove = [
+            # Load
+            EMenuItem.LoadFile,
+            EMenuItem.LoadFile_Raw,
+            EMenuItem.LoadFolder,
+            EMenuItem.AppendFile,
+            EMenuItem.InsertFile,
+            EMenuItem.AppendFolder,
+            EMenuItem.InsertFolder,
+
+            # ClearFile
+            EMenuItem.ClearFile,
+            EMenuItem.ClearSelectedPage,
+
+            # Save
+            EMenuItem.Save,
+            EMenuItem.SavePages,
+            EMenuItem.SaveCurrentPage,
+            EMenuItem.SaveCurrentPageWithLayers,
+
+            # CreateImage
+            EMenuItem.CreateImage,
+            EMenuItem.InsertPage,
+            EMenuItem.AppendPage,
+        ]
 
         # 두 번째 이미지 뷰에 컨텍스트 메뉴 설정
         # Apply the customized context menu to the second image view
-        viewImage[1].SetAvailableViewImageContextMenu(EAvailableViewImageContextMenu(ctxMenuOption, True))
-        
+        viewImage[1].EnableAvailableViewImageContextMenuAll(True)
+        viewImage[1].RemoveAvailableViewImageContextMenu(listAvailableMenuToRemove)
+
         # 이미지뷰의 0번 레이어 가져오기
         # Get the 0th layer of the image view
         layer = viewImage[1].GetLayer(0)
@@ -78,19 +98,17 @@ def main():
         layer.Clear()
 
         strInformation = "RIGHT BUTTON CLICK ON MOUSE AND\nSEE THE CONTEXT MENU"
-        strInformation2 = ("Option: EAvailableViewImageContextMenu.All & \n"
-                           "           ~(EAvailableViewImageContextMenu.Load | \n"
-                           "              EAvailableViewImageContextMenu.ClearFile | \n"
-                           "              EAvailableViewImageContextMenu.Save | \n"
-                           "              EAvailableViewImageContextMenu.CreateImage)\n")
-        
-		# 아래 함수 DrawTextCanvas는 스크린 좌표를 기준으로 문자열을 뷰어에 출력한다.
+        strInformation2 = ("Option: RemoveAvailableViewImageContextMenu\n"
+                           "           (LoadFile, LoadFile_Raw, LoadFolder, \n"
+                           "            ClearFile, Save, CreateImage, ...)\n")
+
+        # 아래 함수 DrawTextCanvas는 스크린 좌표를 기준으로 문자열을 뷰어에 출력한다.
         # The function DrawTextCanvas displays a string on the viewer using screen coordinates.
-		# 파라미터 순서 : 기준 좌표 Figure 객체 -> 문자열 -> 텍스트 색 -> 텍스트 테두리 색 -> 폰트 크기 -> 실제 크기로 출력 유무 -> 각도 -> 정렬 -> 폰트 이름 -> 텍스트 알파값(불투명도) -> 텍스트 테두리 알파값 (불투명도) -> 폰트 두께 -> 폰트 이탤릭 여부
-		# Parameter order: reference coordinate (Figure object) -> text string -> text color -> text outline color -> font size -> render in real-world size (bool) -> angle -> alignment -> font name -> text alpha (opacity) -> text outline alpha (opacity) -> font thickness -> italic font (bool)
+        # 파라미터 순서 : 기준 좌표 Figure 객체 -> 문자열 -> 텍스트 색 -> 텍스트 테두리 색 -> 폰트 크기 -> 실제 크기로 출력 유무 -> 각도 -> 정렬 -> 폰트 이름 -> 텍스트 알파값(불투명도) -> 텍스트 테두리 알파값 (불투명도) -> 폰트 두께 -> 폰트 이탤릭 여부
+        # Parameter order: reference coordinate (Figure object) -> text string -> text color -> text outline color -> font size -> render in real-world size (bool) -> angle -> alignment -> font name -> text alpha (opacity) -> text outline alpha (opacity) -> font thickness -> italic font (bool)
         layer.DrawTextCanvas(CFLPoint[Double](10, 10), strInformation, EColor.LIME, EColor.BLACK, 15)
         layer.DrawTextCanvas(CFLPoint[Double](10, 50), strInformation2, EColor.CYAN, EColor.BLACK, 15)
-        
+
         # 이미지뷰를 갱신
         # Refresh the image view
         for i in range(2):
