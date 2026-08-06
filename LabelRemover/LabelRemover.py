@@ -17,12 +17,12 @@ def main():
 	# 이미지 뷰 선언 # Declare the image view
 	viewImageSrc = CGUIViewImage()
 	viewImageDst = CGUIViewImage()
-	viewImagesDstRegex = new CGUIViewImage()
+	viewImagesDstRegex = CGUIViewImage()
 
 	while True:
 		
 		# Source 이미지 로드 # Load the source image
-		if (res := fliSourceImage.Load('../../ExampleImages/Classifier/CircleLabel_Learn.flif')).IsFail():
+		if (res := fliSourceImage.Load('../../ExampleImages/LabelRemoverDL/Image.flif')).IsFail():
 			ErrorPrint(res, 'Failed to load the image file.')
 			break
 
@@ -37,7 +37,7 @@ def main():
 			break
 
 		# Destination(Regex) 이미지 뷰 생성 # Create the destination image view
-		if (res := viewImagesDstRegex.Create(1100, 0, 1700, 500)).IsFail():
+		if (res := viewImagesDstRegex.Create(1100, 0, 1600, 500)).IsFail():
 			ErrorPrint(res, 'Failed to create the image view.')
 			break
 
@@ -55,7 +55,7 @@ def main():
 
 		# Source 이미지 뷰에 이미지를 디스플레이 # Display the image in the source image view
 		# ref 파라미터를 입력 받는 함수는 리턴이 tuple로 생성되며 [return], [ref 0], ... [ref n-1] 형태로 tuple 을 반환한다. # A function that receives ref parameters returns a tuple structured as [return], [ref 0], ... [ref n-1].
-		if (res := viewImageSrc.SetImagePtr(viewImagesDstRegex)[0]).IsFail():
+		if (res := viewImageSrc.SetImagePtr(fliSourceImage)[0]).IsFail():
 			ErrorPrint(res, 'Failed to set image object on the image view.')
 			break
 
@@ -98,7 +98,7 @@ def main():
 		labelRemoverDL.EnableRegularExpression(False)
 		labelRemoverDL.EnableMatchCase(True)
 		labelRemoverDL.SetCompareMode(CLabelRemoverDL.ECompareMode.TextMode)
-		labelRemoverDL.SetRemovalLabelName("1");
+		labelRemoverDL.SetRemovalLabelName("1 Bread");
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := labelRemoverDL.Execute()).IsFail():
@@ -107,8 +107,8 @@ def main():
 
 		# Regex 모드로 실행 # Exeucte on Regex mode
 		labelRemoverDL.SetDestinationImage(fliResultRegexImage)
-        labelRemoverDL.EnableRegularExpression(true)
-        labelRemoverDL.SetRemovalLabelName("[0-1]")
+		labelRemoverDL.EnableRegularExpression(True)
+		labelRemoverDL.SetRemovalLabelName("[1-2].*")
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := labelRemoverDL.Execute()).IsFail():
@@ -129,15 +129,15 @@ def main():
 		# 이미지 뷰 정보 표시 # Display image view information
 		flpPoint = CFLPoint[Double](0, 0)
 
-		if (res := layerSource.DrawTextCanvas(flpPoint, 'ORIGINAL', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerSource.DrawTextCanvas(flpPoint, 'ORIGINAL', EColor.YELLOW, EColor.BLACK, 15)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 		
-		if (res := layerDestination.DrawTextCanvas(flpPoint, 'RESULT(By Text)', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerDestination.DrawTextCanvas(flpPoint, 'RESULT(Remove Label 1 By Text)', EColor.YELLOW, EColor.GREEN, 15)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
-		if (res := layerDestinationRegex.DrawTextCanvas(flpPoint, 'RESULT(By Regex)', EColor.YELLOW, EColor.BLACK, 30)).IsFail():
+		if (res := layerDestinationRegex.DrawTextCanvas(flpPoint, 'RESULT(Remove Label 1, 2 By Regex)', EColor.YELLOW, EColor.PURPLE, 15)).IsFail():
 			ErrorPrint(res, 'Failed to draw text.')
 			break
 
