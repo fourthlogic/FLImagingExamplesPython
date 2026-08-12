@@ -99,9 +99,19 @@ def main():
 
 		alg.EnableFallbackPolicy(True)
 
-		# 앞서 설정된 파라미터 대로 학습 수행 # Perform learning according to previously set parameters
-		if (res := alg.Learn()).IsFail():
+		# 전략 준비와 score evaluation을 분리 # Separate strategy preparation from score evaluation
+		if (res := alg.EnableImmediateScoreEvaluation(False)).IsFail() or \
+		   (res := alg.Learn()).IsFail():
 			ErrorPrint(res, "Failed to learn.")
+			break
+
+		if (res := alg.SetExecutionMode(SP.EExecutionMode.EvaluateScore)).IsFail() or \
+		   (res := alg.Execute()).IsFail():
+			ErrorPrint(res, "Failed to evaluate scores.")
+			break
+
+		if not alg.HasValidOptimalStrategy():
+			ErrorPrint(CResult(EResult.NoResult), "Score evaluation did not produce an optimal strategy.")
 			break
 
 		# 학습된 전략 중 최적 전략 선택 # Select the optimal strategy among learned strategies
@@ -141,7 +151,8 @@ def main():
 		view3DResult.GetLayer(0).DrawTextCanvas(CFLPoint[Double](0, 0), "Dynamic SP - Interactive Placement", EColor.YELLOW, EColor.BLACK, 20)
 
 		# 인터랙티브 모드 실행 # Run in interactive mode
-		if (res := alg.Execute()).IsFail():
+		if (res := alg.SetExecutionMode(SP.EExecutionMode.Interactive)).IsFail() or \
+		   (res := alg.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute the algorithm.")
 			break
 
@@ -277,4 +288,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+	main()

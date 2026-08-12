@@ -479,10 +479,17 @@ def ConfigureAndLearnDefaultModel(alg, itemChances):
 			break
 
 		parameters = SP.SRandomSequenceParameters.CreateInfinite(itemChances, 2)
-		if (res := alg.SetRandomSequenceParameters(parameters)).IsFail():
+		if (res := alg.SetRandomSequenceParameters(parameters)).IsFail() or \
+		   (res := alg.EnableImmediateScoreEvaluation(False)).IsFail():
 			break
 
-		res = alg.Learn()
+		if (res := alg.Learn()).IsFail() or \
+		   (res := alg.SetExecutionMode(SP.EExecutionMode.EvaluateScore)).IsFail() or \
+		   (res := alg.Execute()).IsFail():
+			break
+
+		if not alg.HasValidOptimalStrategy():
+			res = CResult(EResult.NoResult)
 		break
 
 	return res
@@ -494,7 +501,7 @@ def LearnOrLoadDefaultModel(alg, itemChances, strCache, strSource):
 	if IsCacheUpToDate(strCache, strSource):
 		res = alg.Load(strCache)
 
-		if res.IsOK() and alg.IsLearned():
+		if res.IsOK() and alg.IsLearned() and alg.HasValidOptimalStrategy():
 			res, parameters = alg.GetRandomSequenceParameters(SP.SRandomSequenceParameters.CreateInfinite(itemChances, 2))
 			if res.IsFail():
 				return res
@@ -707,7 +714,8 @@ def RebuildInteractiveState(alg, arrBins, i32ExcludedBinIndex, i32ExcludedPlaced
 		if (res := alg.ClearInteractiveStates()).IsFail():
 			break
 
-		if (res := alg.Execute()).IsFail():
+		if (res := alg.SetExecutionMode(SP.EExecutionMode.Interactive)).IsFail() or \
+		   (res := alg.Execute()).IsFail():
 			break
 
 		bFailed = False

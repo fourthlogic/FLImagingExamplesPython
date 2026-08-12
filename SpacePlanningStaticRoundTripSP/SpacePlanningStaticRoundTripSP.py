@@ -152,10 +152,17 @@ def ConfigureAndLearn(alg, binSpec, listItemSpecs, listItemCounts):
 			itemCounts.Add(i32Count)
 
 		parameters = SP.SStaticListParameters(itemCounts)
-		if (res := alg.SetStaticListParameters(parameters)).IsFail():
+		if (res := alg.SetStaticListParameters(parameters)).IsFail() or \
+		   (res := alg.EnableImmediateScoreEvaluation(False)).IsFail():
 			break
 
-		res = alg.Learn()
+		if (res := alg.Learn()).IsFail() or \
+		   (res := alg.SetExecutionMode(SP.EExecutionMode.EvaluateScore)).IsFail() or \
+		   (res := alg.Execute()).IsFail():
+			break
+
+		if not alg.HasValidOptimalStrategy():
+			res = CResult(EResult.NoResult)
 		break
 
 	return res
@@ -170,7 +177,7 @@ def LearnOrLoadModel(alg, strCache, strSource, binSpec, listItemSpecs, listItemC
 		res = alg.Load(strCache)
 
 		# PartialOK 는 파라미터만 로드된 상태이므로 재학습 필요 # PartialOK means parameters were loaded but learning is required
-		if res.IsOK() and alg.IsLearned():
+		if res.IsOK() and alg.IsLearned() and alg.HasValidOptimalStrategy():
 			print(f"Loaded cached model: {strCache}")
 			return res
 
@@ -273,7 +280,8 @@ def TransferAllItems(srcBin, dstAlg, dstBin, listItemSpecs, strLabel, fnOnStep):
 	if (res := dstAlg.ClearInteractiveStates()).IsFail():
 		return res
 
-	if (res := dstAlg.Execute()).IsFail():
+	if (res := dstAlg.SetExecutionMode(SP.EExecutionMode.Interactive)).IsFail() or \
+	   (res := dstAlg.Execute()).IsFail():
 		return res
 
 	# 현재 상단 물품을 목적지 대기열에 추가 # Push currently top-pickable items into the destination queue
