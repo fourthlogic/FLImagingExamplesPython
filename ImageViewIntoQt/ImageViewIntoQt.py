@@ -114,7 +114,7 @@ class ImageViewIntoQt(QWidget):
 
             # 7. 이미지 뷰에 Figure 추가
             # 7. Add the rectangle figure to the image view
-            self.m_viewImage.PushBackFigureObject(flrFigure, EAvailableFigureContextMenu.All)
+            self.m_viewImage.PushBackFigureObject(flrFigure)
             break
 
     # PopFront 버튼 클릭에 대한 이벤트 처리기

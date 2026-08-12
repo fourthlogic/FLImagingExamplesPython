@@ -196,7 +196,7 @@ class ImageViewerApp(tk.Tk):
 
         # 생성한 Figure를 이미지 뷰에 추가
         # Add the created Figure to the image view
-        self.m_viewImage.PushBackFigureObject(flFigure, EAvailableFigureContextMenu.All)
+        self.m_viewImage.PushBackFigureObject(flFigure)
 
     # 콤보박스에서 선택한 아이템에 대한 EFigureDeclType을 반환하는 함수
     # Returns the selected EFigureDeclType based on the selected item in the combo box

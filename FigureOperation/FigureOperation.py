@@ -196,7 +196,7 @@ class FigureOperationApp(tk.Tk):
 
         # 이미지 뷰에 Figure object 를 생성한다.
         # Create a Figure object in the image view.
-        self.m_viewImage.PushBackFigureObject(flFigure, EAvailableFigureContextMenu.All)
+        self.m_viewImage.PushBackFigureObject(flFigure)
 
         # 이미지 뷰를 갱신한다. # Update the image view.
         self.m_viewImage.Invalidate(True)
@@ -269,9 +269,9 @@ class FigureOperationApp(tk.Tk):
                 break
 
             if flfaRes.GetCount() == 1:
-                self.m_viewImage.PushBackFigureObject(flfaRes.GetAt(0), EAvailableFigureContextMenu.All)
+                self.m_viewImage.PushBackFigureObject(flfaRes.GetAt(0))
             else:
-                self.m_viewImage.PushBackFigureObject(flfaRes, EAvailableFigureContextMenu.All)
+                self.m_viewImage.PushBackFigureObject(flfaRes)
                 
             self.m_viewImage.Invalidate(True)
 
