@@ -35,7 +35,7 @@ def main():
         ErrorPrint(res, "Failed to create the image view.\n")
         return
 
-    # 이미지 뷰에 이미지를 디스플레이 # display the image in the imageview
+    # 이미지 뷰에 이미지를 디스플레이 # display the image in the image view
     if (res := arrViewImage.SetImagePtr(fliImage)[0]).IsFail():
         ErrorPrint(res, "Failed to set image object on the image view.\n")
         return
@@ -49,21 +49,21 @@ def main():
     # 측정할 영역을 설정합니다. # Set the area to measure.
     flfaMeasurementRegion = CFLFigureArray()
     flfaMeasurementRegion.Load("../../ExampleImages/Gauge/Circle Array Measurement Region")
-    tolerance = 15
-    circleArrayGauge.SetMeasurementRegion(flfaMeasurementRegion, tolerance)
+    f64Tolerance = 15
+    circleArrayGauge.SetMeasurementRegion(flfaMeasurementRegion, f64Tolerance)
 
     # 추출하기위한 파라미터를 설정합니다. # Set parameters for extraction.                
     # 원을 추정하기위해 추출할 경계점의 변화 임계값에 대해 설정합니다. # Set the threshold change of the boundary point to be extracted to estimate the circle.
     circleArrayGauge.SetThreshold(20)
     # 원을 추정하기위해 추출할 경계점의 변화 임계값에 보정값을 설정합니다. # Set the correction value to the threshold change of the boundary point to be extracted to estimate the circle.
     circleArrayGauge.SetMinimumAmplitude(10)
-    # 원을 추정하기위해 추출할 경계점들의 대표값 표본 개수를 설정합니다. # Set the number of representative sample values ??of the boundary points to be extracted to estimate the circle.
+    # 원을 추정하기위해 추출할 경계점들의 대표값 표본 개수를 설정합니다. # Set the number of representative sample values of the boundary points to be extracted to estimate the circle.
     circleArrayGauge.SetThickness(3)
     # 원을 추정하기위해 추출할 경계점들의 추출 간격을 설정합니다. # Set the extraction interval of boundary points to be extracted to estimate the circle.
     circleArrayGauge.SetSamplingStep(1)
     # 원을 추정하기위해 추출할 경계점들의 이상치 조정을 위한 임계값을 설정합니다. # Set the threshold value for outlier adjustment of the boundary points to be extracted to estimate the circle.
     circleArrayGauge.SetOutliersThreshold(3)
-    # 원을 추정하기위해 추출할 경계점들의 이상치 조정 횟수을 설정합니다. # Set the number of outlier adjustments for boundary points to be extracted to estimate the circle.
+    # 원을 추정하기위해 추출할 경계점들의 이상치 조정 횟수를 설정합니다. # Set the number of outlier adjustments for boundary points to be extracted to estimate the circle.
     circleArrayGauge.SetOutliersThresholdCount(3)
 
     # 원을 추정하기위해 추출할 경계점 변화 방향에 대해 설정합니다. # Set the boundary point change direction to extract to estimate the circle.
@@ -73,7 +73,7 @@ def main():
 
     # 알고리즘 수행 # Execute the Algoritm
     if (res := circleArrayGauge.Execute()).IsFail():
-        ErrorPrint(res, "Failed to execute Circle gauge.")
+        ErrorPrint(res, "Failed to execute Circle Array Gauge.")
         return
 
     # 실행 결과를 가져옵니다. # Get the execution result.
