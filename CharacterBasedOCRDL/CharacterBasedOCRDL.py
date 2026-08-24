@@ -300,7 +300,7 @@ def main():
 				break
 			
 		if eLearnResult.IsFail():
-			ErrorPrint(eLearnResult, 'Failed to execute.')
+			ErrorPrint(eLearnResult, 'Failed to learn.')
 			break
 
 		# Result Image에 Box & Contour 모두 출력하는 Execute # Execute to print both Box& Contour in Result Image
@@ -334,6 +334,11 @@ def main():
 		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewImageLearn.IsAvailable() and viewImageValidation.IsAvailable() and viewImagesResult.IsAvailable() and viewGraph.IsAvailable():
 			CThreadUtilities.Sleep(1)
+
+		viewImageLearn.Destroy()
+		viewImageValidation.Destroy()
+		viewImagesResult.Destroy()
+		viewGraph.Destroy()
 
 		break
 	

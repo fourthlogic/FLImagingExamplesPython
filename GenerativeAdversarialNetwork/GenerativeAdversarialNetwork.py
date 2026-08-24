@@ -293,6 +293,11 @@ def main():
 		while viewImageLearn.IsAvailable() and viewImageResult.IsAvailable() and viewImageValidate.IsAvailable() and viewGraph.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
+		viewImageLearn.Destroy()
+		viewImageResult.Destroy()
+		viewImageValidate.Destroy()
+		viewGraph.Destroy()
+
 		break
 	
 	# End of main function

@@ -388,6 +388,12 @@ def main():
 		while viewImageLearn.IsAvailable() and viewImageValidation.IsAvailable() and viewImagesBoxContour.IsAvailable() and viewImagesContour.IsAvailable() and viewGraph.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
+		viewImageLearn.Destroy()
+		viewImageValidation.Destroy()
+		viewImagesBoxContour.Destroy()
+		viewImagesContour.Destroy()
+		viewGraph.Destroy()
+
 		break
 	
 	# End of main function

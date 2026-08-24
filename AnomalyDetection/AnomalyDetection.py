@@ -232,7 +232,7 @@ def main():
 				f32ValidationPa = anomalyDetectionDL.GetLearningResultLastAccuracy()
 
 				# 해당 epoch의 비용과 검증 결과 값 출력 # Prcost and validation value for the relevant epoch
-				print("Cost : {:6f} Accuracy : {:6f}  Epoch {} / {}", f32CurrCost, f32ValidationPa, i32Epoch, i32MaxEpoch)
+				print("Cost : {:6f} Accuracy : {:6f} Epoch {} / {}".format(f32CurrCost, f32ValidationPa, i32Epoch, i32MaxEpoch))
 
 				# 학습 결과 비용과 검증 결과 기록을 받아 그래프 뷰에 출력  
 				# Get the history of cost and validation and prit at graph view
@@ -310,8 +310,13 @@ def main():
 		viewGraph.Invalidate(True)
 
 		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
-		while viewImageLearn.IsAvailable() and viewImagesLabelFigure.IsAvailable()and viewImageInference.IsAvailable():
+		while viewImageLearn.IsAvailable() and viewImagesLabelFigure.IsAvailable() and viewImageInference.IsAvailable() and viewGraph.IsAvailable():
 			CThreadUtilities.Sleep(1)
+
+		viewImageLearn.Destroy()
+		viewImagesLabelFigure.Destroy()
+		viewImageInference.Destroy()
+		viewGraph.Destroy()
 
 		break
 	

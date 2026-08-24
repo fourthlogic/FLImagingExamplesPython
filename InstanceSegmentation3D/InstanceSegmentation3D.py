@@ -396,6 +396,12 @@ def main():
 		while viewImageLearn.IsAvailable() and viewImageDepthMap.IsAvailable() and viewImagesBoxContour.IsAvailable() and view3DResult.IsAvailable() and viewGraph.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
+		viewImageLearn.Destroy()
+		viewImageDepthMap.Destroy()
+		viewImagesBoxContour.Destroy()
+		view3DResult.Destroy()
+		viewGraph.Destroy()
+
 		break
 	
 	# End of main function

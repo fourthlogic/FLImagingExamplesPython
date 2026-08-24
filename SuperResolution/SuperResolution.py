@@ -431,6 +431,13 @@ def main():
 		while(viewImageLearnLowResolution.IsAvailable() and viewImageValidationLowResolution.IsAvailable() and viewImageLearnHighResolution.IsAvailable() and viewImageValidationHighResolution.IsAvailable() and viewImagesSource.IsAvailable() and viewGraph.IsAvailable()):
 			CThreadUtilities.Sleep(1)
 
+		viewImageLearnLowResolution.Destroy()
+		viewImageValidationLowResolution.Destroy()
+		viewImageLearnHighResolution.Destroy()
+		viewImageValidationHighResolution.Destroy()
+		viewImagesSource.Destroy()
+		viewGraph.Destroy()
+
 		break
 	
 	# End of main function
