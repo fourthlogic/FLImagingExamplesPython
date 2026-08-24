@@ -101,8 +101,11 @@ def main():
 		arrViewImage[1].Invalidate(True)
 
 		# 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close
-		while(arrViewImage[0].IsAvailable() and arrViewImage[0].IsAvailable()) :
-			CThreadUtilities.Sleep(1)        
+		while(arrViewImage[0].IsAvailable() and arrViewImage[1].IsAvailable()) :
+			CThreadUtilities.Sleep(1)  
+			
+		for i in range(2):
+			arrViewImage[i].Destroy()
 
 		break
 

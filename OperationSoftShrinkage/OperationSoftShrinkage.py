@@ -118,6 +118,10 @@ def main():
 		while viewImageSrc.IsAvailable() and viewImageDst0.IsAvailable() and viewImageDst1.IsAvailable():			
 			CThreadUtilities.Sleep(1)
 
+		viewImageSrc.Destroy()
+		viewImageDst0.Destroy()
+		viewImageDst1.Destroy()
+
 		break
 	# End of main function
 
