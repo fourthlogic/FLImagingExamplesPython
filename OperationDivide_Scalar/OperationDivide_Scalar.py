@@ -158,6 +158,10 @@ def main():
 		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewImageSrc.IsAvailable() and viewImagesDst[0].IsAvailable() and viewImagesDst[1].IsAvailable():
 			CThreadUtilities.Sleep(1)
+			
+		viewImageSrc.Destroy()
+		viewImagesDst[0].Destroy()
+		viewImagesDst[1].Destroy()
 
 		break
 	

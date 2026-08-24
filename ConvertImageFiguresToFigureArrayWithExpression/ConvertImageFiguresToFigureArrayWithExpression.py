@@ -299,7 +299,10 @@ def main():
         # 이미지 뷰가 종료될 때 까지 기다림 # Wait for the image view to close
         while all(view.IsAvailable() for view in viewImage):
             CThreadUtilities.Sleep(1)
-        
+
+        for i in range(4) :
+            viewImage[i].Destroy()
+
         break
     
     # End of main function

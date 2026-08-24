@@ -151,6 +151,9 @@ def main():
 					break
 
 			CThreadUtilities.Sleep(1)
+			
+		for i in range (0, int(EType.ETypeCount)):
+			listViewImage[i].Destroy()
 
 		break
 	

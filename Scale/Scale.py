@@ -150,6 +150,9 @@ def main():
 				if not bAvailable:
 					break
 			CThreadUtilities.Sleep(1)
+			
+		for i in range(EType.ETypeCount):
+			arrViewImage[i].Destroy()
 
 		break
 
