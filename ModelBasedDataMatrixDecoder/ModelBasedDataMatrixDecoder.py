@@ -1,4 +1,4 @@
-# FLImagingClrPy ¼±¾ğ # Declare FLImagingClrPy
+ï»¿# FLImagingClrPy ì„ ì–¸ # Declare FLImagingClrPy
 from FLImagingClrPy import *
 
 # You must call the following function once
@@ -6,7 +6,7 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-# Error Ãâ·Â ÇÔ¼ö import # Import Error Output Function
+# Error ì¶œë ¥ í•¨ìˆ˜ import # Import Error Output Function
 import sys
 import os
 
@@ -14,7 +14,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'Common'))
 
 from ErrorPrint import *
 
-# ¸ŞÀÎ ÇÔ¼ö # Main function
+# ë©”ì¸ í•¨ìˆ˜ # Main function
 def main():
     
     class EViewList:
@@ -23,10 +23,10 @@ def main():
         NormalFind = 2
         Count = 3
         
-    # ÀÌ¹ÌÁö °´Ã¼ ¼±¾ğ # Declare the image object
+    # ì´ë¯¸ì§€ ê°ì²´ ì„ ì–¸ # Declare the image object
     arrFliImage = [CFLImage() for i in range(EViewList.Count)]
 
-    # ÀÌ¹ÌÁö ºä ¼±¾ğ # Declare the image view
+    # ì´ë¯¸ì§€ ë·° ì„ ì–¸ # Declare the image view
     arrViewImage = [CGUIViewImage() for i in range(EViewList.Count)]
     arrLayer =  [CGUIViewImageLayer() for i in range(EViewList.Count)]
     arrWcsViewText = [
@@ -36,7 +36,7 @@ def main():
     ]
 
     
-    # ÀÌ¹ÌÁö ·Îµå # Loads image
+    # ì´ë¯¸ì§€ ë¡œë“œ # Loads image
     if (res := arrFliImage[EViewList.Learn].Load('../../ExampleImages/DataMatrix/Learn.flif')).IsFail():
         ErrorPrint(res, 'Failed to load the image file.')
         return
@@ -50,7 +50,7 @@ def main():
         return
 
     
-    # ÀÌ¹ÌÁö ºä »ı¼º # Create image view
+    # ì´ë¯¸ì§€ ë·° ìƒì„± # Create image view
     i32ViewSize = 450
     i32Start = 100
 
@@ -62,53 +62,53 @@ def main():
             ErrorPrint(res, 'Failed to create the image view.\n')
             break
 
-        # ÀÌ¹ÌÁö ºä¿¡ ÀÌ¹ÌÁö¸¦ µğ½ºÇÃ·¹ÀÌ # display the image in the imageview
+        # ì´ë¯¸ì§€ ë·°ì— ì´ë¯¸ì§€ë¥¼ ë””ìŠ¤í”Œë ˆì´ # display the image in the imageview
         if (res := arrViewImage[i].SetImagePtr(arrFliImage[i])[0]).IsFail():
             ErrorPrint(res, 'Failed to set image object on the image view.\n')
             break
 
-        # È­¸é¿¡ Ãâ·ÂÇÏ±â À§ÇØ Image View¿¡¼­ ·¹ÀÌ¾î 0¹øÀ» ¾ò¾î¿È # Obtain layer 0 number from image view for display
-        # ÀÌ °´Ã¼´Â ÀÌ¹ÌÁö ºä¿¡ ¼ÓÇØÀÖ±â ¶§¹®¿¡ µû·Î ÇØÁ¦ÇÒ ÇÊ¿ä°¡ ¾øÀ½ # This object belongs to an image view and does not need to be released separately
+        # í™”ë©´ì— ì¶œë ¥í•˜ê¸° ìœ„í•´ Image Viewì—ì„œ ë ˆì´ì–´ 0ë²ˆì„ ì–»ì–´ì˜´ # Obtain layer 0 number from image view for display
+        # ì´ ê°ì²´ëŠ” ì´ë¯¸ì§€ ë·°ì— ì†í•´ìˆê¸° ë•Œë¬¸ì— ë”°ë¡œ í•´ì œí•  í•„ìš”ê°€ ì—†ìŒ # This object belongs to an image view and does not need to be released separately
         arrLayer[i] = arrViewImage[i].GetLayer(0)
 
         if (res := arrLayer[i].DrawTextCanvas(CFLPoint[Double](0, 0), arrWcsViewText[i], EColor.YELLOW, EColor.BLUE, 20)).IsFail():
             ErrorPrint(res, 'Failed to draw figure\n')
             break
 
-    # ÀÌ¹ÌÁö ºäÀÇ ½ÃÁ¡À» µ¿±âÈ­ ÇÑ´Ù # Synchronize the viewpoints of the all image views. 
+    # ì´ë¯¸ì§€ ë·°ì˜ ì‹œì ì„ ë™ê¸°í™” í•œë‹¤ # Synchronize the viewpoints of the all image views. 
     if (res := arrViewImage[EViewList.ModelBaseFind].SynchronizePointOfView(arrViewImage[EViewList.NormalFind])[0]).IsFail():
         ErrorPrint(res, 'Failed to set image object on the image view.\n')
         return
     
-    # Model Based Data Matrix Decoder °´Ã¼ »ı¼º # Create Model Based Data Matrix Decoder object
+    # Model Based Data Matrix Decoder ê°ì²´ ìƒì„± # Create Model Based Data Matrix Decoder object
     modelBasedDataMatrixDecoder = CModelBasedDataMatrixDecoder()
 
-    # ÇĞ½À ÀÌ¹ÌÁö ¼³Á¤ # Sets the learn image.
+    # í•™ìŠµ ì´ë¯¸ì§€ ì„¤ì • # Sets the learn image.
     modelBasedDataMatrixDecoder.SetLearnImage(arrFliImage[EViewList.Learn])
-    # ÄÚµå »ö»ó ¼³Á¤ # Sets the code color.
+    # ì½”ë“œ ìƒ‰ìƒ ì„¤ì • # Sets the code color.
     modelBasedDataMatrixDecoder.SetColorMode(EDataCodeColor.WhiteOnBlack)
 
-    # ÇĞ½À µ¿ÀÛ # Learn
+    # í•™ìŠµ ë™ì‘ # Learn
     if (res := modelBasedDataMatrixDecoder.Learn()).IsFail():
         ErrorPrint(res, 'Failed to learn data matrix decoder.')
         return
 
-    # µ¿ÀÛ ÀÌ¹ÌÁö ¼³Á¤ # Set source image
+    # ë™ì‘ ì´ë¯¸ì§€ ì„¤ì • # Set source image
     modelBasedDataMatrixDecoder.SetSourceImage(arrFliImage[EViewList.ModelBaseFind])
-    # µğÄÚµù °á°ú °³¼ö ¼³Á¤ # Sets the number of decoding results.
+    # ë””ì½”ë”© ê²°ê³¼ ê°œìˆ˜ ì„¤ì • # Sets the number of decoding results.
     modelBasedDataMatrixDecoder.SetDetectingCount(EDataCodeDecoderDetectingCount.All)
     modelBasedDataMatrixDecoder.SetMaximumDetectingCount(3)
 
-    # ÇĞ½À ÀÌ¹ÌÁö ±âÁØ Å½»ö °¢µµ ¼³Á¤ # Sets the search angle relative to the learn data.
+    # í•™ìŠµ ì´ë¯¸ì§€ ê¸°ì¤€ íƒìƒ‰ ê°ë„ ì„¤ì • # Sets the search angle relative to the learn data.
     modelBasedDataMatrixDecoder.SetAngleTolerance(30)
 
-    # µ¿ÀÛ # Execute
+    # ë™ì‘ # Execute
     if(res := modelBasedDataMatrixDecoder.Execute().IsFail()):
         ErrorPrint(res, 'Failed to execute data matrix decoder.')
         return
 
 
-    # Learn µ¿ÀÛ °á°ú¸¦ ¾ò¾î¿Â´Ù # Gets the result of the learn result.
+    # Learn ë™ì‘ ê²°ê³¼ë¥¼ ì–»ì–´ì˜¨ë‹¤ # Gets the result of the learn result.
     datamatrixLearnInfo = CModelBasedDataMatrixDecoder.CDataMatrixLearnInformation()
     modelBasedDataMatrixDecoder.GetLearnResult(datamatrixLearnInfo)
     Console.WriteLine('\n[Model Based Learn Result]')
@@ -116,7 +116,7 @@ def main():
     flqLearnedCodeRegion = datamatrixLearnInfo.decodedDataMatrixInformation.pFlqRegion
     flsLearnedCode = datamatrixLearnInfo.decodedDataMatrixInformation.pStrCode
 
-    # Learn µ¿ÀÛ °á°ú ¿µ¿ª ¹× ÄÚµå Ãâ·Â # Outputs the regions and codes from the learn operation results.
+    # Learn ë™ì‘ ê²°ê³¼ ì˜ì—­ ë° ì½”ë“œ ì¶œë ¥ # Outputs the regions and codes from the learn operation results.
     arrLayer[EViewList.Learn].DrawFigureImage(flqLearnedCodeRegion, EColor.LIME, 2)
     arrLayer[EViewList.Learn].DrawTextImage(flqLearnedCodeRegion.flpPoints[3], flsLearnedCode, EColor.CYAN, EColor.BLACK, 20, False, flqLearnedCodeRegion.flpPoints[3].GetAngle(flqLearnedCodeRegion.flpPoints[2]))
 
@@ -139,7 +139,7 @@ def main():
     Console.WriteLine('Flip : {}'.format(flsFlip))
     Console.WriteLine('Code : {}'.format(flsLearnedCode))
 
-    # Data Matrix Decoder °á°ú °³¼ö¸¦ ¾ò´Â´Ù. # Gets the number of results from the Data Matrix decoder.
+    # Data Matrix Decoder ê²°ê³¼ ê°œìˆ˜ë¥¼ ì–»ëŠ”ë‹¤. # Gets the number of results from the Data Matrix decoder.
     i64Results = modelBasedDataMatrixDecoder.GetResultCount()
 
     Console.WriteLine('\n[Model Based Decoded Result]')
@@ -148,12 +148,12 @@ def main():
         flqDecodedCodeRegion = CFLQuad[Double]()
         flsDecodedCode = StringBuilder()
 
-        # Data Matrix Decoder °á°úµé Áß Data Region À» ¾ò¾î¿È # Gets the Data Region from the results of the Data Matrix decoder.
+        # Data Matrix Decoder ê²°ê³¼ë“¤ ì¤‘ Data Region ì„ ì–»ì–´ì˜´ # Gets the Data Region from the results of the Data Matrix decoder.
         if(res := modelBasedDataMatrixDecoder.GetResultDataRegion(i, flqDecodedCodeRegion)[0]).IsFail():
             ErrorPrint(res, 'Failed to get data region from the data matrix decoder object.')
             continue
 
-        # Data Matrix Decoder °á°úµé Áß Decoded String À» ¾ò¾î¿È # Gets the decoded string from the results of the Data Matrix decoder.
+        # Data Matrix Decoder ê²°ê³¼ë“¤ ì¤‘ Decoded String ì„ ì–»ì–´ì˜´ # Gets the decoded string from the results of the Data Matrix decoder.
         if(res := modelBasedDataMatrixDecoder.GetResultDecodedString(i, flsDecodedCode)[0]).IsFail():
             ErrorPrint(res, 'Failed to get decoded string from the data matrix decoder object.')
             continue
@@ -163,25 +163,25 @@ def main():
         arrLayer[EViewList.ModelBaseFind].DrawFigureImage(flqDecodedCodeRegion, EColor.LIME, 2)
         arrLayer[EViewList.ModelBaseFind].DrawTextImage(flqDecodedCodeRegion.flpPoints[3], flsDecodedCode.ToString(), EColor.CYAN, EColor.BLACK, 16, False, flqDecodedCodeRegion.flpPoints[3].GetAngle(flqDecodedCodeRegion.flpPoints[2]))
 
-    # ÀÏ¹İ Data Matrix Decoder °á°ú¿Í ºñ±³ÇÏ±â À§ÇÑ µ¿ÀÛ # Operation for comparing with standard Data Matrix decoder results.
+    # ì¼ë°˜ Data Matrix Decoder ê²°ê³¼ì™€ ë¹„êµí•˜ê¸° ìœ„í•œ ë™ì‘ # Operation for comparing with standard Data Matrix decoder results.
 
-    # Data Matrix Decoder °´Ã¼ »ı¼º # Create Data Matrix Decoder object
+    # Data Matrix Decoder ê°ì²´ ìƒì„± # Create Data Matrix Decoder object
     datamatrixDecoder = CDataMatrixDecoder()
 
-    # µ¿ÀÛ ÀÌ¹ÌÁö ¼³Á¤ # Set source image
+    # ë™ì‘ ì´ë¯¸ì§€ ì„¤ì • # Set source image
     datamatrixDecoder.SetSourceImage(arrFliImage[EViewList.NormalFind])
-    # ÄÚµå »ö»ó ¼³Á¤ # Sets the code color.
+    # ì½”ë“œ ìƒ‰ìƒ ì„¤ì • # Sets the code color.
     datamatrixDecoder.SetColorMode(EDataCodeColor.WhiteOnBlack)
-    # µğÄÚµù °á°ú °³¼ö ¼³Á¤ # Sets the number of decoding results.
+    # ë””ì½”ë”© ê²°ê³¼ ê°œìˆ˜ ì„¤ì • # Sets the number of decoding results.
     datamatrixDecoder.SetDetectingCount(EDataCodeDecoderDetectingCount.All)
     datamatrixDecoder.SetMaximumDetectingCount(3)
 
-    # µ¿ÀÛ # Execute
+    # ë™ì‘ # Execute
     if(res := datamatrixDecoder.Execute()).IsFail():
         ErrorPrint(res, 'Failed to execute data matrix decoder.')
         return
 
-    # Data Matrix Decoder °á°ú °³¼ö¸¦ ¾ò´Â´Ù. # Gets the number of results from the Data Matrix decoder.
+    # Data Matrix Decoder ê²°ê³¼ ê°œìˆ˜ë¥¼ ì–»ëŠ”ë‹¤. # Gets the number of results from the Data Matrix decoder.
     i64Results = datamatrixDecoder.GetResultCount()
 
     Console.WriteLine('\n[Normal Decoded Result]')
@@ -189,12 +189,12 @@ def main():
         flqDecodedCodeRegion = CFLQuad[Double]()
         flsDecodedCode = StringBuilder()
         
-        # Data Matrix Decoder °á°úµé Áß Data Region À» ¾ò¾î¿È # Gets the Data Region from the results of the Data Matrix decoder.
+        # Data Matrix Decoder ê²°ê³¼ë“¤ ì¤‘ Data Region ì„ ì–»ì–´ì˜´ # Gets the Data Region from the results of the Data Matrix decoder.
         if(res := datamatrixDecoder.GetResultDataRegion(i, flqDecodedCodeRegion)[0]).IsFail():
             ErrorPrint(res, 'Failed to get data region from the data matrix decoder object.')
             continue
 
-        # Data Matrix Decoder °á°úµé Áß Decoded String À» ¾ò¾î¿È # Gets the decoded string from the results of the Data Matrix decoder.
+        # Data Matrix Decoder ê²°ê³¼ë“¤ ì¤‘ Decoded String ì„ ì–»ì–´ì˜´ # Gets the decoded string from the results of the Data Matrix decoder.
         if(res := datamatrixDecoder.GetResultDecodedString(i, flsDecodedCode)[0]).IsFail():
             ErrorPrint(res, 'Failed to get decoded string from the data matrix decoder object.')
             continue
@@ -204,7 +204,7 @@ def main():
         arrLayer[EViewList.NormalFind].DrawFigureImage(flqDecodedCodeRegion, EColor.LIME, 2)
         arrLayer[EViewList.NormalFind].DrawTextImage(flqDecodedCodeRegion.flpPoints[3], flsDecodedCode.ToString(), EColor.CYAN, EColor.BLACK, 16, False, flqDecodedCodeRegion.flpPoints[3].GetAngle(flqDecodedCodeRegion.flpPoints[2]))
 
-     # ÀÌ¹ÌÁö ºä¸¦ °»½Å ÇÕ´Ï´Ù. # Update the image view.
+     # ì´ë¯¸ì§€ ë·°ë¥¼ ê°±ì‹  í•©ë‹ˆë‹¤. # Update the image view.
     for i in range(EViewList.Count):     
         arrViewImage[i].Invalidate()
         
@@ -215,6 +215,9 @@ def main():
             bAvailable &= arrViewImage[i].IsAvailable()
 
         CThreadUtilities.Sleep(1)
+        
+    for i in range(i32ExampleCount):
+        arrViewImage[i].Destroy()
 
         
 if __name__ == '__main__':

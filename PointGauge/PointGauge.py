@@ -194,6 +194,9 @@ def main():
             bAvailable &= arrViewImage[i].IsAvailable()
 
         CThreadUtilities.Sleep(1)
+        
+    for i in range(i32ExampleCount):
+        arrViewImage[i].Destroy()
 
 
 if __name__ == "__main__":
