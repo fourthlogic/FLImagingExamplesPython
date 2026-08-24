@@ -4,13 +4,13 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{9c80014b-c4ba-4d2a-8df8-af86fb648049}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>FLLocalExtremaDetection.py</StartupFile>
+    <StartupFile>FLLocalExtremaDetector.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>FLLocalExtremaDetection</Name>
-    <RootNamespace>FLLocalExtremaDetection</RootNamespace>
+    <Name>FLLocalExtremaDetector</Name>
+    <RootNamespace>FLLocalExtremaDetector</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="FLLocalExtremaDetection.py" />
+    <Compile Include="FLLocalExtremaDetector.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

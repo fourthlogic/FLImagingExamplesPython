@@ -34,25 +34,25 @@ def main():
 			break
 
 		# 객체 생성 # Create object
-		flLocalExtremaDetection = CFLLocalExtremaDetection()
+		flLocalExtremaDetector = CFLLocalExtremaDetector()
 
 		# ROI 범위 설정 # Set the ROI value
 		flrROI = CFLRect[int](100, 50, 450, 450)
 
 		# Source 이미지 설정 # Set the source image
-		flLocalExtremaDetection.SetSourceImage(fliSourceImage)
+		flLocalExtremaDetector.SetSourceImage(fliSourceImage)
 
 		# Source ROI 설정 # Set the Source ROI
-		flLocalExtremaDetection.SetSourceROI(flrROI)
+		flLocalExtremaDetector.SetSourceROI(flrROI)
 
 		# 검출을 위한 Suppression Radius 설정 # Set Suppression Radius
-		flLocalExtremaDetection.SetSuppressionRadius(11)
+		flLocalExtremaDetector.SetSuppressionRadius(11)
 
 		# Reference Surface Check 설정 # Set Reference Surface Check
-		flLocalExtremaDetection.EnableReferenceSurfaceCheck(True)
+		flLocalExtremaDetector.EnableReferenceSurfaceCheck(True)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := flLocalExtremaDetection.Execute()).IsFail():
+		if (res := flLocalExtremaDetector.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute.')
 			break
 
@@ -60,7 +60,7 @@ def main():
 		flfaResultPoints = CFLFigureArray()
 
 		# 검출 결과 받아오기 # Get the detection points
-		if (res := flLocalExtremaDetection.GetResultPoints(flfaResultPoints)[0]).IsFail():
+		if (res := flLocalExtremaDetector.GetResultPoints(flfaResultPoints)[0]).IsFail():
 			ErrorPrint(res, 'Failed to process.')
 			break
 
