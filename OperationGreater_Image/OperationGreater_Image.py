@@ -156,6 +156,10 @@ def main():
 		while viewImageSrc.IsAvailable() and viewImageOperand.IsAvailable() and viewImageDst.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
+		viewImageSrc.Destroy()
+		viewImageOperand.Destroy()
+		viewImageDst.Destroy()
+
 		break
 	
 	# End of main function
