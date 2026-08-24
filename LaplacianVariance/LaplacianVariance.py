@@ -173,9 +173,13 @@ def main():
 		viewImageSrc2.Invalidate(True)
 		viewImageSrc3.Invalidate(True)
 
-		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
+		# 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewImageSrc1.IsAvailable() and viewImageSrc2.IsAvailable() and viewImageSrc3.IsAvailable():
 			CThreadUtilities.Sleep(1)
+
+		viewImageSrc1.Destroy()
+		viewImageSrc2.Destroy()
+		viewImageSrc3.Destroy()
 
 		break
 	
