@@ -105,6 +105,9 @@ def main():
 		while arrViewImage[0].IsAvailable() and arrViewImage[1].IsAvailable():
 			CThreadUtilities.Sleep(1)
 
+		for i in range(2) :
+			arrViewImage[i].Destroy()
+
 		break
 	
 	# End of main function
