@@ -163,6 +163,9 @@ def main():
 
 			CThreadUtilities.Sleep(1)
 
+		for i in range(EType.ETypeCount):
+			arrViewImage[i].Destroy()
+
 		break
 	
 	# End of main function

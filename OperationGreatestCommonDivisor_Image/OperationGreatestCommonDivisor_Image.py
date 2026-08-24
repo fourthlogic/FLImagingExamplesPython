@@ -145,13 +145,16 @@ def main():
 		bAvailable = True
 
 		while bAvailable :
-			for i in range(EType.ETypeCount) :
+			for i in range(EType.ETypeCount):
 				bAvailable = arrViewImage[i].IsAvailable()
 
-				if bAvailable == False :
+				if bAvailable == False:
 					break
 
 			CThreadUtilities.Sleep(1)
+
+		for i in range(EType.ETypeCount):
+			arrViewImage[i].Destroy()
 
 		break
 	
