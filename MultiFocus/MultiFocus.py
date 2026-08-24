@@ -102,7 +102,8 @@ def main():
 		while viewImageSrc.IsAvailable() and viewImageDst.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
-		msgReceiver.__del__()
+		viewImageSrc.Destroy()
+		viewImageDst.Destroy()
 
 		break
 	# End of main function

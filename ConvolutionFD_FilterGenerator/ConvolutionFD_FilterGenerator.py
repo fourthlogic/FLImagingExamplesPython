@@ -163,6 +163,10 @@ def main():
 		while viewImageSrc.IsAvailable() and viewImageDstBandpass.IsAvailable() and viewImageDstGaussian.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
+		viewImageSrc.Destroy()
+		viewImageDstBandpass.Destroy()
+		viewImageDstGaussian.Destroy()
+
 		break
 	
 	# End of main function

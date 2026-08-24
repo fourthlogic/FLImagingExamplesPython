@@ -224,6 +224,11 @@ def main():
 		# # 이미지 뷰가 닫히기 전까지 종료하지 않고 대기 # Wait until the image view is closed before exiting
 		while viewImageSrc.IsAvailable() and viewImageFFT.IsAvailable() and viewImageMeanFilter.IsAvailable() and viewImageMean.IsAvailable():
 			CThreadUtilities.Sleep(1)
+			
+		viewImageSrc.Destroy()
+		viewImageFFT.Destroy()
+		viewImageMeanFilter.Destroy()
+		viewImageMean.Destroy()
 
 		break
 	

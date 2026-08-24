@@ -416,6 +416,15 @@ def main():
 		while viewImageSrc.IsAvailable() and viewImageFFT.IsAvailable() and viewImageIdealFilter.IsAvailable() and viewImageIdeal.IsAvailable() and viewImageButterworthFilter.IsAvailable() and viewImageButterworth.IsAvailable() and viewImageGaussianFilter.IsAvailable() and viewImageGaussian.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
+		viewImageSrc.Destroy()
+		viewImageFFT.Destroy()
+		viewImageIdealFilter.Destroy()
+		viewImageIdeal.Destroy()
+		viewImageButterworthFilter.Destroy()
+		viewImageButterworth.Destroy()
+		viewImageGaussianFilter.Destroy()
+		viewImageGaussian.Destroy()
+
 		break
 	
 	# End of main function

@@ -173,6 +173,9 @@ def main():
 		while viewImage[0].IsAvailable() and viewImage[1].IsAvailable() and viewImage[2].IsAvailable():
 			CThreadUtilities.Sleep(1)
 
+		for i in range(3):
+			viewImage[i].Destroy()
+
 		break
 	
 	# End of main function

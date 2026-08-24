@@ -216,6 +216,11 @@ def main():
 		while viewImageSrc.IsAvailable() and viewImageFFT.IsAvailable() and viewImageIdealFilter.IsAvailable() and viewImageIdeal.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
+		viewImageSrc.Destroy()
+		viewImageFFT.Destroy()
+		viewImageIdealFilter.Destroy()
+		viewImageIdeal.Destroy()
+
 		break
 	
 	# End of main function
