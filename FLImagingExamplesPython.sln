@@ -2030,6 +2030,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ModelBasedQRCodeDecoder", "
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FLLocalExtremaDetector", "FLLocalExtremaDetector\FLLocalExtremaDetector.pyproj", "{9C80014B-C4BA-4D2A-8DF8-AF86FB648049}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MeasurementInstanceDL", "MeasurementInstanceDL\MeasurementInstanceDL.pyproj", "{3F98CF06-4A14-4681-8F0E-D3D1C3F4E5EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3422,6 +3424,8 @@ Global
 		{45EB7D6B-1D29-4B07-9CAB-158F99586F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C80014B-C4BA-4D2A-8DF8-AF86FB648049}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9C80014B-C4BA-4D2A-8DF8-AF86FB648049}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F98CF06-4A14-4681-8F0E-D3D1C3F4E5EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F98CF06-4A14-4681-8F0E-D3D1C3F4E5EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4426,6 +4430,7 @@ Global
 		{C925C789-B399-4DCD-ABD0-7FB1AE05859A} = {5F52C51A-CF1C-4302-B886-A2C0D8C3DA26}
 		{45EB7D6B-1D29-4B07-9CAB-158F99586F56} = {DDC0D5FD-6E0C-4F36-9D4C-49718C1A7BFC}
 		{9C80014B-C4BA-4D2A-8DF8-AF86FB648049} = {C173F22D-EE74-4BFD-9966-0C8282BF5BBD}
+		{3F98CF06-4A14-4681-8F0E-D3D1C3F4E5EA} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
