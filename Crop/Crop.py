@@ -108,7 +108,7 @@ def main():
 			CThreadUtilities.Sleep(1)
 
 		viewImageSrc.Destroy()
-		viewImageDst.Destroy()
+		viewImageCrop.Destroy()
 
 		break
 	
