@@ -97,6 +97,9 @@ def main():
         # 이미지 뷰 종료될 때까지 대기 # Wait for the image view to close
         while viewImage[0].IsAvailable():
             CThreadUtilities.Sleep(1)
+    
+        viewImage[0].Destroy()
+        viewImage[1].Destroy()
 
         break
 

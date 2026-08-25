@@ -186,6 +186,7 @@ def main():
 			CThreadUtilities.Sleep(1)
 			
 		viewSrcImage.Destroy()
+
 		for i in range(3):
 			viewDstImage[i].Destroy()
 

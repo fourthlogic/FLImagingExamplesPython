@@ -93,6 +93,8 @@ def main():
 		while viewImage.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
+		viewImage.Destroy()
+
 		break
 	
 	# End of main function

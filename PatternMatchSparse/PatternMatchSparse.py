@@ -209,6 +209,10 @@ def main():
         # 이미지 뷰가 종료될 때 까지 기다림 # Wait for the imageview to close
         while viewImageLearn.IsAvailable():
             CThreadUtilities.Sleep(1)
+
+        viewImageLearn.Destroy()
+        viewImageFind.Destroy()
+
         break
 
 if __name__ == "__main__":

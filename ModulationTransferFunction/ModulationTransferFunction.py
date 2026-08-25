@@ -95,6 +95,8 @@ def main():
         while viewImage.IsAvailable():
             CThreadUtilities.Sleep(1)
 
+        viewImage.Destroy()
+
         break
 
 if __name__ == '__main__':

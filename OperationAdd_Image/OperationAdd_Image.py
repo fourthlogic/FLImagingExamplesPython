@@ -131,6 +131,9 @@ def main():
                arrViewImage[2].IsAvailable()):
             CThreadUtilities.Sleep(1)
 
+        for i in range(3):
+            arrViewImage[i].Destroy()
+
         break
 
 if __name__ == '__main__':

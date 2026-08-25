@@ -246,6 +246,11 @@ def main():
         while viewImageLearn[0].IsAvailable():
             CThreadUtilities.Sleep(1)
 
+        for i in range(2):
+            viewImageLearn[i].Destroy()
+
+        viewImageFind.Destroy()
+
         break
 
 # 메인 호출 # Main call

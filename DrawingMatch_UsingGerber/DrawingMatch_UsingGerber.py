@@ -174,5 +174,8 @@ def main():
     while viewImageLearn.IsAvailable():
         CThreadUtilities.Sleep(1)
 
+    viewImageLearn.Destroy()
+    viewImageFind.Destroy()
+
 if __name__ == "__main__":
     main()

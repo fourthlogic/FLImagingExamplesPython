@@ -236,4 +236,9 @@ while True:
     while viewImageLearn[0].IsAvailable():
         CThreadUtilities.Sleep(1)
 
+    for i in range(2):
+        viewImageLearn[i].Destroy()
+
+    viewImageFind.Destroy()
+
     break

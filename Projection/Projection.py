@@ -112,6 +112,9 @@ def main():
 		while viewImage.IsAvailable() and viewGraph.IsAvailable():
 			CThreadUtilities.Sleep(1)
 
+		viewImage.Destroy()
+		viewGraph.Destroy()
+
 		break
 	
 	# End of main function

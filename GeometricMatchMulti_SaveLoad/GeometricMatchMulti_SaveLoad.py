@@ -235,5 +235,10 @@ def main():
 		while viewImageLearn[0].IsAvailable():
 			CThreadUtilities.Sleep(1)
 
+		for i in range(3):
+			viewImageLearn[i].Destroy()
+
+		viewImageFind.Destroy()
+
 if __name__ == '__main__':
 	main()

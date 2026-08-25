@@ -147,6 +147,9 @@ def main():
             performanceCounter.Start()
             i32PageIndex += 1
 
+        arrViewImage[0].Destroy()
+        arrViewImage[1].Destroy()
+
         break
 
 

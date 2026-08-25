@@ -119,6 +119,10 @@ def main():
         # 뷰 종료 대기 # Wait for view to close
         while viewImageSrc.IsAvailable():
             CThreadUtilities.Sleep(1)
+
+        viewImageSrc.Destroy()
+        viewImageDst.Destroy()
+
         break
 
 if __name__ == '__main__':

@@ -123,7 +123,10 @@ def main():
 
         # 뷰 종료 대기 # Wait until all views are closed
         while all(view.IsAvailable() for view in arrViewImage):
-             CThreadUtilities.Sleep(1)
+            CThreadUtilities.Sleep(1)
+
+        for view in arrViewImage:
+            view.Destroy()
 
         break
 
