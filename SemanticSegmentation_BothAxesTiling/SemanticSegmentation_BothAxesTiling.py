@@ -275,9 +275,10 @@ def main():
 				listMeanIoUHistory = List[Single]()
 				listValidationsZEHistory = List[Single]()
 				listMeanIoUZEHistory = List[Single]()
+				listMeanAPHistory = List[Single]()
 				vctValidationEpoch = List[Int32]()
 
-				semanticSegmentationDL.GetLearningResultAllHistory(listCostHistory, listValidationHistory, listMeanIoUHistory, listValidationsZEHistory, listMeanIoUZEHistory, vctValidationEpoch)
+				semanticSegmentationDL.GetLearningResultAllHistory(listCostHistory, listValidationHistory, listMeanIoUHistory, listValidationsZEHistory, listMeanIoUZEHistory, listMeanAPHistory, vctValidationEpoch)
 
 				# 비용 기록이나 검증 결과 기록이 있다면 출력 # Prresults if cost or validation history exists
 				if((listCostHistory.Count != 0 and i32PrevCostCount != listCostHistory.Count) or (listValidationHistory.Count != 0 and i32PrevValidationCount != listValidationHistory.Count)):

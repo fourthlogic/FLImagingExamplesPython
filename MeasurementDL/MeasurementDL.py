@@ -238,9 +238,10 @@ def main():
 				listMeanIoUHistory = List[Single]()
 				listValidationsZEHistory = List[Single]()
 				listMeanIoUZEHistory = List[Single]()
+				listMeanAPHistory = List[Single]()
 				vctValidationEpoch = List[Int32]()
 
-				measurementDL.GetLearningResultAllHistory(listCostHistory, listValidationHistory, listMeanIoUHistory, listValidationsZEHistory, listMeanIoUZEHistory, vctValidationEpoch)
+				measurementDL.GetLearningResultAllHistory(listCostHistory, listValidationHistory, listMeanIoUHistory, listValidationsZEHistory, listMeanIoUZEHistory, listMeanAPHistory, vctValidationEpoch)
 
 				# 비용 기록이나 검증 결과 기록이 있다면 출력 # Prresults if cost or validation history exists
 				if((listCostHistory.Count != 0 and i32PrevCostCount != listCostHistory.Count) or (listMeanIoUHistory.Count != 0 and i32PrevValidationCount != listMeanIoUHistory.Count)):

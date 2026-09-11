@@ -189,6 +189,8 @@ def main():
 		semanticSegmentationDL.SetLearningEpoch(120)
 		# 학습 이미지 Interpolation 방식 설정 # Set Interpolation method of learn image
 		semanticSegmentationDL.SetInterpolationMethod(EInterpolationMethod.Bilinear)
+		# 검증 시 Mean AP 활성 화 # Enable Mean AP during validating.
+		semanticSegmentationDL.EnableValidationMeanAP(True);
 		
 		# Optimizer의 학습률 설정 # Set learning rate of Optimizer
 		optSpec.SetLearningRate(0.001)
@@ -268,10 +270,11 @@ def main():
 				f32CurrCost = semanticSegmentationDL.GetLearningResultLastCost()
 				# 마지막 검증 결과 받기 # Get the last validation result
 				f32ValidationPa = semanticSegmentationDL.GetLearningResultLastAccuracy()
-				f32ValidationPaMeanIoU = semanticSegmentationDL.GetLearningResultLastMeanIoU()
+				f32ValidationMeanIoU = semanticSegmentationDL.GetLearningResultLastMeanIoU()
+				f32ValidationMeanAP = semanticSegmentationDL.GetLearningResultLastMeanAP()
 
 				# 해당 epoch의 비용과 검증 결과 값 출력 # Prcost and validation value for the relevant epoch
-				print("Cost : {:6f} Pixel Accuracy : {:6f} mIoU : {:6f} Epoch {} / {}".format(f32CurrCost, f32ValidationPa, f32ValidationPaMeanIoU, i32Epoch, i32MaxEpoch))
+				print("Cost : {:6f} Pixel Accuracy : {:6f} mIoU : {:6f} Mean AP : {:6f} Epoch {} / {}".format(f32CurrCost, f32ValidationPa, f32ValidationMeanIoU, f32ValidationMeanAP, i32Epoch, i32MaxEpoch))
 
 				# 학습 결과 비용과 검증 결과 기록을 받아 그래프 뷰에 출력  
 				# Get the history of cost and validation and prit at graph view
@@ -280,9 +283,10 @@ def main():
 				listMeanIoUHistory = List[Single]()
 				listValidationsZEHistory = List[Single]()
 				listMeanIoUZEHistory = List[Single]()
+				listMeanAPHistory = List[Single]()
 				vctValidationEpoch = List[Int32]()
 
-				semanticSegmentationDL.GetLearningResultAllHistory(listCostHistory, listValidationHistory, listMeanIoUHistory, listValidationsZEHistory, listMeanIoUZEHistory, vctValidationEpoch)
+				semanticSegmentationDL.GetLearningResultAllHistory(listCostHistory, listValidationHistory, listMeanIoUHistory, listValidationsZEHistory, listMeanIoUZEHistory, listMeanAPHistory, vctValidationEpoch)
 
 				# 비용 기록이나 검증 결과 기록이 있다면 출력 # Prresults if cost or validation history exists
 				if((listCostHistory.Count != 0 and i32PrevCostCount != listCostHistory.Count) or (listValidationHistory.Count != 0 and i32PrevValidationCount != listValidationHistory.Count)):
@@ -303,6 +307,7 @@ def main():
 					# Graph View 데이터 입력 # Input Graph View Data
 					viewGraph.Plot(listX, listValidationHistory, EChartType.Line, EColor.CYAN, "Validation")
 					viewGraph.Plot(listX, listMeanIoUHistory, EChartType.Line, EColor.BLUE, "mIoU")
+					viewGraph.Plot(listX, listMeanAPHistory, EChartType.Line, EColor.PINK, "mIoU")
 					viewGraph.UnlockUpdate()
 
 					viewGraph.UpdateWindow()
