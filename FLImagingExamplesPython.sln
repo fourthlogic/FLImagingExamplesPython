@@ -2034,6 +2034,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MeasurementInstanceDL", "Me
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ImageConcatenatorGrid", "ImageConcatenatorGrid\ImageConcatenatorGrid.pyproj", "{27C62BA7-271D-492B-85AB-89FC7BF6B2F1}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DeviceLaserProfileSensorMechEye", "DeviceLaserProfileSensorMechEye\DeviceLaserProfileSensorMechEye.pyproj", "{9AF93183-4276-4530-A6E8-7234BDF10E6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3430,6 +3432,8 @@ Global
 		{3F98CF06-4A14-4681-8F0E-D3D1C3F4E5EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27C62BA7-271D-492B-85AB-89FC7BF6B2F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{27C62BA7-271D-492B-85AB-89FC7BF6B2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AF93183-4276-4530-A6E8-7234BDF10E6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AF93183-4276-4530-A6E8-7234BDF10E6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4436,6 +4440,7 @@ Global
 		{9C80014B-C4BA-4D2A-8DF8-AF86FB648049} = {C173F22D-EE74-4BFD-9966-0C8282BF5BBD}
 		{3F98CF06-4A14-4681-8F0E-D3D1C3F4E5EA} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
 		{27C62BA7-271D-492B-85AB-89FC7BF6B2F1} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
+		{9AF93183-4276-4530-A6E8-7234BDF10E6F} = {F13892E2-1722-440D-956C-3502AC4FF174}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
