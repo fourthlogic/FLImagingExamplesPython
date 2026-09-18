@@ -109,7 +109,7 @@ def main():
 		# 연산 방식 설정 # Set operation source
 		operationMatrixMultiply.SetOperationSource(EOperationSource.Image)
 
-		# 연산 방식 설정 # Set operation source
+		# 오버플로우 처리 방식 설정 # Set overflow method
 		operationMatrixMultiply.SetOverflowMethod(EOverflowMethod.Wrapping)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
