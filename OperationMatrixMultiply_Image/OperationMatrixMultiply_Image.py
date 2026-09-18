@@ -109,6 +109,9 @@ def main():
 		# 연산 방식 설정 # Set operation source
 		operationMatrixMultiply.SetOperationSource(EOperationSource.Image)
 
+		# 연산 방식 설정 # Set operation source
+		operationMatrixMultiply.SetOverflowMethod(EOverflowMethod.Wrapping)
+
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := operationMatrixMultiply.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute Operation Matrix Multiply.')
