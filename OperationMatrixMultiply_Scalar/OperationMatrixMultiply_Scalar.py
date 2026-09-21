@@ -92,7 +92,7 @@ def main():
 			ErrorPrint(res, 'Failed to synchronize window.')
 			break
 
-		# Multiply 객체 생성 # Create Multiply object
+		# Operation Matrix Multiply 객체 생성 # Create Operation Matrix Multiply object
 		operationMatrixMultiply = COperationMatrixMultiply()
 
 		# Source 이미지 설정 # Set the source image
