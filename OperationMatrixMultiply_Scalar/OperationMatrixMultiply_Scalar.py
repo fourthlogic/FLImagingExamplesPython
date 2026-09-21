@@ -104,7 +104,7 @@ def main():
 		# 연산 방식 설정 # Set operation source
 		operationMatrixMultiply.SetOperationSource(EOperationSource.Scalar)
 		
-		# Operation Matrix Multiply 값 설정 # Set Multiply value
+		# Multiply 값 설정 # Set Multiply value
 		mvScalarValue1 = CMultiVar[Double](1.5)
 		operationMatrixMultiply.SetScalarValue(mvScalarValue1)
 
@@ -119,7 +119,7 @@ def main():
 		# 연산 방식 설정 # Set operation source
 		operationMatrixMultiply.SetOperationSource(EOperationSource.Scalar)
 		
-		# Operation Matrix Multiply 값 설정 # Set Operation Matrix Multiply value
+		# Multiply 값 설정 # Set Multiply value
 		mvScalarValue2 = CMultiVar[Double](2)
 		operationMatrixMultiply.SetScalarValue(mvScalarValue2)
 
