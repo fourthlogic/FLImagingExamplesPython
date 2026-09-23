@@ -107,18 +107,18 @@ def main():
 
 		if (res := computedTomographyGeneralizedCT.LoadCSV("../../ExampleImages/ComputedTomographyGeneralizedCT/geometry_preprocessing.csv")).IsFail():
 			break
-		if (res := computedTomographyGeneralizedCT.SetSourceImage(fliSrcImage)).IsFail():
+		if (res := computedTomographyGeneralizedCT.SetSourceImage(fliSrcImage)[0]).IsFail():
 			break
-		if (res := computedTomographyGeneralizedCT.SetDestinationImage(fliDstImage)).IsFail():
+		if (res := computedTomographyGeneralizedCT.SetDestinationImage(fliDstImage)[0]).IsFail():
 			break
-		if (res := computedTomographyGeneralizedCT.SetDestinationObject(floDstObject)).IsFail():
+		if (res := computedTomographyGeneralizedCT.SetDestinationObject(floDstObject)[0]).IsFail():
 			break
 
 		if (res := computedTomographyGeneralizedCT.EnablePreprocessing(True)).IsFail():
 			break
-		if (res := computedTomographyGeneralizedCT.SetDarkFieldImage(fliDarkFieldImage)).IsFail():
+		if (res := computedTomographyGeneralizedCT.SetDarkFieldImage(fliDarkFieldImage)[0]).IsFail():
 			break
-		if (res := computedTomographyGeneralizedCT.SetFlatFieldImage(fliFlatFieldImage)).IsFail():
+		if (res := computedTomographyGeneralizedCT.SetFlatFieldImage(fliFlatFieldImage)[0]).IsFail():
 			break
 		if (res := computedTomographyGeneralizedCT.SetMedianFilterKernel(3)).IsFail():
 			break
@@ -151,7 +151,7 @@ def main():
 		if (res := computedTomographyGeneralizedCT.SetObjectVoxelOffset(tpObjectVoxelOffset)).IsFail():
 			break
 
-		if (res := computedTomographyGeneralizedCT.EnableFrequencyRampFilter(true)).IsFail():
+		if (res := computedTomographyGeneralizedCT.EnableFrequencyRampFilter(True)).IsFail():
 			break
 		if (res := computedTomographyGeneralizedCT.SetFrequencyWindow(CComputedTomographyGeneralizedCT.EFrequencyWindow.Gaussian)).IsFail():
 			break
@@ -198,7 +198,7 @@ def main():
 		layer3D.Clear()
 
 		# 이미지 뷰 정보 표시 # Display image view information
-		CFLPoint<double> flp = CFLPoint<double>()
+		flp = CFLPoint[Double]()
 		if((res := layerSrc.DrawTextCanvas(flp, "Source Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or
 			(res := layerDarkField.DrawTextCanvas(flp, "Dark Field Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or
 			(res := layerFlatField.DrawTextCanvas(flp, "Flat Field Image", EColor.YELLOW, EColor.BLACK, 20)).IsFail() or
@@ -208,8 +208,8 @@ def main():
 			break
 		
 
-		viewImageSrc.SetLayerAutoClearMode(ELayerAutoClearMode.PageChanged, false)
-		viewImageDst.SetLayerAutoClearMode(ELayerAutoClearMode.PageChanged, false)
+		viewImageSrc.SetLayerAutoClearMode(ELayerAutoClearMode.PageChanged, False)
+		viewImageDst.SetLayerAutoClearMode(ELayerAutoClearMode.PageChanged, False)
 
 		# Zoom Fit
 		viewImageSrc.ZoomFit()
@@ -219,11 +219,11 @@ def main():
 		view3DDst.ZoomFit()
 
 		# 이미지 뷰를 갱신 합니다. # Update image view
-		viewImageSrc.Invalidate(true)
-		viewImageDarkField.Invalidate(true)
-		viewImageFlatField.Invalidate(true)
-		viewImageDst.Invalidate(true)
-		view3DDst.Invalidate(true)
+		viewImageSrc.Invalidate(True)
+		viewImageDarkField.Invalidate(True)
+		viewImageFlatField.Invalidate(True)
+		viewImageDst.Invalidate(True)
+		view3DDst.Invalidate(True)
 
 		# 이미지 뷰, 3D 뷰가 종료될 때 까지 기다림
 		while viewImageSrc.IsAvailable() and viewImageDarkField.IsAvailable() and viewImageFlatField.IsAvailable() and viewImageDst.IsAvailable() and view3DDst.IsAvailable():
@@ -233,13 +233,13 @@ def main():
 	# End of main function
 
 
-
+	
 # 에러 출력 함수 # Error printing function
 def ErrorPrint(res, str):
 	if len(str) > 1:
 		print(str)
 
-	print(f'Error code : {res.GetResultCode()nError name : {res.GetString()n')
+	print(f'Error code : {res.GetResultCode()}\nError name : {res.GetString()}\n')
 
 
 if __name__ == '__main__':
