@@ -2048,6 +2048,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DeviceCameraFrameGrabberHIK
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ComputedTomographyGeneralizedCT_Preprocessing", "ComputedTomographyGeneralizedCT_Preprocessing\ComputedTomographyGeneralizedCT_Preprocessing.pyproj", "{6329493E-C81C-4098-9A9E-D94FC135D303}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Conservative Smoothing Filter", "Conservative Smoothing Filter", "{1BF2A675-8098-44AE-8350-4B20DF2BA795}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ConservativeSmoothingFilter", "ConservativeSmoothingFilter\ConservativeSmoothingFilter.pyproj", "{82E77CEA-B90F-4A64-BBFB-F4E71D339B45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3456,6 +3460,8 @@ Global
 		{9CEF6965-7621-432B-9376-5D6A00398040}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6329493E-C81C-4098-9A9E-D94FC135D303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6329493E-C81C-4098-9A9E-D94FC135D303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82E77CEA-B90F-4A64-BBFB-F4E71D339B45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82E77CEA-B90F-4A64-BBFB-F4E71D339B45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4469,6 +4475,8 @@ Global
 		{74925A4F-752B-46AA-B71E-54D0026D3959} = {28A85173-86A2-4FF5-8E03-B8E124A4883B}
 		{9CEF6965-7621-432B-9376-5D6A00398040} = {330DE15B-7187-458D-951B-C5FE06C9FB50}
 		{6329493E-C81C-4098-9A9E-D94FC135D303} = {C1AA632A-68DE-424A-B9C0-0CF83A6CFED1}
+		{1BF2A675-8098-44AE-8350-4B20DF2BA795} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
+		{82E77CEA-B90F-4A64-BBFB-F4E71D339B45} = {1BF2A675-8098-44AE-8350-4B20DF2BA795}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
