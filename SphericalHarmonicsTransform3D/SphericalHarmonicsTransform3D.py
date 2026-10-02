@@ -46,21 +46,21 @@ def main():
 		# 파라미터 설정 # Set parameter
 		sphericalHarmonicsTransform3D.SetSourceObject(floSrc)
 		sphericalHarmonicsTransform3D.SetDestinationObject(floDst1)
-		perspectiveTransform3D.SetDirectionType(CSphericalHarmonicsTransform3D.Forward)
-		perspectiveTransform3D.SetMaxDegree(15)
+		sphericalHarmonicsTransform3D.SetDirectionType(CSphericalHarmonicsTransform3D.ETransformDirection.Forward)
+		sphericalHarmonicsTransform3D.SetMaxDegree(15)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := perspectiveTransform3D.Execute()).IsFail():
+		if (res := sphericalHarmonicsTransform3D.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to Forward.')
 			break
 
 		# 파라미터 설정 # Set parameter
 		sphericalHarmonicsTransform3D.SetSourceObject(floDst1)
 		sphericalHarmonicsTransform3D.SetDestinationObject(floDst2)
-		perspectiveTransform3D.SetDirectionType(CSphericalHarmonicsTransform3D.Inverse)
+		sphericalHarmonicsTransform3D.SetDirectionType(CSphericalHarmonicsTransform3D.ETransformDirection.Inverse)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-		if (res := perspectiveTransform3D.Execute()).IsFail():
+		if (res := sphericalHarmonicsTransform3D.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to Inverse.')
 			break
 
@@ -98,7 +98,7 @@ def main():
 		view3DDst2.Invalidate(True)
 
 		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 # Wait for the image and 3D view to close
-		while (view3DSrc.IsAvailable() || view3DDst1.IsAvailable() || view3DDst2.IsAvailable()):
+		while (view3DSrc.IsAvailable() or view3DDst1.IsAvailable() or view3DDst2.IsAvailable()):
 			CThreadUtilities.Sleep(1)
 
 		break
