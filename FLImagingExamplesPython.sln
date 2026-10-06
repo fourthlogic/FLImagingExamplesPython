@@ -2054,6 +2054,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Conservative Smoothing Filt
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ConservativeSmoothingFilter", "ConservativeSmoothingFilter\ConservativeSmoothingFilter.pyproj", "{82E77CEA-B90F-4A64-BBFB-F4E71D339B45}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FibonacciSphericalResampler3D", "FibonacciSphericalResampler3D\FibonacciSphericalResampler3D.pyproj", "{91C36E52-7523-42D2-9A99-037E12BFCB0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3466,6 +3468,8 @@ Global
 		{0972CA8C-A427-4639-8973-AEF43C2463DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82E77CEA-B90F-4A64-BBFB-F4E71D339B45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{82E77CEA-B90F-4A64-BBFB-F4E71D339B45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91C36E52-7523-42D2-9A99-037E12BFCB0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91C36E52-7523-42D2-9A99-037E12BFCB0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4482,6 +4486,7 @@ Global
 		{0972CA8C-A427-4639-8973-AEF43C2463DD} = {8C1B856A-E1FA-490B-A88E-092CA27F4F51}
 		{1BF2A675-8098-44AE-8350-4B20DF2BA795} = {A73DE74F-2772-4E72-A49F-B781F6E44F1C}
 		{82E77CEA-B90F-4A64-BBFB-F4E71D339B45} = {1BF2A675-8098-44AE-8350-4B20DF2BA795}
+		{91C36E52-7523-42D2-9A99-037E12BFCB0B} = {EAF838D2-3CE6-4185-927B-5CA0F07E48A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
