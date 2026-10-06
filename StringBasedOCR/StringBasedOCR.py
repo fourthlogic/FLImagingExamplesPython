@@ -144,12 +144,12 @@ def main():
 		# 학습할 StringBasedOCR 모델 버전 설정 # Set up the StringBasedOCR model version to learn
 		stringBasedOCRDL.SetModelVersion(CStringBasedOCRDL.EModelVersion.FLOcrNet_S_V1_32_256_B2)
 		# 학습 epoch 값을 설정 # Set the learn epoch value 
-		stringBasedOCRDL.SetLearningEpoch(500)
+		stringBasedOCRDL.SetLearningEpoch(1000)
 		# 학습 이미지 Interpolation 방식 설정 # Set Interpolation method of learn image
 		stringBasedOCRDL.SetInterpolationMethod(EInterpolationMethod.Bilinear)
 
 		# OptimizerSpec 객체 생성 # Create OptimizerSpec object
-		optSpec = COptimizerSpecAdamGradientDescentDL()
+		optSpec = COptimizerSpecAdamWGradientDescentDL()
 		# Optimizer의 학습률 설정 # Set learning rate of Optimizer
 		optSpec.SetLearningRate(0.0001)
 		# 설정한 Optimizer를 StringBasedOCR에 적용 # Apply Optimizer that we set up to StringBasedOCR
@@ -295,6 +295,9 @@ def main():
 		# 인식할 이미지 설정 # Set the image to recognize
 		stringBasedOCRDL.SetInferenceImage(fliSourceImage)
 		stringBasedOCRDL.SetInferenceResultImage(fliSourceImage)
+
+		# 결과 항목 설정 # Set the result item
+		stringBasedOCRDL.SetInferenceResultItemSettings(CStringBasedOCRDL.EInferenceResultItemSettings.Quadrangle);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := stringBasedOCRDL.Execute()).IsFail():
