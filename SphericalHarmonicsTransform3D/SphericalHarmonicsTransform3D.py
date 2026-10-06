@@ -78,7 +78,11 @@ def main():
 		# Destination 이미지가 새로 생성됨으로 Zoom fit 을 통해 디스플레이 되는 이미지 배율을 화면에 맞춰준다. # With the newly created Destination image, the image magnification displayed through Zoom fit is adjusted to the screen.
 		view3DSrc.PushObject(floSrc)
 		view3DDst1.PushObject(floDst1)
+		view3DDst1.SetPointSize(10)
 		view3DDst2.PushObject(floDst2)
+		view3DDst2.SetPointSize(2);
+		view3DDst2.SetShadingType(EShadingType3D.Shadeless);
+		view3DDst2.SynchronizePointOfView(view3DSrc);
 
 		view3DSrc.ZoomFit()
 		view3DDst1.ZoomFit()
@@ -98,7 +102,7 @@ def main():
 		view3DDst2.Invalidate(True)
 
 		#이미지 뷰, 3D 뷰가 종료될 때 까지 기다림 # Wait for the image and 3D view to close
-		while (view3DSrc.IsAvailable() or view3DDst1.IsAvailable() or view3DDst2.IsAvailable()):
+		while (view3DSrc.IsAvailable() and view3DDst1.IsAvailable() and view3DDst2.IsAvailable()):
 			CThreadUtilities.Sleep(1)
 
 		break
