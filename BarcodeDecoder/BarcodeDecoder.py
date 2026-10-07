@@ -44,16 +44,19 @@ def main():
         return
 
     # Barcode 객체 생성 # Create Barcode object
-    barcode = CBarcodeDecoder()
+    barcodeDecoder = CBarcodeDecoder()
     
     # 처리할 이미지 설정 # Set the image to process
-    barcode.SetSourceImage(fliImage)
+    barcodeDecoder.SetSourceImage(fliImage)
 
     # Barcode 타입 설정. 미 설정시 EBarcodeDecodingType.Auto 로 모든 심볼을 탐색한다 동작한다. # Specifies the barcode type. If not set, all barcode symbols will be scanned using EBarcodeDecodingType.Auto
-    barcode.SetSymbolType(EBarcodeSymbolType.EAN13)
+    barcodeDecoder.SetSymbolType(EBarcodeSymbolType.EAN13)
+    
+    # Barcode 디코딩 수준 설정 
+    barcodeDecoder.SetDecodingLevel(EDataCodeDecoderDecodingLevel.Fast)
 
     # 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
-    if (res := barcode.Execute()).IsFail():
+    if (res := barcodeDecoder.Execute()).IsFail():
         ErrorPrint(res, "Failed to Execute.")
         return
 
@@ -61,25 +64,25 @@ def main():
     # 이 객체는 이미지 뷰에 속해있기 때문에 따로 해제할 필요가 없음 # This object belongs to an image view and does not need to be released separately
     layer = viewImage.GetLayer(0)
 
-    i64Results = barcode.GetResultCount()
+    i64Results = barcodeDecoder.GetResultCount()
 
     for i in range(i64Results):
         # Barcode Decoder 결과를 얻어오기 위해 FLQuadD 선언 # Declare FLQuadD to retrieve the result from the Barcode Decoder.
         flqRegion = CFLQuad[Double]()
 
         # Barcode Decoder 결과들 중 Data Region 을 얻어옴 # Gets the Data Region from the Barcode Decoder results.
-        if (res := barcode.GetResultDataRegion(i, flqRegion)[0]).IsFail():
+        if (res := barcodeDecoder.GetResultDataRegion(i, flqRegion)[0]).IsFail():
             ErrorPrint(res, "Failed to get data region from the barcode decoder object.")
             return
                       
         strDecodedMsg = StringBuilder()
         # Barcode Decoder 결과들 중 Decoded String 을 얻어옴 # Gets the decoded string from the results of the Barcode Decoder.
-        if (res := barcode.GetResultDecodedString(i, strDecodedMsg)[0]).IsFail():
+        if (res := barcodeDecoder.GetResultDecodedString(i, strDecodedMsg)[0]).IsFail():
             ErrorPrint(res, "Failed to get data region from the barcode decoder object.")
             return
               
         bcs = CBarcodeSpec()
-        barcode.GetResultBarcodeSpec(i, bcs)
+        barcodeDecoder.GetResultBarcodeSpec(i, bcs)
         
         eSymbol = bcs.GetSymbolType()
 
