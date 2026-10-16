@@ -6,12 +6,19 @@ from FLImagingClrPy import *
 CLibraryUtilities.Initialize()
 
 
-class CDeviceEventImageEx(CDeviceEventImageBase):
+class CDeviceEventCameraPhoXiEx(CDeviceEventCameraPhoXiBase):
 
 	def __init__(self):
 		super().__init__()
-		self.RegisterOnAcquisition(CDeviceEventImageEx.Delegate_OnAcquisition(self.OnAcquisition))
+		self.RegisterOnAcquisitionForEarlyTransfer(CDeviceEventCameraPhoXiEx.Delegate_OnAcquisitionForEarlyTransfer(self.OnAcquisitionForEarlyTransfer))
+		self.RegisterOnAcquisition(CDeviceEventCameraPhoXiEx.Delegate_OnAcquisition(self.OnAcquisition))
+		self.m_fliImage = CFLImage()
+		self.m_viewImage = None
 		self.m_view3D = None
+
+	def SetViewImage(self, viewImage):
+		self.m_viewImage = viewImage
+		self.m_viewImage.SetImagePtr(self.m_fliImage)
 
 	def SetView3D(self, view3D):
 		self.m_view3D = view3D
@@ -60,11 +67,23 @@ class CDeviceEventImageEx(CDeviceEventImageBase):
 
 			break
 
+	def OnAcquisitionForEarlyTransfer(self, camera):
+		if(self.m_viewImage.IsAvailable()):
+			self.m_fliImage.Lock()
+			camera.GetAcquiredImage(self.m_fliImage)
+			self.m_fliImage.Unlock()
+
+			self.m_viewImage.Invalidate()
+
+
 # 메인 함수 # Main function
 def main():
 
 	# CResult 객체 선언 # Declare the CRessult object
 	er = CResult(EResult.UnknownError)
+
+	# 이미지 뷰 선언 # Declare the image view
+	viewImage = CGUIViewImage()
 
 	# 3D 뷰 선언 # Declare the 3D view
 	view3D = CGUIView3D()
@@ -118,7 +137,7 @@ def main():
 			while(True):
 				for i in range(listSerialNumbers.Count):
 					strElement = String.Format("{0}. ", i + 1)
-					strElement += listSerialNumbers[i] + "\n"
+					strElement += listSerialNumbers[i]
 					print(strElement)
 
 				strInput = input("Select Device: ")
@@ -137,7 +156,7 @@ def main():
 			strConnection = input("Input Serial Number: ")
 
 		# 이벤트를 받을 객체 선언 # Declare the object that receives events
-		eventImage = CDeviceEventImageEx()
+		eventImage = CDeviceEventCameraPhoXiEx()
 
 		# 카메라에 이벤트 객체 설정 # Set event object on Camera 
 		camPhoXi.RegisterDeviceEvent(eventImage)
@@ -155,21 +174,33 @@ def main():
 			print("Failed to initialize the camera.\n")
 			break
 
-		# 3D지 뷰 생성 # Create 3D view
-		if((er := view3D.Create(0,0,1000,1000)).IsFail()):
+		# 이미지 뷰 생성 # Create image view
+		if((er := viewImage.Create(0, 0, 500, 500)).IsFail()):
+			er = EResult.FailedToCreateObject
+			print("Failed to create the image view.\n")
+			break
+
+		# 3D 뷰 생성 # Create 3D view
+		if((er := view3D.Create(500, 0, 1000, 500)).IsFail()):
 			er = EResult.FailedToCreateObject
 			print("Failed to create the 3D view.\n")
 			break
 
+		viewImage.SynchronizeWindow(view3D)
+
+		eventImage.SetViewImage(viewImage)
 		eventImage.SetView3D(view3D)
+
+		# 조기 전송 기능을 활성화 합니다. # Enables the early transfer feature.
+		camPhoXi.EnableEarlyTransfer(True)
 
 		# 카메라 Live # Live the camera
 		if((er := camPhoXi.Live()).IsFail()):
 			print("Failed to live the camera\n")
 			break
 
-		# 3D지 뷰가 종료될 때 까지 기다림 # Wait for the 3D view to close.
-		while(view3D.IsAvailable()):
+		# 뷰가 종료될 때 까지 기다림 # Wait for the view to close.
+		while(viewImage.IsAvailable() & view3D.IsAvailable()):
 			CThreadUtilities.Sleep(1)
 
 		break
