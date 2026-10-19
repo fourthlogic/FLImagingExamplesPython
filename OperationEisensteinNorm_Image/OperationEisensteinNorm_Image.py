@@ -107,7 +107,7 @@ def main():
 		operationEisensteinNorm.SetDestinationImage(fliDestinationImage)
 
 		# Overflow Method 설정 # Set the overflow method
-		operationEisensteinNorm.SetOverflowMethod(EOverflowMethod.Clamping)
+		operationEisensteinNorm.SetOverflowMethod(EOverflowMethod.Wrapping)
 
 		# Image Operation 모드로 설정 # Set operation mode to image
 		operationEisensteinNorm.SetOperationSource(EOperationSource.Image)
