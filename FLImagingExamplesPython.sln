@@ -2062,6 +2062,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationEisensteinNorm_Ima
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OperationEisensteinNorm_Scalar", "OperationEisensteinNorm_Scalar\OperationEisensteinNorm_Scalar.pyproj", "{823D9097-9D2F-4FC5-B75C-0663A95C43FE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frangi Filter", "Frangi Filter", "{CB27A6ED-8CDA-46E8-91D9-AACFE2B354F6}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FrangiFilter", "FrangiFilter\FrangiFilter.pyproj", "{840AF41F-C030-463F-8A15-80559C890010}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3480,6 +3484,8 @@ Global
 		{C6D9F04A-251C-4BE8-8A41-D77E285E09F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{823D9097-9D2F-4FC5-B75C-0663A95C43FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{823D9097-9D2F-4FC5-B75C-0663A95C43FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{840AF41F-C030-463F-8A15-80559C890010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{840AF41F-C030-463F-8A15-80559C890010}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4500,6 +4506,8 @@ Global
 		{60B52A50-AF8B-47E0-91D2-2DED05FCB82C} = {DF146A85-CD97-4DBB-B9EB-71F83BA2B7EB}
 		{C6D9F04A-251C-4BE8-8A41-D77E285E09F9} = {60B52A50-AF8B-47E0-91D2-2DED05FCB82C}
 		{823D9097-9D2F-4FC5-B75C-0663A95C43FE} = {60B52A50-AF8B-47E0-91D2-2DED05FCB82C}
+		{CB27A6ED-8CDA-46E8-91D9-AACFE2B354F6} = {6CBBF795-4533-4B7D-B631-121591A38E26}
+		{840AF41F-C030-463F-8A15-80559C890010} = {CB27A6ED-8CDA-46E8-91D9-AACFE2B354F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
