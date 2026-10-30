@@ -2070,6 +2070,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Alpha Shape 3D", "Alpha Sha
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AlphaShape3D", "AlphaShape3D\AlphaShape3D.pyproj", "{DE613BE6-097C-4D4B-970D-6DBA945B2449}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AdaptiveRobustDenoising3D", "AdaptiveRobustDenoising3D\AdaptiveRobustDenoising3D.pyproj", "{F30D507B-E623-43BC-950D-BA34855F2FBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3492,6 +3494,8 @@ Global
 		{840AF41F-C030-463F-8A15-80559C890010}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE613BE6-097C-4D4B-970D-6DBA945B2449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DE613BE6-097C-4D4B-970D-6DBA945B2449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F30D507B-E623-43BC-950D-BA34855F2FBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F30D507B-E623-43BC-950D-BA34855F2FBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4516,6 +4520,7 @@ Global
 		{840AF41F-C030-463F-8A15-80559C890010} = {CB27A6ED-8CDA-46E8-91D9-AACFE2B354F6}
 		{6B4BB0E1-74C6-4D16-906A-BB4BC05B6715} = {ECFF483A-9E41-42AD-94A1-09F2D3E62F83}
 		{DE613BE6-097C-4D4B-970D-6DBA945B2449} = {6B4BB0E1-74C6-4D16-906A-BB4BC05B6715}
+		{F30D507B-E623-43BC-950D-BA34855F2FBF} = {92C2395C-A753-48C3-BB80-B628503B9049}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
