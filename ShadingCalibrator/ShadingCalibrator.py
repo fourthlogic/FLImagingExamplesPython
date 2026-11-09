@@ -111,6 +111,9 @@ def main():
 		# Destination 이미지 설정 # Set the destination image
 		shadingCalibrator.SetDestinationImage(fliDestinationImage)
 
+		# Batch Processing 설정 # Set Batch Processing
+		shadingCalibrator.EnableBatchProcessing(True)
+
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := shadingCalibrator.Execute()).IsFail():
 			ErrorPrint(res, 'Failed to execute ShadingCalibrator.')
