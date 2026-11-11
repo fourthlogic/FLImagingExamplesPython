@@ -238,7 +238,7 @@ def main():
 			# 마지막 미니 배치 최대 반복 횟수 받기 # Get the last maximum number of iterations of the last mini batch 
 			i32MaxIteration = denoisingDiffusionDL.GetActualMiniBatchCount()
 			# 마지막 미니 배치 반복 횟수 받기 # Get the last number of mini batch iterations
-			i32Iteration = denoisingDiffusionDL.GetLearningResultCurrentIteration()
+			i32Iteration = denoisingDiffusionDL.GetLearningResultCurrentIterationCount()
 			# 마지막 학습 횟수 받기 # Get the last epoch learning
 			i32Epoch = denoisingDiffusionDL.GetLastEpoch()
 
