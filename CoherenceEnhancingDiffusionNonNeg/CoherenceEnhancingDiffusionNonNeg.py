@@ -82,8 +82,8 @@ def main():
 		# Theta 업데이트 비율 설정 # Set update rate
 		coherenceEnhancingDiffusionNonNeg.SetTheta(0.5)
 
-		# 반복 횟수 설정 # Number of iterations
-		coherenceEnhancingDiffusionNonNeg.SetIteration(15)
+		# 반복횟수 설정 # Set Iteration Count
+		coherenceEnhancingDiffusionNonNeg.SetIterationCount(15);
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := coherenceEnhancingDiffusionNonNeg.Execute()).IsFail():
