@@ -85,7 +85,7 @@ def main():
 		if (res := holeFilling.SetPrecision(0.1)).IsFail():
 			break
 		# Harmonic Interpolation 의 Max Iteration 값 설정 # Set max iteration value for Harmonic Interpolation
-		if (res := holeFilling.SetMaxIteration(100)).IsFail():
+		if (res := holeFilling.SetMaxIterationCount(100)).IsFail():
 			break
 		# 첫 번째 Threshold 의 채널 별 논리 연산자와 값 설정 # Set the logical operator and value for each channel of the first Threshold
 		mvThresholdCondition1 = CMultiVar[Int64](Convert.ToInt64(ELogicalCondition.GreaterEqual), Convert.ToInt64(ELogicalCondition.GreaterEqual), Convert.ToInt64(ELogicalCondition.GreaterEqual))
