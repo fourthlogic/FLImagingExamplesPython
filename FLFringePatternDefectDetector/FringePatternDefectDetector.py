@@ -83,8 +83,8 @@ def main():
 		# Mura 탐지 모드 설정 # Set mura detecting mode
 		flFringePatternDefectDetector.EnableMura(False)
 
-		# Mura 반복 횟수 설정 # Set mura iteration
-		flFringePatternDefectDetector.SetMuraIteration(2)
+		# Mura 반복 횟수 설정 # Set mura iteration count
+		flFringePatternDefectDetector.SetMuraIterationCount(2)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := flFringePatternDefectDetector.Execute()).IsFail():
