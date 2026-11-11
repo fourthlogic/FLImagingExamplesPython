@@ -61,7 +61,7 @@ def main():
 		if (res := meanShiftFilter.SetDestinationImage(fliDstImage)[0]).IsFail():
 			break
 		# Max iteration 설정 # Set max iteration
-		if (res := meanShiftFilter.SetMaxIteration(1)).IsFail():
+		if (res := meanShiftFilter.SetMaxIterationCount(1)).IsFail():
 			break
 		# Tolerance 설정 # Set tolerance
 		if (res := meanShiftFilter.SetTolerance(0.0)).IsFail():
