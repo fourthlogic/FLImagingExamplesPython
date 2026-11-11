@@ -79,7 +79,7 @@ def main():
 		totalVariationDenoising.SetLambda(0.1)
 
 		# 연산 반복 횟수 설정 # Set the Iteration
-		totalVariationDenoising.SetIteration(3)
+		totalVariationDenoising.SetIterationCount(3)
 
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := totalVariationDenoising.Execute()).IsFail():

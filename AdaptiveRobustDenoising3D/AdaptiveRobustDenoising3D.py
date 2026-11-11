@@ -41,7 +41,7 @@ def main():
 		adaptiveRobustDenoising.SetDestinationObject(floDst)
 
 		adaptiveRobustDenoising.SetNeighborCount(24);
-		adaptiveRobustDenoising.SetIteration(2);
+		adaptiveRobustDenoising.SetIterationCount(2);
 		adaptiveRobustDenoising.SetNormalBandwidth(0.1);
 		adaptiveRobustDenoising.SetOutlierThreshold(3.);
 		adaptiveRobustDenoising.SetPositionUpdate(0.3);
