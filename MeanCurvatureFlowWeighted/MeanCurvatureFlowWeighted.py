@@ -73,8 +73,8 @@ def main():
 		# Destination 이미지 설정 # Set the destination image
 		meanCurvatureFlowWeighted.SetDestinationImage(fliDestinationImage)
 
-		# Algorithm 반복 수행 횟수 설정 # Set the number of iterations of an algorithm
-		meanCurvatureFlowWeighted.SetIteration(5)
+		# Algorithm 반복 수행 횟수 설정 # Set the number of iteration count of an algorithm
+		meanCurvatureFlowWeighted.SetIterationCount(5)
 
 		# Time Step 설정 # Set the time step value
 		meanCurvatureFlowWeighted.SetTimeStep(1)
