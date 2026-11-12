@@ -255,6 +255,11 @@ def Undistortion(stereoCalibrator3D, fliSourceImage, fliSource2Image, fliDestina
 			ErrorPrint(res, "Failed to set interpolation method.\n")
 			break
 		
+		# Batch Processing 설정 # Set Batch Processing
+		if (res := stereoCalibrator3D.EnableBatchProcessing(True)).IsFail():
+			ErrorPrint(res, "Failed to set batch processing.\n")
+			break
+
 		# 앞서 설정된 파라미터 대로 알고리즘 수행 # Execute algorithm according to previously set parameters
 		if (res := stereoCalibrator3D.Execute()).IsFail():
 			ErrorPrint(res, "Failed to execute Stereo Calibrator 3D.\n")
