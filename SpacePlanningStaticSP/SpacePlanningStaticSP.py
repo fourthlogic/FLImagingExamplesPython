@@ -278,11 +278,7 @@ def main():
 			)
 			layer3DResult.DrawTextCanvas(CFLPoint[Double](0, 25), strResultInfo, EColor.YELLOW, EColor.BLACK, 16)
 
-			# Destination 이미지가 새로 생성됨으로 Zoom fit 을 통해 디스플레이 되는 이미지 배율을 화면에 맞춰준다.
-			# With the newly created Destination image, the image magnification displayed through Zoom fit is adjusted to the screen.
 			view3DResult.ZoomFit()
-
-			# 이미지 뷰를 갱신 합니다. # Update image view
 			view3DResult.Invalidate(True)
 
 		if bPushFailed:
