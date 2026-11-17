@@ -52,7 +52,7 @@ def main():
 		   (res := sphereDetector3D.SetFitCosineSimilarity(0.98)).IsFail() or
 		   (res := sphereDetector3D.SetMinimumSurfaceCoverage(0.25)).IsFail() or
 		   (res := sphereDetector3D.SetScoreItem(CSphereDetector3D.EScoreItem.SurfaceCoverage, CSphereDetector3D.ESortOrder.Descending)).IsFail() or
-		   (res := sphereDetector3D.SetIterationCount(5000)).IsFail() or
+		   (res := sphereDetector3D.SetIterationCount(500)).IsFail() or
 		   (res := sphereDetector3D.SetRefinementIterationCount(10)).IsFail()):
 			ErrorPrint(res, "Failed to set the Sphere Detector 3D source object or detection parameters.\n")
 			break
