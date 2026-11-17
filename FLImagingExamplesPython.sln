@@ -2078,6 +2078,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AdaptiveThresholdNiblack", 
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AdaptiveThresholdBernsen", "AdaptiveThresholdBernsen\AdaptiveThresholdBernsen.pyproj", "{9AC8E5BD-ABE7-4D1A-9A9F-79CDA8B67370}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DecorrelationStretch", "DecorrelationStretch\DecorrelationStretch.pyproj", "{3BF8E67B-C9C8-4D4A-85C1-DE222D1E929D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3508,6 +3510,8 @@ Global
 		{4171CE15-56DA-48EE-B614-941F2C4CAACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AC8E5BD-ABE7-4D1A-9A9F-79CDA8B67370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9AC8E5BD-ABE7-4D1A-9A9F-79CDA8B67370}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BF8E67B-C9C8-4D4A-85C1-DE222D1E929D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BF8E67B-C9C8-4D4A-85C1-DE222D1E929D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4536,6 +4540,7 @@ Global
 		{F30D507B-E623-43BC-950D-BA34855F2FBF} = {92C2395C-A753-48C3-BB80-B628503B9049}
 		{4171CE15-56DA-48EE-B614-941F2C4CAACA} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
 		{9AC8E5BD-ABE7-4D1A-9A9F-79CDA8B67370} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
+		{3BF8E67B-C9C8-4D4A-85C1-DE222D1E929D} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
