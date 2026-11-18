@@ -25,7 +25,7 @@ def main():
         Calibration = 0
         Source = 1
         Destination = 2
-        Count = 3
+        COUNT = 3
 
     # 이미지 객체 선언 # Declare the image object
     fliImage = [CFLImage(),CFLImage(),CFLImage()]
@@ -45,7 +45,7 @@ def main():
 
         fliImage[EView.Source].Assign(fliImage[EView.Calibration])
 
-        for i in range(EView.Count):
+        for i in range(EView.COUNT):
             # Learn 이미지 뷰 생성 # Create the Learn image view
             if (res := arrViewImage[i].Create(300 + 480 * i, 0, 300 + 480 * (i + 1), 360)).IsFail():
                 ErrorPrint(res, "Failed to create the image view.\n")
@@ -123,7 +123,7 @@ def main():
             break
 
         # 뷰 이름 출력 # display view name
-        for i in range(EView.Count):
+        for i in range(EView.COUNT):
             currentLayer = arrViewImage[i].GetLayer(0)
 
             currentLayer.DrawTextImage(CFLPoint[Double](), strViewName[i], EColor.YELLOW, EColor.BLACK, 20)
@@ -133,7 +133,7 @@ def main():
         bAvailable = True
 
         while bAvailable == True:
-            for i in range(EView.Count):
+            for i in range(EView.COUNT):
                 bAvailable &= arrViewImage[i].IsAvailable()
 
             CThreadUtilities.Sleep(1)

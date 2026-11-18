@@ -11,15 +11,15 @@ import time
 class EType:
     Model = 0
     Texture = 1
-    Count = 2
+    COUNT = 2
 
 # 메인 함수 # Main function
 def main():
 	# 이미지 객체 선언 # Declare the image object
-    arr_image = [CFLImage() for _ in range(EType.Count)]
+    arr_image = [CFLImage() for _ in range(EType.COUNT)]
 
 	# 이미지 뷰 선언 # Declare the image view
-    arr_viewImage = [CGUIViewImage() for _ in range(EType.Count)]
+    arr_viewImage = [CGUIViewImage() for _ in range(EType.COUNT)]
     view3D = CGUIView3D()
 
     res = CResult()
@@ -51,7 +51,7 @@ def main():
             break
 
         b_error = False
-        for i in range(EType.Count):
+        for i in range(EType.COUNT):
             # 이미지 뷰에 이미지를 디스플레이 # Display the image in the image view
             if (res := arr_viewImage[i].SetImagePtr(arr_image[i])[0]).IsFail():
                 ErrorPrint(res, "Failed to set image object on the image view.")

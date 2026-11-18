@@ -21,14 +21,14 @@ def main():
         Learn = 0
         ModelBaseFind = 1
         NormalFind = 2
-        Count = 3
+        COUNT = 3
         
     # 이미지 객체 선언 # Declare the image object
-    arrFliImage = [CFLImage() for i in range(EViewList.Count)]
+    arrFliImage = [CFLImage() for i in range(EViewList.COUNT)]
 
     # 이미지 뷰 선언 # Declare the image view
-    arrViewImage = [CGUIViewImage() for i in range(EViewList.Count)]
-    arrLayer =  [CGUIViewImageLayer() for i in range(EViewList.Count)]
+    arrViewImage = [CGUIViewImage() for i in range(EViewList.COUNT)]
+    arrLayer =  [CGUIViewImageLayer() for i in range(EViewList.COUNT)]
     arrWcsViewText = [
         'Learn View',
         'Model Based Decoder Result View',
@@ -54,7 +54,7 @@ def main():
     i32ViewSize = 450
     i32Start = 100
 
-    for i in range(EViewList.Count):        
+    for i in range(EViewList.COUNT):        
         i32X = i32ViewSize * i
         i32Y = i32Start
 
@@ -205,13 +205,13 @@ def main():
         arrLayer[EViewList.NormalFind].DrawTextImage(flqDecodedCodeRegion.flpPoints[3], flsDecodedCode.ToString(), EColor.CYAN, EColor.BLACK, 16, False, flqDecodedCodeRegion.flpPoints[3].GetAngle(flqDecodedCodeRegion.flpPoints[2]))
 
      # 이미지 뷰를 갱신 합니다. # Update the image view.
-    for i in range(EViewList.Count):     
+    for i in range(EViewList.COUNT):     
         arrViewImage[i].Invalidate()
         
     bAvailable = True
 
     while bAvailable:
-        for i in range(EViewList.Count):
+        for i in range(EViewList.COUNT):
             bAvailable &= arrViewImage[i].IsAvailable()
 
         CThreadUtilities.Sleep(1)
