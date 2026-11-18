@@ -281,7 +281,7 @@ class GraphViewContextMenu(tk.Tk):
                 else:
                     var.set(False)
 
-            if len(listAvailableMenu) == int(EViewGraphMenuItem.Count):
+            if len(listAvailableMenu) == int(EViewGraphMenuItem.COUNT):
                 self.select_var.set("all")
             elif len(listAvailableMenu) == 0:
                 self.select_var.set("none")
