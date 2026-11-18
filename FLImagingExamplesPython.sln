@@ -2080,6 +2080,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AdaptiveThresholdBernsen", 
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DecorrelationStretch", "DecorrelationStretch\DecorrelationStretch.pyproj", "{3BF8E67B-C9C8-4D4A-85C1-DE222D1E929D}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FloodFill", "FloodFill\FloodFill.pyproj", "{B1487DE1-FCD5-455E-8E86-D2B489EF4DEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3512,6 +3514,8 @@ Global
 		{9AC8E5BD-ABE7-4D1A-9A9F-79CDA8B67370}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BF8E67B-C9C8-4D4A-85C1-DE222D1E929D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3BF8E67B-C9C8-4D4A-85C1-DE222D1E929D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1487DE1-FCD5-455E-8E86-D2B489EF4DEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1487DE1-FCD5-455E-8E86-D2B489EF4DEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4541,6 +4545,7 @@ Global
 		{4171CE15-56DA-48EE-B614-941F2C4CAACA} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
 		{9AC8E5BD-ABE7-4D1A-9A9F-79CDA8B67370} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
 		{3BF8E67B-C9C8-4D4A-85C1-DE222D1E929D} = {AE1C4922-5CA0-42BD-A8CF-36C376B702CF}
+		{B1487DE1-FCD5-455E-8E86-D2B489EF4DEA} = {048F9706-5594-4B8D-95DB-AAE867AC04D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
