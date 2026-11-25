@@ -187,8 +187,8 @@ def main():
 			break
 		
 		# Valid 픽셀의 기준 설정 # Set valid pixel ratio
-		if (res := photometricStereo3D.SetValidPixelThreshold(0.25)).IsFail():
-			ErrorPrint(res, 'Failed to set valid pixel threshold.\n')
+		if (res := photometricStereo3D.SetValidPixelRatio(0.25)).IsFail():
+			ErrorPrint(res, 'Failed to set valid pixel ratio.\n')
 			break
 		
 		# Curvature 이미지 Normalization 여부 설정 # Set curvature image normalization option
