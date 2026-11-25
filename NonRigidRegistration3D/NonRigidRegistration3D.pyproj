@@ -4,13 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{e7ea28f0-491e-403a-a374-4f4738ed10ac}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Registration3D.py</StartupFile>
+    <StartupFile>NonRigidRegistration3D.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>Registration3D</Name>
     <RootNamespace>Registration3D</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
