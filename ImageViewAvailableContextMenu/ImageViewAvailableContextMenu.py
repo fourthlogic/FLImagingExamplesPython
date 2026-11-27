@@ -58,7 +58,9 @@ def main():
         # Disable specific context menu options on the second image view
         # 전체 메뉴를 활성화한 뒤, 아래 리스트에 나열한 항목들만 제외합니다.
         # Enable all menu items first, then remove only the items listed below.
-        listAvailableMenuToRemove = [
+        listAvailableMenuToRemove = List[EMenuItem]()
+
+        for eItem in [
             # Load
             EMenuItem.LoadFile,
             EMenuItem.LoadFile_Raw,
@@ -81,8 +83,9 @@ def main():
             # CreateImage
             EMenuItem.CreateImage,
             EMenuItem.InsertPage,
-            EMenuItem.AppendPage,
-        ]
+            EMenuItem.AppendPage
+        ]:
+            listAvailableMenuToRemove.Add(eItem)
 
         # 두 번째 이미지 뷰에 컨텍스트 메뉴 설정
         # Apply the customized context menu to the second image view
