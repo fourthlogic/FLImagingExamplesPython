@@ -2086,6 +2086,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AdaptiveThresholdNiblack", 
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "NonRigidRegistration3D", "NonRigidRegistration3D\NonRigidRegistration3D.pyproj", "{E7EA28F0-491E-403A-A374-4F4738ED10AC}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "StringRecognition", "StringRecognition\StringRecognition.pyproj", "{9EFC0448-74DF-4602-91E6-F63F253F93BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -3524,6 +3526,8 @@ Global
 		{4171CE15-56DA-48EE-B614-941F2C4CAACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7EA28F0-491E-403A-A374-4F4738ED10AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E7EA28F0-491E-403A-A374-4F4738ED10AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EFC0448-74DF-4602-91E6-F63F253F93BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EFC0448-74DF-4602-91E6-F63F253F93BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4558,6 +4562,7 @@ Global
 		{F30D507B-E623-43BC-950D-BA34855F2FBF} = {92C2395C-A753-48C3-BB80-B628503B9049}
 		{4171CE15-56DA-48EE-B614-941F2C4CAACA} = {FC78522B-6CC5-4895-BF5F-BE256F260A01}
 		{E7EA28F0-491E-403A-A374-4F4738ED10AC} = {A8E66BEA-F927-400C-86F5-F166DA6A7BEE}
+		{9EFC0448-74DF-4602-91E6-F63F253F93BC} = {F2075549-647A-4CB7-8E47-7F5226D9D48D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {651A75F6-8096-461D-AB28-CFF961932117}
